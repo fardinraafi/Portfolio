@@ -29,82 +29,52 @@
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
 
-/* ── Smooth Animated CSS Background (No Laggy JS) ── */
-.bg-mesh {
-  position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #F1F5F9;
-}
-.blob {
-  position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%;
-  animation: float 20s infinite alternate ease-in-out;
-}
+/* Flowing Background */
+.bg-mesh { position: fixed; inset: 0; z-index: -1; overflow: hidden; background: #F1F5F9; }
+.blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
 .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
 .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
 .blob-3 { width: 35vw; height: 35vw; background: rgba(219,39,119,0.2); top: 30%; left: 40%; animation-duration: 25s; }
-
 @keyframes float {
   0% { transform: translate(0, 0) scale(1); }
   50% { transform: translate(5%, 10%) scale(1.1); }
   100% { transform: translate(-5%, -5%) scale(0.9); }
 }
 
-/* ── Layout: 2-Column Grid ── */
-.layout-wrapper {
-  max-width: 1200px; margin: 0 auto; padding: 4rem 2rem;
-  display: grid; grid-template-columns: 320px 1fr; gap: 3rem; align-items: start;
-}
+/* Layout */
+.layout-wrapper { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 320px 1fr; gap: 3rem; align-items: start; }
 
-/* ── Glassmorphism Components ── */
-.glass-card {
-  background: rgba(255, 255, 255, 0.75);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 24px; padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
+/* Glassmorphism */
+.glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: transform 0.4s ease, box-shadow 0.4s ease; }
 .glass-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); }
 
 /* Typography */
 h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.03em; }
-.gradient-text {
-  background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-size: 200% auto; animation: gradientShift 5s ease infinite alternate;
-}
+.gradient-text { background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-size: 200% auto; animation: gradientShift 5s ease infinite alternate; }
 @keyframes gradientShift { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }
-
 .section-title { font-family: 'Syne', sans-serif; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--c2); margin-bottom: 1.5rem; font-weight: 700; display: flex; align-items: center; gap: 1rem; }
 .section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(124,58,237,0.3), transparent); }
 
-/* ── Left Sidebar (Sticky) ── */
+/* Sidebar */
 .sidebar { position: sticky; top: 4rem; display: flex; flex-direction: column; gap: 1.5rem; }
-
 .profile-img-wrap { width: 120px; height: 120px; border-radius: 50%; padding: 4px; background: linear-gradient(135deg, var(--c1), var(--c2)); margin-bottom: 1rem; position: relative; }
 .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 3px solid #FFF; }
-
 .status-badge { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: rgba(34, 197, 94, 0.1); border-radius: 100px; color: #16A34A; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; }
 .pulse-dot { width: 8px; height: 8px; background: #22C55E; border-radius: 50%; animation: pulse 2s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); } 70% { box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); } 100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); } }
-
 .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tag { font-size: 0.75rem; padding: 6px 12px; background: rgba(255,255,255,0.8); border: 1px solid rgba(124,58,237,0.15); border-radius: 8px; color: var(--text-muted); font-weight: 500; transition: all 0.3s ease; }
 .tag:hover { background: var(--c1); color: #FFF; border-color: var(--c1); transform: translateY(-2px); }
-
-/* Clean Map Widget */
 .map-widget { background: linear-gradient(160deg, #0f1b3d, #1a2d5a); border-radius: 12px; padding: 1.5rem; position: relative; overflow: hidden; margin-top: 1rem; color: #FFF; text-align: center; }
 .map-widget svg { width: 80px; opacity: 0.6; margin-bottom: 0.5rem; }
 .pin { position: absolute; top: 35%; left: 50%; font-size: 1.5rem; transform: translate(-50%, -50%); animation: bounce 2s infinite; }
 @keyframes bounce { 0%, 100% { transform: translate(-50%, -50%); } 50% { transform: translate(-50%, -60%); } }
 
-/* ── Right Content Feed ── */
+/* Main Content */
 .content-feed { display: flex; flex-direction: column; gap: 2rem; }
-
-/* Typewriter */
 .typewriter { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 700; color: var(--c1); font-size: 1.2rem; margin-bottom: 1.5rem; background: rgba(37,99,235,0.1); padding: 4px 12px; border-radius: 8px; }
 .caret { display: inline-block; width: 2px; height: 1em; background: var(--c1); vertical-align: middle; animation: blink 1s infinite; margin-left: 2px; }
 @keyframes blink { 50% { opacity: 0; } }
-
 .contact-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
 .btn { padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
 .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
@@ -118,7 +88,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .doc-link h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--c1); }
 .doc-link p { font-size: 0.85rem; color: var(--text-muted); }
 
-/* Experience/Timeline Items */
+/* Timeline Items */
 .timeline-item { position: relative; padding-left: 1.5rem; margin-bottom: 2rem; border-left: 2px solid rgba(124,58,237,0.2); }
 .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--c2); border-radius: 50%; box-shadow: 0 0 0 4px rgba(124,58,237,0.1); }
 .timeline-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
@@ -126,12 +96,24 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .timeline-item ul { padding-left: 1rem; color: var(--text-muted); font-size: 0.95rem; }
 .timeline-item li { margin-bottom: 0.5rem; }
 
-/* Metrics Grid */
-.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-.metric-card { padding: 1.5rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; text-align: center; transition: transform 0.3s ease; }
-.metric-card:hover { transform: translateY(-5px); background: #FFF; }
-.metric-num { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--c1); line-height: 1; margin-bottom: 0.5rem; }
-.metric-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+/* ── COOL METRICS & AWARDS GRID ── */
+.metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+.metric-card { padding: 1.5rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
+.metric-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--c1), var(--c2)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+.metric-card:hover::after { transform: scaleX(1); }
+.metric-card:hover { transform: translateY(-5px); background: #FFF; box-shadow: 0 10px 25px rgba(37,99,235,0.1); }
+.metric-num { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; background: linear-gradient(135deg, var(--c1), var(--c2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1; margin-bottom: 0.5rem; }
+.metric-label { font-size: 0.8rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+
+.awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.award-card { display: flex; align-items: center; gap: 1rem; padding: 1.2rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; }
+/* Light sweep reflection effect */
+.award-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-20deg); transition: left 0.6s ease; z-index: 1; }
+.award-card:hover::before { left: 150%; }
+.award-card:hover { transform: translateY(-3px) scale(1.02); background: #FFF; border-color: var(--c2); box-shadow: 0 10px 20px rgba(124,58,237,0.1); }
+.award-icon { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
+.award-details h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem; line-height: 1.2; position: relative; z-index: 2; }
+.award-details p { font-size: 0.8rem; color: var(--c1); font-weight: 500; position: relative; z-index: 2; }
 
 /* Scroll Reveal */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -220,24 +202,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
     <section class="glass-card reveal">
-      <div class="section-title">Impact Metrics</div>
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-num">40K+</div>
-          <div class="metric-label">CRM Records Enriched</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">67K+</div>
-          <div class="metric-label">Monthly Organic Impressions</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-num">7-14</div>
-          <div class="metric-label">Day Rapid Deployment Windows</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="glass-card reveal">
       <div class="section-title">Recent Experience</div>
       
       <div class="timeline-item">
@@ -269,11 +233,65 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
       </div>
     </section>
 
+    <section class="glass-card reveal">
+      <div class="section-title">Impact & Recognition</div>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-num">40K+</div>
+          <div class="metric-label">CRM Records</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">67K+</div>
+          <div class="metric-label">Monthly Views</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">7-14</div>
+          <div class="metric-label">Day Launches</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-num">3.80</div>
+          <div class="metric-label">BBA CGPA</div>
+        </div>
+      </div>
+
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-icon">🏆</div>
+          <div class="award-details">
+            <h4>BASIS Leader of the Year</h4>
+            <p>2024 Runner-Up</p>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🎓</div>
+          <div class="award-details">
+            <h4>Aspire Leaders Program</h4>
+            <p>Harvard Business School '26</p>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🥇</div>
+          <div class="award-details">
+            <h4>ISCEA Global Winner</h4>
+            <p>70% CSCA Scholarship</p>
+          </div>
+        </div>
+        <div class="award-card">
+          <div class="award-icon">🏅</div>
+          <div class="award-details">
+            <h4>TEDxUttara Best Dept.</h4>
+            <p>Creative Direction</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 </div>
 
 <script>
-// 1. Typewriter Effect
+// Typewriter Effect
 const words = ['Growth Associate', 'B2B Strategist', 'Brand Expert', 'ALP 2026 Fellow'];
 let i = 0, j = 0, isDeleting = false;
 const twText = document.getElementById('tw-text');
@@ -293,7 +311,7 @@ function type() {
 }
 document.addEventListener('DOMContentLoaded', type);
 
-// 2. Scroll Reveal Animation
+// Scroll Reveal
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -302,10 +320,9 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1 });
-
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-// 3. Local Time Clock (Dhaka)
+// Local Time Clock
 function updateTime() {
   const timeStr = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit' });
   document.getElementById('local-time').textContent = timeStr;
