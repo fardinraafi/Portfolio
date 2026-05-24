@@ -13,4 +13,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://portfolio-seven-flame-zx4voxlgqy.vercel.app/
+Sitemap: https://fardinraafi.vercel.app/
