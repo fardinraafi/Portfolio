@@ -246,4 +246,71 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
         <ul>
           <li>Identified and mapped Key Decision Makers (KDMs) aligned with Ideal Customer Profiles (ICPs).</li>
           <li>Enriched and maintained 40,000+ CRM records via Apollo.io and LinkedIn Sales Navigator.</li>
-          <li>
+          <li>Executed multi-channel cold outreach and content marketing strategies.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Marketing Intern</h3>
+        <div class="meta">Adviza International • Sep 2025 – Nov 2025</div>
+        <ul>
+          <li>Designed 30+ custom social media assets for local and international clients.</li>
+          <li>Managed end-to-end client communications and project workflows.</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Head of Corporate & Alumni Relations</h3>
+        <div class="meta">BUBT Career Guidance Office • 2024 – Present</div>
+        <ul>
+          <li>Spearheaded initiatives to build and expand robust professional networks.</li>
+          <li>Managed corporate relations to facilitate career-focused events and workshops.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script>
+// 1. Typewriter Effect
+const words = ['Growth Associate', 'B2B Strategist', 'Brand Expert', 'ALP 2026 Fellow'];
+let i = 0, j = 0, isDeleting = false;
+const twText = document.getElementById('tw-text');
+
+function type() {
+  const currentWord = words[i];
+  if (isDeleting) {
+    twText.textContent = currentWord.substring(0, j - 1); j--;
+  } else {
+    twText.textContent = currentWord.substring(0, j + 1); j++;
+  }
+
+  let typeSpeed = isDeleting ? 50 : 100;
+  if (!isDeleting && j === currentWord.length) { typeSpeed = 2000; isDeleting = true; }
+  else if (isDeleting && j === 0) { isDeleting = false; i = (i + 1) % words.length; typeSpeed = 500; }
+  setTimeout(type, typeSpeed);
+}
+document.addEventListener('DOMContentLoaded', type);
+
+// 2. Scroll Reveal Animation
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// 3. Local Time Clock (Dhaka)
+function updateTime() {
+  const timeStr = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit' });
+  document.getElementById('local-time').textContent = timeStr;
+}
+setInterval(updateTime, 1000); updateTime();
+</script>
+</body>
+</html>
