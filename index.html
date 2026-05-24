@@ -117,7 +117,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   padding: 1rem 0;
   margin-bottom: 2rem;
 }
-/* Fade edges for smooth entry/exit */
 .ticker-container::before, .ticker-container::after {
   content: '';
   position: absolute;
@@ -136,12 +135,10 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   width: max-content;
   animation: scrollTicker 45s linear infinite;
 }
-/* Pause scrolling when hovered */
 .ticker-track:hover { animation-play-state: paused; }
 
 @keyframes scrollTicker {
   0% { transform: translateX(0); }
-  /* Shifts left by exactly half the width (which is one full set of 44 images) */
   100% { transform: translateX(calc(-50% - 0.75rem)); } 
 }
 
@@ -411,16 +408,15 @@ function type() {
 }
 document.addEventListener('DOMContentLoaded', type);
 
-// Certificate Ticker Injector (Automatically loads 44 images)
+// Certificate Ticker Injector (Automatically loads 40 images)
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('ticker-track');
   let certsHTML = '';
-  // Loop 1 to 44
-  for(let c = 1; c <= 44; c++) {
-    // Note: If an image fails to load (e.g., you only uploaded 30), the onerror removes it so it won't break the design.
+  // Loop 1 to 40
+  for(let c = 1; c <= 40; c++) {
     certsHTML += `<img src="cert-${c}.jpg" class="cert-img" onerror="this.style.display='none'" alt="Certificate ${c}">`;
   }
-  // Duplicate the entire block of 44 inside the track so it loops seamlessly
+  // Duplicate the entire block inside the track so it loops seamlessly
   track.innerHTML = certsHTML + certsHTML;
 });
 
