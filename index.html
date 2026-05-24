@@ -14,15 +14,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-<script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Person","name":"Fardin Rahman Khan Raafi","jobTitle":"Growth Associate","worksFor":{"@type":"Organization","name":"Augmex Technologies Ltd."},"alumniOf":{"@type":"EducationalOrganization","name":"Bangladesh University of Business and Technology (BUBT)"},"url":"https://portfolio-seven-flame-zx4voxlgqy.vercel.app/","image":"https://portfolio-seven-flame-zx4voxlgqy.vercel.app/profile.jpg","sameAs":["https://www.linkedin.com/in/fardinraafi","https://linko.page/fardin-rahman"],"address":{"@type":"PostalAddress","addressLocality":"Mirpur, Dhaka","addressCountry":"Bangladesh"},"award":"BASIS Leader of the Year 2024"}
-</script>
-
 <style>
 /* Base Variables & Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
-  --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --c4: #0EA5E9;
+  --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777;
   --text-main: #0F172A; --text-muted: #475569; --text-light: #64748B;
   --bg-page: #F8FAFC;
 }
@@ -35,16 +31,10 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: va
 .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
 .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
 .blob-3 { width: 35vw; height: 35vw; background: rgba(219,39,119,0.2); top: 30%; left: 40%; animation-duration: 25s; }
-@keyframes float {
-  0% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(5%, 10%) scale(1.1); }
-  100% { transform: translate(-5%, -5%) scale(0.9); }
-}
+@keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(5%, 10%) scale(1.1); } 100% { transform: translate(-5%, -5%) scale(0.9); } }
 
-/* Layout */
+/* Layout & Glassmorphism */
 .layout-wrapper { max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; display: grid; grid-template-columns: 320px 1fr; gap: 3rem; align-items: start; }
-
-/* Glassmorphism */
 .glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: transform 0.4s ease, box-shadow 0.4s ease; }
 .glass-card:hover { transform: translateY(-3px); box-shadow: 0 15px 35px rgba(37, 99, 235, 0.08); }
 
@@ -93,10 +83,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .timeline-item::before { content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; background: var(--c2); border-radius: 50%; box-shadow: 0 0 0 4px rgba(124,58,237,0.1); }
 .timeline-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
 .timeline-item .meta { font-size: 0.85rem; color: var(--c1); font-weight: 600; margin-bottom: 0.5rem; }
-.timeline-item ul { padding-left: 1rem; color: var(--text-muted); font-size: 0.95rem; }
-.timeline-item li { margin-bottom: 0.5rem; }
+.timeline-item ul { padding-left: 1rem; color: var(--text-muted); font-size: 0.95rem; list-style-type: none; }
+.timeline-item li { margin-bottom: 0.5rem; position: relative; }
+.timeline-item li::before { content: '•'; position: absolute; left: -1rem; color: var(--c1); font-weight: bold; }
 
-/* ── COOL METRICS & AWARDS GRID ── */
+/* Metrics & Awards */
 .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
 .metric-card { padding: 1.5rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; text-align: center; transition: all 0.3s ease; position: relative; overflow: hidden; }
 .metric-card::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--c1), var(--c2)); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
@@ -107,13 +98,46 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 
 .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
 .award-card { display: flex; align-items: center; gap: 1rem; padding: 1.2rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; transition: all 0.3s ease; position: relative; overflow: hidden; }
-/* Light sweep reflection effect */
 .award-card::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); transform: skewX(-20deg); transition: left 0.6s ease; z-index: 1; }
 .award-card:hover::before { left: 150%; }
 .award-card:hover { transform: translateY(-3px) scale(1.02); background: #FFF; border-color: var(--c2); box-shadow: 0 10px 20px rgba(124,58,237,0.1); }
 .award-icon { font-size: 2.2rem; line-height: 1; filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1)); }
 .award-details h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem; line-height: 1.2; position: relative; z-index: 2; }
 .award-details p { font-size: 0.8rem; color: var(--c1); font-weight: 500; position: relative; z-index: 2; }
+
+/* ── IMAGE COLLAGE GRID ── */
+.collage-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-auto-rows: 150px;
+  gap: 12px;
+  grid-auto-flow: dense;
+}
+
+.collage-item {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1));
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Make certain photos span larger for the Masonry look */
+.collage-item.span-2-col { grid-column: span 2; }
+.collage-item.span-2-row { grid-row: span 2; }
+.collage-item.span-large { grid-column: span 2; grid-row: span 2; }
+
+.collage-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  display: block;
+}
+
+.collage-item:hover img {
+  transform: scale(1.08);
+}
 
 /* Scroll Reveal */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
@@ -234,6 +258,37 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
     <section class="glass-card reveal">
+      <div class="section-title">Education</div>
+      
+      <div class="timeline-item">
+        <h3>Bachelor of Business Administration (BBA)</h3>
+        <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
+        <ul>
+          <li><strong>Major:</strong> Marketing</li>
+          <li><strong>CGPA:</strong> 3.80</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Higher Secondary Certificate (HSC)</h3>
+        <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
+        <ul>
+          <li><strong>Major:</strong> Commerce</li>
+          <li><strong>GPA:</strong> 5.00</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Secondary School Certificate (SSC)</h3>
+        <div class="meta">Adarsha High School • 2019</div>
+        <ul>
+          <li><strong>Major:</strong> Commerce</li>
+          <li><strong>GPA:</strong> 4.36</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="glass-card reveal">
       <div class="section-title">Impact & Recognition</div>
       
       <div class="metrics-grid">
@@ -283,6 +338,46 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
             <h4>TEDxUttara Best Dept.</h4>
             <p>Creative Direction</p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="glass-card reveal">
+      <div class="section-title">Visual Highlights</div>
+      
+      <div class="collage-grid">
+        <div class="collage-item span-large">
+          <img src="highlight-1.jpg" onerror="this.style.display='none'" alt="Achievement 1">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-2.jpg" onerror="this.style.display='none'" alt="Achievement 2">
+        </div>
+        <div class="collage-item span-2-row">
+          <img src="highlight-3.jpg" onerror="this.style.display='none'" alt="Achievement 3">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-4.jpg" onerror="this.style.display='none'" alt="Achievement 4">
+        </div>
+        <div class="collage-item span-2-col">
+          <img src="highlight-5.jpg" onerror="this.style.display='none'" alt="Achievement 5">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-6.jpg" onerror="this.style.display='none'" alt="Achievement 6">
+        </div>
+        <div class="collage-item span-large">
+          <img src="highlight-7.jpg" onerror="this.style.display='none'" alt="Achievement 7">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-8.jpg" onerror="this.style.display='none'" alt="Achievement 8">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-9.jpg" onerror="this.style.display='none'" alt="Achievement 9">
+        </div>
+        <div class="collage-item span-2-col">
+          <img src="highlight-10.jpg" onerror="this.style.display='none'" alt="Achievement 10">
+        </div>
+        <div class="collage-item">
+          <img src="highlight-11.jpg" onerror="this.style.display='none'" alt="Achievement 11">
         </div>
       </div>
     </section>
