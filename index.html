@@ -114,9 +114,14 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 /* IMAGE COLLAGE GRID */
 .collage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); grid-auto-rows: 150px; gap: 12px; grid-auto-flow: dense; }
 .collage-item { border-radius: 12px; overflow: hidden; position: relative; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+
+/* Custom spans for visual emphasis */
 .collage-item.span-2-col { grid-column: span 2; }
 .collage-item.span-2-row { grid-row: span 2; }
 .collage-item.span-large { grid-column: span 2; grid-row: span 2; }
+/* New class to stretch across the entire row */
+.collage-item.span-full-row { grid-column: 1 / -1; grid-row: span 2; }
+
 .collage-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; display: block; }
 .collage-item:hover img { transform: scale(1.08); }
 
@@ -282,10 +287,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
           <div class="metric-label">Monthly Views</div>
         </div>
         <div class="metric-card">
-          <div class="metric-num">7-14</div>
-          <div class="metric-label">Day Launches</div>
-        </div>
-        <div class="metric-card">
           <div class="metric-num">3.80</div>
           <div class="metric-label">BBA CGPA</div>
         </div>
@@ -327,14 +328,14 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
       <div class="section-title">Visual Highlights</div>
       
       <div class="collage-grid">
-        <div class="collage-item span-large">
+        <div class="collage-item span-full-row">
           <img src="highlight-1.jpg" onerror="this.style.display='none'" alt="Achievement 1">
         </div>
         <div class="collage-item">
           <img src="highlight-2.jpg" onerror="this.style.display='none'" alt="Achievement 2">
         </div>
         <div class="collage-item span-2-row">
-          <img src="highlight-3.jpg" onerror="this.style.display='none'" alt="Achievement 3">
+          <img src="highlight-11.jpg" onerror="this.style.display='none'" alt="Achievement 11 (Swapped)">
         </div>
         <div class="collage-item">
           <img src="highlight-4.jpg" onerror="this.style.display='none'" alt="Achievement 4">
@@ -358,7 +359,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
           <img src="highlight-10.jpg" onerror="this.style.display='none'" alt="Achievement 10">
         </div>
         <div class="collage-item">
-          <img src="highlight-11.jpg" onerror="this.style.display='none'" alt="Achievement 11">
+          <img src="highlight-3.jpg" onerror="this.style.display='none'" alt="Achievement 3 (Swapped)">
         </div>
       </div>
     </section>
