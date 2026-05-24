@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fardin Rahman Khan Raafi</title>
+    <title>Fardin Rahman Khan Raafi - Portfolio</title>
     <meta name="description" content="Portfolio of Fardin Rahman Khan Raafi, Growth Associate and B2B Lead Generation Expert in Dhaka.">
     <meta property="og:title" content="Fardin Rahman Khan Raafi - Growth & Branding">
     <meta property="og:description" content="Growth Associate specializing in B2B outreach, Vested Growth, and brand strategy.">
@@ -26,6 +26,7 @@
         "name": "Bangladesh University of Business and Technology (BUBT)"
       },
       "url": "https://portfolio-seven-flame-zx4voxlgqy.vercel.app/",
+      "image": "https://portfolio-seven-flame-zx4voxlgqy.vercel.app/profile.jpg",
       "sameAs": [
         "https://www.linkedin.com/in/fardinraafi",
         "https://linko.page/fardin-rahman"
@@ -40,13 +41,15 @@
     </script>
 
     <style>
-        /* Modern Minimalist CSS */
+        /* Vibrant Modern CSS */
         :root {
-            --bg: #FAFAFA;
-            --text-main: #111827;
-            --text-muted: #6B7280;
-            --accent: #2563EB;
-            --border: #E5E7EB;
+            --bg: #F8FAFC;
+            --surface: #FFFFFF;
+            --text-main: #0F172A;
+            --text-muted: #64748B;
+            --gradient-start: #3B82F6; /* Vibrant Blue */
+            --gradient-end: #8B5CF6;   /* Vibrant Purple */
+            --border: #E2E8F0;
         }
         
         body { 
@@ -54,80 +57,156 @@
             background-color: var(--bg);
             color: var(--text-main);
             line-height: 1.7; 
-            max-width: 750px; 
+            max-width: 800px; 
             margin: 0 auto; 
-            padding: 5rem 2rem; 
+            padding: 4rem 2rem; 
         }
 
-        header { margin-bottom: 4rem; }
+        /* Profile Layout */
+        header { 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 4rem; 
+        }
+
+        .profile-img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--surface);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.25);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
         
         h1 { 
-            font-size: 2.5rem; 
+            font-size: 2.8rem; 
             font-weight: 800; 
-            letter-spacing: -0.03em; 
-            margin: 0 0 0.5rem 0; 
+            letter-spacing: -0.04em; 
+            margin: 0 0 0.25rem 0; 
+            /* Gradient Text Effect */
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         p.subtitle { 
-            font-size: 1.2rem; 
+            font-size: 1.25rem; 
             color: var(--text-muted); 
             margin: 0 0 1.5rem 0; 
-            font-weight: 400;
-        }
-
-        .contact-links { display: flex; gap: 1.5rem; font-size: 0.95rem; }
-        .contact-links a { 
-            color: var(--text-main); 
-            text-decoration: none; 
             font-weight: 500;
-            border-bottom: 2px solid transparent;
-            transition: all 0.2s ease;
         }
-        .contact-links a:hover { border-bottom-color: var(--text-main); }
 
-        section { margin-bottom: 4rem; }
+        .contact-links { 
+            display: flex; 
+            gap: 1.5rem; 
+            font-size: 1rem; 
+            background: var(--surface);
+            padding: 0.75rem 2rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .contact-links a { 
+            color: var(--text-muted); 
+            text-decoration: none; 
+            font-weight: 600;
+            transition: color 0.2s ease;
+        }
+
+        .contact-links a:hover { 
+            color: var(--gradient-end); 
+        }
+
+        section { 
+            margin-bottom: 3.5rem; 
+            background: var(--surface);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
         
         h2 { 
-            font-size: 0.9rem; 
+            font-size: 0.95rem; 
             text-transform: uppercase; 
             letter-spacing: 0.1em; 
-            color: var(--text-muted); 
-            border-bottom: 1px solid var(--border); 
-            padding-bottom: 0.75rem; 
+            color: var(--gradient-start); 
+            margin-top: 0;
             margin-bottom: 1.5rem; 
+            font-weight: 700;
         }
 
-        p.bio { font-size: 1.05rem; color: #374151; }
+        p.bio { font-size: 1.1rem; color: #334155; }
 
-        ul { padding-left: 1.2rem; color: #374151; }
+        ul { padding-left: 1.2rem; color: #334155; }
         li { margin-bottom: 0.75rem; }
+        li strong { color: var(--text-main); }
 
-        /* Sleek buttons for AI markdown files */
+        /* Sleek Gradient Cards for Documents */
         .doc-link {
             display: block;
-            padding: 1.25rem;
+            padding: 1.5rem;
             margin-bottom: 1rem;
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            background: var(--surface);
+            border: 2px solid var(--border);
+            border-radius: 12px;
             text-decoration: none;
             color: var(--text-main);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
         .doc-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border-color: #D1D5DB;
+            transform: translateY(-3px);
+            border-color: var(--gradient-start);
+            box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.15);
         }
 
-        .doc-link strong { display: block; color: var(--accent); font-size: 1.1rem; margin-bottom: 0.25rem; }
-        .doc-link span { color: var(--text-muted); font-size: 0.9rem; }
+        .doc-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .doc-link:hover::before { opacity: 1; }
+
+        .doc-link strong { 
+            display: block; 
+            font-size: 1.15rem; 
+            margin-bottom: 0.25rem; 
+        }
+        
+        .doc-link span { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            body { padding: 2rem 1.5rem; }
+            h1 { font-size: 2.2rem; }
+            section { padding: 1.5rem; }
+            .contact-links { flex-direction: column; gap: 0.5rem; padding: 1.5rem; text-align: center; border-radius: 12px;}
+        }
     </style>
 </head>
 <body>
 
     <header>
+        <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" class="profile-img" onerror="this.src='https://via.placeholder.com/160?text=Upload+profile.jpg'">
         <h1>Fardin Rahman Khan Raafi</h1>
         <p class="subtitle">Growth Associate & B2B Strategist</p>
         
@@ -144,15 +223,15 @@
     </section>
 
     <section>
-        <h2>Professional Documents (AI-Optimized)</h2>
+        <h2>Professional Documents</h2>
         
         <a href="/resume.md" class="doc-link">
-            <strong>Professional Resume ➔</strong>
-            <span>View my complete work history, technical stack, and education.</span>
+            <strong>AI-Optimized Resume ➔</strong>
+            <span>View my complete work history, technical stack, and education metrics.</span>
         </a>
         
         <a href="/extracurriculars.md" class="doc-link">
-            <strong>Extracurriculars & Leadership ➔</strong>
+            <strong>Leadership & Extracurriculars ➔</strong>
             <span>Explore my history of university leadership, creative direction, and community service.</span>
         </a>
     </section>
