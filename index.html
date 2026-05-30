@@ -142,14 +142,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); 
   box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
 }
-
-/* Span classes for visual emphasis */
 .collage-item.span-2-col { grid-column: span 2; }
 .collage-item.span-2-row { grid-row: span 2; }
 .collage-item.span-large { grid-column: span 2; grid-row: span 2; }
 .collage-item.span-full-row { grid-column: 1 / -1; grid-row: span 2; }
 
-/* Background image in the grid */
 .collage-item .grid-img { 
   width: 100%; 
   height: 100%; 
@@ -158,11 +155,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   display: block; 
   transition: filter 0.3s ease; 
 }
-
-/* Hover dim effect on background */
 .collage-item:hover .grid-img { filter: brightness(0.4); }
 
-/* The Pop-out Preview Image */
 .preview-img { 
   position: absolute; 
   top: 50%; 
@@ -182,10 +176,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   opacity: 0; 
   visibility: hidden; 
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-  pointer-events: none; /* Prevents hover flickering */
+  pointer-events: none; 
 }
-
-/* Activate Pop-out on Hover */
 .collage-item:hover { z-index: 50; }
 .collage-item:hover .preview-img { 
   opacity: 1; 
@@ -239,6 +231,35 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 }
 .cert-img:hover { transform: scale(1.05); border-color: var(--c1); box-shadow: 0 10px 25px rgba(37,99,235,0.15); z-index: 10; position: relative; }
 
+/* ── GLOBAL CERTIFICATE HOVER MODAL ── */
+.cert-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  z-index: 9999;
+  background: #FFF;
+  padding: 12px;
+  border-radius: 16px;
+  box-shadow: 0 25px 80px rgba(0,0,0,0.3);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none; /* Crucial: stops the mouse from flickering the hover state */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.cert-modal.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+.cert-modal img {
+  max-width: 80vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 8px;
+  display: block;
+}
+
 /* Scroll Reveal */
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -249,13 +270,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   .sidebar { position: relative; top: 0; }
   .profile-img-wrap { width: 200px; margin: 0 auto 1.5rem auto; }
   h1 { font-size: 2.2rem; }
-  
-  /* Disable expensive backdrop blur on mobile for performance */
-  .glass-card {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(255, 255, 255, 0.98);
-  }
+  .glass-card { backdrop-filter: none; -webkit-backdrop-filter: none; background: rgba(255, 255, 255, 0.98); }
 }
 @media (max-width: 600px) {
   .preview-img { max-width: 280px; max-height: 280px; }
@@ -263,8 +278,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 
 /* ── UNIQUE GLOWING FOOTER ── */
 .site-footer {
-  max-width: 1200px; /* Constrains it to match the rest of your site */
-  margin: 4rem auto 0; /* Centers it and gives it breathing room from the content above */
+  max-width: 1200px; 
+  margin: 4rem auto 0; 
   padding: 4rem 2rem 3rem;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(20px);
@@ -626,7 +641,9 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
   </main>
-</div> <footer class="site-footer reveal">
+</div> 
+
+<footer class="site-footer reveal">
   <div class="footer-glow"></div>
   <h2 class="footer-title">Let's build something <span class="gradient-text">extraordinary.</span></h2>
   <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
@@ -645,6 +662,10 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 </footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<div id="cert-modal" class="cert-modal">
+  <img id="cert-modal-img" src="" alt="Certificate Full Preview">
+</div>
 
 <script>
 // Typewriter Effect
@@ -667,13 +688,14 @@ function type() {
 }
 document.addEventListener('DOMContentLoaded', type);
 
-// Certificate Ticker Injector
+// Certificate Ticker Injector (UPDATED to trigger Modal & use higher-res placeholders)
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('ticker-track');
   if (track) {
     let certsHTML = '';
     for(let c = 1; c <= 40; c++) {
-      certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/220x160/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
+      // Notice the new onmouseenter and onmouseleave triggers here!
+      certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">`;
     }
     track.innerHTML = certsHTML + certsHTML;
   }
@@ -712,6 +734,19 @@ window.addEventListener('scroll', () => {
 scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Certificate Hover Modal Logic (NEW)
+const certModal = document.getElementById('cert-modal');
+const certModalImg = document.getElementById('cert-modal-img');
+
+window.showCertPreview = function(src) {
+  certModalImg.src = src;
+  certModal.classList.add('show');
+};
+
+window.hideCertPreview = function() {
+  certModal.classList.remove('show');
+};
 </script>
 </body>
 </html>
