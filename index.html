@@ -231,7 +231,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 }
 .cert-img:hover { transform: scale(1.05); border-color: var(--c1); box-shadow: 0 10px 25px rgba(37,99,235,0.15); z-index: 10; position: relative; }
 
-/* ── GLOBAL HOVER MODAL ── */
+/* ── GLOBAL CERTIFICATE HOVER MODAL ── */
 .cert-modal {
   position: fixed;
   top: 50%;
@@ -244,7 +244,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   box-shadow: 0 25px 80px rgba(0,0,0,0.3);
   opacity: 0;
   visibility: hidden;
-  pointer-events: none; /* Crucial: stops the mouse from flickering the hover state */
+  pointer-events: none; 
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 .cert-modal.show {
@@ -313,6 +313,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .footer-links {
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
   gap: 1.2rem;
   margin: 2.5rem 0;
@@ -653,7 +654,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   <div class="footer-links">
     <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
     <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
-    <a href="/resume.md" class="footer-link" onmouseenter="showCertPreview('resume-screenshot.jpg')" onmouseleave="hideCertPreview()">Read my Resume</a>
+    
+    <a href="resume-screenshot.jpg" target="_blank" class="btn btn-primary" style="padding: 12px 24px; font-size: 1rem;">Read my Resume ➔</a>
   </div>
   
   <div class="copyright">
@@ -664,7 +666,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <div id="cert-modal" class="cert-modal">
-  <img id="cert-modal-img" src="" alt="Full Preview" onerror="this.src='https://placehold.co/600x800/F8FAFC/64748B?text=Resume+Screenshot'">
+  <img id="cert-modal-img" src="" alt="Certificate Full Preview">
 </div>
 
 <script>
@@ -734,7 +736,7 @@ scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Global Hover Modal Logic (Used for both Certificates and the Resume Link!)
+// Certificate Hover Modal Logic
 const certModal = document.getElementById('cert-modal');
 const certModalImg = document.getElementById('cert-modal-img');
 
