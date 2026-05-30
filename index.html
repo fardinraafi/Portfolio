@@ -231,7 +231,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 }
 .cert-img:hover { transform: scale(1.05); border-color: var(--c1); box-shadow: 0 10px 25px rgba(37,99,235,0.15); z-index: 10; position: relative; }
 
-/* ── GLOBAL CERTIFICATE HOVER MODAL ── */
+/* ── GLOBAL HOVER MODAL ── */
 .cert-modal {
   position: fixed;
   top: 50%;
@@ -653,7 +653,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   <div class="footer-links">
     <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
     <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
-    <a href="/resume.md" class="footer-link">Read my Resume</a>
+    <a href="/resume.md" class="footer-link" onmouseenter="showCertPreview('resume-screenshot.jpg')" onmouseleave="hideCertPreview()">Read my Resume</a>
   </div>
   
   <div class="copyright">
@@ -664,7 +664,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <div id="cert-modal" class="cert-modal">
-  <img id="cert-modal-img" src="" alt="Certificate Full Preview">
+  <img id="cert-modal-img" src="" alt="Full Preview" onerror="this.src='https://placehold.co/600x800/F8FAFC/64748B?text=Resume+Screenshot'">
 </div>
 
 <script>
@@ -694,7 +694,6 @@ document.addEventListener('DOMContentLoaded', () => {
   if (track) {
     let certsHTML = '';
     for(let c = 1; c <= 40; c++) {
-      // Notice the new onmouseenter and onmouseleave triggers here!
       certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">`;
     }
     track.innerHTML = certsHTML + certsHTML;
@@ -735,7 +734,7 @@ scrollTopBtn.addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// Certificate Hover Modal Logic (NEW)
+// Global Hover Modal Logic (Used for both Certificates and the Resume Link!)
 const certModal = document.getElementById('cert-modal');
 const certModalImg = document.getElementById('cert-modal-img');
 
