@@ -260,6 +260,73 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 @media (max-width: 600px) {
   .preview-img { max-width: 280px; max-height: 280px; }
 }
+  /* ── UNIQUE GLOWING FOOTER ── */
+.site-footer {
+  margin-top: 4rem;
+  padding: 4rem 2rem 3rem;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 60px 60px 0 0; /* Creates a massive, sleek curve at the top */
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.02);
+}
+
+/* The hidden glowing orb at the bottom */
+.footer-glow {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%);
+  bottom: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+}
+
+.footer-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin: 2.5rem 0;
+}
+
+.footer-link {
+  color: var(--text-main);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.7);
+  border: 1px solid rgba(255,255,255,0.9);
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.footer-link:hover {
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: #FFF;
+  border-color: transparent;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(37,99,235,0.25);
+}
+
+.copyright {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
 </style>
 </head>
 <body>
@@ -523,6 +590,31 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
   </main>
+  </main> <footer class="site-footer reveal" style="grid-column: 1 / -1;">
+    <div class="footer-glow"></div>
+    <h2 class="footer-title">Let's build something <span class="gradient-text">extraordinary.</span></h2>
+    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
+      Currently open to new opportunities in growth strategy, branding, and AI integration.
+    </p>
+    
+    <div class="footer-links">
+      <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
+      <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
+      <a href="/resume.md" class="footer-link">Read Agent Resume</a>
+    </div>
+    
+    <div class="copyright">
+      © <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.
+    </div>
+  </footer>
+
+</div> ```
+
+### Optional Step 3: Make the Year Auto-Update
+If you want the `© 2026` text to automatically update every year so you never have to touch it again, find your `<script>` section at the very bottom of your code and add this single line anywhere inside it:
+
+```javascript
+document.getElementById('current-year').textContent = new Date().getFullYear();
 </div>
 
 <script>
