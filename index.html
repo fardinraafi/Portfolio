@@ -263,7 +263,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 
 /* ── UNIQUE GLOWING FOOTER ── */
 .site-footer {
-  margin-top: 4rem;
+  max-width: 1200px; /* Constrains it to match the rest of your site */
+  margin: 4rem auto 0; /* Centers it and gives it breathing room from the content above */
   padding: 4rem 2rem 3rem;
   background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(20px);
@@ -326,6 +327,41 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   color: var(--text-light);
   font-weight: 500;
   letter-spacing: 0.05em;
+}
+
+/* ── SCROLL TO TOP BUTTON ── */
+.scroll-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: linear-gradient(135deg, var(--c1), var(--c2));
+  color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(37,99,235,0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 1000;
+  border: none;
+}
+
+.scroll-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.scroll-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(37,99,235,0.4);
 }
 </style>
 </head>
@@ -590,26 +626,25 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
   </main>
+</div> <footer class="site-footer reveal">
+  <div class="footer-glow"></div>
+  <h2 class="footer-title">Let's build something <span class="gradient-text">extraordinary.</span></h2>
+  <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
+    Currently open to new opportunities in growth strategy, branding, and AI integration.
+  </p>
   
-  <footer class="site-footer reveal" style="grid-column: 1 / -1;">
-    <div class="footer-glow"></div>
-    <h2 class="footer-title">Let's build something <span class="gradient-text">extraordinary.</span></h2>
-    <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
-      Currently open to new opportunities in growth strategy, branding, and AI integration.
-    </p>
-    
-    <div class="footer-links">
-      <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
-      <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
-      <a href="/resume.md" class="footer-link">Read Agent Resume</a>
-    </div>
-    
-    <div class="copyright">
-      © <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.
-    </div>
-  </footer>
+  <div class="footer-links">
+    <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
+    <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
+    <a href="/resume.md" class="footer-link">Read Agent Resume</a>
+  </div>
+  
+  <div class="copyright">
+    © <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.
+  </div>
+</footer>
 
-</div>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <script>
 // Typewriter Effect
@@ -632,7 +667,7 @@ function type() {
 }
 document.addEventListener('DOMContentLoaded', type);
 
-// Certificate Ticker Injector (Added lazy loading)
+// Certificate Ticker Injector
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('ticker-track');
   if (track) {
@@ -664,6 +699,19 @@ setInterval(updateTime, 1000); updateTime();
 
 // Footer Auto Year Updater
 document.getElementById('current-year').textContent = new Date().getFullYear();
+
+// Scroll To Top Logic
+const scrollTopBtn = document.getElementById('scrollTopBtn');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 400) {
+    scrollTopBtn.classList.add('show');
+  } else {
+    scrollTopBtn.classList.remove('show');
+  }
+});
+scrollTopBtn.addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
 </script>
 </body>
 </html>
