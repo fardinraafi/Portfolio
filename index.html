@@ -260,7 +260,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 @media (max-width: 600px) {
   .preview-img { max-width: 280px; max-height: 280px; }
 }
-  /* ── UNIQUE GLOWING FOOTER ── */
+
+/* ── UNIQUE GLOWING FOOTER ── */
 .site-footer {
   margin-top: 4rem;
   padding: 4rem 2rem 3rem;
@@ -268,14 +269,13 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-top: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 60px 60px 0 0; /* Creates a massive, sleek curve at the top */
+  border-radius: 60px 60px 0 0; 
   text-align: center;
   position: relative;
   overflow: hidden;
   box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.02);
 }
 
-/* The hidden glowing orb at the bottom */
 .footer-glow {
   position: absolute;
   width: 400px;
@@ -590,7 +590,8 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </section>
 
   </main>
-  </main> <footer class="site-footer reveal" style="grid-column: 1 / -1;">
+  
+  <footer class="site-footer reveal" style="grid-column: 1 / -1;">
     <div class="footer-glow"></div>
     <h2 class="footer-title">Let's build something <span class="gradient-text">extraordinary.</span></h2>
     <p style="color: var(--text-muted); max-width: 500px; margin: 0 auto; font-size: 1.1rem;">
@@ -608,13 +609,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     </div>
   </footer>
 
-</div> ```
-
-### Optional Step 3: Make the Year Auto-Update
-If you want the `© 2026` text to automatically update every year so you never have to touch it again, find your `<script>` section at the very bottom of your code and add this single line anywhere inside it:
-
-```javascript
-document.getElementById('current-year').textContent = new Date().getFullYear();
 </div>
 
 <script>
@@ -667,6 +661,9 @@ function updateTime() {
   document.getElementById('local-time').textContent = timeStr;
 }
 setInterval(updateTime, 1000); updateTime();
+
+// Footer Auto Year Updater
+document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
 </body>
 </html>
