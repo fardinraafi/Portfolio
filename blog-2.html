@@ -13,15 +13,20 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: va
 .blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
 .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
 .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
-@keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(5%, 10%) scale(1.1); } 100% { transform: translate(-5%, -5%) scale(0.9); } }
 
-.layout-wrapper { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; }
+/* Top Nav */
+.top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); }
+.nav-brand { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
+.nav-menu { display: flex; gap: 2rem; }
+.nav-menu a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+.nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
+.btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; padding: 8px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
+.btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
+
+.layout-wrapper { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 3rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); }
-.btn-outline { display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid #64748B; margin-bottom: 2rem; transition: all 0.3s ease; }
-.btn-outline:hover { border-color: var(--c1); color: var(--c1); transform: translateX(-5px); }
 
 .article-hero-img { width: 100%; aspect-ratio: 1200 / 627; object-fit: cover; border-radius: 16px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-
 h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: var(--c1); }
 h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text-main); }
 h3 { font-family: 'DM Sans', sans-serif; font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--c2); }
@@ -29,14 +34,35 @@ p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
 .meta-info { font-size: 0.9rem; color: #64748B; font-weight: 600; margin-bottom: 2rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; }
 a { color: var(--c1); text-decoration: none; font-weight: bold; }
 a:hover { text-decoration: underline; }
+
+/* Footer */
+.site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
+.footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; }
+.footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
+.footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; }
+.footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
+.copyright { font-size: 0.85rem; color: #64748B; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; }
+@media (max-width: 900px) { .nav-menu { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-col-links { align-items: center; } .glass-card { padding: 1.5rem; } }
 </style>
 </head>
 <body>
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
+<nav class="top-nav">
+  <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+  <div class="nav-menu">
+    <a href="/index.html">Home</a>
+    <a href="/index.html#about">About</a>
+    <a href="/gallery.html">Gallery</a>
+    <a href="/blog.html" class="active">Blog</a>
+    <a href="/certificates.html">Certificates</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <a href="/contact.html" class="btn-primary">Let's Talk</a>
+</nav>
+
 <div class="layout-wrapper">
-  <a href="/blog.html" class="btn-outline">← Back to All Blogs</a>
-  
   <article class="glass-card">
     <img src="blog-2-thumb.webp" alt="AI Certification" class="article-hero-img" onerror="this.style.display='none'">
 
@@ -47,7 +73,7 @@ a:hover { text-decoration: underline; }
     <p>এই গ্যাপটা নিজের চোখে দেখার পর আমি নিজেই ব্যাক-টু-ব্যাক ৭টি AI Certification Courses শেষ করলাম। এই লার্নিং জার্নিটা আমার চোখ খুলে দিয়েছে, বিশেষ করে কীভাবে গ্লোবাল প্ল্যাটফর্মগুলো AI Core Concepts-কে রিয়েল-ওয়ার্ল্ড এ অ্যাপ্লাই করছে। আজকের দিনে স্টুডেন্ট এবং ফ্রেশারদের জন্য শুধু ট্র্যাডিশনাল ডিগ্রি যথেষ্ট নয়। আপনাদেরকে Market Demand এর সাথে তাল মিলিয়ে নিজেকে আপগ্রেড করতে হবে, আর সেখানেই আসে এই ফ্রি সার্টিফিকেশনগুলোর গুরুত্ব।</p>
     
     <h2>কেন এই AI Era-তে সার্টিফিকেশন জরুরি?</h2>
-    <p>ভাইয়া/আপু, মার্কেট এখন অনেক বেশি কম্পিটিটিভ। আপনি যখন কোনো ইন্টারভিউ বা Marketing/ B2B/Business Development/ Growth রোলের জন্য অ্যাপ্লাই করবেন, তখন আপনার সিভিতে জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না। কিন্তু আপনার যদি OpenAI বা Google-এর ভ্যালিডেটেড সার্টিফিকেট থাকে, তবে তা প্রুফ করে যে আপনি টুলসগুলো ট্রেন্ড মেনে ইউজ করতে পারেন। এটি আপনার Personal Branding কে এক ধাক্কায় অনেক ওপরে নিয়ে যায়।</p>
+    <p>ভাইয়া/আপু, মার্কেট এখন অনেক বেশি কম্পিটিটিভ। আপনি যখন কোনো ইন্টারভিউ বা Marketing/ B2B/Business Development/ Growth রোলের জন্য অ্যাপ্লাই করবেন, তখন আপনার সিভিতে জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে খাঁটি প্রমাণ খোঁজে। কিন্তু আপনার যদি OpenAI বা Google-এর ভ্যালিডেটেড সার্টিফিকেট থাকে, তবে তা প্রুফ করে যে আপনি টুলসগুলো ট্রেন্ড মেনে ইউজ করতে পারেন। এটি আপনার Personal Branding কে এক ধাক্কায় অনেক ওপরে নিয়ে যায়।</p>
     <p>তা ছাড়া জটিল Business Processes কে কীভাবে Autonomous AI Agents দিয়ে অটোমেট করতে হয়, তা এই কোর্সগুলো না করলে জানা কঠিন। হ্যাঁ, YouTube দেখে আপনি অনেক কিছু শিখতে এবং জানতে পারবেন। যেকোনো টপিকের ওপর হাজার হাজার রিসোর্স সেখানে ছড়ানো আছে, কিন্তু আপনি যখন একটা verified certification course করেন, তখন পুরো গেমটাই চেঞ্জ হয়ে যায়।</p>
     
     <h3>১. OpenAI Academy - AI Foundations & Applied AI Foundations</h3>
@@ -97,5 +123,33 @@ a:hover { text-decoration: underline; }
     <p>আপনার কি মনে হয়? ক্যারিয়ার গ্রোথের জন্য এই ধরনের ফ্রি সার্টিফিকেশনগুলো কি আসলেই প্রাতিষ্ঠানিক শিক্ষার চেয়ে বেশি ইমপ্যাক্ট তৈরি করছে? আপনার মতামত জানান! 👇</p>
   </article>
 </div>
+
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman <span class="gradient-text">Khan Raafi</span></h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
+      <p style="color: var(--text-muted); font-weight: 600;">📍 Mirpur, Dhaka, Bangladesh</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <div class="footer-col-links">
+        <a href="/index.html">Home</a><a href="/gallery.html">Gallery</a><a href="/blog.html">Blog</a><a href="/certificates.html">Certificates</a><a href="/contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <div class="footer-col-links">
+        <a href="mailto:fardinraafi@gmail.com">✉️ fardinraafi@gmail.com</a>
+        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">🔗 LinkedIn Profile</a>
+        <a href="resume-screenshot.jpg" target="_blank" class="btn-primary" style="margin-top: 1rem; text-align: center;">Read my Resume ➔</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+</footer>
+<script>
+  document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
