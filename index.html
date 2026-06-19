@@ -88,7 +88,7 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .typewriter { display: inline-block; font-family: 'Syne', sans-serif; font-weight: 700; color: var(--c1); font-size: 1.2rem; margin-bottom: 1.5rem; background: rgba(37,99,235,0.1); padding: 4px 12px; border-radius: 8px; }
 .caret { display: inline-block; width: 2px; height: 1em; background: var(--c1); vertical-align: middle; animation: blink 1s infinite; margin-left: 2px; }
 @keyframes blink { 50% { opacity: 0; } }
-.contact-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+.contact-links { display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap; }
 .btn { padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 8px; }
 .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
 .btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
@@ -434,8 +434,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
       <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem;">
         I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
       </p>
+      
+      <!-- ADDED THE BLOG BUTTON HERE! -->
       <div class="contact-links">
         <a href="mailto:fardinraafi@gmail.com" class="btn btn-primary">Let's Talk ➔</a>
+        <a href="/blog.html" class="btn btn-outline">Read My Blog ✍️</a>
         <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
         <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
       </div>
@@ -651,9 +654,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     Currently open to new opportunities in growth strategy, branding, and FMCG.
   </p>
   
+  <!-- ADDED THE BLOG BUTTON TO YOUR FOOTER LINKS! -->
   <div class="footer-links">
     <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
     <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
+    <a href="/blog.html" class="footer-link">Read My Blog</a>
     
     <a href="resume-screenshot.jpg" target="_blank" class="btn btn-primary" style="padding: 12px 24px; font-size: 1rem;">Read my Resume ➔</a>
   </div>
@@ -690,7 +695,7 @@ function type() {
 }
 document.addEventListener('DOMContentLoaded', type);
 
-// Certificate Ticker Injector (UPDATED to trigger Modal & use higher-res placeholders)
+// Certificate Ticker Injector
 document.addEventListener('DOMContentLoaded', () => {
   const track = document.getElementById('ticker-track');
   if (track) {
