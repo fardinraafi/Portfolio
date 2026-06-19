@@ -264,6 +264,16 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ── NEW FEATURED BLOG CSS FOR MAIN PAGE ── */
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.blog-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; text-decoration: none; color: var(--text-main); overflow: hidden; transition: all 0.3s ease; }
+.blog-card:hover { background: #FFF; border-color: var(--c2); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(124,58,237,0.15); }
+.blog-card-img { width: 100%; aspect-ratio: 1200 / 627; object-fit: cover; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.blog-card-content { padding: 1.5rem; }
+.blog-date { font-size: 0.85rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.blog-title { font-family: 'Syne', sans-serif; font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
+.blog-excerpt { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
+
 /* Responsive Grid & Mobile Glass Fallback */
 @media (max-width: 900px) {
   .layout-wrapper { grid-template-columns: 1fr; gap: 2rem; }
@@ -435,7 +445,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
         I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
       </p>
       
-      <!-- ADDED THE BLOG BUTTON HERE! -->
       <div class="contact-links">
         <a href="mailto:fardinraafi@gmail.com" class="btn btn-primary">Let's Talk ➔</a>
         <a href="/blog.html" class="btn btn-outline">Read My Blog ✍️</a>
@@ -644,6 +653,38 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
       </div>
     </section>
 
+    <!-- NEW FEATURED BLOGS SECTION ON HOMEPAGE -->
+    <section class="glass-card reveal">
+      <div class="section-title">Featured Blogs</div>
+      
+      <div class="blog-grid">
+        <!-- BLOG POST 1 -->
+        <a href="/blog-1.html" class="blog-card">
+          <img src="blog-1-thumb.webp" alt="Brainrot Marketing Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
+          <div class="blog-card-content">
+            <div class="blog-date">Latest Case Study</div>
+            <h2 class="blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+            <p class="blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
+          </div>
+        </a>
+
+        <!-- BLOG POST 2 -->
+        <a href="/blog-2.html" class="blog-card">
+          <img src="blog-2-thumb.webp" alt="AI Certification Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Certification'">
+          <div class="blog-card-content">
+            <div class="blog-date">Career Advice</div>
+            <h2 class="blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
+            <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+          </div>
+        </a>
+      </div>
+
+      <!-- LINK TO FULL BLOG PAGE -->
+      <div style="text-align: center; margin-top: 2rem;">
+        <a href="/blog.html" class="btn btn-outline">Read All Blogs ➔</a>
+      </div>
+    </section>
+
   </main>
 </div> 
 
@@ -654,7 +695,6 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
     Currently open to new opportunities in growth strategy, branding, and FMCG.
   </p>
   
-  <!-- ADDED THE BLOG BUTTON TO YOUR FOOTER LINKS! -->
   <div class="footer-links">
     <a href="mailto:fardinraafi@gmail.com" class="footer-link">Drop an Email</a>
     <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="footer-link">Connect on LinkedIn</a>
