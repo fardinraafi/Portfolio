@@ -21,40 +21,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .btn-outline { display: inline-flex; align-items: center; width: max-content; padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid var(--text-muted); margin-bottom: 2rem; transition: all 0.3s ease; }
 .btn-outline:hover { border-color: var(--c1); color: var(--c1); transform: translateX(-5px); }
 
-/* ── NEW SCALABLE BLOG GRID ── */
-.blog-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically creates rows/columns based on screen size */
-  gap: 2rem;
-}
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
 
-.blog-card { 
-  display: flex; 
-  flex-direction: column;
-  background: rgba(255,255,255,0.7); 
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.9); 
-  border-radius: 16px; 
-  text-decoration: none; 
-  color: var(--text-main); 
-  overflow: hidden; /* Keeps the image perfectly inside the rounded corners */
-  transition: all 0.3s ease; 
-}
-.blog-card:hover { 
-  background: #FFF; 
-  border-color: var(--c2); 
-  transform: translateY(-5px); 
-  box-shadow: 0 15px 35px rgba(124,58,237,0.15); 
-}
-
-/* The Thumbnail Image */
-.blog-card-img {
-  width: 100%;
-  aspect-ratio: 1200 / 627; /* Matches LinkedIn dimensions perfectly */
-  object-fit: cover;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
+.blog-card { display: flex; flex-direction: column; background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.9); border-radius: 16px; text-decoration: none; color: var(--text-main); overflow: hidden; transition: all 0.3s ease; }
+.blog-card:hover { background: #FFF; border-color: var(--c2); transform: translateY(-5px); box-shadow: 0 15px 35px rgba(124,58,237,0.15); }
+.blog-card-img { width: 100%; aspect-ratio: 1200 / 627; object-fit: cover; border-bottom: 1px solid rgba(0,0,0,0.05); }
 .blog-card-content { padding: 1.5rem; }
 .blog-date { font-size: 0.85rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
 .blog-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
@@ -76,25 +47,27 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 
   <div class="blog-grid">
 
+    <!-- BLOG POST 1 -->
     <a href="/blog-1.html" class="blog-card">
-      <img src="blog-1-thumb.webp" alt="Blog Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Thumbnail+1'">
+      <img src="blog-1-thumb.webp" alt="Brainrot Marketing Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
       <div class="blog-card-content">
-        <div class="blog-date">June 2026</div>
-        <h2 class="blog-title">The Future of B2B Lead Generation</h2>
-        <p class="blog-excerpt">How AI and personalized outreach are entirely changing the landscape of growth operations and scaling businesses.</p>
+        <div class="blog-date">Latest Case Study</div>
+        <h2 class="blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+        <p class="blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
       </div>
     </a>
 
+    <!-- BLOG POST 2 -->
     <a href="/blog-2.html" class="blog-card">
-      <img src="blog-2-thumb.webp" alt="Blog Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Thumbnail+2'">
+      <img src="blog-2-thumb.webp" alt="AI Certification Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Certification'">
       <div class="blog-card-content">
-        <div class="blog-date">June 2026</div>
-        <h2 class="blog-title">Your Second Blog Title Here</h2>
-        <p class="blog-excerpt">A short 2-sentence summary of what your second blog post is about so readers want to click on it.</p>
+        <div class="blog-date">Career Advice</div>
+        <h2 class="blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
+        <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
       </div>
     </a>
 
-    </div>
+  </div>
 </div>
 </body>
 </html>
