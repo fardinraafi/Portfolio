@@ -6,7 +6,6 @@
 <title>Blog - Fardin Rahman Khan Raafi</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* Keeping your exact theme variables and styles */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --text-main: #0F172A; --text-muted: #475569; --bg-page: #F8FAFC; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
@@ -16,19 +15,50 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: va
 .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
 @keyframes float { 0% { transform: translate(0, 0) scale(1); } 50% { transform: translate(5%, 10%) scale(1.1); } 100% { transform: translate(-5%, -5%) scale(0.9); } }
 
-/* Centered Reading Layout */
-.layout-wrapper { max-width: 800px; margin: 0 auto; padding: 4rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
-.glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); }
-h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
+.layout-wrapper { max-width: 1000px; margin: 0 auto; padding: 4rem 2rem; display: flex; flex-direction: column; gap: 2rem; }
+h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-height: 1.1; margin-bottom: 1rem; }
 .gradient-text { background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-.btn-outline { display: inline-block; padding: 8px 16px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid #64748B; margin-bottom: 2rem; transition: all 0.3s ease; }
-.btn-outline:hover { border-color: var(--c1); color: var(--c1); }
+.btn-outline { display: inline-flex; align-items: center; width: max-content; padding: 10px 20px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid var(--text-muted); margin-bottom: 2rem; transition: all 0.3s ease; }
+.btn-outline:hover { border-color: var(--c1); color: var(--c1); transform: translateX(-5px); }
 
-/* Blog Post Cards */
-.blog-card { display: block; padding: 1.5rem; background: rgba(255,255,255,0.6); border: 1px solid rgba(37,99,235,0.2); border-radius: 16px; text-decoration: none; color: var(--text-main); transition: all 0.3s ease; }
-.blog-card:hover { background: #FFF; border-color: var(--c1); transform: translateY(-3px); box-shadow: 0 10px 25px rgba(37,99,235,0.1); }
-.blog-date { font-size: 0.85rem; color: var(--c1); font-weight: 600; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-.blog-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; margin-bottom: 0.5rem; }
+/* ── NEW SCALABLE BLOG GRID ── */
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatically creates rows/columns based on screen size */
+  gap: 2rem;
+}
+
+.blog-card { 
+  display: flex; 
+  flex-direction: column;
+  background: rgba(255,255,255,0.7); 
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.9); 
+  border-radius: 16px; 
+  text-decoration: none; 
+  color: var(--text-main); 
+  overflow: hidden; /* Keeps the image perfectly inside the rounded corners */
+  transition: all 0.3s ease; 
+}
+.blog-card:hover { 
+  background: #FFF; 
+  border-color: var(--c2); 
+  transform: translateY(-5px); 
+  box-shadow: 0 15px 35px rgba(124,58,237,0.15); 
+}
+
+/* The Thumbnail Image */
+.blog-card-img {
+  width: 100%;
+  aspect-ratio: 1200 / 627; /* Matches LinkedIn dimensions perfectly */
+  object-fit: cover;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.blog-card-content { padding: 1.5rem; }
+.blog-date { font-size: 0.85rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.blog-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.2; }
+.blog-excerpt { color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; }
 </style>
 </head>
 <body>
@@ -38,19 +68,33 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; line-
   <a href="/index.html" class="btn-outline">← Back to Portfolio</a>
   
   <header style="text-align: center; margin-bottom: 2rem;">
-    <h1 class="gradient-text">My Thoughts & Insights</h1>
-    <p style="color: var(--text-muted); font-size: 1.1rem;">Writing about B2B growth, marketing strategies, and personal development.</p>
+    <h1 class="gradient-text">Thoughts & Insights</h1>
+    <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+      Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.
+    </p>
   </header>
 
-  <!-- BLOG POST 1 CARD -->
-  <a href="/first-blog.html" class="blog-card">
-    <div class="blog-date">June 2026</div>
-    <h2 class="blog-title">The Future of B2B Lead Generation</h2>
-    <p style="color: var(--text-muted); font-size: 0.95rem;">How AI and personalized outreach are entirely changing the landscape of growth operations and scaling businesses.</p>
-  </a>
+  <div class="blog-grid">
 
-  <!-- You can copy and paste the card above to add more blogs later! -->
+    <a href="/blog-1.html" class="blog-card">
+      <img src="blog-1-thumb.webp" alt="Blog Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Thumbnail+1'">
+      <div class="blog-card-content">
+        <div class="blog-date">June 2026</div>
+        <h2 class="blog-title">The Future of B2B Lead Generation</h2>
+        <p class="blog-excerpt">How AI and personalized outreach are entirely changing the landscape of growth operations and scaling businesses.</p>
+      </div>
+    </a>
 
+    <a href="/blog-2.html" class="blog-card">
+      <img src="blog-2-thumb.webp" alt="Blog Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Thumbnail+2'">
+      <div class="blog-card-content">
+        <div class="blog-date">June 2026</div>
+        <h2 class="blog-title">Your Second Blog Title Here</h2>
+        <p class="blog-excerpt">A short 2-sentence summary of what your second blog post is about so readers want to click on it.</p>
+      </div>
+    </a>
+
+    </div>
 </div>
 </body>
 </html>
