@@ -8,45 +8,57 @@
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --text-main: #0F172A; --text-muted: #475569; --bg-page: #F8FAFC; }
-body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
-.bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; }
+
+/* ── DARK MODE CAPABILITIES ── */
+body.dark-mode { --bg-page: #0F172A; --text-main: #F1F5F9; --text-muted: #94A3B8; --text-light: #64748B; }
+body.dark-mode .bg-mesh { background: #020617; }
+body.dark-mode .top-nav, body.dark-mode .site-footer { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
+body.dark-mode .cert-modal { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); }
+
+body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
+.bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; transition: background-color 0.3s; }
 .blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
 .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
 .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
 
 /* Top Nav */
-.top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); }
+.top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease; }
 .nav-brand { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
 .nav-menu { display: flex; gap: 2rem; }
 .nav-menu a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
 .nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
+.nav-actions { display: flex; align-items: center; gap: 1rem; }
 .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; padding: 8px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
 .btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
+.theme-toggle { background: none; border: none; font-size: 1.2rem; cursor: pointer; transition: transform 0.3s; outline: none; }
+.theme-toggle:hover { transform: rotate(15deg) scale(1.1); }
 
 .layout-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-align: center; margin-bottom: 3rem; }
 .gradient-text { background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-/* Gallery Masonry */
+/* Fixed Gallery Masonry */
 .collage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-auto-rows: 200px; gap: 16px; grid-auto-flow: dense; }
-.collage-item { border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); box-shadow: 0 4px 15px rgba(0,0,0,0.05); overflow: hidden; }
+.collage-item { border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; }
 .collage-item.span-2-col { grid-column: span 2; }
 .collage-item.span-2-row { grid-row: span 2; }
 .collage-item.span-large { grid-column: span 2; grid-row: span 2; }
-.collage-item .grid-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease, filter 0.4s ease; }
-.collage-item:hover .grid-img { transform: scale(1.05); filter: brightness(0.7); }
-.preview-img { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); min-width: 300px; max-width: 500px; object-fit: contain; background: #fff; padding: 12px; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.4); z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease; pointer-events: none; }
-.collage-item:hover { z-index: 50; }
-.collage-item:hover .preview-img { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1.1); }
+.collage-item .grid-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; transition: transform 0.4s ease, filter 0.4s ease; display: block; }
+.collage-item:hover .grid-img { filter: brightness(0.7); }
+
+/* Global Modal for Hover Fix */
+.cert-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); z-index: 9999; background: #FFF; padding: 12px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.cert-modal.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
+.cert-modal img { max-width: 85vw; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block; }
 
 /* Footer */
-.site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; }
+.site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; transition: background-color 0.3s, border-color 0.3s; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
-.footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; }
+.footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; transition: color 0.3s;}
 .footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
-.footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; }
+.footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content;}
 .footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
-.copyright { font-size: 0.85rem; color: #64748B; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; }
+.copyright { font-size: 0.85rem; color: var(--text-light); text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s;}
 @media (max-width: 900px) { .nav-menu { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-col-links { align-items: center; } }
 </style>
 </head>
@@ -57,65 +69,61 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
   <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
   <div class="nav-menu">
     <a href="/index.html">Home</a>
-    <a href="/index.html#about">About</a>
     <a href="/gallery.html" class="active">Gallery</a>
     <a href="/blog.html">Blog</a>
     <a href="/certificates.html">Certificates</a>
     <a href="/contact.html">Contact</a>
   </div>
-  <a href="/contact.html" class="btn-primary">Let's Talk</a>
+  <div class="nav-actions">
+    <a href="/contact.html" class="btn-primary">Let's Talk</a>
+    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+  </div>
 </nav>
 
 <div class="layout-wrapper">
   <h1>Visual <span class="gradient-text">Highlights</span></h1>
   
   <div class="collage-grid">
-    <!-- Reusing your exact images from the homepage but bigger -->
+    <!-- Notice the new onmouseenter triggers for the perfect modal fix! -->
     <div class="collage-item span-large">
-      <img src="highlight-1.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-1.jpg" class="preview-img">
+      <img src="highlight-1.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item span-2-col">
-      <img src="highlight-2.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-2.jpg" class="preview-img">
+      <img src="highlight-2.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item span-2-row">
-      <img src="highlight-10.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-10.jpg" class="preview-img">
+      <img src="highlight-10.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item">
-      <img src="highlight-4.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-4.jpg" class="preview-img">
+      <img src="highlight-4.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item span-2-col">
-      <img src="highlight-5.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-5.jpg" class="preview-img">
+      <img src="highlight-5.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item span-large">
-      <img src="highlight-7.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-7.jpg" class="preview-img">
+      <img src="highlight-7.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item">
-      <img src="highlight-8.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-8.jpg" class="preview-img">
+      <img src="highlight-8.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item">
-      <img src="highlight-9.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-9.jpg" class="preview-img">
+      <img src="highlight-9.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
     <div class="collage-item span-2-col">
-      <img src="highlight-11.jpg" class="grid-img" onerror="this.parentElement.style.display='none'">
-      <img src="highlight-11.jpg" class="preview-img">
+      <img src="highlight-11.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()">
     </div>
   </div>
+</div>
+
+<div id="cert-modal" class="cert-modal">
+  <img id="cert-modal-img" src="" alt="Full Preview">
 </div>
 
 <footer class="site-footer">
   <div class="footer-grid">
     <div class="footer-col">
-      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman <span class="gradient-text">Khan Raafi</span></h2>
+      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
       <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
-      <p style="color: var(--text-muted); font-weight: 600;">📍 Mirpur, Dhaka, Bangladesh</p>
     </div>
     <div class="footer-col">
       <h4>Quick Links</h4>
@@ -126,13 +134,47 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
     <div class="footer-col">
       <h4>Contact Info</h4>
       <div class="footer-col-links">
-        <a href="mailto:fardinraafi@gmail.com">✉️ fardinraafi@gmail.com</a>
-        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">🔗 LinkedIn Profile</a>
-        <a href="resume-screenshot.jpg" target="_blank" class="btn-primary" style="margin-top: 1rem; text-align: center;">Read my Resume ➔</a>
+        <a href="mailto:fardinraafi@gmail.com">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          fardinraafi@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn Profile
+        </a>
+        <a href="resume-screenshot.jpg" target="_blank" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Read my Resume ➔</a>
       </div>
     </div>
   </div>
-  <div class="copyright">© 2026 Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+  <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
 </footer>
+<script>
+// Theme Toggle Logic
+const themeBtn = document.getElementById('themeToggle');
+const currentTheme = localStorage.getItem('theme');
+if (currentTheme === 'dark') {
+  document.body.classList.add('dark-mode');
+  themeBtn.textContent = '☀️';
+}
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  let theme = 'light';
+  if (document.body.classList.contains('dark-mode')) {
+    theme = 'dark';
+    themeBtn.textContent = '☀️';
+  } else {
+    themeBtn.textContent = '🌙';
+  }
+  localStorage.setItem('theme', theme);
+});
+
+// Modal Fix
+const certModal = document.getElementById('cert-modal');
+const certModalImg = document.getElementById('cert-modal-img');
+window.showCertPreview = function(src) { certModalImg.src = src; certModal.classList.add('show'); };
+window.hideCertPreview = function() { certModal.classList.remove('show'); };
+
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
