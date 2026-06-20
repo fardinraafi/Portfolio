@@ -209,6 +209,48 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .scroll-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--c1), var(--c2)); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(37,99,235,0.3); opacity: 0; visibility: hidden; transform: translateY(20px); transition: all 0.3s ease; z-index: 1000; border: none; }
 .scroll-to-top.show { opacity: 1; visibility: visible; transform: translateY(0); }
 .scroll-to-top:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(37,99,235,0.4); }
+/* =========================================
+   📱 MOBILE OPTIMIZATION MASTER-FIX 📱
+   ========================================= */
+@media (max-width: 900px) {
+  /* Layout & Spacing */
+  .layout-wrapper { grid-template-columns: 1fr !important; padding: 1rem 1rem 3rem !important; gap: 1.5rem !important; }
+  .sidebar { position: relative !important; top: 0 !important; }
+  .profile-img-wrap { width: 160px !important; margin: 0 auto 1.5rem auto !important; }
+  
+  /* Typography */
+  h1 { font-size: 2rem !important; }
+  .typewriter { font-size: 1rem !important; }
+  
+  /* Cards */
+  .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
+  
+  /* Swipeable Mobile Navigation */
+  .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
+  .nav-actions { order: 2 !important; }
+  .nav-menu { 
+    display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; 
+    padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); 
+    overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important;
+    -webkit-overflow-scrolling: touch; 
+  }
+  .nav-menu a { flex-shrink: 0 !important; } /* Prevents text from squishing */
+  body.dark-mode .nav-menu { border-top-color: rgba(255,255,255,0.1) !important; }
+  .nav-menu::-webkit-scrollbar { display: none !important; } /* Hides ugly scrollbar */
+  
+  /* Grids (Blog, Contact, Certificates) */
+  .blog-grid { grid-template-columns: 1fr !important; }
+  .contact-grid { grid-template-columns: 1fr !important; }
+  .form-row { grid-template-columns: 1fr !important; gap: 1rem !important; }
+  .contact-form-card { padding: 1.5rem !important; }
+  .cert-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 1rem !important; }
+  
+  /* Footer */
+  .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
+  .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
+  .footer-col-links { align-items: center !important; }
+  .status-banner { flex-direction: column !important; text-align: center !important; gap: 10px !important; }
+}
 </style>
 </head>
 <body>
