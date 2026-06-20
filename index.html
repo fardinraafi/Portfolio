@@ -58,18 +58,46 @@ body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: va
 .nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
 .nav-actions { display: flex; align-items: center; gap: 1rem; }
 .nav-actions a { padding: 8px 24px; font-size: 0.9rem; }
-/* ── STYLISTIC DARK MODE TOGGLE ── */
-.theme-toggle-btn { background: rgba(0, 0, 0, 0.05); border: 1px solid rgba(0, 0, 0, 0.1); width: 60px; height: 30px; border-radius: 30px; position: relative; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; transition: all 0.3s ease; outline: none; }
-body.dark-mode .theme-toggle-btn { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
-.theme-toggle-btn svg { width: 14px; height: 14px; z-index: 1; transition: color 0.3s; }
-.sun-icon { color: #F59E0B; }
-.moon-icon { color: #64748B; }
-body.dark-mode .moon-icon { color: #F1F5F9; }
-.toggle-circle { position: absolute; top: 3px; left: 4px; width: 22px; height: 22px; background: #FFF; border-radius: 50%; box-shadow: 0 2px 4px rgba(0,0,0,0.2); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); z-index: 2; pointer-events: none; }
-body.dark-mode .toggle-circle { transform: translateX(30px); background: #1E293B; box-shadow: 0 2px 4px rgba(0,0,0,0.5); }
+/* ── 3D LIQUID THEME TOGGLE ── */
+.theme-toggle-track {
+  position: relative; width: 90px; height: 36px; background: rgba(0, 0, 0, 0.08); 
+  border-radius: 30px; border: 1px solid rgba(0, 0, 0, 0.05); cursor: pointer; 
+  display: flex; align-items: center; justify-content: space-between; 
+  padding: 0 12px; outline: none; transition: background 0.4s; margin-left: 10px;
+}
+body.dark-mode .theme-toggle-track { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
 
-@media (max-width: 900px) { .nav-menu { display: none; } .top-nav { border-radius: 24px; margin: 1rem; } }
+.theme-text { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); z-index: 1; transition: opacity 0.4s; pointer-events: none; }
+.text-dark { opacity: 0; position: absolute; left: 14px; } 
+.text-light { opacity: 1; position: absolute; right: 12px; }
+body.dark-mode .text-dark { opacity: 1; color: #F1F5F9; }
+body.dark-mode .text-light { opacity: 0; }
 
+.theme-liquid-bubble {
+  position: absolute; top: -6px; left: -2px; width: 48px; height: 48px; border-radius: 50%;
+  background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.15), inset 3px 3px 8px rgba(255, 255, 255, 0.9), 0 6px 15px rgba(0, 0, 0, 0.15);
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s, border-radius 0.3s; z-index: 2;
+}
+body.dark-mode .theme-liquid-bubble {
+  transform: translateX(46px);
+  background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.5), inset 3px 3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Liquid Squish Effect on Click */
+.theme-toggle-track:active .theme-liquid-bubble { width: 56px; border-radius: 40px; }
+body.dark-mode .theme-toggle-track:active .theme-liquid-bubble { transform: translateX(38px); }
+
+.theme-liquid-bubble svg { width: 18px; height: 18px; position: absolute; transition: opacity 0.4s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.icon-moon { opacity: 1; color: var(--text-main); transform: rotate(0deg) scale(1); }
+.icon-sun { opacity: 0; color: #FFF; transform: rotate(-90deg) scale(0.5); }
+body.dark-mode .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+body.dark-mode .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
 /* Layout & Glassmorphism */
 .layout-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem 2rem 4rem; display: grid; grid-template-columns: 320px 1fr; gap: 3rem; align-items: start; }
 .glass-card { background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 2rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease; }
@@ -202,11 +230,16 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   </div>
   <div class="nav-actions">
     <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-<button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
-  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-  <div class="toggle-circle"></div>
-  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-</button>
+<button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+      <span class="theme-text text-dark">Dark</span>
+      <span class="theme-text text-light">Light</span>
+      <div class="theme-liquid-bubble">
+        <!-- Moon Icon -->
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <!-- Sun Icon -->
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </div>
+    </button>
   </div>
 </nav>
 
