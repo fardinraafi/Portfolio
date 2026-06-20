@@ -202,7 +202,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
   </div>
   <div class="nav-actions">
     <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-    <button id="themeToggle" class="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+<button id="themeToggle" class="theme-toggle-btn" aria-label="Toggle Dark Mode">
+  <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+  <div class="toggle-circle"></div>
+  <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+</button>
   </div>
 </nav>
 
@@ -470,23 +474,18 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <script>
-// Theme Toggle Logic
+// Advanced Theme Toggle Logic
 const themeBtn = document.getElementById('themeToggle');
-const currentTheme = localStorage.getItem('theme');
-if (currentTheme === 'dark') {
-  document.body.classList.add('dark-mode');
-  themeBtn.textContent = '☀️';
+if (localStorage.getItem('theme') === 'dark') { 
+  document.body.classList.add('dark-mode'); 
 }
 themeBtn.addEventListener('click', () => {
   document.body.classList.toggle('dark-mode');
-  let theme = 'light';
-  if (document.body.classList.contains('dark-mode')) {
-    theme = 'dark';
-    themeBtn.textContent = '☀️';
-  } else {
-    themeBtn.textContent = '🌙';
+  if (document.body.classList.contains('dark-mode')) { 
+    localStorage.setItem('theme', 'dark'); 
+  } else { 
+    localStorage.setItem('theme', 'light'); 
   }
-  localStorage.setItem('theme', theme);
 });
 
 const words = ['Marketing Specialist', 'Growth Associate', 'B2B Strategist', 'Branding Expert', 'ALP 2026 Fellow'];
