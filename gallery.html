@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Gallery - Fardin Rahman Khan Raafi</title>
+<!-- PINTEREST VERIFICATION -->
 <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
@@ -14,7 +15,6 @@
 body.dark-mode { --bg-page: #0F172A; --text-main: #F1F5F9; --text-muted: #94A3B8; --text-light: #64748B; }
 body.dark-mode .bg-mesh { background: #020617; }
 body.dark-mode .top-nav, body.dark-mode .site-footer { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
-body.dark-mode .cert-modal { background: #0F172A; border: 1px solid rgba(255,255,255,0.1); }
 
 body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s, color 0.3s; }
 .bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; transition: background-color 0.3s; }
@@ -56,17 +56,24 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
 
 /* Fixed Gallery Masonry */
 .collage-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); grid-auto-rows: 200px; gap: 16px; grid-auto-flow: dense; }
-.collage-item { border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; }
+.collage-item { border-radius: 16px; position: relative; background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1)); box-shadow: 0 4px 15px rgba(0,0,0,0.05); cursor: pointer; overflow: hidden; }
 .collage-item.span-2-col { grid-column: span 2; }
 .collage-item.span-2-row { grid-row: span 2; }
 .collage-item.span-large { grid-column: span 2; grid-row: span 2; }
 .collage-item .grid-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; transition: transform 0.4s ease, filter 0.4s ease; display: block; }
-.collage-item:hover .grid-img { filter: brightness(0.7); }
+.collage-item:hover .grid-img { filter: brightness(0.7); transform: scale(1.05); }
 
-/* Global Modal for Hover Fix */
-.cert-modal { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0.8); z-index: 9999; background: #FFF; padding: 12px; border-radius: 16px; box-shadow: 0 25px 80px rgba(0,0,0,0.3); opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-.cert-modal.show { opacity: 1; visibility: visible; transform: translate(-50%, -50%) scale(1); }
-.cert-modal img { max-width: 85vw; max-height: 85vh; object-fit: contain; border-radius: 8px; display: block; }
+/* ── LIGHTBOX OVERLAY CSS ── */
+.lightbox-overlay { position: fixed; inset: 0; background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); z-index: 9999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+.lightbox-overlay.show { opacity: 1; visibility: visible; }
+.lightbox-content { position: relative; max-width: 90vw; max-height: 85vh; display: flex; align-items: center; justify-content: center; }
+.lightbox-img { max-width: 100%; max-height: 85vh; border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); object-fit: contain; }
+.lightbox-close { position: absolute; top: -40px; right: -40px; background: none; border: none; color: #FFF; font-size: 2.5rem; cursor: pointer; padding: 10px; transition: transform 0.3s; line-height: 1; }
+.lightbox-close:hover { transform: scale(1.1); color: var(--c1); }
+.lightbox-nav { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(5px); }
+.lightbox-nav:hover { background: rgba(255,255,255,0.2); border-color: #FFF; }
+.lightbox-prev { left: -70px; }
+.lightbox-next { right: -70px; }
 
 /* Footer */
 .site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; transition: background-color 0.3s, border-color 0.3s; }
@@ -76,48 +83,26 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
 .footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content;}
 .footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
 .copyright { font-size: 0.85rem; color: var(--text-light); text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s;}
-@media (max-width: 900px) { .nav-menu { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-col-links { align-items: center; } }
-/* =========================================
-   📱 MOBILE OPTIMIZATION MASTER-FIX 📱
-   ========================================= */
+
+/* 📱 MOBILE OPTIMIZATION MASTER-FIX 📱 */
 @media (max-width: 900px) {
-  /* Layout & Spacing */
   .layout-wrapper { grid-template-columns: 1fr !important; padding: 1rem 1rem 3rem !important; gap: 1.5rem !important; }
-  .sidebar { position: relative !important; top: 0 !important; }
-  .profile-img-wrap { width: 160px !important; margin: 0 auto 1.5rem auto !important; }
-  
-  /* Typography */
   h1 { font-size: 2rem !important; }
-  .typewriter { font-size: 1rem !important; }
-  
-  /* Cards */
-  .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
-  
-  /* Swipeable Mobile Navigation */
   .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
   .nav-actions { order: 2 !important; }
-  .nav-menu { 
-    display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; 
-    padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); 
-    overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important;
-    -webkit-overflow-scrolling: touch; 
-  }
-  .nav-menu a { flex-shrink: 0 !important; } /* Prevents text from squishing */
+  .nav-menu { display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important; -webkit-overflow-scrolling: touch; }
+  .nav-menu a { flex-shrink: 0 !important; } 
   body.dark-mode .nav-menu { border-top-color: rgba(255,255,255,0.1) !important; }
-  .nav-menu::-webkit-scrollbar { display: none !important; } /* Hides ugly scrollbar */
-  
-  /* Grids (Blog, Contact, Certificates) */
-  .blog-grid { grid-template-columns: 1fr !important; }
-  .contact-grid { grid-template-columns: 1fr !important; }
-  .form-row { grid-template-columns: 1fr !important; gap: 1rem !important; }
-  .contact-form-card { padding: 1.5rem !important; }
-  .cert-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 1rem !important; }
-  
-  /* Footer */
+  .nav-menu::-webkit-scrollbar { display: none !important; } 
   .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
   .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
   .footer-col-links { align-items: center !important; }
-  .status-banner { flex-direction: column !important; text-align: center !important; gap: 10px !important; }
+  
+  /* Mobile Lightbox Adjustments */
+  .lightbox-close { top: -50px; right: 0; }
+  .lightbox-nav { top: auto; bottom: -70px; transform: none; }
+  .lightbox-prev { left: 20%; }
+  .lightbox-next { right: 20%; }
 }
 </style>
 </head>
@@ -149,20 +134,29 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
 <div class="layout-wrapper">
   <h1>Visual <span class="gradient-text">Highlights</span></h1>
   
-  <div class="collage-grid">
-    <div class="collage-item span-large"><img src="highlight-1.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item span-2-col"><img src="highlight-2.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item span-2-row"><img src="highlight-10.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item"><img src="highlight-4.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item span-2-col"><img src="highlight-5.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item span-large"><img src="highlight-7.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item"><img src="highlight-8.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item"><img src="highlight-9.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
-    <div class="collage-item span-2-col"><img src="highlight-11.jpg" class="grid-img" onerror="this.parentElement.style.display='none'" onmouseenter="showCertPreview(this.src)" onmouseleave="hideCertPreview()"></div>
+  <div class="collage-grid" id="gallery-grid">
+    <!-- Notice the old hover attributes are gone! The JS handles the clicking now. -->
+    <div class="collage-item span-large"><img src="highlight-1.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item span-2-col"><img src="highlight-2.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item span-2-row"><img src="highlight-10.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item"><img src="highlight-4.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item span-2-col"><img src="highlight-5.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item span-large"><img src="highlight-7.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item"><img src="highlight-8.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item"><img src="highlight-9.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
+    <div class="collage-item span-2-col"><img src="highlight-11.jpg" class="grid-img" onerror="this.parentElement.style.display='none'"></div>
   </div>
 </div>
 
-<div id="cert-modal" class="cert-modal"><img id="cert-modal-img" src="" alt="Full Preview"></div>
+<!-- ── NEW LIGHTBOX HTML ── -->
+<div id="lightbox-overlay" class="lightbox-overlay">
+  <div class="lightbox-content">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">❮</button>
+    <img id="lightbox-img" class="lightbox-img" src="" alt="Full Screen Preview">
+    <button class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">❯</button>
+  </div>
+</div>
 
 <footer class="site-footer">
   <div class="footer-grid">
@@ -187,13 +181,11 @@ h1 { font-family: 'Syne', sans-serif; font-size: 3rem; font-weight: 800; text-al
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
           LinkedIn Profile
         </a>
-        
         <a href="https://www.pinterest.com/yourusername" target="_blank">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
           Pinterest
         </a>
-
-       <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
+        <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
       </div>
     </div>
   </div>
@@ -209,10 +201,69 @@ themeBtn.addEventListener('click', () => {
   else { localStorage.setItem('theme', 'light'); }
 });
 
-const certModal = document.getElementById('cert-modal');
-const certModalImg = document.getElementById('cert-modal-img');
-window.showCertPreview = function(src) { certModalImg.src = src; certModal.classList.add('show'); };
-window.hideCertPreview = function() { certModal.classList.remove('show'); };
+// ── LIGHTBOX JAVASCRIPT ──
+let currentImageIndex = 0;
+let imageArray = [];
+const lightbox = document.getElementById('lightbox-overlay');
+const lightboxImg = document.getElementById('lightbox-img');
+
+// Initialize images into an array for sliding
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => {
+    const images = document.querySelectorAll('.grid-img');
+    imageArray = Array.from(images).map(img => img.src);
+    images.forEach((img, index) => {
+      img.onclick = () => openLightbox(index);
+    });
+  }, 100);
+});
+
+function openLightbox(index) {
+  currentImageIndex = index;
+  updateLightboxImage();
+  lightbox.classList.add('show');
+  document.body.style.overflow = 'hidden'; // Stop background scrolling
+}
+
+function closeLightbox() {
+  lightbox.classList.remove('show');
+  document.body.style.overflow = 'auto';
+}
+
+function changeImage(step, event) {
+  if(event) event.stopPropagation(); // Stop clicks from closing the modal
+  currentImageIndex += step;
+  if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
+  if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
+  updateLightboxImage();
+}
+
+function updateLightboxImage() {
+  lightboxImg.src = imageArray[currentImageIndex];
+}
+
+// Close when clicking the dark background
+lightbox.addEventListener('click', (e) => {
+  if(e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox();
+});
+
+// Mobile Swipe Gestures
+let touchStartX = 0;
+let touchEndX = 0;
+lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+lightbox.addEventListener('touchend', e => { 
+  touchEndX = e.changedTouches[0].screenX; 
+  if (touchStartX - touchEndX > 50) changeImage(1); // Swipe left = Next
+  if (touchEndX - touchStartX > 50) changeImage(-1); // Swipe right = Prev
+}, {passive: true});
+
+// Keyboard Arrows
+document.addEventListener('keydown', (e) => {
+  if (!lightbox.classList.contains('show')) return;
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') changeImage(1);
+  if (e.key === 'ArrowLeft') changeImage(-1);
+});
 
 document.getElementById('current-year').textContent = new Date().getFullYear();
 </script>
