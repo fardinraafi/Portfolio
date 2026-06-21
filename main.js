@@ -1,3 +1,7 @@
+// =========================================
+// FARDIN's GLOBAL JAVASCRIPT
+// =========================================
+
 // ── 1. ADVANCED THEME TOGGLE ──
 const themeBtn = document.getElementById('themeToggle');
 if (themeBtn) {
@@ -9,7 +13,7 @@ if (themeBtn) {
   });
 }
 
-// ── 2. CERTIFICATE GENERATOR (Only runs if #cert-grid exists) ──
+// ── 2. CERTIFICATE GENERATOR ──
 const certGrid = document.getElementById('cert-grid');
 if (certGrid) {
   let certNumbers = Array.from({length: 40}, (_, i) => i + 1);
@@ -21,7 +25,7 @@ if (certGrid) {
   certGrid.innerHTML = certsHTML;
 }
 
-// ── 3. LIGHTBOX LOGIC (Only runs if images and overlay exist) ──
+// ── 3. LIGHTBOX LOGIC ──
 const lightbox = document.getElementById('lightbox-overlay');
 if (lightbox) {
   let currentImageIndex = 0;
@@ -29,7 +33,6 @@ if (lightbox) {
   const lightboxImg = document.getElementById('lightbox-img');
 
   setTimeout(() => {
-    // Looks for images on both Gallery and Certificate pages
     const images = document.querySelectorAll('.grid-img, .cert-img');
     if(images.length > 0) {
       imageArray = Array.from(images).map(img => img.src);
@@ -60,6 +63,14 @@ if (lightbox) {
   lightbox.addEventListener('click', (e) => {
     if(e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox();
   });
+
+  let touchStartX = 0; let touchEndX = 0;
+  lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+  lightbox.addEventListener('touchend', e => { 
+    touchEndX = e.changedTouches[0].screenX; 
+    if (touchStartX - touchEndX > 50) changeImage(1); 
+    if (touchEndX - touchStartX > 50) changeImage(-1); 
+  }, {passive: true});
 
   document.addEventListener('keydown', (e) => {
     if (!lightbox.classList.contains('show')) return;
