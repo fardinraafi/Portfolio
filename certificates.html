@@ -190,22 +190,26 @@ themeBtn.addEventListener('click', () => {
   else { localStorage.setItem('theme', 'light'); }
 });
 
-// ── LIGHTBOX & CERTIFICATE GENERATOR ──
+// ── LIGHTBOX & RANDOMIZED CERTIFICATE GENERATOR ──
 let currentImageIndex = 0;
 let imageArray = [];
 const lightbox = document.getElementById('lightbox-overlay');
 const lightboxImg = document.getElementById('lightbox-img');
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Generate Certificates
+  // 1. Generate an array of numbers 1-40 and shuffle them
+  let certNumbers = Array.from({length: 40}, (_, i) => i + 1);
+  certNumbers.sort(() => Math.random() - 0.5); // Randomizes the order
+
+  // 2. Generate Certificates in the shuffled order
   const grid = document.getElementById('cert-grid');
   let certsHTML = '';
-  for(let c = 1; c <= 40; c++) {
+  certNumbers.forEach(c => {
     certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
-  }
+  });
   grid.innerHTML = certsHTML;
 
-  // 2. Initialize Lightbox
+  // 3. Initialize Lightbox
   setTimeout(() => {
     const images = document.querySelectorAll('.cert-img');
     imageArray = Array.from(images).map(img => img.src);
