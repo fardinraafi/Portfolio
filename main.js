@@ -1,74 +1,99 @@
-// Advanced Theme Toggle Logic
+// ── 1. ADVANCED THEME TOGGLE ──
 const themeBtn = document.getElementById('themeToggle');
-if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); } 
-  else { localStorage.setItem('theme', 'light'); }
-});
+if (themeBtn) {
+  if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
+  themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    if (document.body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); } 
+    else { localStorage.setItem('theme', 'light'); }
+  });
+}
 
-// ── LIGHTBOX JAVASCRIPT ──
-let currentImageIndex = 0;
-let imageArray = [];
+// ── 2. CERTIFICATE GENERATOR (Only runs if #cert-grid exists) ──
+const certGrid = document.getElementById('cert-grid');
+if (certGrid) {
+  let certNumbers = Array.from({length: 40}, (_, i) => i + 1);
+  certNumbers.sort(() => Math.random() - 0.5); 
+  let certsHTML = '';
+  certNumbers.forEach(c => {
+    certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
+  });
+  certGrid.innerHTML = certsHTML;
+}
+
+// ── 3. LIGHTBOX LOGIC (Only runs if images and overlay exist) ──
 const lightbox = document.getElementById('lightbox-overlay');
-const lightboxImg = document.getElementById('lightbox-img');
+if (lightbox) {
+  let currentImageIndex = 0;
+  let imageArray = [];
+  const lightboxImg = document.getElementById('lightbox-img');
 
-// Initialize images into an array for sliding
-document.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
-    const images = document.querySelectorAll('.grid-img');
-    imageArray = Array.from(images).map(img => img.src);
-    images.forEach((img, index) => {
-      img.onclick = () => openLightbox(index);
-    });
+    // Looks for images on both Gallery and Certificate pages
+    const images = document.querySelectorAll('.grid-img, .cert-img');
+    if(images.length > 0) {
+      imageArray = Array.from(images).map(img => img.src);
+      images.forEach((img, index) => {
+        img.onclick = () => {
+          currentImageIndex = index;
+          lightboxImg.src = imageArray[currentImageIndex];
+          lightbox.classList.add('show');
+          document.body.style.overflow = 'hidden';
+        };
+      });
+    }
   }, 100);
+
+  window.closeLightbox = function() {
+    lightbox.classList.remove('show');
+    document.body.style.overflow = 'auto';
+  };
+
+  window.changeImage = function(step, event) {
+    if(event) event.stopPropagation(); 
+    currentImageIndex += step;
+    if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
+    if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
+    lightboxImg.src = imageArray[currentImageIndex];
+  };
+
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('show')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') changeImage(1);
+    if (e.key === 'ArrowLeft') changeImage(-1);
+  });
+}
+
+// ── 4. SMOOTH PAGE TRANSITIONS ──
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      if (
+        link.hostname === window.location.hostname && 
+        link.target !== '_blank' && 
+        !link.hasAttribute('download') &&
+        !link.href.includes('mailto:') &&
+        link.getAttribute('href') !== '#'
+      ) {
+        e.preventDefault(); 
+        const targetUrl = link.href;
+        document.body.classList.add('fade-out');
+        setTimeout(() => { window.location.href = targetUrl; }, 300); 
+      }
+    });
+  });
 });
 
-function openLightbox(index) {
-  currentImageIndex = index;
-  updateLightboxImage();
-  lightbox.classList.add('show');
-  document.body.style.overflow = 'hidden'; // Stop background scrolling
-}
-
-function closeLightbox() {
-  lightbox.classList.remove('show');
-  document.body.style.overflow = 'auto';
-}
-
-function changeImage(step, event) {
-  if(event) event.stopPropagation(); // Stop clicks from closing the modal
-  currentImageIndex += step;
-  if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
-  if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
-  updateLightboxImage();
-}
-
-function updateLightboxImage() {
-  lightboxImg.src = imageArray[currentImageIndex];
-}
-
-// Close when clicking the dark background
-lightbox.addEventListener('click', (e) => {
-  if(e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox();
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) { document.body.classList.remove('fade-out'); }
 });
 
-// Mobile Swipe Gestures
-let touchStartX = 0;
-let touchEndX = 0;
-lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-lightbox.addEventListener('touchend', e => { 
-  touchEndX = e.changedTouches[0].screenX; 
-  if (touchStartX - touchEndX > 50) changeImage(1); // Swipe left = Next
-  if (touchEndX - touchStartX > 50) changeImage(-1); // Swipe right = Prev
-}, {passive: true});
-
-// Keyboard Arrows
-document.addEventListener('keydown', (e) => {
-  if (!lightbox.classList.contains('show')) return;
-  if (e.key === 'Escape') closeLightbox();
-  if (e.key === 'ArrowRight') changeImage(1);
-  if (e.key === 'ArrowLeft') changeImage(-1);
-});
-
-document.getElementById('current-year').textContent = new Date().getFullYear();
+// ── 5. CURRENT YEAR ──
+const yearSpan = document.getElementById('current-year');
+if (yearSpan) { yearSpan.textContent = new Date().getFullYear(); }
