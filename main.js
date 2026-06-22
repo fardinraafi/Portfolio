@@ -182,5 +182,38 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowLeft') window.changeImage(-1);
         });
     }
+/* =========================================
+       9. SMOOTH PAGE TRANSITIONS
+    ========================================= */
+    const allLinks = document.querySelectorAll('a');
+    
+    allLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Only trigger for internal links (ignores external links, downloads, and new tabs)
+            if (
+                this.hostname === window.location.hostname && 
+                this.target !== '_blank' &&
+                !this.hasAttribute('download') &&
+                this.getAttribute('href') !== '#'
+            ) {
+                e.preventDefault(); // Stop the hard refresh
+                const destination = this.href;
+                
+                // Add the fade-out class to the body
+                document.body.classList.add('fade-out');
+                
+                // Wait exactly 300ms (matching our CSS) before changing pages
+                setTimeout(() => {
+                    window.location.href = destination;
+                }, 300);
+            }
+        });
+    });
 
+    // Fix for the browser "Back" button so the page doesn't get stuck invisible
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            document.body.classList.remove('fade-out');
+        }
+    });
 });
