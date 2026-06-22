@@ -1,252 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Certification - Fardin Rahman Khan Raafi</title>
-<meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --text-main: #0F172A; --text-muted: #475569; --bg-page: #F8FAFC; }
-
-/* ── DARK MODE ── */
-body.dark-mode { --bg-page: #0F172A; --text-main: #F1F5F9; --text-muted: #94A3B8; --text-light: #64748B; }
-body.dark-mode .bg-mesh { background: #020617; }
-body.dark-mode .top-nav, body.dark-mode .site-footer, body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
-
-body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.8; transition: background-color 0.3s, color 0.3s; }
-.bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; transition: background-color 0.3s; }
-.blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
-.blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
-.blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
-
-/* Top Nav */
-.top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease; }
-.nav-brand { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
-.nav-menu { display: flex; gap: 2rem; }
-.nav-menu a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
-.nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
-.nav-actions { display: flex; align-items: center; gap: 1rem; }
-.btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; padding: 8px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
-.btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
-
-/* ── 3D LIQUID THEME TOGGLE ── */
-.theme-toggle-track { position: relative; width: 90px; height: 36px; background: rgba(0, 0, 0, 0.08); border-radius: 30px; border: 1px solid rgba(0, 0, 0, 0.05); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; outline: none; transition: background 0.4s; margin-left: 10px; }
-body.dark-mode .theme-toggle-track { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
-.theme-text { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); z-index: 1; transition: opacity 0.4s; pointer-events: none; }
-.text-dark { opacity: 0; position: absolute; left: 14px; } 
-.text-light { opacity: 1; position: absolute; right: 12px; }
-body.dark-mode .text-dark { opacity: 1; color: #F1F5F9; }
-body.dark-mode .text-light { opacity: 0; }
-.theme-liquid-bubble { position: absolute; top: -6px; left: -2px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.15), inset 3px 3px 8px rgba(255, 255, 255, 0.9), 0 6px 15px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s, border-radius 0.3s; z-index: 2; }
-body.dark-mode .theme-liquid-bubble { transform: translateX(46px); background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%); border-color: rgba(255, 255, 255, 0.3); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.5), inset 3px 3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.4); }
-.theme-toggle-track:active .theme-liquid-bubble { width: 56px; border-radius: 40px; }
-body.dark-mode .theme-toggle-track:active .theme-liquid-bubble { transform: translateX(38px); }
-.theme-liquid-bubble svg { width: 18px; height: 18px; position: absolute; transition: opacity 0.4s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-.icon-moon { opacity: 1; color: var(--text-main); transform: rotate(0deg) scale(1); }
-.icon-sun { opacity: 0; color: #FFF; transform: rotate(-90deg) scale(0.5); }
-body.dark-mode .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
-body.dark-mode .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
-
-.layout-wrapper { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-.glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 3rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: background-color 0.3s, border-color 0.3s; }
-
-.article-hero-img { width: 100%; aspect-ratio: 1200 / 627; object-fit: cover; border-radius: 16px; margin-bottom: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
-h1 { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: var(--c1); }
-h2 { font-family: 'Syne', sans-serif; font-size: 1.5rem; margin-top: 2.5rem; margin-bottom: 1rem; color: var(--text-main); }
-h3 { font-family: 'DM Sans', sans-serif; font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: var(--c2); }
-p { font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem; }
-.meta-info { font-size: 0.9rem; color: #64748B; font-weight: 600; margin-bottom: 2rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; }
-a { color: var(--c1); text-decoration: none; font-weight: bold; }
-a:hover { text-decoration: underline; }
-
-/* Footer */
-.site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; transition: background-color 0.3s, border-color 0.3s; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
-.footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; transition: color 0.3s;}
-.footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
-.footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content;}
-.footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
-.copyright { font-size: 0.85rem; color: var(--text-light); text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s;}
-@media (max-width: 900px) { .nav-menu { display: none; } .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-col-links { align-items: center; } .glass-card { padding: 1.5rem; } }
-/* =========================================
-   📱 MOBILE OPTIMIZATION MASTER-FIX 📱
-   ========================================= */
-@media (max-width: 900px) {
-  /* Layout & Spacing */
-  .layout-wrapper { grid-template-columns: 1fr !important; padding: 1rem 1rem 3rem !important; gap: 1.5rem !important; }
-  .sidebar { position: relative !important; top: 0 !important; }
-  .profile-img-wrap { width: 160px !important; margin: 0 auto 1.5rem auto !important; }
-  
-  /* Typography */
-  h1 { font-size: 2rem !important; }
-  .typewriter { font-size: 1rem !important; }
-  
-  /* Cards */
-  .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
-  
-  /* Swipeable Mobile Navigation */
-  .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
-  .nav-actions { order: 2 !important; }
-  .nav-menu { 
-    display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; 
-    padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); 
-    overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important;
-    -webkit-overflow-scrolling: touch; 
-  }
-  .nav-menu a { flex-shrink: 0 !important; } /* Prevents text from squishing */
-  body.dark-mode .nav-menu { border-top-color: rgba(255,255,255,0.1) !important; }
-  .nav-menu::-webkit-scrollbar { display: none !important; } /* Hides ugly scrollbar */
-  
-  /* Grids (Blog, Contact, Certificates) */
-  .blog-grid { grid-template-columns: 1fr !important; }
-  .contact-grid { grid-template-columns: 1fr !important; }
-  .form-row { grid-template-columns: 1fr !important; gap: 1rem !important; }
-  .contact-form-card { padding: 1.5rem !important; }
-  .cert-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 1rem !important; }
-  
-  /* Footer */
-  .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
-  .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
-  .footer-col-links { align-items: center !important; }
-  .status-banner { flex-direction: column !important; text-align: center !important; gap: 10px !important; }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Certification - Fardin Rahman Khan Raafi</title>
+    <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
 <nav class="top-nav">
-  <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-  <div class="nav-menu">
-    <a href="/index.html">Home</a>
-    <a href="/gallery.html">Gallery</a>
-    <a href="/blog.html" class="active">Blog</a>
-    <a href="/certificates.html">Certificates</a>
-    <a href="/contact.html">Contact</a>
-  </div>
-  <div class="nav-actions">
-    <a href="/contact.html" class="btn-primary">Let's Talk</a>
-    <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-      <span class="theme-text text-dark">Dark</span>
-      <span class="theme-text text-light">Light</span>
-      <div class="theme-liquid-bubble">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </div>
-    </button>
-  </div>
+    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+    <div class="nav-menu">
+        <a href="/index.html">Home</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/certificates.html">Certificates</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+            <span class="theme-text text-dark">Dark</span>
+            <span class="theme-text text-light">Light</span>
+            <div class="theme-liquid-bubble">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+        </button>
+    </div>
 </nav>
 
-<div class="layout-wrapper">
-  
-  <article class="glass-card">
-    <img src="blog-2-thumb.webp" alt="AI Certification" class="article-hero-img" onerror="this.style.display='none'">
-
-    <h1>AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h1>
-    <div class="meta-info">Written by Fardin Rahman Khan Raafi</div>
+<div class="layout-wrapper blog-column">
+    <a href="/blog.html" class="btn-outline" style="margin-bottom: 2rem;">← Back to All Blogs</a>
     
-    <p>রিসেন্টলি একটা বিষয় খেয়াল করলাম, আমাদের মধ্যে অনেকেই Generative AI নিয়ে অনেক বড় বড় কথা বলি। কিন্তু যখন প্র্যাক্টিক্যাল Workflow Optimization বা Automation এর কথা আসে, তখন অনেকেই আটকে যাই।</p>
-    <p>এই গ্যাপটা নিজের চোখে দেখার পর আমি নিজেই ব্যাক-টু-ব্যাক ৭টি AI Certification Courses শেষ করলাম। এই লার্নিং জার্নিটা আমার চোখ খুলে দিয়েছে, বিশেষ করে কীভাবে গ্লোবাল প্ল্যাটফর্মগুলো AI Core Concepts-কে রিয়েল-ওয়ার্ল্ড এ অ্যাপ্লাই করছে। আজকের দিনে স্টুডেন্ট এবং ফ্রেশারদের জন্য শুধু ট্র্যাডিশনাল ডিগ্রি যথেষ্ট নয়। আপনাদেরকে Market Demand এর সাথে তাল মিলিয়ে নিজেকে আপগ্রেড করতে হবে, আর সেখানেই আসে এই ফ্রি সার্টিফিকেশনগুলোর গুরুত্ব।</p>
-    
-    <h2>কেন এই AI Era-তে সার্টিফিকেশন জরুরি?</h2>
-    <p>ভাইয়া/আপু, মার্কেট এখন অনেক বেশি কম্পিটিটিভ। আপনি যখন কোনো ইন্টারভিউ বা Marketing/ B2B/Business Development/ Growth রোলের জন্য অ্যাপ্লাই করবেন, তখন আপনার সিভিতে জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে খাঁটি প্রমাণ খোঁজে। কিন্তু আপনার যদি OpenAI বা Google-এর ভ্যালিডেটেড সার্টিফিকেট থাকে, তবে তা প্রুফ করে যে আপনি টুলসগুলো ট্রেন্ড মেনে ইউজ করতে পারেন। এটি আপনার Personal Branding কে এক ধাক্কায় অনেক ওপরে নিয়ে যায়।</p>
-    <p>তা ছাড়া জটিল Business Processes কে কীভাবে Autonomous AI Agents দিয়ে অটোমেট করতে হয়, তা এই কোর্সগুলো না করলে জানা কঠিন। হ্যাঁ, YouTube দেখে আপনি অনেক কিছু শিখতে এবং জানতে পারবেন। যেকোনো টপিকের ওপর হাজার হাজার রিসোর্স সেখানে ছড়ানো আছে, কিন্তু আপনি যখন একটা verified certification course করেন, তখন পুরো গেমটাই চেঞ্জ হয়ে যায়।</p>
-    
-    <h3>১. OpenAI Academy - AI Foundations & Applied AI Foundations</h3>
-    <p>আপনার যদি Artificial Intelligence-এর একদম রুট লেভেলের প্রিন্সিপাল এবং Core Concept বুঝতে সমস্যা হয়, তবে এটি বেস্ট কোর্স। প্র্যাক্টিক্যাল অ্যাপ্লিকেশনের জন্য বেসিক স্ট্রং করার কোনো বিকল্প নেই。<br>
-    <strong>Key Skills:</strong> AI Principles, Practical Applications.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://academy.openai.com/" target="_blank">View Course ➔</a></p>
+    <article class="glass-card no-hover">
+        <img src="blog-2-thumb.webp" alt="AI Certification" class="article-hero-img" onerror="this.style.display='none'">
 
-    <h3>২. OpenAI Academy - Agents and Workflows</h3>
-    <p>এটি আমার অন্যতম ফেভারিট একটি কোর্স ছিল। এখানে মূলত শেখানো হয় কীভাবে Autonomous AI Agents ডিজাইন করতে হয় এবং বিজনেস প্রসেসকে এফিশিয়েন্টলি রান করার জন্য Automated Workflows বিল্ড করতে হয়。<br>
-    <strong>Key Skills:</strong> Generative AI, Workflow Automation.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://academy.openai.com/" target="_blank">View Course ➔</a></p>
+        <h1>AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h1>
+        <div class="meta-info">Written by Fardin Rahman Khan Raafi</div>
 
-    <h3>৩. Google Digital Academy (Skillshop) - Fundamentals of Digital Marketing</h3>
-    <p>যদিও এটি পিওর AI কোর্স নয়, কিন্তু ডিজিটাল marketing-এর ব্যাকবোন বোঝার জন্য এটি গ্লোবাল স্ট্যান্ডার্ড। এখান থেকে এই সার্টিফিকেটটি নিলে আপনার মার্কেটিং Data Analytics এবং এআই-অপ্টিমাইজড ক্যাম্পেইনের বেসিক ক্লিয়ার হয়ে যাবে。<br>
-    <strong>Key Skills:</strong> Digital Marketing, Data Optimization.<br>
-    <strong>Cost:</strong> Free.</p>
+        <p>রিসেন্টলি একটা বিষয় খেয়াল করলাম, আমাদের মধ্যে অনেকেই Generative AI নিয়ে অনেক বড় বড় কথা বলি। কিন্তু যখন প্র্যাক্টিক্যাল Workflow Optimization বা Automation এর কথা আসে, তখন অনেকেই আটকে যাই।</p>
+        <p>এই গ্যাপটা নিজের চোখে দেখার পর আমি নিজেই ব্যাক-টু-ব্যাক ৭টি AI Certification Courses শেষ করলাম। এই লার্নিং জার্নিটা আমার চোখ খুলে দিয়েছে, বিশেষ করে কীভাবে গ্লোবাল প্ল্যাটফর্মগুলো AI Core Concepts-কে রিয়েল-ওয়ার্ল্ড এ অ্যাপ্লাই করছে। আজকের দিনে স্টুডেন্ট এবং ফ্রেশারদের জন্য শুধু ট্র্যাডিশনাল ডিগ্রি যথেষ্ট নয়। আপনাদেরকে Market Demand এর সাথে তাল মিলিয়ে নিজেকে আপগ্রেড করতে হবে, আর সেখানেই আসে এই ফ্রি সার্টিফিকেশনগুলোর গুরুত্ব।</p>
 
-    <h3>৪. Grameenphone Ltd - GenAI & Prompt Engineering</h3>
-    <p>লোকাল কর্পোরেট কালচারে এআই-এর ইমপ্যাক্ট কেমন, তা বোঝার জন্য গ্রামীণফোনের এই কোর্সটি দারুণ। বিশেষ করে Prompt Engineering-এর রিয়েল-লাইফ ইউজ কেসগুলো সুন্দরভাবে দেখানো হয়েছে。<br>
-    <strong>Key Skills:</strong> Prompt Engineering, Generative AI.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://www.grameenphone.academy/" target="_blank">View Course ➔</a></p>
+        <h2>কেন এই AI Era-তে সার্টিফিকেশন জরুরি?</h2>
+        <p>ভাইয়া/আপু, মার্কেট এখন অনেক বেশি কম্পিটিটিভ। আপনি যখন কোনো ইন্টারভিউ বা Marketing/ B2B/Business Development/ Growth রোলের জন্য অ্যাপ্লাই করবেন, তখন আপনার সিভিতে জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে খাঁটি প্রমাণ খোঁজে। কিন্তু আপনার যদি OpenAI বা Google-এর ভ্যালিডেটেড সার্টিফিকেট থাকে, তবে তা প্রুফ করে যে আপনি টুলসগুলো ট্রেন্ড মেনে ইউজ করতে পারেন। এটি আপনার Personal Branding কে এক ধাক্কায় অনেক ওপরে নিয়ে যায়।</p>
+        <p>তা ছাড়া জটিল Business Processes কে কীভাবে Autonomous AI Agents দিয়ে অটোমেট করতে হয়, তা এই কোর্সগুলো না করলে জানা কঠিন। হ্যাঁ, YouTube দেখে আপনি অনেক কিছু শিখতে এবং জানতে পারবেন। যেকোনো টপিকের ওপর হাজার হাজার রিসোর্স সেখানে ছড়ানো আছে, কিন্তু আপনি যখন একটা verified certification course করেন, তখন পুরো গেমটাই চেঞ্জ হয়ে যায়।</p>
 
-    <h3>৫. Grameenphone Ltd - Personal Branding in AI Era</h3>
-    <p>এআই-এর যুগে কীভাবে নিজের ইউনিক ভ্যালু প্রপজিশন ধরে রাখবেন এবং ডিজিটাল প্রেজেন্স ক্রিয়েট করবেন, তার একটি এক্সিলেন্ট গাইডলাইন এই কোর্সটি। সিভিতে এবং লিংকডইনে নিজেকে পজিশন করার ট্রিকস এখানে পাবেন。<br>
-    <strong>Key Skills:</strong> Personal Branding, Executive Visibility.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://www.grameenphone.academy/" target="_blank">View Course ➔</a></p>
+        <h3>১. OpenAI Academy - AI Foundations & Applied AI Foundations</h3>
+        <p>আপনার যদি Artificial Intelligence-এর একদম রুট লেভেলের প্রিন্সিপাল এবং Core Concept বুঝতে সমস্যা হয়, তবে এটি বেস্ট কোর্স। প্র্যাক্টিক্যাল অ্যাপ্লিকেশনের জন্য বেসিক স্ট্রং করার কোনো বিকল্প নেই।<br>
+        <strong>Key Skills:</strong> AI Principles, Practical Applications.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://academy.openai.com/" target="_blank">View Course ➔</a></p>
 
-    <h3>৬. Microsoft & LinkedIn - Career Essentials in Generative AI</h3>
-    <p>মাইক্রোসফট এবং লিংকডইনের এই কম্বাইনড সার্টিফিকেশনটি বর্তমান জবের বাজারে অত্যন্ত ভ্যালুয়েবল। এআই টুলের ইথিকাল ইউজেস এবং প্রফেশনাল লাইফে এআই-এর প্রয়োগ খুব সহজ ভাষায় শেখানো হয়েছে。<br>
-    <strong>Key Skills:</strong> Ethical AI, Workplace Productivity.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://www.linkedin.com/learning/topics/professional-certificates" target="_blank">View Course ➔</a></p>
+        <h3>২. OpenAI Academy - Agents and Workflows</h3>
+        <p>এটি আমার অন্যতম ফেভারিট একটি কোর্স ছিল। এখানে মূলত শেখানো হয় কীভাবে Autonomous AI Agents ডিজাইন করতে হয় এবং বিজনেস প্রসেসকে এফিশিয়েন্টলি রান করার জন্য Automated Workflows বিল্ড করতে হয়।<br>
+        <strong>Key Skills:</strong> Generative AI, Workflow Automation.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://academy.openai.com/" target="_blank">View Course ➔</a></p>
 
-    <h3>৭. HubSpot Academy - AI Marketing Course</h3>
-    <p>আপনি যদি মার্কেটিং বা বিজনেস ডেভেলপমেন্টের স্টুডেন্ট হয়ে থাকেন, তবে এই কোর্সটি মিস করা ভুল হবে। কীভাবে কনটেন্ট ক্রিয়েশন এবং লিড জেনারেশন প্রসেস এআই দিয়ে ফাস্ট করা যায়, তা এখানে শেখানো হয়。<br>
-    <strong>Key Skills:</strong> AI Content Strategy, Lead Generation.<br>
-    <strong>Cost:</strong> Free.<br>
-    <a href="https://www.linkedin.com/learning/topics/professional-certificates" target="_blank">View Course ➔</a></p>
+        <h3>৩. Google Digital Academy (Skillshop) - Fundamentals of Digital Marketing</h3>
+        <p>যদিও এটি পিওর AI কোর্স নয়, কিন্তু ডিজিটাল marketing-এর ব্যাকবোন বোঝার জন্য এটি গ্লোবাল স্ট্যান্ডার্ড। এখান থেকে এই সার্টিফিকেটটি নিলে আপনার মার্কেটিং Data Analytics এবং এআই-অপ্টিমাইজড ক্যাম্পেইনের বেসিক ক্লিয়ার হয়ে যাবে।<br>
+        <strong>Key Skills:</strong> Digital Marketing, Data Optimization.<br>
+        <strong>Cost:</strong> Free.</p>
 
-    <h2>স্টুডেন্টদের জন্য আমার কিছু পার্সোনাল অ্যাডভাইস</h2>
-    <p>ভাইয়া, শুধু সার্টিফিকেট কালেক্ট করার জন্য কোর্স করবেন না। মেইন অবজেক্টিভ হতে হবে Skillset ডেভেলপমেন্ট। আপনি যখন একটা কোর্স শেষ করবেন, তখন সেটাকে নিজের প্রজেক্টে বা কোনো ভলান্টিয়ার অর্গানাইজেশনে অ্যাপ্লাই করার চেষ্টা করুন। শেখার এই তাড়না এবং জেদটাই আপনাকে অন্যদের চেয়ে আলাদা করবে। মনে রাখবেন, এআই এসে আপনার জব কেড়ে নেবে না, কিন্তু যে এআই ভালো ব্যবহার করতে পারে, সে ঠিকই আপনার জায়গাটা নিয়ে নেবে।</p>
-    
-    <p>আপনার কি মনে হয়? ক্যারিয়ার গ্রোথের জন্য এই ধরনের ফ্রি সার্টিফিকেশনগুলো কি আসলেই প্রাতিষ্ঠানিক শিক্ষার চেয়ে বেশি ইমপ্যাক্ট তৈরি করছে? আপনার মতামত জানান! 👇</p>
-  </article>
+        <h3>৪. Grameenphone Ltd - GenAI & Prompt Engineering</h3>
+        <p>লোকাল কর্পোরেট কালচারে এআই-এর ইমপ্যাক্ট কেমন, তা বোঝার জন্য গ্রামীণফোনের এই কোর্সটি দারুণ। বিশেষ করে Prompt Engineering-এর রিয়েল-লাইফ ইউজ কেসগুলো সুন্দরভাবে দেখানো হয়েছে।<br>
+        <strong>Key Skills:</strong> Prompt Engineering, Generative AI.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://www.grameenphone.academy/" target="_blank">View Course ➔</a></p>
+
+        <h3>৫. Grameenphone Ltd - Personal Branding in AI Era</h3>
+        <p>এআই-এর যুগে কীভাবে নিজের ইউনিক ভ্যালু প্রপজিশন ধরে রাখবেন এবং ডিজিটাল প্রেজেন্স ক্রিয়েট করবেন, তার একটি এক্সিলেন্ট গাইডলাইন এই কোর্সটি। সিভিতে এবং লিংকডইনে নিজেকে পজিশন করার ট্রিকস এখানে পাবেন।<br>
+        <strong>Key Skills:</strong> Personal Branding, Executive Visibility.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://www.grameenphone.academy/" target="_blank">View Course ➔</a></p>
+
+        <h3>৬. Microsoft & LinkedIn - Career Essentials in Generative AI</h3>
+        <p>মাইক্রোসফট এবং লিংকডইনের এই কম্বাইনড সার্টিফিকেশনটি বর্তমান জবের বাজারে অত্যন্ত ভ্যালুয়েবল। এআই টুলের ইথিকাল ইউজেস এবং প্রফেশনাল লাইফে এআই-এর প্রয়োগ খুব সহজ ভাষায় শেখানো হয়েছে।<br>
+        <strong>Key Skills:</strong> Ethical AI, Workplace Productivity.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://www.linkedin.com/learning/topics/professional-certificates" target="_blank">View Course ➔</a></p>
+
+        <h3>৭. HubSpot Academy - AI Marketing Course</h3>
+        <p>আপনি যদি মার্কেটিং বা বিজনেস ডেভেলপমেন্টের স্টুডেন্ট হয়ে থাকেন, তবে এই কোর্সটি মিস করা ভুল হবে। কীভাবে কনটেন্ট ক্রিয়েশন এবং লিড জেনারেশন প্রসেস এআই দিয়ে ফাস্ট করা যায়, তা এখানে শেখানো হয়।<br>
+        <strong>Key Skills:</strong> AI Content Strategy, Lead Generation.<br>
+        <strong>Cost:</strong> Free.<br>
+        <a href="https://www.linkedin.com/learning/topics/professional-certificates" target="_blank">View Course ➔</a></p>
+
+        <h2>স্টুডেন্টদের জন্য আমার কিছু পার্সোনাল অ্যাডভাইস</h2>
+        <p>ভাইয়া, শুধু সার্টিফিকেট কালেক্ট করার জন্য কোর্স করবেন না। মেইন অবজেক্টিভ হতে হবে Skillset ডেভেলপমেন্ট। আপনি যখন একটা কোর্স শেষ করবেন, তখন সেটাকে নিজের প্রজেক্টে বা কোনো ভলান্টিয়ার অর্গানাইজেশনে অ্যাপ্লাই করার চেষ্টা করুন। শেখার এই তাড়না এবং জেদটাই আপনাকে অন্যদের চেয়ে আলাদা করবে। মনে রাখবেন, এআই এসে আপনার জব কেড়ে নেবে না, কিন্তু যে এআই ভালো ব্যবহার করতে পারে, সে ঠিকই আপনার জায়গাটা নিয়ে নেবে।</p>
+
+        <p>আপনার কি মনে হয়? ক্যারিয়ার গ্রোথের জন্য এই ধরনের ফ্রি সার্টিফিকেশনগুলো কি আসলেই প্রাতিষ্ঠানিক শিক্ষার চেয়ে বেশি ইমপ্যাক্ট তৈরি করছে? আপনার মতামত জানান! 👇</p>
+    </article>
 </div>
 
 <footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-      <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <div class="footer-col-links">
+                <a href="/index.html">Home</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/certificates.html">Certificates</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Info</h4>
+            <div class="footer-col-links">
+                <a href="mailto:fardinraafi@gmail.com">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    fardinraafi@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn Profile
+                </a>
+                <a href="https://www.pinterest.com/yourusername" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
+                    Pinterest
+                </a>
+                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
+            </div>
+        </div>
     </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <div class="footer-col-links">
-        <a href="/index.html">Home</a><a href="/gallery.html">Gallery</a><a href="/blog.html">Blog</a><a href="/certificates.html">Certificates</a><a href="/contact.html">Contact</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Info</h4>
-      <div class="footer-col-links">
-        <a href="mailto:fardinraafi@gmail.com">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          fardinraafi@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          LinkedIn Profile
-        </a>
-        
-        <a href="https://www.pinterest.com/yourusername" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-          Pinterest
-        </a>
-
-     <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
-      </div>
-    </div>
-  </div>
-  <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
 </footer>
-<script>
-// Advanced Theme Toggle Logic
-const themeBtn = document.getElementById('themeToggle');
-if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); } 
-  else { localStorage.setItem('theme', 'light'); }
-});
-document.getElementById('current-year').textContent = new Date().getFullYear();
-</script>
+
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
 </body>
 </html>
