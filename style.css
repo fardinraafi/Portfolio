@@ -421,3 +421,20 @@ textarea.form-control { resize: vertical; min-height: 120px; }
     .lightbox-prev { left: 20%; }
     .lightbox-next { right: 20%; }
 }
+/* =========================================
+   SMOOTH PAGE TRANSITIONS (APP FEEL)
+========================================= */
+body {
+    animation: fadeIn 0.4s ease-out forwards;
+    opacity: 0; /* Starts invisible, then fades in */
+}
+
+body.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
