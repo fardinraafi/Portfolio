@@ -1,8 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-/* =========================================
-       CUSTOM DYNAMIC FAVICON
-    ========================================= */
-   /* =========================================
+    /* =========================================
        CUSTOM DYNAMIC FAVICON
     ========================================= */
     const favicon = document.createElement('link');
@@ -10,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Huge white "FR" inside a rounded purple box so it shows up on all browsers
     favicon.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237C3AED'/><text x='50' y='72' font-family='sans-serif' font-size='55' font-weight='900' text-anchor='middle' fill='white'>FR</text></svg>";
     document.head.appendChild(favicon);
+
     /* =========================================
        1. THEME TOGGLE LOGIC
     ========================================= */
@@ -135,7 +133,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightbox && lightboxImg) {
         let currentImageIndex = 0;
         let imageArray = [];
-
         // Set a slight delay to allow the DOM/dynamic images to load first
         setTimeout(() => {
             const images = document.querySelectorAll('.grid-img, .cert-img');
@@ -153,13 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }, 150);
-
+        
         // Make window functions globally accessible for the HTML buttons
         window.closeLightbox = function() {
             lightbox.classList.remove('show');
             document.body.style.overflow = 'auto';
         };
-
         window.changeImage = function(step, event) {
             if(event) event.stopPropagation(); // Prevent closing when clicking nav
             currentImageIndex += step;
@@ -167,14 +163,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
             lightboxImg.src = imageArray[currentImageIndex];
         };
-
+        
         // Close when clicking the dark background
         lightbox.addEventListener('click', (e) => {
             if(e.target === lightbox || e.target.classList.contains('lightbox-content')) {
                 window.closeLightbox();
             }
         });
-
+        
         // Mobile Swipe Gestures
         let touchStartX = 0; let touchEndX = 0;
         lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
@@ -183,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (touchStartX - touchEndX > 50) window.changeImage(1); // Swipe left = Next
             if (touchEndX - touchStartX > 50) window.changeImage(-1); // Swipe right = Prev
         }, {passive: true});
-
+        
         // Keyboard Arrows
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('show')) return;
@@ -192,7 +188,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowLeft') window.changeImage(-1);
         });
     }
-/* =========================================
+
+    /* =========================================
        9. SMOOTH PAGE TRANSITIONS
     ========================================= */
     const allLinks = document.querySelectorAll('a');
@@ -219,7 +216,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-
     // Fix for the browser "Back" button so the page doesn't get stuck invisible
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
@@ -227,16 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 // ── 6. GOOGLE ANALYTICS 4 INJECTION ──
 (function() {
   const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
-
   // 1. Create the <script async src="..."></script> tag dynamically
   const gaScript = document.createElement('script');
   gaScript.async = true;
   gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
   document.head.appendChild(gaScript);
-
   // 2. Set up the window.dataLayer array and gtag function
   window.dataLayer = window.dataLayer || [];
   window.gtag = function() { dataLayer.push(arguments); };
@@ -244,7 +239,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Initialize the configuration
   window.gtag('js', new Date());
   window.gtag('config', GA_MEASUREMENT_ID);
-       /* =========================================
+
+    /* =========================================
        10. ADVANCED MICRO-INTERACTIONS
     ========================================= */
     
@@ -255,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     progressBar.className = 'scroll-progress-bar';
     progressContainer.appendChild(progressBar);
     document.body.appendChild(progressContainer);
-
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -271,7 +266,6 @@ document.addEventListener('DOMContentLoaded', () => {
         cursorOutline.className = 'cursor-outline';
         document.body.appendChild(cursorDot);
         document.body.appendChild(cursorOutline);
-
         window.addEventListener('mousemove', (e) => {
             const posX = e.clientX;
             const posY = e.clientY;
@@ -286,7 +280,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 top: `${posY}px`
             }, { duration: 500, fill: "forwards" });
         });
-
         // Expand cursor when hovering over clickable items
         const hoverElements = document.querySelectorAll('a, button, .btn, .doc-link, .blog-card, .collage-item, .cert-img');
         hoverElements.forEach(el => {
@@ -296,7 +289,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
    // C. 3D Magnetic Hover Effect for ALL Cards
-    // I have added .blog-card, .collage-item, .cert-img, and .info-card to the target list!
     const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card');
     
     magneticCards.forEach(card => {
@@ -321,4 +313,5 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transform = ''; 
             card.style.transition = 'all 0.4s ease'; 
         });
+    });
 })();
