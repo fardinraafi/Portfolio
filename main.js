@@ -217,3 +217,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+// ── 6. GOOGLE ANALYTICS 4 INJECTION ──
+(function() {
+  const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
+
+  // 1. Create the <script async src="..."></script> tag dynamically
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(gaScript);
+
+  // 2. Set up the window.dataLayer array and gtag function
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function() { dataLayer.push(arguments); };
+  
+  // 3. Initialize the configuration
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+})();
