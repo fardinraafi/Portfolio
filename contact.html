@@ -14,9 +14,7 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
-
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -39,19 +37,16 @@
     </div>
 </nav>
 
-<!-- ADDED "single-column" HERE TO FIX THE LAYOUT -->
 <div class="layout-wrapper single-column">
     <div class="contact-header">
         <p class="subtitle">Get in Touch</p>
         <h1>Let's Connect</h1>
         <p class="desc">Open to opportunities in marketing, communications, and brand strategy. Let's discuss how I can contribute to your team.</p>
     </div>
-
     <div class="glass-card status-banner no-hover">
         <div><span class="pulse-dot"></span> <strong>Currently available for new opportunities</strong></div>
         <div style="color: var(--text-light); font-size: 0.85rem;">Response within 24 hours</div>
     </div>
-
     <div class="contact-grid">
         <div class="info-cards">
             <a href="mailto:fardinraafi@gmail.com" class="info-card">
@@ -67,19 +62,17 @@
                 <div class="info-text"><p class="label">LinkedIn</p><p class="value">/in/fardinraafi</p></div>
             </a>
         </div>
-
         <div class="glass-card contact-form-card no-hover">
             <form action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
-                <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/contact.html">
-
+                <!-- THE MAGIC FIX: Redirects to your new message-sent page -->
+                <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
                 <div class="form-row">
                     <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" placeholder="Your name" required></div>
                     <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" placeholder="you@example.com" required></div>
                 </div>
                 <div class="form-group"><label>Subject</label><input type="text" name="subject" class="form-control" placeholder="How can I help?" required></div>
                 <div class="form-group"><label>Message</label><textarea name="message" class="form-control" placeholder="Tell me about the opportunity..." required></textarea></div>
-
                 <button type="submit" class="btn-submit">Send Message</button>
             </form>
         </div>
@@ -121,13 +114,13 @@
             </div>
         </div>
     </div>
-    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+    <div class="copyright">
+        © <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.
+    </div>
 </footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-
 <!-- Link to the central JavaScript file -->
 <script src="/main.js"></script>
-
 </body>
 </html>
