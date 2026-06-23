@@ -1,5 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+/* =========================================
+       CUSTOM DYNAMIC FAVICON
+    ========================================= */
+    const favicon = document.createElement('link');
+    favicon.rel = 'icon';
+    favicon.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text x='50' y='65' font-family='sans-serif' font-size='32' font-weight='900' text-anchor='middle' fill='%237C3AED'>FRKR</text></svg>";
+    document.head.appendChild(favicon);
     /* =========================================
        1. THEME TOGGLE LOGIC
     ========================================= */
