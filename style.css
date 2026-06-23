@@ -453,3 +453,37 @@ body.fade-out {
     0% { opacity: 0; }
     100% { opacity: 1; }
 }
+
+/* =========================================
+   11. ADVANCED MICRO-INTERACTIONS
+========================================= */
+
+/* Reading Progress Bar */
+.scroll-progress-container {
+    position: fixed; top: 0; left: 0; width: 100%; height: 4px;
+    background: transparent; z-index: 10000; pointer-events: none;
+}
+.scroll-progress-bar {
+    height: 100%; width: 0%; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+    transition: width 0.1s ease-out;
+}
+
+/* Custom Trailing Cursor (Desktops Only) */
+@media (pointer: fine) {
+    body { cursor: none; } /* Hide the default mouse arrow */
+    a, button, .btn, .doc-link, .blog-card, .collage-item, .cert-img { cursor: none; }
+    
+    .cursor-dot {
+        position: fixed; top: 0; left: 0; width: 8px; height: 8px;
+        background: var(--c1); border-radius: 50%; pointer-events: none;
+        z-index: 9999; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s;
+    }
+    .cursor-outline {
+        position: fixed; top: 0; left: 0; width: 40px; height: 40px;
+        border: 1px solid rgba(124, 58, 237, 0.5); border-radius: 50%; pointer-events: none;
+        z-index: 9998; transform: translate(-50%, -50%); transition: width 0.2s, height 0.2s, background-color 0.2s;
+    }
+    /* What happens when you hover over a link */
+    .cursor-hover .cursor-dot { width: 12px; height: 12px; background: var(--c2); }
+    .cursor-hover .cursor-outline { width: 60px; height: 60px; background-color: rgba(124, 58, 237, 0.1); border-color: transparent; }
+}
