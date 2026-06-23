@@ -244,4 +244,80 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Initialize the configuration
   window.gtag('js', new Date());
   window.gtag('config', GA_MEASUREMENT_ID);
+       /* =========================================
+       10. ADVANCED MICRO-INTERACTIONS
+    ========================================= */
+    
+    // A. Reading Progress Bar Logic
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'scroll-progress-container';
+    const progressBar = document.createElement('div');
+    progressBar.className = 'scroll-progress-bar';
+    progressContainer.appendChild(progressBar);
+    document.body.appendChild(progressContainer);
+
+    window.addEventListener('scroll', () => {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        progressBar.style.width = scrolled + '%';
+    });
+
+    // B. Custom Trailing Cursor Logic
+    if (window.matchMedia("(pointer: fine)").matches) {
+        const cursorDot = document.createElement('div');
+        cursorDot.className = 'cursor-dot';
+        const cursorOutline = document.createElement('div');
+        cursorOutline.className = 'cursor-outline';
+        document.body.appendChild(cursorDot);
+        document.body.appendChild(cursorOutline);
+
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            // Dot follows instantly
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            // Outline follows with a slight, smooth delay
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Expand cursor when hovering over clickable items
+        const hoverElements = document.querySelectorAll('a, button, .btn, .doc-link, .blog-card, .collage-item, .cert-img');
+        hoverElements.forEach(el => {
+            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+        });
+    }
+
+    // C. 3D Magnetic Hover Effect for Glass Cards
+    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover)');
+    magneticCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; // Mouse X relative to card
+            const y = e.clientY - rect.top;  // Mouse Y relative to card
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            // Calculate tilt based on mouse distance from center
+            const rotateX = ((y - centerY) / centerY) * -4; // Max tilt 4 degrees
+            const rotateY = ((x - centerX) / centerX) * 4;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
+            card.style.transition = 'none'; // Remove transition for instant magnetic tracking
+        });
+        
+        // Reset the card smoothly when the mouse leaves
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = ''; 
+            card.style.transition = 'all 0.4s ease'; 
+        });
+    });
 })();
