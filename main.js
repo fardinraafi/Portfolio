@@ -295,8 +295,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // C. 3D Magnetic Hover Effect for Glass Cards
-    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover)');
+   // C. 3D Magnetic Hover Effect for ALL Cards
+    // I have added .blog-card, .collage-item, .cert-img, and .info-card to the target list!
+    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card');
+    
     magneticCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
