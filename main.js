@@ -248,7 +248,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // 2. Secretly log email to Google Sheets (Admin Panel Database)
             // Note: We will generate your personal URL in the next steps!
-            const GOOGLE_SCRIPT_URL = 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcwqAKQ8S_LzdlYhTRQUw73dQGU8o_T0KfSHKPKYN6lY-V9n_jdxxGFoCLkHWfWRE0VA/exec'; 
             
             if (GOOGLE_SCRIPT_URL !== 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE') {
                 const formData = new FormData();
