@@ -63,10 +63,9 @@
             </a>
         </div>
         <div class="glass-card contact-form-card no-hover">
-            <form action="https://api.web3forms.com/submit" method="POST">
+           <form id="contact-form">
                 <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
-                <!-- THE MAGIC FIX: Redirects to your new message-sent page -->
-                <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
+                
                 <div class="form-row">
                     <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" placeholder="Your name" required></div>
                     <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" placeholder="you@example.com" required></div>
