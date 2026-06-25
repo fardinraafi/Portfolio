@@ -9,12 +9,17 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(favicon);
 
     /* =========================================
-       1. THEME TOGGLE LOGIC
+       1. THEME TOGGLE LOGIC (DEFAULT: DARK MODE)
     ========================================= */
     const themeBtn = document.getElementById('themeToggle');
-    // Check local storage immediately
-    if (localStorage.getItem('theme') === 'dark') {
+    
+    // Check local storage. If they explicitly set it to light before, keep it light.
+    // Otherwise, force Dark Mode as the default starting state.
+    if (localStorage.getItem('theme') === 'light') {
+        document.body.classList.remove('dark-mode');
+    } else {
         document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
     }
     
     if (themeBtn) {
@@ -222,9 +227,59 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('fade-out');
         }
     });
+
+    /* =========================================
+       10. PLAYBOOK INSTANT OPEN & GOOGLE SHEETS ADMIN LOGIC
+    ========================================= */
+    const playbookForm = document.getElementById('playbook-form');
+    
+    if (playbookForm) {
+        playbookForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent page refresh
+            
+            const submitBtn = playbookForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            const emailInput = playbookForm.querySelector('input[name="email"]').value;
+            
+            submitBtn.innerHTML = 'Opening...';
+            
+            // 1. Instantly open the PDF in a new tab
+            window.open('https://portfolio-seven-flame-zx4voxlgqy.vercel.app/B2B_Growth_Playbook.pdf', '_blank');
+            
+            // 2. Secretly log email to Google Sheets (Admin Panel Database)
+            // Note: We will generate your personal URL in the next steps!
+            const GOOGLE_SCRIPT_URL = 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE'; 
+            
+            if (GOOGLE_SCRIPT_URL !== 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE') {
+                const formData = new FormData();
+                formData.append('email', emailInput);
+                formData.append('date', new Date().toLocaleString());
+
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors', // Bypasses cross-origin restrictions for simple logging
+                    body: formData
+                }).then(() => {
+                    submitBtn.innerHTML = 'Success!';
+                    setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
+                }).catch(error => {
+                    console.error('Logging Error:', error);
+                    submitBtn.innerHTML = 'Success!'; // Still show success to user even if logging fails
+                    setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
+                });
+            } else {
+                // If URL isn't set yet, just reset the button normally
+                setTimeout(() => {
+                    submitBtn.innerHTML = 'Enjoy!';
+                    setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
+                }, 800);
+            }
+        });
+    }
+
 });
 
-// ── 6. GOOGLE ANALYTICS 4 INJECTION ──
+// ── GOOGLE ANALYTICS 4 INJECTION ──
 (function() {
   const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
   // 1. Create the <script async src="..."></script> tag dynamically
@@ -241,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
   window.gtag('config', GA_MEASUREMENT_ID);
 
     /* =========================================
-       10. ADVANCED MICRO-INTERACTIONS
+       11. ADVANCED MICRO-INTERACTIONS
     ========================================= */
     
     // A. Reading Progress Bar Logic
