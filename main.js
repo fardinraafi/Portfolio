@@ -369,4 +369,43 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'all 0.4s ease'; 
         });
     });
+    // D. Contact Form Background Submission
+    const contactForm = document.getElementById('contact-form');
+    
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); // Stops the browser from leaving the page
+            
+            const submitBtn = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = 'Sending...';
+            
+            const formData = new FormData(contactForm);
+            const object = Object.fromEntries(formData);
+            const json = JSON.stringify(object);
+
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: json
+            })
+            .then(async (response) => {
+                if (response.status === 200) {
+                    // Success! Instantly teleport to your custom page
+                    window.location.href = '/message-sent.html';
+                } else {
+                    submitBtn.innerHTML = 'Error. Try Again.';
+                    setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000);
+                }
+            })
+            .catch(error => {
+                console.log(error);
+                submitBtn.innerHTML = 'Network Error.';
+                setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000);
+            });
+        });
+    }
 })();
