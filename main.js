@@ -244,7 +244,7 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = 'Opening...';
             
             // 1. Instantly open the PDF in a new tab
-            window.open('https://portfolio-seven-flame-zx4voxlgqy.vercel.app/B2B_Growth_Playbook.pdf', '_blank');
+           window.open('/B2B_Growth_Playbook.pdf', '_blank');
             
             // 2. Secretly log email to Google Sheets (Admin Panel Database)
             // Note: We will generate your personal URL in the next steps!
