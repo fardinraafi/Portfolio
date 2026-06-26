@@ -1,4 +1,11 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // PRELOADER LOGIC
+    window.addEventListener('load', () => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => { preloader.classList.add('hide'); }, 600); // Gives it a smooth 0.6s delay
+        }
+    });
     /* =========================================
        CUSTOM DYNAMIC FAVICON
     ========================================= */
