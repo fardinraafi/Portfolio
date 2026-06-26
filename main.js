@@ -358,6 +358,9 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = card.getBoundingClientRect();
             const x = e.clientX - rect.left; // Mouse X relative to card
             const y = e.clientY - rect.top;  // Mouse Y relative to card
+            // Feed mouse coordinates to CSS for the Spotlight effect
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
