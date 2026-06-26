@@ -379,6 +379,81 @@ document.addEventListener('DOMContentLoaded', () => {
             card.style.transition = 'all 0.4s ease'; 
         });
     });
+    // D. DYNAMIC LIVE STATUS WIDGET LOGIC
+    const statusWidget = document.getElementById('liveStatusBtn');
+    const statusTextEl = document.getElementById('live-status-text');
+    
+    if (statusWidget && statusTextEl) {
+        // Your rotating messages (Feel free to customize these!)
+        const statusMessages = [
+            "Open to new B2B projects",
+            "📍 Based in Dhaka, Bangladesh",
+            "🎧 Listening to: My First Million",
+            "📚 Reading: Hacking Growth",
+            "⚡ Optimizing conversion rates..."
+        ];
+        
+        let statusIndex = 0;
+        let isHovered = false;
+        let isClicked = false;
+
+        // Pause rotation on hover
+        statusWidget.addEventListener('mouseenter', () => isHovered = true);
+        statusWidget.addEventListener('mouseleave', () => isHovered = false);
+
+        // The Rotation Engine
+        setInterval(() => {
+            if (!isHovered && !isClicked) {
+                // Fade out text, move it slightly up
+                statusTextEl.style.opacity = '0';
+                statusTextEl.style.transform = 'translateY(-10px)';
+                
+                setTimeout(() => {
+                    // Change text, reset position, fade back in
+                    statusIndex = (statusIndex + 1) % statusMessages.length;
+                    statusTextEl.textContent = statusMessages[statusIndex];
+                    
+                    statusTextEl.style.transform = 'translateY(10px)';
+                    
+                    // Small delay to allow DOM to catch up before animating in
+                    requestAnimationFrame(() => {
+                        statusTextEl.style.opacity = '1';
+                        statusTextEl.style.transform = 'translateY(0)';
+                    });
+                }, 400); // 400ms matches the CSS transition time
+            }
+        }, 4000); // Changes every 4 seconds
+
+        // The Click-to-Copy Action
+        statusWidget.addEventListener('click', () => {
+            isClicked = true;
+            const email = "fardinraafi@gmail.com";
+            
+            // Modern copy to clipboard API
+            navigator.clipboard.writeText(email).then(() => {
+                const originalColor = statusWidget.querySelector('.status-dot').style.backgroundColor;
+                
+                // Change UI to success state
+                statusTextEl.style.opacity = '0';
+                setTimeout(() => {
+                    statusTextEl.textContent = "Copied email to clipboard! 📋";
+                    statusTextEl.style.color = "#10B981"; // Turn text green
+                    statusTextEl.style.opacity = '1';
+                }, 200);
+
+                // Reset back to normal after 3 seconds
+                setTimeout(() => {
+                    statusTextEl.style.opacity = '0';
+                    setTimeout(() => {
+                        statusTextEl.style.color = "var(--text-main)";
+                        statusTextEl.textContent = statusMessages[statusIndex];
+                        statusTextEl.style.opacity = '1';
+                        isClicked = false; // Resume rotation
+                    }, 200);
+                }, 3000);
+            });
+        });
+    }
     // D. Contact Form Background Submission
     const contactForm = document.getElementById('contact-form');
     
