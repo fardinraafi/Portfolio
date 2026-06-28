@@ -642,9 +642,46 @@ body.fade-out {
 }
 
 /* Adjust the Next/Prev Buttons so they don't cover the giant image */
-.lightbox-nav {
-    margin: 2vw 2vw !important;
-    background: rgba(0, 0, 0, 0.5) !important;
-    padding: 15px !important;
-    border-radius: 50% !important;
+
+/* Proper, accessible UI buttons */
+.nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  font-size: 2rem;
+  padding: 15px 20px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, transform 0.2s ease;
+  border-radius: 4px;
+}
+
+.nav-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Stick buttons to respective sides */
+.prev-btn { left: -60px; }
+.next-btn { right: -60px; }
+
+/* Top-right exit element */
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: #fff;
+  font-size: 3rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive adjustments for narrow viewports */
+@media (max-width: 768px) {
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+  .nav-btn { padding: 10px 15px; font-size: 1.5rem; }
 }
