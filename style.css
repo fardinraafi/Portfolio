@@ -616,3 +616,35 @@ body.fade-out {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
+/* =========================================
+   🔥 LIGHTBOX SUPER-SIZE UPGRADE 🔥
+   ========================================= */
+.lightbox-overlay {
+    padding: 10px !important; 
+}
+
+.lightbox-content {
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    max-width: none !important;
+}
+
+.lightbox-img {
+    max-width: 95vw !important; /* Takes up 95% of the screen width */
+    max-height: 95vh !important; /* Takes up 95% of the screen height */
+    width: auto !important;
+    height: auto !important;
+    object-fit: contain !important; /* Keeps your image proportions perfect */
+    border-radius: 8px !important;
+}
+
+/* Adjust the Next/Prev Buttons so they don't cover the giant image */
+.lightbox-nav {
+    margin: 0 2vw !important;
+    background: rgba(0, 0, 0, 0.5) !important;
+    padding: 15px !important;
+    border-radius: 50% !important;
+}
