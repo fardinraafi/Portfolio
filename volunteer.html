@@ -18,21 +18,28 @@
         .vol-card { margin-bottom: 3rem; padding: 3rem; border-radius: 32px; }
         .vol-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
         .vol-logo { width: 80px; height: 80px; border-radius: 16px; object-fit: contain; background: rgba(255,255,255,0.9); padding: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .vol-title-area h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--text-main); }
-        .vol-title-area h3 { font-size: 1.1rem; color: var(--c1); margin-bottom: 0.5rem; font-weight: 700; }
+        
+        /* Updated Link Styling for Headers */
+        .vol-title-area a { text-decoration: none; }
+        .vol-title-area a h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--c1); transition: color 0.3s ease; }
+        .vol-title-area a:hover h2 { color: var(--c2); }
+        
+        .vol-title-area h3 { font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; font-weight: 700; }
         .vol-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 600; display: flex; gap: 15px; flex-wrap: wrap; }
         .vol-body { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
         .vol-body ul { padding-left: 1.2rem; margin-top: 1rem; }
         .vol-body li { margin-bottom: 0.8rem; }
-        .vol-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        
+        /* Upgraded Massive Gallery Images */
+        .vol-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .vol-gallery img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s ease, filter 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 2px solid rgba(255,255,255,0.5); }
-        .vol-gallery img:hover { transform: translateY(-5px) scale(1.05); filter: brightness(0.8); border-color: var(--c2); }
+        .vol-gallery img:hover { transform: translateY(-5px) scale(1.03); filter: brightness(0.9); border-color: var(--c2); }
         
         @media (max-width: 768px) {
             .vol-card { padding: 1.5rem; }
             .vol-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-            .vol-title-area h2 { font-size: 1.5rem; }
-            .vol-gallery { grid-template-columns: repeat(2, 1fr); }
+            .vol-title-area a h2 { font-size: 1.5rem; }
+            .vol-gallery { grid-template-columns: 1fr; } /* Images take full width on mobile */
         }
     </style>
 </head>
@@ -71,12 +78,12 @@
 
     <div class="volunteer-container">
 
-           <!-- TEDxUttara -->
+        <!-- TEDxUttara -->
         <section class="glass-card reveal vol-card">
             <div class="vol-header">
                 <img src="tedx-logo.webp" class="vol-logo" alt="TEDx Logo" onerror="this.src='https://ui-avatars.com/api/?name=TEDx&size=150&background=DB2777&color=fff'">
                 <div class="vol-title-area">
-                    <a href="https://www.facebook.com/tedxuttara/"><h2>TEDxUttara</h2></a>
+                    <a href="https://www.facebook.com/tedxuttara/" target="_blank"><h2>TEDxUttara</h2></a>
                     <h3>Graphic Designer & Branding Expert</h3>
                     <div class="vol-meta">
                         <span>📅 Oct 2025 - Nov 2025</span>
@@ -98,7 +105,6 @@
                 <img src="tedx-1.webp" class="grid-img" alt="TEDx Activity" onerror="this.style.display='none'">
                 <img src="tedx-2.webp" class="grid-img" alt="TEDx Activity" onerror="this.style.display='none'">
                 <img src="tedx-3.webp" class="grid-img" alt="TEDx Activity" onerror="this.style.display='none'">
-                
             </div>
         </section>
         
@@ -107,7 +113,7 @@
             <div class="vol-header">
                 <img src="bubt-logo.webp" class="vol-logo" alt="BUBT Logo" onerror="this.src='https://ui-avatars.com/api/?name=BUBT&size=150&background=2563EB&color=fff'">
                 <div class="vol-title-area">
-                    <h2>BUBT Career Guidance Office</h2>
+                    <a href="https://example.com" target="_blank"><h2>BUBT Career Guidance Office</h2></a>
                     <h3>Head of Corporate & Alumni Relations</h3>
                     <div class="vol-meta">
                         <span>📅 Jan 2026 - Present</span>
@@ -126,9 +132,9 @@
                 </ul>
             </div>
             <div class="vol-gallery">
-                <!-- Replace with actual webp image names -->
                 <img src="bubt-vol-1.webp" class="grid-img" alt="BUBT Activity" onerror="this.style.display='none'">
                 <img src="bubt-vol-2.webp" class="grid-img" alt="BUBT Activity" onerror="this.style.display='none'">
+                <img src="bubt-vol-3.webp" class="grid-img" alt="BUBT Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -137,7 +143,7 @@
             <div class="vol-header">
                 <img src="rotaract-logo.webp" class="vol-logo" alt="Rotaract Logo" onerror="this.src='https://ui-avatars.com/api/?name=Rotaract&size=150&background=DB2777&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Rotaract Club Of Dhaka Dynamic</h2>
+                    <a href="https://example.com" target="_blank"><h2>Rotaract Club Of Dhaka Dynamic</h2></a>
                     <h3>Secretary</h3>
                     <div class="vol-meta">
                         <span>📅 Jun 2025 - May 2026</span>
@@ -151,6 +157,7 @@
             <div class="vol-gallery">
                 <img src="rotaract-1.webp" class="grid-img" alt="Rotaract Activity" onerror="this.style.display='none'">
                 <img src="rotaract-2.webp" class="grid-img" alt="Rotaract Activity" onerror="this.style.display='none'">
+                <img src="rotaract-3.webp" class="grid-img" alt="Rotaract Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -159,7 +166,7 @@
             <div class="vol-header">
                 <img src="swc-logo.webp" class="vol-logo" alt="Social Welfare Logo" onerror="this.src='https://ui-avatars.com/api/?name=SWC&size=150&background=7C3AED&color=fff'">
                 <div class="vol-title-area">
-                    <h2>BUBT Social Welfare Club</h2>
+                    <a href="https://example.com" target="_blank"><h2>BUBT Social Welfare Club</h2></a>
                     <h3>Media & Publications Secretary</h3>
                     <div class="vol-meta">
                         <span>📅 Jun 2025 - Apr 2026</span>
@@ -179,6 +186,7 @@
             <div class="vol-gallery">
                 <img src="swc-1.webp" class="grid-img" alt="SWC Activity" onerror="this.style.display='none'">
                 <img src="swc-2.webp" class="grid-img" alt="SWC Activity" onerror="this.style.display='none'">
+                <img src="swc-3.webp" class="grid-img" alt="SWC Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -187,16 +195,21 @@
             <div class="vol-header">
                 <img src="adviza-logo.webp" class="vol-logo" alt="Adviza Logo" onerror="this.src='https://ui-avatars.com/api/?name=Adviza&size=150&background=2563EB&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Adviza International</h2>
+                    <a href="https://advizainternational.com/" target="_blank"><h2>Adviza International</h2></a>
                     <h3>Marketing Intern - Branding</h3>
                     <div class="vol-meta">
                         <span>📅 Apr 2025 - Jan 2026</span>
-                        <span>🔗 <a href="https://advizainternational.com/" target="_blank" style="color:var(--c1);">advizainternational.com</a></span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
             </div>
             <div class="vol-body">
                 <p>I have joined Adviza International as a Marketing Intern, GD & Branding Expert. My duty will include managing all branding materials for the company and designing successful branding campaigns across all social sites.</p>
+            </div>
+            <div class="vol-gallery">
+                <img src="adviza-1.webp" class="grid-img" alt="Adviza Activity" onerror="this.style.display='none'">
+                <img src="adviza-2.webp" class="grid-img" alt="Adviza Activity" onerror="this.style.display='none'">
+                <img src="adviza-3.webp" class="grid-img" alt="Adviza Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -205,7 +218,7 @@
             <div class="vol-header">
                 <img src="leo-logo.webp" class="vol-logo" alt="Leo Club Logo" onerror="this.src='https://ui-avatars.com/api/?name=Leo&size=150&background=F59E0B&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Leo Club of Dhaka Platinum Unique</h2>
+                    <a href="https://example.com" target="_blank"><h2>Leo Club of Dhaka Platinum Unique</h2></a>
                     <h3>Media & Publications Coordinator</h3>
                     <div class="vol-meta">
                         <span>📅 Jul 2025 - Dec 2025</span>
@@ -216,16 +229,19 @@
             <div class="vol-body">
                 <p>Directed the media presence, visual communications, and publication initiatives for the Leo Club of Dhaka Platinum Unique. Tasked with managing digital content and promotional materials to amplify the club's community service efforts and outreach programs.</p>
             </div>
+            <div class="vol-gallery">
+                <img src="leo-1.webp" class="grid-img" alt="Leo Activity" onerror="this.style.display='none'">
+                <img src="leo-2.webp" class="grid-img" alt="Leo Activity" onerror="this.style.display='none'">
+                <img src="leo-3.webp" class="grid-img" alt="Leo Activity" onerror="this.style.display='none'">
+            </div>
         </section>
-
-     
 
         <!-- Skill Catalyst -->
         <section class="glass-card reveal vol-card">
             <div class="vol-header">
                 <img src="skill-logo.webp" class="vol-logo" alt="Skill Catalyst Logo" onerror="this.src='https://ui-avatars.com/api/?name=Skill&size=150&background=7C3AED&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Skill Catalyst Bangladesh</h2>
+                    <a href="https://example.com" target="_blank"><h2>Skill Catalyst Bangladesh</h2></a>
                     <h3>Graphics Designer & Campus Ambassador</h3>
                     <div class="vol-meta">
                         <span>📅 Mar 2025 - Nov 2025</span>
@@ -236,6 +252,11 @@
             <div class="vol-body">
                 <p>Served as Graphics Designer (May-Nov) and Campus Ambassador (Mar-May). Designed key visual assets including Announcement Cards, Head of Design Team materials, and General Meeting collateral.</p>
             </div>
+            <div class="vol-gallery">
+                <img src="skill-1.webp" class="grid-img" alt="Skill Catalyst Activity" onerror="this.style.display='none'">
+                <img src="skill-2.webp" class="grid-img" alt="Skill Catalyst Activity" onerror="this.style.display='none'">
+                <img src="skill-3.webp" class="grid-img" alt="Skill Catalyst Activity" onerror="this.style.display='none'">
+            </div>
         </section>
 
         <!-- BUBT Business Club -->
@@ -243,7 +264,7 @@
             <div class="vol-header">
                 <img src="bbc-logo.webp" class="vol-logo" alt="BBC Logo" onerror="this.src='https://ui-avatars.com/api/?name=BBC&size=150&background=2563EB&color=fff'">
                 <div class="vol-title-area">
-                    <h2>BUBT Business Club</h2>
+                    <a href="https://example.com" target="_blank"><h2>BUBT Business Club</h2></a>
                     <h3>Sub Executive Member</h3>
                     <div class="vol-meta">
                         <span>📅 Jan 2025 - Aug 2025</span>
@@ -260,8 +281,9 @@
                 </ul>
             </div>
             <div class="vol-gallery">
-                <img src="bbc-1.webp" class="grid-img" alt="Me with all my designs for Orientation 2023" title="Me with all my designs for Orientation 2023" onerror="this.style.display='none'">
-                <img src="bbc-2.webp" class="grid-img" alt="With my designs for Orientation ceremony 2024" title="With my designs for Orientation ceremony 2024" onerror="this.style.display='none'">
+                <img src="bbc-1.webp" class="grid-img" alt="BBC Activity" title="Me with all my designs for Orientation 2023" onerror="this.style.display='none'">
+                <img src="bbc-2.webp" class="grid-img" alt="BBC Activity" title="With my designs for Orientation ceremony 2024" onerror="this.style.display='none'">
+                <img src="bbc-3.webp" class="grid-img" alt="BBC Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -270,7 +292,7 @@
             <div class="vol-header">
                 <img src="ysse-logo.webp" class="vol-logo" alt="YSSE Logo" onerror="this.src='https://ui-avatars.com/api/?name=YSSE&size=150&background=DB2777&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Youth School for Social Entrepreneurs (YSSE)</h2>
+                    <a href="https://example.com" target="_blank"><h2>Youth School for Social Entrepreneurs (YSSE)</h2></a>
                     <h3>Business Development Intern & Youth Ambassador</h3>
                     <div class="vol-meta">
                         <span>📅 Oct 2024 - Jun 2025</span>
@@ -285,6 +307,7 @@
             <div class="vol-gallery">
                 <img src="ysse-1.webp" class="grid-img" alt="YSSE Presentation" onerror="this.style.display='none'">
                 <img src="ysse-2.webp" class="grid-img" alt="YSSE Award" onerror="this.style.display='none'">
+                <img src="ysse-3.webp" class="grid-img" alt="YSSE Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -293,7 +316,7 @@
             <div class="vol-header">
                 <img src="lead-logo.webp" class="vol-logo" alt="Lead Academy Logo" onerror="this.src='https://ui-avatars.com/api/?name=LEAD&size=150&background=7C3AED&color=fff'">
                 <div class="vol-title-area">
-                    <h2>LEAD Academy & Hult Prize at BUBT</h2>
+                    <a href="https://example.com" target="_blank"><h2>LEAD Academy & Hult Prize at BUBT</h2></a>
                     <h3>Lead Luminary 4.0 & Brand Designer</h3>
                     <div class="vol-meta">
                         <span>📅 Jan 2025 - Jun 2025</span>
@@ -308,6 +331,7 @@
             <div class="vol-gallery">
                 <img src="hult-1.webp" class="grid-img" alt="Hult Inauguration Banner" onerror="this.style.display='none'">
                 <img src="hult-2.webp" class="grid-img" alt="Hult Team" onerror="this.style.display='none'">
+                <img src="hult-3.webp" class="grid-img" alt="Hult Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
@@ -316,7 +340,7 @@
             <div class="vol-header">
                 <img src="creative-logo.webp" class="vol-logo" alt="Creative IT Logo" onerror="this.src='https://ui-avatars.com/api/?name=CIT&size=150&background=2563EB&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Creative IT Institute</h2>
+                    <a href="https://example.com" target="_blank"><h2>Creative IT Institute</h2></a>
                     <h3>Campus Ambassador</h3>
                     <div class="vol-meta">
                         <span>📅 Jan 2024 - Jan 2025</span>
@@ -331,6 +355,11 @@
                     <li><strong>Event Coordination:</strong> Facilitated the organization of seminars and technical sessions.</li>
                     <li><strong>Community Building:</strong> Collaborated with the central marketing team to identify growth opportunities and gather student feedback.</li>
                 </ul>
+            </div>
+            <div class="vol-gallery">
+                <img src="cit-1.webp" class="grid-img" alt="Creative IT Activity" onerror="this.style.display='none'">
+                <img src="cit-2.webp" class="grid-img" alt="Creative IT Activity" onerror="this.style.display='none'">
+                <img src="cit-3.webp" class="grid-img" alt="Creative IT Activity" onerror="this.style.display='none'">
             </div>
         </section>
 
