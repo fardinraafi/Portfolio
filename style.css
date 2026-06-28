@@ -643,7 +643,7 @@ body.fade-out {
 
 /* Adjust the Next/Prev Buttons so they don't cover the giant image */
 .lightbox-nav {
-    margin: 0 2vw !important;
+    margin: 2vw 2vw !important;
     background: rgba(0, 0, 0, 0.5) !important;
     padding: 15px !important;
     border-radius: 50% !important;
