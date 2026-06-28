@@ -320,36 +320,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + '%';
     });
 
-    // B. Custom Trailing Cursor Logic
-    if (window.matchMedia("(pointer: fine)").matches) {
-        const cursorDot = document.createElement('div');
-        cursorDot.className = 'cursor-dot';
-        const cursorOutline = document.createElement('div');
-        cursorOutline.className = 'cursor-outline';
-        document.body.appendChild(cursorDot);
-        document.body.appendChild(cursorOutline);
-        window.addEventListener('mousemove', (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-            
-            // Dot follows instantly
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-            
-            // Outline follows with a slight, smooth delay
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-        // Expand cursor when hovering over clickable items
-        const hoverElements = document.querySelectorAll('a, button, .btn, .doc-link, .blog-card, .collage-item, .cert-img');
-        hoverElements.forEach(el => {
-            el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-            el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-        });
-    }
-
+ 
    // C. 3D Magnetic Hover Effect for ALL Cards
     const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card');
     
