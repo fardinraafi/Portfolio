@@ -258,6 +258,10 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 .award-details h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem; line-height: 1.2; position: relative; z-index: 2; }
 .award-details p { font-size: 0.8rem; color: var(--c1); font-weight: 500; position: relative; z-index: 2; }
 
+/* Scroll Reveal */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
 /* Scroll to top */
 .scroll-to-top { 
     position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, var(--c1), var(--c2)); 
