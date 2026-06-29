@@ -12,51 +12,11 @@
     
     <!-- Link to the central CSS file -->
     <link rel="stylesheet" href="/style.css">
-
-    <!-- Specific Epic Blog Layout Styles -->
-    <style>
-        .blog-header { text-align: center; margin-bottom: 2rem; position: relative; z-index: 1; }
-        
-        /* Interactive Category Pills */
-        .blog-categories { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3.5rem; flex-wrap: wrap; }
-        .category-pill { padding: 8px 24px; background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); border-radius: 100px; font-size: 0.9rem; font-weight: 700; color: var(--text-muted); cursor: pointer; transition: all 0.3s ease; backdrop-filter: blur(10px); }
-        body.dark-mode .category-pill { background: rgba(30,41,59,0.5); border-color: rgba(255,255,255,0.1); color: #94A3B8; }
-        .category-pill:hover, .category-pill.active { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; border-color: transparent; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37,99,235,0.25); }
-        
-        /* Featured Hero Article */
-        .featured-blog { display: grid; grid-template-columns: 1.2fr 1fr; gap: 0; padding: 0; overflow: hidden; margin-bottom: 3rem; text-decoration: none; }
-        .featured-img-wrap { overflow: hidden; position: relative; }
-        .featured-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94); min-height: 380px; display: block; }
-        .featured-blog:hover .featured-img { transform: scale(1.05); }
-        .featured-content { padding: 3.5rem; display: flex; flex-direction: column; justify-content: center; }
-        
-        .read-time { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 800; color: var(--c1); background: rgba(37, 99, 235, 0.1); padding: 6px 14px; border-radius: 100px; width: max-content; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        body.dark-mode .read-time { background: rgba(124, 58, 237, 0.15); color: #A78BFA; }
-        
-        .featured-title { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; color: var(--text-main); transition: color 0.3s ease; }
-        body.dark-mode .featured-title { color: #F1F5F9; }
-        .featured-blog:hover .featured-title { color: var(--c1); }
-        .featured-excerpt { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 2rem; }
-
-        .read-more-btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 700; color: var(--text-main); font-size: 0.95rem; transition: gap 0.3s ease; }
-        body.dark-mode .read-more-btn { color: #F1F5F9; }
-        .featured-blog:hover .read-more-btn { gap: 12px; color: var(--c1); }
-
-        /* Newsletter Banner */
-        .newsletter-banner { margin-top: 4rem; text-align: center; padding: 4rem 2rem; background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border-radius: 32px; border: 1px solid rgba(124, 58, 237, 0.2); }
-        .newsletter-banner h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 0.5rem; color: var(--text-main); }
-        body.dark-mode .newsletter-banner h2 { color: #F1F5F9; }
-
-        @media (max-width: 900px) {
-            .featured-blog { grid-template-columns: 1fr; }
-            .featured-content { padding: 2rem; }
-            .featured-title { font-size: 1.6rem; }
-            .featured-img { min-height: 250px; }
-        }
-    </style>
 </head>
-<body class="dark-mode">
+<body>
+
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -81,66 +41,31 @@
 </nav>
 
 <div class="layout-wrapper single-column">
-    <header class="blog-header">
+    <header style="text-align: center; margin-bottom: 2rem;">
         <h1 class="gradient-text">Thoughts & Insights</h1>
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
             Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.
         </p>
     </header>
 
-    <!-- Interactive Category Filters (Visual) -->
-    <div class="blog-categories">
-        <span class="category-pill active">All Articles</span>
-        <span class="category-pill">Growth Hacks</span>
-        <span class="category-pill">Brand Strategy</span>
-        <span class="category-pill">AI Tools</span>
-    </div>
-
-    <!-- FEATURED HERO ARTICLE (Blog 1) -->
-    <a href="/blog-1.html" class="glass-card featured-blog no-hover">
-        <div class="featured-content">
-            <div class="read-time">⏱️ 5 Min Read • Case Study</div>
-            <h2 class="featured-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-            <p class="featured-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
-            <div class="read-more-btn">Read Full Article <span>➔</span></div>
-        </div>
-        <div class="featured-img-wrap">
-            <img src="blog-1-thumb.webp" alt="Brainrot Marketing Thumbnail" class="featured-img" onerror="this.src='https://placehold.co/1200x800/F8FAFC/64748B?text=Brainrot+Marketing'">
-        </div>
-    </a>
-
-    <div class="section-title">Latest Posts</div>
-
-    <!-- STANDARD GRID (For Blog 2 and future blogs) -->
     <div class="blog-grid">
+        <a href="/blog-1.html" class="blog-card">
+            <img src="blog-1-thumb.webp" alt="Brainrot Marketing Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
+            <div class="blog-card-content">
+                <div class="blog-date">Latest Case Study</div>
+                <h2 class="blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                <p class="blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
+            </div>
+        </a>
         <a href="/blog-2.html" class="blog-card">
             <img src="blog-2-thumb.webp" alt="AI Certification Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Certification'">
             <div class="blog-card-content">
-                <div class="blog-date">Career Advice • 4 Min Read</div>
+                <div class="blog-date">Career Advice</div>
                 <h2 class="blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
                 <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
             </div>
         </a>
     </div>
-
-    <!-- NEWSLETTER BANNER -->
-    <section class="newsletter-banner">
-        <div style="font-size: 2.5rem; margin-bottom: 1rem;">📬</div>
-        <h2>Join My Private Newsletter</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-            Get my latest articles, marketing teardowns, and B2B growth templates delivered straight to your inbox once a month. No spam, ever.
-        </p>
-        <form action="https://api.web3forms.com/submit" method="POST" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
-            <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
-            <input type="hidden" name="subject" value="🔥 NEW SUBSCRIBER: Blog Newsletter!">
-            <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
-            
-            <input type="email" name="email" placeholder="Enter your best email" required style="flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--text-light); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; background: rgba(255,255,255,0.8); color: var(--text-main);">
-            
-            <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Subscribe</button>
-        </form>
-    </section>
-
 </div>
 
 <footer class="site-footer">
@@ -171,6 +96,11 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     LinkedIn Profile
                 </a>
+                <a href="https://www.pinterest.com/yourusername" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
+                    Pinterest
+                </a>
+                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
             </div>
         </div>
     </div>
@@ -181,5 +111,6 @@
 
 <!-- Link to the central JavaScript file -->
 <script src="/main.js"></script>
+
 </body>
 </html>
