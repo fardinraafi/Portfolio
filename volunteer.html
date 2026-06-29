@@ -13,8 +13,12 @@
     <link rel="stylesheet" href="/style.css">
     
     <!-- Specific Styles for High-End Volunteer Layout -->
+<!-- Specific Styles for High-End Volunteer Layout -->
     <style>
-        .volunteer-container { max-width: 1150px; margin: 0 auto; }
+        /* Expand the main wrapper just for this page to allow ultra-wide cards */
+        .layout-wrapper.single-column { max-width: 1500px !important; width: 95% !important; }
+        
+        .volunteer-container { max-width: 100%; margin: 0 auto; }
         
         .vol-card { 
             margin-bottom: 4rem; 
@@ -38,7 +42,7 @@
         
         /* The Massive Side Images */
         .vol-side-img {
-            flex: 0 0 30%; /* Takes up 30% of the card on each side */
+            flex: 0 0 32%; /* Takes up 32% of the card on each side */
             position: relative;
             background: rgba(0,0,0,0.05); 
             overflow: hidden;
@@ -62,39 +66,39 @@
         /* The Centered Content */
         .vol-content {
             flex: 1;
-            padding: 3.5rem 2.5rem;
+            padding: 3.5rem 3rem; /* Extra breathing room for the text */
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
         }
         
-        /* Bigger Logos */
+        /* Tighter, Cleaner Logos */
         .vol-logo { 
-            width: 140px; 
-            height: 140px; 
-            border-radius: 24px; 
+            width: 120px; /* Scaled perfectly so it doesn't overpower */
+            height: 120px; 
+            border-radius: 18px; 
             object-fit: contain; 
             background: rgba(255,255,255,0.95); 
-            padding: 12px; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.08);
-            margin-bottom: 1.8rem;
+            padding: 4px; /* Squeezed the border down from 12px to 4px */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 1.5rem;
             border: 1px solid rgba(0,0,0,0.05);
         }
         
         .vol-title-area a { text-decoration: none; }
-        .vol-title-area a h2 { font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 0.3rem; color: var(--c1); transition: color 0.3s ease; line-height: 1.1; }
+        .vol-title-area a h2 { font-family: 'Syne', sans-serif; font-size: 2.2rem; margin-bottom: 0.3rem; color: var(--c1); transition: color 0.3s ease; line-height: 1.1; }
         .vol-title-area a:hover h2 { color: var(--c2); }
-        .vol-title-area h3 { font-size: 1.15rem; color: var(--text-main); margin-bottom: 1rem; font-weight: 700; }
+        .vol-title-area h3 { font-size: 1.2rem; color: var(--text-main); margin-bottom: 1rem; font-weight: 700; }
         
-        .vol-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 600; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+        .vol-meta { font-size: 0.9rem; color: var(--text-light); font-weight: 600; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 1.5rem; }
         
-        .vol-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; width: 100%; max-width: 480px; }
+        .vol-body { font-size: 1rem; color: var(--text-muted); line-height: 1.7; width: 100%; max-width: 550px; }
         .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 1rem; display: inline-block; }
         .vol-body li { margin-bottom: 0.8rem; }
         
         /* Responsive Mobile Fixes */
-        @media (max-width: 950px) {
+        @media (max-width: 1024px) {
             .vol-card { flex-direction: column; }
             .vol-side-img { flex: 0 0 250px; clip-path: none !important; }
             .img-left { order: 1; }
