@@ -14,18 +14,69 @@
     
     <style>
         /* STATS BAR */
-        .stats-wrapper { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 4rem; }
-        .stat-box { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 16px; padding: 2rem 1rem; text-align: center; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02); transition: transform 0.3s ease; }
-        body.dark-mode .stat-box { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
-        .stat-box:hover { transform: translateY(-3px); }
-        .stat-number { font-family: 'Syne', sans-serif; font-size: 2.5rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem; }
-        body.dark-mode .stat-number { color: #F1F5F9; }
-        .stat-label { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+        .stats-wrapper { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 1.5rem; 
+            margin-bottom: 2rem; /* Reduced gap */
+        }
+        .stat-box { 
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 16px; 
+            padding: 1.8rem 1rem; 
+            text-align: center; 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), inset 0 2px 5px rgba(255, 255, 255, 0.5); /* 3D Effect */
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+        body.dark-mode .stat-box { 
+            background: rgba(30, 41, 59, 0.6); 
+            border-color: rgba(255, 255, 255, 0.1); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.05); /* 3D Dark Mode */
+        }
+        .stat-box:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.08), inset 0 2px 5px rgba(255, 255, 255, 0.8);
+        }
+        body.dark-mode .stat-box:hover {
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3), inset 0 2px 5px rgba(255, 255, 255, 0.1);
+            border-color: rgba(124, 58, 237, 0.3);
+        }
+        
+        .stat-number { 
+            font-family: 'Syne', sans-serif; 
+            font-size: 2.2rem; /* Made smaller */
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--c1), var(--c2)); /* Gradient Purple/Blue */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.2rem; 
+            display: inline-block;
+        }
+        .stat-label { 
+            font-size: 0.8rem; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 0.1em; 
+        }
 
         /* HIGHLIGHTS GRID */
-        .highlights-title { text-align: center; font-family: 'Syne', sans-serif; font-size: 2rem; margin-bottom: 2rem; color: var(--text-main); }
+        .highlights-title { 
+            text-align: center; 
+            font-family: 'Syne', sans-serif; 
+            font-size: 2rem; 
+            margin-bottom: 1.5rem; /* Reduced gap */
+            color: var(--text-main); 
+        }
         body.dark-mode .highlights-title { color: #F1F5F9; }
-        .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 5rem; }
+        .highlights-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 1.5rem; 
+            margin-bottom: 3.5rem; /* Reduced gap */
+        }
         .highlight-card { display: flex; align-items: flex-start; gap: 1rem; background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 16px; padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; }
         body.dark-mode .highlight-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
         .highlight-card:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); border-color: var(--c2); }
@@ -69,9 +120,8 @@
 
 <div class="layout-wrapper single-column">
     <h1 class="center-h1">Professional <span class="gradient-text">Certifications</span></h1>
-    <p style="text-align: center; color: var(--text-muted); margin-bottom: 3rem; margin-top: -2rem;">A curated record of awards, recognitions, and verified certifications.</p>
+    <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; margin-top: -2rem;">A curated record of awards, recognitions, and verified certifications.</p>
 
-    <!-- STATS WRAPPER -->
     <div class="stats-wrapper">
         <div class="stat-box">
             <div class="stat-number">55+</div>
@@ -91,7 +141,6 @@
         </div>
     </div>
 
-    <!-- HIGHLIGHTS SECTION -->
     <h2 class="highlights-title">Key Highlights</h2>
     <div class="highlights-grid">
         <div class="highlight-card">
@@ -143,8 +192,7 @@
         </div>
     </div>
 
-    <!-- DYNAMIC GALLERY (Controlled by main.js) -->
-    <h2 class="highlights-title">All Certificates</h2>
+    <h2 class="highlights-title" style="margin-bottom: 2rem;">All Certificates</h2>
     <div class="cert-grid" id="cert-grid">
     </div>
 </div>
