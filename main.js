@@ -322,7 +322,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
  
    // C. 3D Magnetic Hover Effect for ALL Cards
-    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card');
+   const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card, .stat-box, .highlight-card');
     
     magneticCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
