@@ -10,11 +10,57 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Link to the central CSS file -->
     <link rel="stylesheet" href="/style.css">
+
+    <!-- Specific Epic Contact Styles -->
+    <style>
+        .epic-contact-wrapper { max-width: 1200px; margin: 0 auto; padding: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+        
+        .contact-hero-left h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+        .contact-hero-left p.desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; }
+        
+        .info-cards { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 3rem; }
+        
+        /* FAQ Accordion */
+        .faq-section { margin-top: 3rem; }
+        .faq-section h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.5rem; }
+        body.dark-mode .faq-section h3 { color: #F1F5F9; }
+        .faq-item { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 12px; margin-bottom: 1rem; overflow: hidden; transition: all 0.3s ease; cursor: pointer; }
+        body.dark-mode .faq-item { background: rgba(30, 41, 59, 0.4); border-color: rgba(255, 255, 255, 0.1); }
+        .faq-item.active { background: rgba(255, 255, 255, 0.9); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.08); border-color: var(--c1); }
+        body.dark-mode .faq-item.active { background: rgba(15, 23, 42, 0.9); border-color: var(--c1); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4); }
+        .faq-question { padding: 1.2rem 1.5rem; font-weight: 700; display: flex; justify-content: space-between; align-items: center; color: var(--text-main); }
+        body.dark-mode .faq-question { color: #F1F5F9; }
+        .faq-answer { padding: 0 1.5rem; max-height: 0; opacity: 0; transition: all 0.4s ease; color: var(--text-muted); font-size: 0.95rem; }
+        .faq-item.active .faq-answer { padding: 0 1.5rem 1.2rem 1.5rem; max-height: 200px; opacity: 1; }
+        .faq-icon { font-size: 1.2rem; font-weight: 300; transition: transform 0.3s; color: var(--c1); }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+
+        .form-glass { padding: 3rem; }
+
+        @media (max-width: 900px) {
+            .epic-contact-wrapper { grid-template-columns: 1fr; gap: 2rem; padding: 1rem; }
+            .contact-hero-left h1 { font-size: 2.5rem; }
+            .form-glass { padding: 2rem; }
+        }
+    </style>
 </head>
 <body class="dark-mode">
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+<div id="preloader"><div class="preloader-text">FR<span class="gradient-text">KR</span></div></div>
+
+<div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+    <!-- Floating Geo Shapes -->
+    <svg class="geo-shape geo-1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+        <circle cx="50" cy="50" r="40"/><path d="M50 10 C 20 10, 20 90, 50 90 M50 10 C 80 10, 80 90, 50 90 M10 50 L90 50"/>
+    </svg>
+    <svg class="geo-shape geo-2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
+        <polygon points="50,10 90,90 10,90"/><polygon points="50,90 90,10 10,10"/>
+    </svg>
+</div>
+
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -26,7 +72,6 @@
         <a href="/contact.html" class="active">Contact</a>
     </div>
     <div class="nav-actions">
-        <!-- Contact button removed from nav on the contact page itself for a cleaner look -->
         <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
@@ -38,48 +83,86 @@
     </div>
 </nav>
 
-<div class="layout-wrapper single-column">
-    <div class="contact-header">
-        <p class="subtitle">Get in Touch</p>
-        <h1>Let's Connect</h1>
-        <p class="desc">Open to opportunities in marketing, communications, and brand strategy. Let's discuss how I can contribute to your team.</p>
-    </div>
-    <div class="glass-card status-banner no-hover">
-        <div><span class="pulse-dot"></span> <strong>Currently available for new opportunities</strong></div>
-        <div style="color: var(--text-light); font-size: 0.85rem;">Response within 24 hours</div>
-    </div>
-    <div class="contact-grid">
+<div class="epic-contact-wrapper">
+    <!-- LEFT COLUMN: Info & FAQ -->
+    <div class="contact-hero-left reveal">
+        <p style="color: #F59E0B; font-weight: 700; letter-spacing: 0.1em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem;">Let's Build Together</p>
+        <h1 class="gradient-text">Let's Connect</h1>
+        <p class="desc">Whether you have a question, a project proposition, or just want to chat about marketing and brand growth—I'm ready.</p>
+        
+        <div class="live-status-widget" style="margin-top: 0; margin-bottom: 2rem;">
+            <div class="status-dot"></div>
+            <div class="status-text-container">
+                <span>Available for new opportunities</span>
+            </div>
+        </div>
+
         <div class="info-cards">
             <a href="mailto:fardinraafi@gmail.com" class="info-card">
                 <div class="icon-box">✉️</div>
                 <div class="info-text"><p class="label">Email</p><p class="value">fardinraafi@gmail.com</p></div>
             </a>
-            <a href="#" class="info-card">
-                <div class="icon-box">📞</div>
-                <div class="info-text"><p class="label">Phone</p><p class="value">Available Upon Request</p></div>
-            </a>
             <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="info-card">
                 <div class="icon-box">🔗</div>
                 <div class="info-text"><p class="label">LinkedIn</p><p class="value">/in/fardinraafi</p></div>
             </a>
+            <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="info-card">
+                <div class="icon-box">📱</div>
+                <div class="info-text"><p class="label">Digital Card</p><p class="value">QR Code Chimp</p></div>
+            </a>
         </div>
-        <div class="glass-card contact-form-card no-hover">
-           <form id="contact-form">
-                <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
-                
-                <div class="form-row">
-                    <div class="form-group"><label>Name</label><input type="text" name="name" class="form-control" placeholder="Your name" required></div>
-                    <div class="form-group"><label>Email</label><input type="email" name="email" class="form-control" placeholder="you@example.com" required></div>
+
+        <div class="faq-section">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-item">
+                <div class="faq-question">What is your typical response time? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">I typically review and respond to all inquiries within 24 hours during standard business days.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Are you open to full-time roles? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">Yes, I am actively seeking full-time opportunities in Growth, B2B Marketing, and Brand Strategy.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Do you take on freelance projects? <span class="faq-icon">+</span></div>
+                <div class="faq-answer">I do! I'm happy to consult on CRM enrichment, cold outreach automation, and visual branding. Send me a message to discuss scope.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Contact Form -->
+    <div class="glass-card form-glass reveal" style="align-self: center;">
+        <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Send a Message</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Fill out the form below and I'll get back to you as soon as possible.</p>
+
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
+            <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
                 </div>
-                <div class="form-group"><label>Subject</label><input type="text" name="subject" class="form-control" placeholder="How can I help?" required></div>
-                <div class="form-group"><label>Message</label><textarea name="message" class="form-control" placeholder="Tell me about the opportunity..." required></textarea></div>
-                <button type="submit" class="btn-submit">Send Message</button>
-            </form>
-        </div>
+                <div class="form-group">
+                    <label>Your Email</label>
+                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Subject</label>
+                <input type="text" name="subject" class="form-control" placeholder="How can I help you?" required>
+            </div>
+            <div class="form-group">
+                <label>Message</label>
+                <textarea name="message" class="form-control" placeholder="Tell me about your project, team, or opportunity..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit" style="margin-top: 1rem;">Send Message ➔</button>
+        </form>
     </div>
 </div>
 
-<footer class="site-footer">
+<footer class="site-footer reveal">
+    <div class="footer-glow"></div>
     <div class="footer-grid">
         <div class="footer-col">
             <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
@@ -107,21 +190,29 @@
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
                     LinkedIn Profile
                 </a>
-                <a href="https://www.pinterest.com/yourusername" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-                    Pinterest
-                </a>
-                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
             </div>
         </div>
     </div>
-    <div class="copyright">
-        © <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.
-    </div>
+    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
 </footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-<!-- Link to the central JavaScript file -->
+
 <script src="/main.js"></script>
+
+<!-- Interactive FAQ Script -->
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if(otherItem !== item) otherItem.classList.remove('active');
+            });
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+</script>
+
 </body>
 </html>
