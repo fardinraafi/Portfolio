@@ -511,18 +511,17 @@ body.fade-out {
 }
 
 /* 3. Interactive Spotlight Effect for Cards */
-.glass-card {
+.glass-card, .stat-box, .highlight-card {
     position: relative; overflow: hidden;
 }
-.glass-card::before {
+.glass-card::before, .stat-box::before, .highlight-card::before {
     content: ""; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
     background: radial-gradient(800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255,255,255,0.06), transparent 40%);
     opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 0;
 }
-.glass-card:hover::before { opacity: 1; }
+.glass-card:hover::before, .stat-box:hover::before, .highlight-card:hover::before { opacity: 1; }
 /* Push content above the spotlight */
-.glass-card > * { position: relative; z-index: 1; }
-
+.glass-card > *, .stat-box > *, .highlight-card > * { position: relative; z-index: 1; }
 /* 4. Floating Geometric Vectors */
 .geo-shape {
     position: absolute; pointer-events: none; opacity: 0.15;
