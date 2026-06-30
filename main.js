@@ -465,22 +465,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 })();
- /* =========================================
-       12. FLOATING GLASS PARALLAX ENGINE
-    ========================================= */
-    const glassIcons = document.querySelectorAll('.floating-glass');
-    
-    if (glassIcons.length > 0) {
-        // We use passive: true to tell the browser this script won't block scrolling
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
+/* =========================================
+   12. FLOATING GLASS PARALLAX ENGINE
+========================================= */
+const glassIcons = document.querySelectorAll('.floating-glass');
+
+if (glassIcons.length > 0) {
+    // 1. Set the initial tilt before the user even scrolls
+    glassIcons.forEach(icon => {
+        const rot = icon.getAttribute('data-rot') || '0';
+        icon.style.transform = `translate3d(0, 0px, 0) rotate(${rot}deg)`;
+    });
+
+    // 2. Keep the tilt applied while scrolling up
+    window.addEventListener('scroll', () => {
+        const scrolled = window.scrollY;
+        
+        glassIcons.forEach((icon, index) => {
+            const speed = (index + 1) * 0.12; 
+            const rot = icon.getAttribute('data-rot') || '0';
             
-            glassIcons.forEach((icon, index) => {
-                // Creates different speeds for each icon (0.1, 0.2, 0.3, etc.)
-                const speed = (index + 1) * 0.12; 
-                
-                // translate3d forces the GPU to render the movement
-                icon.style.transform = `translate3d(0, -${scrolled * speed}px, 0)`;
-            });
-        }, { passive: true });
-    }
+            // Combines the upward movement (translate3d) with the permanent tilt (rotate)
+            icon.style.transform = `translate3d(0, -${scrolled * speed}px, 0) rotate(${rot}deg)`;
+        });
+    }, { passive: true });
+}
