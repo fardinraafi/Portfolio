@@ -623,7 +623,7 @@ body.fade-out {
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     pointer-events: none; /* Prevents icons from blocking clicks on your links */
-    z-index: 0; /* Keeps them behind your main content */
+    z-index: 1; /* Keeps them behind your main content */
     overflow: hidden;
 }
 
