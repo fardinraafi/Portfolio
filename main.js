@@ -464,7 +464,8 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-    /* =========================================
+})();
+ /* =========================================
        12. FLOATING GLASS PARALLAX ENGINE
     ========================================= */
     const glassIcons = document.querySelectorAll('.floating-glass');
@@ -483,4 +484,3 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }, { passive: true });
     }
-})();
