@@ -641,6 +641,6 @@ body.fade-out {
 .fg-5 { top: 45%; right: 2%; width: 60px; filter: blur(6px); opacity: 0.6; }
 
 /* Hide on smaller screens to keep mobile clean */
-@media (max-width: 1300px) {
+@media (max-width: 1024px) {
     .glass-parallax-container { display: none; }
 }
