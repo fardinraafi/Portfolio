@@ -626,19 +626,28 @@ body.fade-out {
     z-index: 1; /* Keeps them behind your main content */
     overflow: hidden;
 }
+/* =========================================
+   FLOATING 3D GLASS PARALLAX
+========================================= */
+.glass-parallax-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    pointer-events: none; 
+    z-index: 1; /* Keeps them behind your main content */
+    overflow: hidden;
+}
+
 .floating-glass {
     position: absolute;
     will-change: transform; 
-    opacity: 1; /* Forced to full opacity */
-    border: 5px solid red !important; /* Force a red box to appear */
-    min-height: 50px; /* Force it to have height even if image is missing */
-    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
-    z-index: 9999 !important; /* Force it to the absolute front of everything */
+    opacity: 0.85; /* Restored the glassy transparency */
+    border-radius: 20px; /* Rounds the corners of the image smoothly */
 }
+
 /* Specific Sizes, Positions, and Blurs for Depth of Field */
 .fg-1 { top: 15%; left: 3%; width: 140px; filter: blur(1px); }
 .fg-2 { top: 65%; left: 5%; width: 80px; filter: blur(4px); }
 .fg-3 { top: 25%; right: 4%; width: 180px; filter: blur(0px); opacity: 1; }
 .fg-4 { top: 75%; right: 6%; width: 100px; filter: blur(3px); }
 .fg-5 { top: 45%; right: 2%; width: 60px; filter: blur(6px); opacity: 0.6; }
-
