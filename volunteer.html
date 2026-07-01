@@ -96,7 +96,44 @@
         .vol-body { font-size: 1rem; color: var(--text-muted); line-height: 1.7; width: 100%; max-width: 550px; }
         .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 1rem; display: inline-block; }
         .vol-body li { margin-bottom: 0.8rem; }
-        
+
+        /* High-End Stats Grid */
+        .vol-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 5rem;
+            width: 100%;
+        }
+        .vol-stat-card {
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+        }
+        .vol-stat-card .metric-num {
+            font-family: 'Syne', sans-serif; 
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--c1), var(--c2)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1; 
+            margin-bottom: 0.8rem;
+        }
+        .vol-stat-card .metric-label {
+            font-size: 0.85rem; 
+            color: var(--text-main); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em;
+        }
+        body.dark-mode .vol-stat-card .metric-label {
+            color: #F1F5F9;
+        }
         /* Responsive Mobile Fixes */
         @media (max-width: 1024px) {
             .vol-card { flex-direction: column; }
@@ -108,6 +145,33 @@
         }
     </style>
 </head>
+    <div class="volunteer-container">
+        
+        <!-- High-End Stats Summary -->
+        <div class="vol-stats-grid">
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">30+</div>
+                <div class="metric-label">Volunteering Activity</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Campus Ambassadorship</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">42</div>
+                <div class="metric-label">Events Managed</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">4</div>
+                <div class="metric-label">Pro Projects & Co-Founding</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Competitions & Fellowships</div>
+            </div>
+        </div>
+
+        <!-- TEDxUttara (Your existing code continues here...) -->
 <body class="dark-mode">
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 <nav class="top-nav">
