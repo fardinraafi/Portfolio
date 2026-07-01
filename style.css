@@ -615,17 +615,7 @@ body.fade-out {
     opacity: 1;
     transform: translateX(-50%) translateY(0);
 }
-/* =========================================
-   FLOATING 3D GLASS PARALLAX
-========================================= */
-.glass-parallax-container {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100vw; height: 100vh;
-    pointer-events: none; /* Prevents icons from blocking clicks on your links */
-    z-index: 1; /* Keeps them behind your main content */
-    overflow: hidden;
-}
+
 /* =========================================
    FLOATING 3D GLASS PARALLAX
 ========================================= */
@@ -651,3 +641,10 @@ body.fade-out {
 .fg-3 { top: 25%; right: 4%; width: 180px; filter: blur(0px); opacity: 1; }
 .fg-4 { top: 75%; right: 6%; width: 100px; filter: blur(3px); }
 .fg-5 { top: 45%; right: 2%; width: 60px; filter: blur(6px); opacity: 0.6; }
+
+/* Hide floating glass icons on mobile devices (screens smaller than 1024px) */
+@media (max-width: 768px) {
+    .glass-parallax-container {
+        display: none !important;
+    }
+}
