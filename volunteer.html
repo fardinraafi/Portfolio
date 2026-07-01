@@ -208,11 +208,14 @@
             /* Turn the right image back on and put it on the right side! */
             .img-right { display: block !important; grid-column: 2 / 3; grid-row: 1; }
             
-            /* Make the text content span all the way across the bottom */
+       /* Make the text content span all the way across the bottom and force it to the front! */
             .vol-content { 
                 grid-column: 1 / -1; 
                 grid-row: 2; 
                 padding: 0 1.2rem 2rem 1.2rem; 
+                position: relative; 
+                z-index: 10; /* This forces the logo and text above BOTH images */
+            } 
             }
             
             /* Pull the logo up so it overlaps the seam between the two images */
