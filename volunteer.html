@@ -192,25 +192,38 @@
             .vol-stat-card .metric-num { font-size: 1.8rem; margin-bottom: 0.4rem; }
             .vol-stat-card .metric-label { font-size: 0.75rem; }
             
-            /* Make the main cards a clean vertical stack */
-            .vol-card { border-radius: 20px; margin-bottom: 2.5rem; }
+            /* CSS GRID MAGIC: Splits the banner 50/50 */
+            .vol-card { 
+                display: grid; 
+                grid-template-columns: 1fr 1fr; 
+                border-radius: 20px; 
+                margin-bottom: 2.5rem; 
+                padding: 0;
+            }
             
-            /* Turn the left image into a sleek top header banner */
-            .vol-side-img.img-left { flex: 0 0 140px; }
+            /* Force both images to share the top row */
+            .vol-side-img { height: 140px; clip-path: none !important; }
+            .img-left { grid-column: 1 / 2; grid-row: 1; border-right: 1px solid rgba(255,255,255,0.2); }
             
-            /* Hide the right image to prevent scrolling fatigue on phones */
-            .vol-side-img.img-right { display: none; }
+            /* Turn the right image back on and put it on the right side! */
+            .img-right { display: block !important; grid-column: 2 / 3; grid-row: 1; }
             
-            /* Pull the logo up so it overlaps the banner (Premium App Feel) */
-            .vol-content { padding: 0 1.2rem 2rem 1.2rem; }
+            /* Make the text content span all the way across the bottom */
+            .vol-content { 
+                grid-column: 1 / -1; 
+                grid-row: 2; 
+                padding: 0 1.2rem 2rem 1.2rem; 
+            }
+            
+            /* Pull the logo up so it overlaps the seam between the two images */
             .vol-logo { 
                 width: 80px; 
                 height: 80px; 
-                margin-top: -40px; /* Creates the overlap */
+                margin-top: -40px; 
                 border-radius: 16px; 
                 margin-bottom: 1rem;
                 border-width: 3px;
-                position: relative; /* Keeps it above the banner */
+                position: relative; 
                 z-index: 5;
             }
             
