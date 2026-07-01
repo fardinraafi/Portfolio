@@ -21,7 +21,7 @@
         .volunteer-container { max-width: 100%; margin: 0 auto; }
         
         .vol-card { 
-            margin-bottom: 4rem; 
+            margin-bottom: 2.5rem; 
             background: rgba(255, 255, 255, 0.75);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
@@ -97,14 +97,15 @@
         .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 1rem; display: inline-block; }
         .vol-body li { margin-bottom: 0.8rem; }
 
-        /* High-End Stats Grid */
+      /* High-End Stats Grid */
         .vol-stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1.5rem;
-            margin-bottom: 5rem;
+            margin-bottom: 2.5rem; /* Reduced from 5rem to tighten the gap below */
             width: 100%;
         }
+        
         .vol-stat-card {
             padding: 2.5rem 1.5rem;
             text-align: center;
@@ -113,7 +114,33 @@
             justify-content: center;
             align-items: center;
             border-radius: 24px;
+            position: relative; /* Required for the shine effect */
+            overflow: hidden; /* Keeps the shine inside the card's rounded corners */
         }
+        
+        /* ── THE SHINE EFFECT ── */
+        .vol-stat-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 50%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); 
+            transform: skewX(-20deg); 
+            transition: left 0.6s ease; 
+            z-index: 1; 
+        }
+        .vol-stat-card:hover::before {
+            left: 150%;
+        }
+        
+        /* Pushes the text above the light beam */
+        .vol-stat-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
         .vol-stat-card .metric-num {
             font-family: 'Syne', sans-serif; 
             font-size: 2.8rem; 
@@ -124,6 +151,7 @@
             line-height: 1; 
             margin-bottom: 0.8rem;
         }
+        
         .vol-stat-card .metric-label {
             font-size: 0.85rem; 
             color: var(--text-main); 
@@ -131,17 +159,9 @@
             text-transform: uppercase; 
             letter-spacing: 0.05em;
         }
+        
         body.dark-mode .vol-stat-card .metric-label {
             color: #F1F5F9;
-        }
-        /* Responsive Mobile Fixes */
-        @media (max-width: 1024px) {
-            .vol-card { flex-direction: column; }
-            .vol-side-img { flex: 0 0 250px; clip-path: none !important; }
-            .img-left { order: 1; }
-            .vol-content { order: 2; padding: 2.5rem 1.5rem; }
-            .img-right { order: 3; }
-            .vol-title-area a h2 { font-size: 1.6rem; }
         }
     </style>
 </head>
