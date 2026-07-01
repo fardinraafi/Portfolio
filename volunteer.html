@@ -163,6 +163,64 @@
         body.dark-mode .vol-stat-card .metric-label {
             color: #F1F5F9;
         }
+        /* =========================================
+           📱 RESPONSIVE & MOBILE MASTERY 📱
+        ========================================= */
+        
+        /* ── TABLET OPTIMIZATION (Screens under 1024px) ── */
+        @media (max-width: 1024px) {
+            .vol-card { flex-direction: column; }
+            .vol-side-img { flex: 0 0 250px; clip-path: none !important; width: 100%; }
+            .img-left { order: 1; }
+            .vol-content { order: 2; padding: 2.5rem 1.5rem; }
+            .img-right { order: 3; }
+            .vol-title-area a h2 { font-size: 1.8rem; }
+        }
+
+        /* ── TRUE MOBILE OPTIMIZATION (Phones under 768px) ── */
+        @media (max-width: 768px) {
+            /* Restrain the massive wrapper */
+            .layout-wrapper.single-column { width: 100% !important; padding: 1rem !important; }
+            
+            /* Tidy the stats grid into uniform squares */
+            .vol-stats-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 1rem; 
+                margin-bottom: 2rem;
+            }
+            .vol-stat-card { padding: 1.5rem 1rem; }
+            .vol-stat-card .metric-num { font-size: 1.8rem; margin-bottom: 0.4rem; }
+            .vol-stat-card .metric-label { font-size: 0.75rem; }
+            
+            /* Make the main cards a clean vertical stack */
+            .vol-card { border-radius: 20px; margin-bottom: 2.5rem; }
+            
+            /* Turn the left image into a sleek top header banner */
+            .vol-side-img.img-left { flex: 0 0 140px; }
+            
+            /* Hide the right image to prevent scrolling fatigue on phones */
+            .vol-side-img.img-right { display: none; }
+            
+            /* Pull the logo up so it overlaps the banner (Premium App Feel) */
+            .vol-content { padding: 0 1.2rem 2rem 1.2rem; }
+            .vol-logo { 
+                width: 80px; 
+                height: 80px; 
+                margin-top: -40px; /* Creates the overlap */
+                border-radius: 16px; 
+                margin-bottom: 1rem;
+                border-width: 3px;
+                position: relative; /* Keeps it above the banner */
+                z-index: 5;
+            }
+            
+            /* Adjust typography & alignment for readability */
+            .vol-title-area a h2 { font-size: 1.5rem; }
+            .vol-title-area h3 { font-size: 1rem; }
+            .vol-meta { flex-direction: column; gap: 5px; align-items: center; margin-bottom: 1rem; }
+            .vol-body { font-size: 0.95rem; text-align: center; }
+            .vol-body ul { padding-left: 1rem; text-align: left; }
+        }
     </style>
 </head>
 <body class="dark-mode">
