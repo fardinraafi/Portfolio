@@ -525,16 +525,6 @@ if (chatBotBtn && chatBotModal) {
 
         btn.addEventListener('click', function() {
             
-            // Redirect Logic for Contact Page
-            if (this.classList.contains('contact-redirect')) {
-                // Add your fade-out class from your smooth page transitions
-                document.body.classList.add('fade-out');
-                setTimeout(() => {
-                    window.location.href = '/contact.html';
-                }, 300);
-                return;
-            }
-
             const questionText = this.innerText;
             const answerHTML = this.getAttribute('data-answer');
             
@@ -545,7 +535,7 @@ if (chatBotBtn && chatBotModal) {
             // Append User Question Bubble
             const userBubble = document.createElement('div');
             userBubble.className = 'chat-bubble user-bubble';
-            userBubble.innerHTML = questionText;
+            userBubble.innerText = questionText; // Uses innerText so the HTML span tag doesn't copy over
             chatLog.appendChild(userBubble);
             
             chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
@@ -554,7 +544,7 @@ if (chatBotBtn && chatBotModal) {
             setTimeout(() => {
                 const aiBubble = document.createElement('div');
                 aiBubble.className = 'chat-bubble ai-bubble';
-                aiBubble.innerHTML = answerHTML;
+                aiBubble.innerHTML = answerHTML; // Uses innerHTML so your new Contact Button renders!
                 chatLog.appendChild(aiBubble);
                 
                 // Add a "Ask another question" button
