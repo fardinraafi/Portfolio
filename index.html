@@ -363,6 +363,43 @@
         </section>
     </main>
 </div>
+    <button id="chatBotBtn" class="chat-bot-btn reveal" aria-label="Open Chat">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+</button>
+
+<div id="chatBotModal" class="chat-bot-modal">
+    <div class="chat-header">
+        <div class="chat-header-title">
+            <div class="live-dot"></div>
+            <div>
+                <h4>Ask about me</h4>
+                <span>AI · Automated Answers</span>
+            </div>
+        </div>
+        <button id="closeChatBtn" class="close-chat">×</button>
+    </div>
+    
+    <div id="chatScrollArea" class="chat-scroll-area">
+        <div class="chat-greeting" id="chatGreeting">
+            <div class="radar-icon">
+                <div class="radar-dot"></div>
+            </div>
+            <h2>Hey there! 👋</h2>
+            <p>Ask me anything about my background.</p>
+        </div>
+        
+        <div id="chatLog" class="chat-log"></div>
+
+        <div class="chat-options-grid" id="chatOptionsGrid">
+            <button class="chat-opt-btn highlight-card" data-answer="I specialize in B2B outreach, Vested Growth, branding, and conversion rate optimization. I leverage tools like Apollo.io, Instantly.ai, and Sales Navigator.">What are your top skills?</button>
+            <button class="chat-opt-btn highlight-card" data-answer="I am currently pursuing my BBA in Marketing at BUBT (CGPA: 3.80). I also completed my HSC at Dhaka Commerce College with a 5.00 GPA.">What's your educational background?</button>
+            <button class="chat-opt-btn highlight-card" data-answer="I work as a Business Development Executive at Augmex Technologies and as a Marketing Intern at Adviza International.">What work experience do you have?</button>
+            <button class="chat-opt-btn highlight-card" data-answer="I've contributed to 30+ community projects, managed 42 events, and hold leadership roles like Head of Corporate & Alumni Relations at BUBT Career Guidance Office.">Tell me about your projects</button>
+            <button class="chat-opt-btn highlight-card" data-answer="I focus heavily on strategic market research, ICP mapping, and identifying Key Decision Makers (KDMs) for B2B lead generation.">Do you have any research experience?</button>
+            <button class="chat-opt-btn highlight-card" data-answer="You can easily reach me via my contact page to shoot me an email directly!<br><br><a href='/contact.html' class='btn btn-primary' style='padding: 6px 16px; margin-top:12px; font-size: 0.8rem; display:inline-block;'>Go to Contact Page</a>">How can I contact you?</button>
+        </div>
+    </div>
+</div>
 <footer class="site-footer reveal">
     <div class="footer-glow"></div>
     <div class="footer-grid">
