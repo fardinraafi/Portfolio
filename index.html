@@ -394,23 +394,30 @@
         <!-- Chat Messages will spawn here -->
         <div id="chatLog" class="chat-log"></div>
 
-        <div class="chat-options-grid" id="chatOptionsGrid">
+       <div class="chat-options-grid" id="chatOptionsGrid">
             <button class="chat-opt-btn highlight-card" data-answer="Fardin specializes in B2B outreach, sales automation, branding, and lead generation. He leverages tools like Apollo.io, Instantly.ai, and Sales Navigator.">
                 <span>What are your top skills?</span>
             </button>
-            <button class="chat-opt-btn highlight-card" data-answer="He is currently pursuing a BBA in Marketing at BUBT (CGPA: 3.80), and completed his HSC at Dhaka Commerce College with a 5.00 GPA.">
+            
+            <!-- Updated Education Status -->
+            <button class="chat-opt-btn highlight-card" data-answer="He graduated with a BBA in Marketing from BUBT with a 3.80 CGPA, and completed his HSC at Dhaka Commerce College with a 5.00 GPA.">
                 <span>What's your educational background?</span>
             </button>
+            
             <button class="chat-opt-btn highlight-card" data-answer="He works as a Business Development Executive at Augmex Technologies and previously as a Marketing Intern at Adviza International.">
                 <span>What work experience do you have?</span>
             </button>
+            
             <button class="chat-opt-btn highlight-card" data-answer="He has contributed to 30+ community projects, managed 42 events, and holds leadership roles like Head of Corporate & Alumni Relations at BUBT.">
                 <span>Tell me about your projects</span>
             </button>
+            
             <button class="chat-opt-btn highlight-card" data-answer="Yes! He has served as the Graphic Designer for TEDxUttara, Lead Brand Designer for Hult Prize, and Media Secretary for the BUBT Social Welfare Club.">
                 <span>Do you have design experience?</span>
             </button>
-            <button class="chat-opt-btn highlight-card contact-redirect">
+            
+            <!-- Updated Contact Button (Removed the instant redirect class, added a button inside the answer) -->
+            <button class="chat-opt-btn highlight-card" data-answer="I'd love to connect! Click the button below to head to my contact page where you can shoot me an email directly.<br><br><a href='/contact.html' class='btn btn-primary' style='font-size:0.85rem; padding: 8px 16px; margin-top: 5px; display: inline-flex;'>Go to Contact Page ➔</a>">
                 <span>I have a different question! ➔</span>
             </button>
         </div>
