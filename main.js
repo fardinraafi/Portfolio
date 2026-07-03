@@ -511,9 +511,30 @@ if (chatBotBtn && chatBotModal) {
         chatBotModal.classList.remove('show');
     });
     
-    // Handle Question Clicks
+    // Handle Question Clicks & Spotlight Hover
     chatOptions.forEach(btn => {
+        
+        // Spotlight Hover Effect Fix specifically for Chat Buttons
+        btn.addEventListener('mousemove', (e) => {
+            const rect = btn.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;  
+            btn.style.setProperty('--mouse-x', `${x}px`);
+            btn.style.setProperty('--mouse-y', `${y}px`);
+        });
+
         btn.addEventListener('click', function() {
+            
+            // Redirect Logic for Contact Page
+            if (this.classList.contains('contact-redirect')) {
+                // Add your fade-out class from your smooth page transitions
+                document.body.classList.add('fade-out');
+                setTimeout(() => {
+                    window.location.href = '/contact.html';
+                }, 300);
+                return;
+            }
+
             const questionText = this.innerText;
             const answerHTML = this.getAttribute('data-answer');
             
@@ -529,7 +550,7 @@ if (chatBotBtn && chatBotModal) {
             
             chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
             
-            // Simulate AI "Thinking" delay (600ms)
+            // Simulate Fifi "Thinking" delay (600ms)
             setTimeout(() => {
                 const aiBubble = document.createElement('div');
                 aiBubble.className = 'chat-bubble ai-bubble';
