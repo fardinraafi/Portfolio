@@ -490,3 +490,66 @@ if (glassIcons.length > 0) {
         });
     }, { passive: true });
 }
+/* =========================================
+   13. AUTOMATED CHAT WIDGET
+========================================= */
+const chatBotBtn = document.getElementById('chatBotBtn');
+const chatBotModal = document.getElementById('chatBotModal');
+const closeChatBtn = document.getElementById('closeChatBtn');
+const chatOptions = document.querySelectorAll('.chat-opt-btn');
+const chatLog = document.getElementById('chatLog');
+const chatGreeting = document.getElementById('chatGreeting');
+const chatOptionsGrid = document.getElementById('chatOptionsGrid');
+const chatScrollArea = document.getElementById('chatScrollArea');
+
+if (chatBotBtn && chatBotModal) {
+    // Open/Close Modal
+    chatBotBtn.addEventListener('click', () => {
+        chatBotModal.classList.toggle('show');
+    });
+    closeChatBtn.addEventListener('click', () => {
+        chatBotModal.classList.remove('show');
+    });
+    
+    // Handle Question Clicks
+    chatOptions.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const questionText = this.innerText;
+            const answerHTML = this.getAttribute('data-answer');
+            
+            // Hide the initial greeting and grid
+            chatGreeting.style.display = 'none';
+            chatOptionsGrid.style.display = 'none';
+            
+            // Append User Question Bubble
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-bubble user-bubble';
+            userBubble.innerHTML = questionText;
+            chatLog.appendChild(userBubble);
+            
+            chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
+            
+            // Simulate AI "Thinking" delay (600ms)
+            setTimeout(() => {
+                const aiBubble = document.createElement('div');
+                aiBubble.className = 'chat-bubble ai-bubble';
+                aiBubble.innerHTML = answerHTML;
+                chatLog.appendChild(aiBubble);
+                
+                // Add a "Ask another question" button
+                const resetBtn = document.createElement('button');
+                resetBtn.className = 'reset-chat-btn';
+                resetBtn.style.display = 'block';
+                resetBtn.innerText = '↺ Ask another question';
+                resetBtn.onclick = () => {
+                    chatLog.innerHTML = ''; // Clear chat
+                    chatGreeting.style.display = 'block'; // Show greeting
+                    chatOptionsGrid.style.display = 'grid'; // Show options
+                };
+                chatLog.appendChild(resetBtn);
+                
+                chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
+            }, 600);
+        });
+    });
+}
