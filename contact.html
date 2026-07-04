@@ -43,6 +43,85 @@
             .contact-hero-left h1 { font-size: 2.5rem; }
             .form-glass { padding: 2rem; }
         }
+        /* ── AURORA GLOW EFFECT ── */
+        .aurora-wrapper {
+            position: relative;
+            width: 100%;
+        }
+        .aurora-glow {
+            position: absolute;
+            top: -10%; left: -10%; right: -10%; bottom: -10%;
+            background: radial-gradient(circle at 50% 50%, rgba(37,99,235,0.4), rgba(124,58,237,0.4), transparent 60%);
+            filter: blur(60px);
+            z-index: 0;
+            animation: auroraShift 8s infinite alternate ease-in-out;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        body.dark-mode .aurora-glow { opacity: 0.5; }
+        
+        @keyframes auroraShift {
+            0% { transform: scale(1) translate(15px, -15px); }
+            100% { transform: scale(1.1) translate(-15px, 15px); }
+        }
+        .aurora-wrapper .glass-card {
+            position: relative;
+            z-index: 1; /* Keeps the glass form securely above the glowing light */
+        }
+
+        /* ── FLOATING LABELS (Premium SaaS Look) ── */
+        .floating-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .floating-control {
+            width: 100%;
+            padding: 22px 16px 8px 16px; /* Thick top padding creates space for the label to slide into */
+            background: rgba(255,255,255,0.9);
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 8px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1rem;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        body.dark-mode .floating-control {
+            background: rgba(15, 23, 42, 0.8);
+            color: #F1F5F9;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .floating-control:focus {
+            border-color: var(--c1);
+            box-shadow: 0 0 0 4px rgba(37,99,235,0.1);
+        }
+        textarea.floating-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .floating-label {
+            position: absolute;
+            top: 50%;
+            left: 16px;
+            transform: translateY(-50%);
+            font-size: 1rem;
+            color: var(--text-muted);
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        textarea ~ .floating-label {
+            top: 24px; /* Adjusts initial position specifically for the taller textarea */
+        }
+
+        /* THE TRICK: Shrink and slide the label up when clicked OR when text is typed */
+        .floating-control:focus ~ .floating-label,
+        .floating-control:not(:placeholder-shown) ~ .floating-label {
+            top: 14px;
+            font-size: 0.75rem;
+            color: var(--c1);
+            font-weight: 700;
+        }
     </style>
 </head>
 <body class="dark-mode">
@@ -83,17 +162,17 @@
     </div>
 </nav>
 
-<div class="epic-contact-wrapper">
-    <!-- LEFT COLUMN: Info & FAQ -->
+<!-- LEFT COLUMN: Info & FAQ -->
     <div class="contact-hero-left reveal">
         <p style="color: #F59E0B; font-weight: 700; letter-spacing: 0.1em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.5rem;">Let's Build Together</p>
         <h1 class="gradient-text">Let's Connect</h1>
         <p class="desc">Whether you have a question, a project proposition, or just want to chat about marketing and brand growth—I'm ready.</p>
         
-        <div class="live-status-widget" style="margin-top: 0; margin-bottom: 2rem;">
+        <!-- Upgraded Live Availability Status -->
+        <div class="live-status-widget" style="margin-top: 0; margin-bottom: 2rem; cursor: default;">
             <div class="status-dot"></div>
             <div class="status-text-container">
-                <span>Available for new opportunities</span>
+                <span style="font-weight: 600;">Currently Online — Typical Response: Under 2 Hours</span>
             </div>
         </div>
 
@@ -116,7 +195,7 @@
             <h3>Frequently Asked Questions</h3>
             <div class="faq-item">
                 <div class="faq-question">What is your typical response time? <span class="faq-icon">+</span></div>
-                <div class="faq-answer">I typically review and respond to all inquiries within 24 hours during standard business days.</div>
+                <div class="faq-answer">I typically review and respond to all inquiries within 2 hours during standard business days.</div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Are you open to full-time roles? <span class="faq-icon">+</span></div>
@@ -129,37 +208,40 @@
         </div>
     </div>
 
-    <!-- RIGHT COLUMN: Contact Form -->
-    <div class="glass-card form-glass reveal" style="align-self: center;">
-        <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Send a Message</h2>
-        <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Fill out the form below and I'll get back to you as soon as possible.</p>
+    <!-- RIGHT COLUMN: Contact Form with Aurora Wrapper -->
+    <div class="aurora-wrapper reveal" style="align-self: center;">
+        <div class="aurora-glow"></div>
+        <div class="glass-card form-glass">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Send a Message</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">Fill out the form below and I'll get back to you as soon as possible.</p>
 
-        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
-            <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
-            <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
-            
-            <div class="form-row">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="John Doe" required>
+            <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="cf0cd748-fc1b-4a61-a90b-10b95ba7527a">
+                <input type="hidden" name="redirect" value="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/message-sent.html">
+                
+                <div class="form-row">
+                    <!-- Note the placeholder=" " is required for the CSS trick to work -->
+                    <div class="floating-group">
+                        <input type="text" name="name" class="floating-control" placeholder=" " required>
+                        <label class="floating-label">Your Name</label>
+                    </div>
+                    <div class="floating-group">
+                        <input type="email" name="email" class="floating-control" placeholder=" " required>
+                        <label class="floating-label">Your Email</label>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label>Your Email</label>
-                    <input type="email" name="email" class="form-control" placeholder="john@example.com" required>
+                <div class="floating-group">
+                    <input type="text" name="subject" class="floating-control" placeholder=" " required>
+                    <label class="floating-label">Subject</label>
                 </div>
-            </div>
-            <div class="form-group">
-                <label>Subject</label>
-                <input type="text" name="subject" class="form-control" placeholder="How can I help you?" required>
-            </div>
-            <div class="form-group">
-                <label>Message</label>
-                <textarea name="message" class="form-control" placeholder="Tell me about your project, team, or opportunity..." required></textarea>
-            </div>
-            <button type="submit" class="btn-submit" style="margin-top: 1rem;">Send Message ➔</button>
-        </form>
+                <div class="floating-group">
+                    <textarea name="message" class="floating-control" placeholder=" " required></textarea>
+                    <label class="floating-label">Message</label>
+                </div>
+                <button type="submit" class="btn-submit" style="margin-top: 1rem;">Send Message ➔</button>
+            </form>
+        </div>
     </div>
-</div>
 
 <footer class="site-footer reveal">
     <div class="footer-glow"></div>
