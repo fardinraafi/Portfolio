@@ -17,82 +17,104 @@
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="/style.css">
-    <!-- CSS for the new Scrolling Tech Ticker -->
+    
+    <!-- CSS for Scrolling Tickers and Marquees -->
     <style>
+        /* Top Tech Ticker */
         .ticker-wrap {
+            width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
+            padding: 1.5rem 0; margin-bottom: 0; display: flex;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
+        }
+        body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
+        .ticker-track {
+            display: flex; gap: 4rem; padding-left: 4rem;
+            animation: scrollTicker 30s linear infinite; 
+            white-space: nowrap; align-items: center; width: max-content;
+        }
+        .ticker-track:hover { animation-play-state: paused; }
+        .ticker-item {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            font-family: 'Syne', sans-serif; font-weight: 700;
+            color: var(--text-main); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
+        }
+        body.dark-mode .ticker-item { color: #F1F5F9; }
+        .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
+        @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Blog Marquee Upgrade */
+        .blog-marquee-wrap {
             width: 100%;
             overflow: hidden;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.9);
-            border-radius: 16px;
-            padding: 1.5rem 0;
-            margin-bottom: 0;
+            padding: 20px 0; /* Padding allows the hover glow to not get clipped */
+            margin: -20px 0;
+            position: relative;
+        }
+        /* Gradient fade effect on the left and right edges */
+        .blog-marquee-wrap::before, .blog-marquee-wrap::after {
+            content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
+        }
+        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
+        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
+        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(30, 41, 59, 0.9), transparent); }
+        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
+
+        .blog-marquee-track {
             display: flex;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-            transition: all 0.3s ease;
+            gap: 1.5rem;
+            width: max-content;
+            animation: blogMarqueeScroll 45s linear infinite; /* 45s for a nice slow reading speed */
         }
-        body.dark-mode .ticker-wrap {
-            background: rgba(30, 41, 59, 0.6);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
-        .ticker-track {
-            display: flex;
-            gap: 4rem;
-            padding-left: 4rem;
-            /* 20s controls the speed of the scroll */
-            animation: scrollTicker 30s linear infinite; 
-            white-space: nowrap;
-            align-items: center;
-        }
-        /* Pauses the scrolling if a user hovers over it with their mouse */
-        .ticker-track:hover {
-            animation-play-state: paused;
-        }
-        .ticker-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            color: var(--text-main);
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-        body.dark-mode .ticker-item {
-            color: #F1F5F9;
-        }
-        .ticker-item img {
-            width: 28px;
-            height: 28px;
-            border-radius: 6px;
-            object-fit: contain;
-        }
-        @keyframes scrollTicker {
+        .blog-marquee-track:hover { animation-play-state: paused; }
+        
+        @keyframes blogMarqueeScroll {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Scrolls exactly halfway to loop perfectly */
+            100% { transform: translateX(-50%); }
         }
+        
+        .marquee-blog-card {
+            width: 320px; /* Fixed width so it looks uniform */
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            transform: translateY(0);
+        }
+        body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
+        
+        /* 🚀 THE RADIANT LIGHT POP-UP HOVER EFFECT */
+        .marquee-blog-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--c2);
+            /* Glowing borders combining Blue and Purple */
+            box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
+            z-index: 10;
+        }
+        
+        .marquee-blog-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .marquee-blog-content { padding: 1.5rem; }
+        .marquee-blog-date { font-size: 0.8rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .marquee-blog-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+        .marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
     </style>
 </head>
 <body class="dark-mode">
-<div id="preloader">
-    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
-</div>
+
 <div class="bg-mesh">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
-</div> 
     
-<div class="glass-parallax-container">
-    <img src="frkr-glass.png" class="floating-glass fg-1" data-rot="-15" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-2" data-rot="20" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-3" data-rot="-8" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-4" data-rot="12" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-5" data-rot="-20" alt="">
-</div>
     <svg class="geo-shape geo-1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
         <circle cx="50" cy="50" r="40"/><path d="M50 10 C 20 10, 20 90, 50 90 M50 10 C 80 10, 80 90, 50 90 M10 50 L90 50"/>
     </svg>
@@ -100,6 +122,7 @@
         <polygon points="50,10 90,90 10,90"/><polygon points="50,90 90,10 10,10"/>
     </svg>
 </div>
+
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -122,9 +145,10 @@
         </button>
     </div>
 </nav>
+
 <div class="layout-wrapper" id="home">
     <aside class="sidebar">
-        <div class="glass-card reveal">
+        <div class="glass-card">
             <div class="profile-img-wrap">
                 <div class="profile-img" style="overflow: hidden; padding: 0;">
                     <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
@@ -152,9 +176,10 @@
             </div>
         </div>
     </aside>
+    
     <main class="content-feed">
         
-        <header class="glass-card reveal">
+        <header class="glass-card">
             <div class="typewriter">
                 <span id="tw-text"></span><span class="caret"></span>
             </div>
@@ -179,8 +204,20 @@
 </div>
             <br>
         </header> 
-        <div class="ticker-wrap reveal">
+
+        <div class="ticker-wrap">
             <div class="ticker-track">
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=128" alt="Instantly.ai"> Instantly.ai</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="Sales Navigator"> Sales Navigator</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva"> Canva</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=128" alt="Adobe Suite"> Adobe Suite</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="MS Office"> MS Office Suite</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=lusha.com&sz=128" alt="Lusha"> Lusha</div>
+                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=clay.com&sz=128" alt="Clay"> Clay</div>
+                
+                <!-- Duplicated for seamless loop -->
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=128" alt="Instantly.ai"> Instantly.ai</div>
@@ -193,7 +230,7 @@
             </div>
         </div>
 
-        <section class="glass-card reveal">
+        <section class="glass-card">
             <div class="section-title">Professional Documents</div>
             <a href="/resume.md" class="doc-link">
                 <div>
@@ -211,7 +248,7 @@
             </a>
         </section>
 
-        <section class="glass-card reveal">
+        <section class="glass-card">
             <div class="section-title">Recent Experience</div>
             
             <div class="timeline-item">
@@ -241,7 +278,7 @@
             </div>
         </section>
 
-        <section class="glass-card reveal">
+        <section class="glass-card">
             <div class="section-title">Education</div>
             
             <div class="timeline-item">
@@ -270,7 +307,7 @@
             </div>
         </section>
 
-        <section class="glass-card reveal">
+        <section class="glass-card">
             <div class="section-title">Impact & Recognition</div>
             
             <div class="metrics-grid">
@@ -320,34 +357,132 @@
             </div>
         </section>
 
-        <section class="glass-card reveal">
+        <!-- THE NEW EPIC BLOG MARQUEE SECTION -->
+        <section class="glass-card">
             <div class="section-title">Featured Blogs</div>
             
-            <div class="blog-grid">
-                <a href="/blog-1.html" class="blog-card">
-                    <img src="blog-1-thumb.webp" alt="Brainrot Marketing Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
-                    <div class="blog-card-content">
-                        <div class="blog-date">Latest Case Study</div>
-                        <h2 class="blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-                        <p class="blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
-                    </div>
-                </a>
-                <a href="/blog-2.html" class="blog-card">
-                    <img src="blog-2-thumb.webp" alt="AI Certification Thumbnail" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Certification'">
-                    <div class="blog-card-content">
-                        <div class="blog-date">Career Advice</div>
-                        <h2 class="blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
-                        <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
-                    </div>
-                </a>
+            <div class="blog-marquee-wrap">
+                <div class="blog-marquee-track">
+                    <!-- SET 1 (Blogs 1-6) -->
+                    <a href="/blog-1.html" class="marquee-blog-card">
+                        <img src="blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Latest Case Study</div>
+                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <p class="marquee-blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/blog-2.html" class="marquee-blog-card">
+                        <img src="blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Advice</div>
+                            <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
+                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-3.html" class="marquee-blog-card">
+                        <img src="blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Brand Strategy</div>
+                            <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
+                            <p class="marquee-blog-excerpt">A look at how brands are embracing internet culture, humor, and authenticity to win attention in the age of Gen Z.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-4.html" class="marquee-blog-card">
+                        <img src="blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">B2B Sales</div>
+                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
+                            <p class="marquee-blog-excerpt">Why psychology matters more than product knowledge in B2B sales, and how trust, curiosity, and understanding client needs lead to better conversions.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-5.html" class="marquee-blog-card">
+                        <img src="blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Growth</div>
+                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
+                            <p class="marquee-blog-excerpt">Learn how to build a LinkedIn profile that attracts recruiters, showcases your personal brand, and creates career opportunities through a strong headline, compelling story, and consistent activity.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-6.html" class="marquee-blog-card">
+                        <img src="blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI Tools</div>
+                            <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
+                            <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
+                        </div>
+                    </a>
+
+                    <!-- SET 2 (Exact Duplicate to create the infinite seamless loop) -->
+                    <a href="/blog-1.html" class="marquee-blog-card">
+                        <img src="blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Latest Case Study</div>
+                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <p class="marquee-blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/blog-2.html" class="marquee-blog-card">
+                        <img src="blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Advice</div>
+                            <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
+                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-3.html" class="marquee-blog-card">
+                        <img src="blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Brand Strategy</div>
+                            <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
+                            <p class="marquee-blog-excerpt">A look at how brands are embracing internet culture, humor, and authenticity to win attention in the age of Gen Z.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-4.html" class="marquee-blog-card">
+                        <img src="blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">B2B Sales</div>
+                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
+                            <p class="marquee-blog-excerpt">Why psychology matters more than product knowledge in B2B sales, and how trust, curiosity, and understanding client needs lead to better conversions.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-5.html" class="marquee-blog-card">
+                        <img src="blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Growth</div>
+                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
+                            <p class="marquee-blog-excerpt">Learn how to build a LinkedIn profile that attracts recruiters, showcases your personal brand, and creates career opportunities through a strong headline, compelling story, and consistent activity.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-6.html" class="marquee-blog-card">
+                        <img src="blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI Tools</div>
+                            <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
+                            <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
+                        </div>
+                    </a>
+
+                </div>
             </div>
-            <div style="text-align: center; margin-top: 2rem;">
-                <a href="/blog.html" class="btn btn-outline">Read All Blogs ➔</a>
+            
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
         <!-- B2B LEAD MAGNET SECTION -->
-        <section class="glass-card reveal" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
             <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
@@ -363,67 +498,8 @@
         </section>
     </main>
 </div>
-    <!-- =========================================
-   🤖 AUTOMATED CHAT WIDGET
-========================================= -->
-<button id="chatBotBtn" class="chat-bot-btn reveal" aria-label="Open Chat">
-    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-</button>
 
-<div id="chatBotModal" class="chat-bot-modal glass-card no-hover">
-    <div class="chat-header">
-        <div class="chat-header-title">
-            <div class="live-dot"></div>
-            <div>
-                <h4>Fifi</h4>
-                <span class="bot-subtitle">AI Assistant</span>
-            </div>
-        </div>
-        <button id="closeChatBtn" class="close-chat">×</button>
-    </div>
-    
-    <div id="chatScrollArea" class="chat-scroll-area">
-        <div class="chat-greeting" id="chatGreeting">
-            <div class="radar-icon">
-                <div class="radar-dot"></div>
-            </div>
-            <h2>Hey there! 👋</h2>
-            <p>Ask me anything about Fardin's background.</p>
-        </div>
-        
-        <!-- Chat Messages will spawn here -->
-        <div id="chatLog" class="chat-log"></div>
-
-       <div class="chat-options-grid" id="chatOptionsGrid">
-            <button class="chat-opt-btn highlight-card" data-answer="Fardin specializes in B2B outreach, sales automation, branding, and lead generation. He leverages tools like Apollo.io, Instantly.ai, and Sales Navigator.">
-                <span>What are your top skills?</span>
-            </button>
-            
-            <!-- Updated Education Status -->
-            <button class="chat-opt-btn highlight-card" data-answer="He graduated with a BBA in Marketing from BUBT with a 3.80 CGPA, and completed his HSC at Dhaka Commerce College with a 5.00 GPA.">
-                <span>What's your educational background?</span>
-            </button>
-            
-            <button class="chat-opt-btn highlight-card" data-answer="He works as a Business Development Executive at Augmex Technologies and previously as a Marketing Intern at Adviza International.">
-                <span>What work experience do you have?</span>
-            </button>
-            
-            <button class="chat-opt-btn highlight-card" data-answer="He has contributed to 30+ community projects, managed 42 events, and holds leadership roles like Head of Corporate & Alumni Relations at BUBT.">
-                <span>Tell me about your projects</span>
-            </button>
-            
-            <button class="chat-opt-btn highlight-card" data-answer="Yes! He has served as the Graphic Designer for TEDxUttara, Lead Brand Designer for Hult Prize, and Media Secretary for the BUBT Social Welfare Club.">
-                <span>Do you have design experience?</span>
-            </button>
-            
-            <!-- Updated Contact Button (Removed the instant redirect class, added a button inside the answer) -->
-            <button class="chat-opt-btn highlight-card" data-answer="I'd love to connect! Click the button below to head to my contact page where you can shoot me an email directly.<br><br><a href='/contact.html' class='btn btn-primary' style='font-size:0.85rem; padding: 8px 16px; margin-top: 5px; display: inline-flex;'>Go to Contact Page ➔</a>">
-                <span>I have a different question! ➔</span>
-            </button>
-        </div>
-    </div>
-</div>
-<footer class="site-footer reveal">
+<footer class="site-footer">
     <div class="footer-glow"></div>
     <div class="footer-grid">
         <div class="footer-col">
@@ -468,6 +544,20 @@
 </footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
+
+<!-- Interactive FAQ Script -->
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            // Close other items
+            document.querySelectorAll('.faq-item').forEach(otherItem => {
+                if(otherItem !== item) otherItem.classList.remove('active');
+            });
+            // Toggle current item
+            item.classList.toggle('active');
+        });
+    });
+</script>
+
 </body>
 </html>
-
