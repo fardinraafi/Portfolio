@@ -209,11 +209,12 @@ document.addEventListener('DOMContentLoaded', () => {
     allLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             // Only trigger for internal links (ignores external links, downloads, and new tabs)
-            if (
+         if (
                 this.hostname === window.location.hostname && 
                 this.target !== '_blank' &&
                 !this.hasAttribute('download') &&
-                this.getAttribute('href') !== '#'
+                this.getAttribute('href') !== '#' &&
+                !this.getAttribute('href').startsWith('#')
             ) {
                 e.preventDefault(); // Stop the hard refresh
                 const destination = this.href;
