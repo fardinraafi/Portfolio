@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Anti-White Flash Script & Style -->
-    <style>
-        html, body { 
-            background-color: #0F172A !important; 
-        }
-    </style>
-    <script>
-        // Instantly checks user preference before the page even renders
-        if (localStorage.getItem('theme') === 'light') {
-            document.documentElement.style.setProperty('background-color', '#F8FAFC', 'important');
-        }
-    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Fardin Rahman Khan Raafi</title>
@@ -25,7 +13,13 @@
     <!-- Link to the central CSS file -->
     <link rel="stylesheet" href="/style.css">
 </head>
-<body>
+<body class="dark-mode">
+    <script>
+        // Instantly checks the saved theme and applies it before the page renders, stopping the flash
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.remove('dark-mode');
+        }
+    </script>
 
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 <div class="glass-parallax-container">
