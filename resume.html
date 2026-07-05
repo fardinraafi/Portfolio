@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume - Fardin Rahman Khan Raafi</title>
+    <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style.css">
+    
+    <style>
+        /* RESUME SPECIFIC STYLES */
+        .resume-container { max-width: 900px; margin: 0 auto; padding-top: 2rem; position: relative; }
+        
+        .resume-header { text-align: center; margin-bottom: 4rem; }
+        .resume-header h1 { font-size: 3rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
+        .resume-contact { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; }
+        body.dark-mode .resume-contact { color: #94A3B8; }
+        .resume-contact a { color: var(--text-main); text-decoration: none; transition: color 0.3s; display: inline-flex; align-items: center; gap: 5px; }
+        body.dark-mode .resume-contact a { color: #F1F5F9; }
+        .resume-contact a:hover { color: var(--c1); }
+        
+        .resume-section { margin-bottom: 4rem; }
+        .resume-section-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; color: var(--text-main); margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem; }
+        body.dark-mode .resume-section-title { color: #F1F5F9; }
+        .resume-section-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--c2), transparent); opacity: 0.3; border-radius: 2px; }
+        
+        /* Interactive Timeline */
+        .timeline { border-left: 2px solid rgba(124, 58, 237, 0.3); margin-left: 10px; padding-left: 2rem; }
+        .timeline-box { position: relative; margin-bottom: 2.5rem; background: rgba(255, 255, 255, 0.6); padding: 2rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease; backdrop-filter: blur(10px); }
+        body.dark-mode .timeline-box { background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.05); }
+        .timeline-box:hover { transform: translateX(10px); box-shadow: 0 15px 30px rgba(37,99,235,0.08); border-color: var(--c1); }
+        
+        /* The glowing dot on the timeline */
+        .timeline-box::before { content: ""; position: absolute; left: -2.65rem; top: 2rem; width: 18px; height: 18px; background: var(--bg-page); border: 4px solid var(--c1); border-radius: 50%; z-index: 2; transition: all 0.3s ease; box-shadow: 0 0 0 4px rgba(37,99,235,0.1); }
+        .timeline-box:hover::before { border-color: var(--c2); background: var(--c2); box-shadow: 0 0 10px rgba(124,58,237,0.5); }
+        
+        .job-title { font-size: 1.3rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem; }
+        body.dark-mode .job-title { color: #F1F5F9; }
+        .job-company { color: var(--c1); font-weight: 700; font-size: 1.05rem; margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .job-date { display: inline-block; background: rgba(124, 58, 237, 0.1); color: var(--c2); padding: 4px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; }
+        
+        .job-desc { list-style: none; padding: 0; margin: 0; }
+        .job-desc li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; color: var(--text-muted); line-height: 1.7; font-size: 0.95rem; }
+        body.dark-mode .job-desc li { color: #94A3B8; }
+        .job-desc li::before { content: "▹"; position: absolute; left: 0; color: var(--c1); font-weight: bold; font-size: 1.2rem; top: -2px; }
+        
+        /* Skills Grid */
+        .skills-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .skill-group { background: rgba(255, 255, 255, 0.6); padding: 1.5rem; border-radius: 16px; border: 1px solid rgba(0,0,0,0.05); transition: transform 0.3s; backdrop-filter: blur(10px); }
+        body.dark-mode .skill-group { background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.05); }
+        .skill-group:hover { transform: translateY(-5px); border-color: var(--c2); }
+        .skill-group h4 { color: var(--c2); margin-bottom: 1rem; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+        
+        /* Floating Download Button */
+        .sticky-dl-btn { position: fixed; top: 120px; right: 30px; background: linear-gradient(135deg, var(--c1), var(--c2)); color: white !important; padding: 12px 24px; border-radius: 100px; font-weight: 800; box-shadow: 0 10px 25px rgba(37,99,235,0.4); z-index: 1000; text-decoration: none; display: flex; align-items: center; gap: 8px; transition: all 0.3s ease; }
+        .sticky-dl-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 15px 35px rgba(124,58,237,0.5); }
+        
+        @media (max-width: 900px) {
+            .sticky-dl-btn { top: auto; bottom: 90px; right: 20px; padding: 10px 20px; font-size: 0.9rem; }
+            .timeline { margin-left: 0; padding-left: 1.5rem; }
+            .timeline-box::before { left: -2.15rem; width: 14px; height: 14px; top: 2.2rem; }
+            .job-company { flex-direction: column; align-items: flex-start; }
+            .resume-header h1 { font-size: 2.2rem; }
+            .resume-contact { flex-direction: column; align-items: center; gap: 0.5rem; }
+        }
+    </style>
+</head>
+<body class="dark-mode">
+
+<div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<nav class="top-nav">
+    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+    <div class="nav-menu">
+        <a href="/index.html">Home</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/certificates.html">Certificates</a>
+        <a href="/volunteer.html">Leadership</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+            <span class="theme-text text-dark">Dark</span>
+            <span class="theme-text text-light">Light</span>
+            <div class="theme-liquid-bubble">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+        </button>
+    </div>
+</nav>
+
+<!-- Sticky PDF Download Button -->
+<a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="sticky-dl-btn">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+    Save PDF
+</a>
+
+<div class="layout-wrapper single-column">
+    <div class="resume-container">
+        
+        <!-- Header Section -->
+        <header class="resume-header">
+            <h1 class="gradient-text">Fardin Rahman Khan Raafi</h1>
+            <div class="resume-contact">
+                <span>📍 Mirpur 10, Dhaka 1216</span>
+                <a href="tel:+8801729114364">📞 +880 1729-114364</a>
+                <a href="mailto:fardinraafi@gmail.com">✉️ fardinraafi@gmail.com</a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">🔗 linkedin.com/in/fardinraafi</a>
+            </div>
+        </header>
+
+        <!-- Summary Section -->
+        <section class="resume-section">
+            <div class="glass-card no-hover" style="padding: 2rem;">
+                <p style="color: var(--text-main); font-size: 1.05rem; line-height: 1.8; margin: 0;">
+                    Marketing graduate with experience in business development, lead generation, brand strategy, and digital marketing. Skilled in B2B outreach, market research, CRM management, and creative design, with hands-on experience using Salesforce, LinkedIn Sales Navigator, Apollo.io and AI tools. Strong background in leadership, project coordination, and cross-functional collaboration through internships, university clubs, and professional roles.
+                </p>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">Professional Experience</h2>
+            <div class="timeline">
+                
+                <div class="timeline-box">
+                    <div class="job-title">Junior Executive, Marketing</div>
+                    <div class="job-company">
+                        <span>Augmex Technologies Ltd.</span>
+                        <span class="job-date">May 2026 - Present</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li>Conducted market research across 5+ targeted growth projects to identify new business opportunities and refine the Ideal Customer Profile (ICP).</li>
+                        <li>Designed and scheduled 30+ visual assets and social media content pieces per month using Meta Business Suite, and buffer ensuring consistent corporate brand identity.</li>
+                        <li>Collaborated with a core growth team of 4+ members to align marketing deliverables.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="job-title">Intern, Business Development</div>
+                    <div class="job-company">
+                        <span>Augmex Technologies Ltd.</span>
+                        <span class="job-date">Jan 2026 - May 2026</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li>Identifying and mapping KDMs aligned with ICP to support targeted B2B sales pipeline development.</li>
+                        <li>Generated over 67,000 organic impressions across Facebook & LinkedIn within one month through content marketing and social media engagement strategies.</li>
+                        <li>Enriched & maintained 40,000+ CRM records, improving data accuracy, lead quality, & sales pipeline management.</li>
+                        <li>Gained experience in Automation using tools like Instantly, Zapier and Apollo.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="job-title">Social Media Manager</div>
+                    <div class="job-company">
+                        <span>Adviza International</span>
+                        <span class="job-date">Sep 2025 - Nov 2025</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li>Designed 30+ social media content for local and international clients, strengthening brand identity and engagement.</li>
+                        <li>Managed client communications, project workflows, and content scheduling through Meta Business Suite.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">Education</h2>
+            <div class="timeline">
+                
+                <div class="timeline-box">
+                    <div class="job-title">Bachelor of Business Administration</div>
+                    <div class="job-company">
+                        <span>Bangladesh University of Business and Technology (BUBT)</span>
+                        <span class="job-date">Graduated 2025</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li><strong>CGPA:</strong> 3.80</li>
+                        <li><strong>Major:</strong> Marketing</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="job-title">Higher Secondary Certificate (H.S.C)</div>
+                    <div class="job-company">
+                        <span>Dhaka Commerce College</span>
+                        <span class="job-date">2021</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li><strong>GPA:</strong> 5.00</li>
+                        <li><strong>Major:</strong> Commerce</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="job-title">Secondary School Certificate (S.S.C)</div>
+                    <div class="job-company">
+                        <span>Adarsha High School</span>
+                        <span class="job-date">2019</span>
+                    </div>
+                    <ul class="job-desc">
+                        <li><strong>GPA:</strong> 4.36</li>
+                        <li><strong>Major:</strong> Commerce</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">Core Competencies</h2>
+            <div class="skills-container">
+                <div class="skill-group">
+                    <h4>Growth & Marketing</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Brand Strategy</span>
+                        <span class="tag">Market Research</span>
+                        <span class="tag">Data Analytics</span>
+                        <span class="tag">B2B Lead Gen</span>
+                        <span class="tag">Cold Outreach</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4>Software & Tools</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Salesforce</span>
+                        <span class="tag">Apollo.io</span>
+                        <span class="tag">Sales Navigator</span>
+                        <span class="tag">Illustrator & Photoshop</span>
+                        <span class="tag">Claude & Perplexity AI</span>
+                    </div>
+                </div>
+                <div class="skill-group">
+                    <h4>Languages</h4>
+                    <div class="skill-tags">
+                        <span class="tag">Bangla (Native)</span>
+                        <span class="tag">English (Fluent)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership & Awards -->
+        <section class="resume-section">
+            <h2 class="resume-section-title">Leadership & Recognition</h2>
+            <div class="timeline">
+                
+                <div class="timeline-box">
+                    <div class="job-title">Awards & Honors</div>
+                    <ul class="job-desc" style="margin-top: 1rem;">
+                        <li><strong>BASIS Leader of the Year 2024:</strong> Recognized for outstanding community impact.</li>
+                        <li><strong>Lead Luminary:</strong> Selected for LEAD Academy cohort.</li>
+                        <li><strong>Competitions:</strong> 3rd Place - Ad-Making Competition (BUBT).</li>
+                        <li><strong>Scholarships:</strong> 70% Scholarship for ISCEA Global Case Competition 2025.</li>
+                        <li><strong>Global Network:</strong> Aspire Leaders Program ALP’2026 - Harvard Business School.</li>
+                    </ul>
+                </div>
+
+                <div class="timeline-box">
+                    <div class="job-title">Leadership Activity</div>
+                    <ul class="job-desc" style="margin-top: 1rem;">
+                        <li>Head of Corporate Affairs and Alumni Relations of Career Guidance Office - BUBT.</li>
+                        <li>Branding and Marketing Lead at TEDxUttara.</li>
+                        <li>Secretary of Rotaract Club & Media Secretary of BUBT Social Welfare Club.</li>
+                        <li>Delivered 70+ designs within 2 months as a Brand Designer for Hult Prize BUBT 2024.</li>
+                        <li>Campus Ambassador at Creative IT, YSSE, Skill Catalyst, Property Guru.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Reference -->
+        <section class="resume-section" style="margin-bottom: 1rem;">
+            <div class="glass-card no-hover" style="padding: 2rem; text-align: center;">
+                <h4 style="color: var(--c1); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.1em;">Reference</h4>
+                <p style="color: var(--text-main); font-weight: 700; margin: 0; font-size: 1.1rem;">Dr. Mohammad Raihanul Hasan</p>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">Director of Career Office, BUBT</p>
+                <p style="color: var(--text-muted); margin: 0; font-size: 0.95rem;">📞 01711301177 | ✉️ raihanul@bubt.edu.bd</p>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <div class="footer-col-links">
+                <a href="/index.html">Home</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/certificates.html">Certificates</a>
+                <a href="/volunteer.html">Leadership</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Info</h4>
+            <div class="footer-col-links">
+                <a href="mailto:fardinraafi@gmail.com">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    fardinraafi@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn Profile
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+</footer>
+
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+</body>
+</html>
