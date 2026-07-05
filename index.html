@@ -10,7 +10,7 @@
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
-    <link rel="alternate" type="text/markdown" href="/resume.md">
+    <link rel="alternate" type="text/html" href="/resume.html">
     <link rel="preload" as="image" href="profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -232,7 +232,7 @@
 
         <section class="glass-card">
             <div class="section-title">Professional Documents</div>
-            <a href="/resume.md" class="doc-link">
+            <a href="/resume.html" class="doc-link">
                 <div>
                     <h3>AI-Optimized Resume</h3>
                     <p>Complete work history, tech stack, and education metrics.</p>
@@ -544,20 +544,5 @@
 </footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
-
-<!-- Interactive FAQ Script -->
-<script>
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            // Close other items
-            document.querySelectorAll('.faq-item').forEach(otherItem => {
-                if(otherItem !== item) otherItem.classList.remove('active');
-            });
-            // Toggle current item
-            item.classList.toggle('active');
-        });
-    });
-</script>
-
 </body>
 </html>
