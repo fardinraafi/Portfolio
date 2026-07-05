@@ -51,6 +51,21 @@
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
             Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.
         </p>
+        <!-- 2-Column Blog Grid Override -->
+    <style>
+        .blog-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem;
+        }
+        
+        /* Stacks into 1 column on mobile phones so it stays readable */
+        @media (max-width: 800px) {
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
     </header>
 
     <div class="blog-grid">
