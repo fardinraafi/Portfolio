@@ -4,136 +4,243 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Marketing: Brand Roasting - Fardin Rahman Khan Raafi</title>
-    <meta name="description" content="কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="/style.css">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --text-main: #0F172A; --text-muted: #475569; --bg-page: #F8FAFC; }
+        
+        /* ── DARK MODE ── */
+        body.dark-mode { --bg-page: #0F172A; --text-main: #F1F5F9; --text-muted: #94A3B8; --text-light: #64748B; }
+        body.dark-mode .bg-mesh { background: #020617; }
+        body.dark-mode .top-nav, body.dark-mode .site-footer, body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
+        body.dark-mode .stylized-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
+        body.dark-mode .blog-quote { background: rgba(37, 99, 235, 0.1); border-left-color: var(--c1); }
+        
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.8; transition: background-color 0.3s, color 0.3s; }
+        .bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; transition: background-color 0.3s; }
+        .blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
+        .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
+        .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
+
+        /* Top Nav */
+        .top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease; }
+        .nav-brand { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
+        .nav-menu { display: flex; gap: 2rem; }
+        .nav-menu a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
+        .nav-actions { display: flex; align-items: center; gap: 1rem; }
+        .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; padding: 8px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
+        .btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
+
+        /* Theme Toggle */
+        .theme-toggle-track { position: relative; width: 90px; height: 36px; background: rgba(0, 0, 0, 0.08); border-radius: 30px; border: 1px solid rgba(0, 0, 0, 0.05); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; outline: none; transition: background 0.4s; margin-left: 10px; }
+        body.dark-mode .theme-toggle-track { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
+        .theme-text { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); z-index: 1; transition: opacity 0.4s; pointer-events: none; }
+        .text-dark { opacity: 0; position: absolute; left: 14px; } 
+        .text-light { opacity: 1; position: absolute; right: 12px; }
+        body.dark-mode .text-dark { opacity: 1; color: #F1F5F9; }
+        body.dark-mode .text-light { opacity: 0; }
+        .theme-liquid-bubble { position: absolute; top: -6px; left: -2px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.15), inset 3px 3px 8px rgba(255, 255, 255, 0.9), 0 6px 15px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s, border-radius 0.3s; z-index: 2; }
+        body.dark-mode .theme-liquid-bubble { transform: translateX(46px); background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%); border-color: rgba(255, 255, 255, 0.3); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.5), inset 3px 3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.4); }
+        .theme-toggle-track:active .theme-liquid-bubble { width: 56px; border-radius: 40px; }
+        body.dark-mode .theme-toggle-track:active .theme-liquid-bubble { transform: translateX(38px); }
+        .theme-liquid-bubble svg { width: 18px; height: 18px; position: absolute; transition: opacity 0.4s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .icon-moon { opacity: 1; color: var(--text-main); transform: rotate(0deg) scale(1); }
+        .icon-sun { opacity: 0; color: #FFF; transform: rotate(-90deg) scale(0.5); }
+        body.dark-mode .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
+        body.dark-mode .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
+
+        /* UNIQUE BLOG STYLING */
+        .layout-wrapper { max-width: 950px; margin: 0 auto; padding: 2rem 2rem 4rem; }
+        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: background-color 0.3s, border-color 0.3s; }
+
+        /* PC Hero Image (Wider) */
+        .article-hero-img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+
+        /* PC Huge Title */
+        .blog-main-title { font-family: 'Syne', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; color: var(--c1); letter-spacing: -0.02em; }
+
+        h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 2px solid rgba(124, 58, 237, 0.2); padding-bottom: 0.5rem; display: inline-block;}
+        p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        .meta-info { font-size: 0.95rem; color: var(--c2); font-weight: 700; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        a { color: var(--c1); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+
+        /* Custom Formats */
+        .blog-quote { font-size: 1.3rem; font-style: italic; font-weight: 500; color: var(--c2); padding: 1.5rem 2rem; margin: 2rem 0; background: rgba(124, 58, 237, 0.05); border-left: 5px solid var(--c2); border-radius: 0 16px 16px 0; }
+        .stylized-card { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(37, 99, 235, 0.15); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        .stylized-card p:last-child { margin-bottom: 0; }
+        .card-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--c1); margin-bottom: 0.5rem; }
+        .credit-tag { display: inline-block; background: var(--text-main); color: var(--bg-page); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin: 2rem 0; letter-spacing: 0.05em; }
+
+        /* Footer */
+        .site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; transition: background-color 0.3s, border-color 0.3s; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
+        .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; transition: color 0.3s;}
+        .footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
+        .footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content;}
+        .footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
+        .copyright { font-size: 0.85rem; color: var(--text-light); text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s;}
+
+        /* =========================================
+           📱 MOBILE OPTIMIZATION MASTER-FIX 📱
+           ========================================= */
+        @media (max-width: 900px) {
+          .layout-wrapper { padding: 1rem 1rem 3rem !important; }
+          .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
+          
+          /* Mobile Adjustments for Title & Image */
+          .blog-main-title { font-size: 2rem !important; line-height: 1.2 !important; }
+          .article-hero-img { aspect-ratio: 16 / 9 !important; border-radius: 12px !important; margin-bottom: 1.5rem !important; }
+          
+          .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
+          .nav-actions { order: 2 !important; }
+          .nav-menu { display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important; -webkit-overflow-scrolling: touch; }
+          .nav-menu a { flex-shrink: 0 !important; }
+          body.dark-mode .nav-menu { border-top-color: rgba(255,255,255,0.1) !important; }
+          .nav-menu::-webkit-scrollbar { display: none !important; }
+          
+          .stylized-card { padding: 1.2rem !important; }
+          .blog-quote { font-size: 1.1rem !important; padding: 1.2rem !important; }
+          
+          .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
+          .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
+          .footer-col-links { align-items: center !important; }
+        }
+    </style>
 </head>
-<body class="dark-mode">
-<div id="preloader">
-    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
-</div>
-
-<div class="bg-mesh">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-</div> 
-
+<body>
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 <nav class="top-nav">
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-    <div class="nav-menu">
-        <a href="/index.html">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html" class="active">Blog</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html">Leadership</a>
-        <a href="/contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
-        </button>
-    </div>
+  <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+  <div class="nav-menu">
+    <a href="/index.html">Home</a>
+    <a href="/gallery.html">Gallery</a>
+    <a href="/blog.html" class="active">Blog</a>
+    <a href="/certificates.html">Certificates</a>
+     <a href="/volunteer.html">Leadership</a>
+    <a href="/contact.html">Contact</a>
+  </div>
+  <div class="nav-actions">
+    <a href="/contact.html" class="btn-primary">Let's Talk</a>
+    <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+      <span class="theme-text text-dark">Dark</span>
+      <span class="theme-text text-light">Light</span>
+      <div class="theme-liquid-bubble">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      </div>
+    </button>
+  </div>
 </nav>
 
-<!-- Main content starts below this line -->
-  <div class="layout-wrapper blog-column reveal">
-    <article class="glass-card">
-        <img src="blog-3.jpg" alt="Modern Marketing: Brand Roasting" class="article-hero-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Modern+Marketing'">
-        
-        <h1>Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h1>
-        
-        <div class="meta-info">
-            Published on July 5, 2026 • Marketing Strategy
-        </div>
+<div class="layout-wrapper">
+  <article class="glass-card">
+    <img src="blog-3.jpg" alt="Modern Marketing: Brand Roasting" class="article-hero-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Modern+Marketing'">
+    
+    <h1 class="blog-main-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h1>
+    <div class="meta-info">Written by Fardin Rahman Khan Raafi</div>
+    
+    <p>একটু চিন্তা করে দেখেন। আমরা YouTube-এ একটা ৫ সেকেন্ডের ad দেখার ধৈর্য রাখি না। skip button-এর অপেক্ষায় মাউস ধরে বসে থাকি।</p>
+    <p>অথচ, আমরাই আবার ২ ঘণ্টার একটা roast show দেখছি, যেখানে sponsor brand-কে নিয়ে রীতিমতো হাসাহাসি করা হচ্ছে! আর brand-গুলো টাকা দিচ্ছে জাস্ট এই অপমানটা শোনার জন্য!</p>
+    
+    <div class="blog-quote">
+      এটাকেই আমি বলি <strong>Modern Marketing</strong>। ব্যাপারটা একটু অদ্ভুত শোনালেও, product marketing-এর গেমটা এখন এভাবেই চেঞ্জ হয়ে গেছে।
+    </div>
+    
+    <h2>The Power Shift: Control এখন কার হাতে?</h2>
+    <p>একসময় brand-দের হাতে full control ছিল। তারা polished video বানাতো, perfect script লিখতো, আর product-এর feature-heavy কথাবার্তা দিয়ে আমাদের অ্যাটেনশন কিনতো। কিন্তু এখন গেম পুরো ঘুরে গেছে। এখন power পুরোপুরি audience-এর হাতে।</p>
+    
+    <div class="stylized-card">
+      <p>বিশেষ করে Gen Z বা বর্তমান audience একদমই corporate brand monologue পছন্দ করে না। আপনার content যদি একটুও "promotional" বা fake ফিল হয়, তারা সেকেন্ডের মধ্যে scroll past করে চলে যায়। তারা brand-এর লেকচার শুনতে আসে না, তারা আসে moment এনজয় করতে।</p>
+    </div>
+    
+    <h2>Case Study: India’s Got Latent</h2>
+    
+    <div class="stylized-card">
+      <div class="card-title">Samay Raina & Internet Culture</div>
+      <p><a href="https://www.youtube.com/@SamayRainaOfficial" target="_blank">Samay Raina</a>-এর <a href="https://www.youtube.com/results?search_query=India%27s+Got+Latent" target="_blank">India’s Got Latent</a> শো-টার কথাই ধরুন। যা একাধারে YouTube এবং Netflix-এ প্রিমিয়ার হয়ে রীতিমতো ঝড় তুলেছে।</p>
+      <p>কেন এই শো-টা এত পপুলার? কারণ শো-টা একদম raw, unpredictable আর internet culture-এর জন্য পারফেক্টলি অ্যালাইনড। এখানে startup founder-রা এসে roast হচ্ছেন। Brand-গুলো শো-এর ভেতরের জোকের একটা অংশ হয়ে যাচ্ছে। আর মানুষ সেটাকে কোনো ad হিসেবে দেখছে না, বরং pure entertainment হিসেবে share করছে।</p>
+    </div>
 
-        <p>একটু চিন্তা করে দেখেন। আমরা YouTube-এ একটা ৫ সেকেন্ডের ad দেখার ধৈর্য রাখি না। skip button-এর অপেক্ষায় মাউস ধরে বসে থাকি।</p>
-        <p>অথচ, আমরাই আবার ২ ঘণ্টার একটা roast show দেখছি, যেখানে sponsor brand-কে নিয়ে রীতিমতো হাসাহাসি করা হচ্ছে! আর brand-গুলো টাকা দিচ্ছে জাস্ট এই অপমানটা শোনার জন্য!</p>
-        <p>এটাকেই আমি বলি <strong>Modern Marketing</strong>। ব্যাপারটা একটু অদ্ভুত শোনালেও, product marketing-এর গেমটা এখন এভাবেই চেঞ্জ হয়ে গেছে।</p>
+    <h2>Influencer Marketing vs Culture-Led Marketing</h2>
+    <p>অনেকেই ভাবতে পারেন এটা হয়তো জাস্ট আরেকটা influencer marketing strategy। আসলে তা না। এটা হলো <strong>culture-led marketing</strong>! আপনি যখন একটা trend বা culture-এর অংশ হয়ে যান, তখন মানুষ আপনার brand-কে নিজেদের identity-এর অংশ মনে করে।</p>
+    
+    <div class="blog-quote">
+      Attention এখন আর "We are the best" বলে দাবি করলে পাওয়া যায় না। Attention আসে যখন আপনি নিজে একটা interesting conversation-এর অংশ হয়ে যান।
+    </div>
 
-        <h2>The Power Shift: Control এখন কার হাতে?</h2>
-        <p>একসময় brand-দের হাতে full control ছিল। তারা polished video বানাতো, perfect script লিখতো, আর product-এর feature-heavy কথাবার্তা দিয়ে আমাদের অ্যাটেনশন কিনতো।</p>
-        <p>কিন্তু এখন গেম পুরো ঘুরে গেছে। এখন power পুরোপুরি audience-এর হাতে।</p>
-        <p>বিশেষ করে Gen Z বা বর্তমান audience একদমই corporate brand monologue পছন্দ করে না। আপনার content যদি একটুও "promotional" বা fake ফিল হয়, তারা সেকেন্ডের মধ্যে scroll past করে চলে যায়। তারা brand-এর লেকচার শুনতে আসে আসতে আসে না, তারা আসে moment এনজয় করতে।</p>
+    <h2>The Ultimate Framework for Modern Attention</h2>
+    <p>আপনার brand-কে যদি এই যুগে টিকে থাকতে হয়, তবে কিছু পুরোনো নিয়ম ভাঙতে হবে:</p>
+    
+    <div class="stylized-card">
+      <div class="card-title">১. Stop the corporate monologue</div>
+      <p>মানুষ আপনার feature নিয়ে বদারড না। তারা relevance খোঁজে।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <div class="card-title">২. Be interesting enough to share</div>
+      <p>এমন কিছু করুন যেন মানুষ আপনাকে নিয়ে meme বানায়, বন্ধুদের সাথে আলোচনা করে।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <div class="card-title">৩. Embrace the raw format</div>
+      <p>পলিশড কর্পোরেট লুকের চেয়ে authentic আর raw অ্যাপ্রোচ এখন অনেক বেশি effective।</p>
+    </div>
 
-        <h2>Case Study: India’s Got Latent</h2>
-        <p><a href="https://www.youtube.com/@SamayRainaOfficial" target="_blank">Samay Raina</a>-এর <a href="https://www.youtube.com/results?search_query=India%27s+Got+Latent" target="_blank">India’s Got Latent</a> শো-টার কথাই ধরুন। যা একাধারে YouTube এবং Netflix-এ প্রিমিয়ার হয়ে রীতিমতো ঝড় তুলেছে।</p>
-        <p>কেন এই শো-টা এত পপুলার? কারণ শো-টা একদম raw, unpredictable আর internet culture-এর জন্য পারফেক্টলি অ্যালাইনড।</p>
-        <p>এখানে startup founder-রা এসে roast হচ্ছেন। Brand-গুলো শো-এর ভেতরের জোকের একটা অংশ হয়ে যাচ্ছে। আর মানুষ সেটাকে কোনো ad হিসেবে দেখছে না, বরং pure entertainment হিসেবে share করছে।</p>
-
-        <h2>Influencer Marketing vs Culture-Led Marketing</h2>
-        <p>অনেকেই ভাবতে পারেন এটা হয়তো জাস্ট আরেকটা influencer marketing strategy। আসলে তা না।</p>
-        <p>এটা হলো <strong>culture-led marketing</strong>! আপনি যখন একটা trend বা culture-এর অংশ হয়ে যান, তখন মানুষ আপনার brand-কে নিজেদের identity-এর অংশ মনে করে।</p>
-        <p>Attention এখন আর "We are the best" বলে দাবি করলে পাওয়া যায় না। Attention আসে যখন আপনি নিজে একটা interesting conversation-এর অংশ হয়ে যান।</p>
-
-        <h2>The Ultimate Framework for Modern Attention</h2>
-        <p>আপনার brand-কে যদি এই যুগে টিকে থাকতে হয়, তবে কিছু পুরোনো নিয়ম ভাঙতে হবে:</p>
-        <ul>
-            <li style="margin-bottom: 0.5rem;"><strong>Stop the corporate monologue:</strong> মানুষ আপনার feature নিয়ে বদারড না। তারা relevance খোঁজে।</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Be interesting enough to share:</strong> এমন কিছু করুন যেন মানুষ আপনাকে নিয়ে meme বানায়, বন্ধুদের সাথে আলোচনা করে।</li>
-            <li style="margin-bottom: 0.5rem;"><strong>Embrace the raw format:</strong> পলিশড কর্পোরেট লুকের চেয়ে authentic আর raw অ্যাপ্রোচ এখন অনেক বেশি effective।</li>
-        </ul>
-        <p>সত্যি বলতে এই যুগে marketing-এর সংজ্ঞাই পাল্টে গেছে। Marketing মানে এখন আর কোনো entertainment-এর মাঝখানে ঢুকে তাকে interrupt করা নয়।</p>
-        <p><strong>Marketing-কেই এখন entertainment হতে হবে।</strong></p>
-    </article>
+    <p style="margin-top: 2rem;">সত্যি বলতে এই যুগে marketing-এর সংজ্ঞাই পাল্টে গেছে। Marketing মানে এখন আর কোনো entertainment-এর মাঝখানে ঢুকে তাকে interrupt করা নয়।</p>
+    <p style="font-weight: 700; color: var(--c1); font-size: 1.25rem;">Marketing-কেই এখন entertainment হতে হবে।</p>
+    
+    <div style="text-align: right; font-style: italic; font-weight: 700; color: var(--c1); margin-top: 2rem;">
+      - Fardin Rahman Khan Raafi
+    </div>
+  </article>
 </div>
 
-<footer class="site-footer reveal">
-    <div class="footer-glow"></div>
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px; line-height: 1.6;">
-                Marketing professional passionate about brand communication, creative strategies, and growth leadership.
-            </p>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Links</h4>
-            <div class="footer-col-links">
-                <a href="/index.html">Home</a>
-                <a href="/gallery.html">Gallery</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/certificates.html">Certificates</a>
-                <a href="/volunteer.html">Leadership</a>
-                <a href="/contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="footer-col-links">
-                <a href="mailto:fardinraafi@gmail.com">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    fardinraafi@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn Profile
-                </a>
-                <a href="https://www.pinterest.com/yourusername" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-                    Pinterest
-                </a>
-                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
-            </div>
-        </div>
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
+      <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
     </div>
-    <div class="copyright">
-        © <span id="current-year"></span> Fardin Rahman Khan Raafi. All rights reserved. Built for Humans & AI.
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <div class="footer-col-links">
+        <a href="/index.html">Home</a><a href="/gallery.html">Gallery</a><a href="/blog.html">Blog</a><a href="/certificates.html">Certificates</a><a href="/volunteer.html">Leadership</a><a href="/contact.html">Contact</a>
+      </div>
     </div>
+    <div class="footer-col">
+      <h4>Contact Info</h4>
+      <div class="footer-col-links">
+        <a href="mailto:fardinraafi@gmail.com">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+          fardinraafi@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+          LinkedIn Profile
+        </a>
+        <a href="https://www.pinterest.com/yourusername" target="_blank">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
+          Pinterest
+        </a>
+       <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
 </footer>
-
-<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-
-<script src="/main.js"></script>
+<script>
+// Advanced Theme Toggle Logic
+const themeBtn = document.getElementById('themeToggle');
+if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
+themeBtn.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  if (document.body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); } 
+  else { localStorage.setItem('theme', 'light'); }
+});
+document.getElementById('current-year').textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
