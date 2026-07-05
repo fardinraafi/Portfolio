@@ -421,7 +421,8 @@ body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.4); border-color: r
 @media (max-width: 900px) {
     .layout-wrapper { grid-template-columns: 1fr !important; padding: 1rem 1rem 3rem !important; gap: 1.5rem !important; }
     .sidebar { position: relative !important; top: 0 !important; }
-    .profile-img-wrap { width: 160px !important; margin: 0 auto 1.5rem auto !important; }
+  .profile-img-wrap { width: 240px !important; max-width: 75vw !important; margin: 0 auto 2rem auto !important; border-radius: 50% !important; }
+    .profile-img { border-radius: 50% !important; }
     h1 { font-size: 2rem !important; }
     .center-h1 { font-size: 2.2rem !important; margin-bottom: 2rem !important; }
     .typewriter { font-size: 1rem !important; }
