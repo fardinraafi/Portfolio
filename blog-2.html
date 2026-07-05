@@ -53,8 +53,8 @@ body.dark-mode .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
 .layout-wrapper { max-width: 950px; margin: 0 auto; padding: 2rem 2rem 4rem; }
 .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: background-color 0.3s, border-color 0.3s; }
 
-/* PC Hero Image (Wider) */
-.article-hero-img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+/* PC Hero Image (Natural Size) */
+.article-hero-img { width: 100%; height: auto; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: block; }
 
 /* PC Huge Title */
 .blog-main-title { font-family: 'Syne', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; color: var(--c1); letter-spacing: -0.02em; }
@@ -90,7 +90,7 @@ a:hover { text-decoration: underline; }
   
   /* Mobile Adjustments for Title & Image */
   .blog-main-title { font-size: 2rem !important; line-height: 1.2 !important; }
-  .article-hero-img { aspect-ratio: 16 / 9 !important; border-radius: 12px !important; margin-bottom: 1.5rem !important; }
+  .article-hero-img { height: auto !important; border-radius: 12px !important; margin-bottom: 1.5rem !important; }
   
   .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
   .nav-actions { order: 2 !important; }
