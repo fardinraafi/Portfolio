@@ -564,3 +564,33 @@ if (chatBotBtn && chatBotModal) {
         });
     });
 }
+/* =========================================
+   12. ANTI-INSPECT & ANTI-COPY LOGIC
+========================================= */
+
+// Disable Right-Click
+document.addEventListener('contextmenu', event => event.preventDefault());
+
+// Disable Keyboard Shortcuts
+document.addEventListener('keydown', (e) => {
+    // Block F12
+    if (e.key === 'F12') {
+        e.preventDefault();
+    }
+    // Block Ctrl+Shift+I or Cmd+Option+I (Inspect)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+        e.preventDefault();
+    }
+    // Block Ctrl+Shift+J or Cmd+Option+J (Console)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+        e.preventDefault();
+    }
+    // Block Ctrl+U or Cmd+Option+U (View Source)
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
+        e.preventDefault();
+    }
+    // Block Ctrl+Shift+C or Cmd+Option+C (Inspect Element)
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
+        e.preventDefault();
+    }
+});
