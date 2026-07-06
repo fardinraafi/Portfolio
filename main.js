@@ -3,16 +3,18 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('load', () => {
         const preloader = document.getElementById('preloader');
         if (preloader) {
-            setTimeout(() => { preloader.classList.add('hide'); }, 600); // Gives it a smooth 0.6s delay
+            setTimeout(() => { preloader.classList.add('hide'); }, 600); // Smooth 0.6s delay
         }
     });
+
     /* =========================================
-       CUSTOM DYNAMIC FAVICON
+       CUSTOM DYNAMIC FAVICON (Fixed Encoding)
     ========================================= */
     const favicon = document.createElement('link');
     favicon.rel = 'icon';
-    // Huge white "FR" inside a rounded purple box so it shows up on all browsers
-    favicon.href = "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%237C3AED'/><text x='50' y='72' font-family='sans-serif' font-size='55' font-weight='900' text-anchor='middle' fill='white'>FR</text></svg>";
+    favicon.type = 'image/svg+xml';
+    const svgIcon = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='#7C3AED'/><text x='50' y='72' font-family='sans-serif' font-size='55' font-weight='900' text-anchor='middle' fill='white'>FR</text></svg>`;
+    favicon.href = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgIcon);
     document.head.appendChild(favicon);
 
     /* =========================================
@@ -20,8 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     const themeBtn = document.getElementById('themeToggle');
     
-    // Check local storage. If they explicitly set it to light before, keep it light.
-    // Otherwise, force Dark Mode as the default starting state.
     if (localStorage.getItem('theme') === 'light') {
         document.body.classList.remove('dark-mode');
     } else {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             setTimeout(type, typeSpeed);
         }
-        type(); // Start the typing effect
+        type();
     }
 
     /* =========================================
@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const certGrid = document.getElementById('cert-grid');
     if (certGrid) {
         let certNumbers = Array.from({length: 40}, (_, i) => i + 1);
-        certNumbers.sort(() => Math.random() - 0.5); // Randomizes the order
+        certNumbers.sort(() => Math.random() - 0.5); 
         let certsHTML = '';
         certNumbers.forEach(c => {
             certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
@@ -145,54 +145,48 @@ document.addEventListener('DOMContentLoaded', () => {
     if (lightbox && lightboxImg) {
         let currentImageIndex = 0;
         let imageArray = [];
-        // Set a slight delay to allow the DOM/dynamic images to load first
         setTimeout(() => {
             const images = document.querySelectorAll('.grid-img, .cert-img');
             if (images.length > 0) {
                 imageArray = Array.from(images).map(img => img.src);
                 images.forEach((img, index) => {
-                    // Overwrite inline onclicks with clean event listeners
                     img.onclick = null; 
                     img.addEventListener('click', () => {
                         currentImageIndex = index;
                         lightboxImg.src = imageArray[currentImageIndex];
                         lightbox.classList.add('show');
-                        document.body.style.overflow = 'hidden'; // Stop background scrolling
+                        document.body.style.overflow = 'hidden'; 
                     });
                 });
             }
         }, 150);
         
-        // Make window functions globally accessible for the HTML buttons
         window.closeLightbox = function() {
             lightbox.classList.remove('show');
             document.body.style.overflow = 'auto';
         };
         window.changeImage = function(step, event) {
-            if(event) event.stopPropagation(); // Prevent closing when clicking nav
+            if(event) event.stopPropagation(); 
             currentImageIndex += step;
             if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
             if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
             lightboxImg.src = imageArray[currentImageIndex];
         };
         
-        // Close when clicking the dark background
         lightbox.addEventListener('click', (e) => {
             if(e.target === lightbox || e.target.classList.contains('lightbox-content')) {
                 window.closeLightbox();
             }
         });
         
-        // Mobile Swipe Gestures
         let touchStartX = 0; let touchEndX = 0;
         lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
         lightbox.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) window.changeImage(1); // Swipe left = Next
-            if (touchEndX - touchStartX > 50) window.changeImage(-1); // Swipe right = Prev
+            if (touchStartX - touchEndX > 50) window.changeImage(1); 
+            if (touchEndX - touchStartX > 50) window.changeImage(-1); 
         }, {passive: true});
         
-        // Keyboard Arrows
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('show')) return;
             if (e.key === 'Escape') window.closeLightbox();
@@ -208,7 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     allLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Only trigger for internal links (ignores external links, downloads, and new tabs)
          if (
                 this.hostname === window.location.hostname && 
                 this.target !== '_blank' &&
@@ -216,20 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 this.getAttribute('href') !== '#' &&
                 !this.getAttribute('href').startsWith('#')
             ) {
-                e.preventDefault(); // Stop the hard refresh
+                e.preventDefault(); 
                 const destination = this.href;
-                
-                // Add the fade-out class to the body
                 document.body.classList.add('fade-out');
-                
-                // Wait exactly 300ms (matching our CSS) before changing pages
                 setTimeout(() => {
                     window.location.href = destination;
                 }, 300);
             }
         });
     });
-    // Fix for the browser "Back" button so the page doesn't get stuck invisible
     window.addEventListener('pageshow', (event) => {
         if (event.persisted) {
             document.body.classList.remove('fade-out');
@@ -237,25 +225,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       10. PLAYBOOK INSTANT OPEN & GOOGLE SHEETS ADMIN LOGIC
+       10. PLAYBOOK INSTANT OPEN & GOOGLE SHEETS
     ========================================= */
     const playbookForm = document.getElementById('playbook-form');
     
     if (playbookForm) {
         playbookForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent page refresh
-            
+            e.preventDefault(); 
             const submitBtn = playbookForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             const emailInput = playbookForm.querySelector('input[name="email"]').value;
             
             submitBtn.innerHTML = 'Opening...';
+            window.open('/B2B_Growth_Playbook.pdf', '_blank');
             
-            // 1. Instantly open the PDF in a new tab
-           window.open('/B2B_Growth_Playbook.pdf', '_blank');
-            
-            // 2. Secretly log email to Google Sheets (Admin Panel Database)
-            // Note: We will generate your personal URL in the next steps!
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcwqAKQ8S_LzdlYhTRQUw73dQGU8o_T0KfSHKPKYN6lY-V9n_jdxxGFoCLkHWfWRE0VA/exec'; 
             
             if (GOOGLE_SCRIPT_URL !== 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE') {
@@ -265,18 +248,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 fetch(GOOGLE_SCRIPT_URL, {
                     method: 'POST',
-                    mode: 'no-cors', // Bypasses cross-origin restrictions for simple logging
+                    mode: 'no-cors',
                     body: formData
                 }).then(() => {
                     submitBtn.innerHTML = 'Success!';
                     setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
                 }).catch(error => {
                     console.error('Logging Error:', error);
-                    submitBtn.innerHTML = 'Success!'; // Still show success to user even if logging fails
+                    submitBtn.innerHTML = 'Success!'; 
                     setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
                 });
             } else {
-                // If URL isn't set yet, just reset the button normally
                 setTimeout(() => {
                     submitBtn.innerHTML = 'Enjoy!';
                     setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000);
@@ -285,29 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-});
-
-// ── GOOGLE ANALYTICS 4 INJECTION ──
-(function() {
-  const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
-  // 1. Create the <script async src="..."></script> tag dynamically
-  const gaScript = document.createElement('script');
-  gaScript.async = true;
-  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
-  document.head.appendChild(gaScript);
-  // 2. Set up the window.dataLayer array and gtag function
-  window.dataLayer = window.dataLayer || [];
-  window.gtag = function() { dataLayer.push(arguments); };
-  
-  // 3. Initialize the configuration
-  window.gtag('js', new Date());
-  window.gtag('config', GA_MEASUREMENT_ID);
-
     /* =========================================
        11. ADVANCED MICRO-INTERACTIONS
     ========================================= */
-    
-    // A. Reading Progress Bar Logic
     const progressContainer = document.createElement('div');
     progressContainer.className = 'scroll-progress-container';
     const progressBar = document.createElement('div');
@@ -321,42 +283,37 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + '%';
     });
 
- 
-   // C. 3D Magnetic Hover Effect for ALL Cards
    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card, .stat-box, .highlight-card');
-    
     magneticCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left; // Mouse X relative to card
-            const y = e.clientY - rect.top;  // Mouse Y relative to card
-            // Feed mouse coordinates to CSS for the Spotlight effect
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top; 
             card.style.setProperty('--mouse-x', `${x}px`);
             card.style.setProperty('--mouse-y', `${y}px`);
             
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
-            
-            // Calculate tilt based on mouse distance from center
-            const rotateX = ((y - centerY) / centerY) * -4; // Max tilt 4 degrees
+            const rotateX = ((y - centerY) / centerY) * -4; 
             const rotateY = ((x - centerX) / centerX) * 4;
             
             card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-            card.style.transition = 'none'; // Remove transition for instant magnetic tracking
+            card.style.transition = 'none'; 
         });
         
-        // Reset the card smoothly when the mouse leaves
         card.addEventListener('mouseleave', () => {
             card.style.transform = ''; 
             card.style.transition = 'all 0.4s ease'; 
         });
     });
-    // D. DYNAMIC LIVE STATUS WIDGET LOGIC
+
+    /* =========================================
+       12. DYNAMIC LIVE STATUS WIDGET
+    ========================================= */
     const statusWidget = document.getElementById('liveStatusBtn');
     const statusTextEl = document.getElementById('live-status-text');
     
     if (statusWidget && statusTextEl) {
-        // Your rotating messages (Feel free to customize these!)
         const statusMessages = [
             "Open to new B2B projects",
             "📍 Based in Dhaka, Bangladesh",
@@ -369,70 +326,59 @@ document.addEventListener('DOMContentLoaded', () => {
         let isHovered = false;
         let isClicked = false;
 
-        // Pause rotation on hover
         statusWidget.addEventListener('mouseenter', () => isHovered = true);
         statusWidget.addEventListener('mouseleave', () => isHovered = false);
 
-        // The Rotation Engine
         setInterval(() => {
             if (!isHovered && !isClicked) {
-                // Fade out text, move it slightly up
                 statusTextEl.style.opacity = '0';
                 statusTextEl.style.transform = 'translateY(-10px)';
                 
                 setTimeout(() => {
-                    // Change text, reset position, fade back in
                     statusIndex = (statusIndex + 1) % statusMessages.length;
                     statusTextEl.textContent = statusMessages[statusIndex];
-                    
                     statusTextEl.style.transform = 'translateY(10px)';
                     
-                    // Small delay to allow DOM to catch up before animating in
                     requestAnimationFrame(() => {
                         statusTextEl.style.opacity = '1';
                         statusTextEl.style.transform = 'translateY(0)';
                     });
-                }, 400); // 400ms matches the CSS transition time
+                }, 400); 
             }
-        }, 4000); // Changes every 4 seconds
+        }, 4000);
 
-        // The Click-to-Copy Action
         statusWidget.addEventListener('click', () => {
             isClicked = true;
             const email = "fardinraafi@gmail.com";
             
-            // Modern copy to clipboard API
             navigator.clipboard.writeText(email).then(() => {
-                const originalColor = statusWidget.querySelector('.status-dot').style.backgroundColor;
-                
-                // Change UI to success state
                 statusTextEl.style.opacity = '0';
                 setTimeout(() => {
                     statusTextEl.textContent = "Copied email to clipboard! 📋";
-                    statusTextEl.style.color = "#10B981"; // Turn text green
+                    statusTextEl.style.color = "#10B981"; 
                     statusTextEl.style.opacity = '1';
                 }, 200);
 
-                // Reset back to normal after 3 seconds
                 setTimeout(() => {
                     statusTextEl.style.opacity = '0';
                     setTimeout(() => {
                         statusTextEl.style.color = "var(--text-main)";
                         statusTextEl.textContent = statusMessages[statusIndex];
                         statusTextEl.style.opacity = '1';
-                        isClicked = false; // Resume rotation
+                        isClicked = false; 
                     }, 200);
                 }, 3000);
             });
         });
     }
-    // D. Contact Form Background Submission
+
+    /* =========================================
+       13. CONTACT FORM SUBMISSION
+    ========================================= */
     const contactForm = document.getElementById('contact-form');
-    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Stops the browser from leaving the page
-            
+            e.preventDefault(); 
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = 'Sending...';
@@ -451,7 +397,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
             .then(async (response) => {
                 if (response.status === 200) {
-                    // Success! Instantly teleport to your custom page
                     window.location.href = '/message-sent.html';
                 } else {
                     submitBtn.innerHTML = 'Error. Try Again.';
@@ -465,205 +410,118 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
-})();
-/* =========================================
-   12. FLOATING GLASS PARALLAX ENGINE
-========================================= */
-const glassIcons = document.querySelectorAll('.floating-glass');
 
-if (glassIcons.length > 0) {
-    // 1. Set the initial tilt before the user even scrolls
-    glassIcons.forEach(icon => {
-        const rot = icon.getAttribute('data-rot') || '0';
-        icon.style.transform = `translate3d(0, 0px, 0) rotate(${rot}deg)`;
-    });
-
-    // 2. Keep the tilt applied while scrolling up
-    window.addEventListener('scroll', () => {
-        const scrolled = window.scrollY;
-        
-        glassIcons.forEach((icon, index) => {
-            const speed = (index + 1) * 0.12; 
+    /* =========================================
+       14. FLOATING GLASS PARALLAX ENGINE
+    ========================================= */
+    const glassIcons = document.querySelectorAll('.floating-glass');
+    if (glassIcons.length > 0) {
+        glassIcons.forEach(icon => {
             const rot = icon.getAttribute('data-rot') || '0';
-            
-            // Combines the upward movement (translate3d) with the permanent tilt (rotate)
-            icon.style.transform = `translate3d(0, -${scrolled * speed}px, 0) rotate(${rot}deg)`;
+            icon.style.transform = `translate3d(0, 0px, 0) rotate(${rot}deg)`;
         });
-    }, { passive: true });
-}
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            glassIcons.forEach((icon, index) => {
+                const speed = (index + 1) * 0.12; 
+                const rot = icon.getAttribute('data-rot') || '0';
+                icon.style.transform = `translate3d(0, -${scrolled * speed}px, 0) rotate(${rot}deg)`;
+            });
+        }, { passive: true });
+    }
+
+    /* =========================================
+       15. 🤖 FIFI CHATBOT LOGIC
+    ========================================= */
+    const openChatBtn = document.getElementById('openChatBtn');
+    const closeChatBtn = document.getElementById('closeChatBtn');
+    const chatModal = document.getElementById('chatModal');
+    const chatGreeting = document.getElementById('chatGreeting');
+    const chatOptions = document.getElementById('chatOptions');
+    const chatLog = document.getElementById('chatLog');
+    const resetChatBtn = document.getElementById('resetChatBtn');
+
+    if (openChatBtn && closeChatBtn && chatModal) {
+        openChatBtn.addEventListener('click', () => {
+            chatModal.classList.add('show');
+        });
+
+        closeChatBtn.addEventListener('click', () => {
+            chatModal.classList.remove('show');
+        });
+    }
+
+    window.sendQuery = function(query) {
+        if (chatGreeting) chatGreeting.style.display = 'none';
+        if (chatOptions) chatOptions.style.display = 'none';
+        if (resetChatBtn) resetChatBtn.style.display = 'block';
+
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-bubble user-bubble';
+        userMsg.textContent = query;
+        chatLog.appendChild(userMsg);
+
+        setTimeout(() => {
+            const aiMsg = document.createElement('div');
+            aiMsg.className = 'chat-bubble ai-bubble';
+            
+            if (query.includes('skills')) {
+                aiMsg.innerHTML = 'Fardin specializes in <strong>B2B Lead Generation</strong>, CRM management (Salesforce, Apollo.io), and Brand Strategy.';
+            } else if (query.includes('B2B')) {
+                aiMsg.innerHTML = 'He currently works at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
+            } else if (query.includes('contact')) {
+                aiMsg.innerHTML = 'You can reach him at <a href="mailto:fardinraafi@gmail.com">fardinraafi@gmail.com</a> or connect with him on <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">LinkedIn</a>.';
+            } else if (query.includes('Resume')) {
+                aiMsg.innerHTML = 'You can <a href="Fardin_Resume.pdf" download style="color: var(--c1); font-weight: bold;">download his resume right here</a>.';
+            } else {
+                aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
+            }
+            
+            chatLog.appendChild(aiMsg);
+            
+            const chatArea = document.getElementById('chatArea');
+            if (chatArea) {
+                chatArea.scrollTop = chatArea.scrollHeight;
+            }
+        }, 600); 
+    };
+
+    if (resetChatBtn) {
+        resetChatBtn.addEventListener('click', () => {
+            chatLog.innerHTML = '';
+            if (chatGreeting) chatGreeting.style.display = 'block';
+            if (chatOptions) chatOptions.style.display = 'grid';
+            resetChatBtn.style.display = 'none';
+        });
+    }
+
+}); // END OF DOM CONTENT LOADED
+
 /* =========================================
-   13. AUTOMATED CHAT WIDGET
+   16. GOOGLE ANALYTICS 4 INJECTION
 ========================================= */
-const chatBotBtn = document.getElementById('chatBotBtn');
-const chatBotModal = document.getElementById('chatBotModal');
-const closeChatBtn = document.getElementById('closeChatBtn');
-const chatOptions = document.querySelectorAll('.chat-opt-btn');
-const chatLog = document.getElementById('chatLog');
-const chatGreeting = document.getElementById('chatGreeting');
-const chatOptionsGrid = document.getElementById('chatOptionsGrid');
-const chatScrollArea = document.getElementById('chatScrollArea');
+(function() {
+  const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
+  const gaScript = document.createElement('script');
+  gaScript.async = true;
+  gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`;
+  document.head.appendChild(gaScript);
+  
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function() { dataLayer.push(arguments); };
+  window.gtag('js', new Date());
+  window.gtag('config', GA_MEASUREMENT_ID);
+})();
 
-if (chatBotBtn && chatBotModal) {
-    // Open/Close Modal
-    chatBotBtn.addEventListener('click', () => {
-        chatBotModal.classList.toggle('show');
-    });
-    closeChatBtn.addEventListener('click', () => {
-        chatBotModal.classList.remove('show');
-    });
-    
-    // Handle Question Clicks & Spotlight Hover
-    chatOptions.forEach(btn => {
-        
-        // Spotlight Hover Effect Fix specifically for Chat Buttons
-        btn.addEventListener('mousemove', (e) => {
-            const rect = btn.getBoundingClientRect();
-            const x = e.clientX - rect.left; 
-            const y = e.clientY - rect.top;  
-            btn.style.setProperty('--mouse-x', `${x}px`);
-            btn.style.setProperty('--mouse-y', `${y}px`);
-        });
-
-        btn.addEventListener('click', function() {
-            
-            const questionText = this.innerText;
-            const answerHTML = this.getAttribute('data-answer');
-            
-            // Hide the initial greeting and grid
-            chatGreeting.style.display = 'none';
-            chatOptionsGrid.style.display = 'none';
-            
-            // Append User Question Bubble
-            const userBubble = document.createElement('div');
-            userBubble.className = 'chat-bubble user-bubble';
-            userBubble.innerText = questionText; // Uses innerText so the HTML span tag doesn't copy over
-            chatLog.appendChild(userBubble);
-            
-            chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
-            
-            // Simulate Fifi "Thinking" delay (600ms)
-            setTimeout(() => {
-                const aiBubble = document.createElement('div');
-                aiBubble.className = 'chat-bubble ai-bubble';
-                aiBubble.innerHTML = answerHTML; // Uses innerHTML so your new Contact Button renders!
-                chatLog.appendChild(aiBubble);
-                
-                // Add a "Ask another question" button
-                const resetBtn = document.createElement('button');
-                resetBtn.className = 'reset-chat-btn';
-                resetBtn.style.display = 'block';
-                resetBtn.innerText = '↺ Ask another question';
-                resetBtn.onclick = () => {
-                    chatLog.innerHTML = ''; // Clear chat
-                    chatGreeting.style.display = 'block'; // Show greeting
-                    chatOptionsGrid.style.display = 'grid'; // Show options
-                };
-                chatLog.appendChild(resetBtn);
-                
-                chatScrollArea.scrollTop = chatScrollArea.scrollHeight;
-            }, 600);
-        });
-    });
-}
 /* =========================================
-   12. ANTI-INSPECT & ANTI-COPY LOGIC
+   17. ANTI-INSPECT & ANTI-COPY LOGIC
 ========================================= */
-
-// Disable Right-Click
 document.addEventListener('contextmenu', event => event.preventDefault());
-
-// Disable Keyboard Shortcuts
 document.addEventListener('keydown', (e) => {
-    // Block F12
-    if (e.key === 'F12') {
-        e.preventDefault();
-    }
-    // Block Ctrl+Shift+I or Cmd+Option+I (Inspect)
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
-        e.preventDefault();
-    }
-    // Block Ctrl+Shift+J or Cmd+Option+J (Console)
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
-        e.preventDefault();
-    }
-    // Block Ctrl+U or Cmd+Option+U (View Source)
-    if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) {
-        e.preventDefault();
-    }
-    // Block Ctrl+Shift+C or Cmd+Option+C (Inspect Element)
-    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c')) {
-        e.preventDefault();
-    }
+    if (e.key === 'F12') { e.preventDefault(); }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) { e.preventDefault(); }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) { e.preventDefault(); }
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u')) { e.preventDefault(); }
+    if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'C' || e.key === 'c')) { e.preventDefault(); }
 });
-/* =========================================
-   🤖 FIFI CHATBOT LOGIC
-========================================= */
-const openChatBtn = document.getElementById('openChatBtn');
-const closeChatBtn = document.getElementById('closeChatBtn');
-const chatModal = document.getElementById('chatModal');
-const chatGreeting = document.getElementById('chatGreeting');
-const chatOptions = document.getElementById('chatOptions');
-const chatLog = document.getElementById('chatLog');
-const resetChatBtn = document.getElementById('resetChatBtn');
-
-// 1. Open and Close the Chat Window
-if (openChatBtn && closeChatBtn && chatModal) {
-    openChatBtn.addEventListener('click', () => {
-        chatModal.classList.add('show');
-    });
-
-    closeChatBtn.addEventListener('click', () => {
-        chatModal.classList.remove('show');
-    });
-}
-
-// 2. Handle the Questions and FIFI's Answers
-window.sendQuery = function(query) {
-    // Hide the greeting and buttons
-    if (chatGreeting) chatGreeting.style.display = 'none';
-    if (chatOptions) chatOptions.style.display = 'none';
-    if (resetChatBtn) resetChatBtn.style.display = 'block';
-
-    // Show the user's question
-    const userMsg = document.createElement('div');
-    userMsg.className = 'chat-bubble user-bubble';
-    userMsg.textContent = query;
-    chatLog.appendChild(userMsg);
-
-    // Make FIFI "think" for a split second, then answer
-    setTimeout(() => {
-        const aiMsg = document.createElement('div');
-        aiMsg.className = 'chat-bubble ai-bubble';
-        
-        // FIFI's custom answers based on your profile
-        if (query.includes('skills')) {
-            aiMsg.innerHTML = 'Fardin specializes in <strong>B2B Lead Generation</strong>, CRM management (Salesforce, Apollo.io), and Brand Strategy.';
-        } else if (query.includes('B2B')) {
-            aiMsg.innerHTML = 'He currently works at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
-        } else if (query.includes('contact')) {
-            aiMsg.innerHTML = 'You can reach him at <a href="mailto:fardinraafi@gmail.com">fardinraafi@gmail.com</a> or connect with him on <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">LinkedIn</a>.';
-        } else if (query.includes('Resume')) {
-            aiMsg.innerHTML = 'You can <a href="Fardin_Resume.pdf" download style="color: var(--c1); font-weight: bold;">download his resume right here</a>.';
-        } else {
-            aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
-        }
-        
-        chatLog.appendChild(aiMsg);
-        
-        // Automatically scroll down so the newest message is visible
-        const chatArea = document.getElementById('chatArea');
-        if (chatArea) {
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-    }, 600); // 600 millisecond delay to feel natural
-};
-
-// 3. Reset the Chat
-if (resetChatBtn) {
-    resetChatBtn.addEventListener('click', () => {
-        chatLog.innerHTML = '';
-        if (chatGreeting) chatGreeting.style.display = 'block';
-        if (chatOptions) chatOptions.style.display = 'grid';
-        resetChatBtn.style.display = 'none';
-    });
-}
