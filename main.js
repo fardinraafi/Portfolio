@@ -595,3 +595,75 @@ document.addEventListener('keydown', (e) => {
         e.preventDefault();
     }
 });
+/* =========================================
+   🤖 FIFI CHATBOT LOGIC
+========================================= */
+const openChatBtn = document.getElementById('openChatBtn');
+const closeChatBtn = document.getElementById('closeChatBtn');
+const chatModal = document.getElementById('chatModal');
+const chatGreeting = document.getElementById('chatGreeting');
+const chatOptions = document.getElementById('chatOptions');
+const chatLog = document.getElementById('chatLog');
+const resetChatBtn = document.getElementById('resetChatBtn');
+
+// 1. Open and Close the Chat Window
+if (openChatBtn && closeChatBtn && chatModal) {
+    openChatBtn.addEventListener('click', () => {
+        chatModal.classList.add('show');
+    });
+
+    closeChatBtn.addEventListener('click', () => {
+        chatModal.classList.remove('show');
+    });
+}
+
+// 2. Handle the Questions and FIFI's Answers
+window.sendQuery = function(query) {
+    // Hide the greeting and buttons
+    if (chatGreeting) chatGreeting.style.display = 'none';
+    if (chatOptions) chatOptions.style.display = 'none';
+    if (resetChatBtn) resetChatBtn.style.display = 'block';
+
+    // Show the user's question
+    const userMsg = document.createElement('div');
+    userMsg.className = 'chat-bubble user-bubble';
+    userMsg.textContent = query;
+    chatLog.appendChild(userMsg);
+
+    // Make FIFI "think" for a split second, then answer
+    setTimeout(() => {
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'chat-bubble ai-bubble';
+        
+        // FIFI's custom answers based on your profile
+        if (query.includes('skills')) {
+            aiMsg.innerHTML = 'Fardin specializes in <strong>B2B Lead Generation</strong>, CRM management (Salesforce, Apollo.io), and Brand Strategy.';
+        } else if (query.includes('B2B')) {
+            aiMsg.innerHTML = 'He currently works at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
+        } else if (query.includes('contact')) {
+            aiMsg.innerHTML = 'You can reach him at <a href="mailto:fardinraafi@gmail.com">fardinraafi@gmail.com</a> or connect with him on <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">LinkedIn</a>.';
+        } else if (query.includes('Resume')) {
+            aiMsg.innerHTML = 'You can <a href="Fardin_Resume.pdf" download style="color: var(--c1); font-weight: bold;">download his resume right here</a>.';
+        } else {
+            aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
+        }
+        
+        chatLog.appendChild(aiMsg);
+        
+        // Automatically scroll down so the newest message is visible
+        const chatArea = document.getElementById('chatArea');
+        if (chatArea) {
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+    }, 600); // 600 millisecond delay to feel natural
+};
+
+// 3. Reset the Chat
+if (resetChatBtn) {
+    resetChatBtn.addEventListener('click', () => {
+        chatLog.innerHTML = '';
+        if (chatGreeting) chatGreeting.style.display = 'block';
+        if (chatOptions) chatOptions.style.display = 'grid';
+        resetChatBtn.style.display = 'none';
+    });
+}
