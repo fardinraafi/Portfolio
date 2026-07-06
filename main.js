@@ -443,12 +443,24 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetChatBtn = document.getElementById('resetChatBtn');
 
     if (openChatBtn && closeChatBtn && chatModal) {
+        // Open Modal
         openChatBtn.addEventListener('click', () => {
             chatModal.classList.add('show');
         });
 
+        // Close Modal via X button
         closeChatBtn.addEventListener('click', () => {
             chatModal.classList.remove('show');
+        });
+
+        // NEW: Close Modal by clicking outside of it!
+        document.addEventListener('click', (e) => {
+            if (chatModal.classList.contains('show')) {
+                // If the click is NOT inside the modal AND NOT on the button that opens it
+                if (!chatModal.contains(e.target) && !openChatBtn.contains(e.target)) {
+                    chatModal.classList.remove('show');
+                }
+            }
         });
     }
 
@@ -471,9 +483,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (query.includes('B2B')) {
                 aiMsg.innerHTML = 'He currently works at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
             } else if (query.includes('contact')) {
-                aiMsg.innerHTML = 'You can reach him at <a href="mailto:fardinraafi@gmail.com">fardinraafi@gmail.com</a> or connect with him on <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">LinkedIn</a>.';
+                aiMsg.innerHTML = 'You can reach him directly through his <a href="/contact.html" style="color: var(--c1); font-weight: bold;">Contact Page</a>.';
             } else if (query.includes('Resume')) {
-                aiMsg.innerHTML = 'You can <a href="Fardin_Resume.pdf" download style="color: var(--c1); font-weight: bold;">download his resume right here</a>.';
+                aiMsg.innerHTML = 'You can view and download his full resume on his <a href="/resume.html" style="color: var(--c1); font-weight: bold;">Resume Page</a>.';
+            } else if (query.includes('academics')) {
+                aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with an excellent CGPA of 3.80.';
+            } else if (query.includes('extracurriculars')) {
+                aiMsg.innerHTML = 'He has extensive leadership experience! Check out his <a href="/volunteer.html" style="color: var(--c1); font-weight: bold;">Leadership & Extracurriculars page</a> to learn more.';
             } else {
                 aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
             }
