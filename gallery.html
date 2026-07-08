@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* 🎨 STUNNING MASONRY GALLERY LAYOUT 🎨 */
+        /* 🎨 PREMIUM MASONRY GALLERY LAYOUT 🎨 */
         .collage-grid {
             column-count: 3;
             column-gap: 1.5rem;
             padding: 1rem;
             width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         .collage-item {
@@ -29,9 +31,9 @@
             break-inside: avoid;
             margin-bottom: 1.5rem;
             transform-style: preserve-3d;
-            perspective: 1000px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+            background: #0f172a;
         }
 
         .grid-img {
@@ -41,13 +43,14 @@
             display: block;
             border-radius: 20px;
             transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.6s ease;
+            filter: brightness(0.9);
         }
 
-        /* The Premium Dark Glass Overlay */
+        /* Premium Dark Glass Overlay */
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.2) 50%, transparent 100%);
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.4) 40%, transparent 100%);
             display: flex;
             align-items: flex-end;
             justify-content: center;
@@ -62,29 +65,54 @@
             color: #F8FAFC;
             font-family: 'DM Sans', sans-serif;
             font-weight: 700;
-            font-size: 1.05rem;
+            font-size: 1rem;
             line-height: 1.5;
-            transform: translateY(30px);
+            transform: translateY(20px);
             transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             margin: 0;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
         }
 
         /* Hover Physics */
         .collage-item:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.3), 0 0 20px rgba(37, 99, 235, 0.2);
+            z-index: 10;
         }
         .collage-item:hover .grid-img {
             transform: scale(1.08);
-            filter: brightness(0.8);
+            filter: brightness(1);
         }
-        .collage-item:hover .gallery-overlay {
-            opacity: 1;
+        .collage-item:hover .gallery-overlay { opacity: 1; }
+        .collage-item:hover .gallery-overlay p { transform: translateY(0); }
+
+        /* 🚀 THE 48TH CTA CARD (Fills the empty space perfectly!) 🚀 */
+        .cta-card {
+            background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1));
+            border: 1px solid rgba(124,58,237,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 300px;
+            text-decoration: none;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
         }
-        .collage-item:hover .gallery-overlay p {
-            transform: translateY(0);
+        .cta-card:hover {
+            background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(124,58,237,0.2));
+            border-color: var(--c2);
         }
+        .cta-card h3 {
+            font-family: 'Syne', sans-serif;
+            color: #F8FAFC;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+        .cta-card .btn { margin-top: 1rem; }
 
         /* 🚀 SWIPEABLE CINEMATIC LIGHTBOX UI 🚀 */
         .lightbox-overlay { 
@@ -103,7 +131,6 @@
         }
         .lightbox-overlay.active .lightbox-img { transform: scale(1); opacity: 1; }
         
-        /* Modern Glass Navigation Buttons */
         .lightbox-nav { 
             position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); 
             color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
@@ -180,6 +207,7 @@
     <div class="collage-grid" id="gallery-grid"></div>
 </div>
 
+<!-- THE APP-STYLE LIGHTBOX OVERLAY -->
 <div id="lightbox-overlay" class="lightbox-overlay">
     <button class="lightbox-close" id="lightbox-close">✕</button>
     <div class="lightbox-content" id="lightbox-content">
@@ -196,13 +224,15 @@
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
+<!-- EXTERNAL 3D TILT LIBRARY FOR GALLERY CARDS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
+<!-- THE DYNAMIC GALLERY ENGINE -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
-        // ONLY 47 DESCRIPTIONS NOW!
+        // ONLY 47 DESCRIPTIONS
         const altTexts = [
             "BUBT Business Club Booth Incharge Duty 2025", "Rotaract Club Art Competition for Children", "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", "My design for Hult Prize BUBT 2024", "Rotary ILTS Training Participation", "Me with all my designs printed for BUBT Business Club Orientation 2023", "YSSE appreciation message", "Microsoft Agent X Launch ceremony photo", "YouthFest 2025 at BUBT - Campus Cleaning Project", "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", "It was salty", "Taking Interview of new members for BUBT Social Welfare Club, BUBT", "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", "Standing between my desings at BUBT Business Club Workshop", "Lead Academy Town Hall Meeting 2025", "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", "World Polio Day Rally Participation, Rotaract", "Rotaract Project - Flood rehabilitation", "World Polio Day Rally 2025", "Receiving Certificate of Membership from Rotarians", "With my media prize for excellence, BizzMasters Season 1", "Speech at Rotaract Conference", "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", "Leader of the Year 2024 prize from BASIS, BUBT", "TEDX Crest for Executive", "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", "With my teammates at TEDxUttara", "On Stage receiving Crest from the OC head Sumaiya Apu", "Hult Prize Crest alongside all my design work", "Won best speaker at - YSSE Speaking Competition", "Basis Leader of the year Card", "Booth work for BizzMasters S1, BUBT Business Club", "TEDxUttara announcement Card", "Volunteered for Polio Awareness, 2025", "Featuring in ILC Official Page", "Received Crest for Best Attendance at Rotary SPARK 2025", "Received Leader of the Year Award, BASIS, BUBT", "Volunteered for February Mother Language Day, Rotaract Club", "Volunteered for 21st February Mother Language Day, Rotaract Club", "Won the YSSE Presentation Competition", "Welcoming the New Rotary President 2025-26", "Leading the Polio Awareness Rally at Rotaract, 2023", "Won best Leader of the Week, YSSE", "Won Best Speaker, YSSE", "BASIS Leader of the Year Prize and Certification, 2023", "Workshop Management Duty, Creative IT, 2025"
         ];
@@ -221,6 +251,15 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
         });
 
+        // 🚀 THE 48TH CTA CARD 🚀
+        // This acts as the 48th item to perfectly balance the 3-column grid
+        galleryHTML += `
+        <a href="/contact.html" class="collage-item cta-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <h3>Have a project in mind?</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">Let's create something amazing together.</p>
+            <span class="btn btn-primary" style="margin-top: 1.5rem;">Let's Talk ➔</span>
+        </a>`;
+
         galleryGrid.innerHTML = galleryHTML;
         
         // Initialize Tilt on newly added items
@@ -238,7 +277,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(galleryGrid && lightbox) {
         galleryGrid.addEventListener('click', (e) => {
             const item = e.target.closest('.collage-item');
-            if (!item) return;
+            // Prevent Lightbox from opening if they clicked the CTA Card!
+            if (!item || item.classList.contains('cta-card')) return;
             
             // Gather all currently visible images for the swipe loop
             const currentImages = Array.from(document.querySelectorAll('.grid-img')).filter(img => img.parentElement.style.display !== 'none');
@@ -304,6 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!-- Link to Central Nav/Theme Logic -->
 <script src="/main.js"></script>
 
 </body>
