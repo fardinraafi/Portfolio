@@ -19,76 +19,7 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* --- SUPERCHARGED ADDITIONS --- */
-        
-        /* Smooth Scrolling */
-        html { scroll-behavior: smooth; }
-
-        /* Custom Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed; top: 0; left: 0; width: 0%; height: 4px;
-            background: linear-gradient(90deg, #2563EB, #7C3AED, #F43F5E);
-            z-index: 9999; transition: width 0.1s ease;
-            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
-        }
-
-        /* Custom Cursor */
-        body { cursor: none; } /* Hide default cursor */
-        .cursor-dot {
-            width: 8px; height: 8px; background-color: var(--c2, #7C3AED);
-            position: fixed; border-radius: 50%; pointer-events: none;
-            z-index: 10000; transform: translate(-50%, -50%);
-            transition: transform 0.1s;
-        }
-        .cursor-outline {
-            width: 40px; height: 40px; border: 2px solid var(--c1, #2563EB);
-            position: fixed; border-radius: 50%; pointer-events: none;
-            z-index: 9999; transform: translate(-50%, -50%);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-            box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
-        }
-
-        /* Interactive Canvas Background */
-        #particleCanvas {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            z-index: -2; pointer-events: none; opacity: 0.6;
-        }
-
-        /* Scroll Reveal Animation */
-        .reveal {
-            opacity: 0; transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
-        }
-        .reveal.active {
-            opacity: 1; transform: translateY(0);
-        }
-
-        /* Enhanced Glass Card Hover (3D Effect Support) */
-        .glass-card {
-            transition: box-shadow 0.3s ease, border-color 0.3s ease;
-            transform-style: preserve-3d; /* For JS tilt */
-        }
-        .glass-card:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 0 20px rgba(124, 58, 237, 0.15);
-            border-color: rgba(124, 58, 237, 0.3);
-        }
-        body.dark-mode .glass-card:hover {
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 0 20px rgba(124, 58, 237, 0.3);
-        }
-
-        /* Profile Image Pulsing Ring */
-        .profile-img-wrap { position: relative; }
-        .profile-img-wrap::after {
-            content: ''; position: absolute; top: -5px; left: -5px; right: -5px; bottom: -5px;
-            border-radius: 50%; border: 2px solid transparent;
-            background: linear-gradient(45deg, #2563EB, #7C3AED) border-box;
-            -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: destination-out; mask-composite: exclude;
-            animation: spinRotate 4s linear infinite; z-index: -1; opacity: 0.8;
-        }
-        @keyframes spinRotate { 100% { transform: rotate(360deg); } }
-
-        /* --- YOUR EXISTING STYLES --- */
+        /* Top Tech Ticker */
         .ticker-wrap {
             width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -112,9 +43,15 @@
         .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
         @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
+        /* Blog Marquee Upgrade */
         .blog-marquee-wrap {
-            width: 100%; overflow: hidden; padding: 20px 0; margin: -20px 0; position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0; /* Padding allows the hover glow to not get clipped */
+            margin: -20px 0;
+            position: relative;
         }
+        /* Gradient fade effect on the left and right edges */
         .blog-marquee-wrap::before, .blog-marquee-wrap::after {
             content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
         }
@@ -124,26 +61,44 @@
         body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
 
         .blog-marquee-track {
-            display: flex; gap: 1.5rem; width: max-content;
-            animation: blogMarqueeScroll 45s linear infinite;
+            display: flex;
+            gap: 1.5rem;
+            width: max-content;
+            animation: blogMarqueeScroll 45s linear infinite; /* 45s for a nice slow reading speed */
         }
         .blog-marquee-track:hover { animation-play-state: paused; }
-        @keyframes blogMarqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        
+        @keyframes blogMarqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
         
         .marquee-blog-card {
-            width: 320px; flex-shrink: 0; display: flex; flex-direction: column;
-            background: rgba(255,255,255,0.7); backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.9); border-radius: 16px;
-            text-decoration: none; color: var(--text-main);
+            width: 320px; /* Fixed width so it looks uniform */
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.9);
+            border-radius: 16px;
+            text-decoration: none;
+            color: var(--text-main);
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative; transform: translateY(0);
+            position: relative;
+            transform: translateY(0);
         }
         body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
+        
+        /* 🚀 THE RADIANT LIGHT POP-UP HOVER EFFECT */
         .marquee-blog-card:hover {
-            transform: translateY(-10px); border-color: var(--c2);
+            transform: translateY(-10px);
+            border-color: var(--c2);
+            /* Glowing borders combining Blue and Purple */
             box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
             z-index: 10;
         }
+        
         .marquee-blog-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .marquee-blog-content { padding: 1.5rem; }
         .marquee-blog-date { font-size: 0.8rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -154,10 +109,6 @@
 </head>
 <body class="dark-mode">
 
-<div class="scroll-progress" id="scrollBar"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-outline" id="cursorOutline"></div>
-<canvas id="particleCanvas"></canvas>
 <div class="bg-mesh">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -195,8 +146,8 @@
 </nav>
 
 <div class="layout-wrapper" id="home">
-    <aside class="sidebar reveal">
-        <div class="glass-card tilt-card">
+    <aside class="sidebar">
+        <div class="glass-card">
             <div class="profile-img-wrap">
                 <div class="profile-img" style="overflow: hidden; padding: 0;">
                     <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4); border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
@@ -227,7 +178,7 @@
     
     <main class="content-feed">
         
-        <header class="glass-card tilt-card reveal">
+        <header class="glass-card">
             <div class="typewriter">
                 <span id="tw-text"></span><span class="caret"></span>
             </div>
@@ -253,7 +204,7 @@
             <br>
         </header> 
 
-        <div class="ticker-wrap reveal">
+        <div class="ticker-wrap">
             <div class="ticker-track">
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
@@ -277,7 +228,7 @@
             </div>
         </div>
 
-        <section class="glass-card tilt-card reveal">
+        <section class="glass-card">
             <div class="section-title">Professional Documents</div>
             <a href="/resume.html" class="doc-link">
                 <div>
@@ -295,7 +246,7 @@
             </a>
         </section>
 
-        <section class="glass-card tilt-card reveal">
+        <section class="glass-card">
             <div class="section-title">Recent Experience</div>
             
             <div class="timeline-item">
@@ -325,7 +276,7 @@
             </div>
         </section>
 
-        <section class="glass-card tilt-card reveal">
+        <section class="glass-card">
             <div class="section-title">Education</div>
             
             <div class="timeline-item">
@@ -354,7 +305,7 @@
             </div>
         </section>
 
-        <section class="glass-card tilt-card reveal">
+        <section class="glass-card">
             <div class="section-title">Impact & Recognition</div>
             
             <div class="metrics-grid">
@@ -404,7 +355,7 @@
             </div>
         </section>
 
-        <section class="glass-card tilt-card reveal">
+        <section class="glass-card">
             <div class="section-title">Featured Blogs</div>
             
             <div class="blog-marquee-wrap">
@@ -462,6 +413,61 @@
                             <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
                         </div>
                     </a>
+
+                    <a href="/blog-1.html" class="marquee-blog-card">
+                        <img src="blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Latest Case Study</div>
+                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <p class="marquee-blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/blog-2.html" class="marquee-blog-card">
+                        <img src="blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Advice</div>
+                            <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
+                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-3.html" class="marquee-blog-card">
+                        <img src="blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Brand Strategy</div>
+                            <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
+                            <p class="marquee-blog-excerpt">A look at how brands are embracing internet culture, humor, and authenticity to win attention in the age of Gen Z.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-4.html" class="marquee-blog-card">
+                        <img src="blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">B2B Sales</div>
+                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
+                            <p class="marquee-blog-excerpt">Why psychology matters more than product knowledge in B2B sales, and how trust, curiosity, and understanding client needs lead to better conversions.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-5.html" class="marquee-blog-card">
+                        <img src="blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Growth</div>
+                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
+                            <p class="marquee-blog-excerpt">Learn how to build a LinkedIn profile that attracts recruiters, showcases your personal brand, and creates career opportunities through a strong headline, compelling story, and consistent activity.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blog-6.html" class="marquee-blog-card">
+                        <img src="blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI Tools</div>
+                            <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
+                            <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
+                        </div>
+                    </a>
+
                 </div>
             </div>
             
@@ -470,7 +476,7 @@
             </div>
         </section>
 
-        <section class="glass-card tilt-card reveal" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
             <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
@@ -480,14 +486,15 @@
           <form id="playbook-form" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
                 <input type="email" name="email" placeholder="Enter your best email" required style="flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--text-light); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; background: rgba(255,255,255,0.8); color: var(--text-main);">
                 
-                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;">Get Playbook</button>
+                <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Get Playbook</button>
             </form>
             <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 1.5rem;">100% free. Unsubscribe anytime. Live funnel demo.</p>
         </section>
     </main>
 </div>
-
-<section class="final-cta-section reveal">
+</section>
+    </main>
+</div> <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
     
     <div class="glowing-line-container top-line">
@@ -507,7 +514,9 @@
         </div>
     </div>
 </section>
-
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</button>
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant">
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
 </button>
@@ -545,8 +554,7 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
-
-<footer class="site-footer reveal">
+<footer class="site-footer">
     <div class="footer-glow"></div>
     <div class="footer-grid">
         <div class="footer-col">
@@ -590,173 +598,6 @@
     </div>
 </footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-
 <script src="/main.js"></script>
-
-<script>
-    // 1. Custom Cursor Logic
-    const cursorDot = document.getElementById("cursorDot");
-    const cursorOutline = document.getElementById("cursorOutline");
-    window.addEventListener("mousemove", function (e) {
-        const posX = e.clientX;
-        const posY = e.clientY;
-        cursorDot.style.left = `${posX}px`;
-        cursorDot.style.top = `${posY}px`;
-        // Slight delay for the outline for a smooth trailing effect
-        cursorOutline.animate({
-            left: `${posX}px`, top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
-    });
-    // Add hover effects to links/buttons for cursor
-    document.querySelectorAll("a, button, .tilt-card").forEach(el => {
-        el.addEventListener("mouseenter", () => {
-            cursorOutline.style.width = "60px";
-            cursorOutline.style.height = "60px";
-            cursorOutline.style.backgroundColor = "rgba(124, 58, 237, 0.1)";
-        });
-        el.addEventListener("mouseleave", () => {
-            cursorOutline.style.width = "40px";
-            cursorOutline.style.height = "40px";
-            cursorOutline.style.backgroundColor = "transparent";
-        });
-    });
-
-    // 2. Scroll Progress Bar
-    window.addEventListener("scroll", () => {
-        const scrollTop = document.documentElement.scrollTop;
-        const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrollPercentage = (scrollTop / scrollHeight) * 100;
-        document.getElementById("scrollBar").style.width = scrollPercentage + "%";
-    });
-
-    // 3. Scroll Reveal Animation (Intersection Observer)
-    const revealElements = document.querySelectorAll('.reveal');
-    const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting) return;
-            entry.target.classList.add('active');
-            observer.unobserve(entry.target);
-        });
-    }, revealOptions);
-    revealElements.forEach(el => revealOnScroll.observe(el));
-
-    // 4. Vanilla 3D Tilt Effect on Cards
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    tiltCards.forEach(card => {
-        card.addEventListener('mousemove', e => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            const tiltX = (y - centerY) / 20; // Adjust intensity
-            const tiltY = (centerX - x) / 20;
-            card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale3d(1.02, 1.02, 1.02)`;
-        });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            card.style.transition = "transform 0.5s ease";
-        });
-        card.addEventListener('mouseenter', () => {
-            card.style.transition = "none";
-        });
-    });
-
-    // 5. Interactive Particle Matrix Background
-    const canvas = document.getElementById("particleCanvas");
-    const ctx = canvas.getContext("2d");
-    let particlesArray;
-
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    let mouse = { x: null, y: null, radius: (canvas.height/80) * (canvas.width/80) };
-    window.addEventListener('mousemove', function(event) {
-        mouse.x = event.x; mouse.y = event.y;
-    });
-
-    class Particle {
-        constructor(x, y, directionX, directionY, size, color) {
-            this.x = x; this.y = y; this.directionX = directionX;
-            this.directionY = directionY; this.size = size; this.color = color;
-        }
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-            ctx.fillStyle = this.color;
-            ctx.fill();
-        }
-        update() {
-            if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; }
-            if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; }
-            let dx = mouse.x - this.x;
-            let dy = mouse.y - this.y;
-            let distance = Math.sqrt(dx*dx + dy*dy);
-            if (distance < mouse.radius + this.size) {
-                if (mouse.x < this.x && this.x < canvas.width - this.size * 10) { this.x += 2; }
-                if (mouse.x > this.x && this.x > this.size * 10) { this.x -= 2; }
-                if (mouse.y < this.y && this.y < canvas.height - this.size * 10) { this.y += 2; }
-                if (mouse.y > this.y && this.y > this.size * 10) { this.y -= 2; }
-            }
-            this.x += this.directionX;
-            this.y += this.directionY;
-            this.draw();
-        }
-    }
-
-    function initParticles() {
-        particlesArray = [];
-        let numberOfParticles = (canvas.height * canvas.width) / 15000;
-        for (let i = 0; i < numberOfParticles; i++) {
-            let size = (Math.random() * 2) + 1;
-            let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
-            let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
-            let directionX = (Math.random() * 2) - 1.5;
-            let directionY = (Math.random() * 2) - 1.5;
-            // Switch colors depending on dark mode preference context (fallback defaults to darkmode)
-            let color = 'rgba(124, 58, 237, 0.4)'; 
-            particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
-        }
-    }
-
-    function animateParticles() {
-        requestAnimationFrame(animateParticles);
-        ctx.clearRect(0, 0, innerWidth, innerHeight);
-        for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); }
-        connectParticles();
-    }
-
-    function connectParticles() {
-        let opacityValue = 1;
-        for (let a = 0; a < particlesArray.length; a++) {
-            for (let b = a; b < particlesArray.length; b++) {
-                let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + 
-                               ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
-                if (distance < (canvas.width / 7) * (canvas.height / 7)) {
-                    opacityValue = 1 - (distance / 20000);
-                    ctx.strokeStyle = 'rgba(37, 99, 235,' + opacityValue + ')';
-                    ctx.lineWidth = 1;
-                    ctx.beginPath();
-                    ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
-                    ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
-                    ctx.stroke();
-                }
-            }
-        }
-    }
-
-    window.addEventListener('resize', function() {
-        canvas.width = innerWidth; canvas.height = innerHeight;
-        mouse.radius = ((canvas.height/80) * (canvas.width/80));
-        initParticles();
-    });
-
-    window.addEventListener('mouseout', function() { mouse.x = undefined; mouse.y = undefined; });
-
-    initParticles();
-    animateParticles();
-    
-</script>
 </body>
 </html>
