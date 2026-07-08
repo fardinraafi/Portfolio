@@ -12,9 +12,9 @@ document.addEventListener('DOMContentLoaded', () => {
             preloader.classList.add('hide');
         }, 1500);
     }
+
     /* =========================================
        0. GLOBAL COMPONENT INJECTOR (Nav & Footer)
-       This automatically pushes the menu to all pages!
     ========================================= */
     const globalNav = document.querySelector('.top-nav');
     const globalFooter = document.querySelector('.site-footer');
@@ -104,17 +104,8 @@ document.addEventListener('DOMContentLoaded', () => {
         globalFooter.innerHTML = footerHTML;
     }
 
-
-    // PRELOADER LOGIC
-    window.addEventListener('load', () => {
-        const preloader = document.getElementById('preloader');
-        if (preloader) {
-            setTimeout(() => { preloader.classList.add('hide'); }, 600); // Smooth 0.6s delay
-        }
-    });
-
     /* =========================================
-       CUSTOM DYNAMIC FAVICON (Fixed Encoding)
+       CUSTOM DYNAMIC FAVICON
     ========================================= */
     const favicon = document.createElement('link');
     favicon.rel = 'icon';
@@ -124,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.head.appendChild(favicon);
 
     /* =========================================
-       1. THEME TOGGLE LOGIC (DEFAULT: DARK MODE)
+       1. THEME TOGGLE LOGIC
     ========================================= */
     const themeBtn = document.getElementById('themeToggle');
     
@@ -147,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       2. CURRENT YEAR UPDATER (Footer)
+       2. CURRENT YEAR UPDATER
     ========================================= */
     const currentYearEl = document.getElementById('current-year');
     if (currentYearEl) {
@@ -155,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       3. TYPEWRITER EFFECT (Homepage)
+       3. TYPEWRITER EFFECT
     ========================================= */
     const twText = document.getElementById('tw-text');
     if (twText) {
@@ -186,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       4. LOCAL TIME WIDGET (Homepage)
+       4. LOCAL TIME WIDGET
     ========================================= */
     const localTimeEl = document.getElementById('local-time');
     if (localTimeEl) {
@@ -241,12 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         certGrid.innerHTML = certsHTML;
     }
-/* =========================================
-       7.5 DYNAMIC GALLERY GENERATOR & LIGHTBOX ENGINE
+
+    /* =========================================
+       8. DYNAMIC GALLERY & LIGHTBOX ENGINE
     ========================================= */
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
-        // Your 48 Custom Descriptions (Must be exactly 48)
         const altTexts = [
             "BUBT Business Club Booth Incharge Duty 2025", "Rotaract Club Art Competition for Children", "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", "My design for Hult Prize BUBT 2024", "Rotary ILTS Training Participation", "Me with all my designs printed for BUBT Business Club Orientation 2023", "YSSE appreciation message", "Microsoft Agent X Launch ceremony photo", "YouthFest 2025 at BUBT - Campus Cleaning Project", "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", "It was salty", "Taking Interview of new members for BUBT Social Welfare Club, BUBT", "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", "Standing between my desings at BUBT Business Club Workshop", "Lead Academy Town Hall Meeting 2025", "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", "World Polio Day Rally Participation, Rotaract", "Rotaract Project - Flood rehabilitation", "World Polio Day Rally 2025", "Receiving Certificate of Membership from Rotarians", "With my media prize for excellence, BizzMasters Season 1", "Speech at Rotaract Conference", "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", "Leader of the Year 2024 prize from BASIS, BUBT", "TEDX Crest for Executive", "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", "With my teammates at TEDxUttara", "On Stage receiving Crest from the OC head Sumaiya Apu", "Hult Prize Crest alongside all my design work", "Won best speaker at - YSSE Speaking Competition", "Basis Leader of the year Card", "Booth work for BizzMasters S1, BUBT Business Club", "TEDxUttara announcement Card", "Volunteered for Polio Awareness, 2025", "Featuring in ILC Official Page", "Received Crest for Best Attendance at Rotary SPARK 2025", "Received Leader of the Year Award, BASIS, BUBT", "Volunteered for February Mother Language Day, Rotaract Club", "Volunteered for 21st February Mother Language Day, Rotaract Club", "Won the YSSE Presentation Competition", "Welcoming the New Rotary President 2025-26", "Leading the Polio Awareness Rally at Rotaract, 2023", "Won best Leader of the Week, YSSE", "Won Best Speaker, YSSE", "BASIS Leader of the Year Prize and Certification, 2023", "Workshop Management Duty, Creative IT, 2025", ""
         ];
@@ -269,7 +260,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         galleryGrid.innerHTML = galleryHTML;
 
-        // --- NEW LIGHTBOX ENGINE LOGIC ---
+        // Lightbox Logic
         const lightbox = document.getElementById('lightbox-overlay');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxCaption = document.getElementById('lightbox-caption');
@@ -288,18 +279,20 @@ document.addEventListener('DOMContentLoaded', () => {
             currentIndex = imageList.findIndex(img => img.src === clickedImg.src);
             
             updateLightbox();
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            if (lightbox) {
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         });
 
         function updateLightbox() {
-            if(imageList.length === 0) return;
+            if(imageList.length === 0 || !lightboxImg) return;
             lightboxImg.src = imageList[currentIndex].src;
-            lightboxCaption.textContent = imageList[currentIndex].alt;
+            if (lightboxCaption) lightboxCaption.textContent = imageList[currentIndex].alt;
         }
 
         function changeImage(step) {
-            if(imageList.length === 0) return;
+            if(imageList.length === 0 || !lightboxImg) return;
             currentIndex += step;
             if (currentIndex < 0) currentIndex = imageList.length - 1;
             if (currentIndex >= imageList.length) currentIndex = 0;
@@ -318,13 +311,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if(btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
         if(btnNext) btnNext.addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
         
-        const closeLightbox = () => { lightbox.classList.remove('active'); document.body.style.overflow = ''; };
+        const closeLightbox = () => { if(lightbox) { lightbox.classList.remove('active'); document.body.style.overflow = ''; } };
         if(btnClose) btnClose.addEventListener('click', closeLightbox);
         
-        lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox(); });
+        if (lightbox) {
+            lightbox.addEventListener('click', (e) => { 
+                if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox(); 
+            });
+        }
 
         document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('active')) return;
+            if (lightbox && !lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
             if (e.key === 'ArrowLeft') changeImage(-1);
             if (e.key === 'ArrowRight') changeImage(1);
@@ -341,88 +338,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (touchEndX - touchStartX > 50) changeImage(-1);
             }, {passive: true});
         }
-    }
-
-        let galleryHTML = '';
-
-        altTexts.forEach((desc, index) => {
-            const imgNumber = index + 1;
-            
-            // This logic mixes up the sizes automatically for a cool Masonry look!
-            let spanClass = '';
-            if (imgNumber % 7 === 1) spanClass = 'span-large'; // Every 7th is huge
-            else if (imgNumber % 5 === 0) spanClass = 'span-2-col'; // Every 5th is wide
-            else if (imgNumber % 11 === 0) spanClass = 'span-2-row'; // Every 11th is tall
-
-            // Generates the HTML for the image and the dark hover overlay
-            galleryHTML += `
-            <div class="collage-item ${spanClass}">
-                <img src="/gallery/gallery_${imgNumber}.webp" class="grid-img" loading="lazy" alt="${desc}" onerror="this.parentElement.style.display='none'">
-                <div class="gallery-overlay">
-                    <p>${desc}</p>
-                </div>
-            </div>`;
-        });
-
-        galleryGrid.innerHTML = galleryHTML;
-    }
-    /* =========================================
-       8. LIGHTBOX LOGIC (Gallery & Certificates)
-    ========================================= */
-    const lightbox = document.getElementById('lightbox-overlay');
-    const lightboxImg = document.getElementById('lightbox-img');
-    
-    if (lightbox && lightboxImg) {
-        let currentImageIndex = 0;
-        let imageArray = [];
-        setTimeout(() => {
-            const images = document.querySelectorAll('.grid-img, .cert-img');
-            if (images.length > 0) {
-                imageArray = Array.from(images).map(img => img.src);
-                images.forEach((img, index) => {
-                    img.onclick = null; 
-                    img.addEventListener('click', () => {
-                        currentImageIndex = index;
-                        lightboxImg.src = imageArray[currentImageIndex];
-                        lightbox.classList.add('show');
-                        document.body.style.overflow = 'hidden'; 
-                    });
-                });
-            }
-        }, 150);
-        
-        window.closeLightbox = function() {
-            lightbox.classList.remove('show');
-            document.body.style.overflow = 'auto';
-        };
-        window.changeImage = function(step, event) {
-            if(event) event.stopPropagation(); 
-            currentImageIndex += step;
-            if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
-            if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
-            lightboxImg.src = imageArray[currentImageIndex];
-        };
-        
-        lightbox.addEventListener('click', (e) => {
-            if(e.target === lightbox || e.target.classList.contains('lightbox-content')) {
-                window.closeLightbox();
-            }
-        });
-        
-        let touchStartX = 0; let touchEndX = 0;
-        lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-        lightbox.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) window.changeImage(1); 
-            if (touchEndX - touchStartX > 50) window.changeImage(-1); 
-        }, {passive: true});
-        
-        document.addEventListener('keydown', (e) => {
-            if (!lightbox.classList.contains('show')) return;
-            if (e.key === 'Escape') window.closeLightbox();
-            if (e.key === 'ArrowRight') window.changeImage(1);
-            if (e.key === 'ArrowLeft') window.changeImage(-1);
-        });
     }
 
     /* =========================================
@@ -455,10 +370,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     /* =========================================
-       10. PLAYBOOK INSTANT OPEN & GOOGLE SHEETS
+       10. PLAYBOOK LOGIC
     ========================================= */
     const playbookForm = document.getElementById('playbook-form');
-    
     if (playbookForm) {
         playbookForm.addEventListener('submit', function(e) {
             e.preventDefault(); 
@@ -498,7 +412,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================
-       11. ADVANCED MICRO-INTERACTIONS
+       11. MICRO-INTERACTIONS
     ========================================= */
     const progressContainer = document.createElement('div');
     progressContainer.className = 'scroll-progress-container';
@@ -513,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
         progressBar.style.width = scrolled + '%';
     });
 
-   const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card, .stat-box, .highlight-card');
+    const magneticCards = document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card, .stat-box, .highlight-card');
     magneticCards.forEach(card => {
         card.addEventListener('mousemove', (e) => {
             const rect = card.getBoundingClientRect();
@@ -673,17 +587,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const resetChatBtn = document.getElementById('resetChatBtn');
 
     if (openChatBtn && closeChatBtn && chatModal) {
-        // Open Modal
         openChatBtn.addEventListener('click', () => {
             chatModal.classList.add('show');
         });
 
-        // Close Modal via X button
         closeChatBtn.addEventListener('click', () => {
             chatModal.classList.remove('show');
         });
 
-        // Close Modal by clicking outside of it
         document.addEventListener('click', (e) => {
             if (chatModal.classList.contains('show')) {
                 if (!chatModal.contains(e.target) && !openChatBtn.contains(e.target)) {
@@ -701,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const userMsg = document.createElement('div');
         userMsg.className = 'chat-bubble user-bubble';
         userMsg.textContent = query;
-        chatLog.appendChild(userMsg);
+        if(chatLog) chatLog.appendChild(userMsg);
 
         setTimeout(() => {
             const aiMsg = document.createElement('div');
@@ -723,7 +634,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
             }
             
-            chatLog.appendChild(aiMsg);
+            if(chatLog) chatLog.appendChild(aiMsg);
             
             const chatArea = document.getElementById('chatArea');
             if (chatArea) {
@@ -734,7 +645,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (resetChatBtn) {
         resetChatBtn.addEventListener('click', () => {
-            chatLog.innerHTML = '';
+            if(chatLog) chatLog.innerHTML = '';
             if (chatGreeting) chatGreeting.style.display = 'block';
             if (chatOptions) chatOptions.style.display = 'grid';
             resetChatBtn.style.display = 'none';
@@ -744,7 +655,7 @@ document.addEventListener('DOMContentLoaded', () => {
 }); // END OF DOM CONTENT LOADED
 
 /* =========================================
-   16. GOOGLE ANALYTICS 4 INJECTION
+   16. GOOGLE ANALYTICS 4
 ========================================= */
 (function() {
   const GA_MEASUREMENT_ID = 'G-4QBSVPL8H6';
