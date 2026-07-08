@@ -738,10 +738,13 @@ body.dark-mode .reset-chat-btn:hover { background: #F1F5F9; color: #0F172A; }
     width: 100vw;
     margin-left: calc(-50vw + 50%); /* Forces full width even if parent is constrained */
     padding: 8rem 2rem;
-    background-color: #020617; /* Deep SaaS Dark Blue/Black */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-    background-size: 35px 35px;
+    
+    /* FIX: Blend seamlessly with your site's background instead of a harsh black box */
+    background: linear-gradient(to bottom, transparent, rgba(15, 23, 42, 0.4)); 
+    background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
     background-position: center center;
+    
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -753,26 +756,27 @@ body.dark-mode .reset-chat-btn:hover { background: #F1F5F9; color: #0F172A; }
 }
 
 body:not(.dark-mode) .final-cta-section {
-    background-color: #F8FAFC;
-    background-image: radial-gradient(rgba(0, 0, 0, 0.08) 1px, transparent 1px);
+    background: linear-gradient(to bottom, transparent, rgba(248, 250, 252, 0.8));
+    background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
     border-top: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* Massive Faded Watermark */
+/* Massive Faded Watermark - Scaled down so it fits! */
 .watermark-bg {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Syne', sans-serif;
-    font-size: 28vw;
+    font-size: 16vw; /* FIX: Reduced from 28vw so FRKR fits inside the box */
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.02);
+    color: rgba(255, 255, 255, 0.03); /* Slightly more visible */
     pointer-events: none;
     white-space: nowrap;
     user-select: none;
     z-index: 0;
-    letter-spacing: -0.05em;
+    letter-spacing: 0.02em;
 }
 
 body:not(.dark-mode) .watermark-bg { color: rgba(0, 0, 0, 0.03); }
@@ -782,7 +786,7 @@ body:not(.dark-mode) .watermark-bg { color: rgba(0, 0, 0, 0.03); }
     position: relative;
     z-index: 2;
     text-align: center;
-    margin-bottom: 4rem; /* Pushes the animated line below the content */
+    margin-bottom: 4rem; 
 }
 
 .final-cta-title {
@@ -824,13 +828,13 @@ body:not(.dark-mode) .final-cta-btn { background: #0F172A; color: #F8FAFC; }
 /* Horizontal Animated Meteor Line */
 .glowing-line-container {
     position: absolute;
-    bottom: 22%;
+    bottom: 20%; 
     width: 100%;
     max-width: 800px;
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     z-index: 2;
-    overflow: hidden; /* Clips the light when it reaches the edge */
+    overflow: hidden; 
 }
 
 body:not(.dark-mode) .glowing-line-container { background: rgba(0, 0, 0, 0.1); }
@@ -856,7 +860,7 @@ body:not(.dark-mode) .glowing-line-container { background: rgba(0, 0, 0, 0.1); }
 
 @media (max-width: 768px) {
     .final-cta-title { font-size: 2.5rem; }
-    .watermark-bg { font-size: 35vw; }
+    .watermark-bg { font-size: 24vw; } /* Scaled for mobile */
     .final-cta-section { padding: 5rem 1.5rem; }
     .glowing-line-container { width: 90%; }
 }
