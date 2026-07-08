@@ -776,19 +776,21 @@ body:not(.dark-mode) .final-cta-section {
 /* Massive Faded Watermark */
 .watermark-bg {
     position: absolute;
-    top: 50%;
+    top: 65%; /* ⬇️ Changed from 50% to move it down */
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Syne', sans-serif;
     font-size: 18vw; 
     font-weight: 900;
-    color: rgba(255, 255, 255, 0.02); 
+    color: rgba(255, 255, 255, 0.06); /* 🔆 Changed from 0.02 to 0.06 for higher opacity */
     pointer-events: none;
     white-space: nowrap;
     user-select: none;
     z-index: 0;
     letter-spacing: 0.02em;
 }
+
+body:not(.dark-mode) .watermark-bg { color: rgba(0, 0, 0, 0.06); /* 🔆 Increased opacity for Light Mode too */ }
 
 body:not(.dark-mode) .watermark-bg { color: rgba(0, 0, 0, 0.03); }
 
