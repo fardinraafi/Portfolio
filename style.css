@@ -917,4 +917,7 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
     .final-cta-title { font-size: 2.5rem; }
     .watermark-bg { font-size: 24vw; }
     .final-cta-section { padding: 6rem 1.5rem; }
+    /* Push the lines further out on mobile to give text breathing room */
+    .top-line { top: 12%; }
+    .bottom-line { bottom: 12%; }
 }
