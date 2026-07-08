@@ -13,23 +13,30 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* 🎨 PREMIUM MASONRY GALLERY LAYOUT 🎨 */
+        /* 🎨 DYNAMIC PINTEREST/MASONRY GRID 🎨 */
         .collage-grid {
-            column-count: 3;
-            column-gap: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-auto-rows: 280px; /* Base height for standard images */
+            gap: 1.5rem;
             padding: 1rem;
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
         }
 
+        /* The dynamic size classes */
+        .span-large { grid-column: span 2; grid-row: span 2; }
+        .span-2-col { grid-column: span 2; }
+        .span-2-row { grid-row: span 2; }
+
         .collage-item {
             position: relative;
             overflow: hidden;
             border-radius: 20px;
             cursor: pointer;
-            break-inside: avoid;
-            margin-bottom: 1.5rem;
+            height: 100%;
+            width: 100%;
             transform-style: preserve-3d;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 0 0 1px rgba(255,255,255,0.05);
             transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
@@ -38,7 +45,7 @@
 
         .grid-img {
             width: 100%;
-            height: auto;
+            height: 100%;
             object-fit: cover;
             display: block;
             border-radius: 20px;
@@ -86,7 +93,7 @@
         .collage-item:hover .gallery-overlay { opacity: 1; }
         .collage-item:hover .gallery-overlay p { transform: translateY(0); }
 
-        /* 🚀 THE 48TH CTA CARD (Fills the empty space perfectly!) 🚀 */
+        /* 🚀 THE 48TH CTA CARD 🚀 */
         .cta-card {
             background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1));
             border: 1px solid rgba(124,58,237,0.3);
@@ -96,7 +103,6 @@
             justify-content: center;
             padding: 3rem 2rem;
             text-align: center;
-            min-height: 300px;
             text-decoration: none;
             cursor: pointer;
             backdrop-filter: blur(10px);
@@ -154,10 +160,10 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: 0.02em;
         }
 
-        /* Mobile Adjustments */
-        @media (max-width: 900px) { .collage-grid { column-count: 2; } }
-        @media (max-width: 600px) {
-            .collage-grid { column-count: 1; padding: 0.5rem; }
+        /* Mobile Adjustments: Collapse grid down to 1 column on small screens so it doesn't break */
+        @media (max-width: 768px) {
+            .collage-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+            .span-large, .span-2-col, .span-2-row { grid-column: span 1; grid-row: span 1; height: 300px; }
             .lightbox-prev, .lightbox-next { display: none; }
             .lightbox-img { max-width: 100vw; max-height: 75vh; border-radius: 0; border: none; }
             .lightbox-caption { bottom: 20px; font-size: 0.9rem; padding: 12px 20px; width: 90%; }
@@ -200,7 +206,7 @@
     <header style="text-align: center; margin-bottom: 3rem;">
         <h1 class="gradient-text">Visual Highlights</h1>
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-            A curated collection of my creative direction, brand campaigns, and visual marketing assets.
+            A curated collection of my creative direction, campaigns, and Achievements.
         </p>
     </header>
 
@@ -232,7 +238,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
-        // ONLY 47 DESCRIPTIONS
+        // EXACTLY 47 DESCRIPTIONS
         const altTexts = [
             "BUBT Business Club Booth Incharge Duty 2025", "Rotaract Club Art Competition for Children", "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", "My design for Hult Prize BUBT 2024", "Rotary ILTS Training Participation", "Me with all my designs printed for BUBT Business Club Orientation 2023", "YSSE appreciation message", "Microsoft Agent X Launch ceremony photo", "YouthFest 2025 at BUBT - Campus Cleaning Project", "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", "It was salty", "Taking Interview of new members for BUBT Social Welfare Club, BUBT", "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", "Standing between my desings at BUBT Business Club Workshop", "Lead Academy Town Hall Meeting 2025", "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", "World Polio Day Rally Participation, Rotaract", "Rotaract Project - Flood rehabilitation", "World Polio Day Rally 2025", "Receiving Certificate of Membership from Rotarians", "With my media prize for excellence, BizzMasters Season 1", "Speech at Rotaract Conference", "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", "Leader of the Year 2024 prize from BASIS, BUBT", "TEDX Crest for Executive", "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", "With my teammates at TEDxUttara", "On Stage receiving Crest from the OC head Sumaiya Apu", "Hult Prize Crest alongside all my design work", "Won best speaker at - YSSE Speaking Competition", "Basis Leader of the year Card", "Booth work for BizzMasters S1, BUBT Business Club", "TEDxUttara announcement Card", "Volunteered for Polio Awareness, 2025", "Featuring in ILC Official Page", "Received Crest for Best Attendance at Rotary SPARK 2025", "Received Leader of the Year Award, BASIS, BUBT", "Volunteered for February Mother Language Day, Rotaract Club", "Volunteered for 21st February Mother Language Day, Rotaract Club", "Won the YSSE Presentation Competition", "Welcoming the New Rotary President 2025-26", "Leading the Polio Awareness Rally at Rotaract, 2023", "Won best Leader of the Week, YSSE", "Won Best Speaker, YSSE", "BASIS Leader of the Year Prize and Certification, 2023", "Workshop Management Duty, Creative IT, 2025"
         ];
@@ -241,9 +247,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         altTexts.forEach((desc, index) => {
             const imgNumber = index + 1;
-            // Generates the HTML for the image with Tilt Physics enabled
+            
+            // RE-ADDING THE MAGIC SPAN LOGIC FOR PINTEREST GRID
+            let spanClass = '';
+            if (imgNumber % 7 === 1) spanClass = 'span-large';
+            else if (imgNumber % 5 === 0) spanClass = 'span-2-col';
+            else if (imgNumber % 11 === 0) spanClass = 'span-2-row';
+
+            // Generates HTML with Tilt Physics enabled
             galleryHTML += `
-            <div class="collage-item" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="collage-item ${spanClass}" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <img src="/gallery/gallery_${imgNumber}.webp" class="grid-img" loading="lazy" alt="${desc}" onerror="this.parentElement.style.display='none'">
                 <div class="gallery-overlay">
                     <p>${desc}</p>
@@ -252,9 +265,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // 🚀 THE 48TH CTA CARD 🚀
-        // This acts as the 48th item to perfectly balance the 3-column grid
+        // Added 'span-2-col' so it fills empty horizontal space beautifully!
         galleryHTML += `
-        <a href="/contact.html" class="collage-item cta-card" data-tilt data-tilt-max="5" data-tilt-speed="400">
+        <a href="/contact.html" class="collage-item cta-card span-2-col" data-tilt data-tilt-max="5" data-tilt-speed="400">
             <h3>Have a project in mind?</h3>
             <p style="color: var(--text-muted); font-size: 0.95rem;">Let's create something amazing together.</p>
             <span class="btn btn-primary" style="margin-top: 1.5rem;">Let's Talk ➔</span>
