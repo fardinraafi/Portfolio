@@ -229,7 +229,86 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         certGrid.innerHTML = certsHTML;
     }
+/* =========================================
+       7.5 DYNAMIC GALLERY GENERATOR
+    ========================================= */
+    const galleryGrid = document.getElementById('gallery-grid');
+    if (galleryGrid) {
+        // Your 48 Custom Descriptions (Must be exactly 48)
+        const altTexts = [
+            "B2B Lead Generation Funnel Architecture", // 1
+            "FMCG Brand Refresh Campaign Mockup", // 2
+            "Apollo.io CRM Data Enrichment Workflow", // 3
+            "Creative Direction for Corporate Pitch Deck", // 4
+            "TEDx Event Stage & Lighting Design", // 5
+            "Cold Email Outreach Sequencing Flowchart", // 6
+            "Minimalist Social Media Carousel Design", // 7
+            "Salesforce Pipeline Dashboard UI/UX", // 8
+            "Vested Growth Marketing Strategy Framework", // 9
+            "Corporate Alumni Relations Event Highlights", // 10
+            "Digital Brand Identity & Logo Guidelines", // 11
+            "Product Launch Marketing Assets", // 12
+            "Data-Driven Conversion Rate Optimization", // 13
+            "Target Audience ICP Profiling Matrix", // 14
+            "B2B Campaign Performance Metrics", // 15
+            "Omnichannel Brand Communication Strategy", // 16
+            "ISCEA Global Case Competition Presentation", // 17
+            "Executive Leadership & Team Management", // 18
+            "Custom Vector Illustrations for Web", // 19
+            "High-Converting Landing Page Wireframe", // 20
+            "Lead Magnet PDF Playbook Design", // 21
+            "Instantly.ai Automated Campaign Setup", // 22
+            "Typography & Color Theory Exploration", // 23
+            "Event Sponsorship Proposal Deck", // 24
+            "Commercial Photography Art Direction", // 25
+            "Consumer Behavior Analysis Report", // 26
+            "LinkedIn Personal Branding Assets", // 27
+            "Client Acquisition Funnel Mapping", // 28
+            "Strategic Partnership Agreement Graphics", // 29
+            "Brand Roasting Marketing Case Study", // 30
+            "University Extracurricular Leadership", // 31
+            "BBA Marketing Thesis Presentation", // 32
+            "Sales Psychology Framework Diagram", // 33
+            "Interactive AI Chatbot UI Concept", // 34
+            "Organic Social Media Growth Timeline", // 35
+            "Print Advertising Billboards Concept", // 36
+            "Market Research Competitor Analysis", // 37
+            "Direct-to-Consumer (D2C) Packaging Design", // 38
+            "Corporate Networking Mixer Gallery", // 39
+            "Digital Marketing ROI Tracking Sheets", // 40
+            "Storytelling & Copywriting Framework", // 41
+            "Lusha Data Scraping Integrations", // 42
+            "Local Market Penetration Strategy", // 43
+            "Youth Leadership Bootcamp Workshop", // 44
+            "Visual Metaphors for Software Solutions", // 45
+            "Clay Automated Outreach Integrations", // 46
+            "Canva Pro Brand Kit Assets", // 47
+            "Final Project Portfolio Showcase" // 48
+        ];
 
+        let galleryHTML = '';
+
+        altTexts.forEach((desc, index) => {
+            const imgNumber = index + 1;
+            
+            // This logic mixes up the sizes automatically for a cool Masonry look!
+            let spanClass = '';
+            if (imgNumber % 7 === 1) spanClass = 'span-large'; // Every 7th is huge
+            else if (imgNumber % 5 === 0) spanClass = 'span-2-col'; // Every 5th is wide
+            else if (imgNumber % 11 === 0) spanClass = 'span-2-row'; // Every 11th is tall
+
+            // Generates the HTML for the image and the dark hover overlay
+            galleryHTML += `
+            <div class="collage-item ${spanClass}">
+                <img src="/gallery/gallery_${imgNumber}.webp" class="grid-img" loading="lazy" alt="${desc}" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-overlay">
+                    <p>${desc}</p>
+                </div>
+            </div>`;
+        });
+
+        galleryGrid.innerHTML = galleryHTML;
+    }
     /* =========================================
        8. LIGHTBOX LOGIC (Gallery & Certificates)
     ========================================= */
