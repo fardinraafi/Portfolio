@@ -236,54 +236,54 @@ document.addEventListener('DOMContentLoaded', () => {
     if (galleryGrid) {
         // Your 48 Custom Descriptions (Must be exactly 48)
         const altTexts = [
-            "B2B Lead Generation Funnel Architecture", // 1
-            "FMCG Brand Refresh Campaign Mockup", // 2
-            "Apollo.io CRM Data Enrichment Workflow", // 3
-            "Creative Direction for Corporate Pitch Deck", // 4
-            "TEDx Event Stage & Lighting Design", // 5
-            "Cold Email Outreach Sequencing Flowchart", // 6
-            "Minimalist Social Media Carousel Design", // 7
-            "Salesforce Pipeline Dashboard UI/UX", // 8
-            "Vested Growth Marketing Strategy Framework", // 9
-            "Corporate Alumni Relations Event Highlights", // 10
-            "Digital Brand Identity & Logo Guidelines", // 11
-            "Product Launch Marketing Assets", // 12
-            "Data-Driven Conversion Rate Optimization", // 13
-            "Target Audience ICP Profiling Matrix", // 14
-            "B2B Campaign Performance Metrics", // 15
-            "Omnichannel Brand Communication Strategy", // 16
-            "ISCEA Global Case Competition Presentation", // 17
-            "Executive Leadership & Team Management", // 18
-            "Custom Vector Illustrations for Web", // 19
-            "High-Converting Landing Page Wireframe", // 20
-            "Lead Magnet PDF Playbook Design", // 21
-            "Instantly.ai Automated Campaign Setup", // 22
-            "Typography & Color Theory Exploration", // 23
-            "Event Sponsorship Proposal Deck", // 24
-            "Commercial Photography Art Direction", // 25
-            "Consumer Behavior Analysis Report", // 26
-            "LinkedIn Personal Branding Assets", // 27
-            "Client Acquisition Funnel Mapping", // 28
-            "Strategic Partnership Agreement Graphics", // 29
-            "Brand Roasting Marketing Case Study", // 30
-            "University Extracurricular Leadership", // 31
-            "BBA Marketing Thesis Presentation", // 32
-            "Sales Psychology Framework Diagram", // 33
-            "Interactive AI Chatbot UI Concept", // 34
-            "Organic Social Media Growth Timeline", // 35
-            "Print Advertising Billboards Concept", // 36
-            "Market Research Competitor Analysis", // 37
-            "Direct-to-Consumer (D2C) Packaging Design", // 38
-            "Corporate Networking Mixer Gallery", // 39
-            "Digital Marketing ROI Tracking Sheets", // 40
-            "Storytelling & Copywriting Framework", // 41
-            "Lusha Data Scraping Integrations", // 42
-            "Local Market Penetration Strategy", // 43
-            "Youth Leadership Bootcamp Workshop", // 44
-            "Visual Metaphors for Software Solutions", // 45
-            "Clay Automated Outreach Integrations", // 46
-            "Canva Pro Brand Kit Assets", // 47
-            "Final Project Portfolio Showcase" // 48
+            "BUBT Business Club Booth Incharge Duty 2025", // 1
+            "Rotaract Club Art Competition for Children", // 2
+            "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", // 3
+            "My design for Hult Prize BUBT 2024", // 4
+            "Rotary ILTS Training Participation", // 5
+            "Me with all my designs printed for BUBT Business Club Orientation 2023", // 6
+            "YSSE appreciation message", // 7
+            "Microsoft Agent X Launch ceremony photo", // 8
+            "YouthFest 2025 at BUBT - Campus Cleaning Project", // 9
+            "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", // 10
+            "It was salty", // 11
+            "Taking Interview of new members for BUBT Social Welfare Club, BUBT", // 12
+            "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", // 13
+            "Standing between my desings at BUBT Business Club Workshop", // 14
+            "Lead Academy Town Hall Meeting 2025", // 15
+            "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", // 16
+            "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", // 17
+            "World Polio Day Rally Participation, Rotaract", // 18
+            "Rotaract Project - Flood rehabilitation", // 19
+            "World Polio Day Rally 2025", // 20
+            "Receiving Certificate of Membership from Rotarians", // 21
+            "With my media prize for excellence, BizzMasters Season 1", // 22
+            "Speech at Rotaract Conference", // 23
+            "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", // 24
+            "Leader of the Year 2024 prize from BASIS, BUBT", // 25
+            "TEDX Crest for Executive", // 26
+            "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", // 27
+            "With my teammates at TEDxUttara", // 28
+            "On Stage receiving Crest from the OC head Sumaiya Apu", // 29
+            "Hult Prize Crest alongside all my design work", // 30
+            "Won best speaker at - YSSE Speaking Competition", // 31
+            "Basis Leader of the year Card", // 32
+            "Booth work for BizzMasters S1, BUBT Business Club", // 33
+            "TEDxUttara announcement Card", // 34
+            "Volunteered for Polio Awareness, 2025", // 35
+            "Featuring in ILC Official Page", // 36
+            "Received Crest for Best Attendance at Rotary SPARK 2025", // 37
+            "Received Leader of the Year Award, BASIS, BUBT", // 38
+            "Volunteered for February Mother Language Day, Rotaract Club", // 39
+            "Volunteered for 21st February Mother Language Day, Rotaract Club", // 40
+            "Won the YSSE Presentation Competition", // 41
+            "Welcoming the New Rotary President 2025-26", // 42
+            "Leading the Polio Awareness Rally at Rotaract, 2023", // 43
+            "Won best Leader of the Week, YSSE", // 44
+            "Won Best Speaker, YSSE", // 45
+            "BASIS Leader of the Year Prize and Certification, 2023", // 46
+            "Workshop Management Duty, Creative IT, 2025", // 47
+            "" // 48
         ];
 
         let galleryHTML = '';
