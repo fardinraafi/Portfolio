@@ -1,5 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    // PRELOADER LOGIC (With Fail-Safe)
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        // Standard hide when everything loads
+        window.addEventListener('load', () => {
+            setTimeout(() => { preloader.classList.add('hide'); }, 600);
+        });
+        
+        // FAIL-SAFE: Force hide after 1.5 seconds even if images are slow!
+        setTimeout(() => {
+            preloader.classList.add('hide');
+        }, 1500);
+    }
     /* =========================================
        0. GLOBAL COMPONENT INJECTOR (Nav & Footer)
        This automatically pushes the menu to all pages!
