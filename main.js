@@ -191,63 +191,78 @@ document.addEventListener('DOMContentLoaded', () => {
         certGrid.innerHTML = certsHTML;
     }
 
-    /* =========================================
-       8. UNIVERSAL SMART LIGHTBOX (Certs & Leadership)
-       This brings back tapping for non-gallery images!
+   /* =========================================
+       8. GLOBAL LIGHTBOX (For Certificates & Volunteer pages)
     ========================================= */
-    document.addEventListener('click', (e) => {
-        // Detect if clicked element is a cert or volunteer image
-        if (e.target.matches('.cert-img') || e.target.matches('.vol-gallery img')) {
-            let lightbox = document.getElementById('smart-lightbox');
-            
-            // Generate the lightbox DOM dynamically if it doesn't exist
-            if (!lightbox) {
-                lightbox = document.createElement('div');
-                lightbox.id = 'smart-lightbox';
-                lightbox.innerHTML = `
-                    <div class="sl-backdrop"></div>
-                    <button class="sl-close">✕</button>
-                    <img class="sl-img" src="" alt="Zoomed View">
-                `;
-                
-                const style = document.createElement('style');
-                style.innerHTML = `
-                    #smart-lightbox { position: fixed; inset: 0; z-index: 999999; display: flex; align-items: center; justify-content: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
-                    #smart-lightbox.active { opacity: 1; visibility: visible; }
-                    .sl-backdrop { position: absolute; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); cursor: zoom-out; }
-                    .sl-img { position: relative; max-width: 90vw; max-height: 85vh; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.6); z-index: 2; transform: scale(0.9); opacity: 0; transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.4s ease; border: 1px solid rgba(255,255,255,0.05); object-fit: contain; }
-                    #smart-lightbox.active .sl-img { transform: scale(1); opacity: 1; }
-                    .sl-close { position: absolute; top: 30px; right: 40px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; width: 50px; height: 50px; border-radius: 50%; z-index: 3; cursor: pointer; font-size: 1.5rem; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(10px); display: flex; align-items: center; justify-content: center; }
-                    .sl-close:hover { background: rgba(239, 68, 68, 0.2); color: #FCA5A5; transform: rotate(90deg) scale(1.1); border-color: rgba(239, 68, 68, 0.4); }
-                    @media (max-width: 768px) { .sl-close { top: 15px; right: 15px; width: 40px; height: 40px; } .sl-img { max-width: 95vw; max-height: 75vh; border-radius: 0; border: none; } }
-                `;
-                document.head.appendChild(style);
-                document.body.appendChild(lightbox);
+    const lightbox = document.getElementById('lightbox-overlay');
+    const lightboxImg = document.getElementById('lightbox-img');
 
-                const closeSmartLightbox = () => { 
-                    lightbox.classList.remove('active'); 
-                    document.body.style.overflow = ''; 
-                };
-                
-                lightbox.querySelector('.sl-backdrop').addEventListener('click', closeSmartLightbox);
-                lightbox.querySelector('.sl-close').addEventListener('click', closeSmartLightbox);
-                document.addEventListener('keydown', (escEvent) => {
-                    if (escEvent.key === 'Escape' && lightbox.classList.contains('active')) closeSmartLightbox();
+    // Only run this if we are NOT on the gallery page (gallery has its own custom script)
+    if (lightbox && lightboxImg && !window.location.pathname.includes('gallery.html')) {
+        let currentImageIndex = 0;
+        let imageArray = [];
+
+        const initializeLightbox = () => {
+            // Target certificates and volunteer images specifically
+            const images = document.querySelectorAll('.cert-img, .vol-card .grid-img');
+            if (images.length > 0) {
+                imageArray = Array.from(images).map(img => img.src);
+                images.forEach((img, index) => {
+                    img.style.cursor = 'zoom-in';
+                    img.onclick = null; // Clear any old handlers
+                    img.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        currentImageIndex = index;
+                        lightboxImg.src = imageArray[currentImageIndex];
+                        lightbox.classList.add('show');
+                        document.body.style.overflow = 'hidden';
+                    });
                 });
             }
+        };
 
-            // Set the image and show
-            const slImg = lightbox.querySelector('.sl-img');
-            slImg.style.transform = 'scale(0.9)'; // Reset scale for animation
-            slImg.style.opacity = '0';
-            
-            slImg.src = e.target.src;
-            
-            lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Stop background scroll
-        }
-    });
+        // Initialize immediately, and again after a short delay (to catch the dynamic certs)
+        initializeLightbox();
+        setTimeout(initializeLightbox, 300);
 
+        // Global functions called by your HTML buttons (X, <, >)
+        window.closeLightbox = function() {
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.changeImage = function(step, event) {
+            if (event) event.stopPropagation();
+            currentImageIndex += step;
+            if (currentImageIndex < 0) currentImageIndex = imageArray.length - 1;
+            if (currentImageIndex >= imageArray.length) currentImageIndex = 0;
+            lightboxImg.src = imageArray[currentImageIndex];
+        };
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if(e.target === lightbox || e.target.classList.contains('lightbox-content')) {
+                window.closeLightbox();
+            }
+        });
+
+        // Touch Swipe support
+        let touchStartX = 0; let touchEndX = 0;
+        lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+        lightbox.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchStartX - touchEndX > 50) window.changeImage(1);
+            if (touchEndX - touchStartX > 50) window.changeImage(-1);
+        }, {passive: true});
+
+        // Keyboard arrow support
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('show')) return;
+            if (e.key === 'Escape') window.closeLightbox();
+            if (e.key === 'ArrowRight') window.changeImage(1);
+            if (e.key === 'ArrowLeft') window.changeImage(-1);
+        });
+    }
     /* =========================================
        9. SMOOTH PAGE TRANSITIONS
     ========================================= */
