@@ -230,61 +230,106 @@ document.addEventListener('DOMContentLoaded', () => {
         certGrid.innerHTML = certsHTML;
     }
 /* =========================================
-       7.5 DYNAMIC GALLERY GENERATOR
+       7.5 DYNAMIC GALLERY GENERATOR & LIGHTBOX ENGINE
     ========================================= */
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
         // Your 48 Custom Descriptions (Must be exactly 48)
         const altTexts = [
-            "BUBT Business Club Booth Incharge Duty 2025", // 1
-            "Rotaract Club Art Competition for Children", // 2
-            "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", // 3
-            "My design for Hult Prize BUBT 2024", // 4
-            "Rotary ILTS Training Participation", // 5
-            "Me with all my designs printed for BUBT Business Club Orientation 2023", // 6
-            "YSSE appreciation message", // 7
-            "Microsoft Agent X Launch ceremony photo", // 8
-            "YouthFest 2025 at BUBT - Campus Cleaning Project", // 9
-            "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", // 10
-            "It was salty", // 11
-            "Taking Interview of new members for BUBT Social Welfare Club, BUBT", // 12
-            "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", // 13
-            "Standing between my desings at BUBT Business Club Workshop", // 14
-            "Lead Academy Town Hall Meeting 2025", // 15
-            "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", // 16
-            "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", // 17
-            "World Polio Day Rally Participation, Rotaract", // 18
-            "Rotaract Project - Flood rehabilitation", // 19
-            "World Polio Day Rally 2025", // 20
-            "Receiving Certificate of Membership from Rotarians", // 21
-            "With my media prize for excellence, BizzMasters Season 1", // 22
-            "Speech at Rotaract Conference", // 23
-            "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", // 24
-            "Leader of the Year 2024 prize from BASIS, BUBT", // 25
-            "TEDX Crest for Executive", // 26
-            "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", // 27
-            "With my teammates at TEDxUttara", // 28
-            "On Stage receiving Crest from the OC head Sumaiya Apu", // 29
-            "Hult Prize Crest alongside all my design work", // 30
-            "Won best speaker at - YSSE Speaking Competition", // 31
-            "Basis Leader of the year Card", // 32
-            "Booth work for BizzMasters S1, BUBT Business Club", // 33
-            "TEDxUttara announcement Card", // 34
-            "Volunteered for Polio Awareness, 2025", // 35
-            "Featuring in ILC Official Page", // 36
-            "Received Crest for Best Attendance at Rotary SPARK 2025", // 37
-            "Received Leader of the Year Award, BASIS, BUBT", // 38
-            "Volunteered for February Mother Language Day, Rotaract Club", // 39
-            "Volunteered for 21st February Mother Language Day, Rotaract Club", // 40
-            "Won the YSSE Presentation Competition", // 41
-            "Welcoming the New Rotary President 2025-26", // 42
-            "Leading the Polio Awareness Rally at Rotaract, 2023", // 43
-            "Won best Leader of the Week, YSSE", // 44
-            "Won Best Speaker, YSSE", // 45
-            "BASIS Leader of the Year Prize and Certification, 2023", // 46
-            "Workshop Management Duty, Creative IT, 2025", // 47
-            "" // 48
+            "BUBT Business Club Booth Incharge Duty 2025", "Rotaract Club Art Competition for Children", "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", "My design for Hult Prize BUBT 2024", "Rotary ILTS Training Participation", "Me with all my designs printed for BUBT Business Club Orientation 2023", "YSSE appreciation message", "Microsoft Agent X Launch ceremony photo", "YouthFest 2025 at BUBT - Campus Cleaning Project", "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", "It was salty", "Taking Interview of new members for BUBT Social Welfare Club, BUBT", "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", "Standing between my desings at BUBT Business Club Workshop", "Lead Academy Town Hall Meeting 2025", "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", "World Polio Day Rally Participation, Rotaract", "Rotaract Project - Flood rehabilitation", "World Polio Day Rally 2025", "Receiving Certificate of Membership from Rotarians", "With my media prize for excellence, BizzMasters Season 1", "Speech at Rotaract Conference", "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", "Leader of the Year 2024 prize from BASIS, BUBT", "TEDX Crest for Executive", "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", "With my teammates at TEDxUttara", "On Stage receiving Crest from the OC head Sumaiya Apu", "Hult Prize Crest alongside all my design work", "Won best speaker at - YSSE Speaking Competition", "Basis Leader of the year Card", "Booth work for BizzMasters S1, BUBT Business Club", "TEDxUttara announcement Card", "Volunteered for Polio Awareness, 2025", "Featuring in ILC Official Page", "Received Crest for Best Attendance at Rotary SPARK 2025", "Received Leader of the Year Award, BASIS, BUBT", "Volunteered for February Mother Language Day, Rotaract Club", "Volunteered for 21st February Mother Language Day, Rotaract Club", "Won the YSSE Presentation Competition", "Welcoming the New Rotary President 2025-26", "Leading the Polio Awareness Rally at Rotaract, 2023", "Won best Leader of the Week, YSSE", "Won Best Speaker, YSSE", "BASIS Leader of the Year Prize and Certification, 2023", "Workshop Management Duty, Creative IT, 2025", ""
         ];
+
+        let galleryHTML = '';
+        altTexts.forEach((desc, index) => {
+            const imgNumber = index + 1;
+            let spanClass = '';
+            if (imgNumber % 7 === 1) spanClass = 'span-large';
+            else if (imgNumber % 5 === 0) spanClass = 'span-2-col';
+            else if (imgNumber % 11 === 0) spanClass = 'span-2-row';
+
+            galleryHTML += `
+            <div class="collage-item ${spanClass}">
+                <img src="/gallery/gallery_${imgNumber}.webp" class="grid-img" loading="lazy" alt="${desc}" onerror="this.parentElement.style.display='none'">
+                <div class="gallery-overlay">
+                    <p>${desc}</p>
+                </div>
+            </div>`;
+        });
+        galleryGrid.innerHTML = galleryHTML;
+
+        // --- NEW LIGHTBOX ENGINE LOGIC ---
+        const lightbox = document.getElementById('lightbox-overlay');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxCaption = document.getElementById('lightbox-caption');
+        
+        let imageList = [];
+        let currentIndex = 0;
+
+        galleryGrid.addEventListener('click', (e) => {
+            const item = e.target.closest('.collage-item');
+            if (!item) return;
+            
+            const currentImages = Array.from(document.querySelectorAll('.grid-img'));
+            imageList = currentImages.map(img => ({ src: img.src, alt: img.alt }));
+            
+            const clickedImg = item.querySelector('.grid-img');
+            currentIndex = imageList.findIndex(img => img.src === clickedImg.src);
+            
+            updateLightbox();
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function updateLightbox() {
+            if(imageList.length === 0) return;
+            lightboxImg.src = imageList[currentIndex].src;
+            lightboxCaption.textContent = imageList[currentIndex].alt;
+        }
+
+        function changeImage(step) {
+            if(imageList.length === 0) return;
+            currentIndex += step;
+            if (currentIndex < 0) currentIndex = imageList.length - 1;
+            if (currentIndex >= imageList.length) currentIndex = 0;
+            
+            lightboxImg.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                updateLightbox();
+                lightboxImg.style.transform = 'scale(1)';
+            }, 150);
+        }
+
+        const btnPrev = document.getElementById('lightbox-prev');
+        const btnNext = document.getElementById('lightbox-next');
+        const btnClose = document.getElementById('lightbox-close');
+
+        if(btnPrev) btnPrev.addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
+        if(btnNext) btnNext.addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
+        
+        const closeLightbox = () => { lightbox.classList.remove('active'); document.body.style.overflow = ''; };
+        if(btnClose) btnClose.addEventListener('click', closeLightbox);
+        
+        lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox(); });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') changeImage(-1);
+            if (e.key === 'ArrowRight') changeImage(1);
+        });
+
+        // Mobile Touch Swipe
+        let touchStartX = 0, touchEndX = 0;
+        const lightboxContent = document.getElementById('lightbox-content');
+        if(lightboxContent) {
+            lightboxContent.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
+            lightboxContent.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) changeImage(1); 
+                if (touchEndX - touchStartX > 50) changeImage(-1);
+            }, {passive: true});
+        }
+    }
 
         let galleryHTML = '';
 
