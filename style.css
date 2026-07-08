@@ -855,19 +855,19 @@ body:not(.dark-mode) .final-cta-btn { background: #0F172A; color: #F8FAFC; }
     left: 0;
     width: 100vw;
     height: 1px;
-    background: rgba(255, 255, 255, 0.05);
+    background: transparent; /* Removed the visible track line! */
     z-index: 2;
 }
 
 .top-line { top: 25%; }
 .bottom-line { bottom: 25%; }
 
-body:not(.dark-mode) .glowing-line-container { background: rgba(0, 0, 0, 0.05); }
+body:not(.dark-mode) .glowing-line-container { background: transparent; }
 
 .glowing-orb {
     position: absolute;
     top: -1px;
-    width: 300px; /* Longer tail */
+    width: 300px; 
     height: 2px;
     display: flex;
     align-items: center;
@@ -876,16 +876,16 @@ body:not(.dark-mode) .glowing-line-container { background: rgba(0, 0, 0, 0.05); 
 .orb-left-right {
     left: -300px;
     background: linear-gradient(90deg, transparent, var(--c1), #fff);
-    animation: meteorSweepLR 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    justify-content: flex-end; /* Puts the glowing head on the right */
+    animation: meteorSweepLR 10s linear infinite; /* Smooth, constant, slow speed */
+    justify-content: flex-end; 
 }
 
 .orb-right-left {
     right: -300px;
     background: linear-gradient(270deg, transparent, var(--c2), #fff);
-    animation: meteorSweepRL 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
-    animation-delay: 3s; /* Offset so they don't fire at the exact same time */
-    justify-content: flex-start; /* Puts the glowing head on the left */
+    animation: meteorSweepRL 10s linear infinite; /* Smooth, constant, slow speed */
+    /* Removed animation delay so they start at the exact same time */
+    justify-content: flex-start; 
 }
 
 /* The brilliant glowing circle at the head of the light */
@@ -900,18 +900,17 @@ body:not(.dark-mode) .glowing-line-container { background: rgba(0, 0, 0, 0.05); 
 
 @keyframes meteorSweepLR {
     0% { left: -300px; opacity: 0; }
-    10% { opacity: 1; }
-    80% { opacity: 1; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
     100% { left: 100vw; opacity: 0; }
 }
 
 @keyframes meteorSweepRL {
     0% { right: -300px; opacity: 0; }
-    10% { opacity: 1; }
-    80% { opacity: 1; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
     100% { right: 100vw; opacity: 0; }
 }
-
 @media (max-width: 768px) {
     .final-cta-title { font-size: 2.5rem; }
     .watermark-bg { font-size: 24vw; }
