@@ -14,61 +14,63 @@
     
     <style>
         /* Specific Styles for the Hover Overlay Gallery */
-        .collage-item {
-            position: relative;
-            overflow: hidden;
-            border-radius: 16px;
-            cursor: pointer;
-        }
+        .collage-item { position: relative; overflow: hidden; border-radius: 16px; cursor: pointer; }
+        .grid-img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; display: block; transition: transform 0.4s ease; }
         
-        .grid-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 16px;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-        
-        /* The Dark Overlay that sits invisible over the image */
         .gallery-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(15, 23, 42, 0.85); /* Deep dark blue fade */
-            backdrop-filter: blur(4px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-            text-align: center;
-            opacity: 0; /* Invisible by default */
-            transition: opacity 0.4s ease;
-            z-index: 2;
+            position: absolute; inset: 0; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(4px);
+            display: flex; align-items: center; justify-content: center; padding: 1.5rem; text-align: center;
+            opacity: 0; transition: opacity 0.4s ease; z-index: 2;
         }
+        .gallery-overlay p { color: #F8FAFC; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 1rem; line-height: 1.4; transform: translateY(20px); transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); margin: 0; }
         
-        /* The Text inside the overlay */
-        .gallery-overlay p {
-            color: #F8FAFC;
-            font-family: 'DM Sans', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            line-height: 1.4;
-            transform: translateY(20px); /* Starts slightly lower */
-            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            margin: 0;
+        .collage-item:hover .gallery-overlay { opacity: 1; }
+        .collage-item:hover .grid-img { transform: scale(1.05); }
+        .collage-item:hover .gallery-overlay p { transform: translateY(0); }
+
+        /* 🚀 STUNNING SWIPEABLE LIGHTBOX UI 🚀 */
+        .lightbox-overlay { 
+            position: fixed; inset: 0; background: rgba(10, 15, 30, 0.95); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
+            z-index: 99999; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            opacity: 0; visibility: hidden; transition: all 0.4s ease; 
         }
+        .lightbox-overlay.active { opacity: 1; visibility: visible; }
+        .lightbox-content { position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; touch-action: none; }
         
-        /* When user hovers over the container */
-        .collage-item:hover .gallery-overlay {
-            opacity: 1; /* Fade in the dark background */
+        .lightbox-img { 
+            max-width: 90vw; max-height: 80vh; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
+            object-fit: contain; transform: scale(0.9); transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
+            user-select: none; -webkit-user-drag: none;
         }
+        .lightbox-overlay.active .lightbox-img { transform: scale(1); }
         
-        .collage-item:hover .grid-img {
-            transform: scale(1.05); /* Slight zoom on image */
+        .lightbox-nav { 
+            position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); 
+            color: #fff; width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; cursor: pointer; transition: all 0.3s; backdrop-filter: blur(10px); z-index: 10;
         }
+        .lightbox-nav:hover { background: rgba(255,255,255,0.2); transform: translateY(-50%) scale(1.1); box-shadow: 0 0 20px rgba(255,255,255,0.2); }
+        .lightbox-prev { left: 30px; }
+        .lightbox-next { right: 30px; }
         
-        .collage-item:hover .gallery-overlay p {
-            transform: translateY(0); /* Slide text up into place */
+        .lightbox-close { 
+            position: absolute; top: 30px; right: 40px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); 
+            color: #fff; width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; 
+            font-size: 1.5rem; cursor: pointer; transition: all 0.3s; z-index: 100; backdrop-filter: blur(10px);
+        }
+        .lightbox-close:hover { background: rgba(255,255,255,0.2); transform: rotate(90deg) scale(1.1); color: var(--c1); }
+        
+        .lightbox-caption { 
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.6); 
+            padding: 12px 24px; border-radius: 100px; color: #fff; font-family: 'DM Sans', sans-serif; font-size: 1rem; 
+            font-weight: 600; backdrop-filter: blur(10px); text-align: center; max-width: 80%; border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .lightbox-prev, .lightbox-next { display: none; /* Hide buttons on mobile, rely on swipe */ }
+            .lightbox-img { max-width: 95vw; max-height: 70vh; }
+            .lightbox-caption { bottom: 20px; font-size: 0.85rem; padding: 10px 16px; width: 90%; }
+            .lightbox-close { top: 20px; right: 20px; width: 40px; height: 40px; }
         }
     </style>
 </head>
@@ -80,7 +82,28 @@
 
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
-<nav class="top-nav"></nav>
+<nav class="top-nav">
+    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+    <div class="nav-menu">
+        <a href="/index.html">Home</a>
+        <a href="/gallery.html" class="active">Gallery</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/certificates.html">Certificates</a>
+        <a href="/volunteer.html">Leadership</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+            <span class="theme-text text-dark">Dark</span>
+            <span class="theme-text text-light">Light</span>
+            <div class="theme-liquid-bubble">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+        </button>
+    </div>
+</nav>
 
 <div class="layout-wrapper single-column">
     <header style="text-align: center; margin-bottom: 3rem;">
@@ -94,15 +117,18 @@
 </div>
 
 <div id="lightbox-overlay" class="lightbox-overlay">
-    <div class="lightbox-content">
-        <button class="lightbox-close" onclick="window.closeLightbox()">×</button>
-        <button class="lightbox-nav lightbox-prev" onclick="window.changeImage(-1, event)">❮</button>
-        <img id="lightbox-img" class="lightbox-img" src="" alt="Full Screen Preview">
-        <button class="lightbox-nav lightbox-next" onclick="window.changeImage(1, event)">❯</button>
+    <button class="lightbox-close" id="lightbox-close">✕</button>
+    <div class="lightbox-content" id="lightbox-content">
+        <button class="lightbox-nav lightbox-prev" id="lightbox-prev">❮</button>
+        <img id="lightbox-img" class="lightbox-img" src="" alt="Preview">
+        <button class="lightbox-nav lightbox-next" id="lightbox-next">❯</button>
     </div>
+    <div id="lightbox-caption" class="lightbox-caption"></div>
 </div>
 
-<footer class="site-footer"></footer>
+<footer class="site-footer">
+    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+</footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
