@@ -921,3 +921,29 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
     .top-line { top: 12%; }
     .bottom-line { bottom: 12%; }
 }
+/* =========================================
+   19. CONTACT PAGE HERO BANNER
+========================================= */
+.contact-banner-wrapper {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%); /* Forces true edge-to-edge full width */
+    margin-top: 1rem; /* Gives a little breathing room under the nav */
+    margin-bottom: 3rem;
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.contact-banner-wrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+/* Make it invisible on mobile devices (tablets and phones) */
+@media (max-width: 900px) {
+    .contact-banner-wrapper {
+        display: none !important;
+    }
+}
