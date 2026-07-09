@@ -927,8 +927,8 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
 .contact-banner-wrapper {
     width: 100vw;
     margin-left: calc(-50vw + 50%); /* Forces true edge-to-edge full width */
-    margin-top: 1rem; /* Gives a little breathing room under the nav */
-    margin-bottom: 3rem;
+    margin-top: 0rem; /* Gives a little breathing room under the nav */
+    margin-bottom: 0rem;
     overflow: hidden;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
