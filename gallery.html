@@ -238,34 +238,80 @@
 document.addEventListener('DOMContentLoaded', () => {
     const galleryGrid = document.getElementById('gallery-grid');
     if (galleryGrid) {
-        // EXACTLY 47 DESCRIPTIONS
-        const altTexts = [
-            "BUBT Business Club Booth Incharge Duty 2025", "Rotaract Club Art Competition for Children", "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1", "My design for Hult Prize BUBT 2024", "Rotary ILTS Training Participation", "Me with all my designs printed for BUBT Business Club Orientation 2023", "YSSE appreciation message", "Microsoft Agent X Launch ceremony photo", "YouthFest 2025 at BUBT - Campus Cleaning Project", "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club", "It was salty", "Taking Interview of new members for BUBT Social Welfare Club, BUBT", "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT", "Standing between my desings at BUBT Business Club Workshop", "Lead Academy Town Hall Meeting 2025", "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic", "Welcoming Speech for New Volunteers at BUBT Social Welfare Club", "World Polio Day Rally Participation, Rotaract", "Rotaract Project - Flood rehabilitation", "World Polio Day Rally 2025", "Receiving Certificate of Membership from Rotarians", "With my media prize for excellence, BizzMasters Season 1", "Speech at Rotaract Conference", "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic", "Leader of the Year 2024 prize from BASIS, BUBT", "TEDX Crest for Executive", "Crest from Rotaract Club of Dhaka Udayan for Best Attendance", "With my teammates at TEDxUttara", "On Stage receiving Crest from the OC head Sumaiya Apu", "Hult Prize Crest alongside all my design work", "Won best speaker at - YSSE Speaking Competition", "Basis Leader of the year Card", "Booth work for BizzMasters S1, BUBT Business Club", "TEDxUttara announcement Card", "Volunteered for Polio Awareness, 2025", "Featuring in ILC Official Page", "Received Crest for Best Attendance at Rotary SPARK 2025", "Received Leader of the Year Award, BASIS, BUBT", "Volunteered for February Mother Language Day, Rotaract Club", "Volunteered for 21st February Mother Language Day, Rotaract Club", "Won the YSSE Presentation Competition", "Welcoming the New Rotary President 2025-26", "Leading the Polio Awareness Rally at Rotaract, 2023", "Won best Leader of the Week, YSSE", "Won Best Speaker, YSSE", "BASIS Leader of the Year Prize and Certification, 2023", "Workshop Management Duty, Creative IT, 2025"
+        
+        // 🚀 THE SMART ARRAY: Simply cut and paste these entire lines to change the order!
+        const galleryItems = [
+            { id: 39, text: "Volunteered for February Mother Language Day, Rotaract Club" },
+            { id: 1, text: "BUBT Business Club Booth Incharge Duty 2025" },
+            { id: 12, text: "Taking Interview of new members for BUBT Social Welfare Club, BUBT" },
+            { id: 3, text: "Receiving Crest for my Media Department, BUBT BC BizzMaster Season 1" },
+            { id: 4, text: "My design for Hult Prize BUBT 2024" },
+            { id: 26, text: "TEDX Crest for Executive" },
+            { id: 13, text: "My speech at Marketing Carnival Formally known as Ad Fiesta, Dept of Marketing, BUBT" },
+            { id: 5, text: "Rotary ILTS Training Participation" },
+            { id: 6, text: "Me with all my designs printed for BUBT Business Club Orientation 2023" },
+            { id: 7, text: "YSSE appreciation message" },
+            { id: 8, text: "Microsoft Agent X Launch ceremony photo" },
+            { id: 9, text: "YouthFest 2025 at BUBT - Campus Cleaning Project" },
+            { id: 10, text: "Winning Crest Photo for Media Department, Bizz Master Season 1, BUBT Business Club" },
+            { id: 11, text: "It was salty" },
+            { id: 21, text: "Receiving Certificate of Membership from Rotarians" },
+            { id: 2, text: "Rotaract Club Art Competition for Children" },
+            { id: 14, text: "Standing between my desings at BUBT Business Club Workshop" },
+            { id: 15, text: "Lead Academy Town Hall Meeting 2025" },
+            { id: 16, text: "Year Launching Meeting as Secretary of Rotaract Club of Dhaka Dynamic" },
+            { id: 17, text: "Welcoming Speech for New Volunteers at BUBT Social Welfare Club" },
+            { id: 18, text: "World Polio Day Rally Participation, Rotaract" },
+            { id: 19, text: "Rotaract Project - Flood rehabilitation" },
+            { id: 20, text: "World Polio Day Rally 2025" },
+            { id: 22, text: "With my media prize for excellence, BizzMasters Season 1" },
+            { id: 23, text: "Speech at Rotaract Conference" },
+            { id: 24, text: "I was the Program Chairman and Host of the General Meeting of Rotaract Club of Dhaka Dynamic" },
+            { id: 25, text: "Leader of the Year 2024 prize from BASIS, BUBT" },
+            { id: 27, text: "Crest from Rotaract Club of Dhaka Udayan for Best Attendance" },
+            { id: 28, text: "With my teammates at TEDxUttara" },
+            { id: 29, text: "On Stage receiving Crest from the OC head Sumaiya Apu" },
+            { id: 30, text: "Hult Prize Crest alongside all my design work" },
+            { id: 31, text: "Won best speaker at - YSSE Speaking Competition" },
+            { id: 32, text: "Basis Leader of the year Card" },
+            { id: 33, text: "Booth work for BizzMasters S1, BUBT Business Club" },
+            { id: 34, text: "TEDxUttara announcement Card" },
+            { id: 35, text: "Volunteered for Polio Awareness, 2025" },
+            { id: 36, text: "Featuring in ILC Official Page" },
+            { id: 37, text: "Received Crest for Best Attendance at Rotary SPARK 2025" },
+            { id: 38, text: "Received Leader of the Year Award, BASIS, BUBT" },
+            { id: 40, text: "Volunteered for 21st February Mother Language Day, Rotaract Club" },
+            { id: 41, text: "Won the YSSE Presentation Competition" },
+            { id: 42, text: "Welcoming the New Rotary President 2025-26" },
+            { id: 43, text: "Leading the Polio Awareness Rally at Rotaract, 2023" },
+            { id: 44, text: "Won best Leader of the Week, YSSE" },
+            { id: 45, text: "Won Best Speaker, YSSE" },
+            { id: 46, text: "BASIS Leader of the Year Prize and Certification, 2023" },
+            { id: 47, text: "Workshop Management Duty, Creative IT, 2025" }
         ];
 
         let galleryHTML = '';
 
-        altTexts.forEach((desc, index) => {
-            const imgNumber = index + 1;
+        galleryItems.forEach((item, index) => {
+            // The masonry grid needs to know its visual position to mix up the sizes correctly
+            const visualPosition = index + 1;
             
-            // RE-ADDING THE MAGIC SPAN LOGIC FOR PINTEREST GRID
             let spanClass = '';
-            if (imgNumber % 7 === 1) spanClass = 'span-large';
-            else if (imgNumber % 5 === 0) spanClass = 'span-2-col';
-            else if (imgNumber % 11 === 0) spanClass = 'span-2-row';
+            if (visualPosition % 7 === 1) spanClass = 'span-large';
+            else if (visualPosition % 5 === 0) spanClass = 'span-2-col';
+            else if (visualPosition % 11 === 0) spanClass = 'span-2-row';
 
-            // Generates HTML with Tilt Physics enabled
+            // Now pulling the specific image ID and specific text from the smart array
             galleryHTML += `
             <div class="collage-item ${spanClass}" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                <img src="/gallery/gallery_${imgNumber}.webp" class="grid-img" loading="lazy" alt="${desc}" onerror="this.parentElement.style.display='none'">
+                <img src="/gallery/gallery_${item.id}.webp" class="grid-img" loading="lazy" alt="${item.text}" onerror="this.parentElement.style.display='none'">
                 <div class="gallery-overlay">
-                    <p>${desc}</p>
+                    <p>${item.text}</p>
                 </div>
             </div>`;
         });
 
         // 🚀 THE 48TH CTA CARD 🚀
-        // Added 'span-2-col' so it fills empty horizontal space beautifully!
         galleryHTML += `
         <a href="/contact.html" class="collage-item cta-card span-2-col" data-tilt data-tilt-max="5" data-tilt-speed="400">
             <h3>Have a project in mind?</h3>
@@ -275,10 +321,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         galleryGrid.innerHTML = galleryHTML;
         
-        // Initialize Tilt on newly added items
         VanillaTilt.init(document.querySelectorAll(".collage-item"));
     }
-
     // --- SWIPEABLE LIGHTBOX LOGIC ---
     const lightbox = document.getElementById('lightbox-overlay');
     const lightboxImg = document.getElementById('lightbox-img');
