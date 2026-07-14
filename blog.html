@@ -51,6 +51,7 @@
         </button>
     </div>
 </nav>
+
 <div class="layout-wrapper single-column">
     <header style="text-align: center; margin-bottom: 2rem;">
         <h1 class="gradient-text">Thoughts & Insights</h1>
@@ -135,7 +136,8 @@
             </div>
         </a>
     </div>
-</div>
+</div> <!-- This missing div tag is what broke your layout! -->
+
 <!-- THE BLOG SIGN-OFF SECTION (GRID STYLE) -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
@@ -160,6 +162,17 @@
         </div>
     </div>
 </section>
+
+<!-- REBUILT FOOTER -->
+<footer class="site-footer reveal">
+    <div class="footer-glow"></div>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px; line-height: 1.6;">
+                Marketing professional passionate about brand communication, creative strategies, and growth leadership.
+            </p>
+        </div>
         <div class="footer-col">
             <h4>Quick Links</h4>
             <div class="footer-col-links">
