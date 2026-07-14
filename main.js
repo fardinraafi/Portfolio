@@ -177,16 +177,18 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     }
 
-    /* =========================================
+ /* =========================================
        7. DYNAMIC CERTIFICATES GENERATOR
     ========================================= */
     const certGrid = document.getElementById('cert-grid');
     if (certGrid) {
-        let certNumbers = Array.from({length: 40}, (_, i) => i + 1);
+        // Updated to 53 certificates
+        let certNumbers = Array.from({length: 53}, (_, i) => i + 1);
         certNumbers.sort(() => Math.random() - 0.5); 
         let certsHTML = '';
         certNumbers.forEach(c => {
-            certsHTML += `<img src="cert-${c}.jpg" class="cert-img" loading="lazy" style="cursor: zoom-in;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
+            // Updated to pull from the new 'certs/' folder
+            certsHTML += `<img src="certs/cert-${c}.jpg" class="cert-img" loading="lazy" style="cursor: zoom-in;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
         });
         certGrid.innerHTML = certsHTML;
     }
