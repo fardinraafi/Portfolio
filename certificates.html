@@ -18,7 +18,7 @@
             display: grid; 
             grid-template-columns: repeat(4, 1fr); 
             gap: 1.5rem; 
-            margin-bottom: 2rem; /* Reduced gap */
+            margin-bottom: 2rem;
         }
         .stat-box { 
             background: rgba(255, 255, 255, 0.85); 
@@ -27,13 +27,13 @@
             border-radius: 16px; 
             padding: 1.8rem 1rem; 
             text-align: center; 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), inset 0 2px 5px rgba(255, 255, 255, 0.5); /* 3D Effect */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05), inset 0 2px 5px rgba(255, 255, 255, 0.5); 
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         body.dark-mode .stat-box { 
             background: rgba(30, 41, 59, 0.6); 
             border-color: rgba(255, 255, 255, 0.1); 
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.05); /* 3D Dark Mode */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), inset 0 2px 5px rgba(255, 255, 255, 0.05); 
         }
         .stat-box:hover { 
             transform: translateY(-5px); 
@@ -46,9 +46,9 @@
         
         .stat-number { 
             font-family: 'Syne', sans-serif; 
-            font-size: 2.2rem; /* Made smaller */
+            font-size: 2.2rem; 
             font-weight: 800; 
-            background: linear-gradient(135deg, var(--c1), var(--c2)); /* Gradient Purple/Blue */
+            background: linear-gradient(135deg, var(--c1), var(--c2)); 
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 0.2rem; 
@@ -67,7 +67,7 @@
             text-align: center; 
             font-family: 'Syne', sans-serif; 
             font-size: 2rem; 
-            margin-bottom: 1.5rem; /* Reduced gap */
+            margin-bottom: 1.5rem; 
             color: var(--text-main); 
         }
         body.dark-mode .highlights-title { color: #F1F5F9; }
@@ -75,7 +75,7 @@
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
             gap: 1.5rem; 
-            margin-bottom: 3.5rem; /* Reduced gap */
+            margin-bottom: 3.5rem;
         }
         .highlight-card { display: flex; align-items: flex-start; gap: 1rem; background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 16px; padding: 1.5rem; transition: transform 0.3s, box-shadow 0.3s; }
         body.dark-mode .highlight-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
@@ -90,15 +90,19 @@
             .highlights-grid { grid-template-columns: 1fr; }
         }
 
-        /* 🚀 THE NEURAL CANVAS BACKGROUND OVERRIDE */
+        /* 🚀 Z-INDEX ARCHITECTURE FIX */
+        .layout-wrapper {
+            position: relative;
+            z-index: 2; /* Forces all content, including dynamic images, above the canvas */
+        }
         #neural-canvas {
             position: fixed; 
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* The sweet spot: above the background, behind the text */
-            pointer-events: none; /* Allows clicks to pass through to your buttons! */
+            z-index: 0; /* Stays safely in the background */
+            pointer-events: none; 
         }
     </style>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -160,7 +164,7 @@
     <h2 class="highlights-title">Key Highlights</h2>
     <div class="highlights-grid">
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/C4E0BAQH3BCCd-0PGng/company-logo_200_200/company-logo_200_200/0/1630624368505?e=1784160000&v=beta&t=WLPhadQOB_AHBg87y2ID2X1zpeFhIPG1UO3G3QMjx-k" class="highlight-logo" alt="Google Logo">
+            <img src="https://logo.clearbit.com/google.com" class="highlight-logo" alt="Google Logo" onerror="this.src='https://ui-avatars.com/api/?name=Google&background=fff&color=000&size=100'">
             <div class="highlight-info">
                 <h3>Fundamentals of Digital Marketing</h3>
                 <p>Google Digital Academy (Skillshop)</p>
@@ -168,7 +172,7 @@
         </div>
         
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQEiJuZw0yQVmQ/company-logo_200_200/company-logo_200_200/0/1730236540145/santa_clara_university_logo?e=1784160000&v=beta&t=bqkT9i_mp-sFUJ3s3knJrVeqcevH2u6x7ea6g8mJVs8" class="highlight-logo" alt="Santa Clara University Logo">
+            <img src="https://logo.clearbit.com/scu.edu" class="highlight-logo" alt="Santa Clara University Logo" onerror="this.src='https://ui-avatars.com/api/?name=SCU&background=fff&color=000&size=100'">
             <div class="highlight-info">
                 <h3>Growing a Business 2025-2026</h3>
                 <p>Santa Clara University MOBI</p>
@@ -176,7 +180,7 @@
         </div>
 
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQGYVX7lfZRN4A/company-logo_200_200/company-logo_200_200/0/1729053377913?e=1784160000&v=beta&t=iY-mssLAqIaqJbHq6iTL65zOIehLxDsiv3fXaYUOZLQ" class="highlight-logo" alt="PsyCoach Logo">
+            <img src="https://ui-avatars.com/api/?name=PsyCoach&background=fff&color=2563EB&bold=true&size=100" class="highlight-logo" alt="PsyCoach Logo">
             <div class="highlight-info">
                 <h3>Outreach Campaign Participant</h3>
                 <p>PsyCoach Bangladesh</p>
@@ -184,7 +188,7 @@
         </div>
 
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQHBXN9c4l10cA/company-logo_200_200/B56ZzV3mhkIkAI-/0/1773114649308/creativeitinstitute_logo?e=1784160000&v=beta&t=eFr1t2IvjyU497bbJECx58pXeaf_T4sUSBkwZip336A" class="highlight-logo" alt="Creative IT Logo">
+            <img src="https://logo.clearbit.com/creativeitinstitute.com" class="highlight-logo" alt="Creative IT Logo" onerror="this.src='https://ui-avatars.com/api/?name=Creative+IT&background=fff&color=000&size=100'">
             <div class="highlight-info">
                 <h3>Organizer - AI Revolution in Digital Marketing</h3>
                 <p>Creative IT Institute</p>
@@ -192,7 +196,7 @@
         </div>
 
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQEOCEuK8mCXKQ/company-logo_200_200/company-logo_200_200/0/1709372762993?e=1784160000&v=beta&t=gKRFv185alaqS0BMeBNrpzWRFeFg-2KxzFRc7wd08Dg" class="highlight-logo" alt="BASIS Logo">
+            <img src="https://logo.clearbit.com/basis.org.bd" class="highlight-logo" alt="BASIS Logo" onerror="this.src='https://ui-avatars.com/api/?name=BASIS&background=fff&color=000&size=100'">
             <div class="highlight-info">
                 <h3>BASIS Leader Of The Year 2024</h3>
                 <p>BASIS Students' Forum</p>
@@ -200,7 +204,7 @@
         </div>
 
         <div class="highlight-card">
-            <img src="https://media.licdn.com/dms/image/v2/D560BAQFGt4XAU9bF5w/company-logo_200_200/company-logo_200_200/0/1719518128249/hubspot_academy_logo?e=1784160000&v=beta&t=wdUzfD8cXTUtg5LFuXNInKXKN15KbYt7_UY_bzVsgSo" class="highlight-logo" alt="HubSpot Logo">
+            <img src="https://logo.clearbit.com/hubspot.com" class="highlight-logo" alt="HubSpot Logo" onerror="this.src='https://ui-avatars.com/api/?name=HubSpot&background=fff&color=000&size=100'">
             <div class="highlight-info">
                 <h3>HubSpot Revenue Operations Certified</h3>
                 <p>HubSpot Academy</p>
