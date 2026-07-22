@@ -93,7 +93,7 @@
         .collage-item:hover .gallery-overlay { opacity: 1; }
         .collage-item:hover .gallery-overlay p { transform: translateY(0); }
 
-        /* 🚀 THE 48TH CTA CARD 🚀 */
+        /* 🚀 THE CTA CARD 🚀 */
         .cta-card {
             background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1));
             border: 1px solid rgba(124,58,237,0.3);
@@ -160,14 +160,27 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: 0.02em;
         }
 
-        /* Mobile Adjustments: Collapse grid down to 1 column on small screens so it doesn't break */
+        /* 📱 BULLETPROOF MOBILE OPTIMIZATION 📱 */
         @media (max-width: 768px) {
-            .collage-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-            .span-large, .span-2-col, .span-2-row { grid-column: span 1; grid-row: span 1; height: 300px; }
+            .collage-grid { 
+                grid-template-columns: 1fr !important; /* Forces a clean single column */
+                grid-auto-rows: 300px !important; /* Rigid height so images NEVER squish */
+                gap: 1.5rem !important; 
+                padding: 1rem !important;
+            }
+            
+            /* Overrides the dynamic spans so they behave nicely in a 1-column stack */
+            .collage-item, .span-large, .span-2-col, .span-2-row { 
+                grid-column: span 1 !important; 
+                grid-row: span 1 !important; 
+                height: 300px !important; 
+                width: 100% !important;
+            }
+            
             .lightbox-prev, .lightbox-next { display: none; }
-            .lightbox-img { max-width: 100vw; max-height: 75vh; border-radius: 0; border: none; }
+            .lightbox-img { max-width: 95vw !important; max-height: 75vh !important; border-radius: 12px; border: none; }
             .lightbox-caption { bottom: 20px; font-size: 0.9rem; padding: 12px 20px; width: 90%; }
-            .lightbox-close { top: 15px; right: 15px; width: 40px; height: 40px; }
+            .lightbox-close { top: 15px; right: 15px; width: 40px; height: 40px; font-size: 1.5rem;}
         }
     </style>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -289,13 +302,12 @@ document.addEventListener('DOMContentLoaded', () => {
             { id: 44, text: "Won best Leader of the Week, YSSE" },
             { id: 47, text: "Workshop Management Duty, Creative IT, 2025" },
             { id: 46, text: "BASIS Leader of the Year Prize and Certification, 2023" },
-            { id: 45, text: "Won Best Speaker, YSSE" },
+            { id: 45, text: "Won Best Speaker, YSSE" }
         ];
 
         let galleryHTML = '';
 
         galleryItems.forEach((item, index) => {
-            // The masonry grid needs to know its visual position to mix up the sizes correctly
             const visualPosition = index + 1;
             
             let spanClass = '';
@@ -303,7 +315,6 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (visualPosition % 5 === 0) spanClass = 'span-2-col';
             else if (visualPosition % 11 === 0) spanClass = 'span-2-row';
 
-            // Now pulling the specific image ID and specific text from the smart array
             galleryHTML += `
             <div class="collage-item ${spanClass}" data-tilt data-tilt-max="5" data-tilt-speed="400">
                 <img src="/gallery/gallery_${item.id}.webp" class="grid-img" loading="lazy" alt="${item.text}" onerror="this.parentElement.style.display='none'">
@@ -313,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>`;
         });
 
-        // 🚀 THE 48TH CTA CARD 🚀
+        // 🚀 THE CTA CARD 🚀
         galleryHTML += `
         <a href="/contact.html" class="collage-item cta-card span-2-col" data-tilt data-tilt-max="5" data-tilt-speed="400">
             <h3>Have a project in mind?</h3>
@@ -336,10 +347,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if(galleryGrid && lightbox) {
         galleryGrid.addEventListener('click', (e) => {
             const item = e.target.closest('.collage-item');
-            // Prevent Lightbox from opening if they clicked the CTA Card!
             if (!item || item.classList.contains('cta-card')) return;
             
-            // Gather all currently visible images for the swipe loop
             const currentImages = Array.from(document.querySelectorAll('.grid-img')).filter(img => img.parentElement.style.display !== 'none');
             imageList = currentImages.map(img => ({ src: img.src, alt: img.alt }));
             
@@ -348,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             updateLightbox();
             lightbox.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
+            document.body.style.overflow = 'hidden';
         });
 
         function updateLightbox() {
@@ -361,7 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 lightboxCaption.textContent = imageList[currentIndex].alt;
                 lightboxImg.style.opacity = '1';
                 lightboxImg.style.transform = 'scale(1)';
-            }, 200); // Smooth crossfade delay
+            }, 200);
         }
 
         function changeImage(step) {
@@ -372,16 +381,13 @@ document.addEventListener('DOMContentLoaded', () => {
             updateLightbox();
         }
 
-        // Button Controls
         document.getElementById('lightbox-prev').addEventListener('click', (e) => { e.stopPropagation(); changeImage(-1); });
         document.getElementById('lightbox-next').addEventListener('click', (e) => { e.stopPropagation(); changeImage(1); });
         
-        // Close controls
         const closeLightbox = () => { lightbox.classList.remove('active'); document.body.style.overflow = ''; };
         document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
         lightbox.addEventListener('click', (e) => { if (e.target === lightbox || e.target.classList.contains('lightbox-content')) closeLightbox(); });
 
-        // Keyboard controls
         document.addEventListener('keydown', (e) => {
             if (!lightbox.classList.contains('active')) return;
             if (e.key === 'Escape') closeLightbox();
@@ -389,15 +395,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowRight') changeImage(1);
         });
 
-        // Mobile Touch Swipe controls
         let touchStartX = 0, touchEndX = 0;
         const lightboxContent = document.getElementById('lightbox-content');
         
         lightboxContent.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
         lightboxContent.addEventListener('touchend', e => {
             touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) changeImage(1); // Swipe Left
-            if (touchEndX - touchStartX > 50) changeImage(-1); // Swipe Right
+            if (touchStartX - touchEndX > 50) changeImage(1);
+            if (touchEndX - touchStartX > 50) changeImage(-1);
         }, {passive: true});
     }
 });
