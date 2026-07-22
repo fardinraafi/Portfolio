@@ -160,7 +160,7 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.5); letter-spacing: 0.02em;
         }
 
-      /* 📱 BULLETPROOF MOBILE OPTIMIZATION 📱 */
+  /* 📱 BULLETPROOF MOBILE OPTIMIZATION 📱 */
         @media (max-width: 768px) {
             .collage-grid { 
                 grid-template-columns: repeat(2, 1fr) !important; /* 2 photos per row */
@@ -169,7 +169,7 @@
                 padding: 0.5rem !important;
             }
             
-            /* Overrides the dynamic spans so they fit neatly in the 2-column stack */
+            /* Overrides the dynamic spans so photos fit neatly in the 2-column stack */
             .collage-item, .span-large, .span-2-col, .span-2-row { 
                 grid-column: span 1 !important; 
                 grid-row: span 1 !important; 
@@ -177,15 +177,20 @@
                 width: 100% !important;
             }
 
-            /* Shrink the text so it fits perfectly inside the smaller mobile boxes */
+            /* Shrink the overlay text so it fits inside the photo squares */
             .gallery-overlay { padding: 0.5rem; }
             .gallery-overlay p { font-size: 0.75rem; line-height: 1.2; }
             
-            /* Make the CTA card fit the new smaller size */
-            .cta-card { padding: 1.5rem 1rem; }
-            .cta-card h3 { font-size: 1.1rem; margin-bottom: 0.5rem; }
-            .cta-card p { font-size: 0.7rem; }
-            .cta-card .btn { font-size: 0.75rem; padding: 6px 12px; margin-top: 0.5rem; }
+            /* 🚀 FIX: Give the CTA Card full width so it doesn't get chopped! */
+            .cta-card { 
+                grid-column: span 2 !important; /* Stretches across both columns */
+                height: auto !important; /* Allows the box to expand to fit the content */
+                min-height: 160px;
+                padding: 2rem 1rem !important; 
+            }
+            .cta-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+            .cta-card p { font-size: 0.85rem; }
+            .cta-card .btn { font-size: 0.85rem; padding: 8px 16px; margin-top: 0.8rem; }
             
             /* Lightbox mobile adjustments */
             .lightbox-prev, .lightbox-next { display: none; }
