@@ -239,18 +239,23 @@
     </div>
 </div>
 
-<!-- EPIC CALENDLY SECTION -->
+<!-- EPIC CALENDLY POPUP SECTION -->
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+
 <div class="calendly-section-wrapper reveal">
-    <div class="calendly-header">
-        <h2>Skip the Inbox. <span class="gradient-text">Book Directly.</span></h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem;">Lock in a time for a 1-on-1 strategy call.</p>
-    </div>
-    
-    <div class="calendly-glass-container">
-        <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/fardinraafi?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0f172a&text_color=f1f5f9&primary_color=2563eb" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+    <div class="calendly-glass-container" style="max-width: 800px; margin: 0 auto; padding: 4rem 2rem; text-align: center;">
+        <div class="calendly-header" style="margin-bottom: 2rem;">
+            <h2 style="font-size: 3.2rem;">Skip the Inbox.<br><span class="gradient-text">Book Directly.</span></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 500px; margin: 1rem auto 0;">
+                Bypass the back-and-forth emails. Click below to pull up my live calendar and lock in a 1-on-1 strategy call instantly.
+            </p>
+        </div>
+        
+        <!-- The Magic Popup Button -->
+        <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/fardinraafi'});return false;" class="btn-primary" style="display: inline-flex; align-items: center; justify-content: center; padding: 18px 48px; font-size: 1.15rem; font-weight: 800; border-radius: 100px; text-decoration: none; box-shadow: 0 10px 30px rgba(37, 99, 235, 0.4); cursor: pointer; transition: all 0.3s ease;">
+            🗓️ Schedule Strategy Call
+        </a>
     </div>
 </div>
 
