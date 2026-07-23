@@ -502,6 +502,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resetChatBtn.style.display = 'none';
         });
     }
+}); // <--- THIS WAS THE MISSING BRACKET!
 
 /* =========================================
    16. GOOGLE ANALYTICS 4
