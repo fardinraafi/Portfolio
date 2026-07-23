@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     const twText = document.getElementById('tw-text');
     if (twText) {
-        const words = ['Marketing Specialist', 'Growth Associate', 'B2B Strategist', 'Branding Expert', 'ALP 2026 Fellow'];
+        const words = ['Marketing Specialist', 'Content Architect', 'Growth Associate', 'B2B Strategist', 'Branding Expert', 'ALP 2026 Fellow', 'SaaS Marketer', 'RevOps Certified', 'B2B Sales Expert', 'Lead Gen Specialist', 'LinkedIn Strategist'];
         let i = 0, j = 0, isDeleting = false;
         function type() {
             const currentWord = words[i];
@@ -420,7 +420,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, { passive: true });
     }
 
-    /* =========================================
+ /* =========================================
        15. 🤖 FIFI CHATBOT LOGIC
     ========================================= */
     const openChatBtn = document.getElementById('openChatBtn'), closeChatBtn = document.getElementById('closeChatBtn'), chatModal = document.getElementById('chatModal');
@@ -437,21 +437,61 @@ document.addEventListener('DOMContentLoaded', () => {
         if (chatOptions) chatOptions.style.display = 'none';
         if (resetChatBtn) resetChatBtn.style.display = 'block';
 
-        const userMsg = document.createElement('div'); userMsg.className = 'chat-bubble user-bubble'; userMsg.textContent = query;
-        if(chatLog) chatLog.appendChild(userMsg);
+        const chatArea = document.getElementById('chatArea');
 
+        // 1. Immediately drop the user's question into the chat
+        const userMsg = document.createElement('div'); 
+        userMsg.className = 'chat-bubble user-bubble'; 
+        userMsg.textContent = query;
+        if(chatLog) chatLog.appendChild(userMsg);
+        if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+
+        // 2. Random Loading Phrases for Fifi
+        const loadingPhrases = [
+            "Let me check on that...", 
+            "Hold on a second...", 
+            "Fetching the details...", 
+            "Just a moment...",
+            "Pulling that up for you..."
+        ];
+        const randomLoadingText = loadingPhrases[Math.floor(Math.random() * loadingPhrases.length)];
+
+        // 3. Drop Fifi's Loading Bubble into the chat
+        const aiLoadingMsg = document.createElement('div'); 
+        aiLoadingMsg.className = 'chat-bubble ai-bubble';
+        aiLoadingMsg.innerHTML = `<span style="opacity: 0.6; font-style: italic; display: flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="animation: spin 2s linear infinite;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> 
+            ${randomLoadingText}
+        </span>`;
+        
+        // Add a quick spin animation for the loading SVG just for this bubble
+        const style = document.createElement('style');
+        style.innerHTML = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+
+        if(chatLog) chatLog.appendChild(aiLoadingMsg);
+        if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+
+        // 4. Wait a second, remove the loading bubble, and drop the real answer
         setTimeout(() => {
-            const aiMsg = document.createElement('div'); aiMsg.className = 'chat-bubble ai-bubble';
+            if (aiLoadingMsg.parentNode) aiLoadingMsg.parentNode.removeChild(aiLoadingMsg);
+
+            const aiMsg = document.createElement('div'); 
+            aiMsg.className = 'chat-bubble ai-bubble';
+            
             if (query.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>B2B Lead Generation</strong>, CRM management (Salesforce, Apollo.io), and Brand Strategy.';
-            else if (query.includes('B2B')) aiMsg.innerHTML = 'He currently works at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
+            else if (query.includes('B2B')) aiMsg.innerHTML = 'He has <strong>five years of professional experience specifically focused on B2B sales at Augmedix</strong>. Currently, he works as a Growth Associate at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
             else if (query.includes('contact')) aiMsg.innerHTML = 'You can reach him directly through his <a href="/contact.html" style="color: var(--c1); font-weight: bold;">Contact Page</a>.';
             else if (query.includes('Resume')) aiMsg.innerHTML = 'You can view and download his full resume on his <a href="/resume.html" style="color: var(--c1); font-weight: bold;">Resume Page</a>.';
             else if (query.includes('academics')) aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with an excellent CGPA of 3.80.';
             else if (query.includes('extracurriculars')) aiMsg.innerHTML = 'He has extensive leadership experience! Check out his <a href="/volunteer.html" style="color: var(--c1); font-weight: bold;">Leadership & Extracurriculars page</a> to learn more.';
             else aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
             
-            if(chatLog) { chatLog.appendChild(aiMsg); const chatArea = document.getElementById('chatArea'); if (chatArea) chatArea.scrollTop = chatArea.scrollHeight; }
-        }, 600); 
+            if(chatLog) { 
+                chatLog.appendChild(aiMsg); 
+                if (chatArea) chatArea.scrollTop = chatArea.scrollHeight; 
+            }
+        }, 1200); // Wait 1.2 seconds to simulate typing/thinking
     };
 
     if (resetChatBtn) {
@@ -462,7 +502,6 @@ document.addEventListener('DOMContentLoaded', () => {
             resetChatBtn.style.display = 'none';
         });
     }
-}); // END DOM CONTENT LOADED
 
 /* =========================================
    16. GOOGLE ANALYTICS 4
