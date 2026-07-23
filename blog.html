@@ -13,9 +13,40 @@
     <!-- Link to the central CSS file -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Vercel Analytics Script (Moved here to the proper Head section!) -->
+    <!-- Vercel Analytics Script -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
+
+    <style>
+        /* 2-Column Blog Grid Override */
+        .blog-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 2rem;
+        }
+        
+        /* Stacks into 1 column on mobile phones so it stays readable */
+        @media (max-width: 800px) {
+            .blog-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
+        .layout-wrapper {
+            position: relative;
+            z-index: 2; /* Forces all content above the canvas */
+        }
+        #neural-canvas {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; /* Stays safely in the background */
+            pointer-events: none; 
+        }
+    </style>
 </head>
 <body class="dark-mode">
     <script>
@@ -24,6 +55,9 @@
             document.body.classList.remove('dark-mode');
         }
     </script>
+
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
 
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 <div class="glass-parallax-container">
@@ -62,21 +96,6 @@
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
             Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.
         </p>
-        <!-- 2-Column Blog Grid Override -->
-    <style>
-        .blog-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 2rem;
-        }
-        
-        /* Stacks into 1 column on mobile phones so it stays readable */
-        @media (max-width: 800px) {
-            .blog-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
-    </style>
     </header>
 
     <div class="blog-grid">
@@ -96,7 +115,7 @@
             <div class="blog-card-content">
                 <div class="blog-date">Career Advice</div>
                 <h2 class="blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
-                <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে ওয়েবসাইটে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+                <p class="blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে ওয়েবসাইটে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
             </div>
         </a>
 
@@ -214,6 +233,125 @@
 
 <!-- Link to the central JavaScript file -->
 <script src="/main.js"></script>
+
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 9000; 
+            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
 
 </body>
 </html>
