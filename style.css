@@ -562,6 +562,7 @@ body:not(.dark-mode) .edu-logo img { opacity: 0.9; }
     
     /* Hides the new logos on mobile so they don't squish the screen */
     .et-logo { display: none !important; } 
+   .edu-logo { display: none !important; }
 }
 /* =========================================
    SMOOTH PAGE TRANSITIONS (APP FEEL)
