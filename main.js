@@ -426,12 +426,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const openChatBtn = document.getElementById('openChatBtn'), closeChatBtn = document.getElementById('closeChatBtn'), chatModal = document.getElementById('chatModal');
     const chatGreeting = document.getElementById('chatGreeting'), chatOptions = document.getElementById('chatOptions'), chatLog = document.getElementById('chatLog'), resetChatBtn = document.getElementById('resetChatBtn');
 
-    if (openChatBtn && closeChatBtn && chatModal) {
-        openChatBtn.addEventListener('click', () => chatModal.classList.add('show'));
+   if (openChatBtn && closeChatBtn && chatModal) {
+        // Now it toggles open and closed when you click the Fifi button!
+        openChatBtn.addEventListener('click', () => chatModal.classList.toggle('show'));
         closeChatBtn.addEventListener('click', () => chatModal.classList.remove('show'));
-        document.addEventListener('click', (e) => { if (chatModal.classList.contains('show') && !chatModal.contains(e.target) && !openChatBtn.contains(e.target)) chatModal.classList.remove('show'); });
+        // We added a tiny delay to the outside click detector so it doesn't instantly fight the toggle button
+        document.addEventListener('click', (e) => { 
+            if (chatModal.classList.contains('show') && !chatModal.contains(e.target) && !openChatBtn.contains(e.target)) {
+                chatModal.classList.remove('show'); 
+            }
+        });
     }
-
     window.sendQuery = function(query) {
         if (chatGreeting) chatGreeting.style.display = 'none';
         if (chatOptions) chatOptions.style.display = 'none';
