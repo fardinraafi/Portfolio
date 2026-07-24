@@ -429,34 +429,44 @@ body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.4); border-color: r
     pointer-events: none;
     z-index: 0;
 }
+
+/* Base Image Setup (Rotation removed from here) */
 .et-logo img {
-    width: 350px; /* Makes the logo massive */
-    max-width: none; /* Prevents global image shrinking */
-    transform: rotate(90deg); /* Flips the logo to read top-to-bottom facing the line */
+    width: 350px; 
+    max-width: none; 
     transform-origin: center center;
-    opacity: 0.95; /* Makes it bright and visible */
+    opacity: 0.95; 
     filter: grayscale(100%) brightness(200%);
 }
 body:not(.dark-mode) .et-logo img { filter: invert(1) grayscale(100%); opacity: 0.8; }
 
-/* Push the logo to the EMPTY opposite side of the timeline */
+/* ODD ITEMS: Text on Left, Logo on Right */
 .et-item:nth-child(odd) .et-logo {
     left: 100%; 
     justify-content: flex-start;
-    padding-left: 2rem; /* Pulled slightly closer to the timeline */
-    transform: translateX(-40px); 
+    padding-left: 2rem;
+    transform: translateX(-40px); /* Starts inward, slides Right */
 }
+.et-item:nth-child(odd) .et-logo img {
+    transform: rotate(90deg); /* Faces the timeline */
+}
+
+/* EVEN ITEMS: Text on Right, Logo on Left */
 .et-item:nth-child(even) .et-logo {
     right: 100%; 
     justify-content: flex-end;
-    padding-right: 2rem; /* Pulled slightly closer to the timeline */
-    transform: translateX(-40px); 
+    padding-right: 2rem;
+    transform: translateX(40px); /* Starts inward, slides Left */
 }
+.et-item:nth-child(even) .et-logo img {
+    transform: rotate(-90deg); /* Faces opposite timeline */
+}
+
+/* The Animate-In Trigger */
 .et-item.animate-in .et-logo {
     opacity: 1;
     transform: translateX(0); 
 }
-
 /* =========================================
    📱 MOBILE OPTIMIZATION MASTER-FIX 📱
 ========================================= */
