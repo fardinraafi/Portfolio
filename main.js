@@ -484,8 +484,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const aiMsg = document.createElement('div'); 
             aiMsg.className = 'chat-bubble ai-bubble';
             
-            if (query.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>B2B Lead Generation</strong>, CRM management (Salesforce, Apollo.io), and Brand Strategy.';
-            else if (query.includes('B2B')) aiMsg.innerHTML = 'He has <strong>five years of professional experience specifically focused on B2B sales at Augmedix</strong>. Currently, he works as a Growth Associate at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
+            if (query.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>Brand Strategy</strong>, CRM management (Salesforce, Apollo.io), and B2B Lead Generation.';
+            else if (query.includes('B2B')) aiMsg.innerHTML = 'He has <strong>one years of professional experience specifically focused on B2B sales and Marketinf at Augmex</strong>. Currently, he works as a Marketing Executive at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
             else if (query.includes('contact')) aiMsg.innerHTML = 'You can reach him directly through his <a href="/contact.html" style="color: var(--c1); font-weight: bold;">Contact Page</a>.';
             else if (query.includes('Resume')) aiMsg.innerHTML = 'You can view and download his full resume on his <a href="/resume.html" style="color: var(--c1); font-weight: bold;">Resume Page</a>.';
             else if (query.includes('academics')) aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with an excellent CGPA of 3.80.';
