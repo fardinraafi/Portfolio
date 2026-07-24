@@ -483,7 +483,7 @@ body:not(.dark-mode) .et-logo img { filter: invert(1) grayscale(100%); opacity: 
 
 /* Base Image Setup (No Rotation) */
 .edu-logo img {
-    width: 150px; /* Kept to a clean, realistic size for crests/seals */
+    width: 220px; /* Increased from 150px to make them much more prominent */
     max-width: none; 
     object-fit: contain;
     opacity: 0.85; 
@@ -494,16 +494,16 @@ body:not(.dark-mode) .edu-logo img { opacity: 0.9; }
 .et-item:nth-child(odd) .edu-logo {
     left: 100%; 
     justify-content: flex-start;
-    padding-left: 3rem;
-    transform: translateY(40px); /* Starts low for the fade-up effect */
+    padding-left: 6rem; /* Increased from 3rem to push it further from the line */
+    transform: translateY(40px);
 }
 
 /* EVEN ITEMS: Text on Right, Logo on Left */
 .et-item:nth-child(even) .edu-logo {
     right: 100%; 
     justify-content: flex-end;
-    padding-right: 3rem;
-    transform: translateY(40px); /* Starts low for the fade-up effect */
+    padding-right: 6rem; /* Increased from 3rem to push it further from the line */
+    transform: translateY(40px);
 }
 
 /* The Animate-In Trigger (Fades Up) */
