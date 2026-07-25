@@ -191,23 +191,15 @@
             </div>
             <h2 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Marketing Professional</p>
-            
-            <div class="section-title">Core Stack</div>
-            <div class="skill-tags">
-                <span class="tag">Marketing Enthusiast</span>
-                <span class="tag">B2B</span>
-                <span class="tag">Branding Expert</span>
-                <span class="tag">FMCG</span>
-                <span class="tag">Research</span>
-            </div>
-            
-            <div class="map-widget">
-                <div class="pin">📍</div>
-                <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M75,20 C60,35 45,50 40,70 C30,90 35,110 40,125 C45,145 55,160 70,165 C90,170 100,175 110,180 C125,185 135,180 145,165 C150,180 155,200 160,215 C165,215 170,205 165,185 C170,165 180,145 175,120 C170,95 180,80 165,65 C150,55 135,70 120,65 C105,55 95,45 85,25 Z" fill="rgba(37,99,235,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
-                </svg>
-                <div style="font-size: 0.8rem; font-weight: 600;">Mirpur 10, Dhaka</div>
-                <div id="local-time" style="font-size: 0.75rem; opacity: 0.8;">--:--</div>
+      <!-- UPGRADED 3D GLOBE WIDGET -->
+            <div class="globe-widget">
+                <canvas id="cobe-canvas" style="width: 100%; height: 100%; object-fit: contain;"></canvas>
+                <div class="globe-overlay">
+                    <div class="globe-label">LOCAL TIME</div>
+                    <div class="globe-time-wrapper">
+                        <span id="globe-time">--:--</span><span id="globe-ampm"></span>
+                    </div>
+                </div>
             </div>
         </div>
     </aside>
