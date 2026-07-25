@@ -155,15 +155,66 @@ document.addEventListener('DOMContentLoaded', () => {
         type();
     }
 
-    /* =========================================
-       4. LOCAL TIME WIDGET
+  /* =========================================
+       4. 3D GLOBE WIDGET & LOCAL TIME
     ========================================= */
-    const localTimeEl = document.getElementById('local-time');
-    if (localTimeEl) {
-        function updateTime() {
-            localTimeEl.textContent = new Date().toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit' });
+    const globeCanvas = document.getElementById('cobe-canvas');
+    if (globeCanvas) {
+        // 1. Live Time Logic (Forces Asia/Dhaka Timezone)
+        const timeEl = document.getElementById('globe-time');
+        const ampmEl = document.getElementById('globe-ampm');
+
+        function updateGlobeTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', hour12: true });
+            const [time, ampm] = timeString.split(' ');
+            if (timeEl) timeEl.textContent = time;
+            if (ampmEl) ampmEl.textContent = ampm;
         }
-        setInterval(updateTime, 1000); updateTime();
+        setInterval(updateGlobeTime, 1000); updateGlobeTime();
+
+        // 2. 3D Globe Logic (Using COBE)
+        let phi = 0;
+        let isDarkMode = document.body.classList.contains('dark-mode');
+        
+        // Dynamic colors matching your theme
+        const darkBase = [0.04, 0.06, 0.11]; // Deep SaaS dark blue
+        const lightBase = [0.94, 0.96, 0.98]; // Light mode slate
+        const markerColor = [1, 1, 1]; // Bright white pin for Bangladesh
+
+        import('https://cdn.skypack.dev/cobe').then(({ default: createGlobe }) => {
+            const globe = createGlobe(globeCanvas, {
+                devicePixelRatio: 2,
+                width: 600, // Render resolution (keeps it sharp)
+                height: 600,
+                phi: 0,
+                theta: 0.15, // Slight tilt to display the northern hemisphere
+                dark: isDarkMode ? 1 : 0,
+                diffuse: 1.2,
+                mapSamples: 16000, // High density dots
+                mapBrightness: 6,
+                baseColor: isDarkMode ? darkBase : lightBase,
+                markerColor: markerColor,
+                glowColor: isDarkMode ? [0.1, 0.15, 0.3] : [0.8, 0.8, 0.8], // Atmospheric glow
+                markers: [
+                    { location: [23.8103, 90.4125], size: 0.08 } // Exact Coordinates for Dhaka
+                ],
+                onRender: (state) => {
+                    // Smooth infinite rotation
+                    state.phi = phi;
+                    phi += 0.003; 
+                    
+                    // Seamlessly updates if you click the Dark/Light mode toggle!
+                    const currentDark = document.body.classList.contains('dark-mode');
+                    if (currentDark !== isDarkMode) {
+                        isDarkMode = currentDark;
+                        state.dark = isDarkMode ? 1 : 0;
+                        state.baseColor = isDarkMode ? darkBase : lightBase;
+                        state.glowColor = isDarkMode ? [0.1, 0.15, 0.3] : [0.8, 0.8, 0.8];
+                    }
+                },
+            });
+        });
     }
 
     /* =========================================
