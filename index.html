@@ -200,15 +200,16 @@
                 <span class="tag">FMCG</span>
             </div>
             
-      <!-- UPGRADED 3D GLOBE WIDGET -->
-            <div class="globe-widget">
-                <canvas id="cobe-canvas" style="width: 100%; height: 100%; object-fit: contain;"></canvas>
-                <div class="globe-overlay">
-                    <div class="globe-label">LOCAL TIME</div>
-                    <div class="globe-time-wrapper">
-                        <span id="globe-time">--:--</span><span id="globe-ampm"></span>
-                    </div>
+<!-- CLEAN DIGITAL CLOCK WIDGET -->
+            <div class="clock-widget">
+                <div class="clock-header">
+                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
                 </div>
+                <div class="clock-time">
+                    <span id="digital-hour-min">--:--</span>
+                    <span id="digital-ampm" class="ampm-text"></span>
+                </div>
+                <div class="clock-date" id="digital-date">Loading...</div>
             </div>
         </div>
     </aside>
@@ -740,57 +741,6 @@
         animate();
     }
 </script>
-<!-- DEDICATED GLOBE & TIME SCRIPT -->
-<script type="module">
-    import createGlobe from 'https://cdn.skypack.dev/cobe';
 
-    const canvas = document.getElementById("cobe-canvas");
-    if (canvas) {
-        // 1. Globe Render Logic
-        let phi = 0;
-        createGlobe(canvas, {
-            devicePixelRatio: 2,
-            width: 800, // Fixed high-res size so it never renders at 0px
-            height: 800,
-            phi: 0,
-            theta: 0.15,
-            dark: 1, 
-            diffuse: 1.2,
-            mapSamples: 16000,
-            mapBrightness: 6,
-            baseColor: [0.04, 0.06, 0.11],
-            markerColor: [1, 1, 1], // Pure white pin for Dhaka
-            glowColor: [0.1, 0.15, 0.3],
-            markers: [
-                { location: [23.8103, 90.4125], size: 0.08 } // Exact Coordinates for Dhaka
-            ],
-            onRender: (state) => {
-                // Smooth rotation
-                state.phi = phi;
-                phi += 0.003; 
-                
-                // Live theme checking
-                const isDark = document.body.classList.contains('dark-mode');
-                state.dark = isDark ? 1 : 0;
-                state.baseColor = isDark ? [0.04, 0.06, 0.11] : [0.94, 0.96, 0.98];
-                state.glowColor = isDark ? [0.1, 0.15, 0.3] : [0.8, 0.8, 0.8];
-            }
-        });
-
-        // 2. Live Time Logic
-        const timeEl = document.getElementById('globe-time');
-        const ampmEl = document.getElementById('globe-ampm');
-
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('en-US', { timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', hour12: true });
-            const [time, ampm] = timeString.split(' ');
-            if (timeEl) timeEl.textContent = time;
-            if (ampmEl) ampmEl.textContent = ampm;
-        }
-        setInterval(updateTime, 1000); 
-        updateTime();
-    }
-</script>
 </body>
 </html>
