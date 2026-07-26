@@ -191,71 +191,74 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 }
 .tag:hover { background: var(--c1); color: #FFF; border-color: var(--c1); transform: translateY(-2px); }
 /* =========================================
-   3D GLOBE & TIME WIDGET
+   DIGITAL CLOCK WIDGET
 ========================================= */
-.globe-widget {
-    background: #0A0F1C; /* Sleek dark aesthetic from your screenshot */
-    border-radius: 16px; 
-    position: relative; 
-    overflow: hidden; 
-    margin-top: 1rem; 
-    aspect-ratio: 1 / 1; /* Keeps it perfectly square */
+.clock-widget {
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    padding: 2rem 1.5rem;
+    margin-top: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+body:not(.dark-mode) .clock-widget {
+    background: rgba(255, 255, 255, 0.6);
+    border-color: rgba(0, 0, 0, 0.05);
+}
+
+.clock-header {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 8px;
 }
 
-/* Adjusts background for light mode */
-body:not(.dark-mode) .globe-widget {
-    background: #F1F5F9;
-    border-color: rgba(0,0,0,0.05);
+.pulse-dot-small {
+    width: 6px;
+    height: 6px;
+    background-color: #10B981;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
+    animation: pulseSmall 2s infinite;
 }
 
-#cobe-canvas {
-    width: 100%; 
-    height: 100%;
-    cursor: grab;
-}
-#cobe-canvas:active { cursor: grabbing; }
-
-.globe-overlay {
-    position: absolute;
-    bottom: 1.5rem;
-    left: 1.5rem;
-    pointer-events: none; /* Lets clicks pass through to drag the globe */
-    text-align: left;
-    z-index: 2;
+@keyframes pulseSmall {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.5); opacity: 0; }
 }
 
-.globe-label {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: #64748B;
-    letter-spacing: 0.1em;
-    margin-bottom: 2px;
-}
-
-.globe-time-wrapper {
+.clock-time {
     font-family: 'Syne', sans-serif;
-    color: #F8FAFC;
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-}
-body:not(.dark-mode) .globe-time-wrapper { color: #0F172A; }
-
-#globe-time {
     font-size: 3rem;
     font-weight: 800;
+    color: var(--text-main);
     line-height: 1;
+    margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 }
 
-#globe-ampm {
+.ampm-text {
     font-size: 1.2rem;
     font-weight: 700;
+    color: var(--c1); /* Adds a pop of your primary brand color */
+    margin-left: 4px;
+}
+
+.clock-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
 }
 .content-feed { display: flex; flex-direction: column; gap: 2rem; min-width: 0; }
 .typewriter { 
