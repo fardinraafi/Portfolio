@@ -513,3 +513,40 @@ document.addEventListener('contextmenu', event => event.preventDefault());
 document.addEventListener('keydown', (e) => {
     if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) || ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u'))) e.preventDefault();
 });
+/* =========================================
+   4. DIGITAL CLOCK WIDGET
+========================================= */
+const hourMinEl = document.getElementById('digital-hour-min');
+const ampmEl = document.getElementById('digital-ampm');
+const dateEl = document.getElementById('digital-date');
+
+if (hourMinEl && ampmEl && dateEl) {
+    function updateClock() {
+        const now = new Date();
+        
+        // Format Time (e.g., 05:50)
+        const timeString = now.toLocaleTimeString('en-US', { 
+            timeZone: 'Asia/Dhaka', 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            hour12: true 
+        });
+        const [time, ampm] = timeString.split(' ');
+        
+        // Format Date (e.g., Sunday, July 26)
+        const dateString = now.toLocaleDateString('en-US', { 
+            timeZone: 'Asia/Dhaka', 
+            weekday: 'long', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+
+        hourMinEl.textContent = time;
+        ampmEl.textContent = ampm;
+        dateEl.textContent = dateString;
+    }
+    
+    // Update the clock every second
+    setInterval(updateClock, 1000);
+    updateClock(); // Run immediately on load
+}
