@@ -824,26 +824,28 @@ body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.4); border-color: r
     /* Removed the grayscale filter completely! */
 }
 body:not(.dark-mode) .et-logo img { opacity: 1; }
-/* Text on Right, Logo on Left */
+/* ODD ITEMS: Text on Left, Logo on Right */
 .et-item:nth-child(odd) .et-logo {
-    right: 100%; 
-    justify-content: flex-end;
-    padding-right: 2rem;
-    transform: translateX(40px);
-}
-.et-item:nth-child(odd) .et-logo img {
-    transform: rotate(-90deg);
-}
-/* Text on Left, Logo on Right */
-.et-item:nth-child(even) .et-logo {
     left: 100%; 
     justify-content: flex-start;
     padding-left: 2rem;
-    transform: translateX(-40px);
+    transform: translateX(-40px); /* Starts inward, slides Right */
+}
+.et-item:nth-child(odd) .et-logo img {
+    transform: rotate(90deg); /* Faces the timeline */
+}
+
+/* EVEN ITEMS: Text on Right, Logo on Left */
+.et-item:nth-child(even) .et-logo {
+    right: 100%; 
+    justify-content: flex-end;
+    padding-right: 2rem;
+    transform: translateX(40px); /* Starts inward, slides Left */
 }
 .et-item:nth-child(even) .et-logo img {
-    transform: rotate(90deg);
+    transform: rotate(-90deg); /* Faces opposite timeline */
 }
+
 /* The Animate-In Trigger */
 .et-item.animate-in .et-logo {
     opacity: 1;
