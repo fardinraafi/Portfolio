@@ -362,16 +362,103 @@ body:not(.dark-mode) .clock-widget {
 .doc-link h3 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--c1); }
 .doc-link p { font-size: 0.85rem; color: var(--text-muted); }
 
-.timeline-item { position: relative; padding-left: 1.5rem; margin-bottom: 2rem; border-left: 2px solid rgba(124,58,237,0.2); }
-.timeline-item::before { 
-    content: ''; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; 
-    background: var(--c2); border-radius: 50%; box-shadow: 0 0 0 4px rgba(124,58,237,0.1); 
+/* =========================================
+   INTERACTIVE TIMELINE (EXPERIENCE & EDU)
+========================================= */
+/* Focus effect: Dims other items when one is hovered */
+.glass-card:has(.timeline-item:hover) .timeline-item:not(:hover) {
+    opacity: 0.4;
+    filter: grayscale(80%);
 }
-.timeline-item h3 { font-size: 1.1rem; font-weight: 700; color: var(--text-main); }
-.timeline-item .meta { font-size: 0.85rem; color: var(--c1); font-weight: 600; margin-bottom: 0.5rem; }
-.timeline-item ul { padding-left: 1rem; color: var(--text-muted); font-size: 0.95rem; list-style-type: none; }
-.timeline-item li { margin-bottom: 0.5rem; position: relative; }
-.timeline-item li::before { content: '•'; position: absolute; left: -1rem; color: var(--c1); font-weight: bold; }
+
+.timeline-item { 
+    position: relative; 
+    padding-left: 2rem; 
+    margin-bottom: 2.5rem; 
+    border-left: 2px solid rgba(124,58,237,0.15); 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* The Timeline Node */
+.timeline-item::before { 
+    content: ''; 
+    position: absolute; 
+    left: -7px; 
+    top: 0; 
+    width: 12px; 
+    height: 12px; 
+    background: var(--bg-page); 
+    border: 2px solid var(--c2);
+    border-radius: 50%; 
+    box-shadow: 0 0 0 4px rgba(124,58,237,0.1); 
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* Hover Magic: Node Glows & Track Highlights */
+.timeline-item:hover {
+    border-left-color: var(--c1);
+    transform: translateX(8px);
+}
+
+.timeline-item:hover::before {
+    background: var(--c1);
+    border-color: var(--c1);
+    box-shadow: 0 0 15px var(--c1), 0 0 0 6px rgba(37,99,235,0.2);
+    transform: scale(1.3);
+}
+
+.timeline-item h3 { 
+    font-size: 1.15rem; 
+    font-weight: 800; 
+    color: var(--text-main); 
+    transition: color 0.3s ease;
+}
+
+.timeline-item:hover h3 {
+    color: var(--c1);
+}
+
+.timeline-item .meta { 
+    font-size: 0.85rem; 
+    color: var(--c2); 
+    font-weight: 700; 
+    margin-bottom: 0.8rem; 
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.timeline-item ul { 
+    padding-left: 0; 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    list-style-type: none; 
+}
+
+.timeline-item li { 
+    margin-bottom: 0.6rem; 
+    position: relative; 
+    padding-left: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+/* Custom sleek arrow instead of standard bullet */
+.timeline-item li::before { 
+    content: '▹'; 
+    position: absolute; 
+    left: 0; 
+    color: var(--c1); 
+    font-weight: bold; 
+    font-size: 1.1rem;
+    transition: transform 0.3s ease;
+}
+
+.timeline-item:hover li {
+    transform: translateX(4px);
+}
+
+.timeline-item:hover li::before {
+    transform: scale(1.2);
+}
 
 .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
 .metric-card { 
