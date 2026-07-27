@@ -246,8 +246,44 @@ h1 { font-family: 'Syne', sans-serif; font-size: 2.8rem; font-weight: 800; line-
 }
 .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; box-shadow: 0 4px 15px rgba(37,99,235,0.3); }
 .btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
-.btn-outline { background: rgba(255,255,255,0.8); color: var(--text-main); border: 1px solid var(--text-light); }
-.btn-outline:hover { border-color: var(--c1); color: var(--c1); }
+/* Sleek Liquid Sweep for Outline Buttons (LinkedIn, QR Code, etc.) */
+.btn-outline { 
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: transparent !important;
+    color: var(--text-main) !important; 
+    border: 1px solid var(--text-light) !important; 
+    transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+body.dark-mode .btn-outline { 
+    border-color: rgba(255, 255, 255, 0.3) !important; 
+    color: #F8FAFC !important; 
+}
+
+.btn-outline::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 0%; 
+    height: 100%;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.btn-outline:hover::before {
+    width: 100%;
+}
+
+.btn-outline:hover { 
+    color: #fff !important; 
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+    transform: translateY(-3px); 
+    border-color: transparent !important; 
+}
 
 /* =========================================
    COMPONENTS (INDEX PAGE)
