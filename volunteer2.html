@@ -116,16 +116,17 @@
         .et-item { width: 50%; position: relative; margin-bottom: 3.5rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .et-item.animate-in { opacity: 1; transform: translateY(0); }
         
-        .et-item:nth-child(odd) { left: 0; padding-right: 3rem; }
-        .et-item:nth-child(even) { left: 50%; padding-left: 3rem; }
+      /* FLIPPED TIMELINE: 1st item goes to the Right, 2nd goes to Left */
+        .et-item:nth-of-type(odd) { left: 50%; padding-left: 3rem; padding-right: 0; }
+        .et-item:nth-of-type(even) { left: 0; padding-right: 3rem; padding-left: 0; }
         
         .et-dot { 
             position: absolute; top: 1.5rem; width: 24px; height: 24px; background: var(--bg-page); 
             border: 4px solid var(--c1); border-radius: 50%; z-index: 2; box-shadow: 0 0 0 rgba(37,99,235,0); 
             transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
-        .et-item:nth-child(odd) .et-dot { right: -12px; }
-        .et-item:nth-child(even) .et-dot { left: -12px; border-color: var(--c2); }
+        .et-item:nth-of-type(odd) .et-dot { left: -12px; right: auto; border-color: var(--c2); }
+        .et-item:nth-of-type(even) .et-dot { right: -12px; left: auto; border-color: var(--c1); }
         
         .et-content { 
             background: rgba(255,255,255,0.7); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); 
