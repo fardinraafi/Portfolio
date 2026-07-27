@@ -17,7 +17,7 @@
         .resume-layout { 
             max-width: 1200px; margin: 0 auto; padding: 2rem; 
             display: grid; grid-template-columns: 250px 1fr; gap: 4rem; position: relative; 
-            align-items: start; /* This is the magic rule that allows sticky to work! */
+            align-items: start;
         }
 
         /* Sticky Left Nav for Recruiters */
@@ -57,33 +57,60 @@
         }
         body.dark-mode .summary-card { background: rgba(30,41,59,0.5); color: #F1F5F9; border-color: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 2px 10px rgba(255,255,255,0.05); }
 
-        /* The Epic Alternating Timeline */
+        /* =========================================
+           THE EPIC LASER TIMELINE
+        ========================================= */
         .epic-timeline { position: relative; margin: 2rem 0; padding: 2rem 0; }
+        
         .epic-timeline::before { 
             content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; 
-            background: linear-gradient(to bottom, transparent, var(--c1), var(--c2), transparent); transform: translateX(-50%); border-radius: 4px;
+            background: rgba(0, 0, 0, 0.05); transform: translateX(-50%); border-radius: 4px;
         }
-        .et-item { width: 50%; position: relative; margin-bottom: 3rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+        body.dark-mode .epic-timeline::before { background: rgba(255, 255, 255, 0.05); }
+
+        .epic-timeline-laser {
+            position: absolute; left: 50%; top: 0; width: 4px; height: 0%;
+            background: linear-gradient(to bottom, var(--c1), var(--c2));
+            transform: translateX(-50%); border-radius: 4px;
+            box-shadow: 0 0 15px var(--c1);
+            transition: height 0.15s ease-out;
+            z-index: 1;
+        }
+
+        .et-item { width: 50%; position: relative; margin-bottom: 3.5rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
         .et-item.animate-in { opacity: 1; transform: translateY(0); }
         
         .et-item:nth-child(odd) { left: 0; padding-right: 3rem; }
         .et-item:nth-child(even) { left: 50%; padding-left: 3rem; }
         
-        /* Glowing Nodes */
         .et-dot { 
             position: absolute; top: 1.5rem; width: 24px; height: 24px; background: var(--bg-page); 
-            border: 5px solid var(--c1); border-radius: 50%; z-index: 2; box-shadow: 0 0 15px rgba(37,99,235,0.5); 
-            transition: all 0.3s; 
+            border: 4px solid var(--c1); border-radius: 50%; z-index: 2; box-shadow: 0 0 0 rgba(37,99,235,0); 
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
         .et-item:nth-child(odd) .et-dot { right: -12px; }
-        .et-item:nth-child(even) .et-dot { left: -12px; border-color: var(--c2); box-shadow: 0 0 15px rgba(124,58,237,0.5); }
+        .et-item:nth-child(even) .et-dot { left: -12px; border-color: var(--c2); }
         
         .et-content { 
             background: rgba(255,255,255,0.7); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); 
-            backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.03); position: relative; transition: transform 0.3s;
+            backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.03); position: relative; 
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
         }
         body.dark-mode .et-content { background: rgba(30,41,59,0.6); border-color: rgba(255,255,255,0.05); }
-        .et-content:hover { transform: translateY(-5px); border-color: var(--c1); }
+        
+        .et-item:hover .et-content { 
+            transform: scale(1.03) translateY(-8px); 
+            border-color: var(--c1); 
+            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
+            z-index: 10;
+        }
+        
+        .et-item:hover .et-dot {
+            transform: scale(1.5);
+            background: var(--c1);
+            border-color: var(--c1);
+            box-shadow: 0 0 20px var(--c1), 0 0 0 8px rgba(124, 58, 237, 0.2);
+        }
         
         .et-date { display: inline-block; padding: 4px 12px; background: rgba(37,99,235,0.1); color: var(--c1); border-radius: 100px; font-size: 0.8rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .et-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.3rem; }
@@ -94,15 +121,47 @@
         body.dark-mode .et-desc li { color: #94A3B8; }
         .et-desc li::before { content: '▹'; position: absolute; left: 0; color: var(--c1); font-weight: bold; font-size: 1.2rem; top: -3px; }
 
-        /* Animated Skill Bars */
+        /* =========================================
+           STEP 2: INTERACTIVE SKILL DASHBOARD
+        ========================================= */
         .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
         .skill-group h3 { font-family: 'Syne', sans-serif; color: var(--c2); font-size: 1.2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        .skill-bar-wrap { margin-bottom: 1.5rem; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+        
+        /* New Hover Effects for Skill Bars */
+        .skill-bar-wrap { 
+            margin-bottom: 1rem; 
+            padding: 10px 15px; 
+            border-radius: 12px; 
+            border: 1px solid transparent; 
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(0,0,0,0.02);
+        }
+        body.dark-mode .skill-bar-wrap { background: rgba(255,255,255,0.02); }
+        
+        .skill-bar-wrap:hover { 
+            transform: translateX(10px) scale(1.02); 
+            background: rgba(255,255,255,0.1); 
+            border-color: rgba(124, 58, 237, 0.2); 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+        }
+        body.dark-mode .skill-bar-wrap:hover { background: rgba(0,0,0,0.2); }
+
+        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.95rem; color: var(--text-main); transition: color 0.3s ease; }
         body.dark-mode .skill-info { color: #F1F5F9; }
-        .skill-track { width: 100%; height: 10px; background: rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; position: relative; }
+        
+        .skill-bar-wrap:hover .skill-info span {
+            color: var(--c1);
+            text-shadow: 0 0 8px rgba(37,99,235,0.3);
+        }
+
+        .skill-track { width: 100%; height: 8px; background: rgba(0,0,0,0.08); border-radius: 10px; overflow: hidden; position: relative; }
         body.dark-mode .skill-track { background: rgba(255,255,255,0.05); }
-        .skill-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--c1), var(--c2)); border-radius: 10px; transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; }
+        
+        .skill-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--c1), var(--c2)); border-radius: 10px; transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease; position: relative; }
+        
+        .skill-bar-wrap:hover .skill-fill {
+            box-shadow: 0 0 12px var(--c1);
+        }
         
         /* Shimmer Effect on Bars */
         .skill-fill::after { 
@@ -121,16 +180,12 @@
         body.dark-mode .lead-card h4 { color: #F1F5F9; }
         .lead-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
-        .dl-btn-wrapper { text-align: center; margin-top: 4rem; }
-        .btn-massive { font-size: 1.2rem; padding: 16px 40px; }
-
         @media (max-width: 900px) {
             .resume-layout { grid-template-columns: 1fr; padding: 1rem; gap: 2rem; }
-            .resume-sidebar { display: none; /* Hide sticky nav on mobile */ }
+            .resume-sidebar { display: none; }
             .resume-header h1 { font-size: 2.5rem; }
-            
-            /* Collapse Timeline to Left */
             .epic-timeline::before { left: 24px; }
+            .epic-timeline-laser { left: 24px; }
             .et-item { width: 100% !important; padding-left: 4rem !important; padding-right: 0 !important; left: 0 !important; }
             .et-dot { left: 12px !important; right: auto !important; }
             .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
@@ -167,7 +222,6 @@
 </nav>
 
 <div class="resume-layout">
-    <!-- Sticky Navigation Sidebar -->
     <aside class="resume-sidebar">
         <a href="#summary" class="resume-nav-link active">Executive Summary</a>
         <a href="#experience" class="resume-nav-link">Professional Experience</a>
@@ -181,7 +235,6 @@
         </a>
     </aside>
 
-    <!-- Main Resume Content -->
     <main>
         <header class="resume-header scroll-anim">
             <h1 class="gradient-text">Fardin Rahman Khan Raafi</h1>
@@ -203,9 +256,8 @@
     <section id="experience" class="resume-section">
             <h2 class="resume-section-title">Professional Experience</h2>
             <div class="epic-timeline">
-                <div class="epic-timeline-laser" id="timelineLaser"></div> <!-- ADD THIS LINE -->
+                <div class="epic-timeline-laser" id="timelineLaser"></div>
                 
-                <div class="et-item scroll-anim">
                 <div class="et-item scroll-anim">
                     <div class="et-logo"><img src="/misc_img/augmex_logo_white.png" alt="Augmex"></div>
                     <div class="et-dot"></div>
@@ -493,6 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script>
+
 <!-- Scroll-Tracking Laser Logic -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
@@ -513,5 +566,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 </script>
+
 </body>
 </html>
