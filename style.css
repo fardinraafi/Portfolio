@@ -815,17 +815,15 @@ body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.4); border-color: r
     pointer-events: none;
     z-index: 0;
 }
-
 /* Base Image Setup (Rotation removed from here) */
 .et-logo img {
     width: 350px; 
     max-width: none; 
     transform-origin: center center;
-    opacity: 0.95; 
-    filter: grayscale(100%) brightness(200%);
+    opacity: 1; /* Made fully visible */
+    /* Removed the grayscale filter completely! */
 }
-body:not(.dark-mode) .et-logo img { filter: invert(1) grayscale(100%); opacity: 0.8; }
-
+body:not(.dark-mode) .et-logo img { opacity: 1; }
 /* ODD ITEMS: Text on Left, Logo on Right */
 .et-item:nth-child(odd) .et-logo {
     left: 100%; 
