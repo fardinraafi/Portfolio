@@ -582,20 +582,25 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Scroll-Tracking Laser Logic -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    const timeline = document.querySelector('.epic-timeline');
-    const laser = document.getElementById('timelineLaser');
+    const timelines = document.querySelectorAll('.epic-timeline');
     
-    if (timeline && laser) {
+    if (timelines.length > 0) {
         window.addEventListener('scroll', () => {
-            const rect = timeline.getBoundingClientRect();
-            const windowHeight = window.innerHeight;
-            
-            // Calculate how much of the timeline has passed the middle of the screen
-            let progress = (windowHeight / 2 - rect.top) / rect.height;
-            progress = Math.max(0, Math.min(1, progress)); // Keep it between 0% and 100%
-            
-            laser.style.height = `${progress * 100}%`;
-        });
+            timelines.forEach(timeline => {
+                const laser = timeline.querySelector('.epic-timeline-laser');
+                if (!laser) return;
+                
+                const rect = timeline.getBoundingClientRect();
+                const windowHeight = window.innerHeight;
+                
+                // Calculate progress
+                let progress = (windowHeight / 2 - rect.top) / rect.height;
+                progress = Math.max(0, Math.min(1, progress)); 
+                
+                // GPU-Accelerated scaling instead of height
+                laser.style.transform = `translateX(-50%) scaleY(${progress})`;
+            });
+        }, { passive: true }); // Makes scrolling significantly smoother
     }
 });
 </script>
