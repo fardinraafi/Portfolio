@@ -12,32 +12,247 @@
     
     <link rel="stylesheet" href="/style.css">
     
+    <!-- Specific Styles for High-End Volunteer Layout -->
     <style>
-        .volunteer-container { max-width: 900px; margin: 0 auto; }
-        .vol-card { margin-bottom: 3rem; padding: 3rem; border-radius: 32px; }
-        .vol-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
-        .vol-logo { width: 80px; height: 80px; border-radius: 16px; object-fit: contain; background: rgba(255,255,255,0.9); padding: 5px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
-        .vol-title-area h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--text-main); }
-        .vol-title-area h3 { font-size: 1.1rem; color: var(--c1); margin-bottom: 0.5rem; font-weight: 700; }
-        .vol-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 600; display: flex; gap: 15px; flex-wrap: wrap; }
-        .vol-body { font-size: 1rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 2rem; }
-        .vol-body ul { padding-left: 1.2rem; margin-top: 1rem; }
-        .vol-body li { margin-bottom: 0.8rem; }
-        .vol-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .vol-gallery img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: 12px; cursor: pointer; transition: transform 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-        .vol-gallery img:hover { transform: translateY(-5px); }
+        /* FIX: Forces the Neural Canvas to stay perfectly in the background */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        /* Expand the main wrapper just for this page to allow ultra-wide cards */
+        .layout-wrapper.single-column { max-width: 1500px !important; width: 95% !important; }
         
+        .volunteer-container { max-width: 100%; margin: 0 auto; }
+        
+        .vol-card { 
+            margin-bottom: 2rem; 
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 32px; 
+            padding: 0; 
+            display: flex;
+            align-items: stretch; 
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+        }
+        body.dark-mode .vol-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .vol-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15); }
+        
+        /* The Massive Side Images */
+        .vol-side-img {
+            flex: 0 0 30%; /* Reduced slightly to give text more breathing room */
+            position: relative;
+            background: rgba(0,0,0,0.05); 
+            overflow: hidden;
+        }
+        .vol-side-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        .vol-side-img img:hover {
+            transform: scale(1.08);
+            filter: brightness(0.85);
+        }
+        
+        /* The Skewed Window Cuts */
+        .img-left { clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); }
+        .img-right { clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
+
+      /* The Centered Content */
+        .vol-content {
+            flex: 1;
+            padding: 2rem 2rem; /* THIN FIX: Reduced huge padding to make cards thinner */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center; 
+        }
+        
+        /* Tighter, Cleaner Logos */
+        .vol-logo { 
+            width: 80px; /* THIN FIX: Scaled down from 120px */
+            height: 80px; 
+            border-radius: 14px; 
+            object-fit: contain; 
+            background: rgba(255,255,255,0.95); 
+            padding: 4px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .vol-title-area a { text-decoration: none; }
+        .vol-title-area a h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--c1); transition: color 0.3s ease; line-height: 1.1; }
+        .vol-title-area a:hover h2 { color: var(--c2); }
+        .vol-title-area h3 { font-size: 1rem; color: var(--text-main); margin-bottom: 0.8rem; font-weight: 700; }
+        
+        .vol-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 600; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 1rem; }
+        
+        .vol-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; width: 100%; max-width: 600px; }
+        .vol-body p { margin-bottom: 0; }
+        .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 0.5rem; display: inline-block; margin-bottom: 0; }
+        .vol-body li { margin-bottom: 0.4rem; }
+
+      /* High-End Stats Grid */
+        .vol-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem; 
+            width: 100%;
+        }
+        
+        .vol-stat-card {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        /* ── THE SHINE EFFECT ── */
+        .vol-stat-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 50%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); 
+            transform: skewX(-20deg); 
+            transition: left 0.6s ease; 
+            z-index: 1; 
+        }
+        .vol-stat-card:hover::before {
+            left: 150%;
+        }
+        
+        .vol-stat-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .vol-stat-card .metric-num {
+            font-family: 'Syne', sans-serif; 
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--c1), var(--c2)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1; 
+            margin-bottom: 0.5rem;
+        }
+        
+        .vol-stat-card .metric-label {
+            font-size: 0.85rem; 
+            color: var(--text-main); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 0.05em;
+        }
+        
+        body.dark-mode .vol-stat-card .metric-label {
+            color: #F1F5F9;
+        }
+        
+        /* =========================================
+            📱 RESPONSIVE & MOBILE MASTERY 📱
+        ========================================= */
+        @media (max-width: 1024px) {
+            .vol-card { flex-direction: column; }
+            .vol-side-img { flex: 0 0 250px; clip-path: none !important; width: 100%; }
+            .img-left { order: 1; }
+            .vol-content { order: 2; padding: 2.5rem 1.5rem; }
+            .img-right { order: 3; }
+            .vol-title-area a h2 { font-size: 1.8rem; }
+        }
+
         @media (max-width: 768px) {
-            .vol-card { padding: 1.5rem; }
-            .vol-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .layout-wrapper.single-column { width: 100% !important; padding: 1rem !important; }
+            
+            .vol-stats-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 1rem; 
+                margin-bottom: 2rem;
+            }
+            .vol-stat-card { padding: 1.5rem 1rem; }
+            .vol-stat-card .metric-num { font-size: 1.8rem; margin-bottom: 0.4rem; }
+            .vol-stat-card .metric-label { font-size: 0.75rem; }
+            
+            .vol-card { 
+                display: grid !important; 
+                grid-template-columns: 1fr 1fr !important; 
+                grid-template-rows: 150px auto !important; 
+                border-radius: 20px; 
+                margin-bottom: 2.5rem; 
+                padding: 0;
+                overflow: hidden;
+            }
+            
+            .vol-side-img { 
+                height: 100% !important; 
+                width: 100% !important;
+                clip-path: none !important; 
+                flex: none !important; 
+            }
+            .img-left { grid-column: 1 / 2; grid-row: 1; border-right: 2px solid var(--bg-page); }
+            .img-right { display: block !important; grid-column: 2 / 3; grid-row: 1; }
+            
+            .vol-content { 
+                grid-column: 1 / -1; 
+                grid-row: 2; 
+                padding: 0 1.2rem 2rem 1.2rem; 
+                position: relative; 
+                z-index: 10; 
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            } 
+            
+            .vol-logo { 
+                width: 60px; 
+                height: 60px; 
+                margin-top: -30px; 
+                border-radius: 12px; 
+                margin-bottom: 0.8rem;
+                border-width: 2px;
+                position: relative; 
+                z-index: 5;
+            }
+            
+            .vol-title-area a h2 { font-size: 1.4rem; }
+            .vol-title-area h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+            .vol-meta { flex-direction: column; gap: 5px; align-items: center; margin-bottom: 1rem; }
+            .vol-body { font-size: 0.9rem; text-align: center; }
+            .vol-body ul { padding-left: 1rem; text-align: left; }
         }
     </style>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+   <script defer src="/_vercel/speed-insights/script.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
+    <canvas id="neural-canvas"></canvas>
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
-
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -54,48 +269,571 @@
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
             <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="#3B82F6" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             </div>
         </button>
     </div>
 </nav>
 
 <div class="layout-wrapper single-column">
-    <header style="text-align: center; margin-bottom: 3rem;">
+    <header style="text-align: center; margin-bottom: 1rem;">
         <h1 class="gradient-text">Leadership & Community</h1>
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-            Building networks, guiding peers, and maintaining brand consistency across impactful student organizations.
+            Building networks, guiding peers, and maintaining brand consistency across impactful student organizations and corporate initiatives.
         </p>
     </header>
-
     <div class="volunteer-container">
-        <!-- Example Section (Rotaract) -->
+        
+        <!-- High-End Stats Summary -->
+        <div class="vol-stats-grid">
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">30+</div>
+                <div class="metric-label">Volunteering Activity</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Campus Ambassadorship</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">42</div>
+                <div class="metric-label">Events Managed</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">4</div>
+                <div class="metric-label">Pro Projects & Co-Founding</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Competitions & Fellowships</div>
+            </div>
+        </div>
+
+        <!-- TEDxUttara -->
         <section class="glass-card reveal vol-card">
-            <div class="vol-header">
-                <img src="https://ui-avatars.com/api/?name=Rotaract&size=150&background=2563EB&color=fff" class="vol-logo" alt="Rotaract Logo">
+            <div class="vol-side-img img-left">
+                <img src="leadership/tedx-1.jpg" class="grid-img" alt="TEDx Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/tedx-logo.jpg" class="vol-logo" alt="TEDx Logo" onerror="this.src='https://ui-avatars.com/api/?name=TEDx&size=150&background=DB2777&color=fff'">
                 <div class="vol-title-area">
-                    <h2>Rotaract Club of Dhaka Dynamic</h2>
-                    <h3>Secretary | Professional Service Director</h3>
+                    <a href="https://www.facebook.com/tedxuttara" target="_blank"><h2>TEDxUttara</h2></a>
+                    <h3>Graphic Designer & Branding Expert</h3>
                     <div class="vol-meta">
-                        <span>📅 Jun 2025 - Present</span>
+                        <span>📅 Oct 2025 - Nov 2025</span>
                         <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
+                <div class="vol-body">
+                    <p>Tasked with making printing materials and maintaining the TEDx brand consistency over all designs. Cross-communicated with the marketing department to ensure proper brand visibility, making us the best department of the Event.</p>
+                </div>
             </div>
-            <div class="vol-body">
-                <p>Managed club meetings, official records, and external communications. Focused on developing members' interpersonal and professional skills for the modern job market.</p>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/tedx-2.jpg" class="grid-img" alt="TEDx Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
-            <div class="vol-gallery">
-                <!-- Add image filenames here later like: <img src="rotaract-1.jpg"> -->
+        </section>
+        
+         <!-- Hult Prize -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/hult-1.jpg" class="grid-img" alt="Hult Inauguration Banner" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/hult-logo.jpg" class="vol-logo" alt="Hult Prize Logo" onerror="this.src='https://ui-avatars.com/api/?name=H&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/groups/2057531721373541" target="_blank"><h2>Hult Prize 2025</h2></a>
+                    <h3>Lead Brand Designer</h3>
+                    <div class="vol-meta">
+                        <span>📅 Dec 2024 - Feb 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <ul>
+                        <li>Designed event branding materials, including ID cards, banners, and digital assets, ensuring a cohesive visual identity.</li>
+                        <li>Assisted in developing event scripts and production materials for the Hult Prize OnCampus finale.</li>
+                        <li>Created engaging promotional graphics to enhance event visibility, participant recognition, and student engagement.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/hult-2.jpg" class="grid-img" alt="Hult Team" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- Rotaract Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/rotaract-1.jpg" class="grid-img" alt="Rotaract Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/rotaract-logo.jpg" class="vol-logo" alt="Rotaract Logo" onerror="this.src='https://ui-avatars.com/api/?name=Rotaract&size=150&background=DB2777&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/racdkdm" target="_blank"><h2>Rotaract Club Of Dhaka Dynamic</h2></a>
+                    <h3>Secretary</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jun 2025 - May 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Starting from September 2023 to to 2026 I contributed to 30+ Community and Professional progects. Grateful for all the experiences and knowledge attained from this journey.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/rotaract-2.jpg" class="grid-img" alt="Rotaract Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- BUBT Career Guidance Office -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/bubt-vol-1.jpg" class="grid-img" alt="BUBT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/bubt-logo.jpg" class="vol-logo" alt="BUBT Logo" onerror="this.src='https://ui-avatars.com/api/?name=BUBT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/bubtcgo" target="_blank"><h2>BUBT Career Guidance Office</h2></a>
+                    <h3>Head of Corporate & Alumni Relations</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2026 - Present</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Selected to serve in a leadership capacity, acting as a bridge between current students, university alumni, and the corporate sector.</p>
+                    <ul>
+                        <li><strong>Network Development:</strong> Supervised events to make next generation students connect.</li>
+                        <li><strong>Corporate Engagement:</strong> Managed corporate relations to facilitate career-focused events.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/bubt-vol-2.jpg" class="grid-img" alt="BUBT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- BUBT Social Welfare Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/swc-1.jpg" class="grid-img" alt="SWC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/swc-logo.jpg" class="vol-logo" alt="Social Welfare Logo" onerror="this.src='https://ui-avatars.com/api/?name=SWC&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/BUBTSWC" target="_blank"><h2>BUBT Social Welfare Club</h2></a>
+                    <h3>Media & Publications Secretary</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jun 2025 - Apr 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Elected in the first election of the BUBT Social Welfare Club. Tasked with managing branding identities and maintaining brand consistency across all promotional elements.</p>
+                    <ul>
+                        <li>Manage and guide the media team across all departments. Created 100+ Designs</li>
+                        <li>Oversee content moderation, creatives, anchors, and brand partnerships.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/swc-2.jpg" class="grid-img" alt="SWC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- Adviza International -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/adviza-1.jpg" class="grid-img" alt="Adviza Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/adviza-logo.jpg" class="vol-logo" alt="Adviza Logo" onerror="this.src='https://ui-avatars.com/api/?name=Adviza&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://advizainternational.com/" target="_blank"><h2>Adviza International</h2></a>
+                    <h3>Marketing Intern - Branding</h3>
+                    <div class="vol-meta">
+                        <span>📅 Apr 2025 - Jan 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Joined as a Marketing Intern and Branding Expert, managing all branding materials for the company and designing successful campaigns across social platforms.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/adviza-2.jpg" class="grid-img" alt="Adviza Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- Leo Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/leo-1.jpg" class="grid-img" alt="Leo Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/leo-logo.jpg" class="vol-logo" alt="Leo Club Logo" onerror="this.src='https://ui-avatars.com/api/?name=Leo&size=150&background=F59E0B&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/profile.php?id=100076265731611" target="_blank"><h2>Leo Club of Dhaka Platinum Unique</h2></a>
+                    <h3>Media & Publications Coordinator</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jul 2025 - Dec 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Directed the media presence, visual communications, and publication initiatives. Managed digital content and promotional materials to amplify community service efforts and outreach programs.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/leo-2.jpg" class="grid-img" alt="Leo Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- Skill Catalyst -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/skill-1.jpg" class="grid-img" alt="Skill Catalyst Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/skill-logo.jpg" class="vol-logo" alt="Skill Catalyst Logo" onerror="this.src='https://ui-avatars.com/api/?name=Skill&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Skill Catalyst Bangladesh</h2></a>
+                    <h3>Graphics Designer & Campus Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Mar 2025 - Nov 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Served as Graphics Designer and Campus Ambassador. Designed key visual assets including Announcement Cards, Head of Design Team materials, and General Meeting collateral.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/skill-2.jpg" class="grid-img" alt="Skill Catalyst Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- BUBT Business Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/bbc-1.jpg" class="grid-img" alt="BBC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/bbc-logo.jpg" class="vol-logo" alt="BBC Logo" onerror="this.src='https://ui-avatars.com/api/?name=BBC&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>BUBT Business Club</h2></a>
+                    <h3>Sub Executive Member</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2025 - Aug 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p><strong>My Contributions:</strong></p>
+                    <ul>
+                        <li>Created Bizz Master S1 materials and logo.</li>
+                        <li>Created the Hult Prize 2024 identity.</li>
+                        <li>Designed visuals for all events from 2023 to March 2025.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/bbc-2.jpg" class="grid-img" alt="BBC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- YSSE -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/ysse-1.jpg" class="grid-img" alt="YSSE Presentation" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/ysse-logo.jpg" class="vol-logo" alt="YSSE Logo" onerror="this.src='https://ui-avatars.com/api/?name=YSSE&size=150&background=DB2777&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Youth School for Social Entrepreneurs</h2></a>
+                    <h3>Business Development Intern & Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Oct 2024 - Jun 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Conducted strategic market research to identify growth opportunities. Developed community engagement strategies, increasing outreach. Recognized as Quiz Winner and Intern of the Month.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/ysse-2.jpg" class="grid-img" alt="YSSE Award" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- LEAD Academy -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/lead-1.jpg" class="grid-img" alt="Lead Academy Image" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/lead-logo.jpg" class="vol-logo" alt="Lead Academy Logo" onerror="this.src='https://ui-avatars.com/api/?name=LEAD&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>LEAD Academy</h2></a>
+                    <h3>Lead Luminary 4.0</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2025 - Jun 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Served as a Lead Luminary and Campus Ambassador for Lead Academy's 4.0 Cohort.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/lead-2.jpg" class="grid-img" alt="Lead Academy Photos" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- Creative IT Institute -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/cit-1.jpg" class="grid-img" alt="Creative IT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/creative-logo.jpg" class="vol-logo" alt="Creative IT Logo" onerror="this.src='https://ui-avatars.com/api/?name=CIT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Creative IT Institute</h2></a>
+                    <h3>Campus Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2024 - Jan 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <ul>
+                        <li><strong>Campus Representation:</strong> Promoted professional IT training programs and workshops.</li>
+                        <li><strong>Strategic Outreach:</strong> Executed marketing initiatives and social media campaigns.</li>
+                        <li><strong>Event Coordination:</strong> Facilitated the organization of seminars.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/cit-2.jpg" class="grid-img" alt="Creative IT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- Dept of MKT -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/mkt-1.jpg" class="grid-img" alt="Marketing Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/mkt-logo.jpg" class="vol-logo" alt="Marketing Logo" onerror="this.src='https://ui-avatars.com/api/?name=CIT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Department of Marketing, BUBT</h2></a>
+                    <h3>Organizer</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2024 - Jan 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <ul>
+                        <li><strong>Event Organiser:</strong> Organised 7 events including Marketing Carnival.</li>
+                        <li><strong>Branding:</strong> Created all creative materials for all events.</li>
+                        <li><strong>Workshop Coordination:</strong> Facilitated the organization of 3 workshops.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="vol-side-img img-right">
+                <img src="leadership/mkt-2.jpg" class="grid-img" alt="Marketing Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
     </div>
 </div>
 
-<footer class="site-footer">
-    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
+<footer class="site-footer reveal">
+    <div class="footer-glow"></div>
+    <div class="footer-grid">
+        <div class="footer-col">
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
+            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px; line-height: 1.6;">
+                Marketing professional passionate about brand communication, creative strategies, and growth leadership.
+            </p>
+        </div>
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <div class="footer-col-links">
+                <a href="/index.html">Home</a>
+                <a href="/gallery.html">Gallery</a>
+                <a href="/blog.html">Blog</a>
+                <a href="/certificates.html">Certificates</a>
+                <a href="/volunteer.html">Leadership</a>
+                <a href="/contact.html">Contact</a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4>Contact Info</h4>
+            <div class="footer-col-links">
+                <a href="mailto:fardinraafi@gmail.com">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                    fardinraafi@gmail.com
+                </a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    LinkedIn Profile
+                </a>
+             <a href="https://www.pinterest.com/yourusername" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
+    Pinterest
+</a>
+                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        © <span id="current-year"></span> Fardin Rahman Khan Raafi. All rights reserved. Built for Humans & AI.
+    </div>
 </footer>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
+    <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 100 }; 
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 15000; 
+            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
 </body>
 </html>
