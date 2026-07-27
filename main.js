@@ -37,18 +37,12 @@ document.addEventListener('DOMContentLoaded', () => {
         </button>
     </div>`;
 
-    const footerHTML = `
-    <div class="footer-glow"></div>
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px; line-height: 1.6;">
-                Marketing professional passionate about brand communication, creative strategies, and growth leadership.
-            </p>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Links</h4>
-            <div class="footer-col-links">
+const footerHTML = `
+    <div class="footer-split-layout">
+        <!-- LEFT SIDE: Borderless Links -->
+        <div class="footer-left">
+            <div class="footer-link-group">
+                <h4>Quick Links</h4>
                 <a href="/index.html">Home</a>
                 <a href="/gallery.html">Gallery</a>
                 <a href="/blog.html">Blog</a>
@@ -57,52 +51,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="/resume.html">Resume</a>
                 <a href="/contact.html">Contact</a>
             </div>
+            <div class="footer-link-group">
+                <h4>Contact Info</h4>
+                <a href="mailto:fardinraafi@gmail.com">fardinraafi@gmail.com</a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">LinkedIn Profile</a>
+                <a href="https://x.com/fardinraafii" target="_blank">Twitter</a>
+                <a href="https://github.com/fardinraafi" target="_blank">GitHub</a>
+                <a href="https://www.behance.net/fardinraafi" target="_blank">Behance</a>
+                <a href="https://www.pinterest.com/yourusername" target="_blank">Pinterest</a>
+                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="footer-download-btn">Download Resume 📥</a>
+            </div>
         </div>
-        <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="footer-col-links">
-                <a href="mailto:fardinraafi@gmail.com">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    fardinraafi@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn Profile
-                </a>
-                <a href="https://x.com/fardinraafii" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px; vertical-align: middle;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    Twitter
-                </a>
-                <a href="https://github.com/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                    GitHub
-                </a>
-                <a href="https://www.behance.net/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px; vertical-align: middle;"><path d="M22 7h-7v2h7V7zm1.72 5.38c-.18-1.54-1.5-3.38-4.22-3.38-3.08 0-4.5 2.5-4.5 5.25 0 2.94 1.7 5.75 5 5.75 3.26 0 4.38-2.3 4.54-3.62h-2.12c-.12.82-.76 1.75-2.32 1.75-1.58 0-2.34-1.12-2.48-2.62h6.98c.04-.46.16-2.18.12-3.13zM17.48 11.5c.08-1.02.76-1.88 2.02-1.88 1.14 0 1.94.76 2.06 1.88h-4.08zM10.12 11c1.24-.46 2.22-1.42 2.22-3.3 0-2.42-1.92-3.7-4.66-3.7H0v16h8.04c2.8 0 4.96-1.34 4.96-4.06 0-2.3-1.68-3.72-2.88-4.94zM2.84 6.22h4.52c1.46 0 2.34.6 2.34 1.88 0 1.34-.84 2.02-2.38 2.02H2.84V6.22zm4.84 9.56H2.84v-4.14h4.74c1.64 0 2.68.74 2.68 2.14 0 1.48-1.12 2-2.58 2z"/></svg>
-                    Behance
-                </a>
-                <a href="https://www.pinterest.com/yourusername" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-                    Pinterest
-                </a>
-                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
+        
+        <!-- RIGHT SIDE: Massive Interactive Globe -->
+        <div class="footer-right">
+            <div class="globe-wrapper">
+                <canvas id="cobe-globe" style="width: 100%; height: 100%; cursor: grab; contain: layout paint size;"></canvas>
             </div>
         </div>
     </div>
-    <div class="copyright">
+    
+    <div class="copyright" style="border-top: none;">
         © <span id="current-year"></span> Fardin Rahman Khan Raafi. All rights reserved. Built for Humans & AI.
     </div>`;
-    if (globalNav) {
-        globalNav.innerHTML = navHTML;
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = globalNav.querySelectorAll('.nav-menu a');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '/' + currentPath || link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
-        });
-    }
 
     if (globalFooter) globalFooter.innerHTML = footerHTML;
 
