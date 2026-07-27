@@ -690,8 +690,6 @@ body:not(.dark-mode) .edu-logo img { opacity: 0.9; }
     .cert-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)) !important; gap: 1rem !important; }
     
     .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
-    .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
-    .footer-col-links { align-items: center !important; }
     .status-banner { flex-direction: column !important; text-align: center !important; gap: 10px !important; }
     
     .lightbox-close { top: -50px; right: 0; }
