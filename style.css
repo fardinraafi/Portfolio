@@ -540,7 +540,41 @@ textarea.form-control { resize: vertical; min-height: 120px; }
     backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); 
     border-radius: 60px 60px 0 0; position: relative; overflow: hidden; box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.02); transition: background-color 0.3s, border-color 0.3s; 
 }
-.footer-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(37,99,235,0.15) 0%, transparent 70%); bottom: -250px; left: 50%; transform: translateX(-50%); z-index: -1; }
+/* Dynamic Spotlight Layer */
+.site-footer {
+    --mouse-x: 50%;
+    --mouse-y: -100px; /* Hidden by default until hovered */
+}
+
+.footer-glow { 
+    position: absolute; width: 500px; height: 500px; 
+    background: radial-gradient(circle, rgba(37,99,235,0.1) 0%, transparent 70%); 
+    bottom: -250px; left: 50%; transform: translateX(-50%); z-index: 0; pointer-events: none;
+}
+
+/* The interactive grid that reveals on hover */
+.site-footer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(124, 58, 237, 0.15) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(124, 58, 237, 0.15) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: 1;
+    opacity: 0.8;
+    /* This creates the "spotlight" mask that follows the mouse variables */
+    mask-image: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), black, transparent);
+    -webkit-mask-image: radial-gradient(350px circle at var(--mouse-x) var(--mouse-y), black, transparent);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+body.dark-mode .site-footer::after {
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
 .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 800; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.05em; transition: color 0.3s;}
 .footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
