@@ -1444,13 +1444,14 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
         }
         body.dark-mode .epic-timeline::before { background: rgba(255, 255, 255, 0.05); }
 
-        /* The dynamic laser that follows your scroll */
-        .epic-timeline-laser {
-            position: absolute; left: 50%; top: 0; width: 4px; height: 0%;
+      .epic-timeline-laser {
+            position: absolute; left: 50%; top: 0; width: 4px; height: 100%;
             background: linear-gradient(to bottom, var(--c1), var(--c2));
-            transform: translateX(-50%); border-radius: 4px;
+            transform: translateX(-50%) scaleY(0);
+            transform-origin: top;
+            border-radius: 4px;
             box-shadow: 0 0 15px var(--c1);
-            transition: height 0.15s ease-out;
+            will-change: transform;
             z-index: 1;
         }
 
