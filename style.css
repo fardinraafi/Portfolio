@@ -462,6 +462,74 @@ textarea.form-control { resize: vertical; min-height: 120px; }
 .footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content; }
 .footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
 .copyright { font-size: 0.85rem; color: var(--text-light); font-weight: 500; letter-spacing: 0.05em; text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s; }
+
+/* =========================================
+   PREMIUM FOOTER MICRO-INTERACTIONS
+========================================= */
+/* 1. Animated SVG Icons */
+.footer-col-links a svg {
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.3s;
+}
+.footer-col-links a:hover svg {
+    transform: scale(1.35) translateY(-2px);
+    color: var(--c1);
+}
+
+/* 2. Sleek Underline Sweep for Text Links */
+.footer-col-links a {
+    position: relative;
+    padding-bottom: 2px;
+}
+.footer-col-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px; 
+    left: 0;
+    width: 0%; 
+    height: 2px;
+    background: linear-gradient(90deg, var(--c1), var(--c2));
+    transition: width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border-radius: 2px;
+}
+/* Ensure the underline only applies to text links, not the button */
+.footer-col-links a:not(.btn):hover::after {
+    width: 100%;
+}
+
+/* 3. Liquid Sweep Resume Button */
+.footer-col-links a.btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: transparent !important;
+    border: 1px solid var(--c2) !important;
+    color: var(--text-main) !important;
+    transition: color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+body.dark-mode .footer-col-links a.btn {
+    color: #F8FAFC !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+.footer-col-links a.btn::before {
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    width: 0%; 
+    height: 100%;
+    background: linear-gradient(135deg, var(--c1), var(--c2));
+    z-index: -1;
+    transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.footer-col-links a.btn:hover::before {
+    width: 100%;
+}
+.footer-col-links a.btn:hover {
+    color: #fff !important;
+    box-shadow: 0 10px 25px rgba(124, 58, 237, 0.3);
+    transform: translateY(-3px) !important;
+    border-color: transparent !important;
+}
 /* ── TECH & TOOLS TICKER ── */
 .ticker-wrap { width: 100%; overflow: hidden; background: rgba(255,255,255,0.4); border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); padding: 1.5rem 0; margin: 0 0 2rem 0; backdrop-filter: blur(10px); }
 body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.4); border-color: rgba(255,255,255,0.05); }
