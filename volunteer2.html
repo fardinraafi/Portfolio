@@ -19,19 +19,50 @@
             display: grid; grid-template-columns: 250px 1fr; gap: 4rem; position: relative; 
             align-items: start;
         }
-
-        /* Sticky Left Nav for Recruiters */
+/* Sticky Left Nav for Recruiters */
         .resume-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 1rem; }
+        
         .resume-nav-link { 
+            position: relative; overflow: hidden; z-index: 1;
             padding: 12px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; 
             color: var(--text-muted); font-weight: 700; text-decoration: none; border: 1px solid transparent; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);
         }
-        body.dark-mode .resume-nav-link { color: #94A3B8; }
+        body.dark-mode .resume-nav-link { color: #94A3B8; background: rgba(0,0,0,0.2); }
+        
+        /* The liquid light sweep on hover */
+        .resume-nav-link::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
+            transition: left 0.6s ease; z-index: -1;
+        }
+        .resume-nav-link:hover::before { left: 100%; }
+        
+        /* Magnetic pop-out effect */
         .resume-nav-link:hover, .resume-nav-link.active { 
-            background: rgba(37,99,235,0.1); color: var(--c1); border-color: var(--c1); transform: translateX(10px); 
+            background: rgba(37,99,235,0.1); color: var(--c1); 
+            border-color: rgba(37,99,235,0.3); 
+            transform: translateX(12px) scale(1.03); 
+            box-shadow: -5px 10px 20px rgba(0,0,0,0.05);
         }
 
+        /* Upgraded Resume Download Button */
+        .resume-sidebar .btn-primary {
+            position: relative; overflow: hidden; z-index: 1;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .resume-sidebar .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 25px rgba(37, 99, 235, 0.3);
+        }
+        .resume-sidebar .btn-primary::after {
+            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-20deg); transition: none;
+        }
+        .resume-sidebar .btn-primary:hover::after {
+            animation: btnShine 0.6s ease-out forwards;
+        }
         /* Hero Header */
         .resume-header { margin-bottom: 4rem; text-align: left; }
         .resume-header h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; }
