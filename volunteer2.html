@@ -12,9 +12,8 @@
     
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Specific Styles for High-End Volunteer Layout -->
     <style>
-        /* FIX: Forces the Neural Canvas to stay perfectly in the background */
+        /* 🚀 FIX: Forces the Neural Canvas to stay perfectly in the background and removes the bottom gap */
         #neural-canvas {
             position: fixed;
             top: 0;
@@ -23,6 +22,8 @@
             height: 100vh;
             z-index: -2;
             pointer-events: none;
+            display: block; /* Removes the 4px inline text gap */
+            vertical-align: bottom;
         }
 
         /* Expand the main wrapper just for this page to allow ultra-wide cards */
@@ -50,9 +51,8 @@
         }
         .vol-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15); }
         
-        /* The Massive Side Images */
         .vol-side-img {
-            flex: 0 0 30%; /* Reduced slightly to give text more breathing room */
+            flex: 0 0 30%; 
             position: relative;
             background: rgba(0,0,0,0.05); 
             overflow: hidden;
@@ -69,14 +69,12 @@
             filter: brightness(0.85);
         }
         
-        /* The Skewed Window Cuts */
         .img-left { clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); }
         .img-right { clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
 
-      /* The Centered Content */
         .vol-content {
             flex: 1;
-            padding: 2rem 2rem; /* THIN FIX: Reduced huge padding to make cards thinner */
+            padding: 2rem 2rem; 
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -84,9 +82,8 @@
             justify-content: center; 
         }
         
-        /* Tighter, Cleaner Logos */
         .vol-logo { 
-            width: 80px; /* THIN FIX: Scaled down from 120px */
+            width: 80px; 
             height: 80px; 
             border-radius: 14px; 
             object-fit: contain; 
@@ -109,7 +106,6 @@
         .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 0.5rem; display: inline-block; margin-bottom: 0; }
         .vol-body li { margin-bottom: 0.4rem; }
 
-      /* High-End Stats Grid */
         .vol-stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -130,7 +126,6 @@
             overflow: hidden; 
         }
         
-        /* ── THE SHINE EFFECT ── */
         .vol-stat-card::before {
             content: ''; 
             position: absolute; 
@@ -143,14 +138,9 @@
             transition: left 0.6s ease; 
             z-index: 1; 
         }
-        .vol-stat-card:hover::before {
-            left: 150%;
-        }
+        .vol-stat-card:hover::before { left: 150%; }
         
-        .vol-stat-card > * {
-            position: relative;
-            z-index: 2;
-        }
+        .vol-stat-card > * { position: relative; z-index: 2; }
 
         .vol-stat-card .metric-num {
             font-family: 'Syne', sans-serif; 
@@ -163,21 +153,10 @@
             margin-bottom: 0.5rem;
         }
         
-        .vol-stat-card .metric-label {
-            font-size: 0.85rem; 
-            color: var(--text-main); 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            letter-spacing: 0.05em;
-        }
+        .vol-stat-card .metric-label { font-size: 0.85rem; color: var(--text-main); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        body.dark-mode .vol-stat-card .metric-label { color: #F1F5F9; }
         
-        body.dark-mode .vol-stat-card .metric-label {
-            color: #F1F5F9;
-        }
-        
-        /* =========================================
-            📱 RESPONSIVE & MOBILE MASTERY 📱
-        ========================================= */
+        /* MOBILE OPTIMIZATION */
         @media (max-width: 1024px) {
             .vol-card { flex-direction: column; }
             .vol-side-img { flex: 0 0 250px; clip-path: none !important; width: 100%; }
@@ -189,57 +168,16 @@
 
         @media (max-width: 768px) {
             .layout-wrapper.single-column { width: 100% !important; padding: 1rem !important; }
-            
-            .vol-stats-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 1rem; 
-                margin-bottom: 2rem;
-            }
+            .vol-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem; }
             .vol-stat-card { padding: 1.5rem 1rem; }
             .vol-stat-card .metric-num { font-size: 1.8rem; margin-bottom: 0.4rem; }
             .vol-stat-card .metric-label { font-size: 0.75rem; }
-            
-            .vol-card { 
-                display: grid !important; 
-                grid-template-columns: 1fr 1fr !important; 
-                grid-template-rows: 150px auto !important; 
-                border-radius: 20px; 
-                margin-bottom: 2.5rem; 
-                padding: 0;
-                overflow: hidden;
-            }
-            
-            .vol-side-img { 
-                height: 100% !important; 
-                width: 100% !important;
-                clip-path: none !important; 
-                flex: none !important; 
-            }
+            .vol-card { display: grid !important; grid-template-columns: 1fr 1fr !important; grid-template-rows: 150px auto !important; border-radius: 20px; margin-bottom: 2.5rem; padding: 0; overflow: hidden; }
+            .vol-side-img { height: 100% !important; width: 100% !important; clip-path: none !important; flex: none !important; }
             .img-left { grid-column: 1 / 2; grid-row: 1; border-right: 2px solid var(--bg-page); }
             .img-right { display: block !important; grid-column: 2 / 3; grid-row: 1; }
-            
-            .vol-content { 
-                grid-column: 1 / -1; 
-                grid-row: 2; 
-                padding: 0 1.2rem 2rem 1.2rem; 
-                position: relative; 
-                z-index: 10; 
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            } 
-            
-            .vol-logo { 
-                width: 60px; 
-                height: 60px; 
-                margin-top: -30px; 
-                border-radius: 12px; 
-                margin-bottom: 0.8rem;
-                border-width: 2px;
-                position: relative; 
-                z-index: 5;
-            }
-            
+            .vol-content { grid-column: 1 / -1; grid-row: 2; padding: 0 1.2rem 2rem 1.2rem; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; } 
+            .vol-logo { width: 60px; height: 60px; margin-top: -30px; border-radius: 12px; margin-bottom: 0.8rem; border-width: 2px; position: relative; z-index: 5; }
             .vol-title-area a h2 { font-size: 1.4rem; }
             .vol-title-area h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
             .vol-meta { flex-direction: column; gap: 5px; align-items: center; margin-bottom: 1rem; }
@@ -247,34 +185,15 @@
             .vol-body ul { padding-left: 1rem; text-align: left; }
         }
     </style>
-   <script defer src="/_vercel/speed-insights/script.js"></script>
-    <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
     <canvas id="neural-canvas"></canvas>
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
-<nav class="top-nav">
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-    <div class="nav-menu">
-        <a href="/index.html">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html" class="active">Leadership</a>
-        <a href="/contact.html">Contact</a>
+    <div id="preloader">
+        <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
     </div>
-    <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="#3B82F6" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
-        </button>
-    </div>
-</nav>
+    <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+    
+    <nav class="top-nav"></nav>
 
 <div class="layout-wrapper single-column">
     <header style="text-align: center; margin-bottom: 1rem;">
@@ -673,69 +592,23 @@
     </div>
 </div>
 
-<footer class="site-footer reveal">
-    <div class="footer-glow"></div>
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px; line-height: 1.6;">
-                Marketing professional passionate about brand communication, creative strategies, and growth leadership.
-            </p>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Links</h4>
-            <div class="footer-col-links">
-                <a href="/index.html">Home</a>
-                <a href="/gallery.html">Gallery</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/certificates.html">Certificates</a>
-                <a href="/volunteer.html">Leadership</a>
-                <a href="/contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="footer-col-links">
-                <a href="mailto:fardinraafi@gmail.com">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    fardinraafi@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn Profile
-                </a>
-             <a href="https://www.pinterest.com/yourusername" target="_blank">
-    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-    Pinterest
-</a>
-                <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">
-        © <span id="current-year"></span> Fardin Rahman Khan Raafi. All rights reserved. Built for Humans & AI.
-    </div>
-</footer>
+<!-- Empty footer block to allow main.js to safely inject the global footer without animation bounds issues -->
+<footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
 <script src="/main.js"></script>
-    <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
     if(canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        
         let mouse = { x: null, y: null, radius: 100 }; 
 
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
+        window.addEventListener('mousemove', (event) => { mouse.x = event.clientX; mouse.y = event.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
         function resize() {
             width = canvas.width = window.innerWidth;
@@ -746,8 +619,7 @@
 
         class Particle {
             constructor(x, y, dx, dy, size, color) {
-                this.x = x; this.y = y;
-                this.dx = dx; this.dy = dy;
+                this.x = x; this.y = y; this.dx = dx; this.dy = dy;
                 this.size = size; this.color = color;
                 this.baseX = this.x; this.baseY = this.y;
                 this.density = (Math.random() * 30) + 1;
@@ -755,24 +627,16 @@
             draw() {
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
+                ctx.fillStyle = this.color; ctx.fill();
             }
             update() {
                 if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
-
+                    let force = (mouse.radius - distance) / mouse.radius;
                     if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
+                        this.x -= (dx / distance) * force * this.density;
+                        this.y -= (dy / distance) * force * this.density;
                     } else {
                         if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
                         if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
@@ -781,8 +645,7 @@
                     if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
                     if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
                 }
-                this.baseX += this.dx;
-                this.baseY += this.dy;
+                this.baseX += this.dx; this.baseY += this.dy;
                 if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
                 if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
                 this.draw();
@@ -793,31 +656,22 @@
             particles = [];
             let numberOfParticles = (width * height) / 15000; 
             let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
-
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
-                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-                let dx = (Math.random() - 0.5) * 1; 
-                let dy = (Math.random() - 0.5) * 1; 
-                let color = colors[Math.floor(Math.random() * colors.length)];
-                particles.push(new Particle(x, y, dx, dy, size, color));
+                let x = Math.random() * (innerWidth - size * 4) + size * 2;
+                let y = Math.random() * (innerHeight - size * 4) + size * 2;
+                particles.push(new Particle(x, y, (Math.random() - 0.5) * 1, (Math.random() - 0.5) * 1, size, colors[Math.floor(Math.random() * colors.length)]));
             }
         }
 
         function connect() {
-            let opacityValue = 1;
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
-                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    let distance = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
                     if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - (distance / 20000)) * 0.2})`;
+                        ctx.lineWidth = 1; ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y);
                         ctx.stroke();
                     }
                 }
@@ -831,8 +685,7 @@
             connect();
         }
 
-        init();
-        animate();
+        init(); animate();
     }
 </script>
 </body>
