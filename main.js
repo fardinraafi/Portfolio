@@ -336,19 +336,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         card.addEventListener('mouseleave', () => { card.style.transform = ''; card.style.transition = 'all 0.4s ease'; });
     });
-/* --- Footer Spotlight Tracking --- */
+/* --- Footer Spotlight Tracking (Global Proximity) --- */
     const siteFooter = document.querySelector('.site-footer');
     if (siteFooter) {
-        siteFooter.addEventListener('mousemove', (e) => {
+        // Listen to the whole window, not just the footer frame!
+        window.addEventListener('mousemove', (e) => {
             const rect = siteFooter.getBoundingClientRect();
             siteFooter.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
             siteFooter.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
         });
-        
-        // Hide the spotlight when the mouse leaves the footer
-        siteFooter.addEventListener('mouseleave', () => {
-            siteFooter.style.setProperty('--mouse-y', `-1000px`);
-        });
+        // We completely removed the 'mouseleave' event so it never abruptly turns off!
     }
     /* =========================================
        12. DYNAMIC LIVE STATUS WIDGET
