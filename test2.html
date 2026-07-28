@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Cobe Globe</title>
+  <title>Slow Rotating Globe</title>
   <style>
     /* Reset and base dark theme styling */
     body {
@@ -13,7 +13,7 @@
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      overflow: hidden; /* Prevents scrollbars when dragging */
+      overflow: hidden;
     }
 
     /* Container for the globe */
@@ -24,17 +24,11 @@
       background-color: #111111;
     }
 
-    /* Globe canvas */
+    /* Globe canvas - perfectly centered, dragging disabled */
     #cobe-canvas {
       width: 100%;
       height: 100%;
       contain: layout paint size;
-      cursor: grab; /* Indicates draggability */
-      touch-action: none; /* Prevents native mobile scrolling when interacting */
-    }
-    
-    #cobe-canvas:active {
-      cursor: grabbing;
     }
   </style>
 </head>
@@ -49,60 +43,32 @@
 
     const canvas = document.getElementById("cobe-canvas");
     
-    // Rotation state variables
-    let phi = 0;
-    let isDragging = false;
-    let startX = 0;
-    let startPhi = 0;
+    // Starting phi offset to position Bangladesh on the curved left edge,
+    // which forces the marker to skew along the 3D surface immediately.
+    let phi = 2.4; 
     
     const globe = createGlobe(canvas, {
       devicePixelRatio: 2,
-      width: 600 * 2,
+      width: 600 * 2, 
       height: 600 * 2,
-      phi: 0,
+      phi: 2.4, 
       theta: 0.1, 
       dark: 1, 
       diffuse: 1.2, 
       mapSamples: 16000,
       mapBrightness: 6,
       baseColor: [0.3, 0.3, 0.3], // Dark grey landmass
-      markerColor: [1, 1, 1], // Pure white marker
-      glowColor: [0, 0, 0], // Set to 0 to completely remove the outer glow
+      markerColor: [1, 1, 1], // Pure white marker 
+      glowColor: [0, 0, 0], // Keeps the outer glow completely removed
       markers: [
         // Dhaka, Bangladesh
-        { location: [23.8103, 90.4125], size: 0.05 } 
+        { location: [23.8103, 90.4125], size: 0.055 } 
       ]
     });
 
-    // --- Drag Interaction Logic ---
-    
-    canvas.addEventListener('pointerdown', (e) => {
-      isDragging = true;
-      startX = e.clientX;
-      startPhi = phi;
-    });
-
-    // We attach pointermove and pointerup to the window so the drag 
-    // doesn't awkwardly drop if the user moves their mouse off the canvas fast
-    window.addEventListener('pointermove', (e) => {
-      if (!isDragging) return;
-      
-      const deltaX = e.clientX - startX;
-      // Adjust the multiplier (0.005) to change drag sensitivity
-      phi = startPhi + deltaX * 0.005; 
-    });
-
-    window.addEventListener('pointerup', () => {
-      isDragging = false;
-    });
-
-    // --- Animation Loop ---
+    // Simple animation loop for slow, automatic spinning
     function animate() {
-      // Only auto-rotate if the user isn't currently dragging
-      if (!isDragging) {
-        phi += 0.0015; // Slow ambient spin
-      }
-      
+      phi += 0.002; // Slow ambient spin
       globe.update({ phi });
       requestAnimationFrame(animate);
     }
