@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Resume - Fardin Rahman Khan Raafi</title>
+    <title>Leadership & Volunteer - Fardin Rahman Khan Raafi</title>
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,605 +12,735 @@
     
     <link rel="stylesheet" href="/style.css">
     
+    <!-- Specific Styles for High-End Volunteer Layout -->
     <style>
-        /* EPIC RESUME STYLES */
-        .resume-layout { 
-            max-width: 1200px; margin: 0 auto; padding: 2rem; 
-            display: grid; grid-template-columns: 250px 1fr; gap: 4rem; position: relative; 
-            align-items: start; 
+        /* 🚀 Z-INDEX & GAP FIX FOR NEURAL CANVAS 🚀 */
+        #neural-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            pointer-events: none;
+            display: block; 
         }
 
-        /* Sticky Left Nav for Recruiters */
-        .resume-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 1rem; }
-        
-        .resume-nav-link { 
-            position: relative; overflow: hidden; z-index: 1;
-            padding: 12px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; 
-            color: var(--text-muted); font-weight: 700; text-decoration: none; border: 1px solid transparent; 
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px);
-        }
-        body.dark-mode .resume-nav-link { color: #94A3B8; background: rgba(0,0,0,0.2); }
-        
-        /* The liquid light sweep on hover */
-        .resume-nav-link::before {
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.2), transparent);
-            transition: left 0.6s ease; z-index: -1;
-        }
-        .resume-nav-link:hover::before { left: 100%; }
-        
-        /* Magnetic pop-out effect */
-        .resume-nav-link:hover, .resume-nav-link.active { 
-            background: rgba(37,99,235,0.1); color: var(--c1); 
-            border-color: rgba(37,99,235,0.3); 
-            transform: translateX(12px) scale(1.03); 
-            box-shadow: -5px 10px 20px rgba(0,0,0,0.05);
+        .bg-mesh {
+            z-index: -2 !important; 
         }
 
-        /* Upgraded Resume Download Button */
-        .resume-sidebar .btn-primary {
-            position: relative; overflow: hidden; z-index: 1;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        .resume-sidebar .btn-primary:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 15px 25px rgba(37, 99, 235, 0.3);
-        }
-        .resume-sidebar .btn-primary::after {
-            content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            transform: skewX(-20deg); transition: none;
-        }
-        .resume-sidebar .btn-primary:hover::after {
-            animation: btnShine 0.6s ease-out forwards;
+        .layout-wrapper {
+            position: relative;
+            z-index: 1; 
+            max-width: 1500px !important; 
+            width: 95% !important;
         }
 
-        /* Hero Header */
-        .resume-header { margin-bottom: 4rem; text-align: left; }
-        .resume-header h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; }
-        .resume-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-weight: 600; font-size: 0.95rem; color: var(--text-muted); }
-        .resume-meta a { color: inherit; text-decoration: none; transition: color 0.3s; display: inline-flex; align-items: center; gap: 6px; }
-        .resume-meta a:hover { color: var(--c2); }
+        /* Expand the main wrapper just for this page to allow ultra-wide cards */
+        .volunteer-container { max-width: 100%; margin: 0 auto; }
+        
+        .vol-card { 
+            margin-bottom: 2rem; 
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9);
+            border-radius: 32px; 
+            padding: 0; 
+            display: flex;
+            align-items: stretch; 
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease;
+        }
+        body.dark-mode .vol-card {
+            background: rgba(30, 41, 59, 0.6);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        .vol-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15); }
+        
+        .vol-side-img {
+            flex: 0 0 30%; 
+            position: relative;
+            background: rgba(0,0,0,0.05); 
+            overflow: hidden;
+        }
+        .vol-side-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            cursor: zoom-in;
+            transition: transform 0.5s ease, filter 0.5s ease;
+        }
+        .vol-side-img img:hover {
+            transform: scale(1.08);
+            filter: brightness(0.85);
+        }
+        
+        .img-left { clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%); }
+        .img-right { clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%); }
 
-        .resume-section { margin-bottom: 5rem; scroll-margin-top: 100px; }
-        .resume-section-title { 
-            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-main); 
-            margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px; 
+        .vol-content {
+            flex: 1;
+            padding: 2rem 2rem; 
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            justify-content: center; 
         }
-        body.dark-mode .resume-section-title { color: #F1F5F9; }
-        .resume-section-title::after { 
-            content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--c1), transparent); border-radius: 2px; opacity: 0.5;
+        
+        .vol-logo { 
+            width: 80px; 
+            height: 80px; 
+            border-radius: 14px; 
+            object-fit: contain; 
+            background: rgba(255,255,255,0.95); 
+            padding: 4px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,0,0,0.05);
         }
+        
+        .vol-title-area a { text-decoration: none; }
+        .vol-title-area a h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.2rem; color: var(--c1); transition: color 0.3s ease; line-height: 1.1; }
+        .vol-title-area a:hover h2 { color: var(--c2); }
+        .vol-title-area h3 { font-size: 1rem; color: var(--text-main); margin-bottom: 0.8rem; font-weight: 700; }
+        
+        .vol-meta { font-size: 0.85rem; color: var(--text-light); font-weight: 600; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 1rem; }
+        
+        .vol-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; width: 100%; max-width: 600px; }
+        .vol-body p { margin-bottom: 0; }
+        .vol-body ul { text-align: left; padding-left: 1.5rem; margin-top: 0.5rem; display: inline-block; margin-bottom: 0; }
+        .vol-body li { margin-bottom: 0.4rem; }
 
-        /* 3D Glass Summary */
-        .summary-card { 
-            background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);
-            font-size: 1.1rem; line-height: 1.8; color: var(--text-main); backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 2px 10px rgba(255,255,255,0.5); 
-        }
-        body.dark-mode .summary-card { background: rgba(30,41,59,0.5); color: #F1F5F9; border-color: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 2px 10px rgba(255,255,255,0.05); }
-
-/* =========================================
-           THE EPIC LASER TIMELINE
-        ========================================= */
-        .epic-timeline { position: relative; margin: 2rem 0; padding: 2rem 0; }
-        
-        .epic-timeline::before { 
-            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; 
-            background: rgba(0, 0, 0, 0.05); transform: translateX(-50%); border-radius: 4px;
-        }
-        body.dark-mode .epic-timeline::before { background: rgba(255, 255, 255, 0.05); }
-
-        /* GPU ACCELERATED LASER CSS */
-        .epic-timeline-laser {
-            position: absolute; left: 50%; top: 0; width: 4px; height: 100%;
-            background: linear-gradient(to bottom, var(--c1), var(--c2));
-            transform: translateX(-50%) scaleY(0);
-            transform-origin: top;
-            border-radius: 4px;
-            box-shadow: 0 0 15px var(--c1);
-            will-change: transform;
-            z-index: 1;
-        }
-
-        .et-item { width: 50%; position: relative; margin-bottom: 3rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .et-item.animate-in { opacity: 1; transform: translateY(0); }
-        
-        .et-item:nth-child(odd) { left: 0; padding-right: 3rem; }
-        .et-item:nth-child(even) { left: 50%; padding-left: 3rem; }
-        
-        
-        .et-content { 
-            background: rgba(255,255,255,0.7); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); 
-            backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.03); position: relative; 
-            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        body.dark-mode .et-content { background: rgba(30,41,59,0.6); border-color: rgba(255,255,255,0.05); }
-        
-        .et-item:hover .et-content { 
-            transform: scale(1.03) translateY(-8px); 
-            border-color: var(--c1); 
-            box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15);
-            z-index: 10;
+        .vol-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem; 
+            width: 100%;
         }
         
-        .et-item:hover .et-dot {
-            transform: scale(1.5);
-            background: var(--c1);
-            border-color: var(--c1);
-            box-shadow: 0 0 20px var(--c1), 0 0 0 8px rgba(124, 58, 237, 0.2);
-        }
-        
-        .et-date { display: inline-block; padding: 4px 12px; background: rgba(37,99,235,0.1); color: var(--c1); border-radius: 100px; font-size: 0.8rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .et-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.3rem; }
-        body.dark-mode .et-title { color: #F1F5F9; }
-        .et-company { font-size: 1rem; color: var(--text-muted); font-weight: 700; margin-bottom: 1.5rem; }
-        .et-desc { list-style: none; padding: 0; }
-        .et-desc li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-        body.dark-mode .et-desc li { color: #94A3B8; }
-        .et-desc li::before { content: '▹'; position: absolute; left: 0; color: var(--c1); font-weight: bold; font-size: 1.2rem; top: -3px; }
-
-        /* =========================================
-           INTERACTIVE SKILL DASHBOARD
-        ========================================= */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .skill-group h3 { font-family: 'Syne', sans-serif; color: var(--c2); font-size: 1.2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        
-        .skill-bar-wrap { 
-            margin-bottom: 1rem; 
-            padding: 10px 15px; 
-            border-radius: 12px; 
-            border: 1px solid transparent; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            background: rgba(0,0,0,0.02);
-        }
-        body.dark-mode .skill-bar-wrap { background: rgba(255,255,255,0.02); }
-        
-        .skill-bar-wrap:hover { 
-            transform: translateX(10px) scale(1.02); 
-            background: rgba(255,255,255,0.1); 
-            border-color: rgba(124, 58, 237, 0.2); 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
-        }
-        body.dark-mode .skill-bar-wrap:hover { background: rgba(0,0,0,0.2); }
-
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-weight: 700; font-size: 0.95rem; color: var(--text-main); transition: color 0.3s ease; }
-        body.dark-mode .skill-info { color: #F1F5F9; }
-        
-        .skill-bar-wrap:hover .skill-info span { color: var(--c1); text-shadow: 0 0 8px rgba(37,99,235,0.3); }
-
-        /* Removed overflow: hidden so the glow can escape */
-        .skill-track { width: 100%; height: 8px; background: rgba(0,0,0,0.08); border-radius: 10px; position: relative; }
-        body.dark-mode .skill-track { background: rgba(255,255,255,0.05); }
-        
-      /* 1. We remove overflow: hidden here so the neon shadow can glow outside */
-        .skill-track { width: 100%; height: 8px; background: rgba(0,0,0,0.08); border-radius: 10px; position: relative; }
-        body.dark-mode .skill-track { background: rgba(255,255,255,0.05); }
-        
-        /* GPU ACCELERATED SKILL BARS */
-        .skill-fill { 
-            height: 100%; 
-            width: 100%; 
-            background: linear-gradient(90deg, var(--c1), var(--c2)); 
-            border-radius: 10px; 
-            transform-origin: left; 
-            transform: scaleX(0); 
-            transition: transform 1.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease; 
+        .vol-stat-card {
+            padding: 2rem 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 24px;
             position: relative; 
-            will-change: transform; 
-            overflow: hidden; /* 2. We ADD overflow: hidden HERE to trap the shimmer inside the colored bar! */
+            overflow: hidden; 
         }
         
-        .skill-bar-wrap:hover .skill-fill { box-shadow: 0 0 12px var(--c1); }
-        
-        .skill-fill::after { 
-            content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); 
-            animation: shimmer 2s infinite linear; 
+        .vol-stat-card::before {
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: -100%; 
+            width: 50%; 
+            height: 100%; 
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); 
+            transform: skewX(-20deg); 
+            transition: left 0.6s ease; 
+            z-index: 1; 
         }
-        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+        .vol-stat-card:hover::before { left: 150%; }
+        
+        .vol-stat-card > * { position: relative; z-index: 2; }
 
-        /* Leadership Grid */
-        .leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .lead-card { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); padding: 2rem; border-radius: 20px; transition: all 0.3s; backdrop-filter: blur(10px); }
-        body.dark-mode .lead-card { background: rgba(30,41,59,0.5); border-color: rgba(255,255,255,0.05); }
-        .lead-card:hover { transform: translateY(-5px); border-color: var(--c2); box-shadow: 0 15px 30px rgba(124,58,237,0.1); }
-        .lead-card h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; }
-        body.dark-mode .lead-card h4 { color: #F1F5F9; }
-        .lead-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+        .vol-stat-card .metric-num {
+            font-family: 'Syne', sans-serif; 
+            font-size: 2.8rem; 
+            font-weight: 800; 
+            background: linear-gradient(135deg, var(--c1), var(--c2)); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1; 
+            margin-bottom: 0.5rem;
+        }
+        
+        .vol-stat-card .metric-label { font-size: 0.85rem; color: var(--text-main); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        body.dark-mode .vol-stat-card .metric-label { color: #F1F5F9; }
+        
+        /* MOBILE OPTIMIZATION */
+        @media (max-width: 1024px) {
+            .vol-card { flex-direction: column; }
+            .vol-side-img { flex: 0 0 250px; clip-path: none !important; width: 100%; }
+            .img-left { order: 1; }
+            .vol-content { order: 2; padding: 2.5rem 1.5rem; }
+            .img-right { order: 3; }
+            .vol-title-area a h2 { font-size: 1.8rem; }
+        }
 
-        @media (max-width: 900px) {
-            .resume-layout { grid-template-columns: 1fr; padding: 1rem; gap: 2rem; }
-            .resume-sidebar { display: none; }
-            .resume-header h1 { font-size: 2.5rem; }
-            .epic-timeline::before { left: 24px; }
-            .epic-timeline-laser { left: 24px; }
-            .et-item { width: 100% !important; padding-left: 4rem !important; padding-right: 0 !important; left: 0 !important; }
-            .et-dot { left: 12px !important; right: auto !important; }
-            .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
+        @media (max-width: 768px) {
+            .layout-wrapper { width: 100% !important; padding: 1rem !important; }
+            .vol-stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-bottom: 2rem; }
+            .vol-stat-card { padding: 1.5rem 1rem; }
+            .vol-stat-card .metric-num { font-size: 1.8rem; margin-bottom: 0.4rem; }
+            .vol-stat-card .metric-label { font-size: 0.75rem; }
+            .vol-card { display: grid !important; grid-template-columns: 1fr 1fr !important; grid-template-rows: 150px auto !important; border-radius: 20px; margin-bottom: 2.5rem; padding: 0; overflow: hidden; }
+            .vol-side-img { height: 100% !important; width: 100% !important; clip-path: none !important; flex: none !important; }
+            .img-left { grid-column: 1 / 2; grid-row: 1; border-right: 2px solid var(--bg-page); }
+            .img-right { display: block !important; grid-column: 2 / 3; grid-row: 1; }
+            .vol-content { grid-column: 1 / -1; grid-row: 2; padding: 0 1.2rem 2rem 1.2rem; position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; } 
+            .vol-logo { width: 60px; height: 60px; margin-top: -30px; border-radius: 12px; margin-bottom: 0.8rem; border-width: 2px; position: relative; z-index: 5; }
+            .vol-title-area a h2 { font-size: 1.4rem; }
+            .vol-title-area h3 { font-size: 0.95rem; margin-bottom: 0.5rem; }
+            .vol-meta { flex-direction: column; gap: 5px; align-items: center; margin-bottom: 1rem; }
+            .vol-body { font-size: 0.9rem; text-align: center; }
+            .vol-body ul { padding-left: 1rem; text-align: left; }
         }
     </style>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
+   <script defer src="/_vercel/speed-insights/script.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
 
-<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+    <!-- The Neural Canvas Background -->
+    <canvas id="neural-canvas"></canvas>
+    <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+    
+    <!-- Global Nav Injected by main.js -->
+    <nav class="top-nav"></nav>
 
-<nav class="top-nav">
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-    <div class="nav-menu">
-        <a href="/index.html">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html">Leadership</a>
-        <a href="/contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
-        </button>
-    </div>
-</nav>
-
-<div class="resume-layout">
-    <aside class="resume-sidebar">
-        <a href="#summary" class="resume-nav-link active">Executive Summary</a>
-        <a href="#experience" class="resume-nav-link">Professional Experience</a>
-        <a href="#education" class="resume-nav-link">Education</a>
-        <a href="#skills" class="resume-nav-link">Core Competencies</a>
-        <a href="#leadership" class="resume-nav-link">Leadership & Awards</a>
+<div class="layout-wrapper single-column">
+    <header style="text-align: center; margin-bottom: 1rem;">
+        <h1 class="gradient-text">Leadership & Community</h1>
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+            Building networks, guiding peers, and maintaining brand consistency across impactful student organizations and corporate initiatives.
+        </p>
+    </header>
+    
+    <!-- Added "vol-gallery" class so main.js Smart Lightbox works instantly on these images -->
+    <div class="volunteer-container vol-gallery">
         
-        <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn btn-primary" style="margin-top: 2rem; justify-content: center;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            Download PDF
-        </a>
-    </aside>
-
-    <main>
-        <header class="resume-header scroll-anim">
-            <h1 class="gradient-text">Fardin Rahman Khan Raafi</h1>
-            <div class="resume-meta">
-                <span>📍 Mirpur 10, Dhaka 1216</span>
-                <a href="tel:+8801729114364">📞 +880 1729-114364</a>
-                <a href="mailto:fardinraafi@gmail.com">✉️ fardinraafi@gmail.com</a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">🔗 LinkedIn</a>
+        <!-- High-End Stats Summary -->
+        <div class="vol-stats-grid">
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">30+</div>
+                <div class="metric-label">Volunteering Activity</div>
             </div>
-        </header>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Campus Ambassadorship</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">42</div>
+                <div class="metric-label">Events Managed</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">4</div>
+                <div class="metric-label">Pro Projects & Co-Founding</div>
+            </div>
+            <div class="glass-card reveal vol-stat-card">
+                <div class="metric-num">5</div>
+                <div class="metric-label">Competitions & Fellowships</div>
+            </div>
+        </div>
 
-        <section id="summary" class="resume-section scroll-anim">
-            <h2 class="resume-section-title">Summary</h2>
-            <div class="summary-card">
-                Marketing graduate with experience in business development, lead generation, brand strategy, and digital marketing. Skilled in B2B outreach, market research, CRM management, and creative design, with hands-on experience using Salesforce, LinkedIn Sales Navigator, Apollo.io and AI tools. Strong background in leadership, project coordination, and cross-functional collaboration through internships, university clubs, and professional roles.
+        <!-- TEDxUttara -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/tedx-1.jpg" class="grid-img" alt="TEDx Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/tedx-logo.jpg" class="vol-logo" alt="TEDx Logo" onerror="this.src='https://ui-avatars.com/api/?name=TEDx&size=150&background=DB2777&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/tedxuttara" target="_blank"><h2>TEDxUttara</h2></a>
+                    <h3>Graphic Designer & Branding Expert</h3>
+                    <div class="vol-meta">
+                        <span>📅 Oct 2025 - Nov 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Tasked with making printing materials and maintaining the TEDx brand consistency over all designs. Cross-communicated with the marketing department to ensure proper brand visibility, making us the best department of the Event.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/tedx-2.jpg" class="grid-img" alt="TEDx Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+         
+        <!-- BUBT Career Guidance Office -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/bubt-vol-1.jpg" class="grid-img" alt="BUBT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/bubt-logo.jpg" class="vol-logo" alt="BUBT Logo" onerror="this.src='https://ui-avatars.com/api/?name=BUBT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/bubtcgo" target="_blank"><h2>BUBT Career Guidance Office</h2></a>
+                    <h3>Head of Corporate & Alumni Relations</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2026 - Present</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Selected to serve in a leadership capacity, acting as a bridge between current students, university alumni, and the corporate sector.</p>
+                    <ul>
+                        <li><strong>Network Development:</strong> Supervised events to make next generation students connect.</li>
+                        <li><strong>Corporate Engagement:</strong> Managed corporate relations to facilitate career-focused events.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/bubt-vol-2.jpg" class="grid-img" alt="BUBT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
 
-        <section id="experience" class="resume-section">
-            <h2 class="resume-section-title">Professional Experience</h2>
-            <div class="epic-timeline">
-                <div class="epic-timeline-laser"></div>
-                
-                <div class="et-item scroll-anim">
-                    <div class="et-logo"><img src="/misc_img/augmex_logo_white.png" alt="Augmex"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">May 2026 - Present</div>
-                        <h3 class="et-title">Junior Executive, Marketing</h3>
-                        <div class="et-company">Augmex Technologies Ltd.</div>
-                        <ul class="et-desc">
-                            <li>Conducted market research across 5+ targeted growth projects to identify new business opportunities and refine the Ideal Customer Profile (ICP).</li>
-                            <li>Designed and scheduled 60+ visual assets and social media content pieces per month, ensuring consistent corporate brand identity.</li>
-                            <li>Collaborated with a core growth team to align marketing deliverables.</li>
-                        </ul>
+        <!-- Dept of MKT -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/mkt-1.jpg" class="grid-img" alt="Marketing Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/mkt-logo.jpg" class="vol-logo" alt="Marketing Logo" onerror="this.src='https://ui-avatars.com/api/?name=CIT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Department of Marketing, BUBT</h2></a>
+                    <h3>Organizer</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2024 - Jan 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
+                <div class="vol-body">
+                    <ul style="margin-top:0;">
+                        <li><strong>Event Organiser:</strong> Organised 7 events including Marketing Carnival.</li>
+                        <li><strong>Branding:</strong> Created all creative materials for all events.</li>
+                        <li><strong>Workshop Coordination:</strong> Facilitated the organization of 3 workshops.</li>
+                    </ul>
+                </div>
+            </div>
 
-                <div class="et-item scroll-anim">
-                    <div class="et-logo"><img src="/misc_img/augmex_logo_white.png" alt="Augmex"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">Jan 2026 - May 2026</div>
-                        <h3 class="et-title">Intern, Business Development</h3>
-                        <div class="et-company">Augmex Technologies Ltd.</div>
-                        <ul class="et-desc">
-                            <li>Identified and mapped KDMs aligned with ICP to support targeted B2B sales pipeline development.</li>
-                            <li>Generated over 67,000 organic impressions across Facebook & LinkedIn within one month through content marketing and social media engagement strategies.</li>
-                            <li>Enriched & maintained 40,000+ CRM records, improving data accuracy, lead quality, & sales pipeline management.</li>
-                            <li>Gained experience in Automation using tools like Instantly, Zapier and Apollo.</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="et-item scroll-anim">
-                    <div class="et-logo"><img src="/misc_img/company_1.png" alt="Adviza"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">Sep 2025 - Nov 2025</div>
-                        <h3 class="et-title">Social Media Manager</h3>
-                        <div class="et-company">Adviza International</div>
-                        <ul class="et-desc">
-                            <li>Designed 30+ social media content pieces for local and international clients, strengthening brand identity and engagement.</li>
-                            <li>Managed client communications, project workflows, and content scheduling through Meta Business Suite.</li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="vol-side-img img-right">
+                <img src="leadership/mkt-2.jpg" class="grid-img" alt="Marketing Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
 
-        <section id="education" class="resume-section">
-            <h2 class="resume-section-title">Education</h2>
-            <div class="epic-timeline">
-                <div class="epic-timeline-laser"></div>
-                
-                <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/uni.png" alt="BUBT Logo"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">2022 - 2025</div>
-                        <h3 class="et-title">Bachelor of Business Administration</h3>
-                        <div class="et-company">Bangladesh University of Business and Technology (BUBT)</div>
-                        <ul class="et-desc">
-                            <li><strong>CGPA:</strong> 3.80</li>
-                            <li><strong>Major:</strong> Marketing</li>
-                        </ul>
+        <!-- LEAD Academy -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/lead-1.jpg" class="grid-img" alt="Lead Academy Image" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/lead-logo.jpg" class="vol-logo" alt="Lead Academy Logo" onerror="this.src='https://ui-avatars.com/api/?name=LEAD&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>LEAD Academy</h2></a>
+                    <h3>Lead Luminary 4.0</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2025 - Jun 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
+                <div class="vol-body">
+                    <p>Served as a Lead Luminary and Campus Ambassador for Lead Academy's 4.0 Cohort.</p>
+                </div>
+            </div>
 
-                <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/hsc.png" alt="Dhaka Commerce College Logo"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">2019 - 2021</div>
-                        <h3 class="et-title">Higher Secondary Certificate</h3>
-                        <div class="et-company">Dhaka Commerce College</div>
-                        <ul class="et-desc">
-                            <li><strong>GPA:</strong> 5.00</li>
-                            <li><strong>Major:</strong> Commerce</li>
-                        </ul>
+            <div class="vol-side-img img-right">
+                <img src="leadership/lead-2.jpg" class="grid-img" alt="Lead Academy Photos" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- Hult Prize -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/hult-1.jpg" class="grid-img" alt="Hult Inauguration Banner" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/hult-logo.jpg" class="vol-logo" alt="Hult Prize Logo" onerror="this.src='https://ui-avatars.com/api/?name=H&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/groups/2057531721373541" target="_blank"><h2>Hult Prize 2025</h2></a>
+                    <h3>Lead Brand Designer</h3>
+                    <div class="vol-meta">
+                        <span>📅 Dec 2024 - Feb 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
+                <div class="vol-body">
+                    <ul>
+                        <li>Designed event branding materials, including ID cards, banners, and digital assets, ensuring a cohesive visual identity.</li>
+                        <li>Assisted in developing event scripts and production materials for the Hult Prize OnCampus finale.</li>
+                        <li>Created engaging promotional graphics to enhance event visibility, participant recognition, and student engagement.</li>
+                    </ul>
+                </div>
+            </div>
 
-                <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/ssc.png" alt="Adarsha High School Logo"></div>
-                    <div class="et-dot"></div>
-                    <div class="et-content">
-                        <div class="et-date">2019</div>
-                        <h3 class="et-title">Secondary School Certificate</h3>
-                        <div class="et-company">Adarsha High School</div>
-                        <ul class="et-desc">
-                            <li><strong>GPA:</strong> 4.36</li>
-                            <li><strong>Major:</strong> Commerce</li>
-                        </ul>
+            <div class="vol-side-img img-right">
+                <img src="leadership/hult-2.jpg" class="grid-img" alt="Hult Team" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- Rotaract Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/rotaract-1.jpg" class="grid-img" alt="Rotaract Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/rotaract-logo.jpg" class="vol-logo" alt="Rotaract Logo" onerror="this.src='https://ui-avatars.com/api/?name=Rotaract&size=150&background=DB2777&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/racdkdm" target="_blank"><h2>Rotaract Club Of Dhaka Dynamic</h2></a>
+                    <h3>Secretary</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jun 2025 - May 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
+                <div class="vol-body">
+                    <p>Starting from September 2023 to to 2026 I contributed to 30+ Community and Professional progects. Grateful for all the experiences and knowledge attained from this journey.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/rotaract-2.jpg" class="grid-img" alt="Rotaract Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+        
+        <!-- BUBT Social Welfare Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/swc-1.jpg" class="grid-img" alt="SWC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/swc-logo.jpg" class="vol-logo" alt="Social Welfare Logo" onerror="this.src='https://ui-avatars.com/api/?name=SWC&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/BUBTSWC" target="_blank"><h2>BUBT Social Welfare Club</h2></a>
+                    <h3>Media & Publications Secretary</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jun 2025 - Apr 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Elected in the first election of the BUBT Social Welfare Club. Tasked with managing branding identities and maintaining brand consistency across all promotional elements.</p>
+                    <ul>
+                        <li>Manage and guide the media team across all departments. Created 100+ Designs</li>
+                        <li>Oversee content moderation, creatives, anchors, and brand partnerships.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/swc-2.jpg" class="grid-img" alt="SWC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
 
-        <section id="skills" class="resume-section">
-            <h2 class="resume-section-title">Core Competencies</h2>
-            <div class="skills-grid">
-                
-                <div class="skill-group">
-                    <h3>Growth & Marketing</h3>
-                    
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Brand Strategy</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Market Research</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>B2B Lead Generation</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Cold Outreach & Automation</span><span>85%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Data Analytics</span><span>80%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
+        <!-- Adviza International -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/adviza-1.jpg" class="grid-img" alt="Adviza Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/adviza-logo.jpg" class="vol-logo" alt="Adviza Logo" onerror="this.src='https://ui-avatars.com/api/?name=Adviza&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://advizainternational.com/" target="_blank"><h2>Adviza International</h2></a>
+                    <h3>Marketing Intern - Branding</h3>
+                    <div class="vol-meta">
+                        <span>📅 Apr 2025 - Jan 2026</span>
+                        <span>📍 Dhaka, Bangladesh</span>
                     </div>
                 </div>
-
-                <div class="skill-group">
-                    <h3>Software & Tools</h3>
-                    
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Illustrator, Photoshop & Canva</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Apollo.io & Sales Navigator</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Claude, Perplexity & AI Tools</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Salesforce CRM</span><span>85%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="85"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Zapier & Instantly</span><span>80%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="80"></div></div>
-                    </div>
+                <div class="vol-body">
+                    <p>Joined as a Marketing Intern and Branding Expert, managing all branding materials for the company and designing successful campaigns across social platforms.</p>
                 </div>
+            </div>
 
+            <div class="vol-side-img img-right">
+                <img src="leadership/adviza-2.jpg" class="grid-img" alt="Adviza Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
 
-        <section id="leadership" class="resume-section">
-            <h2 class="resume-section-title">Leadership & Recognition</h2>
-            <div class="leadership-grid">
-                
-                <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🏆</div>
-                    <h4>Awards & Honors</h4>
-                    <p>BASIS Leader of the Year 2024; Lead Luminary - LEAD Academy; Executive Recognition - Hult Prize BUBT; Executive - BizzMasters 2025.</p>
+        <!-- Leo Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/leo-1.jpg" class="grid-img" alt="Leo Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/leo-logo.jpg" class="vol-logo" alt="Leo Club Logo" onerror="this.src='https://ui-avatars.com/api/?name=Leo&size=150&background=F59E0B&color=fff'">
+                <div class="vol-title-area">
+                    <a href="https://www.facebook.com/profile.php?id=100076265731611" target="_blank"><h2>Leo Club of Dhaka Platinum Unique</h2></a>
+                    <h3>Media & Publications Coordinator</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jul 2025 - Dec 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
                 </div>
-
-                <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🌟</div>
-                    <h4>Key Leadership Roles</h4>
-                    <p>Head of Corporate Affairs (BUBT Career Office), Branding Lead (TEDxUttara), Secretary (Rotaract Club), Media Secretary (BUBT SWC).</p>
+                <div class="vol-body">
+                    <p>Directed the media presence, visual communications, and publication initiatives. Managed digital content and promotional materials to amplify community service efforts and outreach programs.</p>
                 </div>
+            </div>
 
-                <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
-                    <h4>Competitions & Scholarships</h4>
-                    <p>3rd Place Ad-Making Competition; 70% Scholarship ISCEA Global Case Competition 2025; Aspire Leaders Program ALP’2026 - Harvard Business School.</p>
-                </div>
-
-                <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🤝</div>
-                    <h4>Campus Ambassador</h4>
-                    <p>Represented Creative IT, YSSE, Skill Catalyst, Property Guru, and BUBT Career Guidance Office.</p>
-                </div>
-
+            <div class="vol-side-img img-right">
+                <img src="leadership/leo-2.jpg" class="grid-img" alt="Leo Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
 
-        <section class="resume-section scroll-anim">
-            <div class="glass-card no-hover" style="text-align: center; padding: 2rem;">
-                <h4 style="color: var(--c1); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 0.5rem;">Professional Reference</h4>
-                <p style="font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem;">Dr. Mohammad Raihanul Hasan</p>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Director of Career Office, BUBT</p>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">📞 01711301177 &nbsp;|&nbsp; ✉️ raihanul@bubt.edu.bd</p>
+        <!-- Skill Catalyst -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/skill-1.jpg" class="grid-img" alt="Skill Catalyst Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/skill-logo.jpg" class="vol-logo" alt="Skill Catalyst Logo" onerror="this.src='https://ui-avatars.com/api/?name=Skill&size=150&background=7C3AED&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Skill Catalyst Bangladesh</h2></a>
+                    <h3>Graphics Designer & Campus Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Mar 2025 - Nov 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Served as Graphics Designer and Campus Ambassador. Designed key visual assets including Announcement Cards, Head of Design Team materials, and General Meeting collateral.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/skill-2.jpg" class="grid-img" alt="Skill Catalyst Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
             </div>
         </section>
-    </main>
+
+        <!-- BUBT Business Club -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/bbc-1.jpg" class="grid-img" alt="BBC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/bbc-logo.jpg" class="vol-logo" alt="BBC Logo" onerror="this.src='https://ui-avatars.com/api/?name=BBC&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>BUBT Business Club</h2></a>
+                    <h3>Sub Executive Member</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2025 - Aug 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p><strong>My Contributions:</strong></p>
+                    <ul>
+                        <li>Created Bizz Master S1 materials and logo.</li>
+                        <li>Created the Hult Prize 2024 identity.</li>
+                        <li>Designed visuals for all events from 2023 to March 2025.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/bbc-2.jpg" class="grid-img" alt="BBC Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- YSSE -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/ysse-1.jpg" class="grid-img" alt="YSSE Presentation" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/ysse-logo.jpg" class="vol-logo" alt="YSSE Logo" onerror="this.src='https://ui-avatars.com/api/?name=YSSE&size=150&background=DB2777&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Youth School for Social Entrepreneurs</h2></a>
+                    <h3>Business Development Intern & Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Oct 2024 - Jun 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <p>Conducted strategic market research to identify growth opportunities. Developed community engagement strategies, increasing outreach. Recognized as Quiz Winner and Intern of the Month.</p>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/ysse-2.jpg" class="grid-img" alt="YSSE Award" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+        <!-- Creative IT Institute -->
+        <section class="glass-card reveal vol-card">
+            <div class="vol-side-img img-left">
+                <img src="leadership/cit-1.jpg" class="grid-img" alt="Creative IT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+1'">
+            </div>
+            
+            <div class="vol-content">
+                <img src="leadership/creative-logo.jpg" class="vol-logo" alt="Creative IT Logo" onerror="this.src='https://ui-avatars.com/api/?name=CIT&size=150&background=2563EB&color=fff'">
+                <div class="vol-title-area">
+                    <a href="#" target="_blank"><h2>Creative IT Institute</h2></a>
+                    <h3>Campus Ambassador</h3>
+                    <div class="vol-meta">
+                        <span>📅 Jan 2024 - Jan 2025</span>
+                        <span>📍 Dhaka, Bangladesh</span>
+                    </div>
+                </div>
+                <div class="vol-body">
+                    <ul>
+                        <li><strong>Campus Representation:</strong> Promoted professional IT training programs and workshops.</li>
+                        <li><strong>Strategic Outreach:</strong> Executed marketing initiatives and social media campaigns.</li>
+                        <li><strong>Event Coordination:</strong> Facilitated the organization of seminars.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="vol-side-img img-right">
+                <img src="leadership/cit-2.jpg" class="grid-img" alt="Creative IT Activity" onerror="this.src='https://placehold.co/800x800/F8FAFC/64748B?text=Image+2'">
+            </div>
+        </section>
+
+    </div>
 </div>
 
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Links</h4>
-            <div class="footer-col-links">
-                <a href="/index.html">Home</a>
-                <a href="/gallery.html">Gallery</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/certificates.html">Certificates</a>
-                <a href="/volunteer.html">Leadership</a>
-                <a href="/contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="footer-col-links">
-                <a href="mailto:fardinraafi@gmail.com">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    fardinraafi@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn Profile
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
-</footer>
+<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+</button>
 
+<div class="glass-card chat-bot-modal" id="chatModal">
+    <div class="chat-header">
+        <div class="chat-header-title">
+            <div class="live-dot"></div>
+            <div>
+                <h4>FIFI</h4>
+                <div class="bot-subtitle">AI Assistant</div>
+            </div>
+        </div>
+        <button class="close-chat" id="closeChatBtn">&times;</button>
+    </div>
+    
+    <div class="chat-scroll-area" id="chatArea">
+        <div class="chat-greeting" id="chatGreeting">
+            <div class="radar-icon"><div class="radar-dot"></div></div>
+            <h2>Hi, I'm Fifi! 👋</h2>
+            <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
+        </div>
+        
+       <div class="chat-options-grid" id="chatOptions">
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')"><span>What are Fardin's core skills?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')"><span>Tell me about Fardin's B2B experience</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')"><span>Tell me about Fardin's academics</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')"><span>What are Fardin's extracurriculars?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')"><span>Download Resume</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')"><span>How do I contact Fardin?</span></button>
+        </div>
+        
+        <div class="chat-log" id="chatLog"></div>
+    </div>
+    
+    <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
+</div>
+
+<!-- Global Footer injected by main.js -->
+<footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <script src="/main.js"></script>
 
-<!-- Embedded Logic for Smooth Resume Animations -->
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
-document.addEventListener('DOMContentLoaded', () => {
-    // 1. Scroll-triggered animations for Timeline & Cards
-    const animElements = document.querySelectorAll('.scroll-anim');
-    if (animElements.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-        animElements.forEach(el => observer.observe(el));
-    }
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 100 }; 
 
-    // 2. Animated Skill Bars (Fills up when scrolled into view using GPU)
-    const skillFills = document.querySelectorAll('.skill-fill');
-    if (skillFills.length > 0) {
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const targetWidth = entry.target.getAttribute('data-width');
-                    entry.target.style.transform = `scaleX(${targetWidth / 100})`;
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        skillFills.forEach(el => skillObserver.observe(el));
-    }
+        window.addEventListener('mousemove', (event) => { mouse.x = event.clientX; mouse.y = event.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
-    // 3. Highlight Active Sidebar Link based on Scroll Position
-    const sections = document.querySelectorAll('.resume-section');
-    const navLinks = document.querySelectorAll('.resume-nav-link');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= (sectionTop - 150)) {
-                current = section.getAttribute('id');
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y; this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current) && current !== '') {
-                link.classList.add('active');
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color; ctx.fill();
             }
-        });
-    }, { passive: true });
-});
-</script>
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    if (distance < mouse.radius) {
+                        this.x -= (dx / distance) * force * this.density;
+                        this.y -= (dy / distance) * force * this.density;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx; this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
 
-<!-- GPU-Accelerated Scroll-Tracking Laser Logic -->
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const timelines = document.querySelectorAll('.epic-timeline');
-    
-    if (timelines.length > 0) {
-        window.addEventListener('scroll', () => {
-            timelines.forEach(timeline => {
-                const laser = timeline.querySelector('.epic-timeline-laser');
-                if (!laser) return;
-                
-                const rect = timeline.getBoundingClientRect();
-                const windowHeight = window.innerHeight;
-                
-                // Calculate progress
-                let progress = (windowHeight / 2 - rect.top) / rect.height;
-                progress = Math.max(0, Math.min(1, progress)); 
-                
-                // GPU-Accelerated scaling instead of height
-                laser.style.transform = `translateX(-50%) scaleY(${progress})`;
-            });
-        }, { passive: true }); // Makes scrolling significantly smoother
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 15000; 
+            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 4) + size * 2;
+                let y = Math.random() * (innerHeight - size * 4) + size * 2;
+                particles.push(new Particle(x, y, (Math.random() - 0.5) * 1, (Math.random() - 0.5) * 1, size, colors[Math.floor(Math.random() * colors.length)]));
+            }
+        }
+
+        function connect() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
+                    if (distance < (width / 7) * (height / 7)) {
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - (distance / 20000)) * 0.2})`;
+                        ctx.lineWidth = 1; ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init(); animate();
     }
-});
 </script>
-
 </body>
 </html>
