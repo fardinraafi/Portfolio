@@ -112,17 +112,51 @@
         }
         @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-        /* Leadership Grid */
+       /* =========================================
+           UPGRADED LEADERSHIP GRID
+        ========================================= */
         .leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        .lead-card { background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); padding: 2rem; border-radius: 20px; transition: all 0.3s; backdrop-filter: blur(10px); }
+        
+        .lead-card { 
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); 
+            padding: 2rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+            backdrop-filter: blur(10px); position: relative; overflow: hidden;
+        }
         body.dark-mode .lead-card { background: rgba(30,41,59,0.5); border-color: rgba(255,255,255,0.05); }
-        .lead-card:hover { transform: translateY(-5px); border-color: var(--c2); box-shadow: 0 15px 30px rgba(124,58,237,0.1); }
-        .lead-card h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; }
-        body.dark-mode .lead-card h4 { color: #F1F5F9; }
-        .lead-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
+        
+        .lead-card:hover { 
+            transform: translateY(-8px); border-color: var(--c1); 
+            box-shadow: 0 20px 40px rgba(124,58,237,0.15); 
+        }
 
-        .dl-btn-wrapper { text-align: center; margin-top: 4rem; }
-        .btn-massive { font-size: 1.2rem; padding: 16px 40px; }
+        /* Premium SVG Icon Wrapper */
+        .lead-icon-wrap {
+            width: 50px; height: 50px; border-radius: 14px;
+            background: rgba(37,99,235,0.1); color: var(--c1);
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 1.5rem; transition: all 0.4s ease;
+        }
+        .lead-card:hover .lead-icon-wrap {
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: #fff; transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 10px 20px rgba(37,99,235,0.3);
+        }
+
+        .lead-card h4 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text-main); margin-bottom: 1rem; }
+        body.dark-mode .lead-card h4 { color: #F1F5F9; }
+
+        /* Modern Micro-Tags for easier reading */
+        .lead-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .lead-tags span {
+            font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px;
+            background: rgba(0,0,0,0.03); color: var(--text-muted);
+            border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;
+        }
+        body.dark-mode .lead-tags span { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.05); color: #94A3B8; }
+        
+        .lead-card:hover .lead-tags span { 
+            border-color: rgba(124, 58, 237, 0.3); color: var(--c1); background: rgba(37,99,235,0.05);
+        }
 
         @media (max-width: 900px) {
             .resume-layout { grid-template-columns: 1fr; padding: 1rem; gap: 2rem; }
@@ -356,37 +390,65 @@
             </div>
         </section>
 
-        <section id="leadership" class="resume-section">
+       <section id="leadership" class="resume-section">
             <h2 class="resume-section-title">Leadership & Recognition</h2>
             <div class="leadership-grid">
                 
                 <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🏆</div>
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+                    </div>
                     <h4>Awards & Honors</h4>
-                    <p>BASIS Leader of the Year 2024; Lead Luminary - LEAD Academy; Executive Recognition - Hult Prize BUBT; Executive - BizzMasters 2025.</p>
+                    <div class="lead-tags">
+                        <span>BASIS Leader of the Year '24</span>
+                        <span>Lead Luminary (LEAD Academy)</span>
+                        <span>Executive Rec. (Hult Prize BUBT)</span>
+                        <span>Executive (BizzMasters '25)</span>
+                    </div>
                 </div>
 
                 <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🌟</div>
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                    </div>
                     <h4>Key Leadership Roles</h4>
-                    <p>Head of Corporate Affairs (BUBT Career Office), Branding Lead (TEDxUttara), Secretary (Rotaract Club), Media Secretary (BUBT SWC).</p>
+                    <div class="lead-tags">
+                        <span>Head of Corporate Affairs (BUBT)</span>
+                        <span>Branding Lead (TEDxUttara)</span>
+                        <span>Secretary (Rotaract Club)</span>
+                        <span>Media Secretary (BUBT SWC)</span>
+                    </div>
                 </div>
 
                 <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🎓</div>
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+                    </div>
                     <h4>Competitions & Scholarships</h4>
-                    <p>3rd Place Ad-Making Competition; 70% Scholarship ISCEA Global Case Competition 2025; Aspire Leaders Program ALP’2026 - Harvard Business School.</p>
+                    <div class="lead-tags">
+                        <span>3rd Place Ad-Making</span>
+                        <span>70% Scholarship ISCEA '25</span>
+                        <span>Aspire Leaders Program '26</span>
+                        <span>Harvard Business School</span>
+                    </div>
                 </div>
 
                 <div class="lead-card scroll-anim">
-                    <div style="font-size: 2rem; margin-bottom: 1rem;">🤝</div>
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
                     <h4>Campus Ambassador</h4>
-                    <p>Represented Creative IT, YSSE, Skill Catalyst, Property Guru, and BUBT Career Guidance Office.</p>
+                    <div class="lead-tags">
+                        <span>Creative IT</span>
+                        <span>YSSE</span>
+                        <span>Skill Catalyst</span>
+                        <span>Property Guru</span>
+                        <span>BUBT Career Office</span>
+                    </div>
                 </div>
 
             </div>
         </section>
-
         <section class="resume-section scroll-anim">
             <div class="glass-card no-hover" style="text-align: center; padding: 2rem;">
                 <h4 style="color: var(--c1); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 0.5rem;">Professional Reference</h4>
