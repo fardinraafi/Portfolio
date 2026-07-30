@@ -13,4 +13,4 @@ Allow: /
 User-agent: Google-Extended
 Allow: /
 
-Sitemap: https://fardinraafi.vercel.app/
+Sitemap: https://fardinraafi.com/sitemap.xml
