@@ -355,9 +355,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (visualPosition % 5 === 0) spanClass = 'span-2-col';
             else if (visualPosition % 11 === 0) spanClass = 'span-2-row';
 
-            galleryHTML += `
+        galleryHTML += `
             <div class="collage-item ${spanClass}" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                <img src="/gallery/gallery_${item.id}.webp" class="grid-img" loading="lazy" alt="${item.text}" onerror="this.parentElement.style.display='none'">
+                <img src="/gallery/gallery_${item.id}.webp" class="grid-img" loading="lazy" alt="Fardin Rahman Khan Raafi - Marketing Executive& Growth Associate Portfolio: ${item.text}" onerror="this.parentElement.style.display='none'">
                 <div class="gallery-overlay">
                     <p>${item.text}</p>
                 </div>
