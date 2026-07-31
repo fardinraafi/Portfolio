@@ -8,34 +8,28 @@
     <meta name="description" content="Official portfolio of Fardin Rahman Khan Raafi. Marketing Executive specializing in B2B sales, brand strategy, and growth operations in Dhaka.">
     <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
     <meta name="author" content="Fardin Rahman Khan Raafi">
-    <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
-    <meta name="author" content="Fardin Rahman Khan Raafi">
+    
     <!-- Favicon / Site Icon -->
     <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
     
    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="YxKX2DZgEMnJ-_e98H863nNIqMUPVLGQvdMnSdHa6Kg" />
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Fardin Rahman Khan Raafi | Portfolio">
-    <meta property="og:description" content="Explore the portfolio, leadership, and professional experience of Fardin Rahman Khan Raafi.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fardinraafi.com">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     
-  <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
+    <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
     <meta property="og:url" content="https://fardinraafi.vercel.app/">
     <meta property="og:title" content="Fardin Rahman Khan Raafi | Growth Associate">
-    <meta property="og:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="og:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
     <meta property="og:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
 
     <!-- TWITTER / X -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fardinraafi.vercel.app/">
     <meta property="twitter:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
-    <meta property="twitter:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="twitter:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
     <meta property="twitter:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
     
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
@@ -76,11 +70,10 @@
         .blog-marquee-wrap {
             width: 100%;
             overflow: hidden;
-            padding: 20px 0; /* Padding allows the hover glow to not get clipped */
+            padding: 20px 0;
             margin: -20px 0;
             position: relative;
         }
-        /* Gradient fade effect on the left and right edges */
         .blog-marquee-wrap::before, .blog-marquee-wrap::after {
             content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
         }
@@ -93,7 +86,7 @@
             display: flex;
             gap: 1.5rem;
             width: max-content;
-            animation: blogMarqueeScroll 45s linear infinite; /* 45s for a nice slow reading speed */
+            animation: blogMarqueeScroll 45s linear infinite;
         }
         .blog-marquee-track:hover { animation-play-state: paused; }
         
@@ -103,7 +96,7 @@
         }
         
         .marquee-blog-card {
-            width: 320px; /* Fixed width so it looks uniform */
+            width: 320px;
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -119,11 +112,9 @@
         }
         body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
         
-        /* 🚀 THE RADIANT LIGHT POP-UP HOVER EFFECT */
         .marquee-blog-card:hover {
             transform: translateY(-10px);
             border-color: var(--c2);
-            /* Glowing borders combining Blue and Purple */
             box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
             z-index: 10;
         }
@@ -134,56 +125,9 @@
         .marquee-blog-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
         .marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
-
-        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
-        .layout-wrapper {
-            position: relative;
-            z-index: 2; /* Forces all content above the canvas */
-        }
-        #neural-canvas {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0; /* Stays safely in the background */
-            pointer-events: none; 
-            opacity: 0.7; /* Subtler integration for home page */
-        }
     </style>
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
-    <!-- Google Knowledge Graph / Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Fardin Rahman Khan Raafi",
-      "alternateName": ["Fardin Raafi", "Fardin Rahman", "FRKR"],
-      "url": "https://fardinraafi.com",
-      "jobTitle": "Marketing Executive",
-      "description": "Marketing professional and Growth Associate with 1 year of experience in B2B sales.",
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Bangladesh University of Business and Technology"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/fardinraafi"
-      ],
-      "knowsAbout": ["Marketing", "B2B Sales", "Business Development", "Brand Strategy", "Graphic Design"]
-    }
-    </script>
 </head>
 <body class="dark-mode">
-<!-- =========================================
-   EXECUTIVE PRELOADER (FRKR)
-========================================= -->
-<div id="preloader">
-    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
-</div>
-
-<!-- The Interactive Physics Canvas Engine (Subtle Version) -->
-<canvas id="neural-canvas"></canvas>
 
 <div class="bg-mesh">
     <div class="blob blob-1"></div>
@@ -224,10 +168,13 @@
 <div class="layout-wrapper" id="home">
     <aside class="sidebar">
         <div class="glass-card">
-        <div class="profile-img" style="overflow: hidden; padding: 0;">
+            <!-- FIX: Added back the missing profile-img-wrap -->
+            <div class="profile-img-wrap">
+                <div class="profile-img" style="overflow: hidden; padding: 0;">
                    <img src="profile.jpg" alt="Fardin Rahman Khan Raafi - Marketing Executive and B2B Sales Professional" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
                 </div>
             </div>
+            
             <h2 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Marketing Professional</p>
               
@@ -237,18 +184,16 @@
                 <span class="tag">B2B</span>
                 <span class="tag">Branding Expert</span>
                 <span class="tag">FMCG</span>
+                <span class="tag">Research</span>
             </div>
             
-<!-- CLEAN DIGITAL CLOCK WIDGET -->
-            <div class="clock-widget">
-                <div class="clock-header">
-                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
-                </div>
-                <div class="clock-time">
-                    <span id="digital-hour-min">--:--</span>
-                    <span id="digital-ampm" class="ampm-text"></span>
-                </div>
-                <div class="clock-date" id="digital-date">Loading...</div>
+            <div class="map-widget">
+                <div class="pin">📍</div>
+                <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M75,20 C60,35 45,50 40,70 C30,90 35,110 40,125 C45,145 55,160 70,165 C90,170 100,175 110,180 C125,185 135,180 145,165 C150,180 155,200 160,215 C165,215 170,205 165,185 C170,165 180,145 175,120 C170,95 180,80 165,65 C150,55 135,70 120,65 C105,55 95,45 85,25 Z" fill="rgba(37,99,235,0.3)" stroke="rgba(255,255,255,0.5)" stroke-width="2"/>
+                </svg>
+                <div style="font-size: 0.8rem; font-weight: 600;">Mirpur 10, Dhaka</div>
+                <div id="local-time" style="font-size: 0.75rem; opacity: 0.8;">--:--</div>
             </div>
         </div>
     </aside>
@@ -438,8 +383,8 @@
             
             <div class="blog-marquee-wrap">
                <div class="blog-marquee-track">
-                    <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                    <a href="/blog-1.html" class="marquee-blog-card">
+                        <img src="blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
@@ -447,8 +392,8 @@
                         </div>
                     </a>
                     
-                    <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification vs Skillset - Career Advice by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                    <a href="/blog-2.html" class="marquee-blog-card">
+                        <img src="blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
@@ -456,8 +401,8 @@
                         </div>
                     </a>
 
-                    <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Brand Strategy insights by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                    <a href="/blog-3.html" class="marquee-blog-card">
+                        <img src="blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Brand Strategy</div>
                             <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
@@ -465,8 +410,8 @@
                         </div>
                     </a>
 
-                    <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="B2B Sales Psychology guide by Growth Associate Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                    <a href="/blog-4.html" class="marquee-blog-card">
+                        <img src="blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">B2B Sales</div>
                             <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
@@ -474,8 +419,8 @@
                         </div>
                     </a>
 
-                    <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Personal Branding guide by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                    <a href="/blog-5.html" class="marquee-blog-card">
+                        <img src="blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Growth</div>
                             <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
@@ -483,31 +428,12 @@
                         </div>
                     </a>
 
-                    <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI and Claude Sonnet 5 analysis by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                    <a href="/blog-6.html" class="marquee-blog-card">
+                        <img src="blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI Tools</div>
                             <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
                             <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
-                        </div>
-                    </a>
-
-                    <!-- Cloned for seamless infinite scroll -->
-                    <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Latest Case Study</div>
-                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-                            <p class="marquee-blog-excerpt">কীভাবে absurdist internet culture এবং niche memes ইউজ করে গ্লোবাল ব্র্যান্ডগুলো Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করছে।</p>
-                        </div>
-                    </a>
-                    
-                    <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification vs Skillset - Career Advice by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Career Advice</div>
-                            <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
-                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে বিনা এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
                         </div>
                     </a>
                 </div>
@@ -535,80 +461,51 @@
     </main>
 </div>
 
-<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
+<!-- FIX: Corrected CTA Section Wrapper -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
     
-    <div class="glowing-line-container top-line">
-        <div class="glowing-orb orb-right-left">
-            <div class="orb-head"></div>
-        </div>
-    </div>
-    
     <div class="final-cta-content reveal">
-        <h2 class="final-cta-title">Let's build your <span class="gradient-text">brand.</span></h2>
+        <h2 class="final-cta-title">Let's build your brand.</h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
     </div>
     
-    <div class="glowing-line-container bottom-line">
-        <div class="glowing-orb orb-left-right">
-            <div class="orb-head"></div>
-        </div>
+    <div class="glowing-line-container">
+        <div class="glowing-orb"></div>
     </div>
 </section>
 
-<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) - UPGRADED TRIGGER BUTTON -->
-<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
-    <div style="position: relative;">
-        <img src="/misc_img/avatar.jpg" alt="FIFI - AI Assistant for Fardin Rahman Khan Raafi" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
-        <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
-    </div>
-    <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
+<!-- FIX: Cleaned up duplicate buttons -->
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
 </button>
 
 <div class="glass-card chat-bot-modal" id="chatModal">
     <div class="chat-header">
-        <div class="chat-header-title" style="gap: 12px;">
-            <div style="position: relative;">
-                <!-- New Avatar in Header -->
-                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
-                <!-- Kept the live pulsing dot! -->
-                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
-            </div>
+        <div class="chat-header-title">
+            <div class="live-dot"></div>
             <div>
-                <h4 style="margin: 0; line-height: 1;">FIFI</h4>
-                <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
+                <h4>FIFI</h4>
+                <div class="bot-subtitle">AI Assistant</div>
             </div>
         </div>
         <button class="close-chat" id="closeChatBtn">&times;</button>
     </div>
     
     <div class="chat-scroll-area" id="chatArea">
-       <div class="chat-greeting" id="chatGreeting">
-            <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
+        <div class="chat-greeting" id="chatGreeting">
+            <div class="radar-icon"><div class="radar-dot"></div></div>
+            <h2>Hi, I'm Fifi! 👋</h2>
             <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
         </div>
         
-       <!-- Upgraded Chat Buttons with Unique Icons -->
        <div class="chat-options-grid" id="chatOptions">
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
-                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')">
-                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')">
-                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')">
-                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')">
-                <span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')">
-                <span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span>
-            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')"><span>What are Fardin's core skills?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')"><span>Tell me about Fardin's B2B experience</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')"><span>Tell me about Fardin's academics</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')"><span>What are Fardin's extracurriculars?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')"><span>Download Resume</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')"><span>How do I contact Fardin?</span></button>
         </div>
         
         <div class="chat-log" id="chatLog"></div>
@@ -616,134 +513,12 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
-<!-- Footer injected by main.js -->
+
+<!-- Footer injected by JS -->
 <footer class="site-footer"></footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
 <script src="/main.js"></script>
-
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
-<script>
-    const canvas = document.getElementById('neural-canvas');
-    if(canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        
-        // Smaller radius for less aggressive mouse pulling
-        let mouse = { x: null, y: null, radius: 100 }; 
-
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor(x, y, dx, dy, size, color) {
-                this.x = x; this.y = y;
-                this.dx = dx; this.dy = dy;
-                this.size = size; this.color = color;
-                this.baseX = this.x; this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-            update() {
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
-
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    } else {
-                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-                    }
-                } else {
-                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-                }
-                this.baseX += this.dx;
-                this.baseY += this.dy;
-                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
-                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
-                this.draw();
-            }
-        }
-
-        function init() {
-            particles = [];
-            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
-            let numberOfParticles = (width * height) / 15000; 
-            // Fainter colors for subtlety
-            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
-
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-                let dx = (Math.random() - 0.5) * 1; 
-                let dy = (Math.random() - 0.5) * 1; 
-                let color = colors[Math.floor(Math.random() * colors.length)];
-                particles.push(new Particle(x, y, dx, dy, size, color));
-            }
-        }
-
-        function connect() {
-            let opacityValue = 1;
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
-                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        // Multiplier lowered to 0.2 to make lines fainter
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) particles[i].update();
-            connect();
-        }
-
-        init();
-        animate();
-    }
-</script>
-
 </body>
 </html>
