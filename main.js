@@ -186,8 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
         certNumbers.sort(() => Math.random() - 0.5); 
         let certsHTML = '';
         certNumbers.forEach(c => {
-            // Updated to pull from the new 'certs/' folder
-            certsHTML += `<img src="certs/cert-${c}.jpg" class="cert-img" loading="lazy" style="cursor: zoom-in;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Certificate ${c}">`;
+            // Updated to pull from the new 'certs/' folder with SEO Alt tags
+            certsHTML += `<img src="certs/cert-${c}.jpg" class="cert-img" loading="lazy" style="cursor: zoom-in;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Fardin Rahman Khan Raafi, Marketing Executive - Professional Certificate ${c}">`;
         });
         certGrid.innerHTML = certsHTML;
     }
