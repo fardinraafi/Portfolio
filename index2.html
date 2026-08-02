@@ -3,44 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- SEO Primary Tags -->
+    <!-- SEO Primary Tags -->
     <title>Fardin Rahman Khan Raafi | Marketing Executive</title>
     <meta name="description" content="Official portfolio of Fardin Rahman Khan Raafi. Marketing Executive specializing in B2B sales, brand strategy, and growth operations in Dhaka.">
     <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
     <meta name="author" content="Fardin Rahman Khan Raafi">
-    <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
-    <meta name="author" content="Fardin Rahman Khan Raafi">
+    
     <!-- Favicon / Site Icon -->
     <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
-    
-   <!-- Google Search Console Verification -->
+
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="YxKX2DZgEMnJ-_e98H863nNIqMUPVLGQvdMnSdHa6Kg" />
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Fardin Rahman Khan Raafi | Portfolio">
-    <meta property="og:description" content="Explore the portfolio, leadership, and professional experience of Fardin Rahman Khan Raafi.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fardinraafi.com">
-    <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     
-  <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
     <meta property="og:url" content="https://fardinraafi.vercel.app/">
-    <meta property="og:title" content="Fardin Rahman Khan Raafi | Growth Associate">
-    <meta property="og:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="og:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
+    <meta property="og:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
     <meta property="og:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
 
     <!-- TWITTER / X -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fardinraafi.vercel.app/">
     <meta property="twitter:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
-    <meta property="twitter:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="twitter:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
     <meta property="twitter:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
     
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
     <link rel="alternate" type="text/html" href="/resume.html">
-    <link rel="preload" as="image" href="profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -48,15 +40,77 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
+        /* 🚀 NEW SPACIOUS HERO SECTION */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            width: 100%;
+            padding: 4rem 0 2rem 0;
+        }
+        .hero-left {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            padding-right: 2rem;
+        }
+        .hero-right {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+        
+        /* 🚀 PURE MASSIVE IMAGE */
+        .hero-img {
+            width: 100%;
+            max-width: 650px;
+            object-fit: contain;
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            border-radius: 0;
+            transform: translateZ(0);
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
+        /* 🚀 EDGE-TO-EDGE OVERRIDES */
+        .edge-to-edge {
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            border-radius: 0; 
+            border-left: none;
+            border-right: none;
+        }
+
         /* Top Tech Ticker */
         .ticker-wrap {
-            width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
+            overflow: hidden; 
+            padding: 1.5rem 0; 
+            margin-bottom: 4rem; 
+            display: flex;
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
-            padding: 1.5rem 0; margin-bottom: 0; display: flex;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
         }
-        body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
+        body.dark-mode .ticker-wrap { 
+            background: rgba(15, 23, 42, 0.85); 
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
         .ticker-track {
             display: flex; gap: 4rem; padding-left: 4rem;
             animation: scrollTicker 30s linear infinite; 
@@ -72,28 +126,36 @@
         .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
         @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Blog Marquee Upgrade */
+        /* Edge-to-Edge Blog Section */
+        .blog-edge-section {
+            padding: 4rem 0;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            margin-bottom: 4rem;
+        }
+        body.dark-mode .blog-edge-section {
+            background: rgba(15, 23, 42, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
         .blog-marquee-wrap {
             width: 100%;
             overflow: hidden;
-            padding: 20px 0; /* Padding allows the hover glow to not get clipped */
-            margin: -20px 0;
+            padding: 20px 0; 
             position: relative;
         }
-        /* Gradient fade effect on the left and right edges */
         .blog-marquee-wrap::before, .blog-marquee-wrap::after {
-            content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
+            content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
         }
-        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
-        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
-        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(30, 41, 59, 0.9), transparent); }
-        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
+        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-page), transparent); }
+        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--bg-page), transparent); }
 
         .blog-marquee-track {
             display: flex;
             gap: 1.5rem;
             width: max-content;
-            animation: blogMarqueeScroll 45s linear infinite; /* 45s for a nice slow reading speed */
+            animation: blogMarqueeScroll 45s linear infinite; 
         }
         .blog-marquee-track:hover { animation-play-state: paused; }
         
@@ -103,7 +165,7 @@
         }
         
         .marquee-blog-card {
-            width: 320px; /* Fixed width so it looks uniform */
+            width: 320px; 
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -119,11 +181,9 @@
         }
         body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
         
-        /* 🚀 THE RADIANT LIGHT POP-UP HOVER EFFECT */
         .marquee-blog-card:hover {
             transform: translateY(-10px);
             border-color: var(--c2);
-            /* Glowing borders combining Blue and Purple */
             box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
             z-index: 10;
         }
@@ -135,10 +195,10 @@
         .marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
 
-        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
+        /* 🚀 Z-INDEX ARCHITECTURE FIX */
         .layout-wrapper {
             position: relative;
-            z-index: 2; /* Forces all content above the canvas */
+            z-index: 2; 
         }
         #neural-canvas {
             position: fixed; 
@@ -146,99 +206,38 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* Stays safely in the background */
+            z-index: 0; 
             pointer-events: none; 
-            opacity: 0.7; /* Subtler integration for home page */
+            opacity: 0.7; 
         }
-        /* 🚀 NEW HERO SECTION STYLES */
-        .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 4rem;
-            margin-bottom: 4rem;
-            width: 100%;
-            padding: 2rem 0;
+
+        /* Centered List Styles for Broken Cards */
+        .centered-timeline {
+            text-align: center;
         }
-        .hero-left {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-        .hero-right {
-            flex: 0.8;
-            display: flex;
-            justify-content: flex-end;
-        }
-        .hero-img {
-            width: 100%;
-            max-width: 450px;
-            border-radius: 32px;
-            object-fit: cover;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.15);
-            transform: translateZ(0);
-        }
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-        .reading-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.7);
-            padding: 10px 18px;
-            border-radius: 100px;
-            border: 1px solid rgba(0,0,0,0.05);
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: var(--text-main);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        body.dark-mode .reading-badge {
-            background: rgba(30, 41, 59, 0.6);
-            border-color: rgba(255,255,255,0.1);
-            color: #F1F5F9;
+        .centered-timeline ul {
+            display: inline-block;
+            text-align: left;
+            margin: 0 auto;
         }
 
         /* Responsive Mobile Stacking */
         @media (max-width: 992px) {
             .hero-section {
-                flex-direction: column-reverse; /* Puts image on top on mobile */
+                flex-direction: column-reverse; 
                 text-align: center;
                 gap: 2rem;
+                padding-top: 2rem;
             }
             .hero-right { justify-content: center; }
-            .hero-left { align-items: center; }
+            .hero-left { align-items: center; padding-right: 0; }
             .contact-links, .status-row, .skill-tags { justify-content: center !important; }
         }
-        /* 🚀 EDGE-TO-EDGE MARQUEE OVERRIDE */
-        .ticker-wrap.edge-to-edge {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            border-radius: 0; /* Flat edges for full bleed */
-            border-left: none;
-            border-right: none;
-            margin-bottom: 3rem; /* Breathing room before the next section */
-            background: rgba(255, 255, 255, 0.85); /* Slightly more solid to stand out */
-        }
-        body.dark-mode .ticker-wrap.edge-to-edge { 
-            background: rgba(15, 23, 42, 0.85); 
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
     </style>
+    
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
+    
     <!-- Google Knowledge Graph / Schema Markup -->
     <script type="application/ld+json">
     {
@@ -296,7 +295,7 @@
     </div>
     <div class="nav-actions">
         <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-      <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
             <div class="theme-liquid-bubble">
@@ -338,13 +337,8 @@
                     </div>
                     <div class="status-tooltip">Click to copy email</div>
                 </div>
-                
-                <div class="reading-badge">
-                    📚 Reading: Hacking Growth
-                </div>
             </div>
 
-            <!-- Migrated from old sidebar -->
             <div style="margin-top: 1rem;">
                 <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
                 <div class="skill-tags" style="justify-content: flex-start;">
@@ -357,13 +351,14 @@
         </div>
         
         <div class="hero-right">
-            <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/500x600/EEF2FF/2563EB?text=Fardin+Raafi'">
+            <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive and B2B Sales Professional" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
         </div>
     </section>
     
-    <!-- We are temporarily keeping the content feed wrapper open here -->
     <main class="content-feed" style="width: 100%;">
-      <div class="ticker-wrap edge-to-edge">
+        
+        <!-- EDGE-TO-EDGE TOOL MARQUEE -->
+        <div class="ticker-wrap edge-to-edge">
             <div class="ticker-track">
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
@@ -387,19 +382,18 @@
             </div>
         </div>
 
-        <section class="glass-card">
-          <!-- Professional Documents - Optimized 1-Column -->
-        <section class="glass-card reveal" style="padding: 3rem 2.5rem; margin-bottom: 3rem;">
+        <!-- Professional Documents - Centered -->
+        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 3rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
             <div class="section-title" style="text-align: center; margin-bottom: 2rem;">Professional Documents</div>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
-                <a href="/resume.html" class="doc-link" style="padding: 1.5rem;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%; max-width: 900px;">
+                <a href="/resume.html" class="doc-link" style="padding: 1.5rem; text-align: left;">
                     <div>
                         <h3>AI-Optimized Resume</h3>
                         <p>Complete work history, tech stack, and education metrics.</p>
                     </div>
                     <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
                 </a>
-                <a href="/volunteer.html" class="doc-link" style="padding: 1.5rem;">
+                <a href="/volunteer.html" class="doc-link" style="padding: 1.5rem; text-align: left;">
                     <div>
                         <h3>Leadership & Extracurriculars</h3>
                         <p>University leadership, creative direction, and community service.</p>
@@ -409,12 +403,12 @@
             </div>
         </section>
 
-        <!-- Recent Experience - More breathing room -->
-        <section class="glass-card reveal" style="padding: 3rem 2.5rem; margin-bottom: 3rem;">
+        <!-- Recent Experience - Centered -->
+        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 3rem; display: flex; flex-direction: column; align-items: center;">
             <div class="section-title" style="text-align: center; margin-bottom: 2.5rem;">Recent Experience</div>
             
-            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
-                <div class="timeline-item">
+            <div style="max-width: 800px; width: 100%; display: flex; flex-direction: column; gap: 2rem;">
+                <div class="timeline-item centered-timeline">
                     <h3>Executive - Marketing</h3>
                     <div class="meta">Augmex Technologies Ltd. • April 2026 – Present</div>
                     <ul>
@@ -423,7 +417,7 @@
                         <li>Produced 50+ digital content and visual assets to support cross-channel brand awareness.</li>
                     </ul>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item centered-timeline">
                     <h3>Intern - Marketing</h3>
                     <div class="meta">Augmex Technologies • Jan 2026 – April 2026</div>
                     <ul>
@@ -432,7 +426,7 @@
                         <li>Generated 67,000+ organic impressions within a month through content marketing & social media strategies.</li>
                     </ul>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item centered-timeline">
                     <h3>Social Media Manager</h3>
                     <div class="meta">Adviza International • Sep 2025 – Nov 2025</div>
                     <ul>
@@ -443,12 +437,12 @@
             </div>
         </section>
 
-        <!-- Education - More breathing room -->
-        <section class="glass-card reveal" style="padding: 3rem 2.5rem; margin-bottom: 3rem;">
+        <!-- Education - Centered -->
+        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 3rem; display: flex; flex-direction: column; align-items: center;">
             <div class="section-title" style="text-align: center; margin-bottom: 2.5rem;">Education</div>
             
-            <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 1.5rem;">
-                <div class="timeline-item">
+            <div style="max-width: 800px; width: 100%; display: flex; flex-direction: column; gap: 2rem;">
+                <div class="timeline-item centered-timeline">
                     <h3>Bachelor of Business Administration (BBA)</h3>
                     <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
                     <ul>
@@ -456,7 +450,7 @@
                         <li><strong>CGPA:</strong> 3.80</li>
                     </ul>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item centered-timeline">
                     <h3>Higher Secondary Certificate (HSC)</h3>
                     <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
                     <ul>
@@ -464,7 +458,7 @@
                         <li><strong>GPA:</strong> 5.00</li>
                     </ul>
                 </div>
-                <div class="timeline-item">
+                <div class="timeline-item centered-timeline">
                     <h3>Secondary School Certificate (SSC)</h3>
                     <div class="meta">Adarsha High School • 2019</div>
                     <ul>
@@ -475,11 +469,11 @@
             </div>
         </section>
 
-        <!-- Impact & Recognition - Center aligned with more space -->
-        <section class="glass-card reveal" style="padding: 3rem 2.5rem; margin-bottom: 3rem; text-align: center;">
+        <!-- Impact & Recognition -->
+        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
             <div class="section-title" style="text-align: center; margin-bottom: 2.5rem;">Impact & Recognition</div>
             
-            <div class="metrics-grid" style="margin-bottom: 2.5rem;">
+            <div class="metrics-grid" style="margin-bottom: 3.5rem; width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
                 <div class="metric-card">
                     <div class="metric-num">40K+</div>
                     <div class="metric-label">CRM Records</div>
@@ -494,7 +488,7 @@
                 </div>
             </div>
             
-            <div class="awards-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; text-align: left; max-width: 900px; margin: 0 auto;">
+            <div class="awards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left; width: 100%; max-width: 900px;">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
                     <div class="award-details">
@@ -525,12 +519,15 @@
                 </div>
             </div>
         </section>
-            <div class="section-title">Featured Blogs</div>
+
+        <!-- EDGE-TO-EDGE BLOG SECTION -->
+        <section class="blog-edge-section edge-to-edge">
+            <div class="section-title" style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 5;">Featured Blogs</div>
             
             <div class="blog-marquee-wrap">
                 <div class="blog-marquee-track">
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
@@ -539,7 +536,7 @@
                     </a>
                     
                     <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification vs Skillset - Career Advice by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
@@ -548,7 +545,7 @@
                     </a>
 
                     <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <img src="/blogs/blog-3.jpg" alt="Modern Brand Strategy insights by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Brand Strategy</div>
                             <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
@@ -557,7 +554,7 @@
                     </a>
 
                     <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <img src="/blogs/blog-4.jpg" alt="B2B Sales Psychology guide by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">B2B Sales</div>
                             <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
@@ -566,7 +563,7 @@
                     </a>
 
                     <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Personal Branding guide by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Growth</div>
                             <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
@@ -575,7 +572,7 @@
                     </a>
 
                     <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <img src="/blogs/blog-6.jpg" alt="Agentic AI and Claude Sonnet 5 analysis by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI Tools</div>
                             <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
@@ -583,8 +580,9 @@
                         </div>
                     </a>
 
+                    <!-- Cloned for seamless infinite scroll -->
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study by Marketing Executive Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
@@ -593,59 +591,23 @@
                     </a>
                     
                     <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification vs Skillset - Career Advice by Fardin Rahman Khan Raafi" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">AI Certification এর আসল খেলা: হাইপ VS স্কিলসেট</h2>
-                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে না এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
+                            <p class="marquee-blog-excerpt">কেন জাস্ট "AI এনথুসিয়াস্ট" লেখা থাকলে কেউ পাত্তা দেবে বিনা এবং টপ ৭টি ফ্রি সার্টিফিকেশন কোর্স যা আপনার মার্কেট ডিমান্ড বাড়াবে।</p>
                         </div>
                     </a>
-
-                    <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Brand Strategy</div>
-                            <h2 class="marquee-blog-title">Modern Marketing: কেন Brand-রা টাকা দিয়ে Roast হতে চাচ্ছে?</h2>
-                            <p class="marquee-blog-excerpt">A look at how brands are embracing internet culture, humor, and authenticity to win attention in the age of Gen Z.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">B2B Sales</div>
-                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: আপনি কোন দিকে ফোকাস করছেন?</h2>
-                            <p class="marquee-blog-excerpt">Why psychology matters more than product knowledge in B2B sales, and how trust, curiosity, and understanding client needs lead to better conversions.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Career Growth</div>
-                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: আপনার Personal Brand</h2>
-                            <p class="marquee-blog-excerpt">Learn how to build a LinkedIn profile that attracts recruiters, showcases your personal brand, and creates career opportunities through a strong headline, compelling story, and consistent activity.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI Tools</div>
-                            <h2 class="marquee-blog-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h2>
-                            <p class="marquee-blog-excerpt">Learn what Agentic AI means, how Claude Sonnet 5 works, and why autonomous workflows are shaping the future of business.</p>
-                        </div>
-                    </a>
-
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 1.5rem;">
+            <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 5;">
                 <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
-        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <!-- B2B Growth Playbook -->
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 4rem 2rem; margin-bottom: 4rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
             <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
@@ -687,7 +649,7 @@
 <!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) - UPGRADED TRIGGER BUTTON -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
-        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
+        <img src="/misc_img/avatar.jpg" alt="FIFI - AI Assistant for Fardin Rahman Khan Raafi" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
         <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
     </div>
     <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
@@ -697,9 +659,7 @@
     <div class="chat-header">
         <div class="chat-header-title" style="gap: 12px;">
             <div style="position: relative;">
-                <!-- New Avatar in Header -->
-                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
-                <!-- Kept the live pulsing dot! -->
+                <img src="/misc_img/avatar.jpg" alt="FIFI - AI Assistant for Fardin Rahman Khan Raafi" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
                 <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
             </div>
             <div>
@@ -716,7 +676,6 @@
             <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
         </div>
         
-       <!-- Upgraded Chat Buttons with Unique Icons -->
        <div class="chat-options-grid" id="chatOptions">
             <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
                 <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
@@ -743,10 +702,10 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
-<!-- Footer injected by main.js -->
-<footer class="site-footer"></footer>
 
+<footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
 <script src="/main.js"></script>
 
 <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
@@ -756,8 +715,6 @@
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        
-        // Smaller radius for less aggressive mouse pulling
         let mouse = { x: null, y: null, radius: 100 }; 
 
         window.addEventListener('mousemove', (event) => {
@@ -824,9 +781,7 @@
 
         function init() {
             particles = [];
-            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
             let numberOfParticles = (width * height) / 15000; 
-            // Fainter colors for subtlety
             let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
@@ -848,7 +803,6 @@
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
                     if (distance < (width / 7) * (height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        // Multiplier lowered to 0.2 to make lines fainter
                         ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
