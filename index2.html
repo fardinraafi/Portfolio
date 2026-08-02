@@ -40,40 +40,45 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* 🚀 NEW SPACIOUS HERO SECTION */
+ /* 🚀 NEW SPACIOUS HERO SECTION */
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 2rem;
-            margin-bottom: 4rem;
+            min-height: 85vh; /* Gives the hero section massive height */
+            position: relative;
             width: 100%;
-            padding: 4rem 0 2rem 0;
+            padding: 4rem 0;
+            overflow: visible; /* Allows the image to break out */
         }
         .hero-left {
-            flex: 1.2;
+            flex: 1;
             display: flex;
             flex-direction: column;
             gap: 1.8rem;
-            padding-right: 2rem;
+            max-width: 650px;
+            z-index: 2; /* Keeps your text above the image */
         }
         .hero-right {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
+            position: absolute;
+            right: -5vw; /* Pushes the image slightly off the right edge */
+            bottom: -5%; /* Anchors the image to the bottom */
+            height: 95vh; /* Makes the image absolutely massive */
+            width: 50vw;
+            z-index: 1;
+            pointer-events: none; 
         }
         
         /* 🚀 PURE MASSIVE IMAGE */
         .hero-img {
             width: 100%;
-            max-width: 650px;
+            height: 100%;
             object-fit: contain;
+            object-position: bottom right; /* Locks the image to the bottom right corner */
             border: none;
             box-shadow: none;
             background: transparent;
             border-radius: 0;
-            transform: translateZ(0);
         }
 
         .status-row {
@@ -84,7 +89,7 @@
             margin-top: 0.5rem;
         }
 
-        /* 🚀 EDGE-TO-EDGE OVERRIDES */
+        /* 🚀 EDGE-TO-EDGE OVERRIDES & BLOG TEXT FIX */
         .edge-to-edge {
             width: 100vw;
             position: relative;
@@ -96,7 +101,12 @@
             border-left: none;
             border-right: none;
         }
-
+        
+        .blog-edge-section .section-title {
+            padding: 0 2rem; /* Fixes the text overflowing off the screen */
+            max-width: 1200px;
+            margin: 0 auto 2.5rem auto;
+        }
         /* Top Tech Ticker */
         .ticker-wrap {
             overflow: hidden; 
