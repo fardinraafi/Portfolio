@@ -45,30 +45,33 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 85vh; /* Gives the hero section massive height */
+            min-height: 85vh;
             position: relative;
-            width: 100%;
-            padding: 4rem 0;
-            overflow: visible; /* Allows the image to break out */
+            /* This forces the hero to stretch wider than the rest of the page */
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 4rem 6vw; /* 6vw padding pushes the text perfectly to the left */
+            overflow: visible; 
+            margin-bottom: 4rem;
         }
         .hero-left {
-            flex: 1;
+            flex: 1.2;
             display: flex;
             flex-direction: column;
             gap: 1.8rem;
-            max-width: 650px;
-            z-index: 2; /* Keeps your text above the image */
+            max-width: 800px; /* Gives your text much more room to breathe */
+            z-index: 2; 
         }
         .hero-right {
             position: absolute;
-            right: -5vw; /* Pushes the image slightly off the right edge */
-            bottom: -5%; /* Anchors the image to the bottom */
-            height: 95vh; /* Makes the image absolutely massive */
+            right: -2vw; /* Pushes your massive image firmly to the far right edge */
+            bottom: -5%; 
+            height: 95vh; 
             width: 50vw;
             z-index: 1;
             pointer-events: none; 
         }
-        
         /* 🚀 PURE MASSIVE IMAGE */
         .hero-img {
             width: 100%;
@@ -499,7 +502,7 @@
                 </div>
             </div>
             
-            <div class="awards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; text-align: left; width: 100%; max-width: 900px;">
+         <div class="awards-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; text-align: left; width: 100%; max-width: 1000px; margin: 0 auto;">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
                     <div class="award-details">
