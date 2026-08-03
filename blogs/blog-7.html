@@ -13,11 +13,26 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* UNIQUE BLOG STYLING */
-        .layout-wrapper { max-width: 950px; margin: 0 auto; padding: 2rem 2rem 4rem; position: relative; z-index: 2; }
-        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: background-color 0.3s, border-color 0.3s; }
-        body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
-
+       /* UNIQUE BLOG STYLING */
+        .layout-wrapper { 
+            width: 100%; 
+            max-width: 950px; 
+            margin: 0 auto; 
+            padding: 2rem 2rem 4rem; 
+            position: relative; 
+            z-index: 2; 
+        }
+        .glass-card { 
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 24px; 
+            padding: 4rem; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); 
+            transition: background-color 0.3s, border-color 0.3s; 
+        }
         /* PC Hero Image (Natural Size) */
         .article-hero-img { width: 100%; height: auto; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: block; }
 
