@@ -39,7 +39,6 @@
     
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
     <link rel="alternate" type="text/html" href="/resume.html">
-    <link rel="preload" as="image" href="profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
@@ -57,10 +56,10 @@
             width: 100vw;
             left: 50%;
             transform: translateX(-50%);
-            /* Pushed text further right by increasing left padding to 10vw */
-            padding: 4rem 6vw 4rem 10vw; 
+            /* Pushed text further right by increasing left padding to 12vw */
+            padding: 4rem 6vw 4rem 12vw; 
             overflow: visible; 
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
             z-index: 2;
         }
         .hero-left {
@@ -82,6 +81,9 @@
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
+            /* Smooth fade at the bottom to remove the harsh cutoff line */
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
         }
         /* 🚀 PURE MASSIVE IMAGE */
         .hero-img {
@@ -93,11 +95,8 @@
             box-shadow: none;
             background: transparent;
             border-radius: 0;
-            /* Pushed down precisely 5 pixels */
+            /* Moved down exactly 5 pixels */
             transform: translateY(5px);
-            /* Smooth fade-out at the bottom to remove the harsh cutoff line */
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 85%, rgba(0,0,0,0) 100%);
         }
 
         .status-row {
@@ -108,39 +107,15 @@
             margin-top: 0.5rem;
         }
 
-        /* 🚀 EDGE-TO-EDGE OVERRIDES & BLOG TEXT FIX */
-        .edge-to-edge {
-            width: 100vw;
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            border-radius: 0; 
-            border-left: none;
-            border-right: none;
-        }
-        
-        .blog-edge-section .section-title {
-            padding: 0 2rem; 
-            max-width: 1200px;
-            margin: 0 auto 2.5rem auto;
-        }
-        
         /* Top Tech Ticker */
         .ticker-wrap {
-            overflow: hidden; 
-            padding: 1.5rem 0; 
-            margin-bottom: 4rem; 
-            display: flex;
-            background: rgba(255, 255, 255, 0.85);
+            width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
+            padding: 1.5rem 0; margin-bottom: 2rem; display: flex;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
         }
-        body.dark-mode .ticker-wrap { 
-            background: rgba(15, 23, 42, 0.85); 
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+        body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
         .ticker-track {
             display: flex; gap: 4rem; padding-left: 4rem;
             animation: scrollTicker 30s linear infinite; 
@@ -156,30 +131,21 @@
         .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
         @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* Edge-to-Edge Blog Section */
-        .blog-edge-section {
-            padding: 4rem 0;
-            background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(10px);
-            margin-bottom: 4rem;
-        }
-        body.dark-mode .blog-edge-section {
-            background: rgba(15, 23, 42, 0.5);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
+        /* Blog Marquee Upgrade */
         .blog-marquee-wrap {
             width: 100%;
             overflow: hidden;
             padding: 20px 0; 
+            margin: -20px 0;
             position: relative;
         }
         .blog-marquee-wrap::before, .blog-marquee-wrap::after {
-            content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+            content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
         }
-        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, var(--bg-page), transparent); }
-        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, var(--bg-page), transparent); }
+        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
+        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
+        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(30, 41, 59, 0.9), transparent); }
+        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
 
         .blog-marquee-track {
             display: flex;
@@ -225,10 +191,10 @@
         .marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
         body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
 
-        /* 🚀 Z-INDEX ARCHITECTURE FIX */
+        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
         .layout-wrapper {
             position: relative;
-            z-index: 2; 
+            z-index: 2;
         }
         #neural-canvas {
             position: fixed; 
@@ -238,43 +204,7 @@
             height: 100vh;
             z-index: 0; 
             pointer-events: none; 
-            /* Neural Canvas visibility increased */
-            opacity: 1; 
-        }
-
-        /* BENTO BOX: ABOUT & EXPERIENCE SECTION */
-        .bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 1200px; margin: 0 auto 4rem auto; padding: 0 1.5rem; }
-        .bento-card { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 2.5rem; transition: transform 0.3s ease, border-color 0.3s ease; }
-        body.dark-mode .bento-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
-        .bento-card:hover { transform: translateY(-5px); border-color: var(--c2); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        
-        .bento-about { grid-column: span 2; display: flex; flex-direction: column; justify-content: center; }
-        .bento-exp { grid-column: span 1; grid-row: span 2; }
-        .bento-edu { grid-column: span 1; }
-        .bento-docs { grid-column: span 1; }
-        
-        .bento-title { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 1.2rem; color: var(--text-main); }
-        body.dark-mode .bento-title { color: #F1F5F9; }
-        .bento-text { color: var(--text-muted); line-height: 1.7; font-size: 1.05rem; margin-bottom: 1rem; }
-        .bento-item-title { font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.2rem; }
-        body.dark-mode .bento-item-title { color: #E2E8F0; }
-        .bento-item-meta { font-size: 0.85rem; color: var(--c1); font-weight: 700; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        
-        /* Responsive Mobile Stacking */
-        @media (max-width: 992px) {
-            .hero-section {
-                flex-direction: column-reverse; 
-                text-align: center;
-                gap: 2rem;
-                padding-top: 2rem;
-            }
-            .hero-right { justify-content: center; position: relative; width: 100%; height: 400px; right: 0; bottom: 0; }
-            .hero-left { align-items: center; padding: 0 1.5rem; }
-            .hero-img { object-position: bottom center; -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%); }
-            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
-            
-            .bento-grid { grid-template-columns: 1fr; }
-            .bento-about, .bento-exp, .bento-edu, .bento-docs { grid-column: span 1; grid-row: span 1; }
+            opacity: 1 !important; /* Made the canvas much more visible */
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -336,7 +266,7 @@
     </div>
     <div class="nav-actions">
         <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+      <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
             <div class="theme-liquid-bubble">
@@ -347,59 +277,92 @@
     </div>
 </nav>
 
-<div class="layout-wrapper single-column" id="home">
-    
-    <!-- EPIC NEW HERO SECTION -->
-    <section class="hero-section">
-        <div class="hero-left">
-            <div class="typewriter" style="margin-bottom: -10px;">
-                <span id="tw-text"></span><span class="caret"></span>
-            </div>
-            
-            <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-                Fardin Rahman<br>Khan Raafi
-            </h1>
-            
-            <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
-                I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
-            </p>
-            
-            <div class="contact-links" style="justify-content: flex-start; margin: 0;">
-                <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
-                <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
-            </div>
-
-            <div class="status-row">
-                <div class="live-status-widget" id="liveStatusBtn" style="margin: 0;">
-                    <div class="status-dot"></div>
-                    <div class="status-text-container">
-                        <span id="live-status-text">Open to new B2B projects</span>
-                    </div>
-                    <div class="status-tooltip">Click to copy email</div>
-                </div>
-            </div>
-
-            <div style="margin-top: 1rem;">
-                <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
-                <div class="skill-tags" style="justify-content: flex-start;">
-                    <span class="tag">Marketing Enthusiast</span>
-                    <span class="tag">B2B</span>
-                    <span class="tag">Branding Expert</span>
-                    <span class="tag">FMCG</span>
-                </div>
-            </div>
+<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-left">
+        <div class="typewriter" style="margin-bottom: -10px;">
+            <span id="tw-text"></span><span class="caret"></span>
         </div>
         
-        <div class="hero-right">
-            <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive and B2B Sales Professional" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
-        </div>
-    </section>
-    
-    <main class="content-feed" style="width: 100%;">
+        <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+            Fardin Rahman<br>Khan Raafi
+        </h1>
         
-        <!-- EDGE-TO-EDGE TOOL MARQUEE -->
-        <div class="ticker-wrap edge-to-edge">
+        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
+            I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
+        </p>
+        
+        <div class="contact-links" style="justify-content: flex-start; margin: 0;">
+            <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
+            <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
+            <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
+        </div>
+
+        <div class="status-row">
+            <div class="live-status-widget" id="liveStatusBtn" style="margin: 0;">
+                <div class="status-dot"></div>
+                <div class="status-text-container">
+                    <span id="live-status-text">Open to new B2B projects</span>
+                </div>
+                <div class="status-tooltip">Click to copy email</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 1rem;">
+            <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
+            <div class="skill-tags" style="justify-content: flex-start;">
+                <span class="tag">Marketing Enthusiast</span>
+                <span class="tag">B2B</span>
+                <span class="tag">Branding Expert</span>
+                <span class="tag">FMCG</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hero-right">
+        <!-- IMAGE WITH BOTTOM GRADIENT FADE -->
+        <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+    </div>
+</section>
+
+<!-- 🚀 THE 2-COLUMN SETUP BEGINS HERE -->
+<div class="layout-wrapper" id="home">
+    
+    <aside class="sidebar">
+        <div class="glass-card">
+            <div class="profile-img-wrap">
+                <div class="profile-img" style="overflow: hidden; padding: 0;">
+                   <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1.4) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
+                </div>
+            </div>
+            <h2 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Marketing Professional</p>
+              
+            <div class="section-title">Core Stack</div>
+            <div class="skill-tags">
+                <span class="tag">Marketing Enthusiast</span>
+                <span class="tag">B2B</span>
+                <span class="tag">Branding Expert</span>
+                <span class="tag">FMCG</span>
+            </div>
+            
+            <!-- CLEAN DIGITAL CLOCK WIDGET -->
+            <div class="clock-widget">
+                <div class="clock-header">
+                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
+                </div>
+                <div class="clock-time">
+                    <span id="digital-hour-min">--:--</span>
+                    <span id="digital-ampm" class="ampm-text"></span>
+                </div>
+                <div class="clock-date" id="digital-date">Loading...</div>
+            </div>
+        </div>
+    </aside>
+    
+    <main class="content-feed">
+        
+        <div class="ticker-wrap">
             <div class="ticker-track">
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
@@ -423,76 +386,88 @@
             </div>
         </div>
 
-        <!-- 🚀 BENTO BOX: ABOUT & EXPERIENCE SECTION -->
-        <div class="bento-grid">
-            <!-- 1. About Me (Spans 2 columns) -->
-            <div class="bento-card bento-about reveal">
-                <h2 class="bento-title">Who is <span class="gradient-text">Fardin?</span></h2>
-                <p class="bento-text">I am a Marketing Executive based in Dhaka, Bangladesh, with a specialized focus on B2B sales pipelines and brand strategy.</p>
-                <p class="bento-text" style="margin-bottom: 0;">For the past year at Augmex Technologies, I have worked to bridge the gap between product development and market execution. From enriching tens of thousands of CRM records to executing targeted LinkedIn campaigns, my approach is deeply rooted in psychology, creative visual assets, and data-driven growth.</p>
-            </div>
-
-            <!-- 2. Recent Experience (Tall column) -->
-            <div class="bento-card bento-exp reveal">
-                <h2 class="bento-title">Experience</h2>
-                
-                <div style="margin-bottom: 2rem;">
-                    <div class="bento-item-title">Executive - Marketing</div>
-                    <div class="bento-item-meta">Augmex Ltd. • Apr 2026 – Present</div>
-                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Enriched and maintained 40,000+ CRM records.</li>
-                        <li>Spearheaded B2B lead generation via LinkedIn.</li>
-                    </ul>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <div class="bento-item-title">Intern - Marketing</div>
-                    <div class="bento-item-meta">Augmex Ltd. • Jan 2026 – Apr 2026</div>
-                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
-                        <li style="margin-bottom: 0.5rem;">Identified 6,000+ Key Decision Makers.</li>
-                        <li>Generated 67,000+ organic impressions.</li>
-                    </ul>
-                </div>
-
+        <section class="glass-card">
+            <div class="section-title">Professional Documents</div>
+            <a href="/resume.html" class="doc-link">
                 <div>
-                    <div class="bento-item-title">Social Media Manager</div>
-                    <div class="bento-item-meta">Adviza Int. • Sep 2025 – Nov 2025</div>
-                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
-                        <li>Designed 30+ custom social media assets.</li>
-                    </ul>
+                    <h3>AI-Optimized Resume</h3>
+                    <p>Complete work history, tech stack, and education metrics.</p>
                 </div>
-            </div>
-
-            <!-- 3. Education (1 column) -->
-            <div class="bento-card bento-edu reveal">
-                <h2 class="bento-title">Education</h2>
-                <div style="margin-bottom: 1.5rem;">
-                    <div class="bento-item-title">BBA in Marketing</div>
-                    <div class="bento-item-meta">BUBT • CGPA: 3.80</div>
-                </div>
-                <div style="margin-bottom: 1.5rem;">
-                    <div class="bento-item-title">HSC (Commerce)</div>
-                    <div class="bento-item-meta">Dhaka Commerce College</div>
-                </div>
+                <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
+            </a>
+            <a href="/volunteer.html" class="doc-link">
                 <div>
-                    <div class="bento-item-title">SSC (Commerce)</div>
-                    <div class="bento-item-meta">Adarsha High School</div>
+                    <h3>Leadership & Extracurriculars</h3>
+                    <p>University leadership, creative direction, and community service.</p>
                 </div>
-            </div>
+                <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
+            </a>
+        </section>
 
-            <!-- 4. Quick Links (1 column) -->
-            <div class="bento-card bento-docs reveal" style="display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
-                <h2 class="bento-title" style="margin-bottom: 0.5rem;">Documents</h2>
-                <a href="/resume.html" class="btn btn-outline" style="text-align: center; width: 100%;">View Full Resume ➔</a>
-                <a href="/volunteer.html" class="btn btn-primary" style="text-align: center; width: 100%;">Leadership & Impact ➔</a>
-            </div>
-        </div>
-        
-        <!-- Impact & Recognition -->
-        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
-            <div class="section-title" style="text-align: center; margin-bottom: 2.5rem;">Impact & Recognition</div>
+        <section class="glass-card">
+            <div class="section-title">Recent Experience</div>
             
-            <div class="metrics-grid" style="margin-bottom: 3.5rem; width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            <div class="timeline-item">
+                <h3>Executive - Marketing</h3>
+                <div class="meta">Augmex Technologies Ltd. • April 2026 – Present</div>
+                <ul>
+                    <li>Enriched and maintained 40,000+ CRM records</li>
+                    <li>Spearheaded targeted B2B lead generation campaigns utilizing LinkedIn Marketing</li>
+                    <li>Produced 50+ digital content and visual assets to support cross-channel brand awareness.</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Intern - Marketing</h3>
+                <div class="meta">Augmex Technologies • Jan 2026 – April 2026</div>
+                <ul>
+                    <li>Executed multi-channel cold outreach and content marketing strategies.</li>
+                    <li>Identified and mapped 6000+ Key Decision Makers with Ideal Customer Profiles.</li>
+                    <li>Generated 67,000+ organic impressions within a month through content marketing & social media strategies.</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Social Media Manager</h3>
+                <div class="meta">Adviza International • Sep 2025 – Nov 2025</div>
+                <ul>
+                    <li>Designed 30+ custom social media assets for local and international clients.</li>
+                    <li>Managed end-to-end client communications and project workflows.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <div class="section-title">Education</div>
+            
+            <div class="timeline-item">
+                <h3>Bachelor of Business Administration (BBA)</h3>
+                <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
+                <ul>
+                    <li><strong>Major:</strong> Marketing</li>
+                    <li><strong>CGPA:</strong> 3.80</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Higher Secondary Certificate (HSC)</h3>
+                <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
+                <ul>
+                    <li><strong>Major:</strong> Commerce</li>
+                    <li><strong>GPA:</strong> 5.00</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Secondary School Certificate (SSC)</h3>
+                <div class="meta">Adarsha High School • 2019</div>
+                <ul>
+                    <li><strong>Major:</strong> Commerce</li>
+                    <li><strong>GPA:</strong> 4.36</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="glass-card">
+            <div class="section-title">Impact & Recognition</div>
+            
+            <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-num">40K+</div>
                     <div class="metric-label">CRM Records</div>
@@ -507,7 +482,7 @@
                 </div>
             </div>
             
-         <div class="awards-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; text-align: left; width: 100%; max-width: 1000px; margin: 0 auto;">
+            <div class="awards-grid">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
                     <div class="award-details">
@@ -538,13 +513,91 @@
                 </div>
             </div>
         </section>
-
-        <!-- EDGE-TO-EDGE BLOG SECTION -->
-        <section class="blog-edge-section edge-to-edge">
-            <div class="section-title" style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 5;">Featured Blogs</div>
+        
+        <section class="glass-card">
+            <div class="section-title">Featured Blogs</div>
             
             <div class="blog-marquee-wrap">
                 <div class="blog-marquee-track">
+                    <!-- ========================================== -->
+                    <!-- 1ST SET OF BLOGS (For Seamless Scrolling)  -->
+                    <!-- ========================================== -->
+                    
+                    <a href="/blogs/blog-1.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Latest Case Study</div>
+                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/blogs/blog-2.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Career Advice</div>
+                            <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
+                            <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blogs/blog-3.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Marketing Strategy</div>
+                            <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
+                            <p class="marquee-blog-excerpt">We barely have the patience to watch a 5-second ad. Yet, we happily sit down to watch a 2-hour brand roast show...</p>
+                        </div>
+                    </a>
+
+                    <a href="/blogs/blog-4.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">B2B Sales & Growth</div>
+                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
+                            <p class="marquee-blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
+                        </div>
+                    </a>
+
+                    <a href="/blogs/blog-5.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Personal Branding</div>
+                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
+                            <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
+                        </div>
+                    </a>
+
+                    <a href="/blogs/blog-6.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI & B2B Growth</div>
+                            <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
+                            <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
+                        </div>
+                    </a>
+                    
+                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Future of Work</div>
+                            <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
+                            <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
+                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">Resource Guide</div>
+                            <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
+                            <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
+                        </div>
+                    </a>
+                    
+                    <!-- ========================================== -->
+                    <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
+                    <!-- ========================================== -->
                     
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
                         <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
@@ -618,34 +671,15 @@
                         </div>
                     </a>
 
-                    <!-- Cloned for seamless infinite scroll -->
-                    <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Latest Case Study</div>
-                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-                            <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Career Advice</div>
-                            <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
-                            <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
-                        </div>
-                    </a>
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 5;">
+            <div style="text-align: center; margin-top: 1.5rem;">
                 <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
-        <!-- B2B Growth Playbook -->
-        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 4rem 2rem; margin-bottom: 4rem;">
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
             <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
@@ -662,7 +696,7 @@
     </main>
 </div>
 
-<!-- OLD RESTORED SAAS-STYLE FULL-WIDTH CTA SECTION -->
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
     
@@ -687,7 +721,7 @@
 <!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
-        <img src="/misc_img/avatar.jpg" alt="FIFI - AI Assistant for Fardin Rahman Khan Raafi" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
+        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
         <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
     </div>
     <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
@@ -697,7 +731,7 @@
     <div class="chat-header">
         <div class="chat-header-title" style="gap: 12px;">
             <div style="position: relative;">
-                <img src="/misc_img/avatar.jpg" alt="FIFI - AI Assistant for Fardin Rahman Khan Raafi" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
+                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
                 <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
             </div>
             <div>
@@ -740,6 +774,7 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
+
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
@@ -818,8 +853,10 @@
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / 15000; 
-            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+            // Increased density to 10000 for slightly more particles
+            let numberOfParticles = (width * height) / 10000; 
+            // Enhanced opacity from 0.3 to 0.5 to make dots more visible
+            let colors = ['rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(219, 39, 119, 0.5)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -840,8 +877,8 @@
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
                     if (distance < (width / 7) * (height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        // Increased from 0.2 to 0.4 to make neural mesh more visible
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        // Multiplier boosted to 0.6 to make the connections visibly glow more
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.6})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
