@@ -47,24 +47,30 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-        /* 🚀 NEW BLUR TEXT REVEAL EFFECT */
-        .blur-container {
-            display: inline-block;
-        }
+/* 🚀 NEW BLUR TEXT REVEAL EFFECT */
+        .blur-container { display: inline-block; }
+        
         .blur-word {
             display: inline-block;
             opacity: 0;
             filter: blur(10px);
-            transform: translateY(-50px);
+            transform: translateY(-20px);
             will-change: transform, filter, opacity;
         }
-        @keyframes blurTextReveal {
-            0% { opacity: 0; filter: blur(10px); transform: translateY(-50px); }
-            50% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
-            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        
+        /* Auto-runs immediately on page load for the top hero */
+        .hero-blur {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         }
-        .blur-word.is-animated {
-            animation: blurTextReveal 0.7s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+        
+        /* Waits for scroll for the bottom CTA */
+        .scroll-blur.is-animated {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(10px); transform: translateY(-20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
 
         /* 🚀 NEW SPACIOUS HERO SECTION */
@@ -305,14 +311,13 @@
             <span id="tw-text"></span><span class="caret"></span>
         </div>
         
-        <!-- BLUR ANIMATION ON HERO NAME -->
-        <h1 class="gradient-text blur-container" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-            <span class="blur-word">Fardin&nbsp;</span>
-            <span class="blur-word">Rahman</span><br>
-            <span class="blur-word">Khan&nbsp;</span>
-            <span class="blur-word">Raafi</span>
+       <!-- BLUR ANIMATION ON HERO NAME (PURE CSS) -->
+        <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+            <span class="blur-word hero-blur" style="animation-delay: 0.1s;">Fardin&nbsp;</span>
+            <span class="blur-word hero-blur" style="animation-delay: 0.25s;">Rahman</span><br>
+            <span class="blur-word hero-blur" style="animation-delay: 0.4s;">Khan&nbsp;</span>
+            <span class="blur-word hero-blur" style="animation-delay: 0.55s;">Raafi</span>
         </h1>
-        
         <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
             I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
         </p>
@@ -732,11 +737,12 @@
     </div>
     
     <div class="final-cta-content reveal blur-container">
+       <!-- BLUR ANIMATION ON BOTTOM CTA -->
         <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <span class="blur-word">Let's&nbsp;</span>
-            <span class="blur-word">build&nbsp;</span>
-            <span class="blur-word">your&nbsp;</span>
-            <span class="blur-word gradient-text">brand.</span>
+            <span class="blur-word scroll-blur">Let's&nbsp;</span>
+            <span class="blur-word scroll-blur">build&nbsp;</span>
+            <span class="blur-word scroll-blur">your&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">brand.</span>
         </h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
     </div>
@@ -820,22 +826,20 @@
         const blurObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const words = entry.target.querySelectorAll('.blur-word');
+                    const words = entry.target.querySelectorAll('.scroll-blur');
                     words.forEach((word, index) => {
                         // 150ms stagger delay per word
                         word.style.animationDelay = `${index * 0.15}s`;
                         word.classList.add('is-animated');
                     });
-                    // Only run once
                     blurObserver.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        }, { threshold: 0.1 });
 
         blurContainers.forEach(container => blurObserver.observe(container));
     });
 </script>
-
 <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
