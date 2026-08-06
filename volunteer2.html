@@ -47,6 +47,26 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
+        /* 🚀 NEW BLUR TEXT REVEAL EFFECT (React Motion Equivalent) */
+        .blur-container {
+            display: inline-block;
+        }
+        .blur-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(-50px); /* Comes down from top */
+            will-change: transform, filter, opacity;
+        }
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(10px); transform: translateY(-50px); }
+            50% { opacity: 0.5; filter: blur(5px); transform: translateY(5px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+        .blur-word.is-animated {
+            animation: blurTextReveal 0.7s forwards cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
         /* 🚀 NEW SPACIOUS HERO SECTION */
         .hero-section {
             display: flex;
@@ -205,7 +225,7 @@
             height: 100vh;
             z-index: 0; 
             pointer-events: none; 
-            opacity: 0.7; /* Back to subtle */
+            opacity: 0.7; /* Subtle backdrop */
         }
 
         /* EPIC SAAS CTA STRUCTURE */
@@ -276,26 +296,6 @@
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
-    <!-- Google Knowledge Graph / Schema Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Fardin Rahman Khan Raafi",
-      "alternateName": ["Fardin Raafi", "Fardin Rahman", "FRKR"],
-      "url": "https://fardinraafi.com",
-      "jobTitle": "Marketing Executive",
-      "description": "Marketing professional and Growth Associate with 1 year of experience in B2B sales.",
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Bangladesh University of Business and Technology"
-      },
-      "sameAs": [
-        "https://www.linkedin.com/in/fardinraafi"
-      ],
-      "knowsAbout": ["Marketing", "B2B Sales", "Business Development", "Brand Strategy", "Graphic Design"]
-    }
-    </script>
 </head>
 <body class="dark-mode">
 <!-- =========================================
@@ -312,13 +312,6 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
-    
-    <svg class="geo-shape geo-1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
-        <circle cx="50" cy="50" r="40"/><path d="M50 10 C 20 10, 20 90, 50 90 M50 10 C 80 10, 80 90, 50 90 M10 50 L90 50"/>
-    </svg>
-    <svg class="geo-shape geo-2" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
-        <polygon points="50,10 90,90 10,90"/><polygon points="50,90 90,10 10,10"/>
-    </svg>
 </div>
 
 <nav class="top-nav">
@@ -344,15 +337,19 @@
     </div>
 </nav>
 
-<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION -->
+<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION (With manual blur setup) -->
 <section class="hero-section">
     <div class="hero-left">
         <div class="typewriter" style="margin-bottom: -10px;">
             <span id="tw-text"></span><span class="caret"></span>
         </div>
         
-        <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-            Fardin Rahman<br>Khan Raafi
+        <!-- React-style Blur effect manually wrapped to protect gradient structure -->
+        <h1 class="gradient-text blur-container" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+            <span class="blur-word">Fardin&nbsp;</span>
+            <span class="blur-word">Rahman</span><br>
+            <span class="blur-word">Khan&nbsp;</span>
+            <span class="blur-word">Raafi</span>
         </h1>
         
         <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
@@ -378,10 +375,10 @@
         <div style="margin-top: 1rem;">
             <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
             <div class="skill-tags" style="justify-content: flex-start;">
-                <span class="tag">Marketing</span>
+                <span class="tag">Marketing Enthusiast</span>
                 <span class="tag">B2B</span>
                 <span class="tag">Branding Expert</span>
-                <span class="tag">Leadership</span>
+                <span class="tag">FMCG</span>
             </div>
         </div>
     </div>
@@ -453,148 +450,140 @@
             </div>
         </div>
 
-        <section class="glass-card">
-            <div class="section-title">Professional Documents</div>
-            <a href="/resume.html" class="doc-link">
-                <div>
-                    <h3>AI-Optimized Resume</h3>
-                    <p>Complete work history, tech stack, and education metrics.</p>
+        <!-- 🚀 BENTO BOX: ABOUT & EXPERIENCE SECTION -->
+        <div class="bento-grid">
+            <!-- 1. About Me (Spans 2 columns) -->
+            <div class="bento-card bento-about reveal">
+                <!-- Manual blur setup for Who is Fardin? -->
+                <h2 class="bento-title blur-container">
+                    <span class="blur-word">Who&nbsp;</span>
+                    <span class="blur-word">is&nbsp;</span>
+                    <span class="blur-word gradient-text">Fardin?</span>
+                </h2>
+                <p class="bento-text">I am a Marketing Executive based in Dhaka, Bangladesh, with a specialized focus on B2B sales pipelines and brand strategy.</p>
+                <p class="bento-text" style="margin-bottom: 0;">For the past year at Augmex Technologies, I have worked to bridge the gap between product development and market execution. From enriching tens of thousands of CRM records to executing targeted LinkedIn campaigns, my approach is deeply rooted in psychology, creative visual assets, and data-driven growth.</p>
+            </div>
+
+            <!-- 2. Recent Experience (Tall column) -->
+            <div class="bento-card bento-exp reveal">
+                <!-- auto-blur class attached below -->
+                <h2 class="bento-title auto-blur">Experience</h2>
+                
+                <div style="margin-bottom: 2rem;">
+                    <div class="bento-item-title auto-blur">Executive - Marketing</div>
+                    <div class="bento-item-meta">Augmex Ltd. • Apr 2026 – Present</div>
+                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;">Enriched and maintained 40,000+ CRM records.</li>
+                        <li>Spearheaded B2B lead generation via LinkedIn.</li>
+                    </ul>
                 </div>
-                <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
-            </a>
-            <a href="/volunteer.html" class="doc-link">
-                <div>
-                    <h3>Leadership & Extracurriculars</h3>
-                    <p>University leadership, creative direction, and community service.</p>
+
+                <div style="margin-bottom: 2rem;">
+                    <div class="bento-item-title auto-blur">Intern - Marketing</div>
+                    <div class="bento-item-meta">Augmex Ltd. • Jan 2026 – Apr 2026</div>
+                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
+                        <li style="margin-bottom: 0.5rem;">Identified 6,000+ Key Decision Makers.</li>
+                        <li>Generated 67,000+ organic impressions.</li>
+                    </ul>
                 </div>
-                <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
-            </a>
-        </section>
 
-        <section class="glass-card">
-            <div class="section-title">Recent Experience</div>
-            
-            <div class="timeline-item">
-                <h3>Executive - Marketing</h3>
-                <div class="meta">Augmex Technologies Ltd. • April 2026 – Present</div>
-                <ul>
-                    <li>Enriched and maintained 40,000+ CRM records</li>
-                    <li>Spearheaded targeted B2B lead generation campaigns utilizing LinkedIn Marketing</li>
-                    <li>Produced 50+ digital content and visual assets to support cross-channel brand awareness.</li>
-                </ul>
+                <div>
+                    <div class="bento-item-title auto-blur">Social Media Manager</div>
+                    <div class="bento-item-meta">Adviza Int. • Sep 2025 – Nov 2025</div>
+                    <ul style="color: var(--text-muted); font-size: 0.95rem; padding-left: 1.2rem; margin: 0;">
+                        <li>Designed 30+ custom social media assets.</li>
+                    </ul>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h3>Intern - Marketing</h3>
-                <div class="meta">Augmex Technologies • Jan 2026 – April 2026</div>
-                <ul>
-                    <li>Executed multi-channel cold outreach and content marketing strategies.</li>
-                    <li>Identified and mapped 6000+ Key Decision Makers with Ideal Customer Profiles.</li>
-                    <li>Generated 67,000+ organic impressions within a month through content marketing & social media strategies.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3>Social Media Manager</h3>
-                <div class="meta">Adviza International • Sep 2025 – Nov 2025</div>
-                <ul>
-                    <li>Designed 30+ custom social media assets for local and international clients.</li>
-                    <li>Managed end-to-end client communications and project workflows.</li>
-                </ul>
-            </div>
-        </section>
 
-        <section class="glass-card">
-            <div class="section-title">Education</div>
-            
-            <div class="timeline-item">
-                <h3>Bachelor of Business Administration (BBA)</h3>
-                <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
-                <ul>
-                    <li><strong>Major:</strong> Marketing</li>
-                    <li><strong>CGPA:</strong> 3.80</li>
-                </ul>
+            <!-- 3. Education (1 column) -->
+            <div class="bento-card bento-edu reveal">
+                <h2 class="bento-title auto-blur">Education</h2>
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="bento-item-title auto-blur">BBA in Marketing</div>
+                    <div class="bento-item-meta">BUBT • CGPA: 3.80</div>
+                </div>
+                <div style="margin-bottom: 1.5rem;">
+                    <div class="bento-item-title auto-blur">HSC (Commerce)</div>
+                    <div class="bento-item-meta">Dhaka Commerce College</div>
+                </div>
+                <div>
+                    <div class="bento-item-title auto-blur">SSC (Commerce)</div>
+                    <div class="bento-item-meta">Adarsha High School</div>
+                </div>
             </div>
-            <div class="timeline-item">
-                <h3>Higher Secondary Certificate (HSC)</h3>
-                <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
-                <ul>
-                    <li><strong>Major:</strong> Commerce</li>
-                    <li><strong>GPA:</strong> 5.00</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3>Secondary School Certificate (SSC)</h3>
-                <div class="meta">Adarsha High School • 2019</div>
-                <ul>
-                    <li><strong>Major:</strong> Commerce</li>
-                    <li><strong>GPA:</strong> 4.36</li>
-                </ul>
-            </div>
-        </section>
 
-        <section class="glass-card">
-            <div class="section-title">Impact & Recognition</div>
+            <!-- 4. Quick Links (1 column) -->
+            <div class="bento-card bento-docs reveal" style="display: flex; flex-direction: column; justify-content: center; gap: 1rem;">
+                <h2 class="bento-title auto-blur" style="margin-bottom: 0.5rem;">Documents</h2>
+                <a href="/resume.html" class="btn btn-outline" style="text-align: center; width: 100%;">View Full Resume ➔</a>
+                <a href="/volunteer.html" class="btn btn-primary" style="text-align: center; width: 100%;">Leadership & Impact ➔</a>
+            </div>
+        </div>
+        
+        <!-- Impact & Recognition -->
+        <section class="glass-card reveal" style="padding: 4rem 2.5rem; margin-bottom: 4rem; display: flex; flex-direction: column; align-items: center; text-align: center;">
+            <div class="section-title auto-blur" style="text-align: center; margin-bottom: 2.5rem;">Impact & Recognition</div>
             
-            <div class="metrics-grid">
+            <div class="metrics-grid" style="margin-bottom: 3.5rem; width: 100%; max-width: 900px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
                 <div class="metric-card">
                     <div class="metric-num">40K+</div>
-                    <div class="metric-label">CRM Records</div>
+                    <div class="metric-label auto-blur">CRM Records</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-num">67K+</div>
-                    <div class="metric-label">Organic Reach</div>
+                    <div class="metric-label auto-blur">Organic Reach</div>
                 </div>
                 <div class="metric-card">
                     <div class="metric-num">3.80</div>
-                    <div class="metric-label">BBA CGPA</div>
+                    <div class="metric-label auto-blur">BBA CGPA</div>
                 </div>
             </div>
             
-            <div class="awards-grid">
+         <div class="awards-grid" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; text-align: left; width: 100%; max-width: 1000px; margin: 0 auto;">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
                     <div class="award-details">
-                        <h4>BASIS Leader of the Year</h4>
+                        <h4 class="auto-blur">BASIS Leader of the Year</h4>
                         <p>2024 - Basis BUBT Chapter</p>
                     </div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🎓</div>
                     <div class="award-details">
-                        <h4>Aspire Leaders Program</h4>
+                        <h4 class="auto-blur">Aspire Leaders Program</h4>
                         <p>Harvard Business School '26</p>
                     </div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🥇</div>
                     <div class="award-details">
-                        <h4>ISCEA Global Winner</h4>
+                        <h4 class="auto-blur">ISCEA Global Winner</h4>
                         <p>70% CSCA Scholarship</p>
                     </div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🏅</div>
                     <div class="award-details">
-                        <h4>TEDxUttara Best Dept.</h4>
+                        <h4 class="auto-blur">TEDxUttara Best Dept.</h4>
                         <p>Creative Direction</p>
                     </div>
                 </div>
             </div>
         </section>
-        
-        <section class="glass-card">
-            <div class="section-title">Featured Blogs</div>
+
+        <!-- EDGE-TO-EDGE BLOG SECTION -->
+        <section class="blog-edge-section edge-to-edge">
+            <div class="section-title auto-blur" style="text-align: center; margin-bottom: 2.5rem; position: relative; z-index: 5;">Featured Blogs</div>
             
             <div class="blog-marquee-wrap">
                 <div class="blog-marquee-track">
-                    <!-- ========================================== -->
-                    <!-- 1ST SET OF BLOGS (For Seamless Scrolling)  -->
-                    <!-- ========================================== -->
                     
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
                         <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
-                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <h2 class="marquee-blog-title auto-blur">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
                             <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
                         </div>
                     </a>
@@ -603,7 +592,7 @@
                         <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
-                            <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
+                            <h2 class="marquee-blog-title auto-blur">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
                             <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
                         </div>
                     </a>
@@ -612,7 +601,7 @@
                         <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
+                            <h2 class="marquee-blog-title auto-blur">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
                             <p class="marquee-blog-excerpt">We barely have the patience to watch a 5-second ad. Yet, we happily sit down to watch a 2-hour brand roast show...</p>
                         </div>
                     </a>
@@ -621,7 +610,7 @@
                         <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">B2B Sales & Growth</div>
-                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
+                            <h2 class="marquee-blog-title auto-blur">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
                             <p class="marquee-blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
                         </div>
                     </a>
@@ -630,7 +619,7 @@
                         <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Personal Branding</div>
-                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
+                            <h2 class="marquee-blog-title auto-blur">Master Your LinkedIn Profile: Your Personal Brand</h2>
                             <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
                         </div>
                     </a>
@@ -639,7 +628,7 @@
                         <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI & B2B Growth</div>
-                            <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
+                            <h2 class="marquee-blog-title auto-blur">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
                             <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
                         </div>
                     </a>
@@ -648,7 +637,7 @@
                         <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Future of Work</div>
-                            <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
+                            <h2 class="marquee-blog-title auto-blur">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
                             <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
                         </div>
                     </a>
@@ -657,20 +646,17 @@
                         <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Resource Guide</div>
-                            <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
+                            <h2 class="marquee-blog-title auto-blur">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
-                    
-                    <!-- ========================================== -->
-                    <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
-                    <!-- ========================================== -->
-                    
+
+                    <!-- Cloned for seamless infinite scroll -->
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
                         <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
-                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
+                            <h2 class="marquee-blog-title auto-blur">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
                             <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
                         </div>
                     </a>
@@ -679,76 +665,22 @@
                         <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
-                            <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
+                            <h2 class="marquee-blog-title auto-blur">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
                             <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
                         </div>
                     </a>
-
-                    <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
-                            <p class="marquee-blog-excerpt">We barely have the patience to watch a 5-second ad. Yet, we happily sit down to watch a 2-hour brand roast show...</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">B2B Sales & Growth</div>
-                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
-                            <p class="marquee-blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Personal Branding</div>
-                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
-                            <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & B2B Growth</div>
-                            <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
-                            <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
-                        </div>
-                    </a>
-                    
-                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Future of Work</div>
-                            <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
-                            <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
-                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Resource Guide</div>
-                            <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
-                            <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
-                        </div>
-                    </a>
-
                 </div>
             </div>
             
-            <div style="text-align: center; margin-top: 1.5rem;">
+            <div style="text-align: center; margin-top: 2rem; position: relative; z-index: 5;">
                 <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
-        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <!-- B2B Growth Playbook -->
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 4rem 2rem; margin-bottom: 4rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
+            <h2 class="auto-blur" style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
                 See my funnel in action. Enter your email to receive my free 1-page guide on automating cold outreach and scaling CRM pipelines.
             </p>
@@ -763,22 +695,35 @@
     </main>
 </div>
 
-<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
-<section class="final-cta-section">
-    <div class="watermark-bg">FRKR</div>
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION (WITH MANUAL BLUR HTML) -->
+<section class="final-cta-section" style="padding: 0; overflow: hidden; display: flex; align-items: stretch; position: relative;">
+    <div class="watermark-bg" style="z-index: 1;">FRKR</div>
     
-    <div class="glowing-line-container top-line">
+    <div class="glowing-line-container top-line" style="z-index: 3;">
         <div class="glowing-orb orb-right-left">
             <div class="orb-head"></div>
         </div>
     </div>
     
-    <div class="final-cta-content reveal">
-        <h2 class="final-cta-title">Let's build your <span class="gradient-text">brand.</span></h2>
-        <a href="/contact.html" class="final-cta-btn">Get in touch</a>
+    <div class="final-cta-inner reveal" style="z-index: 2;">
+        <div class="cta-left">
+            <!-- Manual blur setup for Let's build your brand -->
+            <h2 class="final-cta-title blur-container" style="text-align: left; margin-bottom: 1.5rem;">
+                <span class="blur-word">Let's&nbsp;</span>
+                <span class="blur-word">build&nbsp;</span>
+                <span class="blur-word">your&nbsp;</span><br>
+                <span class="blur-word gradient-text">brand.</span>
+            </h2>
+            <div class="status-row">
+                <a href="/contact.html" class="final-cta-btn" style="margin: 0;">Get in touch</a>
+            </div>
+        </div>
+        <div class="cta-right">
+            <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" class="hero-img" onerror="this.style.display='none'">
+        </div>
     </div>
     
-    <div class="glowing-line-container bottom-line">
+    <div class="glowing-line-container bottom-line" style="z-index: 3;">
         <div class="glowing-orb orb-left-right">
             <div class="orb-head"></div>
         </div>
@@ -841,15 +786,60 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
+
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
-    <div class="contact-banner-wrapper">
+<div class="contact-banner-wrapper">
     <img src="behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" onerror="this.style.display='none'">
 </div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
 <script src="/main.js"></script>
 
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
+<!-- 🚀 BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // 1. Auto-wrap simple text titles into individual spans (avoids messing up HTML structure)
+        const autoTargets = document.querySelectorAll('.auto-blur');
+        
+        autoTargets.forEach(el => {
+            // Only split if it's pure text (has no child HTML tags)
+            if (el.children.length === 0) {
+                const text = el.textContent.trim();
+                const words = text.split(/\s+/);
+                el.innerHTML = '';
+                words.forEach(word => {
+                    const span = document.createElement('span');
+                    span.className = 'blur-word';
+                    span.innerHTML = word + '&nbsp;'; 
+                    el.appendChild(span);
+                });
+                el.classList.add('blur-container');
+            }
+        });
+
+        // 2. Intersection Observer to trigger the animations as you scroll
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.blur-word');
+                    words.forEach((word, index) => {
+                        // 100ms stagger delay per word to match Framer Motion
+                        word.style.animationDelay = `${index * 0.1}s`;
+                        word.classList.add('is-animated');
+                    });
+                    // Only run once
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
     if(canvas) {
@@ -857,7 +847,6 @@
         let width, height;
         let particles = [];
         
-        // Smaller radius for less aggressive mouse pulling
         let mouse = { x: null, y: null, radius: 100 }; 
 
         window.addEventListener('mousemove', (event) => {
@@ -924,10 +913,8 @@
 
         function init() {
             particles = [];
-            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
-            let numberOfParticles = (width * height) / 15000; 
-            // Fainter colors for subtlety
-            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -946,10 +933,9 @@
                 for (let b = a; b < particles.length; b++) {
                     let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        // Multiplier lowered to 0.2 to make lines fainter
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
