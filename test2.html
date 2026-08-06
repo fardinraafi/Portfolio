@@ -1,80 +1,317 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Slow Rotating Globe</title>
-  <style>
-    /* Reset and base dark theme styling */
-    body {
-      margin: 0;
-      background-color: #111111;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- SEO Primary Tags -->
+    <title>Brainrot Marketing Case Study | Fardin Rahman Khan Raafi</title>
+    <meta name="description" content="Discover how absurdist internet culture and brainrot marketing are driving multi-million dollar growth strategies. Case study by Fardin Rahman Khan Raafi.">
+    <meta name="keywords" content="Brainrot Marketing, Gen Z Marketing, Growth Strategy, Fardin Rahman Khan Raafi, B2B Marketing, Dhaka">
+    <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    
+    <style>
+        /* UNIQUE BLOG STYLING */
+        .layout-wrapper { 
+            width: 100%; 
+            max-width: 950px; 
+            margin: 0 auto; 
+            padding: 2rem 2rem 4rem; 
+            position: relative; 
+            z-index: 2; 
+        }
+        .glass-card { 
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 24px; 
+            padding: 4rem; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); 
+            transition: background-color 0.3s, border-color 0.3s; 
+        }
+        body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
 
-    /* Container for the globe */
-    .widget-container {
-      width: 100%;
-      max-width: 600px;
-      aspect-ratio: 1;
-      background-color: #111111;
-    }
+        /* PC Hero Image (Natural Size) */
+        .article-hero-img { width: 100%; height: auto; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: block; }
 
-    /* Globe canvas - perfectly centered, dragging disabled */
-    #cobe-canvas {
-      width: 100%;
-      height: 100%;
-      contain: layout paint size;
-    }
-  </style>
+        /* PC Huge Title */
+        .blog-main-title { font-family: 'Syne', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; color: var(--c1); letter-spacing: -0.02em; }
+
+        h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 2px solid rgba(124, 58, 237, 0.2); padding-bottom: 0.5rem; display: inline-block;}
+        body.dark-mode h2 { color: #F1F5F9; }
+        
+        p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8; }
+        body.dark-mode p { color: #94A3B8; }
+        
+        .meta-info { font-size: 0.95rem; color: var(--c2); font-weight: 700; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        a { color: var(--c1); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
+
+        /* Custom Formats */
+        .blog-quote { font-size: 1.3rem; font-style: italic; font-weight: 500; color: var(--c2); padding: 1.5rem 2rem; margin: 2rem 0; background: rgba(124, 58, 237, 0.05); border-left: 5px solid var(--c2); border-radius: 0 16px 16px 0; }
+        body.dark-mode .blog-quote { background: rgba(124, 58, 237, 0.15); }
+        
+        .stylized-card { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(37, 99, 235, 0.15); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        body.dark-mode .stylized-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
+        .stylized-card p:last-child { margin-bottom: 0; }
+        
+        .card-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--c1); margin-bottom: 0.5rem; }
+        .credit-tag { display: inline-block; background: var(--text-main); color: var(--bg-page); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin: 2rem 0; letter-spacing: 0.05em; }
+        body.dark-mode .credit-tag { background: rgba(255,255,255,0.1); color: #F1F5F9; }
+
+        #neural-canvas {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; 
+            pointer-events: none; 
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 900px) {
+          .layout-wrapper { padding: 1rem 1rem 3rem !important; }
+          .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
+          .blog-main-title { font-size: 1.5rem !important; line-height: 1.3 !important; }
+          .article-hero-img { height: auto !important; border-radius: 12px !important; margin-bottom: 1.5rem !important; }
+          .stylized-card { padding: 1.2rem !important; }
+          .blog-quote { font-size: 1.1rem !important; padding: 1.2rem !important; }
+        }
+    </style>
+    <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
 
-  <div class="widget-container">
-    <canvas id="cobe-canvas"></canvas>
-  </div>
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
 
-  <script type="module">
-    import createGlobe from 'https://cdn.skypack.dev/cobe';
+<!-- Background Mesh -->
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
-    const canvas = document.getElementById("cobe-canvas");
+<!-- NAVIGATION: Handled entirely by main.js -->
+<nav class="top-nav"></nav>
+
+<div class="layout-wrapper single-column">
+  <!-- Added no-hover so the giant card stays firmly grounded -->
+  <article class="glass-card no-hover">
+    <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study" class="article-hero-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
     
-    // Starting phi offset to position Bangladesh on the curved left edge,
-    // which forces the marker to skew along the 3D surface immediately.
-    let phi = 2.4; 
+    <h1 class="blog-main-title">Case Study Series - 1: Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h1>
+    <div class="meta-info">By Fardin Rahman Khan Raafi | Marketing Strategy & Psychology</div>
     
-    const globe = createGlobe(canvas, {
-      devicePixelRatio: 2,
-      width: 600 * 2, 
-      height: 600 * 2,
-      phi: 2.4, 
-      theta: 0.1, 
-      dark: 1, 
-      diffuse: 1.2, 
-      mapSamples: 16000,
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3], // Dark grey landmass
-      markerColor: [1, 1, 1], // Pure white marker 
-      glowColor: [0, 0, 0], // Keeps the outer glow completely removed
-      markers: [
-        // Dhaka, Bangladesh
-        { location: [23.8103, 90.4125], size: 0.055 } 
-      ]
-    });
+    <p>একটু খেয়াল করে দেখুন তো, শেষ কবে আপনি কোনো ব্র্যান্ডের একটা প্রপার, হাই-বাজেট অ্যাডভার্টাইজমেন্ট পুরোটা দেখেছেন?</p>
+    
+    <div class="blog-quote">
+      আজকালকার দিনে Top of Funnel-এ অডিয়েন্সের Attention গ্র্যাব করাটা একটা দুঃস্বপ্নের মতো। Gen Z-এর ব্রেইন এত দ্রুত কন্টেন্ট ফিল্টার করে যে, ১.৫ সেকেন্ডের মধ্যে তারা বুঝে যায় কোনটা অ্যাড আর কোনটা রিয়েল কন্টেন্ট।
+    </div>
+    
+    <p>আর ঠিক এখানেই গেম চেঞ্জ করে দিয়েছে "Brainrot" মার্কেটিং। শুনতে অদ্ভুত লাগলেও, এই absurdist internet culture এখন একটা multi-million dollar industry</p>
+    <p style="font-weight: 700; color: var(--c1);">চলুন দেখে নিই এর পেছনের স্ট্র্যাটেজিগুলো</p>
+    
+    <h2>The Strategic Psychology: ব্র্যান্ডগুলো কেন "Brainrot" ইউজ করছে?</h2>
+    <p>ব্র্যান্ডগুলো হুদাই পাগলামি করছে না। এর পেছনে ৩টি মারাত্মক psychological trigger কাজ করে:</p>
+    
+    <div class="stylized-card">
+      <div class="card-title">১. The "In-Group" Effect:</div>
+      <p>যখন একটা multi-billion-dollar কর্পোরেশন কোনো niche meme একদম পারফেক্টলি ইউজ করে, তখন সেটা একটা "inside joke"-এর মতো ফিল দেয়। Gen Z মনে করে, "আরে, এরা তো আমাদের কালচারটাই বোঝে!" এতে করে instant brand affinity বিল্ড হয়।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <div class="card-title">২. Disruptive Pattern Interruption:</div>
+      <p>আমরা যখন একটানা স্ক্রল করতে থাকি, আমাদের ব্রেইন একটা pattern-এ অভ্যস্ত হয়ে যায়। একটা কর্পোরেট পেজ থেকে যখন হঠাৎ একটা completely unhinged ভিডিও আসে, তখন pure confusion-এর কারণে আমরা স্ক্রল করা থামিয়ে দিই।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <div class="card-title">৩. Low Production, High Virality:</div>
+      <p>প্রচুর টাকা খরচ করে বিশাল agency বা six-figure production budget-এর কোনো দরকার নেই। জাস্ট একজন স্মার্ট social media manager একটা smartphone দিয়ে ২৪ ঘণ্টার মধ্যে মিলিয়ন মিলিয়ন organic impressions জেনারেট করে ফেলতে পারে। ROI এর দিক থেকে এটা আনবিলিভেবল!</p>
+    </div>
 
-    // Simple animation loop for slow, automatic spinning
-    function animate() {
-      phi += 0.002; // Slow ambient spin
-      globe.update({ phi });
-      requestAnimationFrame(animate);
+    <h2>The "67" Phenomenon: Capitalizing on Absurdist Culture</h2>
+    <p>২০২৫ সালের সবচেয়ে ক্রেজি ট্রেন্ডগুলোর একটি ছিল "67" এর "brainrot" culture। কিন্তু বড় কোম্পানিগুলো কীভাবে এটাকে তাদের pipeline-এ ইন্টিগ্রেট করেছে তা দেখলে আপনি অবাক হবেন:</p>
+    
+    <div class="stylized-card">
+      <p><strong>Domino’s Pizza (Conversion & Pricing):</strong> Domino's তাদের loyalty member-দের জন্য "67" promo code ইউজ করে ঠিক $6.70 ডলারে পিৎজা অফার করেছিল। এটি ছিল bottom-of-funnel conversion-এর একটা মাস্টারক্লাস! শুধু সোশ্যাল মিডিয়া বাজ নয়, তারা ডিরেক্ট সেলস জেনারেট করেছিল এই fleeting cultural moment-টা কাজে লাগিয়ে।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <p><strong>Clash Royale / Supercell (Product-Led Engagement):</strong> ২০২৫ সালের অক্টোবরে যখন তাদের Instagram-এ 6.7 million followers হয়, তারা বোরিং "Thank You" পোস্ট দেয়নি। ইন-গেমে তারা স্পেসিফিক একটা "67" emote রিলিজ করে দেয়। এটি অ্যাডের চেয়ে বেশি inside joke মনে হয়েছিল, যা user engagement চরমভাবে বুস্ট করে।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <p><strong>Google (Brand Affinity):</strong> গুগল চুপচাপ একটা Easter egg ড্রপ করেছিল। "67" লিখে সার্চ দিলে স্ক্রিন ফিজিক্যালি কাঁপতে শুরু করতো, যা ঐ মিমের হ্যান্ড জেসচারকে মিমিক করতো। এই micro-interactions-গুলো প্রমাণ করে যে গুগল কালচারালি আপডেটেড।</p>
+    </div>
+
+    <h2>Duolingo's "Skibidi Toilet" & Lore Era</h2>
+    <p>Duolingo-র মার্কেটিং টিম জাস্ট অন্য লেভেলে গেম প্লে করে।</p>
+    <p>তারা শুধু মিম ইউজ করে না, ইন্টারনেট সাবকালচারকে সরাসরি তাদের brand identity বানিয়ে ফেলেছে। তাদের ম্যাসকট Duo the Owl "Skibidi Toilet"-এ অংশ নেয়, অন্য ব্র্যান্ডের সাথে ফেইক কর্পোরেট ঝগড়া করে, আবার পপ স্টারদের ফ্যানবয় সাজে।</p>
+    <p>এর ইমপ্যাক্ট কী? তারা পুরোপুরি ad-blockers বাইপাস করে ফেলেছে। Gen Z এখন Duolingo-র অ্যাড খোঁজে এন্টারটেইনমেন্টের জন্য। আর এভাবেই তারা গ্লোবালি top-grossing education app-এর জায়গা ধরে রেখেছে।</p>
+
+    <h2>Bangladesh-ও পিছিয়ে নেই! (Local Masterclasses)</h2>
+    <p>লোকাল মার্কেটেও কিন্তু এর অসাধারণ কিছু implementation আছে।</p>
+    
+    <div class="stylized-card">
+      <div class="card-title">১. Chorki (Community-Led Cult Marketing)</div>
+      <p>Chorki সম্ভবত বাংলাদেশে এই কালচারটাকে মেইনস্ট্রিমে আনার পাইওনিয়ার। "Myself Allen Swapan"-এর সময় তারা Facebook-এর সবচেয়ে বড় মিম কমিউনিটি Rantages-এর সাথে অফিশিয়ালি পার্টনারশিপ করে।</p>
+      <p>এরপর "Utshob" ফিল্মের সময় তারা স্পেসিফিক মিম টেমপ্লেট ছেড়ে দেয়। "আইইএলটিএস-এ ৭ পাইলেই বিদেশ যাইতে হবে এমন কোনো কথা নাই জাসমিন" এই ধরনের টেমপ্লেটগুলো স্টুডেন্টদের pain point (IELTS, engineering pressure) হিট করে। অডিয়েন্স নিজেদের অজান্তেই Chorki-র জন্য massive organic promotional reach জেনারেট করে দেয়।</p>
+    </div>
+    
+    <div class="stylized-card">
+      <div class="card-title">২. bKash (Cultural Hijacking & Seasonal Virality)</div>
+      <p>বিকাশ খুব ভালো করেই জানে কীভাবে একটা কালচারাল মোমেন্ট হাইজ্যাক করে ইন্টারনেটকে দিয়ে তাদের মার্কেটিংয়ের কাজ করিয়ে নিতে হয়।</p>
+      <p>"ঈদের চাঁদ আকাশে, সালামি দিন বিকাশে"এই ট্যাগলাইনটা জাস্ট একটা meme template হিসেবে ডিজাইন করা। প্রতি ঈদে ইয়াং জেনারেশন এটা দিয়ে অ্যাগ্রেসিভ আর ফানি মিম বানিয়ে মুরুব্বিদের ট্যাগ করে সালামি চায়। Top-of-the-funnel internet humor দিয়ে bottom-of-the-funnel conversion (peer-to-peer money transfers) কীভাবে করতে হয়, এটা তার টেক্সটবুক এক্সাম্পল।</p>
+    </div>
+
+    <h2>The Bottom Line?</h2>
+    <div class="blog-quote">
+      Brainrot মার্কেটিং মানেই শুধু বোকা বোকা কন্টেন্ট বানানো নয়। এটি হলো- কখন, কোথায় এবং কীভাবে অডিয়েন্সের attention হ্যাক করে সেটাকে measurable growth-এ কনভার্ট করতে হয়, তার একটা সাইকোলজিক্যাল ফ্রেমওয়ার্ক।
+    </div>
+
+    <!-- 🚀 NEW SEO-OPTIMIZED CONTACT CTA SECTION -->
+    <div style="margin-top: 4rem; padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); border-radius: 16px; text-align: center; backdrop-filter: blur(10px);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-main); font-family: 'Syne', sans-serif; font-size: 1.8rem;">Let's Talk Marketing and Growth Strategies</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            Want to discuss integrating AI tools into your daily workflow, optimizing your productivity, or collaborating on a new project? I would love to connect.
+        </p>
+        <a href="/contact.html" class="btn btn-primary" style="display: inline-block; padding: 14px 32px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(124,58,237,0.3); border-radius: 100px;">Contact Me for More Info ➔</a>
+    </div>
+    
+    <div style="text-align: right; font-style: italic; font-weight: 700; color: var(--c1); margin-top: 3rem;">
+      - Fardin Rahman Khan Raafi<br>
+      <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">Read more operational breakdowns, tech insights, and career growth frameworks at <a href="/index.html">fardinraafi.com</a></span>
+    </div>
+
+  </article>
+</div>
+
+<!-- FOOTER: Handled entirely by main.js -->
+<footer class="site-footer reveal"></footer>
+
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 9000; 
+            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
     }
-    
-    animate();
-  </script>
-
+</script>
 </body>
 </html>
