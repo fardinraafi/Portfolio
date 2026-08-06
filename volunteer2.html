@@ -849,13 +849,15 @@
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
 
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
 <script>
     const canvas = document.getElementById('neural-canvas');
     if(canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
+        
+        // Smaller radius for less aggressive mouse pulling
         let mouse = { x: null, y: null, radius: 100 }; 
 
         window.addEventListener('mousemove', (event) => {
@@ -922,10 +924,10 @@
 
         function init() {
             particles = [];
-            // Increased density to 10000 for slightly more particles
-            let numberOfParticles = (width * height) / 10000; 
-            // Enhanced opacity from 0.3 to 0.5 to make dots more visible
-            let colors = ['rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(219, 39, 119, 0.5)'];
+            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
+            let numberOfParticles = (width * height) / 15000; 
+            // Fainter colors for subtlety
+            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -946,8 +948,8 @@
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
                     if (distance < (width / 7) * (height / 7)) {
                         opacityValue = 1 - (distance / 20000);
-                        // Multiplier boosted to 0.6 to make the connections visibly glow more
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.6})`;
+                        // Multiplier lowered to 0.2 to make lines fainter
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
