@@ -3,241 +3,294 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claude Sonnet 5: The Era of 'Agentic' AI - Fardin Rahman Khan Raafi</title>
-    <meta name="description" content="Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you in B2B Growth and Marketing.">
+    <!-- SEO Primary Tags -->
+    <title>Claude Sonnet 5: The Era of 'Agentic' AI | Fardin Rahman Khan Raafi</title>
+    <meta name="description" content="Discover what Agentic AI means for B2B growth, marketing automation, and the future of work. Insights by Marketing Executive Fardin Rahman Khan Raafi.">
+    <meta name="keywords" content="Claude Sonnet, Agentic AI, B2B Automation, AI in Marketing, Workflow Automation, Fardin Rahman Khan Raafi">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
+    
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css">
+    
     <style>
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        :root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --text-main: #0F172A; --text-muted: #475569; --bg-page: #F8FAFC; }
-        
-        /* ── DARK MODE ── */
-        body.dark-mode { --bg-page: #0F172A; --text-main: #F1F5F9; --text-muted: #94A3B8; --text-light: #64748B; }
-        body.dark-mode .bg-mesh { background: #020617; }
-        body.dark-mode .top-nav, body.dark-mode .site-footer, body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
-        body.dark-mode .stylized-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
-        body.dark-mode .blog-quote { background: rgba(37, 99, 235, 0.1); border-left-color: var(--c1); }
-        
-        body { font-family: 'DM Sans', sans-serif; background: var(--bg-page); color: var(--text-main); overflow-x: hidden; line-height: 1.8; transition: background-color 0.3s, color 0.3s; }
-        .bg-mesh { position: fixed; inset: 0; z-index: -1; background: #F1F5F9; transition: background-color 0.3s; }
-        .blob { position: absolute; filter: blur(90px); opacity: 0.6; border-radius: 50%; animation: float 20s infinite alternate ease-in-out; }
-        .blob-1 { width: 50vw; height: 50vw; background: rgba(37,99,235,0.3); top: -10%; left: -10%; }
-        .blob-2 { width: 40vw; height: 40vw; background: rgba(124,58,237,0.3); bottom: -10%; right: -5%; animation-delay: -5s; }
-
-        /* Top Nav */
-        .top-nav { position: sticky; top: 1rem; z-index: 1000; max-width: 1200px; margin: 1rem auto 2rem auto; background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 100px; padding: 0.8rem 1.5rem; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease; }
-        .nav-brand { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); text-decoration: none; }
-        .nav-menu { display: flex; gap: 2rem; }
-        .nav-menu a { text-decoration: none; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
-        .nav-menu a:hover, .nav-menu a.active { color: var(--c1); }
-        .nav-actions { display: flex; align-items: center; gap: 1rem; }
-        .btn-primary { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #FFF; padding: 8px 24px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: all 0.3s ease; display: inline-block; border: none; cursor: pointer; }
-        .btn-primary:hover { box-shadow: 0 6px 20px rgba(37,99,235,0.4); transform: translateY(-2px); }
-
-        /* Theme Toggle */
-        .theme-toggle-track { position: relative; width: 90px; height: 36px; background: rgba(0, 0, 0, 0.08); border-radius: 30px; border: 1px solid rgba(0, 0, 0, 0.05); cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 12px; outline: none; transition: background 0.4s; margin-left: 10px; }
-        body.dark-mode .theme-toggle-track { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.1); }
-        .theme-text { font-family: 'DM Sans', sans-serif; font-size: 0.75rem; font-weight: 700; color: var(--text-muted); z-index: 1; transition: opacity 0.4s; pointer-events: none; }
-        .text-dark { opacity: 0; position: absolute; left: 14px; } 
-        .text-light { opacity: 1; position: absolute; right: 12px; }
-        body.dark-mode .text-dark { opacity: 1; color: #F1F5F9; }
-        body.dark-mode .text-light { opacity: 0; }
-        .theme-liquid-bubble { position: absolute; top: -6px; left: -2px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.1) 100%); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.15), inset 3px 3px 8px rgba(255, 255, 255, 0.9), 0 6px 15px rgba(0, 0, 0, 0.15); display: flex; align-items: center; justify-content: center; transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), width 0.3s, border-radius 0.3s; z-index: 2; }
-        body.dark-mode .theme-liquid-bubble { transform: translateX(46px); background: radial-gradient(100% 100% at 30% 30%, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 100%); border-color: rgba(255, 255, 255, 0.3); box-shadow: inset -3px -3px 8px rgba(0, 0, 0, 0.5), inset 3px 3px 8px rgba(255, 255, 255, 0.4), 0 6px 15px rgba(0, 0, 0, 0.4); }
-        .theme-toggle-track:active .theme-liquid-bubble { width: 56px; border-radius: 40px; }
-        body.dark-mode .theme-toggle-track:active .theme-liquid-bubble { transform: translateX(38px); }
-        .theme-liquid-bubble svg { width: 18px; height: 18px; position: absolute; transition: opacity 0.4s, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .icon-moon { opacity: 1; color: var(--text-main); transform: rotate(0deg) scale(1); }
-        .icon-sun { opacity: 0; color: #FFF; transform: rotate(-90deg) scale(0.5); }
-        body.dark-mode .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.5); }
-        body.dark-mode .icon-sun { opacity: 1; transform: rotate(0deg) scale(1); }
-
         /* UNIQUE BLOG STYLING */
-        .layout-wrapper { max-width: 950px; margin: 0 auto; padding: 2rem 2rem 4rem; }
-        .glass-card { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 24px; padding: 4rem; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: background-color 0.3s, border-color 0.3s; }
+        .layout-wrapper { 
+            width: 100%; 
+            max-width: 950px; 
+            margin: 0 auto; 
+            padding: 2rem 2rem 4rem; 
+            position: relative; 
+            z-index: 2; 
+        }
+        .glass-card { 
+            width: 100%;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.85); 
+            backdrop-filter: blur(16px); 
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 24px; 
+            padding: 4rem; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); 
+            transition: background-color 0.3s, border-color 0.3s; 
+        }
+        body.dark-mode .glass-card { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.05); }
 
-        /* PC Hero Image (Natural Size) - FIXED CROPPING */
+        /* PC Hero Image (Natural Size) */
         .article-hero-img { width: 100%; height: auto; border-radius: 20px; margin-bottom: 2.5rem; box-shadow: 0 15px 35px rgba(0,0,0,0.1); display: block; }
 
         /* PC Huge Title */
         .blog-main-title { font-family: 'Syne', sans-serif; font-size: 3.2rem; font-weight: 800; line-height: 1.15; margin-bottom: 1rem; color: var(--c1); letter-spacing: -0.02em; }
 
         h2 { font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-top: 3rem; margin-bottom: 1.5rem; color: var(--text-main); border-bottom: 2px solid rgba(124, 58, 237, 0.2); padding-bottom: 0.5rem; display: inline-block;}
-        p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        body.dark-mode h2 { color: #F1F5F9; }
+        
+        p { font-size: 1.15rem; color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.8; }
+        body.dark-mode p { color: #94A3B8; }
+        
+        ul { margin-bottom: 1.5rem; padding-left: 1.5rem; color: var(--text-muted); font-size: 1.15rem; line-height: 1.8; }
+        body.dark-mode ul { color: #94A3B8; }
+        li { margin-bottom: 0.8rem; }
+        
         .meta-info { font-size: 0.95rem; color: var(--c2); font-weight: 700; margin-bottom: 2.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
         a { color: var(--c1); text-decoration: none; font-weight: bold; }
         a:hover { text-decoration: underline; }
 
         /* Custom Formats */
         .blog-quote { font-size: 1.3rem; font-style: italic; font-weight: 500; color: var(--c2); padding: 1.5rem 2rem; margin: 2rem 0; background: rgba(124, 58, 237, 0.05); border-left: 5px solid var(--c2); border-radius: 0 16px 16px 0; }
+        body.dark-mode .blog-quote { background: rgba(124, 58, 237, 0.15); }
+        
         .stylized-card { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(37, 99, 235, 0.15); border-radius: 16px; padding: 1.5rem 2rem; margin-bottom: 1.5rem; box-shadow: 0 5px 15px rgba(0,0,0,0.03); }
+        body.dark-mode .stylized-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
         .stylized-card p:last-child { margin-bottom: 0; }
+        
         .card-title { font-family: 'Syne', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--c1); margin-bottom: 0.5rem; }
-        .credit-tag { display: inline-block; background: var(--text-main); color: var(--bg-page); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; font-weight: 700; text-transform: uppercase; margin: 2rem 0; letter-spacing: 0.05em; }
 
-        /* Footer */
-        .site-footer { max-width: 1200px; margin: 4rem auto 0; padding: 4rem 3rem 2rem; background: rgba(255, 255, 255, 0.4); backdrop-filter: blur(20px); border-top: 1px solid rgba(255, 255, 255, 0.9); border-radius: 60px 60px 0 0; position: relative; overflow: hidden; transition: background-color 0.3s, border-color 0.3s; }
-        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; position: relative; z-index: 2; }
-        .footer-col h4 { font-family: 'Syne', sans-serif; font-size: 1.1rem; color: var(--text-main); margin-bottom: 1.5rem; text-transform: uppercase; transition: color 0.3s;}
-        .footer-col-links { display: flex; flex-direction: column; gap: 1rem; }
-        .footer-col-links a { color: var(--text-muted); text-decoration: none; font-weight: 500; transition: all 0.3s; display: inline-flex; align-items: center; width: max-content;}
-        .footer-col-links a:hover { color: var(--c1); transform: translateX(5px); }
-        .copyright { font-size: 0.85rem; color: var(--text-light); text-align: center; border-top: 1px solid rgba(0,0,0,0.05); padding-top: 2rem; transition: color 0.3s;}
+        #neural-canvas {
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 0; 
+            pointer-events: none; 
+        }
 
-        /* =========================================
-           📱 MOBILE OPTIMIZATION MASTER-FIX 📱
-           ========================================= */
+        /* Mobile Optimization */
         @media (max-width: 900px) {
           .layout-wrapper { padding: 1rem 1rem 3rem !important; }
           .glass-card { padding: 1.5rem !important; border-radius: 16px !important; }
-          
-          /* Mobile Adjustments for Title & Image - FIXED CROPPING */
-          .blog-main-title { font-size: 2rem !important; line-height: 1.2 !important; }
+          .blog-main-title { font-size: 1.5rem !important; line-height: 1.3 !important; }
           .article-hero-img { height: auto !important; border-radius: 12px !important; margin-bottom: 1.5rem !important; }
-          
-          .top-nav { flex-wrap: wrap !important; padding: 0.8rem 1rem !important; border-radius: 20px !important; margin: 1rem !important; }
-          .nav-actions { order: 2 !important; }
-          .nav-menu { display: flex !important; order: 3 !important; width: 100% !important; margin-top: 1rem !important; padding-top: 1rem !important; border-top: 1px solid rgba(0,0,0,0.05); overflow-x: auto !important; gap: 1.5rem !important; padding-bottom: 0.5rem !important; -webkit-overflow-scrolling: touch; }
-          .nav-menu a { flex-shrink: 0 !important; }
-          body.dark-mode .nav-menu { border-top-color: rgba(255,255,255,0.1) !important; }
-          .nav-menu::-webkit-scrollbar { display: none !important; }
-          
           .stylized-card { padding: 1.2rem !important; }
           .blog-quote { font-size: 1.1rem !important; padding: 1.2rem !important; }
-          
-          .site-footer { padding: 3rem 1.5rem 2rem !important; border-radius: 30px 30px 0 0 !important; margin-top: 2rem !important; }
-          .footer-grid { grid-template-columns: 1fr !important; text-align: center !important; gap: 2rem !important; }
-          .footer-col-links { align-items: center !important; }
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
-<body>
+<body class="dark-mode">
+
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
+
+<!-- Background Mesh -->
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
-<nav class="top-nav">
-  <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-  <div class="nav-menu">
-    <a href="/index.html">Home</a>
-    <a href="/gallery.html">Gallery</a>
-    <a href="/blog.html" class="active">Blog</a>
-    <a href="/certificates.html">Certificates</a>
-     <a href="/volunteer.html">Leadership</a>
-    <a href="/contact.html">Contact</a>
-  </div>
-  <div class="nav-actions">
-    <a href="/contact.html" class="btn-primary">Let's Talk</a>
-    <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-      <span class="theme-text text-dark">Dark</span>
-      <span class="theme-text text-light">Light</span>
-      <div class="theme-liquid-bubble">
-        <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-      </div>
-    </button>
-  </div>
-</nav>
 
-<div class="layout-wrapper">
-  <article class="glass-card">
-    <img src="blog-6.jpg" alt="Claude Sonnet 5: Agentic AI" class="article-hero-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Agentic+AI'">
-    
-    <h1 class="blog-main-title">Claude Sonnet 5: The Era of 'Agentic' AI and What It Means for you.</h1>
-    <div class="meta-info">Written by Fardin Rahman Khan Raafi</div>
-    
-    <p>প্রতি সপ্তাহে ঘুম থেকে উঠলেই দেখি নতুন কোনো AI মডেল রিলিজ হয়েছে। আমরা একটু ট্রাই করে দেখি, দুই একটা প্রম্পট লিখি, তারপর আবার নিজেদের পুরনো workflow-তে ফেরত যাই।</p>
-    <p>কিন্তু এবারের <strong>Claude Sonnet 5</strong> রিলিজটা একটু আলাদা। অ্যানাউন্সমেন্টে একটা ওয়ার্ড খুব হাইলাইট করা হয়েছে: <em>"Most agentic Sonnet yet"</em>.</p>
-    <p>Claude Sonnet 5 আসলো ভালো কথা, তাতে আপনার কী? এই "Agentic" কথাটার আসল মিনিং কী?</p>
+<!-- NAVIGATION: Handled entirely by main.js -->
+<nav class="top-nav"></nav>
 
-    <h2>Chat Assistant থেকে Autonomous Agent</h2>
-    <p>আগে আমরা AI-কে বলতাম একটা ইমেইল ড্রাফট করে দিতে বা কোনো টপিক সামারাইজ করতে। কাজটা ওখানেই শেষ হয়ে যেত।</p>
-    <p>Agentic AI-এর মানে হলো, এই মডেল শুধু আপনার প্রম্পটের উত্তর দিয়ে বসে থাকবে না। আপনি তাকে একটা ব্রড টাস্ক দিলে সে নিজে থেকে প্ল্যান করবে। মাল্টিপল স্টেপস কমপ্লিট করবে এবং একটা পুরো workflow নিজে নিজেই এক্সিকিউট করতে পারবে।</p>
+<!-- Added single-column and no-hover for perfect layout lock -->
+<div class="layout-wrapper single-column">
+  <article class="glass-card no-hover">
+    <img src="/blogs/blog-6.jpg" alt="Claude Sonnet 5: Agentic AI" class="article-hero-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Agentic+AI'">
+    
+    <h1 class="blog-main-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h1>
+    <div class="meta-info">By Fardin Rahman Khan Raafi | AI & B2B Growth</div>
+    
+    <p>It feels like a new AI model is released every single week. We try it out, write a few prompts, and then go right back to our old workflows.</p>
+    <p>But the release of Anthropic's Claude 3.5 Sonnet is different. One specific word was highly emphasized in their announcement: <em>"Agentic"</em>.</p>
+    <p>So, what does this actually mean for you? What is the real meaning behind the word "Agentic"?</p>
+
+    <h2>From Chat Assistant to Autonomous Agent</h2>
+    <p>Previously, we asked AI to draft an email or summarize a topic, and the job ended there.</p>
+    <p>Agentic AI means the model does not just sit there after answering a single prompt. If you give it a broad task, it will plan the steps, complete multiple actions, and execute an entire workflow on its own.</p>
     
     <div class="blog-quote">
       In simple words, it’s not just a chat assistant anymore, it’s an <strong>autonomous agent</strong>.
     </div>
 
-    <h2>B2B Growth এবং Marketing-এ এর ইমপ্যাক্ট</h2>
-    <p>যারা B2B marketing, lead generation বা CRM data নিয়ে কাজ করেন, তাদের জন্য এটা আক্ষরিক অর্থেই একটা বিশাল সুযোগ। চলুন দেখি প্র্যাকটিক্যালি আমরা এটা দিয়ে কী করতে পারি:</p>
+    <h2>The Impact on B2B Growth and Marketing</h2>
+    <p>For professionals working in B2B marketing, lead generation, or CRM data, this is a massive opportunity. Let’s look at what we can practically do with it:</p>
 
     <div class="stylized-card">
-      <div class="card-title">১. B2B Automation & CRM Data Hygiene</div>
-      <p>lead generation-এর সবচেয়ে বড় পেইনপয়েন্ট হলো অগোছালো ডাটা। Apollo.io বা Salesforce থেকে এক্সপোর্ট করা হাজার হাজার raw data ম্যানুয়ালি ক্লিন করা অনেক সময়ের ব্যাপার। এখন Claude Sonnet 5-কে ইনস্ট্রাকশন দিলে সে অনেক বেশি accuracy-এর সাথে এই ডাটা clean, filter আর enrich করতে পারবে। সে নিজে থেকে আপনার Ideal Customer Profile (ICP) অনুযায়ী ডাটা সর্ট করে দেবে।</p>
+      <div class="card-title">1. B2B Automation & CRM Data Hygiene</div>
+      <p>The biggest pain point in lead generation is messy data. Manually cleaning thousands of raw leads exported from Apollo.io or Salesforce takes hours. Now, you can instruct Claude Sonnet to clean, filter, and enrich this data with extreme accuracy. It will automatically sort the data according to your Ideal Customer Profile (ICP).</p>
     </div>
 
     <div class="stylized-card">
-      <div class="card-title">২. Complex AI Chatbots তৈরি করা</div>
-      <p>হেভি কোডিং নলেজ ছাড়াই এখন আপনি আপনার ক্লায়েন্ট বা ওয়েবসাইটের জন্য অনেক অ্যাডভান্সড AI chatbot বানাতে পারবেন। আগে লম্বা কনটেক্সট দিলে মডেলগুলো খেই হারিয়ে ফেলতো। কিন্তু Sonnet 5-এর reasoning capacity অনেক বেটার হওয়ায়, customer support বা lead qualification-এর জন্য এটি পারফেক্টলি কাজ করবে।</p>
+      <div class="card-title">2. Building Complex AI Chatbots</div>
+      <p>You can now build advanced AI chatbots for your website or clients without heavy coding knowledge. Older models would lose track of long conversations, but Sonnet’s improved reasoning capacity makes it perfect for complex customer support and lead qualification tasks.</p>
     </div>
 
     <div class="stylized-card">
-      <div class="card-title">৩. Deep Market Research & Competitor Analysis</div>
-      <p>ম্যানুয়াল competitor analysis-এর দিন প্রায় শেষ। আপনি একে একটা স্পেসিফিক ফ্রেমওয়ার্ক দিয়ে দিলে সে নিজে থেকেই মাল্টিপল সোর্স ঘেঁটে আপনাকে একটা রেডিমেড actionable report বানিয়ে দেবে। মার্কেটে কার কী প্রাইসিং চলছে বা কাদের কী ফিচার গ্যাপ আছে, সেটা সে নিজেই খুঁজে বের করে স্ট্রাকচারড ফরম্যাটে প্রেজেন্ট করবে।</p>
+      <div class="card-title">3. Deep Market Research & Competitor Analysis</div>
+      <p>The days of manual competitor analysis are almost over. Give the AI a specific framework, and it will browse multiple sources to generate a ready-made, actionable report. It can find out competitor pricing or feature gaps and present everything to you in a perfectly structured format.</p>
     </div>
 
     <div class="stylized-card">
-      <div class="card-title">৪. Managing the B2B Supply Chain of Leads</div>
-      <p>আমি সবসময় বলি B2B outreach হলো একটা supply chain-এর মতো। এখানে bottleneck কমানোটা খুবই জরুরি। Agentic AI-এর মাধ্যমে আপনি আপনার sales cycle latency ড্রাস্টিক্যালি কমিয়ে আনতে পারবেন। কারণ রিসার্চ থেকে শুরু করে ইমেইল পার্সোনালাইজেশন পর্যন্ত অনেকগুলো স্টেপ সে একাই হ্যান্ডেল করতে পারবে।</p>
+      <div class="card-title">4. Managing the B2B Supply Chain of Leads</div>
+      <p>I always say that B2B outreach is like a supply chain, and reducing bottlenecks is crucial. With Agentic AI, you can drastically reduce your sales cycle latency. It can handle multiple steps entirely on its own, from initial prospect research to deep email personalization.</p>
     </div>
 
     <h2>The Paradigm Shift</h2>
-    <p>AI-এর গেম এখন আর শুধু "কোন মডেল ভালো লিখতে পারে" সেটার মধ্যে আটকে নেই। গেমটা এখন পুরোপুরি শিফট করেছে।</p>
+    <p>The AI game is no longer just about "which model writes better." The landscape has completely shifted.</p>
     
     <div class="blog-quote">
-      এখনকার কম্পিটিশন হলো: <strong>"কোন মডেল নিজে থেকে আপনার কাজটা শেষ করে দিতে পারে।"</strong>
+      The new competition is: <strong>"Which model can finish the job for you on its own."</strong>
     </div>
     
-    <p>যারা এই autonomous workflow-গুলোর সাথে নিজেদের অ্যাডাপ্ট করতে পারবে, তারাই ফিউচার জব মার্কেটে লিড দেবে।</p>
+    <p>Professionals who adapt to these autonomous workflows today will be the ones leading the job market tomorrow.</p>
     
-    <div style="text-align: right; font-style: italic; font-weight: 700; color: var(--c1); margin-top: 2rem;">
-      - Fardin Rahman Khan Raafi
+    <!-- 🚀 NEW SEO-OPTIMIZED CONTACT CTA SECTION -->
+    <div style="margin-top: 4rem; padding: 3rem 2.5rem; background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); border-radius: 16px; text-align: center; backdrop-filter: blur(10px);">
+        <h3 style="margin-bottom: 1rem; color: var(--text-main); font-family: 'Syne', sans-serif; font-size: 1.8rem;">Ready to Automate Your Workflows?</h3>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+            If you want to discuss implementing Agentic AI tools, improving B2B productivity, or collaborating on an automated growth strategy, I would love to connect.
+        </p>
+        <a href="/contact.html" class="btn btn-primary" style="display: inline-block; padding: 14px 32px; font-weight: 700; font-size: 1.05rem; box-shadow: 0 4px 15px rgba(124,58,237,0.3); border-radius: 100px;">Contact Me for More Info ➔</a>
+    </div>
+
+    <div style="text-align: right; font-style: italic; font-weight: 700; color: var(--c1); margin-top: 3rem;">
+      - Fardin Rahman Khan Raafi<br>
+      <span style="font-size: 0.85rem; font-weight: 500; color: var(--text-muted);">Read more operational breakdowns, tech insights, and career growth frameworks at <a href="/index.html">fardinraafi.com</a></span>
     </div>
 
   </article>
 </div>
 
-<footer class="site-footer">
-  <div class="footer-grid">
-    <div class="footer-col">
-      <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-      <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Quick Links</h4>
-      <div class="footer-col-links">
-        <a href="/index.html">Home</a><a href="/gallery.html">Gallery</a><a href="/blog.html">Blog</a><a href="/certificates.html">Certificates</a><a href="/volunteer.html">Leadership</a><a href="/contact.html">Contact</a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Contact Info</h4>
-      <div class="footer-col-links">
-        <a href="mailto:fardinraafi@gmail.com">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-          fardinraafi@gmail.com
-        </a>
-        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-          LinkedIn Profile
-        </a>
-        <a href="https://www.pinterest.com/yourusername" target="_blank">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
-          Pinterest
-        </a>
-       <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn" style="background: #E2E8F0; color: #0F172A; padding: 10px 20px; font-weight: 800; margin-top: 1rem; text-align: center; border: 1px solid #CBD5E1; border-radius: 100px;">Download Resume 📥</a>
-      </div>
-    </div>
-  </div>
-  <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
-</footer>
+<!-- FOOTER: Handled entirely by main.js -->
+<footer class="site-footer reveal"></footer>
+
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
-// Advanced Theme Toggle Logic
-const themeBtn = document.getElementById('themeToggle');
-if (localStorage.getItem('theme') === 'dark') { document.body.classList.add('dark-mode'); }
-themeBtn.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  if (document.body.classList.contains('dark-mode')) { localStorage.setItem('theme', 'dark'); } 
-  else { localStorage.setItem('theme', 'light'); }
-});
-document.getElementById('current-year').textContent = new Date().getFullYear();
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 9000; 
+            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
 </script>
 </body>
 </html>
