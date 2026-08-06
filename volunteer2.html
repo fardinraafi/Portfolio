@@ -111,7 +111,7 @@
             width: 100%;
             height: 100%;
             object-fit: contain;
-            object-position: bottom right; /* Locks the image to the bottom right corner */
+            object-position: bottom right; 
             border: none;
             box-shadow: none;
             background: transparent;
@@ -336,10 +336,10 @@
         <div style="margin-top: 1rem;">
             <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
             <div class="skill-tags" style="justify-content: flex-start;">
-                <span class="tag">Marketing Enthusiast</span>
+                <span class="tag">Marketing</span>
                 <span class="tag">B2B</span>
                 <span class="tag">Branding Expert</span>
-                <span class="tag">FMCG</span>
+                <span class="tag">Leadership</span>
             </div>
         </div>
     </div>
@@ -731,7 +731,6 @@
         </div>
     </div>
     
-    <!-- BLUR ANIMATION ON BOTTOM CTA -->
     <div class="final-cta-content reveal blur-container">
         <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center;">
             <span class="blur-word">Let's&nbsp;</span>
@@ -805,6 +804,7 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
+
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
     <div class="contact-banner-wrapper">
@@ -822,7 +822,7 @@
                 if (entry.isIntersecting) {
                     const words = entry.target.querySelectorAll('.blur-word');
                     words.forEach((word, index) => {
-                        // 150ms stagger delay per word to match Framer Motion style
+                        // 150ms stagger delay per word
                         word.style.animationDelay = `${index * 0.15}s`;
                         word.classList.add('is-animated');
                     });
