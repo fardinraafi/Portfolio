@@ -25,17 +25,17 @@
   <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
-    <meta property="og:url" content="https://fardinraafi.vercel.app/">
+    <meta property="og:url" content="https://fardinraafi.com/">
     <meta property="og:title" content="Fardin Rahman Khan Raafi | Growth Associate">
-    <meta property="og:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
-    <meta property="og:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
+    <meta property="og:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
 
     <!-- TWITTER / X -->
     <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://fardinraafi.vercel.app/">
+    <meta property="twitter:url" content="https://fardinraafi.com/">
     <meta property="twitter:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
-    <meta property="twitter:description" content="Marketing Executive with 1 years of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
-    <meta property="twitter:image" content="https://fardinraafi.vercel.app/misc_img/og-preview.jpg">
+    <meta property="twitter:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="twitter:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
     
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
     <link rel="alternate" type="text/html" href="/resume.html">
@@ -47,12 +47,98 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
+/* 🚀 FIXED BLUR TEXT REVEAL EFFECT */
+        .blur-container { display: inline-block; }
+        
+        .blur-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px); /* changed to positive 20px so it floats up naturally */
+            will-change: transform, filter, opacity;
+        }
+        
+        /* Auto-runs immediately on page load for the top hero */
+        .hero-blur {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+        
+        /* Waits for scroll for the bottom CTA */
+        .scroll-blur.is-animated {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+        /* 🚀 NEW SPACIOUS HERO SECTION */
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 85vh;
+            position: relative;
+            width: 100vw;
+            left: 50%;
+            transform: translateX(-50%);
+            /* Pushed text further right by increasing left padding to 12vw */
+            padding: 4rem 6vw 4rem 12vw; 
+            overflow: visible; 
+            margin-bottom: 4rem;
+            z-index: 2;
+        }
+        .hero-left {
+            flex: 1.2;
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            max-width: 800px; 
+            z-index: 2; 
+        }
+        .hero-right {
+            position: absolute;
+            right: -2vw; 
+            bottom: -5%; 
+            height: 95vh; 
+            width: 50vw;
+            z-index: 1;
+            pointer-events: none; 
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            /* Smooth fade at the bottom to remove the harsh cutoff line */
+            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        }
+        /* 🚀 PURE MASSIVE IMAGE */
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: bottom right; 
+            border: none;
+            box-shadow: none;
+            background: transparent;
+            border-radius: 0;
+            /* Moved down exactly 5 pixels */
+            transform: translateY(5px);
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+
         /* Top Tech Ticker */
         .ticker-wrap {
             width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
-            padding: 1.5rem 0; margin-bottom: 0; display: flex;
+            padding: 1.5rem 0; margin-bottom: 2rem; display: flex;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
         }
         body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
@@ -75,11 +161,10 @@
         .blog-marquee-wrap {
             width: 100%;
             overflow: hidden;
-            padding: 20px 0; /* Padding allows the hover glow to not get clipped */
+            padding: 20px 0; 
             margin: -20px 0;
             position: relative;
         }
-        /* Gradient fade effect on the left and right edges */
         .blog-marquee-wrap::before, .blog-marquee-wrap::after {
             content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
         }
@@ -92,7 +177,7 @@
             display: flex;
             gap: 1.5rem;
             width: max-content;
-            animation: blogMarqueeScroll 45s linear infinite; /* 45s for a nice slow reading speed */
+            animation: blogMarqueeScroll 45s linear infinite; 
         }
         .blog-marquee-track:hover { animation-play-state: paused; }
         
@@ -102,7 +187,7 @@
         }
         
         .marquee-blog-card {
-            width: 320px; /* Fixed width so it looks uniform */
+            width: 320px; 
             flex-shrink: 0;
             display: flex;
             flex-direction: column;
@@ -118,11 +203,9 @@
         }
         body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
         
-        /* 🚀 THE RADIANT LIGHT POP-UP HOVER EFFECT */
         .marquee-blog-card:hover {
             transform: translateY(-10px);
             border-color: var(--c2);
-            /* Glowing borders combining Blue and Purple */
             box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
             z-index: 10;
         }
@@ -137,7 +220,7 @@
         /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
         .layout-wrapper {
             position: relative;
-            z-index: 2; /* Forces all content above the canvas */
+            z-index: 2; 
         }
         #neural-canvas {
             position: fixed; 
@@ -145,9 +228,68 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            z-index: 0; /* Stays safely in the background */
+            z-index: 0; 
             pointer-events: none; 
-            opacity: 0.7; /* Subtler integration for home page */
+            opacity: 0.7; 
+        }
+/* Mobile Stacking for Hero and CTA */
+        @media (max-width: 992px) {
+            .hero-section {
+                flex-direction: column; 
+                text-align: center;
+                gap: 0;
+                /* Keeps it perfectly snug under the nav bar */
+                padding: 4rem 1.5rem 0 1.5rem; 
+                min-height: auto;
+            }
+            .hero-left { 
+                align-items: center; 
+                padding: 0; 
+                width: 100%;
+                max-width: 100%;
+                /* Pushes the text BELOW the image */
+                order: 2; 
+            }
+            .hero-right { 
+                position: relative;
+                width: 100%;
+                height: 45vh;
+                min-height: 320px;
+                right: auto;
+                bottom: auto;
+                justify-content: center; 
+                align-items: flex-end;
+                margin-top: 0;
+                margin-bottom: 2rem; /* Breathing room between image and text */
+                /* PULLS THE IMAGE TO THE VERY TOP */
+                order: 1; 
+            }
+            .hero-img { 
+                object-position: bottom center; 
+                width: 130%; 
+                max-width: 500px;
+                transform: translateY(0); 
+                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
+            }
+            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
+            .hero-left .section-title { text-align: center !important; }
+            
+            .final-cta-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .cta-left {
+                text-align: center;
+                align-items: center;
+                padding: 4rem 1.5rem 1rem;
+            }
+            .final-cta-title { justify-content: center !important; }
+            .cta-right {
+                width: 100%;
+                justify-content: center;
+                align-items: flex-end;
+                min-height: 300px;
+            }
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -181,7 +323,7 @@
     <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
 </div>
 
-<!-- The Interactive Physics Canvas Engine (Subtle Version) -->
+<!-- The Interactive Physics Canvas Engine -->
 <canvas id="neural-canvas"></canvas>
 
 <div class="bg-mesh">
@@ -220,7 +362,60 @@
     </div>
 </nav>
 
+<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION -->
+<section class="hero-section">
+    <div class="hero-left">
+        <div class="typewriter" style="margin-bottom: -10px;">
+            <span id="tw-text"></span><span class="caret"></span>
+        </div>
+        
+       <!-- BLUR ANIMATION ON HERO NAME (Webkit Bug Fixed) -->
+        <h1 style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.1s;">Fardin&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.25s;">Rahman</span><br>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.4s;">Khan&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.55s;">Raafi</span>
+        </h1>
+        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
+            I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
+        </p>
+        
+        <div class="contact-links" style="justify-content: flex-start; margin: 0;">
+            <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
+            <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
+            <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
+        </div>
+
+        <div class="status-row">
+            <div class="live-status-widget" id="liveStatusBtn" style="margin: 0;">
+                <div class="status-dot"></div>
+                <div class="status-text-container">
+                    <span id="live-status-text">Open to new B2B projects</span>
+                </div>
+                <div class="status-tooltip">Click to copy email</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 1rem;">
+            <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
+            <div class="skill-tags" style="justify-content: flex-start;">
+                <span class="tag">Marketing</span>
+                <span class="tag">B2B</span>
+                <span class="tag">Branding Expert</span>
+                <span class="tag">Leadership</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="hero-right">
+        <!-- IMAGE WITH BOTTOM GRADIENT FADE -->
+        <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+    </div>
+</section>
+
+<!-- 🚀 THE 2-COLUMN SETUP BEGINS HERE -->
 <div class="layout-wrapper" id="home">
+    
     <aside class="sidebar">
         <div class="glass-card">
             <div class="profile-img-wrap">
@@ -239,7 +434,7 @@
                 <span class="tag">FMCG</span>
             </div>
             
-<!-- CLEAN DIGITAL CLOCK WIDGET -->
+            <!-- CLEAN DIGITAL CLOCK WIDGET -->
             <div class="clock-widget">
                 <div class="clock-header">
                     <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
@@ -255,32 +450,6 @@
     
     <main class="content-feed">
         
-        <header class="glass-card">
-            <div class="typewriter">
-                <span id="tw-text"></span><span class="caret"></span>
-            </div>
-     
-            <h1 class="gradient-text">Fardin Rahman Khan Raafi</h1>
-       
-            <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 1.5rem;">
-                I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
-            </p>
-            
-            <div class="contact-links">
-                <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
-                <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
-            </div>
-                  <div class="live-status-widget" id="liveStatusBtn">
-    <div class="status-dot"></div>
-    <div class="status-text-container">
-        <span id="live-status-text">Open to new B2B projects</span>
-    </div>
-    <div class="status-tooltip">Click to copy email</div>
-</div>
-            <br>
-        </header> 
-
         <div class="ticker-wrap">
             <div class="ticker-track">
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
@@ -432,7 +601,8 @@
                 </div>
             </div>
         </section>
-<section class="glass-card">
+        
+        <section class="glass-card">
             <div class="section-title">Featured Blogs</div>
             
             <div class="blog-marquee-wrap">
@@ -495,7 +665,7 @@
                         </div>
                     </a>
                     
-                    <a href="/blogs/blog-7.html" class="marquee-blog-card">
+                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
                         <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Future of Work</div>
@@ -624,8 +794,14 @@
         </div>
     </div>
     
-    <div class="final-cta-content reveal">
-        <h2 class="final-cta-title">Let's build your <span class="gradient-text">brand.</span></h2>
+    <div class="final-cta-content reveal blur-container">
+      <!-- BLUR ANIMATION ON BOTTOM CTA (Webkit Bug Fixed) -->
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Let's&nbsp;</span>
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">build&nbsp;</span>
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">your&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">brand.</span>
+        </h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
     </div>
     
@@ -636,7 +812,7 @@
     </div>
 </section>
 
-<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) - UPGRADED TRIGGER BUTTON -->
+<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
         <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
@@ -649,9 +825,7 @@
     <div class="chat-header">
         <div class="chat-header-title" style="gap: 12px;">
             <div style="position: relative;">
-                <!-- New Avatar in Header -->
                 <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
-                <!-- Kept the live pulsing dot! -->
                 <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
             </div>
             <div>
@@ -668,7 +842,6 @@
             <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
         </div>
         
-       <!-- Upgraded Chat Buttons with Unique Icons -->
        <div class="chat-options-grid" id="chatOptions">
             <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
                 <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
@@ -695,23 +868,43 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
+
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
-<div class="contact-banner-wrapper">
+    <div class="contact-banner-wrapper">
     <img src="behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" onerror="this.style.display='none'">
 </div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
 
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
+<!-- 🚀 BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        // 150ms stagger delay per word
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
     if(canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        
-        // Smaller radius for less aggressive mouse pulling
         let mouse = { x: null, y: null, radius: 100 }; 
 
         window.addEventListener('mousemove', (event) => {
@@ -778,10 +971,8 @@
 
         function init() {
             particles = [];
-            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
-            let numberOfParticles = (width * height) / 15000; 
-            // Fainter colors for subtlety
-            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -800,10 +991,9 @@
                 for (let b = a; b < particles.length; b++) {
                     let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        // Multiplier lowered to 0.2 to make lines fainter
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
@@ -825,6 +1015,5 @@
         animate();
     }
 </script>
-
 </body>
 </html>
