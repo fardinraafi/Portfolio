@@ -47,6 +47,32 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
+/* 🚀 NEW BLUR TEXT REVEAL EFFECT */
+        .blur-container { display: inline-block; }
+        
+        .blur-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(-20px);
+            will-change: transform, filter, opacity;
+        }
+        
+        /* Auto-runs immediately on page load for the top hero */
+        .hero-blur {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+        
+        /* Waits for scroll for the bottom CTA */
+        .scroll-blur.is-animated {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(10px); transform: translateY(-20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+
         /* 🚀 NEW SPACIOUS HERO SECTION */
         .hero-section {
             display: flex;
@@ -205,73 +231,7 @@
             height: 100vh;
             z-index: 0; 
             pointer-events: none; 
-            opacity: 0.7; /* Back to subtle */
-        }
-
-        /* EPIC SAAS CTA STRUCTURE */
-        .final-cta-inner {
-            display: flex;
-            align-items: stretch;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-            position: relative;
-            z-index: 2;
-        }
-        .cta-left {
-            flex: 1;
-            padding: 5rem 2rem;
-            text-align: left;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .cta-right {
-            flex: 1;
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-            position: relative;
-            min-height: 350px;
-        }
-
-        /* Mobile Stacking for Hero and CTA */
-        @media (max-width: 992px) {
-            .hero-section {
-                flex-direction: column-reverse; 
-                text-align: center;
-                gap: 2rem;
-                padding-top: 2rem;
-            }
-            .hero-right { 
-                position: relative;
-                width: 100%;
-                height: 400px;
-                right: 0;
-                bottom: 0;
-                justify-content: center; 
-            }
-            .hero-left { align-items: center; padding-right: 0; }
-            .hero-img { object-position: bottom center; -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%); }
-            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
-            
-            .final-cta-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .cta-left {
-                text-align: center;
-                align-items: center;
-                padding: 4rem 1.5rem 1rem;
-            }
-            .final-cta-title { text-align: center !important; }
-            .cta-right {
-                width: 100%;
-                justify-content: center;
-                align-items: flex-end;
-                min-height: 300px;
-            }
+            opacity: 0.7; 
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -351,10 +311,13 @@
             <span id="tw-text"></span><span class="caret"></span>
         </div>
         
+       <!-- BLUR ANIMATION ON HERO NAME (PURE CSS) -->
         <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-            Fardin Rahman<br>Khan Raafi
+            <span class="blur-word hero-blur" style="animation-delay: 0.1s;">Fardin&nbsp;</span>
+            <span class="blur-word hero-blur" style="animation-delay: 0.25s;">Rahman</span><br>
+            <span class="blur-word hero-blur" style="animation-delay: 0.4s;">Khan&nbsp;</span>
+            <span class="blur-word hero-blur" style="animation-delay: 0.55s;">Raafi</span>
         </h1>
-        
         <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
             I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
         </p>
@@ -773,8 +736,14 @@
         </div>
     </div>
     
-    <div class="final-cta-content reveal">
-        <h2 class="final-cta-title">Let's build your <span class="gradient-text">brand.</span></h2>
+    <div class="final-cta-content reveal blur-container">
+       <!-- BLUR ANIMATION ON BOTTOM CTA -->
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center;">
+            <span class="blur-word scroll-blur">Let's&nbsp;</span>
+            <span class="blur-word scroll-blur">build&nbsp;</span>
+            <span class="blur-word scroll-blur">your&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">brand.</span>
+        </h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
     </div>
     
@@ -841,6 +810,7 @@
     
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
+
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
     <div class="contact-banner-wrapper">
@@ -849,15 +819,34 @@
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 <script src="/main.js"></script>
 
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE (SUBTLE PERFORMANCE VERSION) -->
+<!-- 🚀 BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        // 150ms stagger delay per word
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
     if(canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        
-        // Smaller radius for less aggressive mouse pulling
         let mouse = { x: null, y: null, radius: 100 }; 
 
         window.addEventListener('mousemove', (event) => {
@@ -924,10 +913,8 @@
 
         function init() {
             particles = [];
-            // Divisor increased from 9000 to 15000 = Far fewer particles for better performance
-            let numberOfParticles = (width * height) / 15000; 
-            // Fainter colors for subtlety
-            let colors = ['rgba(59, 130, 246, 0.3)', 'rgba(139, 92, 246, 0.3)', 'rgba(219, 39, 119, 0.3)'];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -946,10 +933,9 @@
                 for (let b = a; b < particles.length; b++) {
                     let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
                                  + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        // Multiplier lowered to 0.2 to make lines fainter
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.2})`;
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
                         ctx.moveTo(particles[a].x, particles[a].y);
