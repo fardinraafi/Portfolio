@@ -47,14 +47,14 @@
     <link rel="stylesheet" href="/style.css">
     
     <style>
-/* 🚀 NEW BLUR TEXT REVEAL EFFECT */
+/* 🚀 FIXED BLUR TEXT REVEAL EFFECT */
         .blur-container { display: inline-block; }
         
         .blur-word {
             display: inline-block;
             opacity: 0;
             filter: blur(10px);
-            transform: translateY(-20px);
+            transform: translateY(20px); /* changed to positive 20px so it floats up naturally */
             will-change: transform, filter, opacity;
         }
         
@@ -69,10 +69,9 @@
         }
 
         @keyframes blurTextReveal {
-            0% { opacity: 0; filter: blur(10px); transform: translateY(-20px); }
+            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
             100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
-
         /* 🚀 NEW SPACIOUS HERO SECTION */
         .hero-section {
             display: flex;
@@ -311,12 +310,12 @@
             <span id="tw-text"></span><span class="caret"></span>
         </div>
         
-       <!-- BLUR ANIMATION ON HERO NAME (PURE CSS) -->
-        <h1 class="gradient-text" style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-            <span class="blur-word hero-blur" style="animation-delay: 0.1s;">Fardin&nbsp;</span>
-            <span class="blur-word hero-blur" style="animation-delay: 0.25s;">Rahman</span><br>
-            <span class="blur-word hero-blur" style="animation-delay: 0.4s;">Khan&nbsp;</span>
-            <span class="blur-word hero-blur" style="animation-delay: 0.55s;">Raafi</span>
+       <!-- BLUR ANIMATION ON HERO NAME (Webkit Bug Fixed) -->
+        <h1 style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.1s;">Fardin&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.25s;">Rahman</span><br>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.4s;">Khan&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.55s;">Raafi</span>
         </h1>
         <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
             I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
@@ -737,11 +736,11 @@
     </div>
     
     <div class="final-cta-content reveal blur-container">
-       <!-- BLUR ANIMATION ON BOTTOM CTA -->
-        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center;">
-            <span class="blur-word scroll-blur">Let's&nbsp;</span>
-            <span class="blur-word scroll-blur">build&nbsp;</span>
-            <span class="blur-word scroll-blur">your&nbsp;</span>
+      <!-- BLUR ANIMATION ON BOTTOM CTA (Webkit Bug Fixed) -->
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Let's&nbsp;</span>
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">build&nbsp;</span>
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">your&nbsp;</span>
             <span class="blur-word scroll-blur gradient-text">brand.</span>
         </h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
