@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const statusTextEl = document.getElementById('live-status-text');
     
     if (statusWidget && statusTextEl) {
-        const statusMessages = ["Open to new B2B projects", "📍 Based in Dhaka, Bangladesh", "🎧 Listening to: My First Million", "📚 Reading: Hacking Growth", "⚡ Optimizing conversion rates..."];
+        const statusMessages = ["Open to new B2B projects", "📍 Based in Dhaka, Bangladesh", "🤳 Doom-scrolling on Instagram", "🎧 Listening to: My First Million", "⚔ Attacking in Clash of Clans", "📚 Reading: Hacking Growth", "⚡ Optimizing conversion rates...", "✍ Posting daily on linkedin..", "☕ Powered by a good cup of coffee"];
         let statusIndex = 0, isHovered = false, isClicked = false;
 
         statusWidget.addEventListener('mouseenter', () => isHovered = true);
