@@ -1514,8 +1514,9 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-family: 'Syne', serif; 
-    font-size: 16vw; /* Scales with screen size */
+    font-family: Georgia, serif; /* Changed to a classic serif font */
+    font-style: italic; /* Made it italic! */
+    font-size: 16vw; 
     font-weight: 800;
     line-height: 0.85;
     text-align: center;
