@@ -1520,7 +1520,7 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
     font-weight: 800;
     line-height: 0.85;
     text-align: center;
-    color: rgba(255, 255, 255, 0.04);
+    color: rgba(255, 255, 255, 0.2);
     z-index: 0;
     pointer-events: none;
     user-select: none;
@@ -1529,7 +1529,7 @@ body:not(.dark-mode) .glowing-line-container { background: transparent; }
 }
 
 body:not(.dark-mode) .reco-bg-text {
-    color: rgba(0, 0, 0, 0.04);
+    color: rgba(0, 0, 0, 0.2);
 }
 
 /* Container for the Cards */
