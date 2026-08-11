@@ -135,6 +135,26 @@
             0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
             100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
+        /* Mobile Adjustments for Prompt Box */
+        @media (max-width: 768px) {
+            .prompt-title {
+                font-size: 2.2rem; /* Scales down the massive title */
+            }
+            pre {
+                padding: 1.2rem; /* Reduces empty space inside the box */
+            }
+            code {
+                font-size: 0.7rem; /* Makes the prompt text much smaller */
+                line-height: 1.5;
+            }
+            .copy-btn {
+                font-size: 0.8rem;
+                padding: 6px 16px;
+            }
+            .prompt-box-header {
+                padding: 0.8rem 1rem;
+            }
+        }
     </style>
 
     <!-- Vercel Analytics & Speed Insights -->
