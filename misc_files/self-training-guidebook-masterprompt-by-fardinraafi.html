@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Tags -->
+    <title>Self Training Guidebook | Fardin Rahman Khan Raafi</title>
+    <meta name="description" content="A master prompt to generate a personalized skill-learning guidebook using Claude AI.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+
+    <!-- Favicon / Site Icon -->
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* Page Specific Styles for the Prompt Box */
+        .prompt-header-section {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-top: 2rem;
+        }
+        .prompt-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .prompt-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.6;
+        }
+        .prompt-box-wrapper {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 5;
+        }
+        .prompt-box-header {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .terminal-dots span {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .dot-red { background: #FF5F56; }
+        .dot-yellow { background: #FFBD2E; }
+        .dot-green { background: #27C93F; }
+        
+        pre {
+            margin: 0;
+            padding: 2rem;
+            overflow-x: auto;
+        }
+        code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.95rem;
+            color: #E2E8F0;
+            line-height: 1.7;
+            white-space: pre-wrap;
+        }
+        
+        .copy-btn {
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .copy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        .copy-btn.copied {
+            background: #10B981; /* Green success state */
+        }
+        
+        /* Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
+        .layout-wrapper { position: relative; z-index: 2; }
+        #neural-canvas {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: 0; pointer-events: none; opacity: 0.7; 
+        }
+    </style>
+  <!-- Vercel Analytics & Speed Insights -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body class="dark-mode">
+
+<div id="preloader">
+    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
+</div>
+
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
+
+<div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<nav class="top-nav">
+    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+    <div class="nav-menu">
+        <a href="/index.html">Home</a>
+        <a href="/gallery.html">Gallery</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/certificates.html">Certificates</a>
+        <a href="/volunteer.html">Leadership</a>
+        <a href="/contact.html">Contact</a>
+    </div>
+    <div class="nav-actions">
+        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+            <span class="theme-text text-dark">Dark</span>
+            <span class="theme-text text-light">Light</span>
+            <div class="theme-liquid-bubble">
+                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+            </div>
+        </button>
+    </div>
+</nav>
+
+<div class="layout-wrapper single-column">
+    <div class="prompt-header-section reveal">
+        <h1 class="prompt-title">Self-Training Guidebook</h1>
+        <p class="prompt-subtitle">
+            <strong>Master Prompt: Personalized Skill Guidebook Generator</strong><br>
+            No blanks to fill in yourself — just paste this prompt into Claude as-is. Claude will ask you a few quick questions, then build your full personal learning guidebook.
+        </p>
+    </div>
+
+    <div class="prompt-box-wrapper reveal" style="transition-delay: 0.1s;">
+        <div class="prompt-box-header">
+            <div class="terminal-dots">
+                <span class="dot-red"></span>
+                <span class="dot-yellow"></span>
+                <span class="dot-green"></span>
+            </div>
+            <button id="copyPromptBtn" class="copy-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+                Tap to Copy the Master Prompt
+            </button>
+        </div>
+        <pre><code id="promptText">Act as a patient, practical mentor building me a personal skill-learning guidebook.
+
+Before you write anything, ask me the following questions one at a time (or in a short batch if that's easier for me to answer), and wait for my answers before building the guidebook. Keep the questions simple and give examples so I know how to answer:
+
+1. What's your name?
+2. What's your current field of study or background? (e.g. Finance major, CS student, Marketing student)
+3. What's your career goal — what kind of desk job or role do you want in the future?
+4. What skills or tools do you already want to learn? (e.g. MS Excel/Google Sheets, MS Access, Power BI, SQL, Python, etc. — list as many as you want, or just say "not sure, suggest for me" and I'll let you recommend the right mix based on my career goal)
+5. What's your current skill level in your top-priority tool? (Beginner / Intermediate / Advanced — if I'm not sure, offer to ask me 2-3 quick questions to assess it)
+6. How much time can I realistically practice per day?
+7. How do I learn best? (e.g. simple plain English, step-by-step with screenshots, video-first, learn-by-doing)
+
+Once I've answered, build a complete guidebook that includes:
+
+- A daily practice routine for my #1 priority tool (something I repeat every day, not a one-time lesson).
+- For each practice session, give me the exact prompt I should copy-paste into Claude to generate a fresh practice worksheet + explanation, covering one function/skill at a time. Use this structure for the prompts you give me:
+  "Make me a practice exercise on [FUNCTION/TOPIC] in [TOOL]. Include 5-8 sample problems with realistic data, the correct formulas/steps, and a plain-English explanation of when and why I'd use this in a real job."
+- Cover the essential functions/skills in a logical learning order (e.g. for Excel: SUM, AVERAGE, COUNTIF, IF, VLOOKUP, XLOOKUP, INDEX-MATCH, Pivot Tables, Power Query, etc. — adjust for whichever tools I listed).
+- A structured multi-week roadmap — break my chosen skills into phases (Beginner → Intermediate → Advanced), with what to focus on each week.
+- YouTube channel recommendations with names and hyperlinks for each tool I listed, prioritizing channels known for clear, practical, job-relevant tutorials.
+- Other useful resources: free courses, cheat sheets, practice datasets, communities/forums, and any certifications worth having for my career goal.
+- A glossary of abbreviations and terms I'll run into (e.g. VBA, ETL, KPI, DAX, PQ, ODBC — whatever's relevant to my chosen tools), explained in simple language.
+- Bonus suggestions — if there are other tools, software, or skills (beyond what I listed) that would meaningfully help someone with my background reach my career goal, suggest them and briefly explain why.
+
+Keep the tone simple, encouraging, and beginner-friendly — no jargon without explanation.
+
+A closing CTA (call-to-action) section at the very end of the guidebook, formatted clearly, that reads exactly:
+
+Assisted by Fardin Rahman Khan Raafi. View his LinkedIn for more!
+🔗 linkedin.com/in/fardinraafi
+
+Export the final guidebook as a downloadable PDF with clean formatting (headings, tables where useful, and a table of contents), including the CTA section above as the last page.</code></pre>
+    </div>
+</div>
+
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
+<section class="final-cta-section" style="padding: 0; overflow: hidden; display: flex; align-items: stretch; position: relative;">
+    <div class="watermark-bg" style="z-index: 1;">FRKR</div>
+    
+    <div class="glowing-line-container top-line" style="z-index: 3;">
+        <div class="glowing-orb orb-right-left">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+    
+    <div class="final-cta-inner reveal" style="z-index: 2;">
+        <div class="cta-left">
+            <h2 class="final-cta-title" style="text-align: left; margin-bottom: 1.5rem;">Let's build your <br><span class="gradient-text">brand.</span></h2>
+            <div class="status-row">
+                <a href="/contact.html" class="final-cta-btn" style="margin: 0;">Get in touch</a>
+            </div>
+        </div>
+        <div class="cta-right">
+            <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" class="hero-img" onerror="this.style.display='none'">
+        </div>
+    </div>
+    
+    <div class="glowing-line-container bottom-line" style="z-index: 3;">
+        <div class="glowing-orb orb-left-right">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer injected by main.js -->
+<footer class="site-footer"></footer>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
+<!-- Copy to Clipboard Logic -->
+<script>
+    document.getElementById('copyPromptBtn').addEventListener('click', function() {
+        const promptText = document.getElementById('promptText').innerText;
+        navigator.clipboard.writeText(promptText).then(() => {
+            const btn = this;
+            const originalHTML = btn.innerHTML;
+            btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+            btn.classList.add('copied');
+            
+            setTimeout(() => {
+                btn.innerHTML = originalHTML;
+                btn.classList.remove('copied');
+            }, 2500);
+        });
+    });
+</script>
+
+<!-- BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 100 }; 
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+</body>
+</html>
