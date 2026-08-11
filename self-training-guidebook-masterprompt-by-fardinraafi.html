@@ -508,17 +508,17 @@ Export the final guidebook as a downloadable PDF with clean formatting (headings
         animate();
     }
 </script>
-    <!-- PAGE VISIT COUNTER SCRIPT -->
+ <!-- PAGE VISIT COUNTER SCRIPT -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Calls a free API to count the visit and return the new number
-        fetch('https://api.counterapi.dev/v1/fardinraafi/guidebook_page')
+        // Notice the "/up" at the very end of the link! This tells it to add +1
+        fetch('https://api.counterapi.dev/v1/fardinraafi/guidebook_page/up')
             .then(response => response.json())
             .then(data => {
                 document.getElementById('visit-count').innerText = data.count;
             })
             .catch(error => {
-                // If the API ever fails, it gracefully falls back to a static number
+                // Fallback just in case
                 document.getElementById('visit-count').innerText = "120+"; 
             });
     });
