@@ -338,6 +338,14 @@ Export the final guidebook as a downloadable PDF with clean formatting (headings
 </div>
 
 <!-- Footer injected by main.js -->
+    <!-- 👁️ PAGE VISIT COUNTER -->
+<div class="visit-counter" style="text-align: center; margin-bottom: 2rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 500; font-family: 'DM Sans', sans-serif;">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px; color: var(--c1);">
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+    </svg>
+    Page Visits: <span id="visit-count">...</span>
+</div>
 <footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
@@ -499,6 +507,21 @@ Export the final guidebook as a downloadable PDF with clean formatting (headings
         init();
         animate();
     }
+</script>
+    <!-- PAGE VISIT COUNTER SCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Calls a free API to count the visit and return the new number
+        fetch('https://api.counterapi.dev/v1/fardinraafi/guidebook_page')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visit-count').innerText = data.count;
+            })
+            .catch(error => {
+                // If the API ever fails, it gracefully falls back to a static number
+                document.getElementById('visit-count').innerText = "120+"; 
+            });
+    });
 </script>
 </body>
 </html>
