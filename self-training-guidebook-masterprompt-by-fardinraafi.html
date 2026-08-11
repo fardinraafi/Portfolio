@@ -115,8 +115,29 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: 0; pointer-events: none; opacity: 0.7; 
         }
+
+        /* FIXED BLUR TEXT REVEAL EFFECT */
+        .blur-container { display: inline-block; }
+        
+        .blur-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            will-change: transform, filter, opacity;
+        }
+        
+        .scroll-blur.is-animated {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
     </style>
-  <!-- Vercel Analytics & Speed Insights -->
+
+    <!-- Vercel Analytics & Speed Insights -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
@@ -214,34 +235,87 @@ Export the final guidebook as a downloadable PDF with clean formatting (headings
     </div>
 </div>
 
-<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
-<section class="final-cta-section" style="padding: 0; overflow: hidden; display: flex; align-items: stretch; position: relative;">
-    <div class="watermark-bg" style="z-index: 1;">FRKR</div>
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION (Centered, No Image) -->
+<section class="final-cta-section">
+    <div class="watermark-bg">FRKR</div>
     
-    <div class="glowing-line-container top-line" style="z-index: 3;">
+    <div class="glowing-line-container top-line">
         <div class="glowing-orb orb-right-left">
             <div class="orb-head"></div>
         </div>
     </div>
     
-    <div class="final-cta-inner reveal" style="z-index: 2;">
-        <div class="cta-left">
-            <h2 class="final-cta-title" style="text-align: left; margin-bottom: 1.5rem;">Let's build your <br><span class="gradient-text">brand.</span></h2>
-            <div class="status-row">
-                <a href="/contact.html" class="final-cta-btn" style="margin: 0;">Get in touch</a>
-            </div>
-        </div>
-        <div class="cta-right">
-            <img src="profile.jpg" alt="Fardin Rahman Khan Raafi" class="hero-img" onerror="this.style.display='none'">
-        </div>
+    <div class="final-cta-content reveal blur-container">
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Confusion?&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">Send me a message!</span>
+        </h2>
+        <a href="/contact.html" class="final-cta-btn">Contact Me</a>
     </div>
     
-    <div class="glowing-line-container bottom-line" style="z-index: 3;">
+    <div class="glowing-line-container bottom-line">
         <div class="glowing-orb orb-left-right">
             <div class="orb-head"></div>
         </div>
     </div>
 </section>
+
+<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
+    <div style="position: relative;">
+        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
+        <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
+    </div>
+    <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
+</button>
+
+<div class="glass-card chat-bot-modal" id="chatModal">
+    <div class="chat-header">
+        <div class="chat-header-title" style="gap: 12px;">
+            <div style="position: relative;">
+                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
+                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
+            </div>
+            <div>
+                <h4 style="margin: 0; line-height: 1;">FIFI</h4>
+                <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
+            </div>
+        </div>
+        <button class="close-chat" id="closeChatBtn">&times;</button>
+    </div>
+    
+    <div class="chat-scroll-area" id="chatArea">
+       <div class="chat-greeting" id="chatGreeting">
+            <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
+            <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
+        </div>
+        
+       <div class="chat-options-grid" id="chatOptions">
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
+                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')">
+                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')">
+                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')">
+                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')">
+                <span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')">
+                <span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span>
+            </button>
+        </div>
+        
+        <div class="chat-log" id="chatLog"></div>
+    </div>
+    
+    <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
+</div>
 
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
@@ -264,6 +338,28 @@ Export the final guidebook as a downloadable PDF with clean formatting (headings
                 btn.classList.remove('copied');
             }, 2500);
         });
+    });
+</script>
+
+<!-- BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        // 150ms stagger delay per word
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
     });
 </script>
 
