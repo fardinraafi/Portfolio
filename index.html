@@ -894,7 +894,11 @@
             <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
             <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
         </div>
-        
+        <!-- REAL-TIME CHAT INPUT -->
+    <div class="chat-input-area" style="display: flex; gap: 8px; padding: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
+        <input type="text" id="chatInput" placeholder="Ask Fifi something..." style="flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--text-light); background: transparent; color: var(--text-main); font-family: 'DM Sans', sans-serif; outline: none;">
+        <button id="sendChatBtn" style="background: var(--c1); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s;">Send</button>
+    </div>
        <div class="chat-options-grid" id="chatOptions">
             <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
                 <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
