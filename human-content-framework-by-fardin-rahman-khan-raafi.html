@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Tags -->
+    <title>Human-Centric AI Framework | Fardin Rahman Khan Raafi</title>
+    <meta name="description" content="My exact step-by-step process for leveraging AI tools to write authentic, human-sounding copy.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* PAGE SPECIFIC STYLES */
+        .framework-header {
+            text-align: center;
+            padding: 8rem 2rem 4rem 2rem;
+            position: relative;
+            z-index: 5;
+        }
+        .framework-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+        .framework-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .step-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 5;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        body:not(.dark-mode) .step-card {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: rgba(0,0,0,0.08);
+        }
+        .step-number {
+            font-family: 'Syne', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            color: rgba(255, 255, 255, 0.03);
+            pointer-events: none;
+        }
+        body:not(.dark-mode) .step-number { color: rgba(0, 0, 0, 0.03); }
+        
+        .step-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.8rem;
+            color: var(--c1);
+            margin-bottom: 1rem;
+        }
+        .step-card ul {
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+        .step-card li { margin-bottom: 0.8rem; }
+        
+        .prompt-box {
+            background: rgba(0,0,0,0.3);
+            border-left: 4px solid var(--c2);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: #E2E8F0;
+            margin-top: 1rem;
+        }
+        body:not(.dark-mode) .prompt-box { background: rgba(0,0,0,0.05); color: #333; }
+
+        .tool-btn-grid {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+        .tool-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 100px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .tool-btn:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); border-color: var(--c1); }
+        
+        /* Blur Reveal Framework */
+        .blur-container { display: inline-block; }
+        .blur-word { display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(20px); will-change: transform, filter, opacity; }
+        .scroll-blur.is-animated { animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+        #neural-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.7; }
+    </style>
+
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body class="dark-mode">
+
+<div id="preloader">
+    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
+</div>
+
+<canvas id="neural-canvas"></canvas>
+
+<!-- Nav injected by main.js -->
+<nav class="top-nav"></nav>
+
+<main class="layout-wrapper single-column">
+    
+    <!-- HEADER -->
+    <div class="framework-header reveal">
+        <h1 class="framework-title blur-container">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">The Human-Centric</span><br>
+            <span class="blur-word scroll-blur gradient-text" style="animation-delay: 0.15s;">AI Content Framework</span>
+        </h1>
+        <p class="framework-subtitle reveal" style="transition-delay: 0.2s;">
+            How I write content that sounds human. My exact step-by-step process for leveraging AI tools to bypass the "bot tone" and create genuine connections.
+        </p>
+    </div>
+
+    <!-- WE WILL PASTE THE CONTENT CARDS RIGHT BELOW HERE IN STEP 2 -->
+  <!-- CONTENT BLOCKS -->
+    <div style="max-width: 800px; margin: 0 auto 4rem auto; padding: 0 1.5rem;">
+        
+        <div class="step-card reveal">
+            <div class="step-number">01</div>
+            <h3>The Raw Draft (Zero AI)</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">First, make a draft of what you want to write. It doesn't need to be fact-checked or perfectly structured. Just write. <strong>Do not use any AI in this stage.</strong> The first draft MUST come completely from your brain.</p>
+        </div>
+
+        <div class="step-card reveal">
+            <div class="step-number">02</div>
+            <h3>The AI Argument</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">Feed the draft into an AI and give it context. Tell it why you are writing this, your end goal, and <strong>instruct the AI to argue with you</strong> about the idea to find loopholes and test your logic.</p>
+        </div>
+
+        <div class="step-card reveal">
+            <div class="step-number">03</div>
+            <h3>The Reconstruction Prompt</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">Now, take your raw draft and whatever the AI argued about, and paste this exact prompt to rebuild the content:</p>
+            <div class="prompt-box">
+                Use my first draft, combine it with your arguments, and remake me a new content without changing the tone, approach, style, language, or humor from my original draft.
+            </div>
+        </div>
+
+        <div class="step-card reveal">
+            <div class="step-number">04</div>
+            <h3>The Polish (or Anti-Polish)</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">Sometimes perfection is the enemy of authentic. Make intentional mistakes. When you do need to clean up inconsistencies, use this prompt:</p>
+            <div class="prompt-box">
+                From the content clean any grammatical mistakes, errors, and inconsistency. Do not use Em dashes, do not repeat words... [add specific rules here].
+            </div>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-top: 1.5rem;">Or, use dedicated grammar tools:</p>
+            <div class="tool-btn-grid">
+                <a href="https://app.grammarly.com/" target="_blank" class="tool-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Grammarly_logo.svg" width="20" height="20" alt="Grammarly" onerror="this.style.display='none'"> Grammarly
+                </a>
+                <a href="https://quillbot.com/" target="_blank" class="tool-btn">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/Quillbot_logo.png" width="20" height="20" alt="Quillbot" onerror="this.style.display='none'"> QuillBot
+                </a>
+            </div>
+        </div>
+
+        <div class="step-card reveal">
+            <div class="step-number">05</div>
+            <h3>Read. Every. Single. Word.</h3>
+            <p style="color: var(--text-muted); line-height: 1.7;">This is crucial. You need to read the whole content word by word before posting anywhere. Only a human can understand if content feels natural. Stop trying to be the "best writer." Use emotion, cite your sources, and make it sound like YOU.</p>
+        </div>
+
+        <!-- PRO TIPS -->
+        <div class="step-card reveal" style="border-color: var(--c1);">
+            <h3 style="color: var(--text-main);">💡 Quick Humanizer Tips</h3>
+            <ul>
+                <li><strong>Make it personal:</strong> Nobody's ever gotten attached to "leveraging synergies."</li>
+                <li><strong>Use your trademark move:</strong> Include the thing only <em>you</em> would say.</li>
+                <li><strong>Be funny:</strong> If it wouldn't survive being read out loud at brunch, cut it.</li>
+                <li><strong>Drop a niche reference:</strong> Don't explain it. If they get it, they get it.</li>
+            </ul>
+        </div>
+        
+    </div>
+
+</main>
+
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
+<section class="final-cta-section">
+    <div class="watermark-bg">FRKR</div>
+    
+    <div class="glowing-line-container top-line">
+        <div class="glowing-orb orb-right-left">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+    
+    <div class="final-cta-content reveal blur-container">
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Confusion?&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">Send me a message!</span>
+        </h2>
+        <a href="/contact.html" class="final-cta-btn">Contact Me</a>
+    </div>
+    
+    <div class="glowing-line-container bottom-line">
+        <div class="glowing-orb orb-left-right">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer injected by main.js -->
+<footer class="site-footer"></footer>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
+<!-- BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+
+<!-- BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 100 }; 
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+</body>
+</html>
