@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Primary Tags -->
+    <title>Resources & Tools | Fardin Rahman Khan Raafi</title>
+    <meta name="description" content="A curated collection of growth marketing prompts, guides, and templates.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+
+    <!-- Favicon / Site Icon -->
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        /* =========================================
+           PAGE SPECIFIC: RESOURCES GRID & CARDS
+        ========================================= */
+        .resources-header {
+            text-align: center;
+            padding: 8rem 2rem 4rem 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .resources-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .resources-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1100px;
+            margin: 0 auto 6rem auto;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            .resources-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* The Interactive Card */
+        .resource-card {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            min-height: 220px;
+        }
+
+        body:not(.dark-mode) .resource-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        /* Card Content Styling */
+        .resource-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--c1);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .resource-card h3 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.6rem;
+            color: #F8FAFC;
+            margin: 0 0 1rem 0;
+            transition: color 0.3s ease;
+        }
+
+        body:not(.dark-mode) .resource-card h3 { color: var(--text-main); }
+
+        .resource-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin: 0 0 2rem 0;
+            flex-grow: 1;
+        }
+
+        .resource-action {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-main);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-action svg {
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        /* --- EXTREME HOVER INTERACTIVITY --- */
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Content must sit above the glow */
+        .resource-card > * { position: relative; z-index: 1; }
+
+        .resource-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: var(--c1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(37, 99, 235, 0.15);
+        }
+
+        .resource-card:hover::before { opacity: 1; }
+        .resource-card:hover h3 { color: var(--c1); }
+        .resource-card:hover .resource-action { color: var(--c1); }
+        
+        /* The arrow shoots to the right */
+        .resource-card:hover .resource-action svg {
+            transform: translateX(10px);
+        }
+
+        /* Canvas Z-index fix */
+        #neural-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.7; }
+        
+        /* Blur Text Animation */
+        .blur-container { display: inline-block; }
+        .blur-word {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            will-change: transform, filter, opacity;
+        }
+        .scroll-blur.is-animated {
+            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+        @keyframes blurTextReveal {
+            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+        }
+    </style>
+
+    <!-- Vercel Analytics -->
+    <script defer src="/_vercel/insights/script.js"></script>
+    <script defer src="/_vercel/speed-insights/script.js"></script>
+</head>
+<body class="dark-mode">
+
+<div id="preloader">
+    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
+</div>
+
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
+
+<div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<!-- Nav injected by main.js -->
+<nav class="top-nav"></nav>
+
+<main class="layout-wrapper single-column">
+    
+    <!-- HEADER SECTION -->
+    <div class="resources-header reveal">
+        <h1 class="resources-title blur-container">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Curated</span>
+            <span class="blur-word scroll-blur gradient-text">Resources</span>
+        </h1>
+        <p class="resources-subtitle reveal" style="transition-delay: 0.2s;">
+            A collection of prompts, guides, and strategic frameworks designed to accelerate your workflow.
+        </p>
+    </div>
+
+    <!-- RESOURCES GRID -->
+    <div class="resources-grid">
+        
+        <!-- CARD 1: Self-Training Guidebook -->
+        <a href="/self-training-guidebook-masterprompt-by-fardinraafi.html" class="resource-card reveal">
+            <div>
+                <span class="resource-tag">AI Prompt</span>
+                <h3>Self-Training Guidebook</h3>
+                <p>A plug-and-play Claude AI master prompt that generates a complete, personalized learning roadmap for any technical or marketing skill you want to master.</p>
+            </div>
+            <div class="resource-action">
+                Access Prompt 
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </div>
+        </a>
+
+        <!-- Empty slot for future resource (keeps grid structure clean) -->
+        <!-- Add your next <a class="resource-card"> here when ready -->
+
+    </div>
+</main>
+
+<!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION (Centered, No Image) -->
+<section class="final-cta-section">
+    <div class="watermark-bg">FRKR</div>
+    
+    <div class="glowing-line-container top-line">
+        <div class="glowing-orb orb-right-left">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+    
+    <div class="final-cta-content reveal blur-container">
+        <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
+            <span class="blur-word scroll-blur" style="color: var(--text-main);">Confusion?&nbsp;</span>
+            <span class="blur-word scroll-blur gradient-text">Send me a message!</span>
+        </h2>
+        <a href="/contact.html" class="final-cta-btn">Contact Me</a>
+    </div>
+    
+    <div class="glowing-line-container bottom-line">
+        <div class="glowing-orb orb-left-right">
+            <div class="orb-head"></div>
+        </div>
+    </div>
+</section>
+
+<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
+    <div style="position: relative;">
+        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
+        <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
+    </div>
+    <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
+</button>
+
+<div class="glass-card chat-bot-modal" id="chatModal">
+    <div class="chat-header">
+        <div class="chat-header-title" style="gap: 12px;">
+            <div style="position: relative;">
+                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
+                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
+            </div>
+            <div>
+                <h4 style="margin: 0; line-height: 1;">FIFI</h4>
+                <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
+            </div>
+        </div>
+        <button class="close-chat" id="closeChatBtn">&times;</button>
+    </div>
+    
+    <div class="chat-scroll-area" id="chatArea">
+       <div class="chat-greeting" id="chatGreeting">
+            <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
+            <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
+        </div>
+        
+       <div class="chat-options-grid" id="chatOptions">
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
+                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')">
+                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')">
+                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')">
+                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')">
+                <span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span>
+            </button>
+            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')">
+                <span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span>
+            </button>
+        </div>
+        
+        <div class="chat-log" id="chatLog"></div>
+        
+        <!-- REAL-TIME CHAT INPUT -->
+        <div class="chat-input-area" style="display: flex; gap: 8px; padding: 1rem; border-top: 1px solid rgba(0,0,0,0.1);">
+            <input type="text" id="chatInput" placeholder="Ask Fifi something..." style="flex: 1; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--text-light); background: transparent; color: var(--text-main); font-family: 'DM Sans', sans-serif; outline: none;">
+            <button id="sendChatBtn" style="background: var(--c1); color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; transition: background 0.3s;">Send</button>
+        </div>
+    </div>
+    
+    <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
+</div>
+
+<!-- Footer injected by main.js -->
+<footer class="site-footer"></footer>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js"></script>
+
+<!-- BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+
+<!-- BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 100 }; 
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+</body>
+</html>
