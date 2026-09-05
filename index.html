@@ -409,7 +409,7 @@
     
     <div class="hero-right">
         <!-- IMAGE WITH BOTTOM GRADIENT FADE -->
-        <img src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+<img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
     </div>
 </section>
 <!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
@@ -1067,6 +1067,34 @@
         init();
         animate();
     }
+</script>
+    <script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const heroImg = document.getElementById('mainHeroImg');
+        const themeBtn = document.getElementById('themeToggle');
+        
+        // Ensure the image exists on the page before running logic
+        if (heroImg && themeBtn) {
+            
+            // Function to check the current theme and set the correct image
+            const updateHeroImage = () => {
+                if (document.body.classList.contains('dark-mode')) {
+                    heroImg.src = "/misc_img/me.png"; // Dark mode image
+                } else {
+                    heroImg.src = "/misc_img/me2.png"; // Light mode image
+                }
+            };
+
+            // Run it once immediately when the page loads
+            updateHeroImage();
+
+            // Listen for clicks on the Theme Toggle button
+            themeBtn.addEventListener('click', () => {
+                // Wait a tiny fraction of a second for the body class to actually change
+                setTimeout(updateHeroImage, 50); 
+            });
+        }
+    });
 </script>
 </body>
 </html>
