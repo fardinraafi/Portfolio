@@ -183,8 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     const certGrid = document.getElementById('cert-grid');
     if (certGrid) {
-        // Updated to 53 certificates
-        let certNumbers = Array.from({length: 53}, (_, i) => i + 1);
+        // Updated to 58 certificates
+        let certNumbers = Array.from({length: 58}, (_, i) => i + 1);
         certNumbers.sort(() => Math.random() - 0.5); 
         let certsHTML = '';
         certNumbers.forEach(c => {
