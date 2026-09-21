@@ -405,6 +405,56 @@
         animate();
     }
 </script>
+<!-- 🚀 COUNT-UP ANIMATION SCRIPT -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statsWrapper = document.querySelector('.stats-wrapper');
 
+        if (statNumbers.length > 0 && statsWrapper) {
+            // 1. Store the target numbers and reset the text to 0
+            statNumbers.forEach(stat => {
+                const originalText = stat.innerText;
+                stat.setAttribute('data-target', originalText);
+                const suffix = originalText.replace(/[0-9]/g, ''); // Keep the "+" sign
+                stat.innerText = "0" + suffix;
+            });
+
+            // 2. Set up the scroll watcher
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // When the stats section comes into view
+                    if (entry.isIntersecting) {
+                        statNumbers.forEach(stat => {
+                            const targetText = stat.getAttribute('data-target');
+                            const targetNum = parseInt(targetText.replace(/\D/g, '')); // Extract just the digits
+                            const suffix = targetText.replace(/[0-9]/g, ''); // Extract the "+"
+                            
+                            let currentNum = 0;
+                            const duration = 2000; // Animation lasts 2 seconds
+                            const increment = targetNum / (duration / 16); 
+
+                            // 3. The counting function
+                            const updateCounter = () => {
+                                currentNum += increment;
+                                if (currentNum < targetNum) {
+                                    stat.innerText = Math.ceil(currentNum) + suffix;
+                                    requestAnimationFrame(updateCounter);
+                                } else {
+                                    stat.innerText = targetNum + suffix; // Stop exactly on the final number
+                                }
+                            };
+                            updateCounter();
+                        });
+                        // Stop watching after it runs once so it doesn't loop annoyingly
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.3 }); // Triggers when 30% of the box is visible on screen
+
+            observer.observe(statsWrapper);
+        }
+    });
+</script>
 </body>
 </html>
