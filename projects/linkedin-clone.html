@@ -1,1 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fardin Rahman Khan Raafi | LinkedIn</title>
+    <!-- FontAwesome for standard icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
 
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            padding-top: 52px; /* Space for fixed navbar */
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #1d2226;
+            height: 52px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom: 1px solid #38434f;
+        }
+
+        .nav-container {
+            width: 100%;
+            max-width: 1128px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo {
+            color: #0a66c2;
+            font-size: 34px;
+            background: white;
+            border-radius: 4px;
+            line-height: 1;
+        }
+
+        .search-box {
+            background-color: #38434f;
+            border-radius: 4px;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+            height: 34px;
+            width: 280px;
+        }
+
+        .search-box i {
+            color: #e8e8e8;
+            font-size: 14px;
+            margin-right: 8px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #e8e8e8;
+            width: 100%;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            gap: 24px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #c9c9c9;
+            font-size: 12px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: #ffffff;
+        }
+
+        .nav-item i {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .nav-divider {
+            width: 1px;
+            height: 32px;
+            background-color: #38434f;
+            margin: 0 12px;
+        }
+        
+        /* Main Layout Container Setup */
+        .main-container {
+            max-width: 1128px;
+            margin: 24px auto;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 24px;
+            padding: 0 24px;
+        }
+
+        .left-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-left">
+                <i class="fa-brands fa-linkedin logo"></i>
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Search">
+                </div>
+            </div>
+            <ul class="nav-right">
+                <li class="nav-item"><i class="fa-solid fa-house"></i>Home</li>
+                <li class="nav-item"><i class="fa-solid fa-user-group"></i>My Network</li>
+                <li class="nav-item"><i class="fa-solid fa-briefcase"></i>Jobs</li>
+                <li class="nav-item"><i class="fa-solid fa-comment-dots"></i>Messaging</li>
+                <li class="nav-item"><i class="fa-solid fa-bell"></i>Notifications</li>
+                <li class="nav-item active"><i class="fa-solid fa-circle-user"></i>Me</li>
+                <div class="nav-divider"></div>
+                <li class="nav-item"><i class="fa-solid fa-table-cells"></i>For Business</li>
+                <li class="nav-item"><i class="fa-solid fa-bullseye"></i>Advertise</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content Area Starts Here -->
+    <main class="main-container">
+        <div class="left-column">
+            <!-- Profile Header Section will go here -->
+        </div>
+        <div class="right-column">
+            <!-- Sidebar Sections will go here -->
+        </div>
+    </main>
+
+</body>
+</html>
