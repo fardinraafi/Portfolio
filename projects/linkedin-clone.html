@@ -292,6 +292,95 @@
             border-radius: 2px;
             object-fit: contain;
         }
+        /* General Section Card Styles */
+        .section-card {
+            background-color: #1d2226;
+            border-radius: 8px;
+            border: 1px solid #38434f;
+            padding: 24px;
+            margin-top: 8px; /* Spacing between cards */
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .edit-icon {
+            color: #9facbd;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        /* About Section Specific Styles */
+        .about-text p {
+            font-size: 14px;
+            color: #e8e8e8;
+            line-height: 1.5;
+            margin-bottom: 16px;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 24px;
+        }
+
+        .diamond-bullet {
+            color: #70b5f9;
+            font-size: 12px;
+            margin-right: 4px;
+        }
+
+        .top-skills-box {
+            border: 1px solid #38434f;
+            border-radius: 8px;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .top-skills-box:hover {
+            background-color: #38434f;
+        }
+
+        .top-skills-left {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .top-skills-icon {
+            color: #e8e8e8;
+            font-size: 18px;
+            margin-top: 2px;
+        }
+
+        .top-skills-content h4 {
+            font-size: 16px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .top-skills-content p {
+            font-size: 14px;
+            color: #e8e8e8;
+            margin-top: 4px;
+        }
+
+        .top-skills-arrow {
+            color: #e8e8e8;
+            font-size: 16px;
+        }
     </style>
 </head>
 <body>
@@ -325,9 +414,9 @@
        <div class="left-column">
             <!-- Profile Card -->
             <div class="profile-card">
-                <img src="projects/profile-banner.png" alt="Profile Banner" class="profile-banner">
+                <img src="/projects/profile-banner.png" alt="Profile Banner" class="profile-banner">
                 <div class="profile-info-container">
-                    <img src="projects/profile-photo.png" alt="Fardin Rahman Khan Raafi" class="profile-photo">
+                    <img src="/projects/profile-photo.png" alt="Fardin Rahman Khan Raafi" class="profile-photo">
                     <div class="profile-details">
                         <div class="profile-text">
                             <h1 class="profile-name">
@@ -356,6 +445,33 @@
                             </a>
                         </div>
                     </div>
+                </div>
+            </div>
+           <!-- About Section -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">About</h2>
+                    <i class="fa-solid fa-pen edit-icon"></i>
+                </div>
+                <div class="about-text">
+                    <p>I am a Marketing executive with passion about ai, tech, marketing and career building. I post about growth, skills and random things I find interesting!</p>
+                    <p>Also, helping companies scale their growth by building brand architectures. Here's how I do it:</p>
+                    <p>
+                        <i class="fa-solid fa-diamond diamond-bullet"></i> Accelerating growth: Lead generation, CRM automation (enriching 40k+ records), & scaling organic channels.<br>
+                        <i class="fa-solid fa-diamond diamond-bullet"></i> Visual sovereignty: Making international brand materials & designing visual assets for global franchises like TEDx and Hult Prize.
+                    </p>
+                    <p>Check out my website! at fardinraafi.com</p>
+                </div>
+                
+                <div class="top-skills-box">
+                    <div class="top-skills-left">
+                        <i class="fa-regular fa-gem top-skills-icon"></i>
+                        <div class="top-skills-content">
+                            <h4>Top skills</h4>
+                            <p>Marketing &bull; Business Development &bull; Branding &bull; Growth Initiatives &bull; Leadership</p>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-arrow-right top-skills-arrow"></i>
                 </div>
             </div>
         </div>
