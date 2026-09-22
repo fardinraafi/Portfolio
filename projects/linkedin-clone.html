@@ -142,6 +142,156 @@
             flex-direction: column;
             gap: 16px;
         }
+        /* Profile Card Styles */
+        .profile-card {
+            background-color: #1d2226;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #38434f;
+            position: relative;
+        }
+
+        .profile-banner {
+            width: 100%;
+            height: 201px;
+            object-fit: cover;
+            background-color: #38434f;
+            display: block;
+        }
+
+        .profile-info-container {
+            padding: 0 24px 24px 24px;
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 152px;
+            height: 152px;
+            border-radius: 50%;
+            border: 4px solid #1d2226;
+            position: absolute;
+            top: -112px;
+            left: 24px;
+            background-color: #38434f;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            margin-top: 56px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .profile-text {
+            max-width: 65%;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #ffffff;
+        }
+
+        .verification-badge {
+            font-size: 14px;
+            color: #70b5f9;
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .profile-headline {
+            font-size: 16px;
+            margin-top: 4px;
+            color: #e8e8e8;
+            line-height: 1.5;
+        }
+
+        .profile-location {
+            font-size: 14px;
+            color: #9facbd;
+            margin-top: 8px;
+        }
+
+        .contact-info-link {
+            color: #70b5f9;
+            font-weight: 600;
+        }
+
+        .profile-connections {
+            font-size: 14px;
+            color: #70b5f9;
+            font-weight: 600;
+            margin-top: 8px;
+            display: block;
+        }
+
+        .profile-actions {
+            margin-top: 16px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: #70b5f9;
+            color: #000000;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #70b5f9;
+            border: 1px solid #70b5f9;
+        }
+
+        .btn-icon {
+            padding: 6px 12px;
+            border-radius: 50%;
+            background-color: transparent;
+            color: #e8e8e8;
+            border: 1px solid #9facbd;
+        }
+
+        .profile-institutions {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 32%;
+            margin-top: 12px;
+        }
+
+        .institution-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #ffffff;
+            font-weight: 600;
+        }
+
+        .institution-item img {
+            width: 32px;
+            height: 32px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            object-fit: contain;
+        }
     </style>
 </head>
 <body>
@@ -172,8 +322,42 @@
 
     <!-- Main Content Area Starts Here -->
     <main class="main-container">
-        <div class="left-column">
-            <!-- Profile Header Section will go here -->
+       <div class="left-column">
+            <!-- Profile Card -->
+            <div class="profile-card">
+                <img src="projects/profile-banner.png" alt="Profile Banner" class="profile-banner">
+                <div class="profile-info-container">
+                    <img src="projects/profile-photo.png" alt="Fardin Rahman Khan Raafi" class="profile-photo">
+                    <div class="profile-details">
+                        <div class="profile-text">
+                            <h1 class="profile-name">
+                                Fardin Rahman Khan Raafi
+                                <span class="verification-badge"><i class="fa-solid fa-shield-check"></i> Add verification badge</span>
+                            </h1>
+                            <p class="profile-headline">Marketing Executive at Augmex Technologies | Driving Growth | ALP'26 | TedxUttara OC | B2B BPO | Coffeeholic</p>
+                            <p class="profile-location">Dhaka, Bangladesh &middot; <a href="#" class="contact-info-link">Contact info</a></p>
+                            <a href="#" class="profile-connections">500+ connections</a>
+                            
+                            <div class="profile-actions">
+                                <button class="btn btn-primary">Open to</button>
+                                <button class="btn btn-secondary">Add section</button>
+                                <button class="btn btn-secondary">Enhance profile</button>
+                                <button class="btn btn-icon"><i class="fa-solid fa-ellipsis"></i></button>
+                            </div>
+                        </div>
+                        <div class="profile-institutions">
+                            <a href="#" class="institution-item">
+                                <img src="projects/augmex-logo.png" alt="Augmex Technologies Logo">
+                                <span>Augmex Technologies</span>
+                            </a>
+                            <a href="#" class="institution-item">
+                                <img src="projects/bubt-logo.png" alt="BUBT Logo">
+                                <span>Bangladesh University of Business & Technology - BUBT</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="right-column">
             <!-- Sidebar Sections will go here -->
