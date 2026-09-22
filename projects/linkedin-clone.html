@@ -381,6 +381,111 @@
             color: #e8e8e8;
             font-size: 16px;
         }
+        /* Experience Section Styles */
+        .experience-group {
+            display: flex;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .experience-logo {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            background-color: #ffffff;
+            border-radius: 4px;
+        }
+
+        .experience-details {
+            flex-grow: 1;
+        }
+
+        .company-header {
+            margin-bottom: 12px;
+        }
+
+        .company-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .company-meta {
+            font-size: 14px;
+            color: #e8e8e8;
+            margin-top: 2px;
+        }
+        
+        .company-meta-light {
+            font-size: 14px;
+            color: #9facbd;
+            margin-top: 2px;
+        }
+
+        .role-timeline {
+            margin-top: 8px;
+        }
+
+        .role-item {
+            position: relative;
+            padding-left: 24px;
+            padding-bottom: 24px;
+        }
+
+        .role-item::before {
+            content: '';
+            position: absolute;
+            left: 3px;
+            top: 14px;
+            bottom: -6px;
+            width: 2px;
+            background-color: #38434f;
+        }
+
+        .role-item:last-child::before {
+            display: none;
+        }
+
+        .role-node {
+            position: absolute;
+            left: 0;
+            top: 6px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #9facbd;
+        }
+
+        .role-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .role-description {
+            font-size: 14px;
+            color: #e8e8e8;
+            line-height: 1.5;
+            margin-top: 12px;
+        }
+        
+        .role-description p {
+            margin-bottom: 12px;
+        }
+
+        .role-skills {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #e8e8e8;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        
+        .role-skills i {
+            color: #e8e8e8;
+        }
     </style>
 </head>
 <body>
@@ -472,6 +577,91 @@
                         </div>
                     </div>
                     <i class="fa-solid fa-arrow-right top-skills-arrow"></i>
+                </div>
+            </div>
+           <!-- Experience Section -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2 class="section-title">Experience</h2>
+                    <div>
+                        <i class="fa-solid fa-plus edit-icon" style="margin-right: 16px;"></i>
+                        <i class="fa-solid fa-pen edit-icon"></i>
+                    </div>
+                </div>
+
+                <!-- Augmex Technologies Block -->
+                <div class="experience-group">
+                    <img src="projects/augmex-logo.png" alt="Augmex Technologies" class="experience-logo">
+                    <div class="experience-details">
+                        <div class="company-header">
+                            <h3 class="company-name">Augmex Technologies</h3>
+                            <div class="company-meta">9 mos</div>
+                            <div class="company-meta-light">Dhaka, Bangladesh &middot; On-site</div>
+                        </div>
+
+                        <div class="role-timeline">
+                            <!-- Role 1 -->
+                            <div class="role-item">
+                                <div class="role-node"></div>
+                                <h4 class="role-title">Executive - Marketing</h4>
+                                <div class="company-meta">Full-time</div>
+                                <div class="company-meta-light">Jun 2026 - Present &middot; 4 mos</div>
+                                
+                                <div class="role-description">
+                                    <p>I have joined Augmex Technologies as an Executive in the Marketing Department. My tasks will include:</p>
+                                    <p>Campaign Execution: Assist in the planning, creation, and execution of multi-channel marketing campaigns across digital and traditional platforms.</p>
+                                    <p>Content Creation: Draft and curate engaging copy for social media, email newsletters, blog posts, and promotional materials.</p>
+                                    <p>Market Research: Conduct competitor analysis and market research to identify emerging industry trends and target audience preferences.</p>
+                                    <p>Event Coordination: Support the planning and logistics for company webinars, trade shows, and promotional events.</p>
+                                    <p>Database Management: Maintain and update customer relationship management (CRM) systems and lead generation databases</p>
+                                </div>
+                                <div class="role-skills">
+                                    <i class="fa-solid fa-diamond diamond-bullet"></i> Market Research, Artificial Intelligence (AI) and +2 skills
+                                </div>
+                            </div>
+
+                            <!-- Role 2 -->
+                            <div class="role-item">
+                                <div class="role-node"></div>
+                                <h4 class="role-title">Growth Associate</h4>
+                                <div class="company-meta-light">Jan 2026 - May 2026 &middot; 5 mos</div>
+                                
+                                <div class="role-description">
+                                    <p>Targeted B2B Lead Generation: Identified and mapped Key Decision Makers (KDMs) to Ideal Customer Profiles (ICPs), executing multi-channel cold outreach to drive qualified leads and build a robust sales pipeline.</p>
+                                    <p>CRM & Data Enrichment: Cleaned, verified, and enriched 10,000+ Salesforce CRM records utilizing Apollo.io, LinkedIn Sales Navigator, and industry databases, improving data accuracy and deal tracking.</p>
+                                    <p>Organic Growth & Engagement: Generated over 67,000 organic impressions across LinkedIn and Facebook within a single month through strategic content marketing and community engagement.</p>
+                                    <p>Market Research & Strategy: Conducted competitive analysis to uncover growth opportunities, advising B2B partners on staff resource augmentation and Vested Growth teaming models.</p>
+                                    <p>Rapid Team Deployment: Facilitated the launch of dedicated engineering teams within a 7-14 day window, accelerating client product deadlines while significantly optimizing operational costs.</p>
+                                </div>
+                                <div class="role-skills">
+                                    <i class="fa-solid fa-diamond diamond-bullet"></i> Marketing, Business-to-Business (B2B) and +1 skill
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style="border: none; border-top: 1px solid #38434f; margin: 16px 0;">
+
+                <!-- BUBT Career Guidance Office Block -->
+                <div class="experience-group">
+                    <img src="projects/bubt-logo.png" alt="BUBT Career Guidance Office" class="experience-logo">
+                    <div class="experience-details">
+                        <div class="company-header">
+                            <h3 class="role-title" style="font-size: 16px;">Head of Corporate & Alumni Relations</h3>
+                            <div class="company-name" style="font-size: 14px; font-weight: normal; margin-top: 2px;">BUBT Career Guidance Office &middot; Full-time</div>
+                            <div class="company-meta-light">Jan 2026 - Sep 2026 &middot; 9 mos</div>
+                            <div class="company-meta-light">Dhaka, Bangladesh</div>
+                        </div>
+                        
+                        <div class="role-description" style="margin-top: 8px;">
+                            <p>Selected to serve in a leadership capacity within the BUBT Career Guidance Office, dedicating time and skills to support the student body's professional growth and career readiness. Acted as a bridge between current students, university alumni, and the corporate sector.</p>
+                            <p>Key Responsibilities:</p>
+                            <p>Network Development: Spearheaded initiatives to build and expand robust professional networks, successfully connecting current BUBT students with alumni and corporate partners.</p>
+                            <p>Career Support & Mentorship: Guided and supported peers in exploring potential career paths, identifying opportunities, and preparing for future professional endeavors.</p>
+                            <p>Corporate Engagement: Managed corporate relations to help facilitate career-focused events, workshops, and opportunities for the student body.</p>
+                            <p>Alumni Relations: Fostered and maintained strong relationships with university alumni to build a supportive community and generate mentorship opportunities for upcoming graduates.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
