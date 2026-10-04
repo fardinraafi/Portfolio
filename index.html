@@ -291,6 +291,73 @@
                 min-height: 300px;
             }
         }
+        /* 🚀 WARP SLIDER & MODAL STYLES (STEP 1) */
+        .warp-slider-container {
+            width: 100%;
+            overflow: hidden; /* Hides the scrollbar, we will use JS to drag it later */
+            cursor: grab;
+            padding: 2rem 0;
+            position: relative;
+        }
+        .warp-slider-container:active { cursor: grabbing; }
+        .warp-slider-track {
+            display: flex;
+            gap: 2rem;
+            width: max-content;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+        }
+        .warp-card {
+            width: 350px;
+            height: 350px; /* Square images */
+            flex-shrink: 0;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
+            user-select: none;
+        }
+        .warp-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none; /* Stops the browser from trying to "save image" when dragging */
+        }
+        .warp-card-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .warp-card:hover .warp-card-overlay { opacity: 1; }
+        
+        /* The Pop-up Modal */
+        .warp-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(10, 15, 30, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .warp-modal.show { display: flex; opacity: 1; }
+        .warp-modal-content { position: relative; max-width: 90vw; max-height: 90vh; text-align: center; }
+        .warp-modal-content img { max-width: 100%; max-height: 75vh; border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+        .warp-modal-close {
+            position: absolute; top: -50px; right: 0; color: white; font-size: 2rem;
+            cursor: pointer; background: rgba(255,255,255,0.1); width: 40px; height: 40px;
+            display: flex; justify-content: center; align-items: center; border-radius: 50%;
+            transition: background 0.3s;
+        }
+        .warp-modal-close:hover { background: rgba(255,255,255,0.3); }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -826,6 +893,47 @@
         </section>
     </main>
 </div>
+    <!-- 🚀 DRAGGABLE LINKEDIN SHOWCASE -->
+<section class="glass-card" style="margin-bottom: 4rem; overflow: hidden;">
+    <div class="section-title">Latest LinkedIn Content</div>
+    
+    <!-- The Slider -->
+    <div class="warp-slider-container" id="warpSlider">
+        <div class="warp-slider-track" id="warpTrack">
+            
+            <div class="warp-card" onclick="openWarpModal('/misc_img/linkedin-1.jpg', 'Content Strategy')">
+                <img src="/misc_img/linkedin-1.jpg" alt="LinkedIn Content" onerror="this.src='https://placehold.co/600x600/EEF2FF/2563EB?text=LinkedIn+1'">
+                <div class="warp-card-overlay"><h3 style="margin:0; font-family:'Syne', sans-serif;">Content Strategy</h3></div>
+            </div>
+
+            <div class="warp-card" onclick="openWarpModal('/misc_img/linkedin-2.jpg', 'B2B Sales')">
+                <img src="/misc_img/linkedin-2.jpg" alt="LinkedIn Content" onerror="this.src='https://placehold.co/600x600/EEF2FF/2563EB?text=LinkedIn+2'">
+                <div class="warp-card-overlay"><h3 style="margin:0; font-family:'Syne', sans-serif;">B2B Sales</h3></div>
+            </div>
+
+            <div class="warp-card" onclick="openWarpModal('/misc_img/linkedin-3.jpg', 'Growth Operations')">
+                <img src="/misc_img/linkedin-3.jpg" alt="LinkedIn Content" onerror="this.src='https://placehold.co/600x600/EEF2FF/2563EB?text=LinkedIn+3'">
+                <div class="warp-card-overlay"><h3 style="margin:0; font-family:'Syne', sans-serif;">Growth Operations</h3></div>
+            </div>
+
+            <div class="warp-card" onclick="openWarpModal('/misc_img/linkedin-4.jpg', 'Brand Psychology')">
+                <img src="/misc_img/linkedin-4.jpg" alt="LinkedIn Content" onerror="this.src='https://placehold.co/600x600/EEF2FF/2563EB?text=LinkedIn+4'">
+                <div class="warp-card-overlay"><h3 style="margin:0; font-family:'Syne', sans-serif;">Brand Psychology</h3></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- 🚀 MODAL FOR EXPANDED VIEW -->
+<div id="warpModal" class="warp-modal">
+    <div class="warp-modal-content">
+        <span class="warp-modal-close" onclick="closeWarpModal()">×</span>
+        <img id="warpModalImg" src="" alt="Expanded View">
+        <p id="warpModalTitle" style="color: white; margin-top: 1.5rem; font-family:'Syne', sans-serif; font-size: 1.5rem; font-weight: 700;"></p>
+        <button onclick="closeWarpModal()" class="btn btn-outline" style="border-color: rgba(255,255,255,0.2); color: white; margin-top: 1rem;">Close Project</button>
+    </div>
+</div>
 <!-- 🚀 PREMIUM RECOMMENDATIONS SECTION (NOW TRULY FULL WIDTH) -->
 <section class="reco-showcase">
     <!-- The Giant Faded Background Text -->
@@ -1111,6 +1219,18 @@
             });
         }
     });
+</script>
+    <script>
+    // Functions to Open and Close the LinkedIn Modal
+    function openWarpModal(imgSrc, title) {
+        const modal = document.getElementById('warpModal');
+        document.getElementById('warpModalImg').src = imgSrc;
+        document.getElementById('warpModalTitle').innerText = title;
+        modal.classList.add('show');
+    }
+    function closeWarpModal() {
+        document.getElementById('warpModal').classList.remove('show');
+    }
 </script>
 </body>
 </html>
