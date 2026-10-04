@@ -307,22 +307,28 @@
             transition: transform 0.1s ease-out;
             will-change: transform;
         }
-        .warp-card {
+       .warp-card {
             width: 350px;
-            height: 350px; /* Square images */
+            height: 350px; 
             flex-shrink: 0;
             position: relative;
             border-radius: 12px;
             overflow: hidden;
             background: rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
+            /* Removed transition: transform to allow real-time 60fps JS warping */
             user-select: none;
+            transform-origin: bottom center; /* Makes it bend from the bottom like a flag */
+            will-change: transform, box-shadow;
         }
         .warp-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            pointer-events: none; /* Stops the browser from trying to "save image" when dragging */
+            pointer-events: none; 
+            transition: transform 0.4s ease; /* Smooth zoom on hover */
+        }
+        .warp-card:hover img {
+            transform: scale(1.05); /* Slight zoom effect when hovered */
         }
         .warp-card-overlay {
             position: absolute;
@@ -1231,6 +1237,114 @@
     function closeWarpModal() {
         document.getElementById('warpModal').classList.remove('show');
     }
+</script>
+<script>
+    // 🚀 DRAGGABLE SLIDER WITH VELOCITY WARP & RGB SPLIT
+    document.addEventListener("DOMContentLoaded", () => {
+        const slider = document.getElementById('warpSlider');
+        const track = document.getElementById('warpTrack');
+        const cards = document.querySelectorAll('.warp-card');
+        
+        if (slider && track) {
+            let isDown = false;
+            let startX;
+            let currentTranslate = 0;
+            let prevTranslate = 0;
+            let isDragging = false; 
+            
+            // Physics Variables
+            let previousTranslateForVelocity = 0;
+            let velocity = 0;
+            let smoothVelocity = 0;
+
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                isDragging = false;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX;
+                track.style.transition = 'none'; 
+            });
+
+            const stopDrag = () => {
+                if(!isDown) return;
+                isDown = false;
+                slider.style.cursor = 'grab';
+                track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                prevTranslate = currentTranslate;
+            };
+
+            slider.addEventListener('mouseleave', stopDrag);
+            slider.addEventListener('mouseup', stopDrag);
+
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX;
+                const walk = (x - startX) * 1.5; // Drag speed multiplier
+                
+                if (Math.abs(walk) > 5) isDragging = true; 
+                
+                let tempTranslate = prevTranslate + walk;
+                const maxTranslate = 0;
+                const minTranslate = -(track.offsetWidth - slider.offsetWidth);
+
+                // Add elastic resistance at the edges
+                if (tempTranslate > maxTranslate) tempTranslate = maxTranslate + (tempTranslate * 0.2);
+                if (tempTranslate < minTranslate) tempTranslate = minTranslate + ((tempTranslate - minTranslate) * 0.2);
+
+                currentTranslate = tempTranslate;
+                track.style.transform = `translateX(${currentTranslate}px)`;
+            });
+
+            // Prevent modal click if we were dragging
+            cards.forEach(card => {
+                card.addEventListener('click', (e) => {
+                    if (isDragging) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                    }
+                }, true); 
+            });
+
+            // THE MAGIC: 60FPS Render Loop for Warp & RGB Split
+            function renderPhysics() {
+                // Calculate how fast the track is moving right now
+                velocity = currentTranslate - previousTranslateForVelocity;
+                previousTranslateForVelocity = currentTranslate;
+                
+                // Smooth out the velocity so the cards bounce back naturally
+                smoothVelocity += (velocity - smoothVelocity) * 0.15;
+
+                cards.forEach(card => {
+                    // Skew the card based on speed
+                    let skewAmount = smoothVelocity * 0.4; 
+                    skewAmount = Math.max(-20, Math.min(20, skewAmount)); // Cap max bend at 20 degrees
+                    
+                    // Scale down slightly when moving fast for the "stretch" feel
+                    let scaleAmount = 1 - Math.abs(smoothVelocity * 0.001);
+                    scaleAmount = Math.max(0.9, scaleAmount);
+
+                    // Apply physical deformation
+                    card.style.transform = `skewX(${skewAmount}deg) scale(${scaleAmount})`;
+                    
+                    // Create the Red/Cyan Chromatic Aberration glow based on speed
+                    if (Math.abs(smoothVelocity) > 0.5) {
+                        let rgbSplit = smoothVelocity * 0.8;
+                        card.style.boxShadow = `${rgbSplit}px 0 20px rgba(255, 0, 50, 0.7), ${-rgbSplit}px 0 20px rgba(0, 255, 255, 0.7)`;
+                    } else {
+                        // Reset shadow when stopped
+                        card.style.boxShadow = `0 10px 30px rgba(0,0,0,0.2)`;
+                    }
+                });
+
+                // Loop infinitely
+                requestAnimationFrame(renderPhysics);
+            }
+            
+            // Start the physics engine
+            renderPhysics();
+        }
+    });
 </script>
 </body>
 </html>
