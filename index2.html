@@ -552,47 +552,6 @@
     </div>
 </section>
 
-<!-- 🚀 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
-<section class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
-    <div class="section-title" style="text-align: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
-    <div class="gc-stage">
-        <!-- WebGL Canvas is injected here automatically by the JS -->
-        <div class="gc-viewport" tabindex="0"></div>
-    </div>
-
-    <div class="gc-meta">
-        <p class="gc-counter" aria-hidden="true">01 / 04</p>
-        <div class="gc-dots" role="tablist"></div>
-        <p class="gc-hint">Scroll or drag to explore</p>
-    </div>
-
-    <div class="gc-panels" aria-live="polite">
-        <!-- Panel 1 -->
-        <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg">
-            <h3>Content Strategy</h3>
-            <p>Developing robust frameworks for high-conversion organic marketing.</p>
-        </article>
-
-        <!-- Panel 2 -->
-        <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg">
-            <h3>B2B Sales</h3>
-            <p>Optimizing outreach pipelines and improving decision-maker engagement.</p>
-        </article>
-
-        <!-- Panel 3 -->
-        <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg">
-            <h3>Growth Operations</h3>
-            <p>Scaling internal systems to match ambitious company targets seamlessly.</p>
-        </article>
-
-        <!-- Panel 4 -->
-        <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg">
-            <h3>Brand Psychology</h3>
-            <p>Understanding market behavior to craft irresistible brand identities.</p>
-        </article>
-    </div>
-</section>
-
 <!-- 🚀 THE 2-COLUMN SETUP BEGINS HERE -->
 <div class="layout-wrapper" id="home">
     
@@ -962,6 +921,7 @@
         </section>
     </main>
 </div>
+
 <!-- 🚀 PREMIUM RECOMMENDATIONS SECTION (NOW TRULY FULL WIDTH) -->
 <section class="reco-showcase">
     <!-- The Giant Faded Background Text -->
@@ -1017,6 +977,48 @@
 
     </div>
 </section>
+
+<!-- 🚀 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
+<section class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
+    <div class="section-title" style="text-align: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
+    <div class="gc-stage">
+        <!-- WebGL Canvas is injected here automatically by the JS -->
+        <div class="gc-viewport" tabindex="0"></div>
+    </div>
+
+    <div class="gc-meta">
+        <p class="gc-counter" aria-hidden="true">01 / 04</p>
+        <div class="gc-dots" role="tablist"></div>
+        <p class="gc-hint">Scroll or drag to explore</p>
+    </div>
+
+    <div class="gc-panels" aria-live="polite">
+        <!-- Panel 1 -->
+        <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg">
+            <h3>Content Strategy</h3>
+            <p>Developing robust frameworks for high-conversion organic marketing.</p>
+        </article>
+
+        <!-- Panel 2 -->
+        <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg">
+            <h3>B2B Sales</h3>
+            <p>Optimizing outreach pipelines and improving decision-maker engagement.</p>
+        </article>
+
+        <!-- Panel 3 -->
+        <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg">
+            <h3>Growth Operations</h3>
+            <p>Scaling internal systems to match ambitious company targets seamlessly.</p>
+        </article>
+
+        <!-- Panel 4 -->
+        <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg">
+            <h3>Brand Psychology</h3>
+            <p>Understanding market behavior to craft irresistible brand identities.</p>
+        </article>
+    </div>
+</section>
+
 <!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
@@ -1288,7 +1290,7 @@
     vec3 strip(vec2 uv){
       float x = (uv.x - .5) * uAspect;
       float slot = floor(x / uStep + uScroll + .5);
-      float zoom = 1. + .48 * uFocus;
+      float zoom = 1. + .85 * uFocus;
       float selectedX = x - (uSelected - uScroll) * uStep;
       if(abs(selectedX) < uHalfW * zoom) slot = uSelected;
       bool selected = abs(slot - uSelected) < .1;
@@ -1520,7 +1522,7 @@
           const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
 
           if (focusTarget) {
-            if (Math.abs(clickX) > halfW * 1.48 || Math.abs(clickY) > halfH * 1.48) setFocused(false);
+            if (Math.abs(clickX) > halfW * 1.95 || Math.abs(clickY) > halfH * 1.95) setFocused(false);
           } else {
             const clickedSlot = Math.round(clickX / step + scrollCurrent);
             if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
