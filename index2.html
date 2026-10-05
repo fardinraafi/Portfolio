@@ -54,7 +54,7 @@
             display: inline-block;
             opacity: 0;
             filter: blur(10px);
-            transform: translateY(20px); /* changed to positive 20px so it floats up naturally */
+            transform: translateY(20px); 
             will-change: transform, filter, opacity;
         }
         
@@ -72,6 +72,13 @@
             0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
             100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
+        /* 🚀 PREVENT HORIZONTAL SCROLL BREAKING */
+        html, body {
+            overflow-x: hidden !important;
+            width: 100%;
+            max-width: 100vw;
+        }
+
         /* 🚀 NEW SPACIOUS HERO SECTION */
         .hero-section {
             display: flex;
@@ -79,10 +86,7 @@
             justify-content: space-between;
             min-height: 85vh;
             position: relative;
-            width: 100vw;
-            left: 50%;
-            transform: translateX(-50%);
-            /* Pushed text further right by increasing left padding to 12vw */
+            width: 100%;
             padding: 4rem 6vw 4rem 12vw; 
             overflow: visible; 
             margin-bottom: 4rem;
@@ -232,13 +236,12 @@
             pointer-events: none; 
             opacity: 0.7; 
         }
-/* Mobile Stacking for Hero and CTA */
+        /* Mobile Stacking for Hero and CTA */
         @media (max-width: 992px) {
             .hero-section {
                 flex-direction: column; 
                 text-align: center;
                 gap: 0;
-                /* Keeps it perfectly snug under the nav bar */
                 padding: 4rem 1.5rem 0 1.5rem; 
                 min-height: auto;
             }
@@ -247,7 +250,6 @@
                 padding: 0; 
                 width: 100%;
                 max-width: 100%;
-                /* Pushes the text BELOW the image */
                 order: 2; 
             }
             .hero-right { 
@@ -260,8 +262,7 @@
                 justify-content: center; 
                 align-items: flex-end;
                 margin-top: 0;
-                margin-bottom: 2rem; /* Breathing room between image and text */
-                /* PULLS THE IMAGE TO THE VERY TOP */
+                margin-bottom: 2rem; 
                 order: 1; 
             }
             .hero-img { 
@@ -291,6 +292,116 @@
                 min-height: 300px;
             }
         }
+
+        /* =========================================
+           🚀 WEBGL CAROUSEL STYLES
+        ========================================= */
+        .glass-carousel {
+            width: 100%;
+            margin: 4rem auto;
+            position: relative;
+            z-index: 5;
+        }
+        .gc-stage {
+            position: relative;
+            display: block;
+            width: 100vw;
+            max-width: 100vw;
+            left: 50%;
+            margin-left: -50vw;
+        }
+        .gc-viewport {
+            position: relative;
+            width: 100%;
+            height: clamp(320px, 38vw, 490px);
+            overflow: hidden;
+            background: transparent;
+            outline: none;
+        }
+        .gc-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            touch-action: pan-y;
+            cursor: grab;
+        }
+        .gc-canvas:active { cursor: grabbing; }
+        
+        .gc-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            min-height: 48px;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+        .gc-close {
+            position: static;
+            min-height: 44px;
+            margin: 0 auto 8px;
+            flex-basis: 100%;
+            max-width: 190px;
+            padding: 12px 18px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            color: #fff;
+            cursor: pointer;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            transition: background 0.3s;
+        }
+        .gc-close:hover { background: rgba(255,255,255,0.2); }
+        .gc-close[hidden] { display: none; }
+        
+        .gc-counter {
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+        .gc-dots { display: flex; gap: 0; align-items: center; }
+        .gc-dot { width: 32px; height: 44px; position: relative; padding: 0; cursor: pointer; background: transparent; border: none; }
+        .gc-dot::after {
+            content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%;
+            background: var(--text-muted); left: 13px; top: 19px; transition: transform 0.25s, background 0.25s;
+        }
+        .gc-dot.is-active::after { background: var(--c1); transform: scale(1.4); }
+        .gc-hint { font-size: 12px; color: var(--text-muted); }
+        
+        .gc-focused .gc-meta { flex-direction: column; gap: 8px; }
+        .gc-focused .gc-dots, .gc-focused .gc-counter { display: none; }
+        .gc-focused .gc-hint { font-size: 0; }
+        .gc-focused .gc-hint::after { content: "Click beside the image to return"; font-size: 12px; }
+        .gc-focused .gc-canvas { cursor: pointer; }
+
+        .gc-panels {
+            position: relative;
+            display: grid;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+        }
+        .gc-panel {
+            grid-area: 1 / 1;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+            pointer-events: none;
+        }
+        .gc-panel.is-active {
+            opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+        }
+        .gc-panel h3 {
+            font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
+        }
+        .gc-panel p { color: var(--text-muted); }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -412,6 +523,7 @@
 <img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
     </div>
 </section>
+
 <!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
@@ -437,6 +549,47 @@
         <div class="glowing-orb orb-left-right">
             <div class="orb-head"></div>
         </div>
+    </div>
+</section>
+
+<!-- 🚀 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
+<section class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
+    <div class="section-title" style="text-align: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
+    <div class="gc-stage">
+        <!-- WebGL Canvas is injected here automatically by the JS -->
+        <div class="gc-viewport" tabindex="0"></div>
+    </div>
+
+    <div class="gc-meta">
+        <p class="gc-counter" aria-hidden="true">01 / 04</p>
+        <div class="gc-dots" role="tablist"></div>
+        <p class="gc-hint">Scroll or drag to explore</p>
+    </div>
+
+    <div class="gc-panels" aria-live="polite">
+        <!-- Panel 1 -->
+        <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg">
+            <h3>Content Strategy</h3>
+            <p>Developing robust frameworks for high-conversion organic marketing.</p>
+        </article>
+
+        <!-- Panel 2 -->
+        <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg">
+            <h3>B2B Sales</h3>
+            <p>Optimizing outreach pipelines and improving decision-maker engagement.</p>
+        </article>
+
+        <!-- Panel 3 -->
+        <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg">
+            <h3>Growth Operations</h3>
+            <p>Scaling internal systems to match ambitious company targets seamlessly.</p>
+        </article>
+
+        <!-- Panel 4 -->
+        <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg">
+            <h3>Brand Psychology</h3>
+            <p>Understanding market behavior to craft irresistible brand identities.</p>
+        </article>
     </div>
 </section>
 
@@ -709,15 +862,7 @@
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
-                    <!-- Blog 8 (ChatGPT Ads) -->
-                    <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
-                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
-                        </div>
-                    </a>
+                    
                     <!-- ========================================== -->
                     <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
                     <!-- ========================================== -->
@@ -791,15 +936,6 @@
                             <div class="marquee-blog-date">Resource Guide</div>
                             <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
-                        </div>
-                    </a>
-<!-- Blog 8 (ChatGPT Ads) -->
-                    <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
-                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
                         </div>
                     </a>
                 </div>
@@ -1111,6 +1247,386 @@
             });
         }
     });
+</script>
+
+<!-- 🚀 WEBGL CAROUSEL LOGIC -->
+<script>
+    // 1. BRAND COLORS & CONFIG
+    const COLOR_PAPER = "#0f172a"; // Matches your dark mode body
+
+    function parsePanelData(panelEl) {
+      const num = panelEl.dataset.num || "";
+      const imgUrl = panelEl.dataset.img || "";
+      return { num, imgUrl };
+    }
+
+    // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
+    const VERTEX_SHADER = `#version 300 es
+    in vec2 aPos;
+    out vec2 vUv;
+    void main(){
+      vUv = aPos * 0.5 + 0.5;
+      gl_Position = vec4(aPos, 0.0, 1.0);
+    }`;
+
+    const FRAGMENT_SHADER = `#version 300 es
+    precision highp float;
+    in vec2 vUv;
+    out vec4 frag;
+    uniform float uAspect, uHalfW, uHalfH, uStep, uScroll, uTime, uFocus, uSelected;
+    uniform int uCount;
+    uniform vec3 uPaper;
+    uniform sampler2D uT0, uT1, uT2, uT3;
+
+    vec4 samp(int i, vec2 uv){
+      if(i == 0) return texture(uT0, uv);
+      if(i == 1) return texture(uT1, uv);
+      if(i == 2) return texture(uT2, uv);
+      return texture(uT3, uv);
+    }
+
+    vec3 strip(vec2 uv){
+      float x = (uv.x - .5) * uAspect;
+      float slot = floor(x / uStep + uScroll + .5);
+      float zoom = 1. + .48 * uFocus;
+      float selectedX = x - (uSelected - uScroll) * uStep;
+      if(abs(selectedX) < uHalfW * zoom) slot = uSelected;
+      bool selected = abs(slot - uSelected) < .1;
+      float localX = x - (slot - uScroll) * uStep;
+      float y = uv.y - .5;
+      if(selected){ localX /= zoom; y /= zoom; }
+      else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
+      if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
+      int index = int(mod(slot, float(uCount)));
+      return samp(index, vec2(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5)).rgb;
+    }
+
+    void main(){
+      vec2 offset = vUv - .5;
+      float lensAspect = max(uAspect, 2.8);
+      vec2 p = offset * vec2(lensAspect, 1.);
+      float angleRotation = 1.134464;
+      float c = cos(angleRotation), s = sin(angleRotation);
+      p = mat2(c, -s, s, c) * p;
+      float scale = max(.55, lensAspect / 1.85);
+      float radius = length(p / (vec2(.565, 1.) * scale));
+      vec3 base = strip(vUv);
+      if(radius > 1.) { frag = vec4(base, 1.); return; }
+
+      float angle = atan(p.y, p.x);
+      float edgeWeight = uAspect < 1.5 ? smoothstep(.18, .44, abs(offset.x)) : 1.;
+      float rim = smoothstep(.578, 1., radius) * edgeWeight;
+      vec2 direction = normalize(offset + vec2(.000001));
+      vec2 tangent = vec2(-direction.y, direction.x);
+      float wave = sin(angle * 2.) * .55 + sin(angle) * .25;
+      vec2 bent = vUv + tangent * wave * rim * .4695 * scale * (1. - uFocus);
+      vec2 dispersion = offset * .044 * smoothstep(.55, 1., radius) * edgeWeight * (1. - uFocus);
+
+      vec3 color = vec3(
+        strip(bent - dispersion * .5).r,
+        strip(bent).g,
+        strip(bent + dispersion * .5).b
+      );
+
+      float ring = exp(-pow((radius * .5 - .49) / .014, 2.));
+      float line = exp(-pow((radius * .5 - .488) / .003, 2.));
+      float surface = uAspect < 1.5 ? smoothstep(.02, .2, length(color - uPaper)) * edgeWeight : 1.;
+      color += (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
+      frag = vec4(mix(base, color, 1. - smoothstep(.93, 1., radius)), 1.);
+    }`;
+
+    function compileShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      if (!shader) return null;
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) return null;
+      return shader;
+    }
+
+    // 3. WEBGL CAROUSEL ENGINE
+    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, reducedMotion, onActiveChange, getActiveIndex) {
+      const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+      const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+      if (!vs || !fs) return null;
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.bindAttribLocation(program, 0, "aPos");
+      gl.linkProgram(program);
+
+      const slideCount = slidesData.length;
+      const vao = gl.createVertexArray();
+      const buffer = gl.createBuffer();
+      gl.bindVertexArray(vao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      gl.bindVertexArray(null);
+
+      const uniforms = {
+        focus: gl.getUniformLocation(program, "uFocus"),
+        selected: gl.getUniformLocation(program, "uSelected"),
+        aspect: gl.getUniformLocation(program, "uAspect"),
+        halfW: gl.getUniformLocation(program, "uHalfW"),
+        halfH: gl.getUniformLocation(program, "uHalfH"),
+        step: gl.getUniformLocation(program, "uStep"),
+        scroll: gl.getUniformLocation(program, "uScroll"),
+        time: gl.getUniformLocation(program, "uTime"),
+        countU: gl.getUniformLocation(program, "uCount"),
+        paper: gl.getUniformLocation(program, "uPaper"),
+        tex: [0, 1, 2, 3].map(i => gl.getUniformLocation(program, `uT${i}`))
+      };
+
+      const textures = [];
+      for (let i = 0; i < 4; i++) {
+        const tex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([15, 23, 42, 255]));
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        textures.push(tex);
+      }
+
+      // Convert Slate 900 hex to Normalized RGB
+      const num = parseInt(COLOR_PAPER.slice(1), 16);
+      const paperRgb = [(num >> 16 & 255)/255, (num >> 8 & 255)/255, (num & 255)/255];
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+      let viewWidth = 0, viewHeight = 1;
+      let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
+      let activePointerId = -1;
+
+      const carouselRoot = viewportEl.closest(".glass-carousel");
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "gc-close";
+      closeBtn.textContent = "Back to Feed ×";
+      closeBtn.hidden = true;
+      carouselRoot.querySelector(".gc-meta")?.prepend(closeBtn);
+
+      let scrollCurrent = 0, scrollTarget = 0;
+      let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
+      let texturesReady = false, isVisible = true, rafId = 0, isAnimating = false;
+
+      const setFocused = (focused) => {
+        focusTarget = focused ? 1 : 0;
+        carouselRoot.classList.toggle("gc-focused", focused);
+        closeBtn.hidden = !focused;
+        const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
+        if (activePanel) {
+            // When expanding, make the text visible
+            activePanel.style.opacity = focused ? "1" : "0";
+            activePanel.style.transform = focused ? "translateY(0)" : "translateY(10px)";
+        }
+        requestRender();
+      };
+
+      closeBtn.addEventListener("click", () => {
+        setFocused(false);
+      });
+
+      const resize = () => {
+        const rect = viewportEl.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        viewWidth = rect.width; viewHeight = rect.height;
+        const w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
+        if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+        gl.viewport(0, 0, w, h);
+      };
+
+      const getLayoutMetrics = () => {
+        const aspect = viewWidth / viewHeight;
+        const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
+        const halfW = halfH;
+        const step = halfW * 2 + 0.012;
+        return { halfW, halfH, step, aspect };
+      };
+
+      const drawFrame = (timeSec) => {
+        const { halfW, halfH, step, aspect } = getLayoutMetrics();
+        gl.useProgram(program);
+        gl.bindVertexArray(vao);
+        gl.uniform1f(uniforms.focus, focusCurrent);
+        gl.uniform1f(uniforms.selected, selectedSlot);
+        gl.uniform1f(uniforms.aspect, aspect);
+        gl.uniform1f(uniforms.halfW, halfW);
+        gl.uniform1f(uniforms.halfH, halfH);
+        gl.uniform1f(uniforms.step, step);
+        gl.uniform1f(uniforms.scroll, scrollCurrent);
+        gl.uniform1f(uniforms.time, timeSec);
+        gl.uniform1i(uniforms.countU, slideCount);
+        gl.uniform3f(uniforms.paper, paperRgb[0], paperRgb[1], paperRgb[2]);
+
+        for (let i = 0; i < textures.length; i++) {
+          gl.activeTexture(gl.TEXTURE0 + i);
+          gl.bindTexture(gl.TEXTURE_2D, textures[i]);
+          gl.uniform1i(uniforms.tex[i], i);
+        }
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      };
+
+      const tick = (now) => {
+        isAnimating = false;
+        if (!isDragging) {
+          scrollCurrent += (scrollTarget - scrollCurrent) * 0.14;
+          if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
+        }
+        focusCurrent += (focusTarget - focusCurrent) * 0.1;
+        if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
+
+        onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
+        drawFrame(now / 1000);
+
+        if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) requestRender();
+      };
+
+      const requestRender = () => {
+        if (!isAnimating && texturesReady) { isAnimating = true; rafId = requestAnimationFrame(tick); }
+      };
+
+      canvas.addEventListener("pointerdown", (e) => {
+        if (e.button !== 0) return;
+        activePointerId = e.pointerId;
+        isDragging = true;
+        requestRender();
+        dragStartX = e.clientX;
+        dragStartScroll = scrollCurrent;
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", (e) => {
+        if (!isDragging || !viewWidth || focusTarget) return;
+        const { step, aspect } = getLayoutMetrics();
+        const delta = (e.clientX - dragStartX) * aspect / viewWidth;
+        scrollCurrent = dragStartScroll - delta / step;
+        scrollTarget = scrollCurrent;
+        requestRender();
+      });
+
+      const onPointerUp = (e) => {
+        if (!isDragging || e.pointerId !== activePointerId) return;
+        isDragging = false;
+        try { canvas.releasePointerCapture(e.pointerId); } catch {}
+        scrollTarget = Math.round(scrollCurrent);
+
+        if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
+          const rect = canvas.getBoundingClientRect();
+          const { step, halfW, halfH } = getLayoutMetrics();
+          const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
+          const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
+
+          if (focusTarget) {
+            if (Math.abs(clickX) > halfW * 1.48 || Math.abs(clickY) > halfH * 1.48) setFocused(false);
+          } else {
+            const clickedSlot = Math.round(clickX / step + scrollCurrent);
+            if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
+              selectedSlot = scrollTarget = clickedSlot;
+              onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
+              setFocused(true); // Expands the image inside the WebGL canvas natively!
+            }
+          }
+        }
+        requestRender();
+      };
+
+      window.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
+
+      viewportEl.appendChild(canvas);
+      new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
+      resize();
+
+      // Download actual images into WebGL textures
+      (async () => {
+        const offscreen = document.createElement("canvas");
+        offscreen.width = 1024; offscreen.height = 1024;
+        const ctx = offscreen.getContext("2d");
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+        for (let i = 0; i < slideCount && i < textures.length; i++) {
+          await new Promise(resolve => {
+            const img = new Image();
+            img.crossOrigin = "anonymous";
+            img.onload = () => {
+              ctx.fillStyle = COLOR_PAPER;
+              ctx.fillRect(0, 0, 1024, 1024);
+              const scale = Math.max(1024 / img.width, 1024 / img.height);
+              const x = (1024 / 2) - (img.width / 2) * scale;
+              const y = (1024 / 2) - (img.height / 2) * scale;
+              ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+              resolve();
+            };
+            img.onerror = () => {
+              ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, 1024, 1024);
+              resolve();
+            };
+            img.src = slidesData[i].imgUrl;
+          });
+          gl.bindTexture(gl.TEXTURE_2D, textures[i]);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+        }
+        texturesReady = true;
+        requestRender();
+      })();
+
+      return { goTo(index) { setFocused(false); scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount; requestRender(); } };
+    }
+
+    // 4. INITIALIZE CAROUSEL
+    function createGlassCarousel(rootEl) {
+      const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
+      const viewportEl = rootEl.querySelector(".gc-viewport");
+      const counterEl = rootEl.querySelector(".gc-counter");
+      const dotsContainer = rootEl.querySelector(".gc-dots");
+
+      const slideCount = panels.length;
+      const slidesData = panels.map(parsePanelData);
+      const totalFormatted = String(slideCount).padStart(2, "0");
+      const dotButtons = [];
+      let activeIndex = -1;
+      let renderer = null;
+
+      const wrapIndex = (idx) => (idx % slideCount + slideCount) % slideCount;
+
+      const updateUI = (index) => {
+        if (index === activeIndex || index < 0 || index >= slideCount) return;
+        activeIndex = index;
+        
+        panels.forEach((panel, i) => {
+            // Only toggle is-active for tracking, opacity logic is handled by the expand state now
+            panel.classList.toggle("is-active", i === index);
+        });
+
+        if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
+        dotButtons.forEach((dot, i) => {
+          dot.classList.toggle("is-active", i === index);
+        });
+      };
+
+      slidesData.forEach((slide, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "gc-dot";
+        btn.addEventListener("click", () => renderer?.goTo(wrapIndex(i)));
+        dotsContainer?.appendChild(btn);
+        dotButtons.push(btn);
+      });
+
+      const canvas = document.createElement("canvas");
+      canvas.className = "gc-canvas";
+      const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
+
+      renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, false, updateUI, () => Math.max(0, activeIndex));
+      updateUI(0);
+      renderer?.goTo(0);
+    }
+
+    const carouselEl = document.querySelector("[data-glass-carousel]");
+    if (carouselEl) createGlassCarousel(carouselEl);
 </script>
 </body>
 </html>
