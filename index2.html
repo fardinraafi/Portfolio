@@ -1537,6 +1537,28 @@
 
       window.addEventListener("pointerup", onPointerUp);
       canvas.addEventListener("pointercancel", onPointerUp);
+        // 🚀 SCROLL WHEEL / TRACKPAD SLIDING SUPPORT
+      canvas.addEventListener("wheel", (e) => {
+        // Don't slide if an image is expanded or if they are zooming (ctrlKey)
+        if (focusTarget || e.ctrlKey) return;
+        
+        // Figure out if they are scrolling up/down or left/right
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (!delta) return;
+        
+        // Stop the main website page from scrolling down
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const now = performance.now();
+        // Add a tiny cooldown (220ms) so one heavy scroll doesn't fly past 10 images
+        if (now - lastWheelTime >= 220) {
+          lastWheelTime = now;
+          // Move the target to the next/previous slide
+          scrollTarget = Math.round(scrollTarget) + (delta > 0 ? 1 : -1);
+          requestRender();
+        }
+      }, { passive: false });
 
       viewportEl.appendChild(canvas);
       new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
