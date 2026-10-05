@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>3D WebGL Glass Carousel</title>
+
+  <!-- Google Fonts matching the site's Display (Barlow Condensed) & Body (Bricolage Grotesque) fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700&family=Bricolage+Grotesque:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --paper: #faf8f6;
+      --paper-2: #efeae2;
+      --ink: #0e0e10;
+      --coral: #fb605d;
+      --muted: #5d5b57;
+      --line: #ddd7cf;
+      --gutter: clamp(20px, 4.6vw, 84px);
+      --maxw: 1560px;
+      font-family: "Bricolage Grotesque", system-ui, sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; }
+    h1, h2, h3, p { margin: 0; }
+    button { font: inherit; cursor: pointer; color: inherit; background: none; border: none; }
+
+    /* WORK SECTION & HEADER */
+    .work {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: clamp(48px, 6vw, 100px) var(--gutter);
+    }
+    .work-head {
+      margin-bottom: 28px;
+    }
+    .work-head h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: clamp(40px, 5vw, 72px);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .work-head p {
+      max-width: 65ch;
+      margin-top: 16px;
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* GLASS CAROUSEL STAGE */
+    .glass-carousel {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+    .gc-title { display: none; }
+    .gc-stage {
+      position: relative;
+      display: block;
+      width: 100vw;
+      max-width: 100vw;
+      left: 50%;
+      margin-left: -50vw;
+    }
+    .gc-viewport {
+      position: relative;
+      width: 100%;
+      height: clamp(320px, 38vw, 490px);
+      overflow: hidden;
+      background: var(--paper);
+      outline: none;
+    }
+    .gc-viewport:focus-visible {
+      box-shadow: 0 0 0 2px var(--coral);
+    }
+    .gc-canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+      touch-action: pan-y;
+      cursor: grab;
+    }
+    .gc-canvas:active { cursor: grabbing; }
+    .gc-nav { display: none; }
+
+    /* COUNTER, DOTS & CLOSE BUTTON */
+    .gc-meta {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      min-height: 48px;
+      flex-wrap: wrap;
+    }
+    .gc-meta .gc-close {
+      position: static;
+      min-height: 44px;
+      margin: 0 auto 8px;
+      flex-basis: 100%;
+      max-width: 190px;
+      padding: 12px 18px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .gc-close[hidden] { display: none; }
+    .gc-counter {
+      font-family: "Barlow Condensed", sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      font-size: 15px;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .gc-dots {
+      display: flex;
+      gap: 0;
+      align-items: center;
+    }
+    .gc-dot {
+      width: 32px;
+      height: 44px;
+      position: relative;
+      padding: 0;
+    }
+    .gc-dot::after {
+      content: "";
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--muted);
+      left: 13px;
+      top: 19px;
+      transition: transform 0.25s, background 0.25s;
+    }
+    .gc-dot.is-active::after {
+      background: var(--coral);
+      transform: scale(1.4);
+    }
+    .gc-hint {
+      font-size: 12px;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* FOCUSED PROJECT STATE */
+    .gc-focused .gc-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .gc-focused .gc-dots,
+    .gc-focused .gc-counter { display: none; }
+    .gc-focused .gc-hint { font-size: 0; }
+    .gc-focused .gc-hint::after {
+      content: "Click beside the card to return";
+      font-size: 12px;
+    }
+    .gc-focused .gc-canvas { cursor: pointer; }
+
+    /* DESCRIPTIONS & ACCORDIONS BELOW SLIDER */
+    .gc-panels {
+      position: relative;
+      display: grid;
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+    }
+    .gc-panel {
+      grid-area: 1 / 1;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      column-gap: 8%;
+      align-content: start;
+      pointer-events: none;
+    }
+    .gc-panel.is-active {
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+    }
+    .gc-panel .project-label { display: none; }
+    .gc-panel h3 {
+      grid-column: 1;
+      font-size: clamp(22px, 2.2vw, 30px);
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .gc-panel h3 br { display: none; }
+    .gc-panel > p {
+      grid-column: 1;
+      margin-top: 12px;
+      max-width: 58ch;
+      font-size: 16px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+    .gc-panel .project-outcome {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      align-self: center;
+    }
+    .gc-panel .project-outcome > span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+    .gc-panel .project-outcome strong {
+      font-weight: 500;
+      font-size: clamp(20px, 2vw, 28px);
+      line-height: 1.3;
+    }
+    .estimate {
+      display: block;
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+    .gc-panel details {
+      grid-column: 1 / -1;
+      margin-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+    .gc-panel summary {
+      list-style: none;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 14px;
+      color: var(--ink);
+      cursor: pointer;
+    }
+    .gc-panel summary::-webkit-details-marker { display: none; }
+    .gc-panel summary i::after {
+      content: "+";
+      font-size: 22px;
+      font-style: normal;
+      display: inline-block;
+      transition: transform 0.25s;
+    }
+    .gc-panel details[open] summary i::after {
+      transform: rotate(45deg);
+    }
+    .gc-panel .detail-body {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      padding: 0 0 18px;
+      max-width: 52ch;
+    }
+    .gc-panel .tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      gap: 8px 18px;
+    }
+    .gc-panel .tags span {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 767px) {
+      .gc-panel { grid-template-columns: 1fr; }
+      .gc-panel .project-outcome { grid-column: 1; grid-row: auto; margin-top: 20px; }
+      .gc-panel details { grid-column: 1; }
+      .gc-viewport { height: clamp(280px, 80vw, 380px); }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="work" id="work">
+    <div class="work-head">
+      <h2>Systems in daily use.</h2>
+      <p>Built and maintained alongside the people who use them.</p>
+    </div>
+
+    <div class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
+      <p class="gc-title" aria-hidden="true"></p>
+
+      <div class="gc-stage">
+        <button class="gc-nav gc-prev" type="button" aria-label="Previous project"><i></i></button>
+        <!-- WebGL Canvas is injected here automatically by the JS -->
+        <div class="gc-viewport" tabindex="0"></div>
+        <button class="gc-nav gc-next" type="button" aria-label="Next project"><i></i></button>
+      </div>
+
+      <div class="gc-meta">
+        <p class="gc-counter" aria-hidden="true">01 / 04</p>
+        <div class="gc-dots" role="tablist"></div>
+        <p class="gc-hint">Scroll or drag to explore</p>
+      </div>
+
+      <div class="gc-panels" aria-live="polite">
+        <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-motif="support">
+          <span class="project-label">Customer support</span>
+          <h3>A support agent that <br>handles the easy stuff.</h3>
+          <p>Resolves routine storefront requests using order and policy context. Money decisions and sensitive cases go to a person.</p>
+          <div class="project-outcome"><span>The result</span><strong>Fewer tickets a human<br>ever has to touch.</strong></div>
+          <details><summary>How it works<i></i></summary><div class="detail-body">Live on the storefront. It combines order lookup, policy context and internal tools. Low-risk requests close automatically. Sensitive ones are handed to the team.<div class="tags"><span>Claude API</span><span>Tool calling</span><span>Shopify</span><span>ShipHero</span></div></div></details>
+        </article>
+
+        <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-motif="returns">
+          <span class="project-label">Returns &amp; RMA</span>
+          <h3>Returns that don't <br>get stuck between teams.</h3>
+          <p>Connects return labels, warehouse scans, customer updates and refund preparation in one tracked lifecycle.</p>
+          <div class="project-outcome"><span>The result</span><strong>60-70% less manual<br>returns work<span class="estimate">Estimated</span></strong></div>
+          <details><summary>How it works<i></i></summary><div class="detail-body">A custom async engine tracks hundreds of shipments at once with rate limits and retries. It ended the manual reconciliation between support, warehouse and finance.<div class="tags"><span>n8n</span><span>Python</span><span>PostgreSQL</span><span>Carrier APIs</span><span>Slack</span></div></div></details>
+        </article>
+
+        <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-motif="ops">
+          <span class="project-label">Operations platform</span>
+          <h3>One screen the whole <br>floor actually trusts.</h3>
+          <p>Replaces disconnected spreadsheets with a shared view of backorders, fulfillment, containers, returns and invoices.</p>
+          <div class="project-outcome"><span>The result</span><strong>Used every day by warehouse,<br>finance and supply chain.</strong></div>
+          <details><summary>How it works<i></i></summary><div class="detail-body">One source of truth, synced automatically. It ended the daily argument over which spreadsheet was right and gave leaders numbers they can act on without asking an engineer.<div class="tags"><span>Next.js</span><span>PostgreSQL</span><span>WMS</span><span>Shopify</span><span>Carrier APIs</span></div></div></details>
+        </article>
+
+        <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-motif="shipping">
+          <span class="project-label">Warehouse shipping</span>
+          <h3>The bulk-ship app <br>the warehouse runs on.</h3>
+          <p>Adds label-first, multi-order picking to ShipHero: box planning, label purchasing, aisle-ordered pick sheets and shipment sync.</p>
+          <div class="project-outcome"><span>The result</span><strong>Around 1,300 orders a day,<br>picked and shipped from the floor.</strong></div>
+          <details><summary>How it works<i></i></summary><div class="detail-body">Built on Next.js and PostgreSQL with BullMQ workers on Redis. It allocates live warehouse bins at label time and creates shipments through the ShipHero API.<div class="tags"><span>Next.js</span><span>PostgreSQL</span><span>ShipHero API</span><span>UPS</span><span>BullMQ</span></div></div></details>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // ==========================================
+    // 1. BRAND COLORS & CARD TEXTURE GENERATOR
+    // ==========================================
+    const COLOR_PAPER = "#faf8f6";
+    const COLOR_PAPER_2 = "#efeae2";
+    const COLOR_INK = "#0e0e10";
+    const COLOR_CORAL = "#fb605d";
+
+    function hexToRgbNormalized(hex) {
+      const num = parseInt(hex.slice(1), 16);
+      return [(num >> 16 & 255) / 255, (num >> 8 & 255) / 255, (num & 255) / 255];
+    }
+
+    function parsePanelData(panelEl) {
+      const num = panelEl.dataset.num || "";
+      const motif = panelEl.dataset.motif || "";
+      const label = panelEl.querySelector(".project-label")?.textContent?.trim() || "";
+      const titleLines = (panelEl.querySelector("h3")?.innerHTML || "")
+        .split(/<br\s*\/?>/i)
+        .map(line => line.replace(/<[^>]*>/g, "").replace(/\s+/g, " ").trim())
+        .filter(Boolean);
+      return { num, label, titleLines, motif };
+    }
+
+    // Draws each square card onto a 2D canvas before uploading to WebGL
+    function drawCardPoster(ctx, width, height, slideData) {
+      const cardThemes = {
+        support: {
+          bg: COLOR_INK,
+          ink: COLOR_PAPER,
+          lines: ["Support.", "Handled."],
+          note: "Routine requests resolved. People handle the exceptions."
+        },
+        returns: {
+          bg: COLOR_CORAL,
+          ink: COLOR_INK,
+          lines: ["Return.", "Reconcile.", "Refund."],
+          note: "One lifecycle across support, warehouse and finance."
+        },
+        ops: {
+          bg: COLOR_PAPER_2,
+          ink: COLOR_INK,
+          lines: ["One shared", "picture."],
+          note: "The operations platform behind the warehouse floor."
+        },
+        shipping: {
+          bg: COLOR_INK,
+          ink: COLOR_CORAL,
+          lines: ["BulkShip"],
+          note: "Label first. Pick by aisle. Ship the batch."
+        }
+      };
+
+      const theme = cardThemes[slideData.motif] || cardThemes.support;
+      const pad = width * 0.075;
+
+      // Background
+      ctx.fillStyle = theme.bg;
+      ctx.fillRect(0, 0, width, height);
+
+      // Top Label
+      ctx.fillStyle = theme.ink;
+      ctx.textAlign = "left";
+      ctx.textBaseline = "alphabetic";
+      ctx.font = '500 21px "Bricolage Grotesque", sans-serif';
+      ctx.fillText(slideData.label, pad, pad + 10);
+
+      // Big Headline
+      const fontSize = slideData.motif === "returns" ? 102 : slideData.motif === "shipping" ? 130 : 115;
+      ctx.font = `700 ${fontSize}px "Barlow Condensed", sans-serif`;
+      let yPos = slideData.motif === "returns" ? height * 0.37 : height * 0.45;
+      for (const line of theme.lines) {
+        ctx.fillText(line, pad, yPos, width - pad * 2);
+        yPos += fontSize * 0.96;
+      }
+
+      // Sub-stat for shipping card
+      if (slideData.motif === "shipping") {
+        ctx.font = '500 26px "Bricolage Grotesque", sans-serif';
+        ctx.fillStyle = COLOR_PAPER;
+        ctx.fillText("~1,300 orders / day", pad, height * 0.6);
+      }
+
+      // Bottom Note (Word-wrapped)
+      ctx.fillStyle = theme.ink;
+      ctx.font = '400 21px "Bricolage Grotesque", sans-serif';
+      const words = theme.note.split(" ");
+      let currentLine = "";
+      let noteY = height - pad - 38;
+
+      for (const word of words) {
+        if (ctx.measureText(currentLine + word).width > width - pad * 2) {
+          ctx.fillText(currentLine.trim(), pad, noteY);
+          currentLine = "";
+          noteY += 29;
+        }
+        currentLine += word + " ";
+      }
+      ctx.fillText(currentLine.trim(), pad, noteY);
+    }
+
+    // ==========================================
+    // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
+    // ==========================================
+    const VERTEX_SHADER = `#version 300 es
+    in vec2 aPos;
+    out vec2 vUv;
+    void main(){
+      vUv = aPos * 0.5 + 0.5;
+      gl_Position = vec4(aPos, 0.0, 1.0);
+    }`;
+
+    const FRAGMENT_SHADER = `#version 300 es
+    precision highp float;
+    in vec2 vUv;
+    out vec4 frag;
+    uniform float uAspect, uHalfW, uHalfH, uStep, uScroll, uTime, uFocus, uSelected;
+    uniform int uCount;
+    uniform vec3 uPaper;
+    uniform sampler2D uT0, uT1, uT2, uT3;
+
+    vec4 samp(int i, vec2 uv){
+      if(i == 0) return texture(uT0, uv);
+      if(i == 1) return texture(uT1, uv);
+      if(i == 2) return texture(uT2, uv);
+      return texture(uT3, uv);
+    }
+
+    // Sample the continuous horizontal card strip
+    vec3 strip(vec2 uv){
+      float x = (uv.x - .5) * uAspect;
+      float slot = floor(x / uStep + uScroll + .5);
+      float zoom = 1. + .48 * uFocus;
+      float selectedX = x - (uSelected - uScroll) * uStep;
+      if(abs(selectedX) < uHalfW * zoom) slot = uSelected;
+      bool selected = abs(slot - uSelected) < .1;
+      float localX = x - (slot - uScroll) * uStep;
+      float y = uv.y - .5;
+      if(selected){ localX /= zoom; y /= zoom; }
+      else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
+      if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
+      int index = int(mod(slot, float(uCount)));
+      return samp(index, vec2(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5)).rgb;
+    }
+
+    void main(){
+      vec2 offset = vUv - .5;
+      float lensAspect = max(uAspect, 2.8);
+      vec2 p = offset * vec2(lensAspect, 1.);
+      float angleRotation = 1.134464;
+      float c = cos(angleRotation), s = sin(angleRotation);
+      p = mat2(c, -s, s, c) * p;
+      float scale = max(.55, lensAspect / 1.85);
+      float radius = length(p / (vec2(.565, 1.) * scale));
+      vec3 base = strip(vUv);
+      if(radius > 1.) { frag = vec4(base, 1.); return; }
+
+      // Wave distortion & RGB dispersion near the rim of the glass ring
+      float angle = atan(p.y, p.x);
+      float edgeWeight = uAspect < 1.5 ? smoothstep(.18, .44, abs(offset.x)) : 1.;
+      float rim = smoothstep(.578, 1., radius) * edgeWeight;
+      vec2 direction = normalize(offset + vec2(.000001));
+      vec2 tangent = vec2(-direction.y, direction.x);
+      float wave = sin(angle * 2.) * .55 + sin(angle) * .25;
+      vec2 bent = vUv + tangent * wave * rim * .4695 * scale * (1. - uFocus);
+      vec2 dispersion = offset * .044 * smoothstep(.55, 1., radius) * edgeWeight * (1. - uFocus);
+
+      vec3 color = vec3(
+        strip(bent - dispersion * .5).r,
+        strip(bent).g,
+        strip(bent + dispersion * .5).b
+      );
+
+      // Glowing specular ring highlight
+      float ring = exp(-pow((radius * .5 - .49) / .014, 2.));
+      float line = exp(-pow((radius * .5 - .488) / .003, 2.));
+      float surface = uAspect < 1.5 ? smoothstep(.02, .2, length(color - uPaper)) * edgeWeight : 1.;
+      color += (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
+      frag = vec4(mix(base, color, 1. - smoothstep(.93, 1., radius)), 1.);
+    }`;
+
+    function compileShader(gl, type, source) {
+      const shader = gl.createShader(type);
+      if (!shader) return null;
+      gl.shaderSource(shader, source);
+      gl.compileShader(shader);
+      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+        console.warn("Shader compile failed:", gl.getShaderInfoLog(shader));
+        gl.deleteShader(shader);
+        return null;
+      }
+      return shader;
+    }
+
+    // ==========================================
+    // 3. WEBGL CAROUSEL ENGINE
+    // ==========================================
+    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, reducedMotion, onActiveChange, getActiveIndex) {
+      const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+      const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+      if (!vs || !fs) return null;
+
+      const program = gl.createProgram();
+      gl.attachShader(program, vs);
+      gl.attachShader(program, fs);
+      gl.bindAttribLocation(program, 0, "aPos");
+      gl.linkProgram(program);
+      gl.deleteShader(vs);
+      gl.deleteShader(fs);
+
+      if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+        console.warn("Program link failed:", gl.getProgramInfoLog(program));
+        gl.deleteProgram(program);
+        return null;
+      }
+
+      const slideCount = slidesData.length;
+      const vao = gl.createVertexArray();
+      const buffer = gl.createBuffer();
+      gl.bindVertexArray(vao);
+      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+      gl.enableVertexAttribArray(0);
+      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+      gl.bindVertexArray(null);
+
+      const uniforms = {
+        focus: gl.getUniformLocation(program, "uFocus"),
+        selected: gl.getUniformLocation(program, "uSelected"),
+        aspect: gl.getUniformLocation(program, "uAspect"),
+        halfW: gl.getUniformLocation(program, "uHalfW"),
+        halfH: gl.getUniformLocation(program, "uHalfH"),
+        step: gl.getUniformLocation(program, "uStep"),
+        scroll: gl.getUniformLocation(program, "uScroll"),
+        time: gl.getUniformLocation(program, "uTime"),
+        countU: gl.getUniformLocation(program, "uCount"),
+        paper: gl.getUniformLocation(program, "uPaper"),
+        tex: [0, 1, 2, 3].map(i => gl.getUniformLocation(program, `uT${i}`))
+      };
+
+      const textures = [];
+      for (let i = 0; i < 4; i++) {
+        const tex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([250, 248, 246, 255]));
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+        textures.push(tex);
+      }
+
+      const paperRgb = hexToRgbNormalized(COLOR_PAPER);
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+      let viewWidth = 0, viewHeight = 1;
+      let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
+      let activePointerId = -1;
+
+      const carouselRoot = viewportEl.closest(".glass-carousel");
+      const closeBtn = document.createElement("button");
+      closeBtn.className = "gc-close";
+      closeBtn.textContent = "Close project ×";
+      closeBtn.hidden = true;
+      carouselRoot.querySelector(".gc-meta")?.prepend(closeBtn);
+
+      let scrollCurrent = 0, scrollTarget = 0;
+      let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
+      let texturesReady = false, isVisible = true, rafId = 0, isAnimating = false, isDisposed = false;
+
+      const setFocused = (focused) => {
+        focusTarget = focused ? 1 : 0;
+        carouselRoot.classList.toggle("gc-focused", focused);
+        closeBtn.hidden = !focused;
+        const activeDetails = carouselRoot.querySelector(".gc-panel.is-active details");
+        if (activeDetails) activeDetails.open = focused;
+        requestRender();
+      };
+
+      closeBtn.addEventListener("click", () => {
+        setFocused(false);
+        viewportEl.focus({ preventScroll: true });
+      });
+
+      const resize = () => {
+        const rect = viewportEl.getBoundingClientRect();
+        if (!rect.width || !rect.height) return;
+        viewWidth = rect.width;
+        viewHeight = rect.height;
+        const w = Math.round(rect.width * dpr);
+        const h = Math.round(rect.height * dpr);
+        if (canvas.width !== w || canvas.height !== h) {
+          canvas.width = w;
+          canvas.height = h;
+        }
+        gl.viewport(0, 0, w, h);
+      };
+
+      const getLayoutMetrics = () => {
+        const aspect = viewWidth / viewHeight;
+        const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
+        const halfW = halfH;
+        const step = halfW * 2 + 0.012;
+        return { halfW, halfH, step, aspect };
+      };
+
+      const drawFrame = (timeSec) => {
+        const { halfW, halfH, step, aspect } = getLayoutMetrics();
+        gl.useProgram(program);
+        gl.bindVertexArray(vao);
+        gl.uniform1f(uniforms.focus, focusCurrent);
+        gl.uniform1f(uniforms.selected, selectedSlot);
+        gl.uniform1f(uniforms.aspect, aspect);
+        gl.uniform1f(uniforms.halfW, halfW);
+        gl.uniform1f(uniforms.halfH, halfH);
+        gl.uniform1f(uniforms.step, step);
+        gl.uniform1f(uniforms.scroll, scrollCurrent);
+        gl.uniform1f(uniforms.time, timeSec);
+        gl.uniform1i(uniforms.countU, slideCount);
+        gl.uniform3f(uniforms.paper, paperRgb[0], paperRgb[1], paperRgb[2]);
+
+        for (let i = 0; i < textures.length; i++) {
+          gl.activeTexture(gl.TEXTURE0 + i);
+          gl.bindTexture(gl.TEXTURE_2D, textures[i]);
+          gl.uniform1i(uniforms.tex[i], i);
+        }
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        gl.bindVertexArray(null);
+      };
+
+      const tick = (now) => {
+        isAnimating = false;
+        if (isDisposed || document.hidden || !isVisible) return;
+        if (!isDragging) {
+          scrollCurrent = reducedMotion ? scrollTarget : scrollCurrent + (scrollTarget - scrollCurrent) * 0.14;
+          if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
+        }
+        focusCurrent = reducedMotion ? focusTarget : focusCurrent + (focusTarget - focusCurrent) * 0.1;
+        if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
+
+        onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
+        drawFrame(now / 1000);
+
+        if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) {
+          requestRender();
+        }
+      };
+
+      const requestRender = () => {
+        if (!isDisposed && !isAnimating && texturesReady && isVisible) {
+          isAnimating = true;
+          rafId = requestAnimationFrame(tick);
+        }
+      };
+
+      // Pointer & Wheel Interactions
+      canvas.addEventListener("pointerdown", (e) => {
+        if (e.button !== 0) return;
+        activePointerId = e.pointerId;
+        isDragging = true;
+        requestRender();
+        dragStartX = e.clientX;
+        dragStartScroll = scrollCurrent;
+        canvas.setPointerCapture(e.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", (e) => {
+        if (!isDragging || !viewWidth || focusTarget) return;
+        const { step, aspect } = getLayoutMetrics();
+        const delta = (e.clientX - dragStartX) * aspect / viewWidth;
+        scrollCurrent = dragStartScroll - delta / step;
+        scrollTarget = scrollCurrent;
+        requestRender();
+      });
+
+      const onPointerUp = (e) => {
+        if (!isDragging || e.pointerId !== activePointerId) return;
+        isDragging = false;
+        try { canvas.releasePointerCapture(e.pointerId); } catch {}
+        scrollTarget = Math.round(scrollCurrent);
+
+        if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
+          const rect = canvas.getBoundingClientRect();
+          const { step, halfW, halfH } = getLayoutMetrics();
+          const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
+          const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
+
+          if (focusTarget) {
+            if (Math.abs(clickX) > halfW * 1.48 || Math.abs(clickY) > halfH * 1.48) setFocused(false);
+          } else {
+            const clickedSlot = Math.round(clickX / step + scrollCurrent);
+            if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
+              selectedSlot = scrollTarget = clickedSlot;
+              onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
+              setFocused(true);
+            }
+          }
+        }
+        requestRender();
+      };
+
+      window.addEventListener("pointerup", onPointerUp);
+      canvas.addEventListener("pointercancel", onPointerUp);
+
+      canvas.addEventListener("wheel", (e) => {
+        if (focusTarget || e.ctrlKey) return;
+        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+        if (!delta) return;
+        e.preventDefault();
+        e.stopPropagation();
+        const now = performance.now();
+        if (now - lastWheelTime >= 220) {
+          lastWheelTime = now;
+          scrollTarget = Math.round(scrollTarget) + (delta > 0 ? 1 : -1);
+          requestRender();
+        }
+      }, { passive: false });
+
+      viewportEl.appendChild(canvas);
+      new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
+      resize();
+
+      // Render 2D Card Textures and upload to WebGL
+      (async () => {
+        try { await document.fonts.ready; } catch {}
+        const offscreen = document.createElement("canvas");
+        offscreen.width = 640;
+        offscreen.height = 640;
+        const ctx = offscreen.getContext("2d");
+        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+        for (let i = 0; i < slideCount && i < textures.length; i++) {
+          drawCardPoster(ctx, 640, 640, slidesData[i]);
+          gl.bindTexture(gl.TEXTURE_2D, textures[i]);
+          gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+        }
+        texturesReady = true;
+        requestRender();
+      })();
+
+      return {
+        goTo(index) {
+          setFocused(false);
+          scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount;
+          requestRender();
+        }
+      };
+    }
+
+    // ==========================================
+    // 4. INITIALIZE CAROUSEL
+    // ==========================================
+    function createGlassCarousel(rootEl) {
+      const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
+      const viewportEl = rootEl.querySelector(".gc-viewport");
+      const counterEl = rootEl.querySelector(".gc-counter");
+      const dotsContainer = rootEl.querySelector(".gc-dots");
+      const prevBtn = rootEl.querySelector(".gc-prev");
+      const nextBtn = rootEl.querySelector(".gc-next");
+
+      const slideCount = panels.length;
+      const slidesData = panels.map(parsePanelData);
+      const totalFormatted = String(slideCount).padStart(2, "0");
+      const dotButtons = [];
+      let activeIndex = -1;
+      let renderer = null;
+
+      const wrapIndex = (idx) => (idx % slideCount + slideCount) % slideCount;
+
+      const updateUI = (index) => {
+        if (index === activeIndex || index < 0 || index >= slideCount) return;
+        activeIndex = index;
+        panels.forEach((panel, i) => {
+          const isActive = i === index;
+          panel.classList.toggle("is-active", isActive);
+          panel.setAttribute("aria-hidden", String(!isActive));
+        });
+        if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
+        dotButtons.forEach((dot, i) => {
+          const isActive = i === index;
+          dot.classList.toggle("is-active", isActive);
+          dot.setAttribute("aria-selected", String(isActive));
+        });
+      };
+
+      // Create navigation dots
+      slidesData.forEach((slide, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "gc-dot";
+        btn.addEventListener("click", () => renderer?.goTo(wrapIndex(i)));
+        dotsContainer?.appendChild(btn);
+        dotButtons.push(btn);
+      });
+
+      prevBtn?.addEventListener("click", () => renderer?.goTo(wrapIndex(activeIndex - 1)));
+      nextBtn?.addEventListener("click", () => renderer?.goTo(wrapIndex(activeIndex + 1)));
+
+      rootEl.addEventListener("keydown", (e) => {
+        if (e.key === "ArrowLeft") { renderer?.goTo(wrapIndex(activeIndex - 1)); e.preventDefault(); }
+        if (e.key === "ArrowRight") { renderer?.goTo(wrapIndex(activeIndex + 1)); e.preventDefault(); }
+      });
+
+      const canvas = document.createElement("canvas");
+      canvas.className = "gc-canvas";
+      const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
+
+      renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, false, updateUI, () => Math.max(0, activeIndex));
+      updateUI(0);
+      renderer?.goTo(0);
+    }
+
+    // Boot it up
+    const carouselEl = document.querySelector("[data-glass-carousel]");
+    if (carouselEl) createGlassCarousel(carouselEl);
+  </script>
+</body>
+</html>
