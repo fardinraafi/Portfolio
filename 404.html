@@ -27,6 +27,7 @@
             flex-direction: column;
         }
 
+        /* The Intense Interactive Canvas Background */
         #neural-canvas {
             position: absolute;
             top: 0;
@@ -34,7 +35,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            pointer-events: none; /* Let clicks pass through to the game */
+            pointer-events: auto; /* Required for mouse repulsion */
         }
 
         .error-content {
@@ -47,7 +48,7 @@
             height: 100%;
             text-align: center;
             padding: 0 2rem;
-            pointer-events: none; 
+            pointer-events: none; /* Let the mouse interact with the canvas behind the text */
         }
 
         .error-code {
@@ -70,6 +71,7 @@
             margin-top: -0.5rem;
             margin-bottom: 0.5rem;
             font-weight: 700;
+            pointer-events: auto;
         }
 
         .error-desc {
@@ -79,6 +81,7 @@
             max-width: 600px;
             margin-bottom: 1.5rem;
             line-height: 1.5;
+            pointer-events: auto;
         }
 
         /* 🚀 THE DINO GAME CONTAINER 🚀 */
@@ -172,7 +175,7 @@
             .error-desc { font-size: 0.95rem; margin-bottom: 1rem; padding: 0 10px; }
             
             #game-container { 
-                height: 220px; /* Slightly taller on mobile for better thumb tapping */
+                height: 220px; 
                 width: 95%; 
                 margin-bottom: 1.5rem; 
             }
@@ -181,20 +184,20 @@
         }
         @media (max-height: 700px) {
             .error-code { font-size: 4rem; }
-            .error-desc { display: none; /* Hides description on very short screens to keep game visible */ }
+            .error-desc { display: none; }
         }
     </style>
 </head>
 <body class="error-page dark-mode">
 
-    <!-- The Interactive Physics Canvas -->
+    <!-- The Intense Interactive Physics Canvas -->
     <canvas id="neural-canvas"></canvas>
 
     <div class="error-content">
         <h1 class="error-code">404</h1>
         <h2 class="error-title">You've Fallen Out of the Funnel.</h2>
         <p class="error-desc">
-            Even the most highly optimized B2B workflows can't predict a broken link. Play a quick game of "Pipeline Runner" while you're here, or head back to the homepage.
+            Even I cant predict a broken link. Play a quick game of "Pipeline Runner" while you're here, or head back to the homepage.
         </p>
         
         <!-- 🚀 THE GAME UI 🚀 -->
@@ -213,7 +216,7 @@
 
     <script>
         // ==========================================
-        // 🦖 NEON PIPELINE RUNNER (Competitive Dino Game)
+        // 🦖 NEON PIPELINE RUNNER (More Forgiving)
         // ==========================================
         const gCanvas = document.getElementById('game-canvas');
         const gCtx = gCanvas.getContext('2d');
@@ -234,7 +237,9 @@
         let isGameOver = false;
         let score = 0;
         let highScore = localStorage.getItem('frkr_highscore') || 0;
-        let gameSpeed = 5;
+        
+        // SPEED TWEAKS: Slower base speed, softer acceleration
+        let gameSpeed = 3.5; 
         let frameCount = 0;
         
         // Format score with leading zeros
@@ -249,7 +254,7 @@
             h: 24,
             dy: 0,
             jumpPower: -10.5,
-            gravity: 0.6,
+            gravity: 0.55, // Slightly floatier jump
             grounded: false
         };
 
@@ -275,56 +280,58 @@
 
         window.addEventListener('keydown', (e) => {
             if (e.code === 'Space') {
-                e.preventDefault(); // Stop page scrolling
+                e.preventDefault(); 
                 jump();
             }
         });
 
-        // Mobile Tap Support
+        // Mobile Tap Support FIX
         gCanvas.addEventListener('touchstart', (e) => {
-            e.preventDefault(); // Stop double-tap zooming
+            e.preventDefault(); 
             jump();
-        });
+        }, {passive: false});
+        
         gCanvas.addEventListener('mousedown', jump);
 
         function spawnObstacle() {
-            // Competitive Scaling: Obstacles get slightly wider and closer together as speed increases
-            let minGap = Math.max(60, 120 - (gameSpeed * 2)); 
-            let maxGap = Math.max(120, 250 - (gameSpeed * 2));
+            let minGap = Math.max(80, 150 - (gameSpeed * 2)); 
+            let maxGap = Math.max(150, 300 - (gameSpeed * 2));
             let gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
 
             if (frameCount % gap === 0) {
                 obstacles.push({
                     x: gCanvas.width,
                     y: gCanvas.height - 40,
-                    w: Math.random() > 0.5 ? 18 : 28, // Sometimes thick, sometimes thin
-                    h: Math.random() > 0.7 ? 45 : 30  // Sometimes tall, sometimes short
+                    w: Math.random() > 0.5 ? 18 : 28, 
+                    h: Math.random() > 0.7 ? 45 : 30  
                 });
             }
         }
 
+        // REBOOT FIX: Force the animation loop to restart
         function resetGame() {
             isPlaying = true;
             isGameOver = false;
             score = 0;
-            gameSpeed = 5;
+            gameSpeed = 3.5;
             frameCount = 0;
             obstacles = [];
             player.y = gCanvas.height - 40 - player.h;
             player.dy = 0;
             promptEl.style.display = 'none';
+            requestAnimationFrame(gameLoop); // Restart the engine
         }
 
         function drawPlayer() {
-            gCtx.fillStyle = '#3B82F6'; // Core Blue
+            gCtx.fillStyle = '#3B82F6'; 
             gCtx.shadowBlur = 15;
-            gCtx.shadowColor = '#8B5CF6'; // Purple Glow
+            gCtx.shadowColor = '#8B5CF6'; 
             gCtx.fillRect(player.x, player.y, player.w, player.h);
-            gCtx.shadowBlur = 0; // Reset
+            gCtx.shadowBlur = 0; 
         }
 
         function drawObstacles() {
-            gCtx.fillStyle = '#DB2777'; // Danger Pink
+            gCtx.fillStyle = '#DB2777'; 
             gCtx.shadowBlur = 10;
             gCtx.shadowColor = '#DB2777';
             
@@ -349,11 +356,9 @@
             gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
             drawGround();
 
-            // Player Physics
             player.dy += player.gravity;
             player.y += player.dy;
 
-            // Floor collision
             if (player.y + player.h >= gCanvas.height - 10) {
                 player.y = gCanvas.height - 10 - player.h;
                 player.dy = 0;
@@ -362,7 +367,6 @@
 
             drawPlayer();
 
-            // Obstacle Logic
             spawnObstacle();
             drawObstacles();
 
@@ -370,7 +374,6 @@
                 let obs = obstacles[i];
                 obs.x -= gameSpeed;
 
-                // Collision Detection (Hitbox math)
                 if (
                     player.x < obs.x + obs.w &&
                     player.x + player.w > obs.x &&
@@ -381,30 +384,27 @@
                     isPlaying = false;
                 }
 
-                // Remove off-screen obstacles
                 if (obs.x + obs.w < 0) {
                     obstacles.splice(i, 1);
                     i--;
                 }
             }
 
-            // Score & Competitive Difficulty Scaling
             if (!isGameOver) {
-                score += 0.05; // Base score tick
+                score += 0.05; 
                 scoreEl.innerText = formatScore(Math.floor(score));
                 
-                // Speed increases constantly up to a brutal cap
-                if (gameSpeed < 14) {
-                    gameSpeed += 0.002;
+                // SPEED PROGRESSION: Slower ramp up, lower max speed
+                if (gameSpeed < 9) {
+                    gameSpeed += 0.001;
                 }
                 
                 frameCount++;
                 requestAnimationFrame(gameLoop);
             } else {
-                // Game Over State
                 gCtx.fillStyle = 'rgba(2, 6, 23, 0.7)';
                 gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
-                promptEl.innerHTML = "SYSTEM FAILURE<br><span style='font-size:0.8rem;color:#94A3B8;'>Press SPACE to Reboot</span>";
+                promptEl.innerHTML = "SYSTEM FAILURE<br><span style='font-size:0.8rem;color:#94A3B8;'>Press SPACE or TAP to Reboot</span>";
                 promptEl.style.display = 'block';
                 promptEl.style.color = '#DB2777';
                 
@@ -416,85 +416,152 @@
             }
         }
 
-        // Draw initial static frame
         drawGround();
         drawPlayer();
 
         // ==========================================
-        // 🕸️ BACKGROUND NEURAL NETWORK (Unchanged)
+        // 🕸️ INTENSE INTERACTIVE NEURAL NETWORK
         // ==========================================
-        const bgCanvas = document.getElementById('neural-canvas');
-        const bgCtx = bgCanvas.getContext('2d');
-        let bgWidth, bgHeight, particles = [];
-        
-        function resizeBg() {
-            bgWidth = bgCanvas.width = window.innerWidth;
-            bgHeight = bgCanvas.height = window.innerHeight;
+        const canvas = document.getElementById('neural-canvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.x;
+            mouse.y = event.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
         }
-        window.addEventListener('resize', resizeBg);
-        resizeBg();
+        window.addEventListener('resize', resize);
+        resize();
 
         class Particle {
             constructor(x, y, dx, dy, size, color) {
-                this.x = x; this.y = y; this.dx = dx; this.dy = dy;
-                this.size = size; this.color = color;
+                this.x = x;
+                this.y = y;
+                this.dx = dx;
+                this.dy = dy;
+                this.size = size;
+                this.color = color;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
+
             draw() {
-                bgCtx.beginPath();
-                bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                bgCtx.fillStyle = this.color;
-                bgCtx.fill();
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
             }
+
             update() {
-                this.x += this.dx;
-                this.y += this.dy;
-                if (this.x < 0 || this.x > bgWidth) this.dx = -this.dx;
-                if (this.y < 0 || this.y > bgHeight) this.dy = -this.dy;
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) {
+                            let dx = this.x - this.baseX;
+                            this.x -= dx / 10;
+                        }
+                        if (this.y !== this.baseY) {
+                            let dy = this.y - this.baseY;
+                            this.y -= dy / 10;
+                        }
+                    }
+                } else {
+                    if (this.x !== this.baseX) {
+                        let dx = this.x - this.baseX;
+                        this.x -= dx / 10;
+                    }
+                    if (this.y !== this.baseY) {
+                        let dy = this.y - this.baseY;
+                        this.y -= dy / 10;
+                    }
+                }
+
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+
                 this.draw();
             }
         }
 
-        function initBg() {
+        function init() {
             particles = [];
-            let particleCount = (bgWidth * bgHeight) / 12000; 
-            let colors = ['rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(219, 39, 119, 0.5)'];
-            for (let i = 0; i < particleCount; i++) {
-                let size = Math.random() * 2 + 1;
-                let x = Math.random() * bgWidth;
-                let y = Math.random() * bgHeight;
-                let dx = (Math.random() - 0.5) * 0.5; 
-                let dy = (Math.random() - 0.5) * 0.5; 
+            let numberOfParticles = (width * height) / 9000; 
+            
+            let colors = ['rgba(59, 130, 246, 0.8)', 'rgba(139, 92, 246, 0.8)', 'rgba(219, 39, 119, 0.8)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
                 let color = colors[Math.floor(Math.random() * colors.length)];
+                
                 particles.push(new Particle(x, y, dx, dy, size, color));
             }
         }
 
-        function connectBg() {
+        function connect() {
+            let opacityValue = 1;
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
-                    if (distance < (bgWidth / 8) * (bgHeight / 8)) {
-                        let opacity = 1 - (distance / 20000);
-                        bgCtx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.3})`;
-                        bgCtx.lineWidth = 1;
-                        bgCtx.beginPath();
-                        bgCtx.moveTo(particles[a].x, particles[a].y);
-                        bgCtx.lineTo(particles[b].x, particles[b].y);
-                        bgCtx.stroke();
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.5})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
                     }
                 }
             }
         }
 
-        function animateBg() {
-            requestAnimationFrame(animateBg);
-            bgCtx.clearRect(0, 0, bgWidth, bgHeight);
-            for (let i = 0; i < particles.length; i++) particles[i].update();
-            connectBg();
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+            connect();
         }
 
-        initBg();
-        animateBg();
+        init();
+        animate();
     </script>
 </body>
 </html>
