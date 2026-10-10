@@ -9,10 +9,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <!-- Core Styles -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Vercel Analytics & Speed Insights -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
@@ -21,15 +19,14 @@
         body.error-page {
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Locks the screen so they can't scroll away from the effect */
-            background-color: #020617; /* Deepest dark mode background */
+            overflow: hidden; 
+            background-color: #020617; 
             height: 100vh;
             width: 100vw;
             display: flex;
             flex-direction: column;
         }
 
-        /* The Interactive Canvas Background */
         #neural-canvas {
             position: absolute;
             top: 0;
@@ -37,10 +34,9 @@
             width: 100%;
             height: 100%;
             z-index: 1;
-            pointer-events: auto;
+            pointer-events: none; /* Let clicks pass through to the game */
         }
 
-        /* The Content Overlay */
         .error-content {
             position: relative;
             z-index: 10;
@@ -51,12 +47,12 @@
             height: 100%;
             text-align: center;
             padding: 0 2rem;
-            pointer-events: none; /* Let the mouse interact with the canvas behind the text */
+            pointer-events: none; 
         }
 
         .error-code {
             font-family: 'Syne', sans-serif;
-            font-size: 12vw;
+            font-size: 10vw;
             font-weight: 800;
             line-height: 1;
             margin: 0;
@@ -69,40 +65,89 @@
 
         .error-title {
             font-family: 'Syne', sans-serif;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #F8FAFC;
-            margin-top: -1rem;
-            margin-bottom: 1rem;
+            margin-top: -0.5rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
         .error-desc {
             font-family: 'DM Sans', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #94A3B8;
             max-width: 600px;
-            margin-bottom: 2.5rem;
-            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
         }
 
-        /* Make the button clickable through the pointer-events: none overlay */
+        /* 🚀 THE DINO GAME CONTAINER 🚀 */
+        #game-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 200px;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 16px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+            pointer-events: auto; /* Re-enable clicks for the game */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(59, 130, 246, 0.1);
+        }
+
+        #game-canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        #game-ui {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-family: 'Syne', monospace;
+            font-weight: 700;
+            color: var(--c1);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            pointer-events: none;
+            text-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        #game-prompt {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            color: #F8FAFC;
+            font-size: 1.2rem;
+            pointer-events: none;
+            animation: blink 1.5s infinite;
+        }
+
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
         .error-btn-container {
             pointer-events: auto; 
         }
 
         .btn-glitch {
             position: relative;
-            padding: 16px 40px;
+            padding: 14px 36px;
             background: rgba(37, 99, 235, 0.1);
             border: 1px solid rgba(59, 130, 246, 0.5);
             border-radius: 100px;
             color: #F8FAFC;
             font-weight: 800;
-            font-size: 1.1rem;
+            font-size: 1rem;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 2px;
-            overflow: hidden;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
         }
@@ -119,14 +164,26 @@
             100% { filter: drop-shadow(0 0 50px rgba(139, 92, 246, 0.6)); }
         }
 
+        /* 📱 MOBILE OPTIMIZATION MASTERY 📱 */
         @media (max-width: 768px) {
-            .error-code { font-size: 8rem; }
-            .error-title { font-size: 1.8rem; }
-            .error-desc { font-size: 1rem; }
+            .error-content { justify-content: flex-start; padding-top: 5vh; }
+            .error-code { font-size: 5rem; margin-bottom: 0.5rem; }
+            .error-title { font-size: 1.5rem; margin-top: 0; }
+            .error-desc { font-size: 0.95rem; margin-bottom: 1rem; padding: 0 10px; }
+            
+            #game-container { 
+                height: 220px; /* Slightly taller on mobile for better thumb tapping */
+                width: 95%; 
+                margin-bottom: 1.5rem; 
+            }
+            #game-prompt { font-size: 1rem; width: 100%; }
+            .btn-glitch { padding: 12px 24px; font-size: 0.85rem; }
+        }
+        @media (max-height: 700px) {
+            .error-code { font-size: 4rem; }
+            .error-desc { display: none; /* Hides description on very short screens to keep game visible */ }
         }
     </style>
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body class="error-page dark-mode">
 
@@ -137,8 +194,18 @@
         <h1 class="error-code">404</h1>
         <h2 class="error-title">You've Fallen Out of the Funnel.</h2>
         <p class="error-desc">
-            Even the most highly optimized B2B growth workflows can't predict a broken link. The data points scattered behind you represent a lost lead. Let's get you back to the main pipeline.
+            Even the most highly optimized B2B workflows can't predict a broken link. Play a quick game of "Pipeline Runner" while you're here, or head back to the homepage.
         </p>
+        
+        <!-- 🚀 THE GAME UI 🚀 -->
+        <div id="game-container">
+            <div id="game-ui">
+                HI <span id="high-score">00000</span> | <span id="current-score">00000</span>
+            </div>
+            <div id="game-prompt">Press SPACE or TAP to play</div>
+            <canvas id="game-canvas"></canvas>
+        </div>
+
         <div class="error-btn-container">
             <a href="/index.html" class="btn-glitch">Return to Homepage</a>
         </div>
@@ -146,159 +213,288 @@
 
     <script>
         // ==========================================
-        // 🚀 INTERACTIVE NEURAL NETWORK PHYSICS ENGINE
+        // 🦖 NEON PIPELINE RUNNER (Competitive Dino Game)
         // ==========================================
-        const canvas = document.getElementById('neural-canvas');
-        const ctx = canvas.getContext('2d');
+        const gCanvas = document.getElementById('game-canvas');
+        const gCtx = gCanvas.getContext('2d');
+        const promptEl = document.getElementById('game-prompt');
+        const scoreEl = document.getElementById('current-score');
+        const highScoreEl = document.getElementById('high-score');
 
-        let width, height;
-        let particles = [];
-        
-        // Mouse interaction tracking
-        let mouse = { x: null, y: null, radius: 150 };
-
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.x;
-            mouse.y = event.y;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
+        // Set canvas physical size
+        function resizeGame() {
+            gCanvas.width = gCanvas.parentElement.clientWidth;
+            gCanvas.height = gCanvas.parentElement.clientHeight;
         }
-        window.addEventListener('resize', resize);
-        resize();
+        window.addEventListener('resize', resizeGame);
+        resizeGame();
 
-        // Particle Class
-        class Particle {
-            constructor(x, y, dx, dy, size, color) {
-                this.x = x;
-                this.y = y;
-                this.dx = dx;
-                this.dy = dy;
-                this.size = size;
-                this.color = color;
-                this.baseX = this.x;
-                this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
+        // Game State Variables
+        let isPlaying = false;
+        let isGameOver = false;
+        let score = 0;
+        let highScore = localStorage.getItem('frkr_highscore') || 0;
+        let gameSpeed = 5;
+        let frameCount = 0;
+        
+        // Format score with leading zeros
+        const formatScore = (s) => s.toString().padStart(5, '0');
+        highScoreEl.innerText = formatScore(highScore);
+
+        // Player (The Glowing Neon Box)
+        const player = {
+            x: 50,
+            y: 150,
+            w: 24,
+            h: 24,
+            dy: 0,
+            jumpPower: -10.5,
+            gravity: 0.6,
+            grounded: false
+        };
+
+        let obstacles = [];
+
+        // Input Controls (Spacebar & Mobile Tap)
+        function jump() {
+            if (isGameOver) {
+                resetGame();
+                return;
+            }
+            if (!isPlaying) {
+                isPlaying = true;
+                promptEl.style.display = 'none';
+                requestAnimationFrame(gameLoop);
+                return;
+            }
+            if (player.grounded) {
+                player.dy = player.jumpPower;
+                player.grounded = false;
+            }
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if (e.code === 'Space') {
+                e.preventDefault(); // Stop page scrolling
+                jump();
+            }
+        });
+
+        // Mobile Tap Support
+        gCanvas.addEventListener('touchstart', (e) => {
+            e.preventDefault(); // Stop double-tap zooming
+            jump();
+        });
+        gCanvas.addEventListener('mousedown', jump);
+
+        function spawnObstacle() {
+            // Competitive Scaling: Obstacles get slightly wider and closer together as speed increases
+            let minGap = Math.max(60, 120 - (gameSpeed * 2)); 
+            let maxGap = Math.max(120, 250 - (gameSpeed * 2));
+            let gap = Math.floor(Math.random() * (maxGap - minGap + 1) + minGap);
+
+            if (frameCount % gap === 0) {
+                obstacles.push({
+                    x: gCanvas.width,
+                    y: gCanvas.height - 40,
+                    w: Math.random() > 0.5 ? 18 : 28, // Sometimes thick, sometimes thin
+                    h: Math.random() > 0.7 ? 45 : 30  // Sometimes tall, sometimes short
+                });
+            }
+        }
+
+        function resetGame() {
+            isPlaying = true;
+            isGameOver = false;
+            score = 0;
+            gameSpeed = 5;
+            frameCount = 0;
+            obstacles = [];
+            player.y = gCanvas.height - 40 - player.h;
+            player.dy = 0;
+            promptEl.style.display = 'none';
+        }
+
+        function drawPlayer() {
+            gCtx.fillStyle = '#3B82F6'; // Core Blue
+            gCtx.shadowBlur = 15;
+            gCtx.shadowColor = '#8B5CF6'; // Purple Glow
+            gCtx.fillRect(player.x, player.y, player.w, player.h);
+            gCtx.shadowBlur = 0; // Reset
+        }
+
+        function drawObstacles() {
+            gCtx.fillStyle = '#DB2777'; // Danger Pink
+            gCtx.shadowBlur = 10;
+            gCtx.shadowColor = '#DB2777';
+            
+            obstacles.forEach(obs => {
+                gCtx.fillRect(obs.x, gCanvas.height - obs.h - 10, obs.w, obs.h);
+            });
+            gCtx.shadowBlur = 0;
+        }
+
+        function drawGround() {
+            gCtx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            gCtx.lineWidth = 2;
+            gCtx.beginPath();
+            gCtx.moveTo(0, gCanvas.height - 10);
+            gCtx.lineTo(gCanvas.width, gCanvas.height - 10);
+            gCtx.stroke();
+        }
+
+        function gameLoop() {
+            if (!isPlaying) return;
+
+            gCtx.clearRect(0, 0, gCanvas.width, gCanvas.height);
+            drawGround();
+
+            // Player Physics
+            player.dy += player.gravity;
+            player.y += player.dy;
+
+            // Floor collision
+            if (player.y + player.h >= gCanvas.height - 10) {
+                player.y = gCanvas.height - 10 - player.h;
+                player.dy = 0;
+                player.grounded = true;
             }
 
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
+            drawPlayer();
 
-            update() {
-                // Collision with mouse (The Repulsion Effect)
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
+            // Obstacle Logic
+            spawnObstacle();
+            drawObstacles();
 
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    } else {
-                        if (this.x !== this.baseX) {
-                            let dx = this.x - this.baseX;
-                            this.x -= dx / 10;
-                        }
-                        if (this.y !== this.baseY) {
-                            let dy = this.y - this.baseY;
-                            this.y -= dy / 10;
-                        }
-                    }
-                } else {
-                    // Float back to original position slowly if mouse leaves
-                    if (this.x !== this.baseX) {
-                        let dx = this.x - this.baseX;
-                        this.x -= dx / 10;
-                    }
-                    if (this.y !== this.baseY) {
-                        let dy = this.y - this.baseY;
-                        this.y -= dy / 10;
-                    }
+            for (let i = 0; i < obstacles.length; i++) {
+                let obs = obstacles[i];
+                obs.x -= gameSpeed;
+
+                // Collision Detection (Hitbox math)
+                if (
+                    player.x < obs.x + obs.w &&
+                    player.x + player.w > obs.x &&
+                    player.y < gCanvas.height - 10 &&
+                    player.y + player.h > gCanvas.height - obs.h - 10
+                ) {
+                    isGameOver = true;
+                    isPlaying = false;
                 }
 
-                // Natural drifting movement
-                this.baseX += this.dx;
-                this.baseY += this.dy;
+                // Remove off-screen obstacles
+                if (obs.x + obs.w < 0) {
+                    obstacles.splice(i, 1);
+                    i--;
+                }
+            }
 
-                // Wall bouncing
-                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
-                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+            // Score & Competitive Difficulty Scaling
+            if (!isGameOver) {
+                score += 0.05; // Base score tick
+                scoreEl.innerText = formatScore(Math.floor(score));
+                
+                // Speed increases constantly up to a brutal cap
+                if (gameSpeed < 14) {
+                    gameSpeed += 0.002;
+                }
+                
+                frameCount++;
+                requestAnimationFrame(gameLoop);
+            } else {
+                // Game Over State
+                gCtx.fillStyle = 'rgba(2, 6, 23, 0.7)';
+                gCtx.fillRect(0, 0, gCanvas.width, gCanvas.height);
+                promptEl.innerHTML = "SYSTEM FAILURE<br><span style='font-size:0.8rem;color:#94A3B8;'>Press SPACE to Reboot</span>";
+                promptEl.style.display = 'block';
+                promptEl.style.color = '#DB2777';
+                
+                if (Math.floor(score) > highScore) {
+                    highScore = Math.floor(score);
+                    localStorage.setItem('frkr_highscore', highScore);
+                    highScoreEl.innerText = formatScore(highScore);
+                }
+            }
+        }
 
+        // Draw initial static frame
+        drawGround();
+        drawPlayer();
+
+        // ==========================================
+        // 🕸️ BACKGROUND NEURAL NETWORK (Unchanged)
+        // ==========================================
+        const bgCanvas = document.getElementById('neural-canvas');
+        const bgCtx = bgCanvas.getContext('2d');
+        let bgWidth, bgHeight, particles = [];
+        
+        function resizeBg() {
+            bgWidth = bgCanvas.width = window.innerWidth;
+            bgHeight = bgCanvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeBg);
+        resizeBg();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y; this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+            }
+            draw() {
+                bgCtx.beginPath();
+                bgCtx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                bgCtx.fillStyle = this.color;
+                bgCtx.fill();
+            }
+            update() {
+                this.x += this.dx;
+                this.y += this.dy;
+                if (this.x < 0 || this.x > bgWidth) this.dx = -this.dx;
+                if (this.y < 0 || this.y > bgHeight) this.dy = -this.dy;
                 this.draw();
             }
         }
 
-        // Initialize the Particle Network
-        function init() {
+        function initBg() {
             particles = [];
-            // Calculates amount of particles based on screen size (keeps it responsive)
-            let numberOfParticles = (width * height) / 9000; 
-            
-            let colors = ['rgba(59, 130, 246, 0.8)', 'rgba(139, 92, 246, 0.8)', 'rgba(219, 39, 119, 0.8)'];
-
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-                let dx = (Math.random() - 0.5) * 1; // Drift speed X
-                let dy = (Math.random() - 0.5) * 1; // Drift speed Y
+            let particleCount = (bgWidth * bgHeight) / 12000; 
+            let colors = ['rgba(59, 130, 246, 0.5)', 'rgba(139, 92, 246, 0.5)', 'rgba(219, 39, 119, 0.5)'];
+            for (let i = 0; i < particleCount; i++) {
+                let size = Math.random() * 2 + 1;
+                let x = Math.random() * bgWidth;
+                let y = Math.random() * bgHeight;
+                let dx = (Math.random() - 0.5) * 0.5; 
+                let dy = (Math.random() - 0.5) * 0.5; 
                 let color = colors[Math.floor(Math.random() * colors.length)];
-                
                 particles.push(new Particle(x, y, dx, dy, size, color));
             }
         }
 
-        // Connect the nodes with glowing lines
-        function connect() {
-            let opacityValue = 1;
+        function connectBg() {
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
-                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.5})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
+                    let distance = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
+                    if (distance < (bgWidth / 8) * (bgHeight / 8)) {
+                        let opacity = 1 - (distance / 20000);
+                        bgCtx.strokeStyle = `rgba(139, 92, 246, ${opacity * 0.3})`;
+                        bgCtx.lineWidth = 1;
+                        bgCtx.beginPath();
+                        bgCtx.moveTo(particles[a].x, particles[a].y);
+                        bgCtx.lineTo(particles[b].x, particles[b].y);
+                        bgCtx.stroke();
                     }
                 }
             }
         }
 
-        // Animation Loop
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, width, height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-            }
-            connect();
+        function animateBg() {
+            requestAnimationFrame(animateBg);
+            bgCtx.clearRect(0, 0, bgWidth, bgHeight);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connectBg();
         }
 
-        init();
-        animate();
+        initBg();
+        animateBg();
     </script>
 </body>
 </html>
