@@ -336,13 +336,34 @@
             flex-wrap: wrap;
             margin-top: 1rem;
         }
+        
+        /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
+        .gc-actions-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+            margin-bottom: 12px;
+        }
+        .gc-linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px;
+            background: rgba(37, 99, 235, 0.2);
+            border: 1px solid rgba(37, 99, 235, 0.5);
+            color: #fff;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: 'Syne', sans-serif;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .gc-linkedin-btn:hover { background: rgba(37, 99, 235, 0.4); transform: translateY(-2px); }
+        
         .gc-close {
             position: static;
-            min-height: 44px;
-            margin: 0 auto 8px;
-            flex-basis: 100%;
-            max-width: 190px;
-            padding: 12px 18px;
+            padding: 12px 24px;
             background: rgba(255,255,255,0.1);
             border: 1px solid rgba(255,255,255,0.2);
             border-radius: 30px;
@@ -350,9 +371,9 @@
             cursor: pointer;
             font-family: 'Syne', sans-serif;
             font-weight: 700;
-            transition: background 0.3s;
+            transition: all 0.3s ease;
         }
-        .gc-close:hover { background: rgba(255,255,255,0.2); }
+        .gc-close:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
         .gc-close[hidden] { display: none; }
         
         .gc-counter {
@@ -402,44 +423,6 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
-      /* 🚀 LINKEDIN BUTTON STYLE FOR EXPANDED VIEW */
-        .gc-panel .linkedin-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            margin-top: 1.2rem;
-            padding: 10px 24px;
-            background: rgba(37, 99, 235, 0.1);
-            border: 1px solid rgba(37, 99, 235, 0.4);
-            color: #fff;
-            border-radius: 100px;
-            text-decoration: none;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            
-            /* Hidden by default until tapped */
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            pointer-events: none; 
-        }
-        
-        /* ✨ Shows up ONLY when the image is tapped/zoomed! ✨ */
-        .gc-focused .gc-panel.is-active .linkedin-btn {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            pointer-events: auto; /* Clickable now! */
-        }
-        
-        .gc-focused .gc-panel.is-active .linkedin-btn:hover {
-            background: rgba(37, 99, 235, 0.3);
-            border-color: rgba(37, 99, 235, 0.8);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
-        }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -859,6 +842,15 @@
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
+                    <!-- Blog 8 (ChatGPT Ads) -->
+                    <a href="/blogs/blog-8.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
+                            <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
+                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
+                        </div>
+                    </a>
                     
                     <!-- ========================================== -->
                     <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
@@ -933,6 +925,15 @@
                             <div class="marquee-blog-date">Resource Guide</div>
                             <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
+                        </div>
+                    </a>
+                    <!-- Blog 8 (ChatGPT Ads) -->
+                    <a href="/blogs/blog-8.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
+                        <div class="marquee-blog-content">
+                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
+                            <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
+                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
                         </div>
                     </a>
                 </div>
@@ -1030,7 +1031,7 @@
         <p class="gc-hint">Scroll or drag to explore</p>
     </div>
 
-   <div class="gc-panels" aria-live="polite">
+    <div class="gc-panels" aria-live="polite">
         <!-- Panel 1 -->
         <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg" data-link="https://lnkd.in/p/g6KCZ75j">
             <h3>AI Productivity</h3>
@@ -1063,8 +1064,8 @@
 
         <!-- Panel 6 -->
         <article class="gc-panel" id="gc-panel-6" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.jpg" data-link="https://lnkd.in/p/geMbduQF">
-            <h3>Top 5 NotebookLM Workflows</h3>
-            <p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p>
+            <h3>LinkedIn Personal Brand</h3>
+            <p>Tips on how to build your personal brand on LinkedIn 24/7.</p>
         </article>
 
         <!-- Panel 7 -->
@@ -1099,8 +1100,8 @@
 
         <!-- Panel 12 -->
         <article class="gc-panel" id="gc-panel-12" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.jpg" data-link="https://lnkd.in/p/gp9yEGMR">
-            <h3>LinkedIn Personal Brand</h3>
-            <p>Tips on how to build your personal brand on LinkedIn 24/7.</p>
+            <h3>Top 5 NotebookLM Workflows</h3>
+            <p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p>
         </article>
 
         <!-- Panel 13 -->
@@ -1350,7 +1351,6 @@
 </script>
 
 <!-- 🚀 WEBGL CAROUSEL LOGIC -->
-<!-- 🚀 WEBGL CAROUSEL LOGIC -->
 <script>
     // 1. BRAND COLORS & CONFIG
     const COLOR_PAPER = "#0f172a"; // Matches your dark mode body
@@ -1511,11 +1511,25 @@
       let activePointerId = -1;
 
       const carouselRoot = viewportEl.closest(".glass-carousel");
+      
+      // ✨ Create a layout container for the side-by-side buttons
+      const actionsContainer = document.createElement("div");
+      actionsContainer.className = "gc-actions-container";
+      actionsContainer.hidden = true;
+      
+      const linkedinBtn = document.createElement("a");
+      linkedinBtn.className = "gc-linkedin-btn";
+      linkedinBtn.textContent = "Open LinkedIn ➔";
+      linkedinBtn.target = "_blank";
+      
       const closeBtn = document.createElement("button");
       closeBtn.className = "gc-close";
       closeBtn.textContent = "Back to Feed ×";
-      closeBtn.hidden = true;
-      carouselRoot.querySelector(".gc-meta")?.prepend(closeBtn);
+      
+      actionsContainer.appendChild(linkedinBtn);
+      actionsContainer.appendChild(closeBtn);
+      
+      carouselRoot.querySelector(".gc-meta")?.prepend(actionsContainer);
 
       let scrollCurrent = 0, scrollTarget = 0;
       let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
@@ -1525,8 +1539,18 @@
       const setFocused = (focused) => {
         focusTarget = focused ? 1 : 0;
         carouselRoot.classList.toggle("gc-focused", focused);
-        closeBtn.hidden = !focused;
-        // Removed the buggy opacity overrides here so CSS can do its job naturally!
+        actionsContainer.hidden = !focused; // Hide/Show both buttons together!
+        
+        if (focused) {
+            // Find which panel is active and steal its data-link URL for the button!
+            const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
+            if (activePanel && activePanel.dataset.link) {
+                linkedinBtn.href = activePanel.dataset.link;
+                linkedinBtn.style.display = "inline-flex";
+            } else {
+                linkedinBtn.style.display = "none";
+            }
+        }
         requestRender();
       };
 
