@@ -336,15 +336,19 @@
             flex-wrap: wrap;
             margin-top: 1rem;
         }
-        
-        /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
+       /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
         .gc-actions-container {
-            display: flex;
+            display: none; /* Hidden by default outside of full view */
             align-items: center;
             justify-content: center;
             gap: 15px;
             width: 100%;
             margin-bottom: 12px;
+        }
+        
+        /* ✨ Shows up ONLY when zoomed in (focused) ✨ */
+        .gc-focused .gc-actions-container {
+            display: flex; 
         }
         .gc-linkedin-btn {
             display: inline-flex;
