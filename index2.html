@@ -1320,7 +1320,7 @@
       return { num, imgUrl };
     }
 
-    // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
+   // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
     const VERTEX_SHADER = `#version 300 es
     in vec2 aPos;
     out vec2 vUv;
@@ -1336,13 +1336,23 @@
     uniform float uAspect, uHalfW, uHalfH, uStep, uScroll, uTime, uFocus, uSelected;
     uniform int uCount;
     uniform vec3 uPaper;
-    uniform sampler2D uT0, uT1, uT2, uT3;
+    uniform sampler2D uT0, uT1, uT2, uT3, uT4, uT5, uT6, uT7, uT8, uT9, uT10, uT11, uT12, uT13;
 
     vec4 samp(int i, vec2 uv){
       if(i == 0) return texture(uT0, uv);
       if(i == 1) return texture(uT1, uv);
       if(i == 2) return texture(uT2, uv);
-      return texture(uT3, uv);
+      if(i == 3) return texture(uT3, uv);
+      if(i == 4) return texture(uT4, uv);
+      if(i == 5) return texture(uT5, uv);
+      if(i == 6) return texture(uT6, uv);
+      if(i == 7) return texture(uT7, uv);
+      if(i == 8) return texture(uT8, uv);
+      if(i == 9) return texture(uT9, uv);
+      if(i == 10) return texture(uT10, uv);
+      if(i == 11) return texture(uT11, uv);
+      if(i == 12) return texture(uT12, uv);
+      return texture(uT13, uv);
     }
 
     vec3 strip(vec2 uv){
@@ -1393,7 +1403,7 @@
       float surface = uAspect < 1.5 ? smoothstep(.02, .2, length(color - uPaper)) * edgeWeight : 1.;
       color += (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
       frag = vec4(mix(base, color, 1. - smoothstep(.93, 1., radius)), 1.);
-    }`;
+    }
 
     function compileShader(gl, type, source) {
       const shader = gl.createShader(type);
@@ -1437,11 +1447,11 @@
         time: gl.getUniformLocation(program, "uTime"),
         countU: gl.getUniformLocation(program, "uCount"),
         paper: gl.getUniformLocation(program, "uPaper"),
-        tex: [0, 1, 2, 3].map(i => gl.getUniformLocation(program, `uT${i}`))
+        tex: Array.from({length: 14}, (_, i) => gl.getUniformLocation(program, `uT${i}`))
       };
 
       const textures = [];
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 14; i++) {
         const tex = gl.createTexture();
         gl.bindTexture(gl.TEXTURE_2D, tex);
         gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([15, 23, 42, 255]));
