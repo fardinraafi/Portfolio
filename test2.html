@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cobe 3D Globe - Styled</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&display=swap" rel="stylesheet">
+  <title>Cobe 3D Globe - Final</title>
   <style>
+    /* Matches the dark background of the website */
     body {
       background: #0e0e10; 
       display: flex;
@@ -13,18 +13,18 @@
       align-items: center;
       height: 100vh;
       margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
       overflow: hidden;
-      font-family: 'Bricolage Grotesque', sans-serif;
     }
 
-    /* Container holding the globe and the clock */
+    /* Container holding both the globe and the clock */
     .globe-wrapper {
       position: relative;
-      width: 700px;
-      height: 700px;
+      width: 500px;
+      height: 500px;
     }
 
-    /* The radial fade mask to blend the globe edges into the background */
+    /* This mask smoothly fades out the edges of the globe like your screenshot */
     .globe-container {
       width: 100%;
       height: 100%;
@@ -32,10 +32,12 @@
       mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 65%);
     }
 
+    /* The CSS size is 500px, but the internal HTML size is 1000px for Retina sharpness */
     canvas {
       width: 100%;
       height: 100%;
       cursor: grab;
+      image-rendering: pixelated;
     }
     canvas:active {
       cursor: grabbing;
@@ -44,32 +46,34 @@
     /* Local Time Overlay Styling */
     .time-block {
       position: absolute;
-      bottom: 60px;
-      left: 40px;
+      bottom: 20px;
+      left: 0px;
       color: white;
       pointer-events: none;
     }
 
     .time-label {
-      font-size: 14px;
+      font-size: 12px;
       color: #757a82;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      font-weight: 700;
-      margin-bottom: -5px;
+      font-weight: 800;
+      margin-bottom: 2px;
     }
 
     .time-value {
-      font-size: 72px;
-      font-weight: 700;
+      font-size: 54px;
+      font-weight: 800;
       display: flex;
       align-items: baseline;
-      gap: 12px;
+      gap: 8px;
       letter-spacing: -0.02em;
+      margin: 0;
+      line-height: 1;
     }
 
     #time-ampm {
-      font-size: 24px;
+      font-size: 18px;
     }
   </style>
 </head>
@@ -78,59 +82,59 @@
   <div class="globe-wrapper">
     <!-- Globe -->
     <div class="globe-container">
-      <canvas id="cobe"></canvas>
+      <!-- CRITICAL: The width and height attributes MUST be exactly 1000 here -->
+      <canvas id="cobe" width="1000" height="1000"></canvas>
     </div>
 
     <!-- Clock Overlay -->
     <div class="time-block">
       <div class="time-label">Local Time</div>
       <div class="time-value">
-        <span id="time-digits">12:58</span>
+        <span id="time-digits">12:00</span>
         <span id="time-ampm">AM</span>
       </div>
     </div>
   </div>
 
   <script type="module">
-    import createGlobe from 'https://unpkg.com/cobe@0.6.3/dist/index.mjs';
+    import createGlobe from 'https://esm.sh/cobe';
 
     const canvas = document.getElementById("cobe");
     
-    // Scale for high-DPI displays
-    const size = 700;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
+    // CRITICAL FIX: Explicitly forcing the canvas internal resolution in JS to match the shader
+    canvas.width = 1000;
+    canvas.height = 1000;
 
-    let phi = 4.3; // Starts the rotation facing South Asia/Middle East
+    let phi = 4.0; // Starts the globe rotated to face Asia/Middle East
 
     const globe = createGlobe(canvas, {
-      devicePixelRatio: dpr,
-      width: size * dpr,
-      height: size * dpr,
+      devicePixelRatio: 2,
+      width: 1000,
+      height: 1000,
       phi: phi,
       theta: 0.2,
       dark: 1,
-      diffuse: 0.55,
-      mapSamples: 20000,
-      mapBrightness: 12,
-      baseColor: [0.11, 0.12, 0.12], // Dark slate to match the image background
-      markerColor: [1, 1, 1],        // Pure white marker
-      glowColor: [0, 0, 0],          // Removes the outer atmospheric glow
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      // [0.3, 0.3, 0.3] is the exact math requirement for dark mode to render bright white dots
+      baseColor: [0.3, 0.3, 0.3], 
+      markerColor: [1, 1, 1], // Pure white marker
+      glowColor: [0, 0, 0], // Set to black to turn off the outer glow, matching your image
       markers: [
-        { location: [23.8103, 90.4125], size: 0.07 }
+        { location: [23.8103, 90.4125], size: 0.08 }
       ]
     });
 
-    // Rotation Loop
-    function animateGlobe() {
+    // The animation loop as required by COBE v2
+    function animate() {
       phi += 0.003;
       globe.update({ phi });
-      requestAnimationFrame(animateGlobe);
+      requestAnimationFrame(animate);
     }
-    animateGlobe();
+    animate();
 
-    // Clock Logic
+    // The live ticking clock logic
     function updateClock() {
       const now = new Date();
       let hours = now.getHours();
