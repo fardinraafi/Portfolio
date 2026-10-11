@@ -427,6 +427,30 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
+        /* 🚀 SMALL EDU LOGOS FOR INDEX PAGE */
+        .timeline-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 0.3rem;
+        }
+        .timeline-title-wrap h3 {
+            margin-bottom: 0 !important; /* Stops the title from pushing down */
+            line-height: 1.2;
+        }
+        .timeline-edu-logo {
+            width: 36px;
+            height: 36px;
+            object-fit: contain;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+        body.dark-mode .timeline-edu-logo {
+            border-color: rgba(255,255,255,0.1);
+        }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -688,26 +712,38 @@
         </section>
 
         <section class="glass-card">
+           <section class="glass-card">
             <div class="section-title">Education</div>
             
             <div class="timeline-item">
-                <h3>Bachelor of Business Administration (BBA)</h3>
+                <div class="timeline-title-wrap">
+                    <img src="/misc_img/uni.png" alt="BUBT" class="timeline-edu-logo">
+                    <h3>Bachelor of Business Administration (BBA)</h3>
+                </div>
                 <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
                 <ul>
                     <li><strong>Major:</strong> Marketing</li>
                     <li><strong>CGPA:</strong> 3.80</li>
                 </ul>
             </div>
+            
             <div class="timeline-item">
-                <h3>Higher Secondary Certificate (HSC)</h3>
+                <div class="timeline-title-wrap">
+                    <img src="/misc_img/hsc.png" alt="Dhaka Commerce College" class="timeline-edu-logo">
+                    <h3>Higher Secondary Certificate (HSC)</h3>
+                </div>
                 <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
                 <ul>
                     <li><strong>Major:</strong> Commerce</li>
                     <li><strong>GPA:</strong> 5.00</li>
                 </ul>
             </div>
+            
             <div class="timeline-item">
-                <h3>Secondary School Certificate (SSC)</h3>
+                <div class="timeline-title-wrap">
+                    <img src="/misc_img/ssc.png" alt="Adarsha High School" class="timeline-edu-logo">
+                    <h3>Secondary School Certificate (SSC)</h3>
+                </div>
                 <div class="meta">Adarsha High School • 2019</div>
                 <ul>
                     <li><strong>Major:</strong> Commerce</li>
