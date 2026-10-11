@@ -5,36 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rotating 3D Globe</title>
   <style>
-    /* Match the dark background of the website */
-    body { 
+    /* Matches the dark background of the website */
+    body {
       background: #0e0e10; 
-      display: flex; 
-      justify-content: center; 
-      align-items: center; 
-      height: 100vh; 
-      margin: 0; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
     }
-    .globe-container { 
-      width: 500px; 
-      height: 500px; 
+    .globe-container {
+      width: 500px;
+      height: 500px;
     }
-    canvas { 
-      width: 100%; 
-      height: 100%; 
-      /* Makes the dots look crisp */
-      image-rendering: pixelated; 
+    canvas {
+      width: 100%;
+      height: 100%;
+      /* Keeps the dots looking crisp */
+      image-rendering: pixelated;
     }
   </style>
 </head>
 <body>
 
   <div class="globe-container">
-    <!-- The canvas size is double the CSS size for high-DPI (Retina) displays -->
+    <!-- Width and height are doubled for high-resolution screens -->
     <canvas id="cobe" width="1000" height="1000"></canvas>
   </div>
 
   <script type="module">
-    // Import the Cobe library directly via CDN
+    // Load the open-source Cobe 3D globe library directly from the web
     import createGlobe from 'https://cdn.skypack.dev/cobe';
 
     let phi = 0;
@@ -45,22 +46,22 @@
       width: 1000,
       height: 1000,
       phi: 0,
-      theta: 0.2,
-      dark: 0, // 1 = Dark mode, 0 = Light mode
-      diffuse: 1.2,
-      mapSamples: 16000, // Number of dots that make up the globe
-      mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3], // RGB values for the globe color
-      markerColor: [0.98, 0.37, 0.36], // RGB values for the coral location dot
-      glowColor: [0.05, 0.05, 0.05], // Subtle edge glow
+      theta: 0.3,
+      dark: 1,             // 1 = Dark mode
+      diffuse: 2,
+      mapSamples: 20000,   // Number of dots
+      mapBrightness: 6,    // Controls how bright the white dots glow
+      baseColor: [1, 1, 1], // Pure white dots (RGB format: 1,1,1)
+      markerColor: [0.98, 0.38, 0.36], // Coral location pin (#FB605D)
+      glowColor: [0.1, 0.1, 0.1], // Subtle background glow
       markers: [
-        // Highlighted location [Latitude, Longitude]. Currently set to Dhaka.
-        { location: [23.8103, 90.4125], size: 0.1 } 
+        // Highlighted location (Currently set to Dhaka: Lat 23.8103, Long 90.4125)
+        { location: [23.8103, 90.4125], size: 0.1 }
       ],
       onRender: (state) => {
-        // This function fires on every frame to rotate the globe
+        // This spins the globe smoothly on every frame
         state.phi = phi;
-        phi += 0.003; // Adjust this number to change rotation speed
+        phi += 0.005; // Change this number to spin faster or slower
       },
     });
   </script>
