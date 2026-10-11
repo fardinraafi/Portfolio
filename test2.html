@@ -3,12 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cobe 3D Globe - Flat Marker</title>
-  <!-- Pulling in the font from your screenshot -->
+  <title>Cobe 3D Globe - 3D Marker</title>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #0e0e10; 
+      background: #0e0e10;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -39,33 +38,6 @@
     }
     canvas:active {
       cursor: grabbing;
-    }
-
-    /* 
-     * THE FLAT MARKER:
-     * We use CSS Anchor Positioning to bind this 2D HTML div 
-     * to the invisible WebGL marker's coordinates.
-     */
-    .flat-marker {
-      position: absolute;
-      position-anchor: --cobe-dhaka;
-      top: anchor(center);
-      left: anchor(center);
-      translate: -50% -50%;
-      width: 12px;
-      height: 12px;
-      background: white;
-      border-radius: 50%;
-      /* Cobe automatically updates this variable to 0 when the dot rotates behind the globe */
-      opacity: var(--cobe-visible-dhaka, 0);
-      transition: opacity 0.2s ease;
-      pointer-events: none;
-      z-index: 10;
-    }
-
-    /* Hide labels in older browsers without anchor positioning */
-    @supports not (position-anchor: --test) {
-      .flat-marker { display: none; }
     }
 
     /* Clock Styling */
@@ -106,12 +78,8 @@
 <body>
 
   <div class="globe-wrapper">
-    <!-- Globe & Marker Container -->
     <div class="globe-container">
       <canvas id="cobe" width="1000" height="1000"></canvas>
-      
-      <!-- The perfectly flat 2D HTML dot -->
-      <div class="flat-marker"></div>
     </div>
 
     <!-- Clock Overlay -->
@@ -143,13 +111,13 @@
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      baseColor: [0.3, 0.3, 0.3], 
-      glowColor: [0, 0, 0], 
-      
+      baseColor: [0.3, 0.3, 0.3],
+      glowColor: [0, 0, 0],
+
+      // White marker, drawn by WebGL on the globe surface
+      markerColor: [1, 1, 1],
       markers: [
-        // We set size to 0 to hide the 3D WebGL sphere. 
-        // The 'id' creates the CSS Anchor variable (--cobe-dhaka)
-        { location: [23.8103, 90.4125], size: 0, id: 'dhaka' }
+        { location: [23.8103, 90.4125], size: 0.06 }
       ]
     });
 
@@ -165,13 +133,13 @@
       let hours = now.getHours();
       const ampm = hours >= 12 ? 'PM' : 'AM';
       hours = hours % 12;
-      hours = hours ? hours : 12; 
+      hours = hours ? hours : 12;
       const minutes = now.getMinutes().toString().padStart(2, '0');
-      
+
       document.getElementById('time-digits').textContent = `${hours}:${minutes}`;
       document.getElementById('time-ampm').textContent = ampm;
     }
-    
+
     setInterval(updateClock, 1000);
     updateClock();
   </script>
