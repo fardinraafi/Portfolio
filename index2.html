@@ -987,7 +987,7 @@
     </div>
 
     <div class="gc-meta">
-        <p class="gc-counter" aria-hidden="true">01 / 04</p>
+        <p class="gc-counter" aria-hidden="true">01 / 14</p>
         <div class="gc-dots" role="tablist"></div>
         <p class="gc-hint">Scroll or drag to explore</p>
     </div>
@@ -1016,6 +1016,7 @@
             <h3>Self-Training Made Easy</h3>
             <p>How to use AI prompts to create a daily practice guide.</p>
         </article>
+        
         <!-- Panel 5 -->
         <article class="gc-panel" id="gc-panel-5" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.jpg">
             <h3>Smart Ad Design</h3>
@@ -1069,6 +1070,7 @@
             <h3>What is OOH Marketing</h3>
             <p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p>
         </article>
+        
          <!-- Panel 14 -->
         <article class="gc-panel" id="gc-panel-14" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.jpg">
             <h3>The Rise of AI Agents</h3>
@@ -1320,7 +1322,7 @@
       return { num, imgUrl };
     }
 
-   // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
+    // 2. WEBGL2 GLSL SHADERS (LENS & RGB SPLIT)
     const VERTEX_SHADER = `#version 300 es
     in vec2 aPos;
     out vec2 vUv;
@@ -1358,7 +1360,7 @@
     vec3 strip(vec2 uv){
       float x = (uv.x - .5) * uAspect;
       float slot = floor(x / uStep + uScroll + .5);
-      float zoom = 1. + .85 * uFocus;
+      float zoom = 1. + 1.6 * uFocus; // Zoomed in much more on click
       float selectedX = x - (uSelected - uScroll) * uStep;
       if(abs(selectedX) < uHalfW * zoom) slot = uSelected;
       bool selected = abs(slot - uSelected) < .1;
@@ -1590,7 +1592,8 @@
           const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
 
           if (focusTarget) {
-            if (Math.abs(clickX) > halfW * 1.95 || Math.abs(clickY) > halfH * 1.95) setFocused(false);
+            // Increased the close area boundary slightly to account for the larger zoom size
+            if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
           } else {
             const clickedSlot = Math.round(clickX / step + scrollCurrent);
             if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
