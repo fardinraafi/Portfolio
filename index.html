@@ -402,7 +402,7 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
-        /* 🚀 LINKEDIN BUTTON STYLE FOR EXPANDED VIEW */
+      /* 🚀 LINKEDIN BUTTON STYLE FOR EXPANDED VIEW */
         .gc-panel .linkedin-btn {
             display: inline-flex;
             align-items: center;
@@ -418,9 +418,23 @@
             font-weight: 700;
             font-size: 0.9rem;
             transition: all 0.3s ease;
-            pointer-events: auto; /* Ensures it is clickable */
+            
+            /* Hidden by default until tapped */
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            pointer-events: none; 
         }
-        .gc-panel .linkedin-btn:hover {
+        
+        /* ✨ Shows up ONLY when the image is tapped/zoomed! ✨ */
+        .gc-focused .gc-panel.is-active .linkedin-btn {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            pointer-events: auto; /* Clickable now! */
+        }
+        
+        .gc-focused .gc-panel.is-active .linkedin-btn:hover {
             background: rgba(37, 99, 235, 0.3);
             border-color: rgba(37, 99, 235, 0.8);
             transform: translateY(-2px);
@@ -1526,11 +1540,7 @@
         focusTarget = focused ? 1 : 0;
         carouselRoot.classList.toggle("gc-focused", focused);
         closeBtn.hidden = !focused;
-        const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
-        if (activePanel) {
-            activePanel.style.opacity = focused ? "1" : "0";
-            activePanel.style.transform = focused ? "translateY(0)" : "translateY(10px)";
-        }
+        // Removed the buggy opacity overrides here so CSS can do its job naturally!
         requestRender();
       };
 
