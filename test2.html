@@ -2,28 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rotating 3D Globe</title>
+  <title>Cobe 3D Globe</title>
   <style>
-    /* Matches the dark background of the website */
     body {
-      background: #0e0e10; 
+      background: #0e0e10;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
       margin: 0;
-      overflow: hidden;
     }
-    .globe-container {
+    /* The CSS size is exactly half the HTML buffer size for a sharp Retina look */
+    canvas {
       width: 500px;
       height: 500px;
-      position: relative;
-    }
-    canvas {
-      width: 100%;
-      height: 100%;
-      contain: layout paint size;
       cursor: grab;
     }
     canvas:active {
@@ -33,48 +25,36 @@
 </head>
 <body>
 
-  <div class="globe-container">
-    <canvas id="cobe"></canvas>
-  </div>
+  <!-- The internal buffer is strictly locked to 1000x1000 -->
+  <canvas id="cobe" width="1000" height="1000"></canvas>
 
   <script type="module">
-    // Load the Cobe 3D globe library directly from the web
-    import createGlobe from 'https://cdn.skypack.dev/cobe';
+    // Using esm.sh instead of Skypack to ensure the map texture doesn't break
+    import createGlobe from 'https://esm.sh/cobe';
 
     let phi = 0;
     const canvas = document.getElementById("cobe");
-    
-    // Scale the canvas for high-DPI (Retina) displays so dots are crisp
-    const size = 500;
-    const dpr = window.devicePixelRatio || 1;
-    canvas.width = size * dpr;
-    canvas.height = size * dpr;
 
-    const globe = createGlobe(canvas, {
-      devicePixelRatio: dpr,
-      width: size * dpr,
-      height: size * dpr,
+    createGlobe(canvas, {
+      devicePixelRatio: 2,
+      width: 1000,
+      height: 1000,
       phi: 0,
       theta: 0.3,
-      dark: 1,                      // 1 = Dark mode (white dots)
-      diffuse: 1.2,                 // Light diffusion
-      mapSamples: 16000,            // The amount of dots 
-      mapBrightness: 12,            // How bright the white dots glow
-      baseColor: [0.15, 0.15, 0.15], // Dark grey sphere (lets white dots show)
-      markerColor: [0.98, 0.38, 0.36], // Coral location pin
-      glowColor: [1, 1, 1],         // White atmospheric edge glow
+      dark: 1,
+      diffuse: 1.2,
+      mapSamples: 16000,
+      mapBrightness: 6,
+      baseColor: [0.1, 0.1, 0.1],
+      markerColor: [0.98, 0.38, 0.36],
+      glowColor: [0.05, 0.05, 0.05],
       markers: [
-        // Location marker (Lat, Long). Currently set to Dhaka.
+        // Coral marker pinned to Dhaka
         { location: [23.8103, 90.4125], size: 0.08 }
       ],
       onRender: (state) => {
-        // Rotates the globe on every frame
         state.phi = phi;
-        phi += 0.003; 
-        
-        // Cobe requires width/height to be updated on every frame to render dots
-        state.width = size * dpr;
-        state.height = size * dpr;
+        phi += 0.005;
       }
     });
   </script>
