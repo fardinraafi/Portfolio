@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cobe 3D Globe - 3D Marker</title>
+  <title>Cobe 3D Globe - Draggable</title>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet">
   <style>
     body {
@@ -35,6 +35,8 @@
       height: 100%;
       cursor: grab;
       image-rendering: pixelated;
+      /* Stops the page from scrolling while dragging on touch screens */
+      touch-action: none;
     }
     canvas:active {
       cursor: grabbing;
@@ -99,14 +101,23 @@
     canvas.width = 1000;
     canvas.height = 1000;
 
+    const AUTO_SPEED = 0.003;     // auto-rotation speed
+    const DRAG_SENSITIVITY = 200; // higher = slower drag
+    const DEFAULT_THETA = 0.2;    // resting tilt
+
     let phi = 4.0;
+    let theta = DEFAULT_THETA;
+
+    let dragging = false;
+    let lastX = 0;
+    let lastY = 0;
 
     const globe = createGlobe(canvas, {
       devicePixelRatio: 2,
       width: 1000,
       height: 1000,
       phi: phi,
-      theta: 0.2,
+      theta: theta,
       dark: 1,
       diffuse: 1.2,
       mapSamples: 16000,
@@ -114,16 +125,49 @@
       baseColor: [0.3, 0.3, 0.3],
       glowColor: [0, 0, 0],
 
-      // White marker, drawn by WebGL on the globe surface
       markerColor: [1, 1, 1],
       markers: [
         { location: [23.8103, 90.4125], size: 0.06 }
       ]
     });
 
+    // Drag controls (works with mouse, touch and pen)
+    canvas.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      canvas.setPointerCapture(e.pointerId);
+    });
+
+    canvas.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      const dx = e.clientX - lastX;
+      const dy = e.clientY - lastY;
+      lastX = e.clientX;
+      lastY = e.clientY;
+
+      phi += dx / DRAG_SENSITIVITY;
+      theta += dy / DRAG_SENSITIVITY;
+      // Keep the tilt in a sensible range so the globe never flips over
+      theta = Math.max(-0.8, Math.min(0.8, theta));
+    });
+
+    const stopDragging = (e) => {
+      dragging = false;
+      if (canvas.hasPointerCapture(e.pointerId)) {
+        canvas.releasePointerCapture(e.pointerId);
+      }
+    };
+    canvas.addEventListener('pointerup', stopDragging);
+    canvas.addEventListener('pointercancel', stopDragging);
+
     function animate() {
-      phi += 0.003;
-      globe.update({ phi });
+      if (!dragging) {
+        phi += AUTO_SPEED;
+        // Ease the tilt back to its resting angle after a drag
+        theta += (DEFAULT_THETA - theta) * 0.03;
+      }
+      globe.update({ phi, theta });
       requestAnimationFrame(animate);
     }
     animate();
