@@ -1332,7 +1332,7 @@
       gl_Position = vec4(aPos, 0.0, 1.0);
     }`;
 
-    const FRAGMENT_SHADER = `#version 300 es
+   const FRAGMENT_SHADER = `#version 300 es
     precision highp float;
     precision highp sampler2DArray;
     in vec2 vUv;
@@ -1354,9 +1354,12 @@
       if(selected){ localX /= zoom; y /= zoom; }
       else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
       if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
-      int index = int(mod(slot, float(uCount)));
       
-      // Look up the image in our new 3D Texture Array!
+      // ✨ THE FIX: Use pure integer math to perfectly wrap the images ✨
+      int islot = int(slot);
+      int index = islot % uCount;
+      if (index < 0) index += uCount;
+      
       return texture(uTex, vec3(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5, float(index))).rgb;
     }
 
@@ -1392,8 +1395,7 @@
       float surface = uAspect < 1.5 ? smoothstep(.02, .2, length(color - uPaper)) * edgeWeight : 1.;
       color += (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
       frag = vec4(mix(base, color, 1. - smoothstep(.93, 1., radius)), 1.);
-    }
-    `;
+    }`;
 
     function compileShader(gl, type, source) {
       const shader = gl.createShader(type);
