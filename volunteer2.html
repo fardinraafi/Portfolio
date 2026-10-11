@@ -101,7 +101,16 @@
             aspect-ratio: 1 / 1;
             margin: -10px auto -50px;
             z-index: 1;
+
+            /* GLOBE TRANSPARENCY
+               1 = solid, 0 = invisible. Lower the number for more see-through. */
+            --globe-opacity: 0.75;
         }
+        /* Light mode gets its own value (a light globe needs a bit less transparency to stay visible) */
+        body:not(.dark-mode) .globe-wrapper {
+            --globe-opacity: 0.85;
+        }
+
         .globe-container {
             width: 100%;
             height: 100%;
@@ -113,6 +122,8 @@
             height: 100%;
             cursor: grab;
             image-rendering: pixelated;
+            opacity: var(--globe-opacity);
+            transition: opacity 0.3s ease;
             /* Lets the page still scroll vertically on touch screens */
             touch-action: pan-y;
         }
@@ -300,7 +311,7 @@
     <!-- RIGHT COLUMN: Globe & Contact Form -->
     <div class="aurora-wrapper reveal" style="align-self: start; display: flex; flex-direction: column; gap: 2rem;">
         
-        <!-- 3D GLOBE (replaces the old Base of Operations / Local Time card) -->
+        <!-- 3D GLOBE -->
         <div class="globe-wrapper">
             <div class="globe-container">
                 <canvas id="cobe" width="1000" height="1000"></canvas>
