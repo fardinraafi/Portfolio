@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cobe 3D Globe - Final</title>
+  <title>Cobe 3D Globe - Flat Marker</title>
+  <!-- Pulling in the font from your screenshot -->
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet">
   <style>
-    /* Matches the dark background of the website */
     body {
       background: #0e0e10; 
       display: flex;
@@ -13,18 +14,16 @@
       align-items: center;
       height: 100vh;
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: 'Bricolage Grotesque', Arial, sans-serif;
       overflow: hidden;
     }
 
-    /* Container holding both the globe and the clock */
     .globe-wrapper {
       position: relative;
       width: 500px;
       height: 500px;
     }
 
-    /* This mask smoothly fades out the edges of the globe like your screenshot */
     .globe-container {
       width: 100%;
       height: 100%;
@@ -32,7 +31,6 @@
       mask-image: radial-gradient(circle at 50% 50%, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 65%);
     }
 
-    /* The CSS size is 500px, but the internal HTML size is 1000px for Retina sharpness */
     canvas {
       width: 100%;
       height: 100%;
@@ -43,13 +41,41 @@
       cursor: grabbing;
     }
 
-    /* Local Time Overlay Styling */
+    /* 
+     * THE FLAT MARKER:
+     * We use CSS Anchor Positioning to bind this 2D HTML div 
+     * to the invisible WebGL marker's coordinates.
+     */
+    .flat-marker {
+      position: absolute;
+      position-anchor: --cobe-dhaka;
+      top: anchor(center);
+      left: anchor(center);
+      translate: -50% -50%;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      /* Cobe automatically updates this variable to 0 when the dot rotates behind the globe */
+      opacity: var(--cobe-visible-dhaka, 0);
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      z-index: 10;
+    }
+
+    /* Hide labels in older browsers without anchor positioning */
+    @supports not (position-anchor: --test) {
+      .flat-marker { display: none; }
+    }
+
+    /* Clock Styling */
     .time-block {
       position: absolute;
       bottom: 20px;
       left: 0px;
       color: white;
       pointer-events: none;
+      z-index: 10;
     }
 
     .time-label {
@@ -80,10 +106,12 @@
 <body>
 
   <div class="globe-wrapper">
-    <!-- Globe -->
+    <!-- Globe & Marker Container -->
     <div class="globe-container">
-      <!-- CRITICAL: The width and height attributes MUST be exactly 1000 here -->
       <canvas id="cobe" width="1000" height="1000"></canvas>
+      
+      <!-- The perfectly flat 2D HTML dot -->
+      <div class="flat-marker"></div>
     </div>
 
     <!-- Clock Overlay -->
@@ -100,12 +128,10 @@
     import createGlobe from 'https://esm.sh/cobe';
 
     const canvas = document.getElementById("cobe");
-    
-    // CRITICAL FIX: Explicitly forcing the canvas internal resolution in JS to match the shader
     canvas.width = 1000;
     canvas.height = 1000;
 
-    let phi = 4.0; // Starts the globe rotated to face Asia/Middle East
+    let phi = 4.0;
 
     const globe = createGlobe(canvas, {
       devicePixelRatio: 2,
@@ -117,16 +143,16 @@
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
-      // [0.3, 0.3, 0.3] is the exact math requirement for dark mode to render bright white dots
       baseColor: [0.3, 0.3, 0.3], 
-      markerColor: [1, 1, 1], // Pure white marker
-      glowColor: [0, 0, 0], // Set to black to turn off the outer glow, matching your image
+      glowColor: [0, 0, 0], 
+      
       markers: [
-        { location: [23.8103, 90.4125], size: 0.08 }
+        // We set size to 0 to hide the 3D WebGL sphere. 
+        // The 'id' creates the CSS Anchor variable (--cobe-dhaka)
+        { location: [23.8103, 90.4125], size: 0, id: 'dhaka' }
       ]
     });
 
-    // The animation loop as required by COBE v2
     function animate() {
       phi += 0.003;
       globe.update({ phi });
@@ -134,7 +160,6 @@
     }
     animate();
 
-    // The live ticking clock logic
     function updateClock() {
       const now = new Date();
       let hours = now.getHours();
