@@ -427,6 +427,54 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
+        /* 🚀 MOBILE UPGRADE: APP-LIKE SWIPEABLE RECOMMENDATIONS */
+        @media (max-width: 992px) {
+            /* Make the giant background text fit elegantly */
+            .reco-bg-text {
+                font-size: 28vw !important;
+                line-height: 0.85 !important;
+                top: 5% !important;
+                opacity: 0.08 !important;
+            }
+
+            /* Turn the grid into a horizontal swipe track */
+            .reco-cards-container {
+                display: flex !important;
+                flex-direction: row !important;
+                flex-wrap: nowrap !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                scroll-snap-type: x mandatory; /* Snaps cards perfectly to center */
+                scroll-behavior: smooth;
+                -webkit-overflow-scrolling: touch; /* Butter-smooth iOS scrolling */
+                padding: 1rem 5vw 2rem 5vw !important;
+                gap: 1.5rem !important;
+                
+                /* Hide the ugly scrollbar */
+                -ms-overflow-style: none;
+                scrollbar-width: none;
+            }
+            
+            .reco-cards-container::-webkit-scrollbar {
+                display: none;
+            }
+
+            /* Size each card perfectly for the mobile screen */
+            .reco-glass-card {
+                min-width: 85vw !important;
+                max-width: 85vw !important;
+                scroll-snap-align: center; /* Forces the card to stop exactly in the middle */
+                flex-shrink: 0;
+                margin: 0 !important; 
+                transform: scale(0.98);
+                transition: transform 0.3s ease;
+            }
+            
+            /* Add a tiny pop effect when scrolling/touching */
+            .reco-glass-card:active {
+                transform: scale(1);
+            }
+        }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
