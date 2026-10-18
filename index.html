@@ -427,18 +427,26 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
-        /* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
+      /* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
         @media (max-width: 992px) {
-            /* Keep the giant background text, just scale it for mobile */
+            /* Force the giant text to center properly and be visible */
             .reco-bg-text {
-                font-size: 32vw !important;
-                line-height: 0.85 !important;
-                top: 2% !important;
-                opacity: 0.08 !important;
+                position: absolute !important;
+                top: 5% !important;
+                left: 50% !important;
+                transform: translateX(-50%) !important;
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 26vw !important; 
+                line-height: 1 !important;
+                opacity: 0.15 !important; /* Bumped up visibility slightly */
+                z-index: 0 !important;
             }
 
-            /* Stack them vertically with nice breathing room */
+            /* Stack them vertically and bring them above the text */
             .reco-cards-container {
+                position: relative !important;
+                z-index: 2 !important; 
                 display: flex !important;
                 flex-direction: column !important;
                 padding: 0 1.5rem !important;
