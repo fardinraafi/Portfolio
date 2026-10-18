@@ -427,36 +427,44 @@
             font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
-      /* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
+/* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
         @media (max-width: 992px) {
-            /* Force the giant text to center properly and be visible */
+            /* 1. Completely hide the giant background text on mobile */
             .reco-bg-text {
-                position: absolute !important;
-                top: 5% !important;
-                left: 50% !important;
-                transform: translateX(-50%) !important;
-                width: 100% !important;
-                text-align: center !important;
-                font-size: 26vw !important; 
-                line-height: 1 !important;
-                opacity: 0.15 !important; /* Bumped up visibility slightly */
-                z-index: 0 !important;
+                display: none !important;
             }
 
-            /* Stack them vertically and bring them above the text */
+            /* 2. Stack the cards vertically */
             .reco-cards-container {
-                position: relative !important;
-                z-index: 2 !important; 
                 display: flex !important;
                 flex-direction: column !important;
-                padding: 0 1.5rem !important;
+                padding: 0 1.5rem 2rem 1.5rem !important;
                 gap: 1.5rem !important;
+            }
+            
+            /* 3. Magically inject the new title right before the first card */
+            .reco-cards-container::before {
+                content: "Recommendations:";
+                font-family: 'Syne', sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--text-main);
+                margin-bottom: 0.2rem;
+                margin-top: 1rem;
+                display: block;
             }
             
             /* Ensure cards fit the screen perfectly */
             .reco-glass-card {
                 width: 100% !important;
                 margin: 0 !important; 
+            }
+        }
+        
+        /* Ensures the injected title looks crisp in Dark Mode */
+        @media (max-width: 992px) {
+            body.dark-mode .reco-cards-container::before {
+                color: #F1F5F9;
             }
         }
     </style>
