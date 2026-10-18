@@ -292,7 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const emailInput = playbookForm.querySelector('input[name="email"]').value;
             
             submitBtn.innerHTML = 'Opening...';
-            window.open('/misc_files/B2B_Growth_Playbook.pdf', '_blank');
+            window.open('/misc_files/Marketing_Playbook.pdf', '_blank');
             
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcwqAKQ8S_LzdlYhTRQUw73dQGU8o_T0KfSHKPKYN6lY-V9n_jdxxGFoCLkHWfWRE0VA/exec'; 
             
