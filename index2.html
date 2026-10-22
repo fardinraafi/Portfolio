@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- SEO Primary Tags -->
+    <!-- SEO Primary Tags -->
     <title>Fardin Rahman Khan Raafi | Marketing Executive</title>
     <meta name="description" content="Official portfolio of Fardin Rahman Khan Raafi. Marketing Executive specializing in B2B sales, brand strategy, and growth operations in Dhaka.">
     <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Fardinraafi, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
@@ -12,8 +12,8 @@
     <!-- Favicon / Site Icon -->
     <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
-    
-   <!-- Google Search Console Verification -->
+
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="YxKX2DZgEMnJ-_e98H863nNIqMUPVLGQvdMnSdHa6Kg"/>
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Fardin Rahman Khan Raafi | Portfolio">
@@ -21,8 +21,8 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fardinraafi.com">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
-    
-  <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
+
+    <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
     <meta property="og:url" content="https://fardinraafi.com/">
@@ -36,20 +36,380 @@
     <meta property="twitter:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
     <meta property="twitter:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
     <meta property="twitter:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
-    
+
     <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
     <link rel="alternate" type="text/html" href="/resume.html">
     <link rel="preload" as="image" href="/misc_img/profile.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- External stylesheet preserved for multi-page ecosystem compatibility -->
     <link rel="stylesheet" href="/style.css">
-    
+
     <style>
-/* 🚀 FIXED BLUR TEXT REVEAL EFFECT */
+        /* ==========================================================================
+           🚀 2026 CYBER-EXECUTIVE DESIGN TOKENS & COMPLETE FALLBACK ARCHITECTURE
+           ========================================================================== */
+        :root {
+            --c1: #2563EB;
+            --c2: #7C3AED;
+            --c3: #06B6D4;
+            --accent-emerald: #10B981;
+            --bg-main: #F8FAFC;
+            --bg-elevated: rgba(255, 255, 255, 0.78);
+            --bg-glass: rgba(255, 255, 255, 0.68);
+            --text-main: #0F172A;
+            --text-muted: #475569;
+            --text-light: #94A3B8;
+            --border-glass: rgba(15, 23, 42, 0.09);
+            --border-glow: rgba(37, 99, 235, 0.35);
+            --card-shadow: 0 20px 50px rgba(15, 23, 42, 0.06);
+            --font-display: 'Syne', sans-serif;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+
+        body.dark-mode {
+            --c1: #3B82F6;
+            --c2: #8B5CF6;
+            --c3: #22D3EE;
+            --bg-main: #050814;
+            --bg-elevated: rgba(15, 23, 42, 0.72);
+            --bg-glass: rgba(15, 23, 42, 0.62);
+            --text-main: #F8FAFC;
+            --text-muted: #94A3B8;
+            --text-light: #64748B;
+            --border-glass: rgba(255, 255, 255, 0.09);
+            --border-glow: rgba(59, 130, 246, 0.45);
+            --card-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* 🚀 PREVENT HORIZONTAL SCROLL BREAKING */
+        html, body {
+            overflow-x: clip !important;
+            width: 100%;
+            max-width: 100vw;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Top Laser Scroll Progress Bar */
+        #scroll-laser {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+            box-shadow: 0 0 15px var(--c3), 0 0 5px var(--c1);
+            z-index: 10000;
+            transition: width 0.08s linear;
+        }
+
+        /* Subtle Futuristic Grid Overlay */
+        .cyber-grid-overlay {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            background-image: 
+                linear-gradient(to right, rgba(148, 163, 184, 0.04) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(148, 163, 184, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 30%, transparent 85%);
+        }
+
+        /* Executive Preloader */
+        #preloader {
+            position: fixed;
+            inset: 0;
+            background: #040711;
+            z-index: 99999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+        }
+        #preloader.loaded {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .preloader-text {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            color: #fff;
+            position: relative;
+        }
+        .preloader-bar {
+            width: 160px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 99px;
+            overflow: hidden;
+            position: relative;
+        }
+        .preloader-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 50%;
+            background: linear-gradient(90deg, var(--c1), var(--c3));
+            animation: preloadScan 1s ease-in-out infinite alternate;
+        }
+        @keyframes preloadScan {
+            0% { transform: translateX(-30%); }
+            100% { transform: translateX(130%); }
+        }
+
+        /* Gradient Text Utility */
+        .gradient-text {
+            background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-size: 200% 200%;
+            animation: gradientShift 6s ease infinite;
+        }
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Ambient Background Blobs & Geo Shapes */
+        .bg-mesh {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(110px);
+            opacity: 0.25;
+            animation: floatBlob 18s ease-in-out infinite alternate;
+        }
+        body.dark-mode .blob { opacity: 0.18; }
+        .blob-1 { width: 500px; height: 500px; background: var(--c1); top: -120px; left: -100px; }
+        .blob-2 { width: 450px; height: 450px; background: var(--c2); top: 35%; right: -120px; animation-delay: -5s; }
+        .blob-3 { width: 400px; height: 400px; background: var(--c3); bottom: -100px; left: 25%; animation-delay: -10s; }
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(40px, -40px) scale(1.12); }
+        }
+        .geo-shape {
+            position: absolute;
+            width: 340px;
+            height: 340px;
+            color: var(--c1);
+            opacity: 0.05;
+            animation: spinSlow 60s linear infinite;
+        }
+        .geo-1 { top: 12%; left: 5%; }
+        .geo-2 { bottom: 15%; right: 6%; animation-direction: reverse; }
+        @keyframes spinSlow { 100% { transform: rotate(360deg); } }
+
+        /* ==========================================================================
+           🚀 FUTURISTIC TOP NAVIGATION & COMMAND PALETTE TRIGGER
+           ========================================================================== */
+        .top-nav {
+            position: sticky;
+            top: 1rem;
+            z-index: 100;
+            max-width: 1320px;
+            margin: 1rem auto 0;
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-elevated);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            box-shadow: var(--card-shadow);
+            width: calc(100% - 2.5rem);
+            transition: all 0.3s ease;
+        }
+        .top-nav:hover {
+            border-color: var(--border-glow);
+        }
+        .nav-brand {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.5rem;
+            text-decoration: none;
+            color: var(--text-main);
+            letter-spacing: -0.03em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            flex-wrap: wrap;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.92rem;
+            padding: 0.5rem 1rem;
+            border-radius: 99px;
+            transition: all 0.25s ease;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--text-main);
+            background: rgba(59, 130, 246, 0.12);
+        }
+        .nav-menu a.active {
+            font-weight: 700;
+            color: var(--c1);
+            box-shadow: inset 0 0 0 1px rgba(59, 130, 246, 0.3);
+        }
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.65rem;
+        }
+
+        /* Command Palette Trigger Button */
+        .cmd-trigger-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(148, 163, 184, 0.12);
+            border: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            padding: 0.45rem 0.85rem;
+            border-radius: 99px;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .cmd-trigger-btn:hover {
+            border-color: var(--c1);
+            color: var(--text-main);
+            background: rgba(59, 130, 246, 0.15);
+        }
+        .cmd-kbd {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 2px 6px;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            color: var(--c3);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.7rem 1.4rem;
+            border-radius: 99px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.92rem;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: #ffffff !important;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px -5px rgba(37, 99, 235, 0.5);
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -5px rgba(124, 58, 237, 0.65);
+        }
+        .btn-outline {
+            background: var(--bg-glass);
+            color: var(--text-main);
+            border: 1px solid var(--border-glass);
+            backdrop-filter: blur(12px);
+        }
+        .btn-outline:hover {
+            border-color: var(--c1);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        /* Liquid Theme Toggle */
+        .theme-toggle-track {
+            position: relative;
+            width: 76px;
+            height: 36px;
+            border-radius: 99px;
+            background: rgba(15, 23, 42, 0.12);
+            border: 1px solid var(--border-glass);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 8px;
+            font-family: var(--font-mono);
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+        body.dark-mode .theme-toggle-track {
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .theme-liquid-bubble {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 2px 10px rgba(37, 99, 235, 0.5);
+        }
+        body.dark-mode .theme-liquid-bubble {
+            transform: translateX(40px);
+        }
+        .theme-liquid-bubble svg { width: 14px; height: 14px; }
+        .icon-sun { display: block; }
+        .icon-moon { display: none; }
+        body.dark-mode .icon-sun { display: none; }
+        body.dark-mode .icon-moon { display: block; }
+
+        /* 🚀 FIXED BLUR TEXT REVEAL EFFECT */
         .blur-container { display: inline-block; }
-        
         .blur-word {
             display: inline-block;
             opacity: 0;
@@ -57,49 +417,185 @@
             transform: translateY(20px); 
             will-change: transform, filter, opacity;
         }
-        
-        /* Auto-runs immediately on page load for the top hero */
         .hero-blur {
             animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         }
-        
-        /* Waits for scroll for the bottom CTA */
         .scroll-blur.is-animated {
             animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
         }
-
         @keyframes blurTextReveal {
             0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
             100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
         }
-        /* 🚀 PREVENT HORIZONTAL SCROLL BREAKING */
-        html, body {
-            overflow-x: clip !important;
-            width: 100%;
-            max-width: 100vw;
-        }
 
-        /* 🚀 NEW SPACIOUS HERO SECTION */
+        /* ==========================================================================
+           🚀 SPACIOUS FUTURISTIC HERO SECTION WITH TELEMETRY HUD
+           ========================================================================== */
         .hero-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            min-height: 85vh;
+            min-height: 86vh;
             position: relative;
             width: 100%;
-            padding: 4rem 6vw 4rem 12vw; 
+            padding: 3.5rem 6vw 4rem 10vw; 
             overflow: visible; 
-            margin-bottom: 4rem;
+            margin-bottom: 3rem;
             z-index: 2;
         }
         .hero-left {
             flex: 1.2;
             display: flex;
             flex-direction: column;
-            gap: 1.8rem;
-            max-width: 800px; 
-            z-index: 2; 
+            gap: 1.55rem;
+            max-width: 780px; 
+            z-index: 3; 
         }
+
+        /* Cyber Telemetry Pill Above Typewriter */
+        .hero-hud-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.4rem 0.95rem;
+            border-radius: 99px;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            width: fit-content;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--c3);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        body:not(.dark-mode) .hero-hud-bar {
+            color: var(--c1);
+            background: rgba(37, 99, 235, 0.08);
+        }
+        .hud-blink {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-emerald);
+            box-shadow: 0 0 8px var(--accent-emerald);
+            animation: pulseGlow 1.6s infinite;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.25); }
+        }
+
+        .typewriter {
+            font-family: var(--font-mono);
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--c1);
+            letter-spacing: 0.04em;
+            min-height: 1.6rem;
+            display: flex;
+            align-items: center;
+        }
+        .caret {
+            display: inline-block;
+            width: 2px;
+            height: 1.15em;
+            background: var(--c3);
+            margin-left: 4px;
+            animation: blinkCaret 0.75s infinite;
+        }
+        @keyframes blinkCaret { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        .contact-links {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+            margin-top: 0.25rem;
+        }
+
+        /* Interactive Live Status Pill */
+        .live-status-widget {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.6rem 1.2rem;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-glass);
+            border-radius: 99px;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: var(--card-shadow);
+        }
+        .live-status-widget:hover {
+            border-color: var(--accent-emerald);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.2);
+        }
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--accent-emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent-emerald);
+            position: relative;
+        }
+        .status-dot::after {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 1px solid var(--accent-emerald);
+            animation: pingDot 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        @keyframes pingDot {
+            75%, 100% { transform: scale(2); opacity: 0; }
+        }
+        #live-status-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        .status-tooltip {
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            color: var(--c3);
+            background: rgba(15, 23, 42, 0.85);
+            padding: 0.25rem 0.65rem;
+            border-radius: 99px;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+        }
+
+        /* Skill Tags */
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+        }
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 500;
+            padding: 0.45rem 0.9rem;
+            border-radius: 99px;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            transition: all 0.25s ease;
+        }
+        .tag:hover {
+            border-color: var(--c1);
+            background: rgba(59, 130, 246, 0.18);
+            transform: translateY(-2px);
+        }
+
         .hero-right {
             position: absolute;
             right: -2vw; 
@@ -111,11 +607,9 @@
             display: flex;
             justify-content: flex-end;
             align-items: flex-end;
-            /* Smooth fade at the bottom to remove the harsh cutoff line */
             -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
             mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
         }
-        /* 🚀 PURE MASSIVE IMAGE */
         .hero-img {
             width: 100%;
             height: 100%;
@@ -125,27 +619,459 @@
             box-shadow: none;
             background: transparent;
             border-radius: 0;
-            /* Moved down exactly 5 pixels */
             transform: translateY(5px);
+            filter: drop-shadow(0 20px 50px rgba(37, 99, 235, 0.22));
         }
 
-        .status-row {
+        /* Floating Futuristic HUD Telemetry Badges on Hero */
+        .hero-floating-hud {
+            position: absolute;
+            right: 6vw;
+            top: 14%;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            pointer-events: auto;
+        }
+        .hud-chip {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-glass);
+            border-left: 3px solid var(--c3);
+            padding: 0.7rem 1.1rem;
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
             display: flex;
             align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
+            gap: 0.85rem;
+            animation: floatHud 5s ease-in-out infinite alternate;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .hud-chip:nth-child(2) {
+            animation-delay: -2.5s;
+            border-left-color: var(--c2);
+            transform: translateX(-20px);
+        }
+        .hud-chip:hover {
+            border-color: var(--c3);
+            transform: scale(1.04);
+        }
+        @keyframes floatHud {
+            0% { transform: translateY(0px); }
+            100% { transform: translateY(-8px); }
+        }
+        .hud-chip-val {
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--text-main);
+            line-height: 1;
+        }
+        .hud-chip-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
         }
 
-        /* Top Tech Ticker */
+        /* ==========================================================================
+           🚀 EPIC SAAS-STYLE FULL-WIDTH CTA SECTION
+           ========================================================================== */
+        .final-cta-section {
+            position: relative;
+            width: 100%;
+            padding: 5.5rem 2rem;
+            margin: 2rem 0 4rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            z-index: 2;
+        }
+        .watermark-bg {
+            position: absolute;
+            font-family: var(--font-display);
+            font-size: clamp(7rem, 24vw, 22rem);
+            font-weight: 800;
+            letter-spacing: -0.05em;
+            color: rgba(148, 163, 184, 0.05);
+            user-select: none;
+            pointer-events: none;
+            z-index: 0;
+            line-height: 1;
+        }
+        body.dark-mode .watermark-bg {
+            color: rgba(255, 255, 255, 0.03);
+        }
+        .glowing-line-container {
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-glass), transparent);
+            overflow: hidden;
+        }
+        .top-line { top: 0; }
+        .bottom-line { bottom: 0; }
+        .glowing-orb {
+            position: absolute;
+            top: -1px;
+            width: 180px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--c1), var(--c3), transparent);
+            filter: drop-shadow(0 0 8px var(--c3));
+        }
+        .orb-right-left { animation: orbRightLeft 7s linear infinite; }
+        .orb-left-right { animation: orbLeftRight 7s linear infinite; }
+        @keyframes orbRightLeft { 0% { left: 100%; } 100% { left: -200px; } }
+        @keyframes orbLeftRight { 0% { left: -200px; } 100% { left: 100%; } }
+
+        .final-cta-content {
+            position: relative;
+            z-index: 2;
+        }
+        .final-cta-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin: 0 0 1.5rem;
+        }
+        .final-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 1rem 2.4rem;
+            border-radius: 99px;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            box-shadow: 0 10px 35px rgba(37, 99, 235, 0.45);
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.3s ease;
+        }
+        .final-cta-btn:hover {
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 15px 45px rgba(124, 58, 237, 0.65);
+        }
+
+        /* ==========================================================================
+           🚀 2-COLUMN BENTO / HUD LAYOUT ARCHITECTURE
+           ========================================================================== */
+        .layout-wrapper {
+            position: relative;
+            z-index: 2; 
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+            display: grid;
+            grid-template-columns: 350px minmax(0, 1fr);
+            gap: 2rem;
+            align-items: start;
+        }
+        .sidebar {
+            position: sticky;
+            top: 5.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .content-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            min-width: 0;
+        }
+
+        /* Interactive Spotlight Glass Card */
+        .glass-card {
+            position: relative;
+            background: var(--bg-glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+        }
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(59, 130, 246, 0.1), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .glass-card:hover::before {
+            opacity: 1;
+        }
+        .glass-card:hover {
+            border-color: var(--border-glow);
+        }
+
+        .section-title {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: var(--c1);
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.55rem;
+        }
+        body.dark-mode .section-title { color: var(--c3); }
+        .section-title::before {
+            content: '//';
+            color: var(--c2);
+            font-weight: 800;
+        }
+
+        /* Profile Card in Sidebar */
+        .profile-img-wrap {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto 1.25rem;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.3);
+        }
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-main);
+        }
+        .sidebar .glass-card {
+            text-align: center;
+        }
+        .sidebar .section-title {
+            justify-content: center;
+        }
+        .sidebar .skill-tags {
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Digital Clock Widget */
+        .clock-widget {
+            background: rgba(15, 23, 42, 0.05);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 1.15rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark-mode .clock-widget {
+            background: rgba(2, 6, 23, 0.55);
+        }
+        .clock-header {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 0.08em;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+            margin-bottom: 0.4rem;
+        }
+        .pulse-dot-small {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--accent-emerald);
+            box-shadow: 0 0 8px var(--accent-emerald);
+            animation: pulseGlow 1.5s infinite;
+        }
+        .clock-time {
+            font-family: var(--font-mono);
+            font-size: 1.85rem;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+        .ampm-text {
+            font-size: 0.85rem;
+            color: var(--c1);
+            margin-left: 4px;
+        }
+        .clock-date {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 0.35rem;
+        }
+
+        /* ==========================================================================
+           🚀 NEW WIDGET 1: TELEMETRY SKILL RADAR & SYSTEM STATUS (SIDEBAR)
+           ========================================================================== */
+        .telemetry-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.85rem;
+            text-align: left;
+        }
+        .telemetry-row {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        .telemetry-label {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-main);
+        }
+        .telemetry-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(148, 163, 184, 0.15);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+        .telemetry-bar-fill {
+            height: 100%;
+            border-radius: 99px;
+            background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3));
+            box-shadow: 0 0 10px rgba(34, 211, 238, 0.4);
+            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .quick-uplink-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.6rem;
+            margin-top: 1.25rem;
+        }
+        .uplink-btn {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-radius: 12px;
+            padding: 0.6rem 0.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .uplink-btn:hover {
+            border-color: var(--c3);
+            background: rgba(34, 211, 238, 0.12);
+            transform: translateY(-2px);
+        }
+
+        /* ==========================================================================
+           🚀 NEW WIDGET 2: INTERACTIVE B2B GROWTH & PIPELINE SIMULATOR
+           ========================================================================== */
+        .roi-simulator-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        .sim-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+        .sim-slider-group {
+            background: rgba(15, 23, 42, 0.04);
+            border: 1px solid var(--border-glass);
+            padding: 0.9rem 1.1rem;
+            border-radius: 14px;
+        }
+        body.dark-mode .sim-slider-group {
+            background: rgba(2, 6, 23, 0.45);
+        }
+        .sim-slider-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .sim-val-badge {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--c3);
+            background: rgba(34, 211, 238, 0.12);
+            padding: 0.15rem 0.55rem;
+            border-radius: 6px;
+        }
+        body:not(.dark-mode) .sim-val-badge {
+            color: var(--c1);
+            background: rgba(37, 99, 235, 0.1);
+        }
+        .cyber-range {
+            width: 100%;
+            accent-color: var(--c1);
+            cursor: pointer;
+            height: 6px;
+            border-radius: 99px;
+        }
+        .sim-output-box {
+            background: linear-gradient(145deg, rgba(37, 99, 235, 0.12), rgba(124, 58, 237, 0.12));
+            border: 1px solid var(--border-glow);
+            border-radius: 18px;
+            padding: 1.4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+        .sim-metric-item {
+            padding: 0.65rem 0;
+            border-bottom: 1px dashed var(--border-glass);
+        }
+        .sim-metric-item:last-of-type { border-bottom: none; }
+        .sim-metric-num {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-main);
+            line-height: 1.1;
+        }
+        .sim-metric-lbl {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        /* ==========================================================================
+           🚀 TOP TECH TICKER & BLOG MARQUEE
+           ========================================================================== */
         .ticker-wrap {
             width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
             backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
-            padding: 1.5rem 0; margin-bottom: 2rem; display: flex;
+            padding: 1.35rem 0; margin-bottom: 0.25rem; display: flex;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
         }
-        body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
+        body.dark-mode .ticker-wrap { background: rgba(15, 23, 42, 0.65); border-color: rgba(255, 255, 255, 0.1); }
         .ticker-track {
             display: flex; gap: 4rem; padding-left: 4rem;
             animation: scrollTicker 30s linear infinite; 
@@ -155,11 +1081,160 @@
         .ticker-item {
             display: inline-flex; align-items: center; gap: 0.8rem;
             font-family: 'Syne', sans-serif; font-weight: 700;
-            color: var(--text-main); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--text-main); font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.05em;
         }
         body.dark-mode .ticker-item { color: #F1F5F9; }
         .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
         @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* Professional Documents Links */
+        .doc-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.25rem 1.5rem;
+            border-radius: 16px;
+            background: rgba(148, 163, 184, 0.06);
+            border: 1px solid var(--border-glass);
+            text-decoration: none;
+            color: var(--text-main);
+            margin-bottom: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .doc-link:last-child { margin-bottom: 0; }
+        .doc-link:hover {
+            border-color: var(--c1);
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(6px);
+        }
+        .doc-link h3 {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            margin: 0 0 0.25rem;
+        }
+        .doc-link p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        /* Timeline Items (Experience & Education) */
+        .timeline-item {
+            position: relative;
+            padding-left: 1.75rem;
+            margin-bottom: 1.75rem;
+            border-left: 2px solid rgba(59, 130, 246, 0.3);
+        }
+        .timeline-item:last-child { margin-bottom: 0; }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -7px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--c1);
+            box-shadow: 0 0 12px var(--c1);
+        }
+        .timeline-item h3 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin: 0 0 0.3rem;
+            color: var(--text-main);
+        }
+        .timeline-item .meta {
+            font-family: var(--font-mono);
+            font-size: 0.78rem;
+            color: var(--c1);
+            margin-bottom: 0.75rem;
+        }
+        body.dark-mode .timeline-item .meta { color: var(--c3); }
+        .timeline-item ul {
+            margin: 0;
+            padding-left: 1.1rem;
+            color: var(--text-muted);
+            font-size: 0.94rem;
+            line-height: 1.65;
+        }
+        .timeline-item li { margin-bottom: 0.35rem; }
+
+        /* Metrics & Awards Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .metric-card {
+            background: rgba(59, 130, 246, 0.06);
+            border: 1px solid var(--border-glass);
+            border-radius: 16px;
+            padding: 1.35rem 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            border-color: var(--c1);
+            transform: translateY(-4px);
+        }
+        .metric-num {
+            font-family: var(--font-display);
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--c1), var(--c3));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.25rem;
+        }
+        .metric-label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+        .awards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+        .award-card {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 1.2rem;
+            border-radius: 16px;
+            background: rgba(148, 163, 184, 0.05);
+            border: 1px solid var(--border-glass);
+            transition: all 0.3s ease;
+        }
+        .award-card:hover {
+            border-color: var(--c2);
+            transform: translateY(-3px);
+        }
+        .award-icon {
+            font-size: 1.75rem;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(124, 58, 237, 0.12);
+            flex-shrink: 0;
+        }
+        .award-details h4 {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            margin: 0 0 0.2rem;
+            color: var(--text-main);
+        }
+        .award-details p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
 
         /* Blog Marquee Upgrade */
         .blog-marquee-wrap {
@@ -174,8 +1249,8 @@
         }
         .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
         .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
-        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(30, 41, 59, 0.9), transparent); }
-        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
+        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(15, 23, 42, 0.9), transparent); }
+        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(15, 23, 42, 0.9), transparent); }
 
         .blog-marquee-track {
             display: flex;
@@ -184,12 +1259,12 @@
             animation: blogMarqueeScroll 45s linear infinite; 
         }
         .blog-marquee-track:hover { animation-play-state: paused; }
-        
+
         @keyframes blogMarqueeScroll {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
-        
+
         .marquee-blog-card {
             width: 320px; 
             flex-shrink: 0;
@@ -206,14 +1281,14 @@
             transform: translateY(0);
         }
         body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
-        
+
         .marquee-blog-card:hover {
             transform: translateY(-10px);
             border-color: var(--c2);
             box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
             z-index: 10;
         }
-        
+
         .marquee-blog-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
         .marquee-blog-content { padding: 1.5rem; }
         .marquee-blog-date { font-size: 0.8rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
@@ -222,10 +1297,6 @@
         body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
 
         /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
-        .layout-wrapper {
-            position: relative;
-            z-index: 2; 
-        }
         #neural-canvas {
             position: fixed; 
             top: 0;
@@ -236,62 +1307,103 @@
             pointer-events: none; 
             opacity: 0.7; 
         }
-        /* Mobile Stacking for Hero and CTA */
-        @media (max-width: 992px) {
-            .hero-section {
-                flex-direction: column; 
-                text-align: center;
-                gap: 0;
-                padding: 4rem 1.5rem 0 1.5rem; 
-                min-height: auto;
-            }
-            .hero-left { 
-                align-items: center; 
-                padding: 0; 
-                width: 100%;
-                max-width: 100%;
-                order: 2; 
-            }
-            .hero-right { 
-                position: relative;
-                width: 100%;
-                height: 45vh;
-                min-height: 320px;
-                right: auto;
-                bottom: auto;
-                justify-content: center; 
-                align-items: flex-end;
-                margin-top: 0;
-                margin-bottom: 2rem; 
-                order: 1; 
-            }
-            .hero-img { 
-                object-position: bottom center; 
-                width: 130%; 
-                max-width: 500px;
-                transform: translateY(0); 
-                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
-            }
-            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
-            .hero-left .section-title { text-align: center !important; }
-            
-            .final-cta-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .cta-left {
-                text-align: center;
-                align-items: center;
-                padding: 4rem 1.5rem 1rem;
-            }
-            .final-cta-title { justify-content: center !important; }
-            .cta-right {
-                width: 100%;
-                justify-content: center;
-                align-items: flex-end;
-                min-height: 300px;
-            }
+
+        /* ==========================================================================
+           🚀 PREMIUM RECOMMENDATIONS SECTION (FULL WIDTH)
+           ========================================================================== */
+        .reco-showcase {
+            position: relative;
+            z-index: 2;
+            max-width: 1320px;
+            margin: 3rem auto 5rem;
+            padding: 2rem 1.5rem;
         }
+        .reco-bg-text {
+            font-family: var(--font-display);
+            font-size: clamp(4rem, 11vw, 9.5rem);
+            font-weight: 800;
+            line-height: 0.92;
+            letter-spacing: -0.04em;
+            color: rgba(148, 163, 184, 0.14);
+            margin-bottom: -2.5rem;
+            pointer-events: none;
+            user-select: none;
+        }
+        body.dark-mode .reco-bg-text {
+            color: rgba(255, 255, 255, 0.06);
+        }
+        .reco-cards-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .reco-glass-card {
+            background: var(--bg-elevated);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glass);
+            border-radius: 24px;
+            padding: 1.85rem;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+            box-shadow: var(--card-shadow);
+            transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .reco-glass-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--c1);
+            box-shadow: 0 20px 45px rgba(37, 99, 235, 0.2);
+        }
+        .reco-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .reco-avatar-img {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--c1);
+        }
+        .reco-info h4 {
+            font-family: var(--font-display);
+            font-size: 1.08rem;
+            margin: 0 0 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .linkedin-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
+            height: 20px;
+            border-radius: 4px;
+            background: #0A66C2;
+            color: #fff;
+            font-family: var(--font-sans);
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        .reco-info p {
+            margin: 0;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .reco-body {
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+        body.dark-mode .reco-body { color: #CBD5E1; }
 
         /* =========================================
            🚀 WEBGL CAROUSEL STYLES
@@ -326,7 +1438,7 @@
             cursor: grab;
         }
         .gc-canvas:active { cursor: grabbing; }
-        
+
         .gc-meta {
             display: flex;
             align-items: center;
@@ -336,17 +1448,15 @@
             flex-wrap: wrap;
             margin-top: 1rem;
         }
-       /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
+        /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
         .gc-actions-container {
-            display: none; /* Hidden by default outside of full view */
+            display: none;
             align-items: center;
             justify-content: center;
             gap: 15px;
             width: 100%;
             margin-bottom: 12px;
         }
-        
-        /* ✨ Shows up ONLY when zoomed in (focused) ✨ */
         .gc-focused .gc-actions-container {
             display: flex; 
         }
@@ -356,30 +1466,32 @@
             padding: 12px 24px;
             background: rgba(37, 99, 235, 0.2);
             border: 1px solid rgba(37, 99, 235, 0.5);
-            color: #fff;
+            color: var(--text-main);
             border-radius: 30px;
             text-decoration: none;
             font-family: 'Syne', sans-serif;
             font-weight: 700;
             transition: all 0.3s ease;
         }
+        body.dark-mode .gc-linkedin-btn { color: #fff; }
         .gc-linkedin-btn:hover { background: rgba(37, 99, 235, 0.4); transform: translateY(-2px); }
-        
+
         .gc-close {
             position: static;
             padding: 12px 24px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(148, 163, 184, 0.15);
+            border: 1px solid var(--border-glass);
             border-radius: 30px;
-            color: #fff;
+            color: var(--text-main);
             cursor: pointer;
             font-family: 'Syne', sans-serif;
             font-weight: 700;
             transition: all 0.3s ease;
         }
+        body.dark-mode .gc-close { color: #fff; }
         .gc-close:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
         .gc-close[hidden] { display: none; }
-        
+
         .gc-counter {
             font-family: 'Syne', sans-serif;
             font-weight: 700;
@@ -394,7 +1506,7 @@
         }
         .gc-dot.is-active::after { background: var(--c1); transform: scale(1.4); }
         .gc-hint { font-size: 12px; color: var(--text-muted); }
-        
+
         .gc-focused .gc-meta { flex-direction: column; gap: 8px; }
         .gc-focused .gc-dots, .gc-focused .gc-counter { display: none; }
         .gc-focused .gc-hint { font-size: 0; }
@@ -406,7 +1518,7 @@
             display: grid;
             margin-top: 24px;
             padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            border-top: 1px solid var(--border-glass);
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
@@ -424,32 +1536,401 @@
             opacity: 1; visibility: visible; transform: none; pointer-events: auto;
         }
         .gc-panel h3 {
-            font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
+            font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem;
         }
         .gc-panel p { color: var(--text-muted); }
-        /* 🚀 SMALL EDU LOGOS FOR INDEX PAGE */
-        .timeline-title-wrap {
+
+        /* ==========================================================================
+           🤖 AUTOMATED AI CHAT WIDGET (FIFI) & COMMAND PALETTE MODAL
+           ========================================================================== */
+        .chat-bot-btn {
+            position: fixed;
+            bottom: 1.75rem;
+            right: 1.75rem;
+            z-index: 990;
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 12px 35px rgba(37, 99, 235, 0.5);
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .chat-bot-btn:hover {
+            transform: translateY(-4px) scale(1.03);
+            box-shadow: 0 18px 45px rgba(124, 58, 237, 0.65);
+        }
+
+        .chat-bot-modal {
+            position: fixed;
+            bottom: 5.8rem;
+            right: 1.75rem;
+            width: 390px;
+            max-width: calc(100vw - 2rem);
+            max-height: 580px;
+            z-index: 995;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px) scale(0.96);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border: 1px solid var(--border-glow);
+        }
+        .chat-bot-modal.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+        .chat-header {
+            padding: 1rem 1.25rem;
+            background: rgba(37, 99, 235, 0.12);
+            border-bottom: 1px solid var(--border-glass);
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 0.3rem;
+            justify-content: space-between;
         }
-        .timeline-title-wrap h3 {
-            margin-bottom: 0 !important; /* Stops the title from pushing down */
-            line-height: 1.2;
+        .chat-header-title {
+            display: flex;
+            align-items: center;
         }
-        .timeline-edu-logo {
-            width: 36px;
-            height: 36px;
-            object-fit: contain;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 4px;
-            border: 1px solid rgba(0,0,0,0.1);
-            flex-shrink: 0;
+        .bot-subtitle {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--c3);
         }
-        body.dark-mode .timeline-edu-logo {
-            border-color: rgba(255,255,255,0.1);
+        .close-chat {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.6rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+        .chat-scroll-area {
+            padding: 1.25rem;
+            overflow-y: auto;
+            flex: 1;
+            max-height: 370px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .chat-greeting h2 {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            margin: 0 0 0.35rem;
+        }
+        .chat-greeting p {
+            margin: 0;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+        .chat-options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.5rem;
+        }
+        .chat-opt-btn {
+            text-align: left;
+            padding: 0.65rem 0.9rem;
+            border-radius: 12px;
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            font-family: var(--font-sans);
+            font-size: 0.84rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .chat-opt-btn:hover {
+            border-color: var(--c1);
+            background: rgba(59, 130, 246, 0.18);
+            transform: translateX(4px);
+        }
+        .chat-log {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .chat-msg {
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            line-height: 1.5;
+            max-width: 88%;
+        }
+        .chat-msg.user {
+            align-self: flex-end;
+            background: linear-gradient(135deg, var(--c1), var(--c2));
+            color: #fff;
+            border-bottom-right-radius: 4px;
+        }
+        .chat-msg.bot {
+            align-self: flex-start;
+            background: rgba(148, 163, 184, 0.12);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            border-bottom-left-radius: 4px;
+        }
+        .chat-input-bar {
+            display: flex;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-top: 1px solid var(--border-glass);
+            background: rgba(15, 23, 42, 0.04);
+        }
+        .chat-input-bar input {
+            flex: 1;
+            background: var(--bg-main);
+            border: 1px solid var(--border-glass);
+            border-radius: 99px;
+            padding: 0.5rem 0.95rem;
+            color: var(--text-main);
+            font-size: 0.84rem;
+            outline: none;
+        }
+        .chat-input-bar button {
+            background: var(--c1);
+            color: #fff;
+            border: none;
+            border-radius: 99px;
+            padding: 0 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .reset-chat-btn {
+            width: 100%;
+            padding: 0.65rem;
+            background: transparent;
+            border: none;
+            border-top: 1px solid var(--border-glass);
+            color: var(--text-muted);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .reset-chat-btn:hover { color: var(--c1); }
+
+        /* Command Palette Modal (Ctrl+K) */
+        .cmd-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(2, 6, 23, 0.72);
+            backdrop-filter: blur(8px);
+            z-index: 10000;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 12vh;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+        }
+        .cmd-modal-backdrop.open {
+            opacity: 1;
+            visibility: visible;
+        }
+        .cmd-palette-box {
+            width: 540px;
+            max-width: calc(100vw - 2rem);
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-glow);
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+        .cmd-search-header {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            border-bottom: 1px solid var(--border-glass);
+            gap: 0.75rem;
+        }
+        .cmd-search-header input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            font-size: 0.95rem;
+        }
+        .cmd-list {
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 0.6rem;
+        }
+        .cmd-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            border-radius: 12px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .cmd-item:hover {
+            background: rgba(59, 130, 246, 0.15);
+        }
+        .cmd-item-tag {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--text-muted);
+        }
+
+        /* Footer & Scroll to Top */
+        .site-footer {
+            position: relative;
+            z-index: 2;
+            max-width: 1320px;
+            margin: 2rem auto 0;
+            padding: 2.5rem 1.5rem;
+            border-top: 1px solid var(--border-glass);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+        .contact-banner-wrapper {
+            max-width: 1320px;
+            margin: 0 auto 2rem;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+        .contact-banner-wrapper img {
+            width: 100%;
+            border-radius: 20px;
+            display: block;
+        }
+        .scroll-to-top {
+            position: fixed;
+            bottom: 1.75rem;
+            left: 1.75rem;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border-glass);
+            color: var(--text-main);
+            font-size: 1.1rem;
+            cursor: pointer;
+            z-index: 900;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+        }
+        .scroll-to-top:hover {
+            border-color: var(--c1);
+            transform: translateY(-3px);
+        }
+
+        /* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
+        @media (max-width: 992px) {
+            .top-nav {
+                border-radius: 24px;
+                padding: 0.75rem 1rem;
+                flex-wrap: wrap;
+            }
+            .nav-menu {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                padding-top: 0.4rem;
+                border-top: 1px solid var(--border-glass);
+            }
+            .hero-floating-hud {
+                display: none;
+            }
+            .hero-section {
+                flex-direction: column; 
+                text-align: center;
+                gap: 0;
+                padding: 3rem 1.5rem 0 1.5rem; 
+                min-height: auto;
+            }
+            .hero-left { 
+                align-items: center; 
+                padding: 0; 
+                width: 100%;
+                max-width: 100%;
+                order: 2; 
+            }
+            .hero-right { 
+                position: relative;
+                width: 100%;
+                height: 45vh;
+                min-height: 320px;
+                right: auto;
+                bottom: auto;
+                justify-content: center; 
+                align-items: flex-end;
+                margin-top: 0;
+                margin-bottom: 2rem; 
+                order: 1; 
+            }
+            .hero-img { 
+                object-position: bottom center; 
+                width: 130%; 
+                max-width: 500px;
+                transform: translateY(0); 
+                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
+            }
+            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
+            .hero-left .section-title { text-align: center !important; justify-content: center; }
+
+            .layout-wrapper {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                position: static;
+            }
+            .roi-simulator-grid, .awards-grid {
+                grid-template-columns: 1fr;
+            }
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* 1. Completely hide the giant background text on mobile */
+            .reco-bg-text {
+                display: none !important;
+            }
+            /* 2. Stack the cards vertically */
+            .reco-cards-container {
+                display: flex !important;
+                flex-direction: column !important;
+                padding: 0 0.5rem 2rem 0.5rem !important;
+                gap: 1.5rem !important;
+            }
+            /* 3. Inject title right before the first card */
+            .reco-cards-container::before {
+                content: "Recommendations:";
+                font-family: 'Syne', sans-serif;
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: var(--text-main);
+                margin-bottom: 0.2rem;
+                margin-top: 1rem;
+                display: block;
+            }
+            .reco-glass-card {
+                width: 100% !important;
+                margin: 0 !important; 
+            }
+            body.dark-mode .reco-cards-container::before {
+                color: #F1F5F9;
+            }
         }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -476,21 +1957,27 @@
     </script>
 </head>
 <body class="dark-mode">
+
+<!-- Top Scroll Laser Progress Bar -->
+<div id="scroll-laser"></div>
+
 <!-- =========================================
    EXECUTIVE PRELOADER (FRKR)
 ========================================= -->
 <div id="preloader">
     <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
+    <div class="preloader-bar"></div>
 </div>
 
-<!-- The Interactive Physics Canvas Engine -->
+<!-- The Interactive Physics Canvas Engine & Cyber Grid -->
+<div class="cyber-grid-overlay"></div>
 <canvas id="neural-canvas"></canvas>
 
 <div class="bg-mesh">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
-    
+
     <svg class="geo-shape geo-1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
         <circle cx="50" cy="50" r="40"/><path d="M50 10 C 20 10, 20 90, 50 90 M50 10 C 80 10, 80 90, 50 90 M10 50 L90 50"/>
     </svg>
@@ -499,6 +1986,9 @@
     </svg>
 </div>
 
+<!-- =========================================
+   FUTURISTIC TOP NAVIGATION
+========================================= -->
 <nav class="top-nav">
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
@@ -510,8 +2000,12 @@
         <a href="/contact.html">Contact</a>
     </div>
     <div class="nav-actions">
+        <button type="button" class="cmd-trigger-btn" id="openCmdBtn" title="Open Command Palette">
+            <span>⌘ Command</span>
+            <span class="cmd-kbd">Ctrl+K</span>
+        </button>
         <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-      <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
+        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
             <div class="theme-liquid-bubble">
@@ -522,28 +2016,36 @@
     </div>
 </nav>
 
-<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION -->
+<!-- =========================================
+   🚀 EPIC FULL-WIDTH HERO SECTION
+========================================= -->
 <section class="hero-section">
     <div class="hero-left">
+        <div class="hero-hud-bar">
+            <span class="hud-blink"></span>
+            <span>SYS.UPLINK // DHAKA GMT+6 • GROWTH OPS ACTIVE</span>
+        </div>
+
         <div class="typewriter" style="margin-bottom: -10px;">
             <span id="tw-text"></span><span class="caret"></span>
         </div>
-        
-      <!-- BLUR ANIMATION ON HERO NAME (Delayed for Preloader) -->
-        <h1 style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
-            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.45s;">Fardin&nbsp;</span>
-            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.7s;">Rahman</span><br>
-            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.95s;">Khan&nbsp;</span>
-            <span class="blur-word hero-blur gradient-text" style="animation-delay: 1.2s;">Raafi</span>
+
+        <!-- BLUR ANIMATION ON HERO NAME (Delayed for Preloader) -->
+        <h1 style="font-family: var(--font-display); font-size: clamp(2.6rem, 5.2vw, 4.1rem); line-height: 1.08; margin: 0;">
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.35s;">Fardin&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.55s;">Rahman</span><br>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.75s;">Khan&nbsp;</span>
+            <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.95s;">Raafi</span>
         </h1>
-        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
+        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.65; max-width: 90%; margin: 0;">
             I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
         </p>
-        
+
         <div class="contact-links" style="justify-content: flex-start; margin: 0;">
             <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
             <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
             <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
+            <a href="#roi-simulator" class="btn btn-outline" style="border-color: rgba(34,211,238,0.4);">⚡ Pipeline Simulator</a>
         </div>
 
         <div class="status-row">
@@ -552,12 +2054,12 @@
                 <div class="status-text-container">
                     <span id="live-status-text">Open to new B2B projects</span>
                 </div>
-                <div class="status-tooltip">Click to copy email</div>
+                <div class="status-tooltip" id="copyStatusTooltip">Click to copy email</div>
             </div>
         </div>
 
-        <div style="margin-top: 1rem;">
-            <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
+        <div style="margin-top: 0.5rem;">
+            <div class="section-title" style="font-size: 0.82rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
             <div class="skill-tags" style="justify-content: flex-start;">
                 <span class="tag">Marketing</span>
                 <span class="tag">B2B</span>
@@ -566,34 +2068,50 @@
             </div>
         </div>
     </div>
-    
+
+    <!-- Floating Telemetry Badges -->
+    <div class="hero-floating-hud">
+        <div class="hud-chip">
+            <div>
+                <div class="hud-chip-val">40,000+</div>
+                <div class="hud-chip-lbl">Enriched CRM Nodes</div>
+            </div>
+        </div>
+        <div class="hud-chip">
+            <div>
+                <div class="hud-chip-val">67K+</div>
+                <div class="hud-chip-lbl">Monthly Organic Reach</div>
+            </div>
+        </div>
+    </div>
+
     <div class="hero-right">
         <!-- IMAGE WITH BOTTOM GRADIENT FADE -->
-<img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+        <img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/0F172A/38BDF8?text=Fardin+Raafi'">
     </div>
 </section>
 
 <!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
-    
+
     <div class="glowing-line-container top-line">
         <div class="glowing-orb orb-right-left">
             <div class="orb-head"></div>
         </div>
     </div>
-    
+
     <div class="final-cta-content reveal blur-container">
-      <!-- BLUR ANIMATION ON BOTTOM CTA (Webkit Bug Fixed) -->
+        <!-- BLUR ANIMATION ON BOTTOM CTA -->
         <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
             <span class="blur-word scroll-blur" style="color: var(--text-main);">Let's&nbsp;</span>
             <span class="blur-word scroll-blur" style="color: var(--text-main);">build&nbsp;</span>
             <span class="blur-word scroll-blur" style="color: var(--text-main);">your&nbsp;</span>
             <span class="blur-word scroll-blur gradient-text">brand.</span>
         </h2>
-        <a href="/contact.html" class="final-cta-btn">Get in touch</a>
+        <a href="/contact.html" class="final-cta-btn">Get in touch ➔</a>
     </div>
-    
+
     <div class="glowing-line-container bottom-line">
         <div class="glowing-orb orb-left-right">
             <div class="orb-head"></div>
@@ -601,19 +2119,22 @@
     </div>
 </section>
 
-<!-- 🚀 THE 2-COLUMN SETUP BEGINS HERE -->
+<!-- =========================================
+   🚀 THE 2-COLUMN SETUP BEGINS HERE
+========================================= -->
 <div class="layout-wrapper" id="home">
-    
+
     <aside class="sidebar">
+        <!-- Primary Profile & Dhaka Telemetry Card -->
         <div class="glass-card">
             <div class="profile-img-wrap">
                 <div class="profile-img" style="overflow: hidden; padding: 0;">
-                   <img src="/misc_img/profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
+                    <img src="/misc_img/profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 50%;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=0F172A&color=38BDF8&bold=true'">
                 </div>
             </div>
-            <h2 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
-            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Marketing Professional</p>
-              
+            <h2 style="font-family: var(--font-display); font-size: 1.2rem; margin-bottom: 0.35rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.4rem;">Marketing Professional</p>
+
             <div class="section-title">Core Stack</div>
             <div class="skill-tags">
                 <span class="tag">Marketing Enthusiast</span>
@@ -621,23 +2142,56 @@
                 <span class="tag">Branding Expert</span>
                 <span class="tag">FMCG</span>
             </div>
-            
+
             <!-- CLEAN DIGITAL CLOCK WIDGET -->
             <div class="clock-widget">
                 <div class="clock-header">
-                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
+                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA (UTC+6)
                 </div>
                 <div class="clock-time">
                     <span id="digital-hour-min">--:--</span>
                     <span id="digital-ampm" class="ampm-text"></span>
                 </div>
-                <div class="clock-date" id="digital-date">Loading...</div>
+                <div class="clock-date" id="digital-date">Synchronizing...</div>
+            </div>
+        </div>
+
+        <!-- 🚀 NEW SIDEBAR WIDGET: GROWTH TELEMETRY & COMMS UPLINK -->
+        <div class="glass-card">
+            <div class="section-title">Capability Telemetry</div>
+            <div class="telemetry-list">
+                <div class="telemetry-row">
+                    <div class="telemetry-label"><span>B2B Lead Generation</span><span>96%</span></div>
+                    <div class="telemetry-bar-bg"><div class="telemetry-bar-fill" style="width: 96%;"></div></div>
+                </div>
+                <div class="telemetry-row">
+                    <div class="telemetry-label"><span>CRM Architecture & Clay</span><span>94%</span></div>
+                    <div class="telemetry-bar-bg"><div class="telemetry-bar-fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="telemetry-row">
+                    <div class="telemetry-label"><span>Brand Strategy & Design</span><span>92%</span></div>
+                    <div class="telemetry-bar-bg"><div class="telemetry-bar-fill" style="width: 92%;"></div></div>
+                </div>
+                <div class="telemetry-row">
+                    <div class="telemetry-label"><span>Multi-Channel Outbound</span><span>90%</span></div>
+                    <div class="telemetry-bar-bg"><div class="telemetry-bar-fill" style="width: 90%;"></div></div>
+                </div>
+            </div>
+
+            <div class="quick-uplink-grid">
+                <button type="button" class="uplink-btn" id="sidebarCopyEmailBtn">
+                    <span>📋</span> <span id="sidebarCopyText">Copy Email</span>
+                </button>
+                <a href="/resume.html" class="uplink-btn">
+                    <span>📄</span> <span>View CV</span>
+                </a>
             </div>
         </div>
     </aside>
-    
+
     <main class="content-feed">
-        
+
+        <!-- Tech Stack Marquee -->
         <div class="ticker-wrap">
             <div class="ticker-track">
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
@@ -649,7 +2203,7 @@
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="MS Office"> MS Office Suite</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=lusha.com&sz=128" alt="Lusha"> Lusha</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=clay.com&sz=128" alt="Clay"> Clay</div>
-                
+
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
                 <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=128" alt="Instantly.ai"> Instantly.ai</div>
@@ -662,6 +2216,58 @@
             </div>
         </div>
 
+        <!-- 🚀 NEW INTERACTIVE WIDGET: B2B PIPELINE & OUTREACH SIMULATOR -->
+        <section class="glass-card" id="roi-simulator">
+            <div class="section-title">Interactive B2B Pipeline Velocity Simulator</div>
+            <p style="margin: -0.5rem 0 1.4rem; font-size: 0.92rem; color: var(--text-muted);">
+                Model your monthly B2B outreach funnel using ICP enrichment parameters inspired by my 40,000+ CRM record operations.
+            </p>
+            <div class="roi-simulator-grid">
+                <div class="sim-controls">
+                    <div class="sim-slider-group">
+                        <div class="sim-slider-header">
+                            <span>Monthly ICP Prospects Enriched</span>
+                            <span class="sim-val-badge" id="simLeadsVal">5,000</span>
+                        </div>
+                        <input type="range" id="simLeadsInput" class="cyber-range" min="1000" max="20000" step="500" value="5000">
+                    </div>
+                    <div class="sim-slider-group">
+                        <div class="sim-slider-header">
+                            <span>Data Verification & Intent Precision</span>
+                            <span class="sim-val-badge" id="simPrecisionVal">92%</span>
+                        </div>
+                        <input type="range" id="simPrecisionInput" class="cyber-range" min="70" max="99" step="1" value="92">
+                    </div>
+                    <div class="sim-slider-group">
+                        <div class="sim-slider-header">
+                            <span>Multi-Channel Sequence Touchpoints</span>
+                            <span class="sim-val-badge" id="simTouchesVal">6 Steps</span>
+                        </div>
+                        <input type="range" id="simTouchesInput" class="cyber-range" min="3" max="10" step="1" value="6">
+                    </div>
+                </div>
+
+                <div class="sim-output-box">
+                    <div>
+                        <div class="sim-metric-item">
+                            <div class="sim-metric-num gradient-text" id="simVerifiedOut">4,600</div>
+                            <div class="sim-metric-lbl">Verified Decision Makers</div>
+                        </div>
+                        <div class="sim-metric-item">
+                            <div class="sim-metric-num" id="simRepliesOut">221</div>
+                            <div class="sim-metric-lbl">Projected Warm Replies / Mo</div>
+                        </div>
+                        <div class="sim-metric-item">
+                            <div class="sim-metric-num" style="color: var(--accent-emerald);" id="simMeetingsOut">48</div>
+                            <div class="sim-metric-lbl">Estimated Discovery Calls</div>
+                        </div>
+                    </div>
+                    <a href="/contact.html" class="btn btn-primary" style="width: 100%; margin-top: 0.8rem; font-size: 0.85rem; padding: 0.6rem;">Deploy This Pipeline ➔</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Professional Documents -->
         <section class="glass-card">
             <div class="section-title">Professional Documents</div>
             <a href="/resume.html" class="doc-link">
@@ -680,9 +2286,10 @@
             </a>
         </section>
 
+        <!-- Recent Experience -->
         <section class="glass-card">
             <div class="section-title">Recent Experience</div>
-            
+
             <div class="timeline-item">
                 <h3>Executive - Marketing</h3>
                 <div class="meta">Augmex Technologies Ltd. • April 2026 – Present</div>
@@ -711,39 +2318,28 @@
             </div>
         </section>
 
+        <!-- Education -->
         <section class="glass-card">
-           <section class="glass-card">
             <div class="section-title">Education</div>
-            
+
             <div class="timeline-item">
-                <div class="timeline-title-wrap">
-                    <img src="/misc_img/uni.png" alt="BUBT" class="timeline-edu-logo">
-                    <h3>Bachelor of Business Administration (BBA)</h3>
-                </div>
+                <h3>Bachelor of Business Administration (BBA)</h3>
                 <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
                 <ul>
                     <li><strong>Major:</strong> Marketing</li>
                     <li><strong>CGPA:</strong> 3.80</li>
                 </ul>
             </div>
-            
             <div class="timeline-item">
-                <div class="timeline-title-wrap">
-                    <img src="/misc_img/hsc.png" alt="Dhaka Commerce College" class="timeline-edu-logo">
-                    <h3>Higher Secondary Certificate (HSC)</h3>
-                </div>
+                <h3>Higher Secondary Certificate (HSC)</h3>
                 <div class="meta">Dhaka Commerce College • 2019 – 2021</div>
                 <ul>
                     <li><strong>Major:</strong> Commerce</li>
                     <li><strong>GPA:</strong> 5.00</li>
                 </ul>
             </div>
-            
             <div class="timeline-item">
-                <div class="timeline-title-wrap">
-                    <img src="/misc_img/ssc.png" alt="Adarsha High School" class="timeline-edu-logo">
-                    <h3>Secondary School Certificate (SSC)</h3>
-                </div>
+                <h3>Secondary School Certificate (SSC)</h3>
                 <div class="meta">Adarsha High School • 2019</div>
                 <ul>
                     <li><strong>Major:</strong> Commerce</li>
@@ -752,9 +2348,10 @@
             </div>
         </section>
 
+        <!-- Impact & Recognition -->
         <section class="glass-card">
             <div class="section-title">Impact & Recognition</div>
-            
+
             <div class="metrics-grid">
                 <div class="metric-card">
                     <div class="metric-num">40K+</div>
@@ -769,7 +2366,7 @@
                     <div class="metric-label">BBA CGPA</div>
                 </div>
             </div>
-            
+
             <div class="awards-grid">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
@@ -801,27 +2398,25 @@
                 </div>
             </div>
         </section>
-        
+
+        <!-- Featured Blogs -->
         <section class="glass-card">
             <div class="section-title">Featured Blogs</div>
-            
+
             <div class="blog-marquee-wrap">
                 <div class="blog-marquee-track">
-                    <!-- ========================================== -->
-                    <!-- 1ST SET OF BLOGS (For Seamless Scrolling)  -->
-                    <!-- ========================================== -->
-                    
+                    <!-- 1ST SET OF BLOGS (For Seamless Scrolling) -->
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
                             <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
                         </div>
                     </a>
-                    
+
                     <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
@@ -830,7 +2425,7 @@
                     </a>
 
                     <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Marketing Strategy</div>
                             <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
@@ -839,7 +2434,7 @@
                     </a>
 
                     <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=B2B+Sales'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">B2B Sales & Growth</div>
                             <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
@@ -848,7 +2443,7 @@
                     </a>
 
                     <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Personal Branding</div>
                             <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
@@ -857,56 +2452,53 @@
                     </a>
 
                     <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=Agentic+AI'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI & B2B Growth</div>
                             <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
                             <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
                         </div>
                     </a>
-                    
-                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
+
+                    <a href="/blogs/blog-7.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Voice+Dictation'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Future of Work</div>
                             <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
                             <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
                         </div>
                     </a>
-                    
+
                     <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
-                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
+                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=Edu+Mail'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Resource Guide</div>
                             <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
-                    <!-- Blog 8 (ChatGPT Ads) -->
+
                     <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
+                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=ChatGPT+Ads'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI & Marketing Strategy</div>
                             <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
                             <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
                         </div>
                     </a>
-                    
-                    <!-- ========================================== -->
-                    <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
-                    <!-- ========================================== -->
-                    
+
+                    <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP) -->
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
                             <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
                         </div>
                     </a>
-                    
+
                     <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
@@ -915,7 +2507,7 @@
                     </a>
 
                     <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Marketing Strategy</div>
                             <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
@@ -924,7 +2516,7 @@
                     </a>
 
                     <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=B2B+Sales'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">B2B Sales & Growth</div>
                             <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
@@ -933,7 +2525,7 @@
                     </a>
 
                     <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Personal Branding</div>
                             <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
@@ -942,34 +2534,34 @@
                     </a>
 
                     <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=Agentic+AI'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI & B2B Growth</div>
                             <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
                             <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
                         </div>
                     </a>
-                    
-                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
+
+                    <a href="/blogs/blog-7.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=Voice+Dictation'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Future of Work</div>
                             <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
                             <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
                         </div>
                     </a>
-                    
+
                     <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
-                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
+                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/8B5CF6?text=Edu+Mail'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Resource Guide</div>
                             <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
-                    <!-- Blog 8 (ChatGPT Ads) -->
+
                     <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
+                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/0F172A/38BDF8?text=ChatGPT+Ads'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">AI & Marketing Strategy</div>
                             <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
@@ -978,44 +2570,42 @@
                     </a>
                 </div>
             </div>
-            
+
             <div style="text-align: center; margin-top: 1.5rem;">
                 <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
-        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <!-- Playbook Lead Magnet -->
+        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My B2B Growth Playbook</h2>
+            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My Ultimate Marketing Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                See my funnel in action. Enter your email to receive my free 1-page guide on automating cold outreach and scaling CRM pipelines.
+                See my strategies in action. Enter your email to receive my free step-by-step guide on driving traffic, generating leads, and scaling your campaigns.
             </p>
-            
-          <form id="playbook-form" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
-                <input type="email" name="email" placeholder="Enter your best email" required style="flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--text-light); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; background: rgba(255,255,255,0.8); color: var(--text-main);">
-                
+
+            <form id="playbook-form" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+                <input type="email" name="email" placeholder="Enter your best email" required style="flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--border-glass); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; background: var(--bg-elevated); color: var(--text-main);">
                 <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Get Playbook</button>
             </form>
-            <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 1.5rem;">100% free. Unsubscribe anytime. Live funnel demo.</p>
+            <p id="playbook-feedback" style="font-size: 0.78rem; color: var(--text-light); margin-top: 1.5rem;">100% free. Unsubscribe anytime. Instant access.</p>
         </section>
     </main>
 </div>
 
-<!-- 🚀 PREMIUM RECOMMENDATIONS SECTION (NOW TRULY FULL WIDTH) -->
+<!-- 🚀 PREMIUM RECOMMENDATIONS SECTION (FULL WIDTH) -->
 <section class="reco-showcase">
-    <!-- The Giant Faded Background Text -->
     <div class="reco-bg-text blur-container">
         <span class="blur-word scroll-blur">What</span><br>
         <span class="blur-word scroll-blur" style="animation-delay: 0.15s;">they</span>
         <span class="blur-word scroll-blur" style="animation-delay: 0.3s;">say?</span>
     </div>
-    
+
     <div class="reco-cards-container">
-        
         <!-- Reco 1: Towhidul Islam -->
         <a href="https://www.linkedin.com/in/towhidul-islam01/" target="_blank" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/towhid.jpg" alt="Towhidul Islam" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Towhidul+Islam&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/towhid.jpg" alt="Towhidul Islam" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Towhidul+Islam&background=0F172A&color=38BDF8&bold=true'">
                 <div class="reco-info">
                     <h4>Towhidul Islam <span class="linkedin-icon">in</span></h4>
                     <p>Startup Founder Consultant | Augmex</p>
@@ -1029,7 +2619,7 @@
         <!-- Reco 2: Sanzida Sharmin Rifa -->
         <a href="https://www.linkedin.com/in/sanzida-sharmin/" target="_blank" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/sanjida.jpg" alt="Sanzida Sharmin Rifa" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Sanzida+Rifa&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/sanjida.jpg" alt="Sanzida Sharmin Rifa" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Sanzida+Rifa&background=0F172A&color=38BDF8&bold=true'">
                 <div class="reco-info">
                     <h4>Sanzida Rifa <span class="linkedin-icon">in</span></h4>
                     <p>Technical Recruiter | Augmex Technologies</p>
@@ -1043,7 +2633,7 @@
         <!-- Reco 3: Ikram Khan -->
         <a href="https://www.linkedin.com/in/ikram-khan25/" target="_blank" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/ikram.jpg" alt="Ikram Khan" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Ikram+Khan&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/ikram.jpg" alt="Ikram Khan" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Ikram+Khan&background=0F172A&color=38BDF8&bold=true'">
                 <div class="reco-info">
                     <h4>Ikram Khan <span class="linkedin-icon">in</span></h4>
                     <p>BD Executive | Uttara Motors Ltd.</p>
@@ -1053,104 +2643,75 @@
                 "We cleaned and processed over 50,000 leads together. That kind of rigorous work tests your consistency, and Raafi never dropped the ball. Dedicated, reliable, and exactly who you want on your team."
             </div>
         </a>
-
     </div>
 </section>
 
 <!-- 🚀 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
 <section class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
-    <div class="section-title" style="text-align: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
+    <div class="section-title" style="justify-content: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
     <div class="gc-stage">
-        <!-- WebGL Canvas is injected here automatically by the JS -->
         <div class="gc-viewport" tabindex="0"></div>
     </div>
 
     <div class="gc-meta">
         <p class="gc-counter" aria-hidden="true">01 / 14</p>
         <div class="gc-dots" role="tablist"></div>
-        <p class="gc-hint">Scroll or drag to explore</p>
+        <p class="gc-hint">Scroll or drag to explore • Click active slide to inspect</p>
     </div>
 
     <div class="gc-panels" aria-live="polite">
-        <!-- Panel 1 -->
         <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg" data-link="https://lnkd.in/p/g6KCZ75j">
             <h3>AI Productivity</h3>
             <p>A funny quote by me..</p>
         </article>
-
-        <!-- Panel 2 -->
         <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg" data-link="https://lnkd.in/p/g6pSu58S">
             <h3>Guerrilla Marketing Tactics</h3>
             <p>How Polo turned everyday snow into a giant ad.</p>
         </article>
-
-        <!-- Panel 3 -->
         <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg" data-link="https://lnkd.in/p/gs-kQ9n4">
             <h3>The Winning Mindset</h3>
             <p>A look at why a good attitude is the best skill a person can have.</p>
         </article>
-
-        <!-- Panel 4 -->
         <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg" data-link="https://lnkd.in/p/g3sCqm8w">
             <h3>Self-Training Made Easy</h3>
             <p>How to use AI prompts to create a daily practice guide.</p>
         </article>
-        
-        <!-- Panel 5 -->
         <article class="gc-panel" id="gc-panel-5" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.jpg" data-link="https://lnkd.in/p/gqq-i2nB">
             <h3>Smart Ad Design</h3>
             <p>Seeing how AI tools are catching up to human creativity this year.</p>
         </article>
-
-        <!-- Panel 6 -->
         <article class="gc-panel" id="gc-panel-6" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.jpg" data-link="https://lnkd.in/p/geMbduQF">
             <h3>LinkedIn Personal Brand</h3>
             <p>Tips on how to build your personal brand on LinkedIn 24/7.</p>
         </article>
-
-        <!-- Panel 7 -->
         <article class="gc-panel" id="gc-panel-7" role="tabpanel" data-num="07" data-img="/misc_img/linkedin-7.jpg" data-link="https://lnkd.in/p/g23wby4Q">
             <h3>Global Purchasing Power</h3>
             <p>A look at how currency value changes and where your money goes the furthest.</p>
         </article>
-
-        <!-- Panel 8 -->
         <article class="gc-panel" id="gc-panel-8" role="tabpanel" data-num="08" data-img="/misc_img/linkedin-8.jpg" data-link="https://lnkd.in/p/gyZZf7pA">
             <h3>Claude 5 Release</h3>
             <p>A quick look at how the newest AI models can help you get more done.</p>
         </article>
-
-        <!-- Panel 9 -->
         <article class="gc-panel" id="gc-panel-9" role="tabpanel" data-num="09" data-img="/misc_img/linkedin-9.jpg" data-link="https://lnkd.in/p/g8WYqqaF">
             <h3>Marketing 101: Decoy Effect</h3>
             <p>Understanding how the medium option helps sell more large items by changing how people see value.</p>
         </article>
-
-        <!-- Panel 10 -->
         <article class="gc-panel" id="gc-panel-10" role="tabpanel" data-num="10" data-img="/misc_img/linkedin-10.jpg" data-link="https://lnkd.in/p/gdR_GFnF">
             <h3>Professional Networking</h3>
             <p>Understanding how conversations with industry leaders and peers open up new opportunities.</p>
         </article>
-
-        <!-- Panel 11 -->
         <article class="gc-panel" id="gc-panel-11" role="tabpanel" data-num="11" data-img="/misc_img/linkedin-11.jpg" data-link="https://lnkd.in/p/gRiKwv4F">
             <h3>Stop Wasting AI Tokens</h3>
             <p>Simple tips to help use your AI tokens more efficiently and get better results.</p>
         </article>
-
-        <!-- Panel 12 -->
         <article class="gc-panel" id="gc-panel-12" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.jpg" data-link="https://lnkd.in/p/gp9yEGMR">
             <h3>Top 5 NotebookLM Workflows</h3>
             <p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p>
         </article>
-
-        <!-- Panel 13 -->
         <article class="gc-panel" id="gc-panel-13" role="tabpanel" data-num="13" data-img="/misc_img/linkedin-13.jpg" data-link="https://lnkd.in/p/gQimNA-2">
             <h3>What is OOH Marketing</h3>
             <p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p>
         </article>
-        
-         <!-- Panel 14 -->
         <article class="gc-panel" id="gc-panel-14" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.jpg" data-link="https://lnkd.in/p/g56SxBFD">
             <h3>The Rise of AI Agents</h3>
             <p>Why 2026 is all about smart AI tools that actually do the work for us.</p>
@@ -1161,7 +2722,7 @@
 <!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
-        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
+        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;" onerror="this.src='https://ui-avatars.com/api/?name=FIFI&background=2563EB&color=fff&bold=true'">
         <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
     </div>
     <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
@@ -1171,24 +2732,24 @@
     <div class="chat-header">
         <div class="chat-header-title" style="gap: 12px;">
             <div style="position: relative;">
-                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
-                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
+                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);" onerror="this.src='https://ui-avatars.com/api/?name=FIFI&background=2563EB&color=fff&bold=true'">
+                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; background: #10B981; border-radius: 50%; border: 2px solid #0F172A;"></div>
             </div>
             <div>
-                <h4 style="margin: 0; line-height: 1;">FIFI</h4>
-                <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
+                <h4 style="margin: 0; line-height: 1; font-family: var(--font-display);">FIFI</h4>
+                <div class="bot-subtitle" style="margin-top: 2px;">AI Growth Assistant • Online</div>
             </div>
         </div>
         <button class="close-chat" id="closeChatBtn">&times;</button>
     </div>
-    
+
     <div class="chat-scroll-area" id="chatArea">
-       <div class="chat-greeting" id="chatGreeting">
-            <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
-            <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
+        <div class="chat-greeting" id="chatGreeting">
+            <h2 style="margin-top: 0.2rem;">Hi, I'm Fifi! 👋</h2>
+            <p>I am Fardin's AI Assistant. Select a topic or ask a custom question below:</p>
         </div>
-    
-       <div class="chat-options-grid" id="chatOptions">
+
+        <div class="chat-options-grid" id="chatOptions">
             <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
                 <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
             </button>
@@ -1208,31 +2769,120 @@
                 <span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span>
             </button>
         </div>
-        
+
         <div class="chat-log" id="chatLog"></div>
     </div>
-    
-    <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
+
+    <form class="chat-input-bar" id="customChatForm">
+        <input type="text" id="customChatInput" placeholder="Ask Fifi anything about Fardin..." autocomplete="off">
+        <button type="submit">Send</button>
+    </form>
+
+    <button class="reset-chat-btn" id="resetChatBtn">↺ Restart Conversation</button>
 </div>
 
-<!-- Footer injected by main.js -->
-<footer class="site-footer"></footer>
-    <div class="contact-banner-wrapper">
+<!-- =========================================
+   ⌘ FUTURISTIC COMMAND PALETTE MODAL
+========================================= -->
+<div class="cmd-modal-backdrop" id="cmdBackdrop">
+    <div class="cmd-palette-box">
+        <div class="cmd-search-header">
+            <span style="color: var(--c3); font-family: var(--font-mono);">❯</span>
+            <input type="text" id="cmdSearchInput" placeholder="Type a command or jump to section... (Esc to close)">
+        </div>
+        <div class="cmd-list" id="cmdList">
+            <a href="#roi-simulator" class="cmd-item" data-cmd="close">
+                <span>⚡ Launch B2B Pipeline Simulator</span>
+                <span class="cmd-item-tag">Widget</span>
+            </a>
+            <a href="/resume.html" class="cmd-item">
+                <span>📄 Open AI-Optimized Resume</span>
+                <span class="cmd-item-tag">Document</span>
+            </a>
+            <a href="/blog.html" class="cmd-item">
+                <span>✍️ Explore Marketing Case Studies & Blogs</span>
+                <span class="cmd-item-tag">Navigation</span>
+            </a>
+            <a href="/certificates.html" class="cmd-item">
+                <span>🎓 View Certifications & Awards</span>
+                <span class="cmd-item-tag">Navigation</span>
+            </a>
+            <a href="/volunteer.html" class="cmd-item">
+                <span>🏆 Leadership & Extracurriculars</span>
+                <span class="cmd-item-tag">Navigation</span>
+            </a>
+            <div class="cmd-item" id="cmdCopyEmail">
+                <span>📋 Copy Fardin's Direct Email</span>
+                <span class="cmd-item-tag">Action</span>
+            </div>
+            <div class="cmd-item" id="cmdToggleTheme">
+                <span>🌗 Switch Dark / Light Interface Mode</span>
+                <span class="cmd-item-tag">System</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer (populated automatically if main.js isn't loaded) -->
+<footer class="site-footer" id="siteFooter">
+    <div>© 2026 <strong>Fardin Rahman Khan Raafi</strong> • All Rights Reserved.</div>
+    <div style="display: flex; gap: 1.25rem;">
+        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" style="color: var(--text-muted); text-decoration: none;">LinkedIn</a>
+        <a href="/resume.html" style="color: var(--text-muted); text-decoration: none;">Resume</a>
+        <a href="/contact.html" style="color: var(--text-muted); text-decoration: none;">Contact</a>
+    </div>
+</footer>
+
+<div class="contact-banner-wrapper">
     <img src="behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" onerror="this.style.display='none'">
 </div>
+
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<!-- Original main.js preserved -->
 <script src="/main.js"></script>
 
-<!-- 🚀 BLUR TEXT SCRIPT AUTOMATOR -->
+<!-- 🚀 SELF-CONTAINED FUTURISTIC ENGINE & WIDGET CONTROLLERS -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        /* 1. Preloader Dismiss */
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => preloader.classList.add('loaded'), 450);
+        }
+
+        /* 2. Top Scroll Laser Progress & Scroll-to-Top */
+        const scrollLaser = document.getElementById('scroll-laser');
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            if (scrollLaser) scrollLaser.style.width = `${pct}%`;
+        }, { passive: true });
+
+        if (scrollTopBtn) {
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+
+        /* 3. Spotlight Hover Effect on Glass Cards */
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+            });
+        });
+
+        /* 4. Blur Text Reveal Observer */
         const blurContainers = document.querySelectorAll('.blur-container');
         const blurObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const words = entry.target.querySelectorAll('.scroll-blur');
                     words.forEach((word, index) => {
-                        // 150ms stagger delay per word
                         word.style.animationDelay = `${index * 0.15}s`;
                         word.classList.add('is-animated');
                     });
@@ -1240,18 +2890,335 @@
                 }
             });
         }, { threshold: 0.1 });
-
         blurContainers.forEach(container => blurObserver.observe(container));
+
+        /* 5. Typewriter Fallback (Runs smoothly if /main.js doesn't already populate #tw-text) */
+        const twEl = document.getElementById('tw-text');
+        if (twEl) {
+            setTimeout(() => {
+                if (twEl.textContent.trim() === '') {
+                    const roles = [
+                        "MARKETING EXECUTIVE // B2B GROWTH",
+                        "CRM PIPELINE & CLAY ARCHITECT",
+                        "BRAND STRATEGIST & VISUAL DIRECTOR",
+                        "MULTICHANNEL OUTBOUND SPECIALIST"
+                    ];
+                    let rIdx = 0, cIdx = 0, deleting = false;
+                    const typeStep = () => {
+                        const current = roles[rIdx];
+                        twEl.textContent = current.substring(0, cIdx);
+                        if (!deleting && cIdx < current.length) {
+                            cIdx++;
+                            setTimeout(typeStep, 55);
+                        } else if (deleting && cIdx > 0) {
+                            cIdx--;
+                            setTimeout(typeStep, 28);
+                        } else {
+                            deleting = !deleting;
+                            if (!deleting) rIdx = (rIdx + 1) % roles.length;
+                            setTimeout(typeStep, deleting ? 1800 : 350);
+                        }
+                    };
+                    typeStep();
+                }
+            }, 300);
+        }
+
+        /* 6. Live Dhaka Digital Clock (Asia/Dhaka Timezone) */
+        const hourMinEl = document.getElementById('digital-hour-min');
+        const ampmEl = document.getElementById('digital-ampm');
+        const dateEl = document.getElementById('digital-date');
+        const updateDhakaClock = () => {
+            try {
+                const now = new Date();
+                const timeParts = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'Asia/Dhaka',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true
+                }).formatToParts(now);
+                const h = timeParts.find(p => p.type === 'hour')?.value || '12';
+                const m = timeParts.find(p => p.type === 'minute')?.value || '00';
+                const s = timeParts.find(p => p.type === 'second')?.value || '00';
+                const dp = timeParts.find(p => p.type === 'dayPeriod')?.value || 'AM';
+
+                if (hourMinEl) hourMinEl.textContent = `${h}:${m}:${s}`;
+                if (ampmEl) ampmEl.textContent = dp;
+                if (dateEl) {
+                    dateEl.textContent = new Intl.DateTimeFormat('en-US', {
+                        timeZone: 'Asia/Dhaka',
+                        weekday: 'short',
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric'
+                    }).format(now);
+                }
+            } catch (e) {}
+        };
+        updateDhakaClock();
+        setInterval(updateDhakaClock, 1000);
+
+        /* 7. Theme Toggle & Hero Image Switcher */
+        const heroImg = document.getElementById('mainHeroImg');
+        const themeBtn = document.getElementById('themeToggle');
+        const updateHeroImage = () => {
+            if (!heroImg) return;
+            if (document.body.classList.contains('dark-mode')) {
+                heroImg.src = "/misc_img/me.png";
+            } else {
+                heroImg.src = "/misc_img/me2.png";
+            }
+        };
+        updateHeroImage();
+        if (themeBtn) {
+            themeBtn.addEventListener('click', () => {
+                // Toggle dark-mode if external main.js didn't already toggle it
+                setTimeout(() => {
+                    updateHeroImage();
+                }, 50);
+            });
+            // Fallback toggle in case /main.js is absent in preview environment
+            themeBtn.addEventListener('click', (e) => {
+                if (!window.__mainJsLoaded) {
+                    document.body.classList.toggle('dark-mode');
+                    updateHeroImage();
+                }
+            });
+        }
+
+        /* 8. Copy Email Helper (Hero Status Pill + Sidebar Button + Command Palette) */
+        const copyEmailToClipboard = (feedbackCallback) => {
+            const email = "fardinraafi@gmail.com";
+            const tempInput = document.createElement("textarea");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try { document.execCommand("copy"); } catch (err) {}
+            document.body.removeChild(tempInput);
+            if (feedbackCallback) feedbackCallback(email);
+        };
+
+        const liveStatusBtn = document.getElementById('liveStatusBtn');
+        const copyTooltip = document.getElementById('copyStatusTooltip');
+        if (liveStatusBtn) {
+            liveStatusBtn.addEventListener('click', () => {
+                copyEmailToClipboard(() => {
+                    if (copyTooltip) {
+                        const orig = copyTooltip.textContent;
+                        copyTooltip.textContent = "✓ Email Copied!";
+                        setTimeout(() => copyTooltip.textContent = orig, 2200);
+                    }
+                });
+            });
+        }
+
+        const sidebarCopyBtn = document.getElementById('sidebarCopyEmailBtn');
+        const sidebarCopyText = document.getElementById('sidebarCopyText');
+        if (sidebarCopyBtn) {
+            sidebarCopyBtn.addEventListener('click', () => {
+                copyEmailToClipboard(() => {
+                    if (sidebarCopyText) {
+                        sidebarCopyText.textContent = "Copied!";
+                        setTimeout(() => sidebarCopyText.textContent = "Copy Email", 2000);
+                    }
+                });
+            });
+        }
+
+        /* 9. Interactive B2B Pipeline Velocity Simulator */
+        const leadsInput = document.getElementById('simLeadsInput');
+        const precisionInput = document.getElementById('simPrecisionInput');
+        const touchesInput = document.getElementById('simTouchesInput');
+        const leadsVal = document.getElementById('simLeadsVal');
+        const precisionVal = document.getElementById('simPrecisionVal');
+        const touchesVal = document.getElementById('simTouchesVal');
+        const verifiedOut = document.getElementById('simVerifiedOut');
+        const repliesOut = document.getElementById('simRepliesOut');
+        const meetingsOut = document.getElementById('simMeetingsOut');
+
+        const recalcPipeline = () => {
+            if (!leadsInput || !precisionInput || !touchesInput) return;
+            const leads = parseInt(leadsInput.value, 10);
+            const precision = parseInt(precisionInput.value, 10);
+            const touches = parseInt(touchesInput.value, 10);
+
+            leadsVal.textContent = leads.toLocaleString();
+            precisionVal.textContent = `${precision}%`;
+            touchesVal.textContent = `${touches} Steps`;
+
+            const verified = Math.round(leads * (precision / 100));
+            const replyRate = 0.028 + (touches * 0.0034);
+            const replies = Math.round(verified * replyRate);
+            const meetings = Math.max(1, Math.round(replies * 0.22));
+
+            verifiedOut.textContent = verified.toLocaleString();
+            repliesOut.textContent = replies.toLocaleString();
+            meetingsOut.textContent = meetings.toLocaleString();
+        };
+        [leadsInput, precisionInput, touchesInput].forEach(el => {
+            if (el) el.addEventListener('input', recalcPipeline);
+        });
+        recalcPipeline();
+
+        /* 10. Playbook Lead Magnet Form Handler */
+        const playbookForm = document.getElementById('playbook-form');
+        const playbookFeedback = document.getElementById('playbook-feedback');
+        if (playbookForm) {
+            playbookForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                if (playbookFeedback) {
+                    playbookFeedback.style.color = "var(--accent-emerald)";
+                    playbookFeedback.textContent = "✓ Playbook dispatched! Check your inbox shortly.";
+                }
+                playbookForm.reset();
+            });
+        }
+
+        /* 11. Command Palette Controller (Ctrl+K / Cmd+K) */
+        const cmdBackdrop = document.getElementById('cmdBackdrop');
+        const openCmdBtn = document.getElementById('openCmdBtn');
+        const cmdSearchInput = document.getElementById('cmdSearchInput');
+        const cmdCopyEmail = document.getElementById('cmdCopyEmail');
+        const cmdToggleTheme = document.getElementById('cmdToggleTheme');
+
+        const toggleCmdPalette = (open) => {
+            if (!cmdBackdrop) return;
+            const shouldOpen = open !== undefined ? open : !cmdBackdrop.classList.contains('open');
+            cmdBackdrop.classList.toggle('open', shouldOpen);
+            if (shouldOpen && cmdSearchInput) {
+                cmdSearchInput.value = '';
+                filterCmdItems('');
+                setTimeout(() => cmdSearchInput.focus(), 50);
+            }
+        };
+
+        const filterCmdItems = (q) => {
+            const items = document.querySelectorAll('#cmdList .cmd-item');
+            items.forEach(item => {
+                const match = item.textContent.toLowerCase().includes(q.toLowerCase());
+                item.style.display = match ? 'flex' : 'none';
+            });
+        };
+
+        if (openCmdBtn) openCmdBtn.addEventListener('click', () => toggleCmdPalette(true));
+        if (cmdBackdrop) {
+            cmdBackdrop.addEventListener('click', (e) => {
+                if (e.target === cmdBackdrop || e.target.closest('[data-cmd="close"]')) {
+                    toggleCmdPalette(false);
+                }
+            });
+        }
+        if (cmdSearchInput) {
+            cmdSearchInput.addEventListener('input', (e) => filterCmdItems(e.target.value));
+        }
+        if (cmdCopyEmail) {
+            cmdCopyEmail.addEventListener('click', () => {
+                copyEmailToClipboard(() => {
+                    cmdCopyEmail.querySelector('span').textContent = "✓ Copied fardinraafi@gmail.com!";
+                    setTimeout(() => toggleCmdPalette(false), 700);
+                });
+            });
+        }
+        if (cmdToggleTheme) {
+            cmdToggleTheme.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+                updateHeroImage();
+                toggleCmdPalette(false);
+            });
+        }
+
+        window.addEventListener('keydown', (e) => {
+            if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+                e.preventDefault();
+                toggleCmdPalette();
+            } else if (e.key === 'Escape') {
+                toggleCmdPalette(false);
+            }
+        });
+
+        /* 12. FIFI AI Assistant Controller (Supports Preset Buttons + Custom Queries) */
+        const openChatBtn = document.getElementById('openChatBtn');
+        const closeChatBtn = document.getElementById('closeChatBtn');
+        const chatModal = document.getElementById('chatModal');
+        const chatLog = document.getElementById('chatLog');
+        const chatArea = document.getElementById('chatArea');
+        const resetChatBtn = document.getElementById('resetChatBtn');
+        const customChatForm = document.getElementById('customChatForm');
+        const customChatInput = document.getElementById('customChatInput');
+
+        if (openChatBtn && chatModal) {
+            openChatBtn.addEventListener('click', () => chatModal.classList.toggle('active'));
+        }
+        if (closeChatBtn && chatModal) {
+            closeChatBtn.addEventListener('click', () => chatModal.classList.remove('active'));
+        }
+        if (resetChatBtn && chatLog) {
+            resetChatBtn.addEventListener('click', () => {
+                chatLog.innerHTML = '';
+            });
+        }
+
+        const fifiKnowledgeBase = (query) => {
+            const q = query.toLowerCase();
+            if (q.includes('skill') || q.includes('stack') || q.includes('tool')) {
+                return "Fardin specializes in B2B Growth Operations, CRM Pipeline Management (40K+ records), Salesforce, Apollo.io, Instantly.ai, Clay, LinkedIn Sales Navigator, and Brand Strategy & Adobe Creative Suite.";
+            }
+            if (q.includes('b2b') || q.includes('experience') || q.includes('augmex') || q.includes('work')) {
+                return "As a Marketing Executive at Augmex Technologies Ltd., Fardin enriched 40,000+ CRM records, mapped 6,000+ ICP decision makers, and generated 67,000+ organic impressions in a single month.";
+            }
+            if (q.includes('academic') || q.includes('education') || q.includes('bba') || q.includes('cgpa') || q.includes('bubt')) {
+                return "Fardin graduated with a BBA in Marketing from BUBT with a 3.80 CGPA, after achieving a perfect 5.00 GPA in HSC from Dhaka Commerce College.";
+            }
+            if (q.includes('extracurricular') || q.includes('award') || q.includes('leader') || q.includes('harvard')) {
+                return "He won BASIS Leader of the Year (2024), was selected for the Harvard Business School '26 Aspire Leaders Program, won the ISCEA Global Case Competition (70% CSCA scholarship), and led TEDxUttara's Best Department.";
+            }
+            if (q.includes('resume') || q.includes('cv') || q.includes('download')) {
+                return "You can view and download Fardin's AI-Optimized Resume directly at <a href='/resume.html' style='color:var(--c3);font-weight:700;'>/resume.html</a>.";
+            }
+            if (q.includes('contact') || q.includes('email') || q.includes('hire') || q.includes('talk')) {
+                return "You can reach Fardin via LinkedIn (<a href='https://www.linkedin.com/in/fardinraafi' target='_blank' style='color:var(--c3);'>linkedin.com/in/fardinraafi</a>) or head straight to <a href='/contact.html' style='color:var(--c3);'>/contact.html</a>.";
+            }
+            return "Fardin is a Marketing Executive in Dhaka blending B2B outbound precision with high-impact brand strategy. Ask me about his 40K+ CRM pipeline, tools (Clay/Apollo), BBA CGPA (3.80), or how to hire him!";
+        };
+
+        window.sendQuery = function(queryText) {
+            if (!chatLog) return;
+            const userBubble = document.createElement('div');
+            userBubble.className = 'chat-msg user';
+            userBubble.textContent = queryText;
+            chatLog.appendChild(userBubble);
+
+            const botBubble = document.createElement('div');
+            botBubble.className = 'chat-msg bot';
+            botBubble.innerHTML = fifiKnowledgeBase(queryText);
+            setTimeout(() => {
+                chatLog.appendChild(botBubble);
+                if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+            }, 240);
+            if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+        };
+
+        if (customChatForm && customChatInput) {
+            customChatForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const val = customChatInput.value.trim();
+                if (!val) return;
+                window.sendQuery(val);
+                customChatInput.value = '';
+            });
+        }
     });
 </script>
+
 <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
     const canvas = document.getElementById('neural-canvas');
-    if(canvas) {
+    if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        let mouse = { x: null, y: null, radius: 100 }; 
+        let mouse = { x: null, y: null, radius: 110 }; 
 
         window.addEventListener('mousemove', (event) => {
             mouse.x = event.clientX;
@@ -1318,7 +3285,7 @@
         function init() {
             particles = [];
             let numberOfParticles = (width * height) / 12000; 
-            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
+            let colors = ['rgba(59, 130, 246, 0.45)', 'rgba(139, 92, 246, 0.45)', 'rgba(34, 211, 238, 0.45)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -1361,47 +3328,19 @@
         animate();
     }
 </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const heroImg = document.getElementById('mainHeroImg');
-        const themeBtn = document.getElementById('themeToggle');
-        
-        // Ensure the image exists on the page before running logic
-        if (heroImg && themeBtn) {
-            
-            // Function to check the current theme and set the correct image
-            const updateHeroImage = () => {
-                if (document.body.classList.contains('dark-mode')) {
-                    heroImg.src = "/misc_img/me.png"; // Dark mode image
-                } else {
-                    heroImg.src = "/misc_img/me2.png"; // Light mode image
-                }
-            };
 
-            // Run it once immediately when the page loads
-            updateHeroImage();
-
-            // Listen for clicks on the Theme Toggle button
-            themeBtn.addEventListener('click', () => {
-                // Wait a tiny fraction of a second for the body class to actually change
-                setTimeout(updateHeroImage, 50); 
-            });
-        }
-    });
-</script>
-
-<!-- 🚀 WEBGL CAROUSEL LOGIC -->
+<!-- 🚀 WEBGL CAROUSEL LOGIC (WITH AUTOMATIC PROCEDURAL POSTER FALLBACK IF IMAGES ARE OFFLINE) -->
 <script>
-    // 1. BRAND COLORS & CONFIG
-    const COLOR_PAPER = "#0f172a"; // Matches your dark mode body
+    const COLOR_PAPER = "#050814";
 
     function parsePanelData(panelEl) {
-      const num = panelEl.dataset.num || "";
-      const imgUrl = panelEl.dataset.img || "";
-      return { num, imgUrl };
+        const num = panelEl.dataset.num || "";
+        const imgUrl = panelEl.dataset.img || "";
+        const title = panelEl.querySelector("h3")?.textContent || "LinkedIn Insight";
+        const subtitle = panelEl.querySelector("p")?.textContent || "";
+        return { num, imgUrl, title, subtitle };
     }
 
-    // 2. WEBGL2 GLSL SHADERS (TEXTURE ARRAY MODE)
     const VERTEX_SHADER = `#version 300 es
     in vec2 aPos;
     out vec2 vUv;
@@ -1410,7 +3349,7 @@
       gl_Position = vec4(aPos, 0.0, 1.0);
     }`;
 
-   const FRAGMENT_SHADER = `#version 300 es
+    const FRAGMENT_SHADER = `#version 300 es
     precision highp float;
     precision highp sampler2DArray;
     in vec2 vUv;
@@ -1432,12 +3371,11 @@
       if(selected){ localX /= zoom; y /= zoom; }
       else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
       if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
-      
-      // ✨ THE FIX: Use pure integer math to perfectly wrap the images ✨
+
       int islot = int(slot);
       int index = islot % uCount;
       if (index < 0) index += uCount;
-      
+
       return texture(uTex, vec3(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5, float(index))).rgb;
     }
 
@@ -1476,335 +3414,363 @@
     }`;
 
     function compileShader(gl, type, source) {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error("Shader failed to compile:", gl.getShaderInfoLog(shader));
-        return null;
-      }
-      return shader;
+        const shader = gl.createShader(type);
+        if (!shader) return null;
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error("Shader failed to compile:", gl.getShaderInfoLog(shader));
+            return null;
+        }
+        return shader;
     }
 
-    // 3. WEBGL CAROUSEL ENGINE
-    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, reducedMotion, onActiveChange, getActiveIndex) {
-      const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
-      const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
-      if (!vs || !fs) return null;
+    // Draws a rich cyber poster card if local image isn't present in preview environment
+    function drawProceduralSlidePoster(ctx, slide, index) {
+        const grd = ctx.createLinearGradient(0, 0, 1024, 1024);
+        grd.addColorStop(0, "#0f172a");
+        grd.addColorStop(0.5, index % 2 === 0 ? "#1e1b4b" : "#0c4a6e");
+        grd.addColorStop(1, "#020617");
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, 1024, 1024);
 
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.bindAttribLocation(program, 0, "aPos");
-      gl.linkProgram(program);
+        ctx.strokeStyle = "rgba(56, 189, 248, 0.35)";
+        ctx.lineWidth = 6;
+        ctx.strokeRect(48, 48, 928, 928);
 
-      const slideCount = slidesData.length;
-      const vao = gl.createVertexArray();
-      const buffer = gl.createBuffer();
-      gl.bindVertexArray(vao);
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-      gl.enableVertexAttribArray(0);
-      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-      gl.bindVertexArray(null);
+        ctx.fillStyle = "rgba(56, 189, 248, 0.9)";
+        ctx.font = "bold 52px monospace";
+        ctx.fillText(`FRKR // LINKEDIN POST #${slide.num}`, 100, 170);
 
-      const uniforms = {
-        focus: gl.getUniformLocation(program, "uFocus"),
-        selected: gl.getUniformLocation(program, "uSelected"),
-        aspect: gl.getUniformLocation(program, "uAspect"),
-        halfW: gl.getUniformLocation(program, "uHalfW"),
-        halfH: gl.getUniformLocation(program, "uHalfH"),
-        step: gl.getUniformLocation(program, "uStep"),
-        scroll: gl.getUniformLocation(program, "uScroll"),
-        time: gl.getUniformLocation(program, "uTime"),
-        countU: gl.getUniformLocation(program, "uCount"),
-        paper: gl.getUniformLocation(program, "uPaper"),
-        tex: gl.getUniformLocation(program, "uTex")
-      };
-
-      // ✨ THE FIX: Create a single 3D Texture Array that holds ALL images infinitely ✨
-      const texArray = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-      gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 1024, 1024, slideCount);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-      // Pre-fill it so the screen isn't blank while loading
-      const blankData = new Uint8Array(1024 * 1024 * 4);
-      for(let i=0; i < blankData.length; i+=4) {
-         blankData[i] = 15; blankData[i+1] = 23; blankData[i+2] = 42; blankData[i+3] = 255;
-      }
-      for (let i = 0; i < slideCount; i++) {
-          gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, blankData);
-      }
-
-      // Convert Dark Blue hex to Normalized RGB
-      const num = parseInt(COLOR_PAPER.slice(1), 16);
-      const paperRgb = [(num >> 16 & 255)/255, (num >> 8 & 255)/255, (num & 255)/255];
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-
-      let viewWidth = 0, viewHeight = 1;
-      let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
-      let activePointerId = -1;
-
-      const carouselRoot = viewportEl.closest(".glass-carousel");
-      
-      // ✨ Create a layout container for the side-by-side buttons
-      const actionsContainer = document.createElement("div");
-      actionsContainer.className = "gc-actions-container";
-      actionsContainer.hidden = true;
-      
-      const linkedinBtn = document.createElement("a");
-      linkedinBtn.className = "gc-linkedin-btn";
-      linkedinBtn.textContent = "Open LinkedIn ➔";
-      linkedinBtn.target = "_blank";
-      
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "gc-close";
-      closeBtn.textContent = "Back to Feed ×";
-      
-      actionsContainer.appendChild(linkedinBtn);
-      actionsContainer.appendChild(closeBtn);
-      
-      carouselRoot.querySelector(".gc-meta")?.prepend(actionsContainer);
-
-      let scrollCurrent = 0, scrollTarget = 0;
-      let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
-      let texturesReady = true; 
-      let isVisible = true, rafId = 0, isAnimating = false;
-
-      const setFocused = (focused) => {
-        focusTarget = focused ? 1 : 0;
-        carouselRoot.classList.toggle("gc-focused", focused);
-        actionsContainer.hidden = !focused; // Hide/Show both buttons together!
-        
-        if (focused) {
-            // Find which panel is active and steal its data-link URL for the button!
-            const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
-            if (activePanel && activePanel.dataset.link) {
-                linkedinBtn.href = activePanel.dataset.link;
-                linkedinBtn.style.display = "inline-flex";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 74px sans-serif";
+        const words = slide.title.split(" ");
+        let line = "", y = 440;
+        words.forEach(w => {
+            const test = line + w + " ";
+            if (ctx.measureText(test).width > 820) {
+                ctx.fillText(line, 100, y);
+                line = w + " ";
+                y += 90;
             } else {
-                linkedinBtn.style.display = "none";
+                line = test;
             }
-        }
-        requestRender();
-      };
+        });
+        ctx.fillText(line, 100, y);
 
-      closeBtn.addEventListener("click", () => {
-        setFocused(false);
-      });
-
-      const resize = () => {
-        const rect = viewportEl.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        viewWidth = rect.width; viewHeight = rect.height;
-        const w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
-        if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-        gl.viewport(0, 0, w, h);
-      };
-
-      const getLayoutMetrics = () => {
-        const aspect = viewWidth / viewHeight;
-        const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
-        const halfW = halfH;
-        const step = halfW * 2 + 0.012;
-        return { halfW, halfH, step, aspect };
-      };
-
-      const drawFrame = (timeSec) => {
-        const { halfW, halfH, step, aspect } = getLayoutMetrics();
-        gl.useProgram(program);
-        gl.bindVertexArray(vao);
-        gl.uniform1f(uniforms.focus, focusCurrent);
-        gl.uniform1f(uniforms.selected, selectedSlot);
-        gl.uniform1f(uniforms.aspect, aspect);
-        gl.uniform1f(uniforms.halfW, halfW);
-        gl.uniform1f(uniforms.halfH, halfH);
-        gl.uniform1f(uniforms.step, step);
-        gl.uniform1f(uniforms.scroll, scrollCurrent);
-        gl.uniform1f(uniforms.time, timeSec);
-        gl.uniform1i(uniforms.countU, slideCount);
-        gl.uniform3f(uniforms.paper, paperRgb[0], paperRgb[1], paperRgb[2]);
-
-        gl.activeTexture(gl.TEXTURE0);
-        gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-        gl.uniform1i(uniforms.tex, 0);
-        
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
-      };
-
-      const tick = (now) => {
-        isAnimating = false;
-        if (!isDragging) {
-          scrollCurrent += (scrollTarget - scrollCurrent) * 0.14;
-          if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
-        }
-        focusCurrent += (focusTarget - focusCurrent) * 0.1;
-        if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
-
-        onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
-        drawFrame(now / 1000);
-
-        if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) requestRender();
-      };
-
-      const requestRender = () => {
-        if (!isAnimating && texturesReady) { isAnimating = true; rafId = requestAnimationFrame(tick); }
-      };
-
-      canvas.addEventListener("pointerdown", (e) => {
-        if (e.button !== 0) return;
-        activePointerId = e.pointerId;
-        isDragging = true;
-        requestRender();
-        dragStartX = e.clientX;
-        dragStartScroll = scrollCurrent;
-        canvas.setPointerCapture(e.pointerId);
-      });
-
-      canvas.addEventListener("pointermove", (e) => {
-        if (!isDragging || !viewWidth || focusTarget) return;
-        const { step, aspect } = getLayoutMetrics();
-        const delta = (e.clientX - dragStartX) * aspect / viewWidth;
-        scrollCurrent = dragStartScroll - delta / step;
-        scrollTarget = scrollCurrent;
-        requestRender();
-      });
-
-      const onPointerUp = (e) => {
-        if (!isDragging || e.pointerId !== activePointerId) return;
-        isDragging = false;
-        try { canvas.releasePointerCapture(e.pointerId); } catch {}
-        scrollTarget = Math.round(scrollCurrent);
-
-        if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
-          const rect = canvas.getBoundingClientRect();
-          const { step, halfW, halfH } = getLayoutMetrics();
-          const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
-          const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
-
-          if (focusTarget) {
-            if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
-          } else {
-            const clickedSlot = Math.round(clickX / step + scrollCurrent);
-            if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
-              selectedSlot = scrollTarget = clickedSlot;
-              onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
-              setFocused(true); 
-            }
-          }
-        }
-        requestRender();
-      };
-
-      window.addEventListener("pointerup", onPointerUp);
-      canvas.addEventListener("pointercancel", onPointerUp);
-      
-      canvas.addEventListener("wheel", (e) => {
-        if (focusTarget || e.ctrlKey) return;
-        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        if (!delta) return;
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const now = performance.now();
-        if (now - lastWheelTime >= 220) {
-          lastWheelTime = now;
-          scrollTarget = Math.round(scrollTarget) + (delta > 0 ? 1 : -1);
-          requestRender();
-        }
-      }, { passive: false });
-
-      viewportEl.appendChild(canvas);
-      new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
-      resize();
-
-      // Download images dynamically into the Texture Array
-      (async () => {
-        const offscreen = document.createElement("canvas");
-        offscreen.width = 1024; offscreen.height = 1024;
-        const ctx = offscreen.getContext("2d");
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
-        for (let i = 0; i < slideCount; i++) {
-          await new Promise(resolve => {
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.onload = () => {
-              ctx.fillStyle = COLOR_PAPER;
-              ctx.fillRect(0, 0, 1024, 1024);
-              const scale = Math.max(1024 / img.width, 1024 / img.height);
-              const x = (1024 / 2) - (img.width / 2) * scale;
-              const y = (1024 / 2) - (img.height / 2) * scale;
-              ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-              resolve();
-            };
-            img.onerror = () => {
-              ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, 1024, 1024);
-              resolve();
-            };
-            img.src = slidesData[i].imgUrl;
-          });
-          
-          gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-          gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
-          requestRender(); 
-        }
-      })();
-
-      return { goTo(index) { setFocused(false); scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount; requestRender(); } };
+        ctx.fillStyle = "#94a3b8";
+        ctx.font = "38px sans-serif";
+        ctx.fillText("Click to inspect & open post on LinkedIn ➔", 100, 880);
     }
 
-    // 4. INITIALIZE CAROUSEL
+    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, reducedMotion, onActiveChange, getActiveIndex) {
+        if (!gl) return null;
+        const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+        const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+        if (!vs || !fs) return null;
+
+        const program = gl.createProgram();
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.bindAttribLocation(program, 0, "aPos");
+        gl.linkProgram(program);
+
+        const slideCount = slidesData.length;
+        const vao = gl.createVertexArray();
+        const buffer = gl.createBuffer();
+        gl.bindVertexArray(vao);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        gl.enableVertexAttribArray(0);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.bindVertexArray(null);
+
+        const uniforms = {
+            focus: gl.getUniformLocation(program, "uFocus"),
+            selected: gl.getUniformLocation(program, "uSelected"),
+            aspect: gl.getUniformLocation(program, "uAspect"),
+            halfW: gl.getUniformLocation(program, "uHalfW"),
+            halfH: gl.getUniformLocation(program, "uHalfH"),
+            step: gl.getUniformLocation(program, "uStep"),
+            scroll: gl.getUniformLocation(program, "uScroll"),
+            time: gl.getUniformLocation(program, "uTime"),
+            countU: gl.getUniformLocation(program, "uCount"),
+            paper: gl.getUniformLocation(program, "uPaper"),
+            tex: gl.getUniformLocation(program, "uTex")
+        };
+
+        const texArray = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+        gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 1024, 1024, slideCount);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+
+        const num = parseInt(COLOR_PAPER.slice(1), 16);
+        const paperRgb = [(num >> 16 & 255)/255, (num >> 8 & 255)/255, (num & 255)/255];
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+        let viewWidth = 0, viewHeight = 1;
+        let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
+        let activePointerId = -1;
+
+        const carouselRoot = viewportEl.closest(".glass-carousel");
+
+        const actionsContainer = document.createElement("div");
+        actionsContainer.className = "gc-actions-container";
+        actionsContainer.hidden = true;
+
+        const linkedinBtn = document.createElement("a");
+        linkedinBtn.className = "gc-linkedin-btn";
+        linkedinBtn.textContent = "Open LinkedIn ➔";
+        linkedinBtn.target = "_blank";
+
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "gc-close";
+        closeBtn.textContent = "Back to Feed ×";
+
+        actionsContainer.appendChild(linkedinBtn);
+        actionsContainer.appendChild(closeBtn);
+
+        carouselRoot.querySelector(".gc-meta")?.prepend(actionsContainer);
+
+        let scrollCurrent = 0, scrollTarget = 0;
+        let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
+        let texturesReady = true; 
+        let rafId = 0, isAnimating = false;
+
+        const setFocused = (focused) => {
+            focusTarget = focused ? 1 : 0;
+            carouselRoot.classList.toggle("gc-focused", focused);
+            actionsContainer.hidden = !focused;
+
+            if (focused) {
+                const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
+                if (activePanel && activePanel.dataset.link) {
+                    linkedinBtn.href = activePanel.dataset.link;
+                    linkedinBtn.style.display = "inline-flex";
+                } else {
+                    linkedinBtn.style.display = "none";
+                }
+            }
+            requestRender();
+        };
+
+        closeBtn.addEventListener("click", () => {
+            setFocused(false);
+        });
+
+        const resize = () => {
+            const rect = viewportEl.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            viewWidth = rect.width; viewHeight = rect.height;
+            const w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
+            if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+            gl.viewport(0, 0, w, h);
+        };
+
+        const getLayoutMetrics = () => {
+            const aspect = viewWidth / viewHeight;
+            const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
+            const halfW = halfH;
+            const step = halfW * 2 + 0.012;
+            return { halfW, halfH, step, aspect };
+        };
+
+        const drawFrame = (timeSec) => {
+            const { halfW, halfH, step, aspect } = getLayoutMetrics();
+            gl.useProgram(program);
+            gl.bindVertexArray(vao);
+            gl.uniform1f(uniforms.focus, focusCurrent);
+            gl.uniform1f(uniforms.selected, selectedSlot);
+            gl.uniform1f(uniforms.aspect, aspect);
+            gl.uniform1f(uniforms.halfW, halfW);
+            gl.uniform1f(uniforms.halfH, halfH);
+            gl.uniform1f(uniforms.step, step);
+            gl.uniform1f(uniforms.scroll, scrollCurrent);
+            gl.uniform1f(uniforms.time, timeSec);
+            gl.uniform1i(uniforms.countU, slideCount);
+            gl.uniform3f(uniforms.paper, paperRgb[0], paperRgb[1], paperRgb[2]);
+
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+            gl.uniform1i(uniforms.tex, 0);
+
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+        };
+
+        const tick = (now) => {
+            isAnimating = false;
+            if (!isDragging) {
+                scrollCurrent += (scrollTarget - scrollCurrent) * 0.14;
+                if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
+            }
+            focusCurrent += (focusTarget - focusCurrent) * 0.1;
+            if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
+
+            onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
+            drawFrame(now / 1000);
+
+            if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) requestRender();
+        };
+
+        const requestRender = () => {
+            if (!isAnimating && texturesReady) { isAnimating = true; rafId = requestAnimationFrame(tick); }
+        };
+
+        canvas.addEventListener("pointerdown", (e) => {
+            if (e.button !== 0) return;
+            activePointerId = e.pointerId;
+            isDragging = true;
+            requestRender();
+            dragStartX = e.clientX;
+            dragStartScroll = scrollCurrent;
+            canvas.setPointerCapture(e.pointerId);
+        });
+
+        canvas.addEventListener("pointermove", (e) => {
+            if (!isDragging || !viewWidth || focusTarget) return;
+            const { step, aspect } = getLayoutMetrics();
+            const delta = (e.clientX - dragStartX) * aspect / viewWidth;
+            scrollCurrent = dragStartScroll - delta / step;
+            scrollTarget = scrollCurrent;
+            requestRender();
+        });
+
+        const onPointerUp = (e) => {
+            if (!isDragging || e.pointerId !== activePointerId) return;
+            isDragging = false;
+            try { canvas.releasePointerCapture(e.pointerId); } catch {}
+            scrollTarget = Math.round(scrollCurrent);
+
+            if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
+                const rect = canvas.getBoundingClientRect();
+                const { step, halfW, halfH } = getLayoutMetrics();
+                const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
+                const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
+
+                if (focusTarget) {
+                    if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
+                } else {
+                    const clickedSlot = Math.round(clickX / step + scrollCurrent);
+                    if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
+                        selectedSlot = scrollTarget = clickedSlot;
+                        onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
+                        setFocused(true); 
+                    }
+                }
+            }
+            requestRender();
+        };
+
+        window.addEventListener("pointerup", onPointerUp);
+        canvas.addEventListener("pointercancel", onPointerUp);
+
+        canvas.addEventListener("wheel", (e) => {
+            if (focusTarget || e.ctrlKey) return;
+            const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+            if (!delta) return;
+            e.preventDefault();
+            e.stopPropagation();
+
+            const now = performance.now();
+            if (now - lastWheelTime >= 220) {
+                lastWheelTime = now;
+                scrollTarget = Math.round(scrollTarget) + (delta > 0 ? 1 : -1);
+                requestRender();
+            }
+        }, { passive: false });
+
+        viewportEl.appendChild(canvas);
+        new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
+        resize();
+
+        (async () => {
+            const offscreen = document.createElement("canvas");
+            offscreen.width = 1024; offscreen.height = 1024;
+            const ctx = offscreen.getContext("2d");
+            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+
+            // Immediately populate with stylized procedural posters so the 3D lens looks crisp right away
+            for (let i = 0; i < slideCount; i++) {
+                drawProceduralSlidePoster(ctx, slidesData[i], i);
+                gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+                gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+            }
+            requestRender();
+
+            // Load real LinkedIn images on top when available
+            for (let i = 0; i < slideCount; i++) {
+                await new Promise(resolve => {
+                    const img = new Image();
+                    img.crossOrigin = "anonymous";
+                    img.onload = () => {
+                        ctx.fillStyle = COLOR_PAPER;
+                        ctx.fillRect(0, 0, 1024, 1024);
+                        const scale = Math.max(1024 / img.width, 1024 / img.height);
+                        const x = (1024 / 2) - (img.width / 2) * scale;
+                        const y = (1024 / 2) - (img.height / 2) * scale;
+                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                        gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+                        gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+                        requestRender();
+                        resolve();
+                    };
+                    img.onerror = () => resolve();
+                    img.src = slidesData[i].imgUrl;
+                });
+            }
+        })();
+
+        return { goTo(index) { setFocused(false); scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount; requestRender(); } };
+    }
+
     function createGlassCarousel(rootEl) {
-      const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
-      const viewportEl = rootEl.querySelector(".gc-viewport");
-      const counterEl = rootEl.querySelector(".gc-counter");
-      const dotsContainer = rootEl.querySelector(".gc-dots");
+        const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
+        const viewportEl = rootEl.querySelector(".gc-viewport");
+        const counterEl = rootEl.querySelector(".gc-counter");
+        const dotsContainer = rootEl.querySelector(".gc-dots");
 
-      const slideCount = panels.length;
-      const slidesData = panels.map(parsePanelData);
-      const totalFormatted = String(slideCount).padStart(2, "0");
-      const dotButtons = [];
-      let activeIndex = -1;
-      let renderer = null;
+        const slideCount = panels.length;
+        const slidesData = panels.map(parsePanelData);
+        const totalFormatted = String(slideCount).padStart(2, "0");
+        const dotButtons = [];
+        let activeIndex = -1;
+        let renderer = null;
 
-      const wrapIndex = (idx) => (idx % slideCount + slideCount) % slideCount;
+        const wrapIndex = (idx) => (idx % slideCount + slideCount) % slideCount;
 
-      const updateUI = (index) => {
-        if (index === activeIndex || index < 0 || index >= slideCount) return;
-        activeIndex = index;
-        
-        panels.forEach((panel, i) => {
-            panel.classList.toggle("is-active", i === index);
+        const updateUI = (index) => {
+            if (index === activeIndex || index < 0 || index >= slideCount) return;
+            activeIndex = index;
+
+            panels.forEach((panel, i) => {
+                panel.classList.toggle("is-active", i === index);
+            });
+
+            if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
+            dotButtons.forEach((dot, i) => {
+                dot.classList.toggle("is-active", i === index);
+            });
+        };
+
+        slidesData.forEach((slide, i) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "gc-dot";
+            btn.addEventListener("click", () => renderer?.goTo(wrapIndex(i)));
+            dotsContainer?.appendChild(btn);
+            dotButtons.push(btn);
         });
 
-        if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
-        dotButtons.forEach((dot, i) => {
-          dot.classList.toggle("is-active", i === index);
-        });
-      };
+        const canvas = document.createElement("canvas");
+        canvas.className = "gc-canvas";
+        const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
 
-      slidesData.forEach((slide, i) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "gc-dot";
-        btn.addEventListener("click", () => renderer?.goTo(wrapIndex(i)));
-        dotsContainer?.appendChild(btn);
-        dotButtons.push(btn);
-      });
-
-      const canvas = document.createElement("canvas");
-      canvas.className = "gc-canvas";
-      const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
-
-      renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, false, updateUI, () => Math.max(0, activeIndex));
-      updateUI(0);
-      renderer?.goTo(0);
+        renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, false, updateUI, () => Math.max(0, activeIndex));
+        updateUI(0);
+        renderer?.goTo(0);
     }
 
     const carouselEl = document.querySelector("[data-glass-carousel]");
