@@ -3,470 +3,515 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- SEO Primary Tags -->
+    <!-- SEO Primary Tags -->
     <title>Fardin Rahman Khan Raafi | Marketing Executive</title>
-    <meta name="description" content="Official portfolio of Fardin Rahman Khan Raafi. Marketing Executive specializing in B2B sales, brand strategy, and growth operations in Dhaka.">
+    <meta name="description" content="Official portfolio of Fardin Rahman Khan Raafi. Marketing Executive specializing in B2B sales, brand strategy, content marketing and growth operations in Dhaka.">
     <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Fardin Rahman, Marketing Executive, Fardinraafi, Growth Associate, B2B Sales, Graphic Designer, Dhaka, BUBT">
     <meta name="author" content="Fardin Rahman Khan Raafi">
+    <meta name="theme-color" content="#0F172A">
 
     <!-- Favicon / Site Icon -->
     <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
-    
-   <!-- Google Search Console Verification -->
+
+    <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="YxKX2DZgEMnJ-_e98H863nNIqMUPVLGQvdMnSdHa6Kg"/>
-    <!-- Open Graph / Social Media Meta Tags -->
-    <meta property="og:title" content="Fardin Rahman Khan Raafi | Portfolio">
-    <meta property="og:description" content="Explore the portfolio, leadership, and professional experience of Fardin Rahman Khan Raafi.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://fardinraafi.com">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
-    
-  <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
+
+    <!-- OPEN GRAPH / LINKEDIN / FACEBOOK -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
     <meta property="og:url" content="https://fardinraafi.com/">
     <meta property="og:title" content="Fardin Rahman Khan Raafi | Growth Associate">
-    <meta property="og:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="og:description" content="Marketing Executive specializing in B2B outreach, CRM pipelines, content marketing and brand strategy. 340K+ organic views in 2026.">
     <meta property="og:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
 
     <!-- TWITTER / X -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://fardinraafi.com/">
     <meta property="twitter:title" content="Fardin Rahman Khan Raafi | Marketing Executive">
-    <meta property="twitter:description" content="Marketing Executive with 1 year of B2B sales experience, specializing in CRM pipelines, outreach, and brand strategy.">
+    <meta property="twitter:description" content="Marketing Executive specializing in B2B outreach, CRM pipelines, content marketing and brand strategy.">
     <meta property="twitter:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
-    
-    <link rel="canonical" href="https://portfolio-seven-flame-zx4voxlgqy.vercel.app/">
+
+    <!-- ✅ FIXED: canonical now points to your real domain -->
+    <link rel="canonical" href="https://fardinraafi.com/">
     <link rel="alternate" type="text/html" href="/resume.html">
-    <link rel="preload" as="image" href="/misc_img/profile.jpg">
+    <link rel="preload" as="image" href="/misc_img/me.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="/style.css">
-    
+
     <style>
-/* 🚀 FIXED BLUR TEXT REVEAL EFFECT */
-        .blur-container { display: inline-block; }
-        
-        .blur-word {
-            display: inline-block;
-            opacity: 0;
-            filter: blur(10px);
-            transform: translateY(20px); 
-            will-change: transform, filter, opacity;
-        }
-        
-        /* Auto-runs immediately on page load for the top hero */
-        .hero-blur {
-            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
-        
-        /* Waits for scroll for the bottom CTA */
-        .scroll-blur.is-animated {
-            animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
-        }
+/* =========================================================
+   HOME PAGE STYLES (only affect index.html)
+========================================================= */
 
-        @keyframes blurTextReveal {
-            0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
-            100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
-        }
-        /* 🚀 PREVENT HORIZONTAL SCROLL BREAKING */
-        html, body {
-            overflow-x: clip !important;
-            width: 100%;
-            max-width: 100vw;
-        }
+/* 🚀 PREVENT HORIZONTAL SCROLL BREAKING */
+html, body { overflow-x: clip !important; width: 100%; max-width: 100vw; }
 
-        /* 🚀 NEW SPACIOUS HERO SECTION */
-        .hero-section {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 85vh;
-            position: relative;
-            width: 100%;
-            padding: 4rem 6vw 4rem 12vw; 
-            overflow: visible; 
-            margin-bottom: 4rem;
-            z-index: 2;
-        }
-        .hero-left {
-            flex: 1.2;
-            display: flex;
-            flex-direction: column;
-            gap: 1.8rem;
-            max-width: 800px; 
-            z-index: 2; 
-        }
-        .hero-right {
-            position: absolute;
-            right: -2vw; 
-            bottom: -5%; 
-            height: 95vh; 
-            width: 50vw;
-            z-index: 1;
-            pointer-events: none; 
-            display: flex;
-            justify-content: flex-end;
-            align-items: flex-end;
-            /* Smooth fade at the bottom to remove the harsh cutoff line */
-            -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-            mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
-        }
-        /* 🚀 PURE MASSIVE IMAGE */
-        .hero-img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            object-position: bottom right; 
-            border: none;
-            box-shadow: none;
-            background: transparent;
-            border-radius: 0;
-            /* Moved down exactly 5 pixels */
-            transform: translateY(5px);
-        }
+/* Gradient Syne text: tiny right padding so the last letter never gets clipped */
+.gradient-text { padding-right: 0.06em; }
 
-        .status-row {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-            margin-top: 0.5rem;
-        }
+/* ---------- BLUR TEXT REVEAL ---------- */
+.blur-container { display: inline-block; }
+.blur-word {
+    display: inline-block; opacity: 0; filter: blur(10px); transform: translateY(20px);
+    will-change: transform, filter, opacity;
+}
+.hero-blur { animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+.scroll-blur.is-animated { animation: blurTextReveal 0.8s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; }
+@keyframes blurTextReveal {
+    0% { opacity: 0; filter: blur(12px); transform: translateY(20px); }
+    100% { opacity: 1; filter: blur(0px); transform: translateY(0); }
+}
 
-        /* Top Tech Ticker */
-        .ticker-wrap {
-            width: 100%; overflow: hidden; background: rgba(255, 255, 255, 0.6);
-            backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px;
-            padding: 1.5rem 0; margin-bottom: 2rem; display: flex;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04); transition: all 0.3s ease;
-        }
-        body.dark-mode .ticker-wrap { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); }
-        .ticker-track {
-            display: flex; gap: 4rem; padding-left: 4rem;
-            animation: scrollTicker 30s linear infinite; 
-            white-space: nowrap; align-items: center; width: max-content;
-        }
-        .ticker-track:hover { animation-play-state: paused; }
-        .ticker-item {
-            display: inline-flex; align-items: center; gap: 0.8rem;
-            font-family: 'Syne', sans-serif; font-weight: 700;
-            color: var(--text-main); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.05em;
-        }
-        body.dark-mode .ticker-item { color: #F1F5F9; }
-        .ticker-item img { width: 28px; height: 28px; border-radius: 6px; object-fit: contain; }
-        @keyframes scrollTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+/* ---------- SCROLL REVEAL (blur + rise) ---------- */
+.fx-reveal { opacity: 0; transform: translateY(40px) scale(0.98); filter: blur(8px);
+    transition: opacity 0.9s cubic-bezier(0.25,0.8,0.25,1), transform 0.9s cubic-bezier(0.25,0.8,0.25,1), filter 0.9s ease; }
+.fx-reveal.fx-in { opacity: 1; transform: none; filter: none; }
 
-        /* Blog Marquee Upgrade */
-        .blog-marquee-wrap {
-            width: 100%;
-            overflow: hidden;
-            padding: 20px 0; 
-            margin: -20px 0;
-            position: relative;
-        }
-        .blog-marquee-wrap::before, .blog-marquee-wrap::after {
-            content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none;
-        }
-        .blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
-        .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
-        body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(30, 41, 59, 0.9), transparent); }
-        body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(30, 41, 59, 0.9), transparent); }
+/* ---------- ANIMATED SECTION TITLE LINE ---------- */
+.section-title::after {
+    background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3), transparent) !important;
+    background-size: 200% 100% !important; opacity: 0.55;
+    animation: titleLine 6s linear infinite;
+}
+@keyframes titleLine { 0% { background-position: 100% 0; } 100% { background-position: -100% 0; } }
 
-        .blog-marquee-track {
-            display: flex;
-            gap: 1.5rem;
-            width: max-content;
-            animation: blogMarqueeScroll 45s linear infinite; 
-        }
-        .blog-marquee-track:hover { animation-play-state: paused; }
-        
-        @keyframes blogMarqueeScroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        
-        .marquee-blog-card {
-            width: 320px; 
-            flex-shrink: 0;
-            display: flex;
-            flex-direction: column;
-            background: rgba(255,255,255,0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.9);
-            border-radius: 16px;
-            text-decoration: none;
-            color: var(--text-main);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            transform: translateY(0);
-        }
-        body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
-        
-        .marquee-blog-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--c2);
-            box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2);
-            z-index: 10;
-        }
-        
-        .marquee-blog-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .marquee-blog-content { padding: 1.5rem; }
-        .marquee-blog-date { font-size: 0.8rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .marquee-blog-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
-        .marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
-        body.dark-mode .marquee-blog-excerpt { color: #94A3B8; }
+/* =========================================================
+   HERO
+========================================================= */
+.hero-section {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 85vh; position: relative; width: 100%;
+    padding: 4rem 6vw 4rem 12vw; overflow: visible; margin-bottom: 4rem; z-index: 2;
+}
+.hero-left { flex: 1.2; display: flex; flex-direction: column; gap: 1.6rem; max-width: 760px; z-index: 3; }
+.hero-section h1.hero-name {
+    font-size: clamp(2.1rem, 5.2vw, 3.8rem) !important; line-height: 1.1; margin: 0; letter-spacing: -0.03em;
+}
+.hero-intro { font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0; }
+.hero-intro strong { color: var(--text-main); }
+.contact-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
-        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
-        .layout-wrapper {
-            position: relative;
-            z-index: 2; 
-        }
-        #neural-canvas {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0; 
-            pointer-events: none; 
-            opacity: 0.7; 
-        }
-        /* Mobile Stacking for Hero and CTA */
-        @media (max-width: 992px) {
-            .hero-section {
-                flex-direction: column; 
-                text-align: center;
-                gap: 0;
-                padding: 4rem 1.5rem 0 1.5rem; 
-                min-height: auto;
-            }
-            .hero-left { 
-                align-items: center; 
-                padding: 0; 
-                width: 100%;
-                max-width: 100%;
-                order: 2; 
-            }
-            .hero-right { 
-                position: relative;
-                width: 100%;
-                height: 45vh;
-                min-height: 320px;
-                right: auto;
-                bottom: auto;
-                justify-content: center; 
-                align-items: flex-end;
-                margin-top: 0;
-                margin-bottom: 2rem; 
-                order: 1; 
-            }
-            .hero-img { 
-                object-position: bottom center; 
-                width: 130%; 
-                max-width: 500px;
-                transform: translateY(0); 
-                -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); 
-            }
-            .contact-links, .status-row, .skill-tags { justify-content: center !important; }
-            .hero-left .section-title { text-align: center !important; }
-            
-            .final-cta-inner {
-                flex-direction: column;
-                text-align: center;
-            }
-            .cta-left {
-                text-align: center;
-                align-items: center;
-                padding: 4rem 1.5rem 1rem;
-            }
-            .final-cta-title { justify-content: center !important; }
-            .cta-right {
-                width: 100%;
-                justify-content: center;
-                align-items: flex-end;
-                min-height: 300px;
-            }
-        }
+.hero-right {
+    position: absolute; right: -2vw; bottom: -5%; height: 95vh; width: 50vw; z-index: 1; pointer-events: none;
+}
+.hero-img-mask {
+    position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end;
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    will-change: transform;
+}
+.hero-img {
+    width: 100%; height: 100%; object-fit: contain; object-position: bottom right;
+    border: none; box-shadow: none; background: transparent; border-radius: 0; transform: translateY(5px);
+}
 
-        /* =========================================
-           🚀 WEBGL CAROUSEL STYLES
-        ========================================= */
-        .glass-carousel {
-            width: 100%;
-            margin: 4rem auto;
-            position: relative;
-            z-index: 5;
-        }
-        .gc-stage {
-            position: relative;
-            display: block;
-            width: 100vw;
-            max-width: 100vw;
-            left: 50%;
-            margin-left: -50vw;
-        }
-        .gc-viewport {
-            position: relative;
-            width: 100%;
-            height: clamp(320px, 38vw, 490px);
-            overflow: hidden;
-            background: transparent;
-            outline: none;
-        }
-        .gc-canvas {
-            display: block;
-            width: 100%;
-            height: 100%;
-            touch-action: pan-y;
-            cursor: grab;
-        }
-        .gc-canvas:active { cursor: grabbing; }
-        
-        .gc-meta {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            min-height: 48px;
-            flex-wrap: wrap;
-            margin-top: 1rem;
-        }
-       /* 🚀 SIDE-BY-SIDE ACTION BUTTONS */
-        .gc-actions-container {
-            display: none; /* Hidden by default outside of full view */
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            width: 100%;
-            margin-bottom: 12px;
-        }
-        
-        /* ✨ Shows up ONLY when zoomed in (focused) ✨ */
-        .gc-focused .gc-actions-container {
-            display: flex; 
-        }
-        .gc-linkedin-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 12px 24px;
-            background: rgba(37, 99, 235, 0.2);
-            border: 1px solid rgba(37, 99, 235, 0.5);
-            color: #fff;
-            border-radius: 30px;
-            text-decoration: none;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        .gc-linkedin-btn:hover { background: rgba(37, 99, 235, 0.4); transform: translateY(-2px); }
-        
-        .gc-close {
-            position: static;
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 30px;
-            color: #fff;
-            cursor: pointer;
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-        .gc-close:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
-        .gc-close[hidden] { display: none; }
-        
-        .gc-counter {
-            font-family: 'Syne', sans-serif;
-            font-weight: 700;
-            font-size: 15px;
-            color: var(--text-muted);
-        }
-        .gc-dots { display: flex; gap: 0; align-items: center; }
-        .gc-dot { width: 32px; height: 44px; position: relative; padding: 0; cursor: pointer; background: transparent; border: none; }
-        .gc-dot::after {
-            content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%;
-            background: var(--text-muted); left: 13px; top: 19px; transition: transform 0.25s, background 0.25s;
-        }
-        .gc-dot.is-active::after { background: var(--c1); transform: scale(1.4); }
-        .gc-hint { font-size: 12px; color: var(--text-muted); }
-        
-        .gc-focused .gc-meta { flex-direction: column; gap: 8px; }
-        .gc-focused .gc-dots, .gc-focused .gc-counter { display: none; }
-        .gc-focused .gc-hint { font-size: 0; }
-        .gc-focused .gc-hint::after { content: "Click beside the image to return"; font-size: 12px; }
-        .gc-focused .gc-canvas { cursor: pointer; }
+/* Floating metric badges */
+.hero-badge {
+    position: absolute; z-index: 4; display: flex; align-items: center; gap: 10px;
+    padding: 12px 18px; border-radius: 18px; white-space: nowrap;
+    background: rgba(15, 23, 42, 0.55); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255,255,255,0.06);
+    color: #F1F5F9; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.95rem;
+    opacity: 0;
+    animation: badgeIn 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) var(--d, 1.4s) forwards,
+               badgeFloat 6s ease-in-out calc(var(--d, 1.4s) + 0.8s) infinite;
+}
+body:not(.dark-mode) .hero-badge {
+    background: rgba(255, 255, 255, 0.78); border-color: rgba(15, 23, 42, 0.06); color: var(--text-main);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+}
+.hb-num {
+    font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.55rem; line-height: 1;
+    background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3));
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.05em;
+}
+.hb-emoji { font-size: 1.15rem; line-height: 1; }
+.hb-1 { top: 16%; left: 34%; --d: 1.5s; }
+.hb-2 { top: 36%; right: 3%; --d: 1.7s; animation-duration: 0.8s, 7s; }
+.hb-3 { bottom: 30%; left: 26%; --d: 1.9s; animation-duration: 0.8s, 6.5s; }
+.hb-4 { bottom: 12%; right: 10%; --d: 2.1s; animation-duration: 0.8s, 7.5s; }
+@keyframes badgeIn { from { opacity: 0; transform: translateY(18px) scale(0.85); } to { opacity: 1; transform: none; } }
+@keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
-        .gc-panels {
-            position: relative;
-            display: grid;
-            margin-top: 24px;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            text-align: center;
-        }
-        .gc-panel {
-            grid-area: 1 / 1;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: opacity 0.5s ease, transform 0.5s ease;
-            pointer-events: none;
-        }
-        .gc-panel.is-active {
-            opacity: 1; visibility: visible; transform: none; pointer-events: auto;
-        }
-        .gc-panel h3 {
-            font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 0.5rem;
-        }
-        .gc-panel p { color: var(--text-muted); }
-/* 🚀 MOBILE UPGRADE: REFINED VERTICAL STACK */
-        @media (max-width: 992px) {
-            /* 1. Completely hide the giant background text on mobile */
-            .reco-bg-text {
-                display: none !important;
-            }
+.status-row { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 0; }
+.status-row .live-status-widget { margin-top: 0; }
 
-            /* 2. Stack the cards vertically */
-            .reco-cards-container {
-                display: flex !important;
-                flex-direction: column !important;
-                padding: 0 1.5rem 2rem 1.5rem !important;
-                gap: 1.5rem !important;
-            }
-            
-            /* 3. Magically inject the new title right before the first card */
-            .reco-cards-container::before {
-                content: "Recommendations:";
-                font-family: 'Syne', sans-serif;
-                font-size: 1.8rem;
-                font-weight: 700;
-                color: var(--text-main);
-                margin-bottom: 0.2rem;
-                margin-top: 1rem;
-                display: block;
-            }
-            
-            /* Ensure cards fit the screen perfectly */
-            .reco-glass-card {
-                width: 100% !important;
-                margin: 0 !important; 
-            }
-        }
-        
-        /* Ensures the injected title looks crisp in Dark Mode */
-        @media (max-width: 992px) {
-            body.dark-mode .reco-cards-container::before {
-                color: #F1F5F9;
-            }
-        }
+/* "Specialized in" tool grid */
+.spec-title { font-size: 0.95rem !important; margin-bottom: 0.9rem !important; text-align: left; }
+.spec-groups { display: flex; flex-direction: column; gap: 0.7rem; }
+.spec-group { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+.spec-label {
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+    color: var(--text-light); min-width: 150px;
+}
+.spec-icons { display: flex; flex-wrap: wrap; gap: 6px; }
+.spec-chip {
+    display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px 5px 6px;
+    border-radius: 100px; font-size: 0.78rem; font-weight: 600; color: var(--text-main);
+    background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(124, 58, 237, 0.15);
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s, box-shadow 0.3s;
+}
+body.dark-mode .spec-chip { background: rgba(30, 41, 59, 0.7); border-color: rgba(255, 255, 255, 0.08); }
+.spec-chip img { width: 18px; height: 18px; border-radius: 5px; object-fit: contain; background: #fff; padding: 1px; }
+.spec-chip:hover { transform: translateY(-3px); border-color: var(--c1); box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25); }
+
+/* =========================================================
+   TOOLKIT TICKER (two rows, opposite directions)
+========================================================= */
+.toolkit {
+    border-radius: 24px; padding: 1.4rem 0 1.2rem; overflow: hidden;
+    background: rgba(255, 255, 255, 0.6); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+}
+body.dark-mode .toolkit { background: rgba(15, 23, 42, 0.6); border-color: rgba(255, 255, 255, 0.06); }
+.tk-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; padding: 0 1.6rem 1rem; flex-wrap: wrap; }
+.tk-title { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.05rem; color: var(--text-main); }
+.tk-sub { font-size: 0.8rem; color: var(--text-muted); }
+.tk-row {
+    overflow: hidden; padding: 6px 0;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+.tk-track { display: flex; gap: 0.8rem; width: max-content; animation: tkScroll 32s linear infinite; }
+.tk-row.reverse .tk-track { animation-direction: reverse; animation-duration: 36s; }
+.toolkit:hover .tk-track { animation-play-state: paused; }
+@keyframes tkScroll { to { transform: translateX(-50%); } }
+.tk-chip {
+    display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 10px; border-radius: 14px;
+    font-family: 'Syne', sans-serif; font-weight: 700; font-size: 0.95rem; color: var(--text-main); white-space: nowrap;
+    background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(124, 58, 237, 0.12);
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+body.dark-mode .tk-chip { background: rgba(30, 41, 59, 0.75); border-color: rgba(255, 255, 255, 0.07); }
+.tk-chip img { width: 26px; height: 26px; border-radius: 7px; object-fit: contain; background: #fff; padding: 2px; }
+.tk-chip small { font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 600; color: var(--c2); text-transform: uppercase; letter-spacing: 0.06em; }
+.tk-chip:hover { border-color: var(--c2); box-shadow: 0 0 18px rgba(124, 58, 237, 0.35); transform: translateY(-2px); }
+
+/* =========================================================
+   IMPACT METRICS: mobile fix (numbers no longer get cut)
+========================================================= */
+.metric-num { white-space: nowrap; padding-right: 0.04em; }
+@media (max-width: 600px) {
+    .metrics-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 0.5rem !important; }
+    .metric-card { padding: 1rem 0.35rem !important; }
+    .metric-num { font-size: clamp(1.2rem, 6vw, 2rem) !important; letter-spacing: -0.03em; }
+    .metric-label { font-size: 0.6rem !important; letter-spacing: 0.02em !important; }
+    .awards-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Playbook email input (was invisible text in dark mode) */
+.playbook-input {
+    flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--text-light); border-radius: 100px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none;
+    background: rgba(255, 255, 255, 0.85); color: #0F172A; transition: border-color 0.3s, box-shadow 0.3s;
+}
+body.dark-mode .playbook-input { background: rgba(15, 23, 42, 0.8); color: #F1F5F9; border-color: rgba(255,255,255,0.2); }
+.playbook-input:focus { border-color: var(--c1); box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.2); }
+
+/* =========================================================
+   BLOG MARQUEE
+========================================================= */
+.blog-marquee-wrap { width: 100%; overflow: hidden; padding: 20px 0; margin: -20px 0; position: relative; }
+.blog-marquee-wrap::before, .blog-marquee-wrap::after { content: ''; position: absolute; top: 0; bottom: 0; width: 60px; z-index: 2; pointer-events: none; }
+.blog-marquee-wrap::before { left: 0; background: linear-gradient(to right, rgba(255,255,255,0.8), transparent); }
+.blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
+body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(15, 23, 42, 0.9), transparent); }
+body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(15, 23, 42, 0.9), transparent); }
+.blog-marquee-track { display: flex; gap: 1.5rem; width: max-content; animation: blogMarqueeScroll 45s linear infinite; }
+.blog-marquee-track:hover { animation-play-state: paused; }
+@keyframes blogMarqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.marquee-blog-card {
+    width: 320px; flex-shrink: 0; display: flex; flex-direction: column;
+    background: rgba(255,255,255,0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 16px; text-decoration: none; color: var(--text-main);
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; transform: translateY(0);
+}
+body.dark-mode .marquee-blog-card { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.1); color: #F1F5F9; }
+.marquee-blog-card:hover {
+    transform: translateY(-10px); border-color: var(--c2);
+    box-shadow: 0 0 20px 2px rgba(124, 58, 237, 0.4), 0 0 40px 5px rgba(37, 99, 235, 0.2); z-index: 10;
+}
+.marquee-blog-img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-top-left-radius: 16px; border-top-right-radius: 16px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+.marquee-blog-content { padding: 1.5rem; }
+.marquee-blog-date { font-size: 0.8rem; color: var(--c1); font-weight: 700; margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.marquee-blog-title { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; line-height: 1.3; }
+.marquee-blog-excerpt { color: var(--text-muted); font-size: 0.9rem; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* =========================================================
+   Z-INDEX FOR INTERACTIVE CANVAS
+========================================================= */
+.layout-wrapper { position: relative; z-index: 2; }
+#neural-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.7; }
+
+/* =========================================================
+   CONTENT RESULTS SECTION (themed to match the site)
+========================================================= */
+.cr {
+    --cr-card: rgba(15, 23, 42, 0.6); --cr-deep: rgba(2, 6, 23, 0.35); --cr-soft: rgba(255,255,255,0.03);
+    --cr-line: rgba(255, 255, 255, 0.08); --cr-text: #F1F5F9; --cr-mute: #94A3B8; --cr-faint: #64748B;
+    --cr-chip-bg: rgba(37, 99, 235, 0.14); --cr-chip: #93C5FD; --cr-ok: #10B981; --cr-sky: #0EA5E9;
+    position: relative; z-index: 2; width: 100%; padding: 6rem 2rem 4rem; color: var(--cr-text);
+    font-family: 'DM Sans', sans-serif;
+}
+body:not(.dark-mode) .cr {
+    --cr-card: rgba(255, 255, 255, 0.75); --cr-deep: rgba(255, 255, 255, 0.65); --cr-soft: rgba(15,23,42,0.025);
+    --cr-line: rgba(15, 23, 42, 0.08); --cr-text: #0F172A; --cr-mute: #475569; --cr-faint: #64748B;
+    --cr-chip-bg: rgba(37, 99, 235, 0.08); --cr-chip: #1D4ED8;
+}
+.cr * { box-sizing: border-box; }
+.cr-wrap { max-width: 1200px; margin: 0 auto; }
+.cr-head-block { text-align: center; margin-bottom: 2.5rem; }
+.cr-head-block .section-title { justify-content: center; }
+.cr-head-block .section-title::before { content: ''; flex: 1; max-width: 120px; height: 1px; background: linear-gradient(270deg, rgba(124,58,237,0.5), transparent); }
+.cr-head-block .section-title::after { flex: 1; max-width: 120px; }
+.cr-h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.9rem, 4.2vw, 3.2rem); line-height: 1.1; font-weight: 800; letter-spacing: -0.03em; margin: 0 0 1rem; color: var(--cr-text); }
+.cr-sub { color: var(--cr-mute); margin: 0 auto; max-width: 660px; font-size: 1.05rem; line-height: 1.6; }
+
+/* Ribbon */
+.cr-ribbon {
+    border: 1px solid var(--cr-line); border-radius: 100px; overflow: hidden; margin: 0 0 2.5rem;
+    background: linear-gradient(90deg, rgba(37,99,235,0.1), rgba(124,58,237,0.1), rgba(219,39,119,0.08));
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.cr-ribbon-track { display: flex; width: max-content; animation: crMarquee 38s linear infinite; }
+.cr-ribbon:hover .cr-ribbon-track { animation-play-state: paused; }
+.cr-ribbon-item { display: flex; align-items: center; gap: 10px; padding: 14px 26px; white-space: nowrap; font-size: 0.95rem; color: var(--cr-mute); }
+.cr-ribbon-item b { font-family: 'Syne', sans-serif; color: var(--cr-text); font-weight: 800; }
+.cr-ribbon-item::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c2); box-shadow: 0 0 10px var(--c2); margin-left: 26px; }
+@keyframes crMarquee { to { transform: translateX(-50%); } }
+
+/* Grid + cards */
+.cr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+.cr-card {
+    background: var(--cr-card); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--cr-line); border-radius: 24px; padding: 2rem; position: relative; overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    opacity: 0; transform: translateY(40px); filter: blur(6px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.25,0.8,0.25,1), filter 0.9s ease, border-color 0.4s, box-shadow 0.4s;
+}
+.cr-card.cr-in { opacity: 1; transform: none; filter: none; }
+.cr-card.cr-in:hover { transform: translateY(-5px); border-color: var(--c2); box-shadow: 0 0 25px rgba(124,58,237,0.25), 0 15px 35px rgba(37,99,235,0.12); }
+.cr-card::before {
+    content: ""; position: absolute; top: -40%; right: -20%; width: 340px; height: 340px; border-radius: 50%;
+    background: radial-gradient(circle, var(--glow, rgba(37,99,235,0.18)), transparent 70%); pointer-events: none;
+}
+.cr-card.fygo { --glow: rgba(219, 39, 119, 0.16); }
+.cr-card.cr-full { --glow: rgba(124, 58, 237, 0.16); grid-column: 1 / -1; }
+.cr-card > * { position: relative; z-index: 1; }
+
+.cr-head { display: flex; align-items: center; gap: 14px; margin-bottom: 1.4rem; }
+.cr-icon { width: 50px; height: 50px; flex-shrink: 0; border-radius: 14px; display: grid; place-items: center; font-size: 22px;
+    background: linear-gradient(135deg, rgba(37,99,235,0.2), rgba(124,58,237,0.2)); border: 1px solid var(--cr-line); }
+.cr-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800; margin: 0; color: var(--cr-text); }
+.cr-meta { font-size: 0.82rem; color: var(--cr-mute); margin: 2px 0 0; }
+.cr-tag { margin-left: auto; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; border: 1px solid rgba(37,99,235,0.35); color: var(--c1); background: rgba(37,99,235,0.08); white-space: nowrap; }
+.fygo .cr-tag { color: var(--c3); border-color: rgba(219,39,119,0.35); background: rgba(219,39,119,0.08); }
+.cr-full .cr-tag { color: var(--c2); border-color: rgba(124,58,237,0.35); background: rgba(124,58,237,0.08); }
+body.dark-mode .cr-tag { color: #93C5FD; }
+body.dark-mode .fygo .cr-tag { color: #F9A8D4; }
+body.dark-mode .cr-full .cr-tag { color: #C4B5FD; }
+
+.cr-steps { display: grid; gap: 10px; margin-bottom: 1.4rem; }
+.cr-step { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: start; padding: 14px 16px; border-radius: 14px;
+    background: var(--cr-soft); border: 1px solid var(--cr-line); opacity: 0; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.cr-in .cr-step { opacity: 1; transform: none; }
+.cr-in .cr-step:nth-child(2) { transition-delay: 0.15s; }
+.cr-in .cr-step:nth-child(3) { transition-delay: 0.3s; }
+.cr-step-k { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cr-mute); padding-top: 2px; }
+.cr-step-k i { display: block; width: 22px; height: 3px; border-radius: 3px; margin-top: 8px; background: var(--c3); }
+.cr-step:nth-child(2) .cr-step-k i { background: var(--c1); }
+.cr-step:nth-child(3) .cr-step-k i { background: var(--cr-ok); box-shadow: 0 0 8px var(--cr-ok); }
+.cr-step p { margin: 0; font-size: 0.92rem; line-height: 1.55; color: var(--cr-text); opacity: 0.88; }
+.cr-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.cr-chip { font-size: 0.74rem; font-weight: 600; padding: 4px 10px; border-radius: 100px; background: var(--cr-chip-bg); color: var(--cr-chip); border: 1px solid rgba(37,99,235,0.2); }
+
+.cr-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin-bottom: 1.4rem; }
+.cr-stat { padding: 14px 12px; border-radius: 14px; background: var(--cr-deep); border: 1px solid var(--cr-line); text-align: center; }
+.cr-num { font-family: 'Syne', sans-serif; font-size: clamp(1.3rem, 2.4vw, 1.9rem); font-weight: 800; letter-spacing: -0.02em; white-space: nowrap; padding-right: 0.04em;
+    background: linear-gradient(135deg, var(--c1), var(--c2)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.fygo .cr-num { background: linear-gradient(135deg, var(--c2), var(--c3)); -webkit-background-clip: text; background-clip: text; }
+.cr-lbl { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; color: var(--cr-mute); margin-top: 4px; }
+
+.cr-chart { border-radius: 14px; background: var(--cr-deep); border: 1px solid var(--cr-line); padding: 14px 14px 8px; }
+.cr-chart-top { display: flex; justify-content: space-between; gap: 8px; font-size: 0.78rem; color: var(--cr-mute); margin-bottom: 8px; }
+.cr-chart svg { width: 100%; height: 120px; display: block; overflow: visible; }
+.cr-path { stroke-dasharray: 1200; stroke-dashoffset: 1200; transition: stroke-dashoffset 2.2s ease; }
+.cr-in .cr-path { stroke-dashoffset: 0; }
+.cr-area { opacity: 0; transition: opacity 1.2s ease 1.2s; }
+.cr-in .cr-area { opacity: 1; }
+.cr-months { display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--cr-faint); margin-top: 4px; }
+
+.cr-funnel { display: grid; gap: 8px; }
+.cr-fbar { position: relative; height: 38px; border-radius: 10px; background: var(--cr-soft); border: 1px solid var(--cr-line); overflow: hidden; }
+.cr-fbar span { position: absolute; top: 0; bottom: 0; left: 0; width: 0; border-radius: 10px; background: linear-gradient(90deg, rgba(124,58,237,0.6), rgba(219,39,119,0.6)); transition: width 1.4s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.cr-fbar em, .cr-fbar strong { position: absolute; top: 50%; transform: translateY(-50%); font-size: 0.82rem; color: var(--cr-text); }
+.cr-fbar em { left: 14px; font-style: normal; font-weight: 600; }
+.cr-fbar strong { right: 14px; font-family: 'Syne', sans-serif; }
+
+/* Buffer planner */
+.cr-plan { display: grid; grid-template-columns: 1.6fr 1fr; gap: 1.2rem; }
+.cr-cal { border-radius: 16px; background: var(--cr-deep); border: 1px solid var(--cr-line); padding: 14px; min-width: 0; }
+.cr-cal-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-bottom: 12px; font-size: 0.8rem; color: var(--cr-mute); }
+.cr-legend { display: flex; gap: 12px; flex-wrap: wrap; }
+.cr-legend span { display: flex; align-items: center; gap: 6px; font-size: 0.74rem; }
+.cr-legend i { width: 9px; height: 9px; border-radius: 3px; }
+.cr-cal-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.cr-days { display: grid; grid-template-columns: 52px repeat(7, minmax(56px, 1fr)); gap: 6px; min-width: 480px; }
+.cr-dh { font-size: 0.7rem; font-weight: 700; text-align: center; color: var(--cr-mute); padding-bottom: 4px; }
+.cr-time { font-size: 0.65rem; color: var(--cr-faint); display: flex; align-items: center; }
+.cr-slot { height: 46px; border-radius: 9px; background: var(--cr-soft); border: 1px dashed var(--cr-line); position: relative; }
+.cr-post { position: absolute; inset: 3px; border-radius: 7px; font-size: 0.65rem; font-weight: 700; padding: 5px 6px; line-height: 1.2; color: #fff;
+    overflow: hidden; opacity: 0; transform: translateY(-14px) scale(0.9); transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 1.4, 0.4, 1);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.cr-post.on { opacity: 1; transform: none; }
+.cr-post small { display: block; font-weight: 500; opacity: 0.85; font-size: 0.58rem; }
+.t-reel { background: var(--c3); } .t-car { background: var(--c1); } .t-post { background: var(--c2); } .t-vid { background: var(--cr-sky); }
+.cr-queue { margin-top: 12px; display: flex; align-items: center; gap: 10px; font-size: 0.75rem; color: var(--cr-mute); }
+.cr-qbar { flex: 1; height: 6px; border-radius: 6px; background: var(--cr-soft); border: 1px solid var(--cr-line); overflow: hidden; }
+.cr-qbar span { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); transition: width 0.4s ease; }
+
+.cr-side { display: grid; gap: 12px; align-content: start; }
+.cr-pipe, .cr-mix { border-radius: 16px; background: var(--cr-deep); border: 1px solid var(--cr-line); padding: 16px; }
+.cr-pipe h4, .cr-mix h4 { margin: 0 0 14px; font-size: 0.8rem; color: var(--cr-mute); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+.cr-stages { display: grid; gap: 8px; }
+.cr-stage { display: flex; align-items: center; gap: 12px; font-size: 0.88rem; font-weight: 600; padding: 9px 12px; border-radius: 12px; border: 1px solid var(--cr-line); background: var(--cr-soft); color: var(--cr-text); transition: all 0.35s ease; }
+.cr-stage b { width: 30px; height: 30px; border-radius: 9px; display: grid; place-items: center; background: var(--cr-soft); font-size: 15px; }
+.cr-stage small { margin-left: auto; color: var(--cr-mute); font-size: 0.7rem; font-weight: 500; }
+.cr-stage.active { border-color: rgba(124, 58, 237, 0.55); background: rgba(124, 58, 237, 0.1); box-shadow: 0 0 22px rgba(124, 58, 237, 0.2); transform: translateX(4px); }
+.cr-mixrow { display: grid; grid-template-columns: 78px 1fr 40px; gap: 10px; align-items: center; font-size: 0.8rem; font-weight: 600; margin-bottom: 9px; color: var(--cr-text); }
+.cr-mixrow div { height: 8px; border-radius: 8px; background: var(--cr-soft); overflow: hidden; }
+.cr-mixrow div span { display: block; height: 100%; width: 0; border-radius: 8px; transition: width 1.3s ease; }
+.cr-mixrow em { font-style: normal; color: var(--cr-mute); text-align: right; }
+.cr-note { font-size: 0.72rem; color: var(--cr-faint); margin-top: 1.2rem; text-align: right; }
+
+@media (max-width: 900px) {
+    .cr { padding: 4rem 1rem 3rem; }
+    .cr-grid, .cr-plan { grid-template-columns: 1fr; }
+    .cr-card { padding: 1.4rem; border-radius: 18px; }
+    .cr-post small { display: none; }
+}
+@media (max-width: 520px) {
+    .cr-step { grid-template-columns: 1fr; gap: 6px; }
+    .cr-head { flex-wrap: wrap; }
+    .cr-tag { margin-left: 0; }
+    .cr-stat { padding: 12px 6px; }
+    .cr-num { font-size: clamp(1.15rem, 6vw, 1.6rem); }
+    .cr-lbl { font-size: 0.6rem; }
+    .cr-ribbon-item { padding: 12px 18px; font-size: 0.85rem; }
+    .cr-ribbon-item::after { margin-left: 18px; }
+}
+
+/* =========================================================
+   WEBGL CAROUSEL
+========================================================= */
+.glass-carousel { width: 100%; margin: 4rem auto; position: relative; z-index: 5; }
+.gc-stage { position: relative; display: block; width: 100vw; max-width: 100vw; left: 50%; margin-left: -50vw; }
+.gc-viewport { position: relative; width: 100%; height: clamp(320px, 38vw, 490px); overflow: hidden; background: transparent; outline: none; }
+.gc-canvas { display: block; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; }
+.gc-canvas:active { cursor: grabbing; }
+.gc-meta { display: flex; align-items: center; justify-content: center; gap: 18px; min-height: 48px; flex-wrap: wrap; margin-top: 1rem; }
+.gc-actions-container { display: none; align-items: center; justify-content: center; gap: 15px; width: 100%; margin-bottom: 12px; flex-wrap: wrap; }
+.gc-focused .gc-actions-container { display: flex; }
+.gc-linkedin-btn {
+    display: inline-flex; align-items: center; padding: 12px 24px; background: rgba(37, 99, 235, 0.2);
+    border: 1px solid rgba(37, 99, 235, 0.5); color: #fff; border-radius: 30px; text-decoration: none;
+    font-family: 'Syne', sans-serif; font-weight: 700; transition: all 0.3s ease;
+}
+.gc-linkedin-btn:hover { background: rgba(37, 99, 235, 0.4); transform: translateY(-2px); }
+.gc-close {
+    position: static; padding: 12px 24px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 30px; color: #fff; cursor: pointer; font-family: 'Syne', sans-serif; font-weight: 700; transition: all 0.3s ease;
+}
+.gc-close:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.gc-close[hidden] { display: none; }
+/* ✅ Light-mode fixes for carousel controls */
+body:not(.dark-mode) .gc-linkedin-btn { color: var(--c1); background: rgba(37, 99, 235, 0.1); }
+body:not(.dark-mode) .gc-close { color: var(--text-main); background: rgba(15, 23, 42, 0.05); border-color: rgba(15, 23, 42, 0.15); }
+.gc-counter { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; color: var(--text-muted); }
+.gc-dots { display: flex; gap: 0; align-items: center; }
+.gc-dot { width: 32px; height: 44px; position: relative; padding: 0; cursor: pointer; background: transparent; border: none; }
+.gc-dot::after { content: ""; position: absolute; width: 6px; height: 6px; border-radius: 50%; background: var(--text-muted); left: 13px; top: 19px; transition: transform 0.25s, background 0.25s; }
+.gc-dot.is-active::after { background: var(--c1); transform: scale(1.4); }
+.gc-hint { font-size: 12px; color: var(--text-muted); }
+.gc-focused .gc-meta { flex-direction: column; gap: 8px; }
+.gc-focused .gc-dots, .gc-focused .gc-counter { display: none; }
+.gc-focused .gc-hint { font-size: 0; }
+.gc-focused .gc-hint::after { content: "Click beside the image to return"; font-size: 12px; }
+.gc-focused .gc-canvas { cursor: pointer; }
+.gc-panels {
+    position: relative; display: grid; margin-top: 24px; padding: 24px 1.5rem 0;
+    border-top: 1px solid rgba(255,255,255,0.1); max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;
+}
+body:not(.dark-mode) .gc-panels { border-top-color: rgba(15, 23, 42, 0.08); }
+.gc-panel { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; pointer-events: none; }
+.gc-panel.is-active { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
+.gc-panel h3 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
+.gc-panel p { color: var(--text-muted); }
+
+/* Spinner for FIFI loading bubble (moved here so it isn't re-added each message) */
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* =========================================================
+   MOBILE
+========================================================= */
+@media (max-width: 992px) {
+    .hero-section { flex-direction: column; text-align: center; gap: 0; padding: 3rem 1.25rem 0; min-height: auto; }
+    .hero-left { align-items: center; padding: 0; width: 100%; max-width: 100%; order: 2; }
+    .hero-intro { max-width: 100%; font-size: 1.02rem; }
+    .hero-right {
+        position: relative; width: 100%; height: 48vh; min-height: 340px; right: auto; bottom: auto;
+        margin-top: 0; margin-bottom: 2rem; order: 1;
+    }
+    .hero-img-mask { justify-content: center; -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); mask-image: linear-gradient(to bottom, black 70%, transparent 100%); }
+    .hero-img { object-position: bottom center; width: 130%; max-width: 500px; transform: translateY(0); }
+    .hero-badge { padding: 7px 11px; gap: 6px; font-size: 0.72rem; border-radius: 12px; }
+    .hb-num { font-size: 1rem; }
+    .hb-emoji { font-size: 0.9rem; }
+    .hb-1 { top: 10%; left: 2%; }
+    .hb-2 { top: 34%; right: 0; left: auto; }
+    .hb-3 { bottom: 26%; left: 0; }
+    .hb-4 { bottom: 8%; right: 4%; }
+    .contact-links, .status-row { justify-content: center !important; }
+    .spec-block { width: 100%; }
+    .spec-title { text-align: center; }
+    .spec-group { flex-direction: column; gap: 0.45rem; }
+    .spec-label { min-width: 0; }
+    .spec-icons { justify-content: center; }
+
+    .reco-bg-text { display: none !important; }
+    .reco-cards-container { display: flex !important; flex-direction: column !important; padding: 0 1.5rem 2rem 1.5rem !important; gap: 1.5rem !important; }
+    .reco-cards-container::before {
+        content: "Recommendations:"; font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700;
+        color: var(--text-main); margin-bottom: 0.2rem; margin-top: 1rem; display: block;
+    }
+    .reco-glass-card { width: 100% !important; margin: 0 !important; }
+}
+@media (max-width: 600px) {
+    .marquee-blog-card { width: 260px; }
+    .tk-chip { font-size: 0.82rem; padding: 8px 14px 8px 8px; }
+    .tk-chip img { width: 22px; height: 22px; }
+    .gc-panel h3 { font-size: 1.35rem; }
+    .final-cta-title { font-size: clamp(2rem, 10vw, 2.5rem) !important; }
+}
+@media (max-width: 380px) {
+    .hero-badge { font-size: 0.66rem; padding: 6px 9px; }
+    .hb-num { font-size: 0.9rem; }
+}
+
+/* Respect users who turn off motion */
+@media (prefers-reduced-motion: reduce) {
+    .hero-badge { animation: none; opacity: 1; }
+    .fx-reveal, .cr-card, .cr-step { opacity: 1 !important; transform: none !important; filter: none !important; }
+    .tk-track, .cr-ribbon-track, .blog-marquee-track, .section-title::after { animation: none !important; }
+}
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -478,23 +523,24 @@
       "name": "Fardin Rahman Khan Raafi",
       "alternateName": ["Fardin Raafi", "Fardin Rahman", "FRKR"],
       "url": "https://fardinraafi.com",
+      "image": "https://fardinraafi.com/misc_img/profile.jpg",
       "jobTitle": "Marketing Executive",
-      "description": "Marketing professional and Growth Associate with 1 year of experience in B2B sales.",
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "Bangladesh University of Business and Technology"
-      },
+      "worksFor": { "@type": "Organization", "name": "Augmex Technologies Ltd." },
+      "description": "Marketing professional and Growth Associate specializing in B2B sales, content marketing and brand strategy.",
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "Bangladesh University of Business and Technology" },
+      "address": { "@type": "PostalAddress", "addressLocality": "Dhaka", "addressCountry": "BD" },
       "sameAs": [
-        "https://www.linkedin.com/in/fardinraafi"
+        "https://www.linkedin.com/in/fardinraafi",
+        "https://x.com/fardinraafii",
+        "https://github.com/fardinraafi",
+        "https://www.behance.net/fardinraafi"
       ],
-      "knowsAbout": ["Marketing", "B2B Sales", "Business Development", "Brand Strategy", "Graphic Design"]
+      "knowsAbout": ["Marketing", "B2B Sales", "Business Development", "Brand Strategy", "Content Marketing", "Graphic Design"]
     }
     </script>
 </head>
 <body class="dark-mode">
-<!-- =========================================
-   EXECUTIVE PRELOADER (FRKR)
-========================================= -->
+<!-- EXECUTIVE PRELOADER (FRKR) -->
 <div id="preloader">
     <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
 </div>
@@ -506,7 +552,6 @@
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
     <div class="blob blob-3"></div>
-    
     <svg class="geo-shape geo-1" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1">
         <circle cx="50" cy="50" r="40"/><path d="M50 10 C 20 10, 20 90, 50 90 M50 10 C 80 10, 80 90, 50 90 M10 50 L90 50"/>
     </svg>
@@ -515,55 +560,36 @@
     </svg>
 </div>
 
-<nav class="top-nav">
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-    <div class="nav-menu">
-        <a href="/index.html" class="active">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html">Leadership</a>
-        <a href="/contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-      <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
-        </button>
-    </div>
-</nav>
+<!-- Nav content is injected by main.js -->
+<nav class="top-nav"></nav>
 
-<!-- 🚀 EPIC NEW FULL-WIDTH HERO SECTION -->
+<!-- =========================================
+     HERO
+========================================= -->
 <section class="hero-section">
     <div class="hero-left">
         <div class="typewriter" style="margin-bottom: -10px;">
             <span id="tw-text"></span><span class="caret"></span>
         </div>
-        
-      <!-- BLUR ANIMATION ON HERO NAME (Delayed for Preloader) -->
-        <h1 style="font-size: 3.8rem; line-height: 1.1; margin: 0;">
+
+        <h1 class="hero-name">
             <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.45s;">Fardin&nbsp;</span>
             <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.7s;">Rahman</span><br>
             <span class="blur-word hero-blur gradient-text" style="animation-delay: 0.95s;">Khan&nbsp;</span>
             <span class="blur-word hero-blur gradient-text" style="animation-delay: 1.2s;">Raafi</span>
         </h1>
-        <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.6; max-width: 90%; margin: 0;">
-            I work at the intersection of <strong>branding and growth operations</strong>, helping organizations bridge the gap between ambitious product roadmaps and real-world capacity.
+        <p class="hero-intro">
+            I work at the intersection of <strong>branding and growth operations</strong>, helping organizations close the gap between ambitious product roadmaps and real-world capacity.
         </p>
-        
+
         <div class="contact-links" style="justify-content: flex-start; margin: 0;">
             <a href="/contact.html" class="btn btn-primary">Let's Talk ➔</a>
-            <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" class="btn btn-outline">LinkedIn</a>
-            <a href="https://linko.page/fardin-rahman?s=url" target="_blank" class="btn btn-outline">QR Code Chimp</a>
+            <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener" class="btn btn-outline">LinkedIn</a>
+            <a href="https://linko.page/fardin-rahman?s=url" target="_blank" rel="noopener" class="btn btn-outline">QR Code Chimp</a>
         </div>
 
         <div class="status-row">
-            <div class="live-status-widget" id="liveStatusBtn" style="margin: 0;">
+            <div class="live-status-widget" id="liveStatusBtn">
                 <div class="status-dot"></div>
                 <div class="status-text-container">
                     <span id="live-status-text">Open to new B2B projects</span>
@@ -572,35 +598,66 @@
             </div>
         </div>
 
-        <div style="margin-top: 1rem;">
-            <div class="section-title" style="font-size: 0.95rem; margin-bottom: 0.8rem; text-align: left;">Core Stack</div>
-            <div class="skill-tags" style="justify-content: flex-start;">
-                <span class="tag">Marketing</span>
-                <span class="tag">B2B</span>
-                <span class="tag">Branding Expert</span>
-                <span class="tag">Leadership</span>
+        <!-- SPECIALIZED IN -->
+        <div class="spec-block">
+            <div class="section-title spec-title">Specialized in</div>
+            <div class="spec-groups">
+                <div class="spec-group">
+                    <span class="spec-label">Outreach &amp; Sales</span>
+                    <div class="spec-icons">
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=64" alt="" loading="lazy">LinkedIn</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=business.linkedin.com&sz=64" alt="" loading="lazy">Sales Navigator</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=64" alt="" loading="lazy">Apollo</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=lusha.com&sz=64" alt="" loading="lazy">Lusha</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=clay.com&sz=64" alt="" loading="lazy">Clay</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=64" alt="" loading="lazy">Instantly</span>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Marketing &amp; Scheduling</span>
+                    <div class="spec-icons">
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" alt="" loading="lazy">Meta Ads</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=buffer.com&sz=64" alt="" loading="lazy">Buffer</span>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Design</span>
+                    <div class="spec-icons">
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=photoshop.com&sz=64" alt="" loading="lazy">Photoshop</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=64" alt="" loading="lazy">Illustrator</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" alt="" loading="lazy">Figma</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="" loading="lazy">Canva</span>
+                    </div>
+                </div>
+                <div class="spec-group">
+                    <span class="spec-label">Productivity</span>
+                    <div class="spec-icons">
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=64" alt="" loading="lazy">MS Office</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=docs.google.com&sz=64" alt="" loading="lazy">Google Docs</span>
+                        <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=sheets.google.com&sz=64" alt="" loading="lazy">Google Sheets</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <div class="hero-right">
-        <!-- IMAGE WITH BOTTOM GRADIENT FADE -->
-<img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" onerror="this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+        <div class="hero-img-mask" id="heroImgMask">
+            <img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" fetchpriority="high" onerror="this.onerror=null; this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
+        </div>
+        <!-- FLOATING METRIC BADGES -->
+        <div class="hero-badge hb-1"><span class="hb-num">340K+</span>organic views</div>
+        <div class="hero-badge hb-2"><span class="hb-emoji">🏆</span>BASIS Leader of the Year '24</div>
+        <div class="hero-badge hb-3"><span class="hb-num">1200+</span>designs made</div>
+        <div class="hero-badge hb-4"><span class="hb-emoji">📍</span>Dhaka</div>
     </div>
 </section>
 
 <!-- EPIC SAAS-STYLE FULL-WIDTH CTA SECTION -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
-    
-    <div class="glowing-line-container top-line">
-        <div class="glowing-orb orb-right-left">
-            <div class="orb-head"></div>
-        </div>
-    </div>
-    
+    <div class="glowing-line-container top-line"><div class="glowing-orb orb-right-left"><div class="orb-head"></div></div></div>
     <div class="final-cta-content reveal blur-container">
-      <!-- BLUR ANIMATION ON BOTTOM CTA (Webkit Bug Fixed) -->
         <h2 class="final-cta-title" style="display: flex; flex-wrap: wrap; justify-content: center; margin-bottom: 1.5rem;">
             <span class="blur-word scroll-blur" style="color: var(--text-main);">Let's&nbsp;</span>
             <span class="blur-word scroll-blur" style="color: var(--text-main);">build&nbsp;</span>
@@ -609,27 +666,22 @@
         </h2>
         <a href="/contact.html" class="final-cta-btn">Get in touch</a>
     </div>
-    
-    <div class="glowing-line-container bottom-line">
-        <div class="glowing-orb orb-left-right">
-            <div class="orb-head"></div>
-        </div>
-    </div>
+    <div class="glowing-line-container bottom-line"><div class="glowing-orb orb-left-right"><div class="orb-head"></div></div></div>
 </section>
 
-<!-- 🚀 THE 2-COLUMN SETUP BEGINS HERE -->
+<!-- 2-COLUMN LAYOUT -->
 <div class="layout-wrapper" id="home">
-    
+
     <aside class="sidebar">
         <div class="glass-card">
             <div class="profile-img-wrap">
                 <div class="profile-img" style="overflow: hidden; padding: 0;">
-                   <img src="/misc_img/profile.jpg" alt="Fardin Rahman Khan Raafi" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
+                    <img src="/misc_img/profile.jpg" alt="Fardin Rahman Khan Raafi" loading="lazy" style="width: 100%; height: 100%; object-fit: cover; transform: scale(1) translateZ(0); backface-visibility: hidden; image-rendering: -webkit-optimize-contrast; border: none; border-radius: 0;" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Fardin+Raafi&size=148&background=EEF2FF&color=2563EB&bold=true'">
                 </div>
             </div>
             <h2 style="font-size: 1.15rem; margin-bottom: 0.5rem; line-height: 1.2;">Fardin Rahman Khan Raafi</h2>
             <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.5rem;">Marketing Professional</p>
-              
+
             <div class="section-title">Core Stack</div>
             <div class="skill-tags">
                 <span class="tag">Marketing Enthusiast</span>
@@ -637,12 +689,10 @@
                 <span class="tag">Branding Expert</span>
                 <span class="tag">FMCG</span>
             </div>
-            
-            <!-- CLEAN DIGITAL CLOCK WIDGET -->
+
+            <!-- DIGITAL CLOCK WIDGET -->
             <div class="clock-widget">
-                <div class="clock-header">
-                    <span class="pulse-dot-small"></span> LOCAL TIME • DHAKA
-                </div>
+                <div class="clock-header"><span class="pulse-dot-small"></span> LOCAL TIME • DHAKA</div>
                 <div class="clock-time">
                     <span id="digital-hour-min">--:--</span>
                     <span id="digital-ampm" class="ampm-text"></span>
@@ -651,34 +701,20 @@
             </div>
         </div>
     </aside>
-    
+
     <main class="content-feed">
-        
-        <div class="ticker-wrap">
-            <div class="ticker-track">
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=128" alt="Instantly.ai"> Instantly.ai</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="Sales Navigator"> Sales Navigator</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva"> Canva</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=128" alt="Adobe Suite"> Adobe Suite</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="MS Office"> MS Office Suite</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=lusha.com&sz=128" alt="Lusha"> Lusha</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=clay.com&sz=128" alt="Clay"> Clay</div>
-                
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=salesforce.com&sz=128" alt="Salesforce"> Salesforce</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=apollo.io&sz=128" alt="Apollo.io"> Apollo.io</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=128" alt="Instantly.ai"> Instantly.ai</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=linkedin.com&sz=128" alt="Sales Navigator"> Sales Navigator</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=128" alt="Canva"> Canva</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=128" alt="Adobe Suite"> Adobe Suite</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=microsoft.com&sz=128" alt="MS Office"> MS Office Suite</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=lusha.com&sz=128" alt="Lusha"> Lusha</div>
-                <div class="ticker-item"><img src="https://www.google.com/s2/favicons?domain=clay.com&sz=128" alt="Clay"> Clay</div>
+
+        <!-- TOOLKIT TICKER (rows are filled by the script at the bottom) -->
+        <div class="toolkit fx-reveal">
+            <div class="tk-head">
+                <span class="tk-title">Also in my <span class="gradient-text">toolkit</span></span>
+                <span class="tk-sub">AI, video, CRM &amp; analytics tools I use every week</span>
             </div>
+            <div class="tk-row"><div class="tk-track" id="tkRow1"></div></div>
+            <div class="tk-row reverse"><div class="tk-track" id="tkRow2"></div></div>
         </div>
 
-        <section class="glass-card">
+        <section class="glass-card fx-reveal">
             <div class="section-title">Professional Documents</div>
             <a href="/resume.html" class="doc-link">
                 <div>
@@ -689,22 +725,22 @@
             </a>
             <a href="/volunteer.html" class="doc-link">
                 <div>
-                    <h3>Leadership & Extracurriculars</h3>
+                    <h3>Leadership &amp; Extracurriculars</h3>
                     <p>University leadership, creative direction, and community service.</p>
                 </div>
                 <span style="color: var(--c1); font-size: 1.5rem;">➔</span>
             </a>
         </section>
 
-        <section class="glass-card">
+        <section class="glass-card fx-reveal">
             <div class="section-title">Recent Experience</div>
-            
             <div class="timeline-item">
                 <h3>Executive - Marketing</h3>
                 <div class="meta">Augmex Technologies Ltd. • April 2026 – Present</div>
                 <ul>
-                    <li>Enriched and maintained 40,000+ CRM records</li>
-                    <li>Spearheaded targeted B2B lead generation campaigns utilizing LinkedIn Marketing</li>
+                    <li>Enriched and maintained 40,000+ CRM records.</li>
+                    <li>Spearheaded targeted B2B lead generation campaigns using LinkedIn Marketing.</li>
+                    <li>Drove 340K+ organic views across Augmex and FYGO through content marketing, with zero ad spend on Augmex.</li>
                     <li>Produced 50+ digital content and visual assets to support cross-channel brand awareness.</li>
                 </ul>
             </div>
@@ -713,8 +749,8 @@
                 <div class="meta">Augmex Technologies • Jan 2026 – April 2026</div>
                 <ul>
                     <li>Executed multi-channel cold outreach and content marketing strategies.</li>
-                    <li>Identified and mapped 6000+ Key Decision Makers with Ideal Customer Profiles.</li>
-                    <li>Generated 67,000+ organic impressions within a month through content marketing & social media strategies.</li>
+                    <li>Identified and mapped 6,000+ Key Decision Makers against Ideal Customer Profiles.</li>
+                    <li>Built the content and social media system behind Augmex's organic growth.</li>
                 </ul>
             </div>
             <div class="timeline-item">
@@ -727,12 +763,11 @@
             </div>
         </section>
 
-        <section class="glass-card">
+        <section class="glass-card fx-reveal">
             <div class="section-title">Education</div>
-            
             <div class="timeline-item">
                 <h3>Bachelor of Business Administration (BBA)</h3>
-                <div class="meta">Bangladesh University of Business & Technology (BUBT) • 2022 – 2025</div>
+                <div class="meta">Bangladesh University of Business &amp; Technology (BUBT) • 2022 – 2025</div>
                 <ul>
                     <li><strong>Major:</strong> Marketing</li>
                     <li><strong>CGPA:</strong> 3.80</li>
@@ -756,248 +791,134 @@
             </div>
         </section>
 
-        <section class="glass-card">
-            <div class="section-title">Impact & Recognition</div>
-            
+        <section class="glass-card fx-reveal">
+            <div class="section-title">Impact &amp; Recognition</div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-num">40K+</div>
+                    <div class="metric-num" data-count="40" data-suffix="K+">40K+</div>
                     <div class="metric-label">CRM Records</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-num">67K+</div>
+                    <div class="metric-num" data-count="340" data-suffix="K+">340K+</div>
                     <div class="metric-label">Organic Reach</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-num">3.80</div>
+                    <div class="metric-num" data-count="3.80" data-decimals="2">3.80</div>
                     <div class="metric-label">BBA CGPA</div>
                 </div>
             </div>
-            
             <div class="awards-grid">
                 <div class="award-card">
                     <div class="award-icon">🏆</div>
-                    <div class="award-details">
-                        <h4>BASIS Leader of the Year</h4>
-                        <p>2024 - Basis BUBT Chapter</p>
-                    </div>
+                    <div class="award-details"><h4>BASIS Leader of the Year</h4><p>2024 - BASIS BUBT Chapter</p></div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🎓</div>
-                    <div class="award-details">
-                        <h4>Aspire Leaders Program</h4>
-                        <p>Harvard Business School '26</p>
-                    </div>
+                    <div class="award-details"><h4>Aspire Leaders Program</h4><p>Harvard Business School '26</p></div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🥇</div>
-                    <div class="award-details">
-                        <h4>ISCEA Global Winner</h4>
-                        <p>70% CSCA Scholarship</p>
-                    </div>
+                    <div class="award-details"><h4>ISCEA Global Winner</h4><p>70% CSCA Scholarship</p></div>
                 </div>
                 <div class="award-card">
                     <div class="award-icon">🏅</div>
-                    <div class="award-details">
-                        <h4>TEDxUttara Best Dept.</h4>
-                        <p>Creative Direction</p>
-                    </div>
+                    <div class="award-details"><h4>TEDxUttara Best Dept.</h4><p>Creative Direction</p></div>
                 </div>
             </div>
         </section>
-        
-        <section class="glass-card">
+
+        <section class="glass-card fx-reveal">
             <div class="section-title">Featured Blogs</div>
-            
             <div class="blog-marquee-wrap">
-                <div class="blog-marquee-track">
-                    <!-- ========================================== -->
-                    <!-- 1ST SET OF BLOGS (For Seamless Scrolling)  -->
-                    <!-- ========================================== -->
-                    
+                <!-- Cards are written once here; the script duplicates them for the seamless loop -->
+                <div class="blog-marquee-track" id="blogTrack">
                     <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
+                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Latest Case Study</div>
                             <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
                             <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
                         </div>
                     </a>
-                    
                     <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
+                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Career Advice</div>
                             <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
                             <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
                         </div>
                     </a>
-
                     <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
+                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Marketing Strategy</div>
                             <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
                             <p class="marquee-blog-excerpt">We barely have the patience to watch a 5-second ad. Yet, we happily sit down to watch a 2-hour brand roast show...</p>
                         </div>
                     </a>
-
                     <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
+                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
                         <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">B2B Sales & Growth</div>
-                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
+                            <div class="marquee-blog-date">B2B Sales &amp; Growth</div>
+                            <h2 class="marquee-blog-title">Selling is 80% Psychology &amp; 20% Product Knowledge: Where is Your Focus?</h2>
                             <p class="marquee-blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
                         </div>
                     </a>
-
                     <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
+                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Personal Branding</div>
                             <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
-                            <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
+                            <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand, working for you even while you sleep.</p>
                         </div>
                     </a>
-
                     <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
+                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
                         <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & B2B Growth</div>
+                            <div class="marquee-blog-date">AI &amp; B2B Growth</div>
                             <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
                             <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
                         </div>
                     </a>
-                    
-                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
+                    <a href="/blogs/blog-7.html" class="marquee-blog-card">
+                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Future of Work</div>
                             <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
                             <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
                         </div>
                     </a>
-                    
                     <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
-                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
+                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
                         <div class="marquee-blog-content">
                             <div class="marquee-blog-date">Resource Guide</div>
                             <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
                             <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
                         </div>
                     </a>
-                    <!-- Blog 8 (ChatGPT Ads) -->
                     <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
+                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" loading="lazy" onerror="this.onerror=null; this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
                         <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
+                            <div class="marquee-blog-date">AI &amp; Marketing Strategy</div>
                             <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
-                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
-                        </div>
-                    </a>
-                    
-                    <!-- ========================================== -->
-                    <!-- 2ND SET OF BLOGS (DUPLICATED FOR LOOP)     -->
-                    <!-- ========================================== -->
-                    
-                    <a href="/blogs/blog-1.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Brainrot+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Latest Case Study</div>
-                            <h2 class="marquee-blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-                            <p class="marquee-blog-excerpt">How global brands use absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="/blogs/blog-2.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-2-thumb.webp" alt="AI Certification" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=AI+Certification'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Career Advice</div>
-                            <h2 class="marquee-blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
-                            <p class="marquee-blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-3.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-3.jpg" alt="Modern Marketing" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Modern+Marketing'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
-                            <p class="marquee-blog-excerpt">We barely have the patience to watch a 5-second ad. Yet, we happily sit down to watch a 2-hour brand roast show...</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-4.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-4.jpg" alt="Sales Psychology" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=B2B+Sales'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">B2B Sales & Growth</div>
-                            <h2 class="marquee-blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
-                            <p class="marquee-blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-5.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-5.jpg" alt="LinkedIn Branding" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Personal+Brand'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Personal Branding</div>
-                            <h2 class="marquee-blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
-                            <p class="marquee-blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
-                        </div>
-                    </a>
-
-                    <a href="/blogs/blog-6.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-6.jpg" alt="Agentic AI" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Agentic+AI'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & B2B Growth</div>
-                            <h2 class="marquee-blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
-                            <p class="marquee-blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
-                        </div>
-                    </a>
-                    
-                     <a href="/blogs/blog-7.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-7.jpg" alt="Voice Dictation" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Voice+Dictation'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Future of Work</div>
-                            <h2 class="marquee-blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
-                            <p class="marquee-blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation.</p>
-                        </div>
-                    </a>
-                    
-                    <a href="/blogs/free-ai-developer-tools-for-students.html" class="marquee-blog-card">
-                        <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="Edu Mail" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=Edu+Mail'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">Resource Guide</div>
-                            <h2 class="marquee-blog-title">The $200k Hidden in Your Student Email</h2>
-                            <p class="marquee-blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email.</p>
-                        </div>
-                    </a>
-                    <!-- Blog 8 (ChatGPT Ads) -->
-                    <a href="/blogs/blog-8.html" class="marquee-blog-card">
-                        <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads" class="marquee-blog-img" onerror="this.src='https://placehold.co/600x337/F8FAFC/64748B?text=ChatGPT+Ads'">
-                        <div class="marquee-blog-content">
-                            <div class="marquee-blog-date">AI & Marketing Strategy</div>
-                            <h2 class="marquee-blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
-                            <p class="marquee-blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
+                            <p class="marquee-blog-excerpt">The digital marketing landscape is going through a major shift. Discover why this signals the dawn of context-based conversational advertising.</p>
                         </div>
                     </a>
                 </div>
             </div>
-            
             <div style="text-align: center; margin-top: 1.5rem;">
                 <a href="/blog.html" class="btn btn-outline">View Entire Feed ➔</a>
             </div>
         </section>
 
-        <section class="glass-card" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
+        <section class="glass-card fx-reveal" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
             <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; margin-bottom: 0.5rem; color: var(--text-main);">Grab My Ultimate Marketing Playbook</h2>
+            <h2 style="font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 0.5rem; color: var(--text-main);">Grab My Ultimate Marketing Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
-                See my strategies in action. Enter your email to receive my free step-by-step guide on driving traffic, generating leads, and scaling your campaigns.
+                See my strategies in action. Enter your email to get my free step-by-step guide on driving traffic, generating leads, and scaling your campaigns.
             </p>
-            
-          <form id="playbook-form" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
-                <input type="email" name="email" placeholder="Enter your best email" required style="flex: 1; min-width: 220px; padding: 12px 20px; border: 1px solid var(--text-light); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; background: rgba(255,255,255,0.8); color: var(--text-main);">
-                
+            <form id="playbook-form" style="display: flex; gap: 0.8rem; max-width: 450px; margin: 0 auto; flex-wrap: wrap; justify-content: center;">
+                <input type="email" name="email" class="playbook-input" placeholder="Enter your best email" required>
                 <button type="submit" class="btn btn-primary" style="border: none; cursor: pointer;">Get Playbook</button>
             </form>
             <p style="font-size: 0.75rem; color: var(--text-light); margin-top: 1.5rem;">100% free. Unsubscribe anytime. Instant access.</p>
@@ -1005,164 +926,215 @@
     </main>
 </div>
 
-<!-- 🚀 PREMIUM RECOMMENDATIONS SECTION (NOW TRULY FULL WIDTH) -->
+<!-- =========================================
+     CONTENT MARKETING RESULTS
+========================================= -->
+<section class="cr" id="content-results">
+    <div class="cr-wrap">
+        <div class="cr-head-block fx-reveal">
+            <div class="section-title">Content Marketing · 2026</div>
+            <h2 class="cr-h2"><span class="gradient-text">340K+</span> organic views across two brands</h2>
+            <p class="cr-sub">From a blank posting calendar to a brand people recognise, and a sneaker label that sells. I planned, wrote, designed, edited and scheduled every piece of content.</p>
+        </div>
+
+        <div class="cr-ribbon" aria-label="Key metrics">
+            <div class="cr-ribbon-track">
+                <div class="cr-ribbon-item"><b>340K+</b> organic views</div>
+                <div class="cr-ribbon-item"><b>17K+</b> FYGO followers from 0</div>
+                <div class="cr-ribbon-item"><b>৳20L+</b> FYGO sales</div>
+                <div class="cr-ribbon-item"><b>300+</b> customers</div>
+                <div class="cr-ribbon-item"><b>420+</b> posts published</div>
+                <div class="cr-ribbon-item"><b>6.4%</b> avg. engagement</div>
+                <div class="cr-ribbon-item"><b>2</b> brands</div>
+                <div class="cr-ribbon-item"><b>11</b> months of daily publishing</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>340K+</b> organic views</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>17K+</b> FYGO followers from 0</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>৳20L+</b> FYGO sales</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>300+</b> customers</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>420+</b> posts published</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>6.4%</b> avg. engagement</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>2</b> brands</div>
+                <div class="cr-ribbon-item" aria-hidden="true"><b>11</b> months of daily publishing</div>
+            </div>
+        </div>
+
+        <div class="cr-grid">
+            <!-- AUGMEX -->
+            <article class="cr-card cr-reveal">
+                <div class="cr-head">
+                    <div class="cr-icon">📣</div>
+                    <div><h3 class="cr-title">Augmex Technologies</h3><p class="cr-meta">Jan – Nov 2026 · B2B tech brand</p></div>
+                    <span class="cr-tag">Awareness</span>
+                </div>
+                <div class="cr-steps">
+                    <div class="cr-step"><div class="cr-step-k">Challenge<i></i></div>
+                        <p>A capable tech company that hardly anyone on social media knew about. Posting was irregular and there was no consistent brand voice.</p></div>
+                    <div class="cr-step"><div class="cr-step-k">What I did<i></i></div>
+                        <p>Owned the whole content engine end to end: strategy, copy, design, video and scheduling, with a fixed weekly rhythm in Buffer.</p>
+                        <div class="cr-chips"><span class="cr-chip">Content pillars</span><span class="cr-chip">Carousels</span><span class="cr-chip">Short videos</span><span class="cr-chip">Copywriting</span><span class="cr-chip">Buffer scheduling</span></div></div>
+                    <div class="cr-step"><div class="cr-step-k">Result<i></i></div>
+                        <p>180K organic reach with zero ad spend, and a brand that now shows up consistently every week.</p></div>
+                </div>
+                <div class="cr-stats">
+                    <div class="cr-stat"><div class="cr-num" data-count="180" data-suffix="K+">180K+</div><div class="cr-lbl">Organic reach</div></div>
+                    <div class="cr-stat"><div class="cr-num" data-count="90" data-suffix="+">90+</div><div class="cr-lbl">Posts shipped</div></div>
+                    <div class="cr-stat"><div class="cr-num" data-count="5.2" data-decimals="1" data-suffix="%">5.2%</div><div class="cr-lbl">Avg. engagement</div></div>
+                </div>
+                <!-- Monthly reach chart: edit data-points (11 months Jan→Nov, in K) -->
+                <div class="cr-chart">
+                    <div class="cr-chart-top"><span>Monthly organic reach</span><span style="color: var(--c1); font-weight: 700;">▲ cumulative 180K</span></div>
+                    <svg class="cr-line" viewBox="0 0 600 120" preserveAspectRatio="none" data-points="4,6,8,11,13,15,17,19,22,27,38" data-color="#3B82F6"></svg>
+                    <div class="cr-months"><span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span></div>
+                </div>
+            </article>
+
+            <!-- FYGO -->
+            <article class="cr-card fygo cr-reveal">
+                <div class="cr-head">
+                    <div class="cr-icon">👟</div>
+                    <div><h3 class="cr-title">FYGO</h3><p class="cr-meta">Jul – Nov 2026 · Sneaker brand</p></div>
+                    <span class="cr-tag">Growth + Sales</span>
+                </div>
+                <div class="cr-steps">
+                    <div class="cr-step"><div class="cr-step-k">Challenge<i></i></div>
+                        <p>A brand-new sneaker label launching with 0 followers, no audience and no social proof, in a crowded market.</p></div>
+                    <div class="cr-step"><div class="cr-step-k">What I did<i></i></div>
+                        <p>Built a reel-first content plan around product drops, styling and customer content, then turned attention into orders.</p>
+                        <div class="cr-chips"><span class="cr-chip">Reels</span><span class="cr-chip">Drop teasers</span><span class="cr-chip">Product shoots</span><span class="cr-chip">UGC</span><span class="cr-chip">Motion design</span></div></div>
+                    <div class="cr-step"><div class="cr-step-k">Result<i></i></div>
+                        <p>160K+ views, 0 to 17K+ followers in five months, ৳20 lakh+ in sales and 300+ paying customers.</p></div>
+                </div>
+                <div class="cr-stats">
+                    <div class="cr-stat"><div class="cr-num" data-count="17" data-suffix="K+">17K+</div><div class="cr-lbl">Followers (from 0)</div></div>
+                    <div class="cr-stat"><div class="cr-num" data-count="20" data-prefix="৳" data-suffix="L+">৳20L+</div><div class="cr-lbl">Sales generated</div></div>
+                    <div class="cr-stat"><div class="cr-num" data-count="300" data-suffix="+">300+</div><div class="cr-lbl">Customers</div></div>
+                </div>
+                <div class="cr-chart">
+                    <div class="cr-chart-top"><span>From scroll to sale</span><span style="color: var(--c3); font-weight: 700;">5 months</span></div>
+                    <div class="cr-funnel">
+                        <div class="cr-fbar"><span data-w="100"></span><em>Views</em><strong>160K+</strong></div>
+                        <div class="cr-fbar"><span data-w="72"></span><em>Profile visits</em><strong>38K</strong></div>
+                        <div class="cr-fbar"><span data-w="48"></span><em>Followers</em><strong>17K+</strong></div>
+                        <div class="cr-fbar"><span data-w="26"></span><em>DMs &amp; inquiries</em><strong>2.1K</strong></div>
+                        <div class="cr-fbar"><span data-w="12"></span><em>Customers</em><strong>300+</strong></div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- BUFFER PLANNER -->
+            <article class="cr-card cr-full cr-reveal">
+                <div class="cr-head">
+                    <div class="cr-icon">🗓️</div>
+                    <div><h3 class="cr-title">How I planned it</h3><p class="cr-meta">A typical week in Buffer: batch-created, scheduled ahead, published on rhythm</p></div>
+                    <span class="cr-tag">System</span>
+                </div>
+                <div class="cr-plan">
+                    <div class="cr-cal">
+                        <div class="cr-cal-top">
+                            <span>Week 32 · Content queue</span>
+                            <div class="cr-legend">
+                                <span><i class="t-reel"></i>Reel</span><span><i class="t-car"></i>Carousel</span>
+                                <span><i class="t-post"></i>Post</span><span><i class="t-vid"></i>Video</span>
+                            </div>
+                        </div>
+                        <div class="cr-cal-scroll"><div class="cr-days" id="cr-days"></div></div>
+                        <div class="cr-queue"><span id="cr-qtext">0 / 0 scheduled</span><div class="cr-qbar"><span id="cr-qbar"></span></div></div>
+                    </div>
+                    <div class="cr-side">
+                        <div class="cr-pipe">
+                            <h4>Content pipeline</h4>
+                            <div class="cr-stages">
+                                <div class="cr-stage"><b>💡</b>Idea &amp; pillar<small>Mon</small></div>
+                                <div class="cr-stage"><b>✍️</b>Copywriting<small>Mon</small></div>
+                                <div class="cr-stage"><b>🎨</b>Design &amp; edit<small>Tue–Wed</small></div>
+                                <div class="cr-stage"><b>🗓️</b>Schedule in Buffer<small>Thu</small></div>
+                                <div class="cr-stage"><b>📈</b>Publish &amp; review<small>Daily</small></div>
+                            </div>
+                        </div>
+                        <div class="cr-mix">
+                            <h4>Content mix</h4>
+                            <div class="cr-mixrow">Reels<div><span data-w="38" style="background: var(--c3)"></span></div><em>38%</em></div>
+                            <div class="cr-mixrow">Carousels<div><span data-w="27" style="background: var(--c1)"></span></div><em>27%</em></div>
+                            <div class="cr-mixrow">Posts<div><span data-w="22" style="background: var(--c2)"></span></div><em>22%</em></div>
+                            <div class="cr-mixrow">Videos<div><span data-w="13" style="background: #0EA5E9"></span></div><em>13%</em></div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </div>
+        <p class="cr-note">Figures from Meta &amp; Buffer insights, Jan–Nov 2026.</p>
+    </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
 <section class="reco-showcase">
-    <!-- The Giant Faded Background Text -->
     <div class="reco-bg-text blur-container">
         <span class="blur-word scroll-blur">What</span><br>
-        <span class="blur-word scroll-blur" style="animation-delay: 0.15s;">they</span>
-        <span class="blur-word scroll-blur" style="animation-delay: 0.3s;">say?</span>
+        <span class="blur-word scroll-blur">they</span>
+        <span class="blur-word scroll-blur">say?</span>
     </div>
-    
     <div class="reco-cards-container">
-        
-        <!-- Reco 1: Towhidul Islam -->
-        <a href="https://www.linkedin.com/in/towhidul-islam01/" target="_blank" class="reco-glass-card reveal">
+        <a href="https://www.linkedin.com/in/towhidul-islam01/" target="_blank" rel="noopener" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/towhid.jpg" alt="Towhidul Islam" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Towhidul+Islam&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/towhid.jpg" alt="Towhidul Islam" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Towhidul+Islam&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
                     <h4>Towhidul Islam <span class="linkedin-icon">in</span></h4>
                     <p>Startup Founder Consultant | Augmex</p>
                 </div>
             </div>
-            <div class="reco-body">
-                "Fardin is a fantastic growth mind to work with. He consistently brings fresh, high-potential ideas to the table. I see a very bright future ahead for him."
-            </div>
+            <div class="reco-body">"Fardin is a fantastic growth mind to work with. He consistently brings fresh, high-potential ideas to the table. I see a very bright future ahead for him."</div>
         </a>
-
-        <!-- Reco 2: Sanzida Sharmin Rifa -->
-        <a href="https://www.linkedin.com/in/sanzida-sharmin/" target="_blank" class="reco-glass-card reveal">
+        <a href="https://www.linkedin.com/in/sanzida-sharmin/" target="_blank" rel="noopener" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/sanjida.jpg" alt="Sanzida Sharmin Rifa" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Sanzida+Rifa&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/sanjida.jpg" alt="Sanzida Sharmin Rifa" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sanzida+Rifa&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
                     <h4>Sanzida Rifa <span class="linkedin-icon">in</span></h4>
                     <p>Technical Recruiter | Augmex Technologies</p>
                 </div>
             </div>
-            <div class="reco-body">
-                "I hired him as a Growth Intern, and he instantly stood out for his adaptability. He took full ownership of his responsibilities, delivering absolute quality across CRM, research, and outreach."
-            </div>
+            <div class="reco-body">"I hired him as a Growth Intern, and he instantly stood out for his adaptability. He took full ownership of his responsibilities, delivering absolute quality across CRM, research, and outreach."</div>
         </a>
-
-        <!-- Reco 3: Ikram Khan -->
-        <a href="https://www.linkedin.com/in/ikram-khan25/" target="_blank" class="reco-glass-card reveal">
+        <a href="https://www.linkedin.com/in/ikram-khan25/" target="_blank" rel="noopener" class="reco-glass-card reveal">
             <div class="reco-header">
-                <img src="/misc_img/ikram.jpg" alt="Ikram Khan" class="reco-avatar-img" onerror="this.src='https://ui-avatars.com/api/?name=Ikram+Khan&background=EEF2FF&color=2563EB&bold=true'">
+                <img src="/misc_img/ikram.jpg" alt="Ikram Khan" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ikram+Khan&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
                     <h4>Ikram Khan <span class="linkedin-icon">in</span></h4>
                     <p>BD Executive | Uttara Motors Ltd.</p>
                 </div>
             </div>
-            <div class="reco-body">
-                "We cleaned and processed over 50,000 leads together. That kind of rigorous work tests your consistency, and Raafi never dropped the ball. Dedicated, reliable, and exactly who you want on your team."
-            </div>
+            <div class="reco-body">"We cleaned and processed over 50,000 leads together. That kind of rigorous work tests your consistency, and Raafi never dropped the ball. Dedicated, reliable, and exactly who you want on your team."</div>
         </a>
-
     </div>
 </section>
 
-<!-- 🚀 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
+<!-- 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
 <section class="glass-carousel" data-glass-carousel role="group" aria-roledescription="carousel">
-    <div class="section-title" style="text-align: center; margin-bottom: 1rem;">Latest LinkedIn Content</div>
-    <div class="gc-stage">
-        <!-- WebGL Canvas is injected here automatically by the JS -->
-        <div class="gc-viewport" tabindex="0"></div>
-    </div>
-
+    <div class="section-title" style="text-align: center; margin: 0 1.5rem 1rem;">Latest LinkedIn Content</div>
+    <div class="gc-stage"><div class="gc-viewport" tabindex="0"></div></div>
     <div class="gc-meta">
         <p class="gc-counter" aria-hidden="true">01 / 14</p>
         <div class="gc-dots" role="tablist"></div>
         <p class="gc-hint">Scroll or drag to explore</p>
     </div>
-
     <div class="gc-panels" aria-live="polite">
-        <!-- Panel 1 -->
-        <article class="gc-panel is-active" id="gc-panel-1" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg" data-link="https://lnkd.in/p/g6KCZ75j">
-            <h3>AI Productivity</h3>
-            <p>A funny quote by me..</p>
-        </article>
-
-        <!-- Panel 2 -->
-        <article class="gc-panel" id="gc-panel-2" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg" data-link="https://lnkd.in/p/g6pSu58S">
-            <h3>Guerrilla Marketing Tactics</h3>
-            <p>How Polo turned everyday snow into a giant ad.</p>
-        </article>
-
-        <!-- Panel 3 -->
-        <article class="gc-panel" id="gc-panel-3" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg" data-link="https://lnkd.in/p/gs-kQ9n4">
-            <h3>The Winning Mindset</h3>
-            <p>A look at why a good attitude is the best skill a person can have.</p>
-        </article>
-
-        <!-- Panel 4 -->
-        <article class="gc-panel" id="gc-panel-4" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg" data-link="https://lnkd.in/p/g3sCqm8w">
-            <h3>Self-Training Made Easy</h3>
-            <p>How to use AI prompts to create a daily practice guide.</p>
-        </article>
-        
-        <!-- Panel 5 -->
-        <article class="gc-panel" id="gc-panel-5" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.jpg" data-link="https://lnkd.in/p/gqq-i2nB">
-            <h3>Smart Ad Design</h3>
-            <p>Seeing how AI tools are catching up to human creativity this year.</p>
-        </article>
-
-        <!-- Panel 6 -->
-        <article class="gc-panel" id="gc-panel-6" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.jpg" data-link="https://lnkd.in/p/geMbduQF">
-            <h3>LinkedIn Personal Brand</h3>
-            <p>Tips on how to build your personal brand on LinkedIn 24/7.</p>
-        </article>
-
-        <!-- Panel 7 -->
-        <article class="gc-panel" id="gc-panel-7" role="tabpanel" data-num="07" data-img="/misc_img/linkedin-7.jpg" data-link="https://lnkd.in/p/g23wby4Q">
-            <h3>Global Purchasing Power</h3>
-            <p>A look at how currency value changes and where your money goes the furthest.</p>
-        </article>
-
-        <!-- Panel 8 -->
-        <article class="gc-panel" id="gc-panel-8" role="tabpanel" data-num="08" data-img="/misc_img/linkedin-8.jpg" data-link="https://lnkd.in/p/gyZZf7pA">
-            <h3>Claude 5 Release</h3>
-            <p>A quick look at how the newest AI models can help you get more done.</p>
-        </article>
-
-        <!-- Panel 9 -->
-        <article class="gc-panel" id="gc-panel-9" role="tabpanel" data-num="09" data-img="/misc_img/linkedin-9.jpg" data-link="https://lnkd.in/p/g8WYqqaF">
-            <h3>Marketing 101: Decoy Effect</h3>
-            <p>Understanding how the medium option helps sell more large items by changing how people see value.</p>
-        </article>
-
-        <!-- Panel 10 -->
-        <article class="gc-panel" id="gc-panel-10" role="tabpanel" data-num="10" data-img="/misc_img/linkedin-10.jpg" data-link="https://lnkd.in/p/gdR_GFnF">
-            <h3>Professional Networking</h3>
-            <p>Understanding how conversations with industry leaders and peers open up new opportunities.</p>
-        </article>
-
-        <!-- Panel 11 -->
-        <article class="gc-panel" id="gc-panel-11" role="tabpanel" data-num="11" data-img="/misc_img/linkedin-11.jpg" data-link="https://lnkd.in/p/gRiKwv4F">
-            <h3>Stop Wasting AI Tokens</h3>
-            <p>Simple tips to help use your AI tokens more efficiently and get better results.</p>
-        </article>
-
-        <!-- Panel 12 -->
-        <article class="gc-panel" id="gc-panel-12" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.jpg" data-link="https://lnkd.in/p/gp9yEGMR">
-            <h3>Top 5 NotebookLM Workflows</h3>
-            <p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p>
-        </article>
-
-        <!-- Panel 13 -->
-        <article class="gc-panel" id="gc-panel-13" role="tabpanel" data-num="13" data-img="/misc_img/linkedin-13.jpg" data-link="https://lnkd.in/p/gQimNA-2">
-            <h3>What is OOH Marketing</h3>
-            <p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p>
-        </article>
-        
-         <!-- Panel 14 -->
-        <article class="gc-panel" id="gc-panel-14" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.jpg" data-link="https://lnkd.in/p/g56SxBFD">
-            <h3>The Rise of AI Agents</h3>
-            <p>Why 2026 is all about smart AI tools that actually do the work for us.</p>
-        </article>
+        <article class="gc-panel is-active" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg" data-link="https://lnkd.in/p/g6KCZ75j"><h3>AI Productivity</h3><p>A funny quote by me..</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg" data-link="https://lnkd.in/p/g6pSu58S"><h3>Guerrilla Marketing Tactics</h3><p>How Polo turned everyday snow into a giant ad.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg" data-link="https://lnkd.in/p/gs-kQ9n4"><h3>The Winning Mindset</h3><p>A look at why a good attitude is the best skill a person can have.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg" data-link="https://lnkd.in/p/g3sCqm8w"><h3>Self-Training Made Easy</h3><p>How to use AI prompts to create a daily practice guide.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.jpg" data-link="https://lnkd.in/p/gqq-i2nB"><h3>Smart Ad Design</h3><p>Seeing how AI tools are catching up to human creativity this year.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.jpg" data-link="https://lnkd.in/p/geMbduQF"><h3>LinkedIn Personal Brand</h3><p>Tips on how to build your personal brand on LinkedIn 24/7.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="07" data-img="/misc_img/linkedin-7.jpg" data-link="https://lnkd.in/p/g23wby4Q"><h3>Global Purchasing Power</h3><p>A look at how currency value changes and where your money goes the furthest.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="08" data-img="/misc_img/linkedin-8.jpg" data-link="https://lnkd.in/p/gyZZf7pA"><h3>Claude 5 Release</h3><p>A quick look at how the newest AI models can help you get more done.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="09" data-img="/misc_img/linkedin-9.jpg" data-link="https://lnkd.in/p/g8WYqqaF"><h3>Marketing 101: Decoy Effect</h3><p>How the medium option helps sell more large items by changing how people see value.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="10" data-img="/misc_img/linkedin-10.jpg" data-link="https://lnkd.in/p/gdR_GFnF"><h3>Professional Networking</h3><p>How conversations with industry leaders and peers open up new opportunities.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="11" data-img="/misc_img/linkedin-11.jpg" data-link="https://lnkd.in/p/gRiKwv4F"><h3>Stop Wasting AI Tokens</h3><p>Simple tips to use your AI tokens more efficiently and get better results.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.jpg" data-link="https://lnkd.in/p/gp9yEGMR"><h3>Top 5 NotebookLM Workflows</h3><p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="13" data-img="/misc_img/linkedin-13.jpg" data-link="https://lnkd.in/p/gQimNA-2"><h3>What is OOH Marketing</h3><p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.jpg" data-link="https://lnkd.in/p/g56SxBFD"><h3>The Rise of AI Agents</h3><p>Why 2026 is all about smart AI tools that actually do the work for us.</p></article>
     </div>
 </section>
 
-<!-- 🤖 AUTOMATED AI CHAT WIDGET (FIFI) -->
+<!-- AUTOMATED AI CHAT WIDGET (FIFI) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
     <div style="position: relative;">
         <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
@@ -1171,7 +1143,7 @@
     <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
 </button>
 
-<div class="glass-card chat-bot-modal" id="chatModal">
+<div class="glass-card chat-bot-modal no-hover" id="chatModal">
     <div class="chat-header">
         <div class="chat-header-title" style="gap: 12px;">
             <div style="position: relative;">
@@ -1183,101 +1155,220 @@
                 <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
             </div>
         </div>
-        <button class="close-chat" id="closeChatBtn">&times;</button>
+        <button class="close-chat" id="closeChatBtn" aria-label="Close chat">&times;</button>
     </div>
-    
     <div class="chat-scroll-area" id="chatArea">
-       <div class="chat-greeting" id="chatGreeting">
+        <div class="chat-greeting" id="chatGreeting">
             <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
-            <p>I am Fardin's AI Assistant. What would you like to know about him?</p>
+            <p>I'm Fardin's AI Assistant. What would you like to know about him?</p>
         </div>
-    
-       <div class="chat-options-grid" id="chatOptions">
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins core skills?')">
-                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins B2B experience')">
-                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardins academics')">
-                <span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardins extracurriculars?')">
-                <span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')">
-                <span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span>
-            </button>
-            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')">
-                <span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span>
-            </button>
+        <div class="chat-options-grid" id="chatOptions">
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardin\'s core skills?')"><span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardin\'s B2B experience')"><span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardin\'s academics')"><span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('What are Fardin\'s extracurriculars?')"><span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')"><span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span></button>
+            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')"><span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span></button>
         </div>
-        
         <div class="chat-log" id="chatLog"></div>
     </div>
-    
     <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
 </div>
 
 <!-- Footer injected by main.js -->
 <footer class="site-footer"></footer>
-    <div class="contact-banner-wrapper">
-    <img src="behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" onerror="this.style.display='none'">
+<div class="contact-banner-wrapper">
+    <img src="/behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" loading="lazy" onerror="this.style.display='none'">
 </div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<!-- Blog cards are duplicated BEFORE main.js runs, so page transitions work on the copies too -->
+<script>
+    (function () {
+        const track = document.getElementById('blogTrack');
+        if (track) {
+            Array.from(track.children).forEach(card => {
+                const copy = card.cloneNode(true);
+                copy.setAttribute('aria-hidden', 'true');
+                copy.setAttribute('tabindex', '-1');
+                track.appendChild(copy);
+            });
+        }
+
+        /* Toolkit ticker rows */
+        const fav = d => `https://www.google.com/s2/favicons?domain=${d}&sz=64`;
+        const row1 = [
+            ['Claude', 'claude.ai', 'AI'], ['Gemini', 'gemini.google.com', 'AI'], ['NotebookLM', 'notebooklm.google.com', 'AI'],
+            ['Perplexity', 'perplexity.ai', 'AI'], ['CapCut', 'capcut.com', 'Video']
+        ];
+        const row2 = [
+            ['HubSpot', 'hubspot.com', 'CRM'], ['Google Analytics', 'analytics.google.com', 'Analytics'],
+            ['Meta Business Suite', 'business.facebook.com', 'Social'], ['Notion', 'notion.so', 'Workflow']
+        ];
+        const fill = (id, items) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            const chip = ([name, domain, cat], hidden) =>
+                `<span class="tk-chip"${hidden ? ' aria-hidden="true"' : ''}><img src="${fav(domain)}" alt="" loading="lazy">${name}<small>${cat}</small></span>`;
+            // 3 copies per half keeps the loop seamless on wide screens
+            let half = '';
+            for (let r = 0; r < 3; r++) half += items.map(i => chip(i, r > 0)).join('');
+            el.innerHTML = half + half.replace(/<span class="tk-chip">/g, '<span class="tk-chip" aria-hidden="true">');
+        };
+        fill('tkRow1', row1);
+        fill('tkRow2', row2);
+    })();
+</script>
+
 <script src="/main.js"></script>
 
-<!-- 🚀 BLUR TEXT SCRIPT AUTOMATOR -->
+<!-- =========================================
+     HOME PAGE SCRIPTS
+========================================= -->
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const blurContainers = document.querySelectorAll('.blur-container');
-        const blurObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const words = entry.target.querySelectorAll('.scroll-blur');
-                    words.forEach((word, index) => {
-                        // 150ms stagger delay per word
-                        word.style.animationDelay = `${index * 0.15}s`;
-                        word.classList.add('is-animated');
-                    });
-                    blurObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
+document.addEventListener("DOMContentLoaded", () => {
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        blurContainers.forEach(container => blurObserver.observe(container));
-    });
+    /* ---------- 1. Blur-text reveal ---------- */
+    const blurObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.querySelectorAll('.scroll-blur').forEach((word, index) => {
+                word.style.animationDelay = `${index * 0.15}s`;
+                word.classList.add('is-animated');
+            });
+            blurObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.blur-container').forEach(c => blurObserver.observe(c));
+
+    /* ---------- 2. Section reveal (blur + rise) ---------- */
+    const fxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('fx-in');
+            fxObserver.unobserve(el);
+            // Hand control back to the original hover/tilt transitions after the reveal
+            setTimeout(() => el.classList.remove('fx-reveal', 'fx-in'), 1000);
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fx-reveal').forEach(el => reduceMotion ? el.classList.remove('fx-reveal') : fxObserver.observe(el));
+
+    /* ---------- 3. Count-up numbers ---------- */
+    const countUp = (el) => {
+        const end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+        const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduceMotion) { el.textContent = pre + end.toFixed(dec) + suf; return; }
+        const dur = 1600, t0 = performance.now();
+        const step = (now) => {
+            const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + (end * e).toFixed(dec) + suf;
+            if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    };
+    const metricObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            countUp(entry.target);
+            metricObserver.unobserve(entry.target);
+        });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.metric-num[data-count]').forEach(el => metricObserver.observe(el));
+
+    /* ---------- 4. Hero photo: theme swap + gentle parallax ---------- */
+    const heroImg = document.getElementById('mainHeroImg');
+    const heroMask = document.getElementById('heroImgMask');
+    const updateHeroImage = () => {
+        if (!heroImg) return;
+        const want = document.body.classList.contains('dark-mode') ? '/misc_img/me.png' : '/misc_img/me2.png';
+        if (!heroImg.src.endsWith(want)) heroImg.src = want;
+    };
+    updateHeroImage();
+    // Watches the body class, so it works no matter how the theme changes
+    new MutationObserver(updateHeroImage).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+    if (heroMask && !reduceMotion) {
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                const y = window.scrollY;
+                heroMask.style.transform = (window.innerWidth > 992 && y < window.innerHeight * 1.2)
+                    ? `translate3d(0, ${y * 0.12}px, 0)` : '';
+                ticking = false;
+            });
+        }, { passive: true });
+    }
+
+    /* ---------- 5. FIFI chatbot answers (typos fixed; replaces the version in main.js) ---------- */
+    const chatGreeting = document.getElementById('chatGreeting');
+    const chatOptions = document.getElementById('chatOptions');
+    const chatLog = document.getElementById('chatLog');
+    const resetChatBtn = document.getElementById('resetChatBtn');
+    const chatArea = document.getElementById('chatArea');
+    const link = (href, text) => `<a href="${href}" style="color: var(--c1); font-weight: bold;">${text}</a>`;
+
+    window.sendQuery = function (query) {
+        if (chatGreeting) chatGreeting.style.display = 'none';
+        if (chatOptions) chatOptions.style.display = 'none';
+        if (resetChatBtn) resetChatBtn.style.display = 'block';
+        if (!chatLog) return;
+
+        const userMsg = document.createElement('div');
+        userMsg.className = 'chat-bubble user-bubble';
+        userMsg.textContent = query;
+        chatLog.appendChild(userMsg);
+
+        const phrases = ["Let me check on that...", "Hold on a second...", "Fetching the details...", "Just a moment...", "Pulling that up for you..."];
+        const loading = document.createElement('div');
+        loading.className = 'chat-bubble ai-bubble';
+        loading.innerHTML = `<span style="opacity: 0.6; font-style: italic; display: flex; align-items: center; gap: 8px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation: spin 2s linear infinite;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
+            ${phrases[Math.floor(Math.random() * phrases.length)]}</span>`;
+        chatLog.appendChild(loading);
+        if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+
+        setTimeout(() => {
+            loading.remove();
+            const aiMsg = document.createElement('div');
+            aiMsg.className = 'chat-bubble ai-bubble';
+            const q = query.toLowerCase();
+            if (q.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>brand strategy</strong>, content marketing, CRM management (Salesforce, Apollo.io) and B2B lead generation. On the creative side he works in Photoshop, Illustrator, Figma and Canva.';
+            else if (q.includes('b2b')) aiMsg.innerHTML = 'He has <strong>one year of professional experience focused on B2B sales and marketing at Augmex</strong>. He currently works as a Marketing Executive at Augmex Technologies, where he has enriched 40,000+ CRM records, run multi-channel outreach and driven 340K+ organic views through content.';
+            else if (q.includes('contact')) aiMsg.innerHTML = `You can reach him directly through his ${link('/contact.html', 'Contact Page')}.`;
+            else if (q.includes('resume')) aiMsg.innerHTML = `You can view and download his full resume on his ${link('/resume.html', 'Resume Page')}.`;
+            else if (q.includes('academics')) aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with a CGPA of 3.80.';
+            else if (q.includes('extracurriculars')) aiMsg.innerHTML = `He has extensive leadership experience, including BASIS Leader of the Year 2024 and the Harvard Aspire Leaders Program '26. Check out his ${link('/volunteer.html', 'Leadership & Extracurriculars page')} to learn more.`;
+            else aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
+            chatLog.appendChild(aiMsg);
+            if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
+        }, 1200);
+    };
+});
 </script>
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+
+<!-- BACKGROUND NEURAL NETWORK (unchanged, just pauses when the tab is hidden) -->
 <script>
     const canvas = document.getElementById('neural-canvas');
-    if(canvas) {
+    if (canvas) {
         const ctx = canvas.getContext('2d');
         let width, height;
         let particles = [];
-        let mouse = { x: null, y: null, radius: 100 }; 
+        let mouse = { x: null, y: null, radius: 100 };
 
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
+        window.addEventListener('mousemove', (event) => { mouse.x = event.clientX; mouse.y = event.clientY; });
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
 
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
+        function resize() { width = canvas.width = window.innerWidth; height = canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
 
         class Particle {
             constructor(x, y, dx, dy, size, color) {
-                this.x = x; this.y = y;
-                this.dx = dx; this.dy = dy;
+                this.x = x; this.y = y; this.dx = dx; this.dy = dy;
                 this.size = size; this.color = color;
                 this.baseX = this.x; this.baseY = this.y;
                 this.density = (Math.random() * 30) + 1;
@@ -1290,20 +1381,13 @@
             }
             update() {
                 if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
+                    let dx = mouse.x - this.x, dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
-
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    } else {
+                    let force = (mouse.radius - distance) / mouse.radius;
+                    let directionX = (dx / distance) * force * this.density;
+                    let directionY = (dy / distance) * force * this.density;
+                    if (distance < mouse.radius) { this.x -= directionX; this.y -= directionY; }
+                    else {
                         if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
                         if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
                     }
@@ -1311,8 +1395,7 @@
                     if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
                     if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
                 }
-                this.baseX += this.dx;
-                this.baseY += this.dy;
+                this.baseX += this.dx; this.baseY += this.dy;
                 if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
                 if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
                 this.draw();
@@ -1321,28 +1404,23 @@
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / 12000; 
+            let numberOfParticles = (width * height) / 12000;
             let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
-
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
-                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-                let dx = (Math.random() - 0.5) * 1; 
-                let dy = (Math.random() - 0.5) * 1; 
-                let color = colors[Math.floor(Math.random() * colors.length)];
-                particles.push(new Particle(x, y, dx, dy, size, color));
+                let x = Math.random() * (innerWidth - size * 4) + size * 2;
+                let y = Math.random() * (innerHeight - size * 4) + size * 2;
+                let dx = (Math.random() - 0.5) * 1, dy = (Math.random() - 0.5) * 1;
+                particles.push(new Particle(x, y, dx, dy, size, colors[Math.floor(Math.random() * colors.length)]));
             }
         }
 
         function connect() {
-            let opacityValue = 1;
             for (let a = 0; a < particles.length; a++) {
                 for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
-                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    let distance = ((particles[a].x - particles[b].x) ** 2) + ((particles[a].y - particles[b].y) ** 2);
                     if (distance < (width / 5.5) * (height / 5.5)) {
-                        opacityValue = 1 - (distance / 25000);
+                        let opacityValue = 1 - (distance / 25000);
                         ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
                         ctx.lineWidth = 1;
                         ctx.beginPath();
@@ -1356,56 +1434,144 @@
 
         function animate() {
             requestAnimationFrame(animate);
+            if (document.hidden) return;
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) particles[i].update();
             connect();
         }
-
         init();
         animate();
     }
 </script>
-    <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const heroImg = document.getElementById('mainHeroImg');
-        const themeBtn = document.getElementById('themeToggle');
-        
-        // Ensure the image exists on the page before running logic
-        if (heroImg && themeBtn) {
-            
-            // Function to check the current theme and set the correct image
-            const updateHeroImage = () => {
-                if (document.body.classList.contains('dark-mode')) {
-                    heroImg.src = "/misc_img/me.png"; // Dark mode image
-                } else {
-                    heroImg.src = "/misc_img/me2.png"; // Light mode image
-                }
-            };
 
-            // Run it once immediately when the page loads
-            updateHeroImage();
+<!-- CONTENT RESULTS LOGIC -->
+<script>
+(() => {
+    const root = document.getElementById('content-results');
+    if (!root) return;
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-            // Listen for clicks on the Theme Toggle button
-            themeBtn.addEventListener('click', () => {
-                // Wait a tiny fraction of a second for the body class to actually change
-                setTimeout(updateHeroImage, 50); 
-            });
-        }
+    /* Weekly calendar: [dayIndex 0-6, timeIndex, type, label, brand] */
+    const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    const times = ['10 AM', '1 PM', '6 PM', '9 PM'];
+    const posts = [
+        [0,0,'t-car','Industry tips','Augmex'], [0,2,'t-reel','Drop teaser','FYGO'],
+        [1,1,'t-post','Client win','Augmex'], [1,3,'t-reel','Styling reel','FYGO'],
+        [2,0,'t-vid','Team BTS','Augmex'], [2,2,'t-car','Size guide','FYGO'],
+        [3,1,'t-car','How-to','Augmex'], [3,3,'t-reel','Unboxing','FYGO'],
+        [4,0,'t-post','Hiring','Augmex'], [4,2,'t-reel','New drop','FYGO'],
+        [5,1,'t-post','Customer UGC','FYGO'], [5,3,'t-reel','Fit check','FYGO'],
+        [6,2,'t-vid','Weekly recap','Augmex']
+    ];
+    const typeName = { 't-reel': 'Reel', 't-car': 'Carousel', 't-post': 'Post', 't-vid': 'Video' };
+
+    const grid = root.querySelector('#cr-days');
+    grid.innerHTML = '<div></div>' + days.map(d => `<div class="cr-dh">${d}</div>`).join('');
+    times.forEach((t, ti) => {
+        grid.insertAdjacentHTML('beforeend', `<div class="cr-time">${t}</div>`);
+        days.forEach((_, di) => grid.insertAdjacentHTML('beforeend', `<div class="cr-slot" data-k="${di}-${ti}"></div>`));
     });
+    const postEls = posts.map(([d, t, cls, label, brand]) => {
+        const el = document.createElement('div');
+        el.className = `cr-post ${cls}`;
+        el.title = `${typeName[cls]} · ${brand}`;
+        el.innerHTML = `${label}<small>${brand}</small>`;
+        grid.querySelector(`[data-k="${d}-${t}"]`).appendChild(el);
+        return el;
+    });
+
+    /* Line chart */
+    root.querySelectorAll('.cr-line').forEach(svg => {
+        const pts = svg.dataset.points.split(',').map(Number);
+        const c = svg.dataset.color, W = 600, H = 120, pad = 8, max = Math.max(...pts);
+        const xy = pts.map((v, i) => [i * (W / (pts.length - 1)), H - pad - (v / max) * (H - pad * 2)]);
+        let d = `M${xy[0][0]},${xy[0][1]}`;
+        for (let i = 1; i < xy.length; i++) {
+            const [x0, y0] = xy[i - 1], [x1, y1] = xy[i], cx = (x0 + x1) / 2;
+            d += ` C${cx},${y0} ${cx},${y1} ${x1},${y1}`;
+        }
+        const id = 'g' + Math.random().toString(36).slice(2, 7);
+        const [lx, ly] = xy[xy.length - 1];
+        svg.innerHTML = `
+            <defs><linearGradient id="${id}" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0" stop-color="${c}" stop-opacity=".35"/><stop offset="1" stop-color="${c}" stop-opacity="0"/></linearGradient></defs>
+            <path class="cr-area" d="${d} L${W},${H} L0,${H} Z" fill="url(#${id})"/>
+            <path class="cr-path" d="${d}" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" style="filter:drop-shadow(0 0 6px ${c})"/>
+            <circle class="cr-area" cx="${lx - 3}" cy="${ly}" r="5" fill="${c}"/>`;
+    });
+
+    /* Counters */
+    const countUp = el => {
+        const end = parseFloat(el.dataset.count), dec = +(el.dataset.decimals || 0);
+        const pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduce) { el.textContent = pre + end.toFixed(dec) + suf; return; }
+        const dur = 1600, t0 = performance.now();
+        const step = now => {
+            const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + (end * e).toFixed(dec) + suf;
+            if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+    };
+
+    /* Calendar fill + pipeline loop (pauses when off-screen) */
+    const qText = root.querySelector('#cr-qtext'), qBar = root.querySelector('#cr-qbar');
+    const stages = [...root.querySelectorAll('.cr-stage')];
+    let calStarted = false, calVisible = true;
+    const runCalendar = () => {
+        if (calStarted) return; calStarted = true;
+        const total = postEls.length;
+        if (reduce) {
+            postEls.forEach(p => p.classList.add('on'));
+            qText.textContent = `${total} / ${total} scheduled`; qBar.style.width = '100%';
+            stages[3].classList.add('active');
+            return;
+        }
+        let i = 0, si = 0;
+        const tick = () => {
+            if (calVisible) {
+                stages.forEach((s, k) => s.classList.toggle('active', k === si % stages.length)); si++;
+                if (i < total) {
+                    postEls[i].classList.add('on'); i++;
+                    qText.textContent = `${i} / ${total} scheduled`;
+                    qBar.style.width = (i / total * 100) + '%';
+                }
+            }
+            setTimeout(tick, i < total ? 380 : 1400);
+        };
+        tick();
+    };
+
+    /* Reveal on scroll */
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(en => {
+            if (!en.isIntersecting) return;
+            const card = en.target;
+            card.classList.add('cr-in');
+            card.querySelectorAll('[data-count]').forEach(countUp);
+            card.querySelectorAll('[data-w]').forEach(b => setTimeout(() => b.style.width = b.dataset.w + '%', 200));
+            if (card.querySelector('#cr-days')) runCalendar();
+            io.unobserve(card);
+        });
+    }, { threshold: 0.2 });
+    root.querySelectorAll('.cr-reveal').forEach(c => io.observe(c));
+
+    const calCard = root.querySelector('.cr-full');
+    if (calCard) new IntersectionObserver(([e]) => { calVisible = e.isIntersecting; }).observe(calCard);
+})();
 </script>
 
-<!-- 🚀 WEBGL CAROUSEL LOGIC -->
+<!-- WEBGL CAROUSEL LOGIC -->
 <script>
-    // 1. BRAND COLORS & CONFIG
-    const COLOR_PAPER = "#0f172a"; // Matches your dark mode body
+    // Carousel background follows the theme (fixes the dark box in light mode)
+    const PAPER_DARK = [15 / 255, 23 / 255, 42 / 255];     // #0F172A
+    const PAPER_LIGHT = [241 / 255, 245 / 255, 249 / 255]; // #F1F5F9
+    const getPaper = () => document.body.classList.contains('dark-mode') ? PAPER_DARK : PAPER_LIGHT;
 
     function parsePanelData(panelEl) {
-      const num = panelEl.dataset.num || "";
-      const imgUrl = panelEl.dataset.img || "";
-      return { num, imgUrl };
+        return { num: panelEl.dataset.num || "", imgUrl: panelEl.dataset.img || "" };
     }
 
-    // 2. WEBGL2 GLSL SHADERS (TEXTURE ARRAY MODE)
     const VERTEX_SHADER = `#version 300 es
     in vec2 aPos;
     out vec2 vUv;
@@ -1414,7 +1580,7 @@
       gl_Position = vec4(aPos, 0.0, 1.0);
     }`;
 
-   const FRAGMENT_SHADER = `#version 300 es
+    const FRAGMENT_SHADER = `#version 300 es
     precision highp float;
     precision highp sampler2DArray;
     in vec2 vUv;
@@ -1436,12 +1602,9 @@
       if(selected){ localX /= zoom; y /= zoom; }
       else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
       if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
-      
-      // ✨ THE FIX: Use pure integer math to perfectly wrap the images ✨
       int islot = int(slot);
       int index = islot % uCount;
       if (index < 0) index += uCount;
-      
       return texture(uTex, vec3(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5, float(index))).rgb;
     }
 
@@ -1480,335 +1643,323 @@
     }`;
 
     function compileShader(gl, type, source) {
-      const shader = gl.createShader(type);
-      if (!shader) return null;
-      gl.shaderSource(shader, source);
-      gl.compileShader(shader);
-      if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-        console.error("Shader failed to compile:", gl.getShaderInfoLog(shader));
-        return null;
-      }
-      return shader;
+        const shader = gl.createShader(type);
+        if (!shader) return null;
+        gl.shaderSource(shader, source);
+        gl.compileShader(shader);
+        if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+            console.error("Shader failed to compile:", gl.getShaderInfoLog(shader));
+            return null;
+        }
+        return shader;
     }
 
-    // 3. WEBGL CAROUSEL ENGINE
-    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, reducedMotion, onActiveChange, getActiveIndex) {
-      const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
-      const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
-      if (!vs || !fs) return null;
+    function initWebGLRenderer(gl, canvas, viewportEl, slidesData, onActiveChange) {
+        const vs = compileShader(gl, gl.VERTEX_SHADER, VERTEX_SHADER);
+        const fs = compileShader(gl, gl.FRAGMENT_SHADER, FRAGMENT_SHADER);
+        if (!vs || !fs) return null;
 
-      const program = gl.createProgram();
-      gl.attachShader(program, vs);
-      gl.attachShader(program, fs);
-      gl.bindAttribLocation(program, 0, "aPos");
-      gl.linkProgram(program);
+        const program = gl.createProgram();
+        gl.attachShader(program, vs);
+        gl.attachShader(program, fs);
+        gl.bindAttribLocation(program, 0, "aPos");
+        gl.linkProgram(program);
 
-      const slideCount = slidesData.length;
-      const vao = gl.createVertexArray();
-      const buffer = gl.createBuffer();
-      gl.bindVertexArray(vao);
-      gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-      gl.enableVertexAttribArray(0);
-      gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
-      gl.bindVertexArray(null);
-
-      const uniforms = {
-        focus: gl.getUniformLocation(program, "uFocus"),
-        selected: gl.getUniformLocation(program, "uSelected"),
-        aspect: gl.getUniformLocation(program, "uAspect"),
-        halfW: gl.getUniformLocation(program, "uHalfW"),
-        halfH: gl.getUniformLocation(program, "uHalfH"),
-        step: gl.getUniformLocation(program, "uStep"),
-        scroll: gl.getUniformLocation(program, "uScroll"),
-        time: gl.getUniformLocation(program, "uTime"),
-        countU: gl.getUniformLocation(program, "uCount"),
-        paper: gl.getUniformLocation(program, "uPaper"),
-        tex: gl.getUniformLocation(program, "uTex")
-      };
-
-      // ✨ THE FIX: Create a single 3D Texture Array that holds ALL images infinitely ✨
-      const texArray = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-      gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 1024, 1024, slideCount);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-      // Pre-fill it so the screen isn't blank while loading
-      const blankData = new Uint8Array(1024 * 1024 * 4);
-      for(let i=0; i < blankData.length; i+=4) {
-         blankData[i] = 15; blankData[i+1] = 23; blankData[i+2] = 42; blankData[i+3] = 255;
-      }
-      for (let i = 0; i < slideCount; i++) {
-          gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, blankData);
-      }
-
-      // Convert Dark Blue hex to Normalized RGB
-      const num = parseInt(COLOR_PAPER.slice(1), 16);
-      const paperRgb = [(num >> 16 & 255)/255, (num >> 8 & 255)/255, (num & 255)/255];
-      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-
-      let viewWidth = 0, viewHeight = 1;
-      let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
-      let activePointerId = -1;
-
-      const carouselRoot = viewportEl.closest(".glass-carousel");
-      
-      // ✨ Create a layout container for the side-by-side buttons
-      const actionsContainer = document.createElement("div");
-      actionsContainer.className = "gc-actions-container";
-      actionsContainer.hidden = true;
-      
-      const linkedinBtn = document.createElement("a");
-      linkedinBtn.className = "gc-linkedin-btn";
-      linkedinBtn.textContent = "Open LinkedIn ➔";
-      linkedinBtn.target = "_blank";
-      
-      const closeBtn = document.createElement("button");
-      closeBtn.className = "gc-close";
-      closeBtn.textContent = "Back to Feed ×";
-      
-      actionsContainer.appendChild(linkedinBtn);
-      actionsContainer.appendChild(closeBtn);
-      
-      carouselRoot.querySelector(".gc-meta")?.prepend(actionsContainer);
-
-      let scrollCurrent = 0, scrollTarget = 0;
-      let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
-      let texturesReady = true; 
-      let isVisible = true, rafId = 0, isAnimating = false;
-
-      const setFocused = (focused) => {
-        focusTarget = focused ? 1 : 0;
-        carouselRoot.classList.toggle("gc-focused", focused);
-        actionsContainer.hidden = !focused; // Hide/Show both buttons together!
-        
-        if (focused) {
-            // Find which panel is active and steal its data-link URL for the button!
-            const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
-            if (activePanel && activePanel.dataset.link) {
-                linkedinBtn.href = activePanel.dataset.link;
-                linkedinBtn.style.display = "inline-flex";
-            } else {
-                linkedinBtn.style.display = "none";
-            }
-        }
-        requestRender();
-      };
-
-      closeBtn.addEventListener("click", () => {
-        setFocused(false);
-      });
-
-      const resize = () => {
-        const rect = viewportEl.getBoundingClientRect();
-        if (!rect.width || !rect.height) return;
-        viewWidth = rect.width; viewHeight = rect.height;
-        const w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
-        if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
-        gl.viewport(0, 0, w, h);
-      };
-
-      const getLayoutMetrics = () => {
-        const aspect = viewWidth / viewHeight;
-        const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
-        const halfW = halfH;
-        const step = halfW * 2 + 0.012;
-        return { halfW, halfH, step, aspect };
-      };
-
-      const drawFrame = (timeSec) => {
-        const { halfW, halfH, step, aspect } = getLayoutMetrics();
-        gl.useProgram(program);
+        const slideCount = slidesData.length;
+        const vao = gl.createVertexArray();
+        const buffer = gl.createBuffer();
         gl.bindVertexArray(vao);
-        gl.uniform1f(uniforms.focus, focusCurrent);
-        gl.uniform1f(uniforms.selected, selectedSlot);
-        gl.uniform1f(uniforms.aspect, aspect);
-        gl.uniform1f(uniforms.halfW, halfW);
-        gl.uniform1f(uniforms.halfH, halfH);
-        gl.uniform1f(uniforms.step, step);
-        gl.uniform1f(uniforms.scroll, scrollCurrent);
-        gl.uniform1f(uniforms.time, timeSec);
-        gl.uniform1i(uniforms.countU, slideCount);
-        gl.uniform3f(uniforms.paper, paperRgb[0], paperRgb[1], paperRgb[2]);
+        gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
+        gl.enableVertexAttribArray(0);
+        gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0);
+        gl.bindVertexArray(null);
 
-        gl.activeTexture(gl.TEXTURE0);
+        const uniforms = {
+            focus: gl.getUniformLocation(program, "uFocus"),
+            selected: gl.getUniformLocation(program, "uSelected"),
+            aspect: gl.getUniformLocation(program, "uAspect"),
+            halfW: gl.getUniformLocation(program, "uHalfW"),
+            halfH: gl.getUniformLocation(program, "uHalfH"),
+            step: gl.getUniformLocation(program, "uStep"),
+            scroll: gl.getUniformLocation(program, "uScroll"),
+            time: gl.getUniformLocation(program, "uTime"),
+            countU: gl.getUniformLocation(program, "uCount"),
+            paper: gl.getUniformLocation(program, "uPaper"),
+            tex: gl.getUniformLocation(program, "uTex")
+        };
+
+        const texArray = gl.createTexture();
         gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-        gl.uniform1i(uniforms.tex, 0);
-        
-        gl.drawArrays(gl.TRIANGLES, 0, 3);
-      };
+        gl.texStorage3D(gl.TEXTURE_2D_ARRAY, 1, gl.RGBA8, 1024, 1024, slideCount);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+        gl.texParameteri(gl.TEXTURE_2D_ARRAY, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
-      const tick = (now) => {
-        isAnimating = false;
-        if (!isDragging) {
-          scrollCurrent += (scrollTarget - scrollCurrent) * 0.14;
-          if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
-        }
-        focusCurrent += (focusTarget - focusCurrent) * 0.1;
-        if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
-
-        onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
-        drawFrame(now / 1000);
-
-        if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) requestRender();
-      };
-
-      const requestRender = () => {
-        if (!isAnimating && texturesReady) { isAnimating = true; rafId = requestAnimationFrame(tick); }
-      };
-
-      canvas.addEventListener("pointerdown", (e) => {
-        if (e.button !== 0) return;
-        activePointerId = e.pointerId;
-        isDragging = true;
-        requestRender();
-        dragStartX = e.clientX;
-        dragStartScroll = scrollCurrent;
-        canvas.setPointerCapture(e.pointerId);
-      });
-
-      canvas.addEventListener("pointermove", (e) => {
-        if (!isDragging || !viewWidth || focusTarget) return;
-        const { step, aspect } = getLayoutMetrics();
-        const delta = (e.clientX - dragStartX) * aspect / viewWidth;
-        scrollCurrent = dragStartScroll - delta / step;
-        scrollTarget = scrollCurrent;
-        requestRender();
-      });
-
-      const onPointerUp = (e) => {
-        if (!isDragging || e.pointerId !== activePointerId) return;
-        isDragging = false;
-        try { canvas.releasePointerCapture(e.pointerId); } catch {}
-        scrollTarget = Math.round(scrollCurrent);
-
-        if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
-          const rect = canvas.getBoundingClientRect();
-          const { step, halfW, halfH } = getLayoutMetrics();
-          const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
-          const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
-
-          if (focusTarget) {
-            if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
-          } else {
-            const clickedSlot = Math.round(clickX / step + scrollCurrent);
-            if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
-              selectedSlot = scrollTarget = clickedSlot;
-              onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
-              setFocused(true); 
-            }
-          }
-        }
-        requestRender();
-      };
-
-      window.addEventListener("pointerup", onPointerUp);
-      canvas.addEventListener("pointercancel", onPointerUp);
-      
-      canvas.addEventListener("wheel", (e) => {
-        if (focusTarget || e.ctrlKey) return;
-        const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-        if (!delta) return;
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const now = performance.now();
-        if (now - lastWheelTime >= 220) {
-          lastWheelTime = now;
-          scrollTarget = Math.round(scrollTarget) + (delta > 0 ? 1 : -1);
-          requestRender();
-        }
-      }, { passive: false });
-
-      viewportEl.appendChild(canvas);
-      new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
-      resize();
-
-      // Download images dynamically into the Texture Array
-      (async () => {
-        const offscreen = document.createElement("canvas");
-        offscreen.width = 1024; offscreen.height = 1024;
-        const ctx = offscreen.getContext("2d");
-        gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-
+        const blankData = new Uint8Array(1024 * 1024 * 4);
+        for (let i = 0; i < blankData.length; i += 4) { blankData[i] = 30; blankData[i + 1] = 41; blankData[i + 2] = 59; blankData[i + 3] = 255; }
         for (let i = 0; i < slideCount; i++) {
-          await new Promise(resolve => {
-            const img = new Image();
-            img.crossOrigin = "anonymous";
-            img.onload = () => {
-              ctx.fillStyle = COLOR_PAPER;
-              ctx.fillRect(0, 0, 1024, 1024);
-              const scale = Math.max(1024 / img.width, 1024 / img.height);
-              const x = (1024 / 2) - (img.width / 2) * scale;
-              const y = (1024 / 2) - (img.height / 2) * scale;
-              ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-              resolve();
-            };
-            img.onerror = () => {
-              ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, 1024, 1024);
-              resolve();
-            };
-            img.src = slidesData[i].imgUrl;
-          });
-          
-          gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-          gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
-          requestRender(); 
+            gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, blankData);
         }
-      })();
 
-      return { goTo(index) { setFocused(false); scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount; requestRender(); } };
+        const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+        let viewWidth = 0, viewHeight = 1;
+        let focusCurrent = 0, focusTarget = 0, selectedSlot = 0;
+        let activePointerId = -1;
+
+        const carouselRoot = viewportEl.closest(".glass-carousel");
+        const actionsContainer = document.createElement("div");
+        actionsContainer.className = "gc-actions-container";
+        actionsContainer.hidden = true;
+
+        const linkedinBtn = document.createElement("a");
+        linkedinBtn.className = "gc-linkedin-btn";
+        linkedinBtn.textContent = "Open LinkedIn ➔";
+        linkedinBtn.target = "_blank";
+        linkedinBtn.rel = "noopener";
+
+        const closeBtn = document.createElement("button");
+        closeBtn.className = "gc-close";
+        closeBtn.textContent = "Back to Feed ×";
+
+        actionsContainer.appendChild(linkedinBtn);
+        actionsContainer.appendChild(closeBtn);
+        carouselRoot.querySelector(".gc-meta")?.prepend(actionsContainer);
+
+        let scrollCurrent = 0, scrollTarget = 0;
+        let isDragging = false, dragStartX = 0, dragStartScroll = 0, lastWheelTime = 0;
+        let isAnimating = false;
+
+        const setFocused = (focused) => {
+            focusTarget = focused ? 1 : 0;
+            carouselRoot.classList.toggle("gc-focused", focused);
+            actionsContainer.hidden = !focused;
+            if (focused) {
+                const activePanel = carouselRoot.querySelector(".gc-panel.is-active");
+                if (activePanel && activePanel.dataset.link) {
+                    linkedinBtn.href = activePanel.dataset.link;
+                    linkedinBtn.style.display = "inline-flex";
+                } else {
+                    linkedinBtn.style.display = "none";
+                }
+            }
+            requestRender();
+        };
+        closeBtn.addEventListener("click", () => setFocused(false));
+
+        const resize = () => {
+            const rect = viewportEl.getBoundingClientRect();
+            if (!rect.width || !rect.height) return;
+            viewWidth = rect.width; viewHeight = rect.height;
+            const w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
+            if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
+            gl.viewport(0, 0, w, h);
+        };
+
+        const getLayoutMetrics = () => {
+            const aspect = viewWidth / viewHeight;
+            const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
+            const halfW = halfH;
+            const step = halfW * 2 + 0.012;
+            return { halfW, halfH, step, aspect };
+        };
+
+        const drawFrame = (timeSec) => {
+            const { halfW, halfH, step, aspect } = getLayoutMetrics();
+            const paper = getPaper();
+            gl.useProgram(program);
+            gl.bindVertexArray(vao);
+            gl.uniform1f(uniforms.focus, focusCurrent);
+            gl.uniform1f(uniforms.selected, selectedSlot);
+            gl.uniform1f(uniforms.aspect, aspect);
+            gl.uniform1f(uniforms.halfW, halfW);
+            gl.uniform1f(uniforms.halfH, halfH);
+            gl.uniform1f(uniforms.step, step);
+            gl.uniform1f(uniforms.scroll, scrollCurrent);
+            gl.uniform1f(uniforms.time, timeSec);
+            gl.uniform1i(uniforms.countU, slideCount);
+            gl.uniform3f(uniforms.paper, paper[0], paper[1], paper[2]);
+            gl.activeTexture(gl.TEXTURE0);
+            gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+            gl.uniform1i(uniforms.tex, 0);
+            gl.drawArrays(gl.TRIANGLES, 0, 3);
+        };
+
+        const tick = (now) => {
+            isAnimating = false;
+            if (!isDragging) {
+                scrollCurrent += (scrollTarget - scrollCurrent) * 0.14;
+                if (Math.abs(scrollTarget - scrollCurrent) < 0.0004) scrollCurrent = scrollTarget;
+            }
+            focusCurrent += (focusTarget - focusCurrent) * 0.1;
+            if (Math.abs(focusTarget - focusCurrent) < 0.001) focusCurrent = focusTarget;
+
+            onActiveChange((Math.round(scrollCurrent) % slideCount + slideCount) % slideCount);
+            drawFrame(now / 1000);
+
+            if (Math.abs(scrollTarget - scrollCurrent) > 0.0004 || focusCurrent !== focusTarget) requestRender();
+        };
+
+        const requestRender = () => {
+            if (!isAnimating) { isAnimating = true; requestAnimationFrame(tick); }
+        };
+
+        canvas.addEventListener("pointerdown", (e) => {
+            if (e.button !== 0) return;
+            activePointerId = e.pointerId;
+            isDragging = true;
+            requestRender();
+            dragStartX = e.clientX;
+            dragStartScroll = scrollCurrent;
+            canvas.setPointerCapture(e.pointerId);
+        });
+
+        canvas.addEventListener("pointermove", (e) => {
+            if (!isDragging || !viewWidth || focusTarget) return;
+            const { step, aspect } = getLayoutMetrics();
+            const delta = (e.clientX - dragStartX) * aspect / viewWidth;
+            scrollCurrent = dragStartScroll - delta / step;
+            scrollTarget = scrollCurrent;
+            requestRender();
+        });
+
+        const onPointerUp = (e) => {
+            if (!isDragging || e.pointerId !== activePointerId) return;
+            isDragging = false;
+            try { canvas.releasePointerCapture(e.pointerId); } catch (err) {}
+            scrollTarget = Math.round(scrollCurrent);
+
+            if (e.type !== "pointercancel" && Math.abs(e.clientX - dragStartX) < 6) {
+                const rect = canvas.getBoundingClientRect();
+                const { step, halfW, halfH } = getLayoutMetrics();
+                const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
+                const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
+
+                if (focusTarget) {
+                    if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
+                } else {
+                    const clickedSlot = Math.round(clickX / step + scrollCurrent);
+                    if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
+                        selectedSlot = scrollTarget = clickedSlot;
+                        onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
+                        setFocused(true);
+                    }
+                }
+            }
+            requestRender();
+        };
+        window.addEventListener("pointerup", onPointerUp);
+        canvas.addEventListener("pointercancel", onPointerUp);
+
+        canvas.addEventListener("wheel", (e) => {
+            if (focusTarget || e.ctrlKey) return;
+            // Only hijack horizontal (trackpad) scrolling so normal page scrolling still works
+            if (Math.abs(e.deltaX) <= Math.abs(e.deltaY)) return;
+            e.preventDefault();
+            const now = performance.now();
+            if (now - lastWheelTime >= 220) {
+                lastWheelTime = now;
+                scrollTarget = Math.round(scrollTarget) + (e.deltaX > 0 ? 1 : -1);
+                requestRender();
+            }
+        }, { passive: false });
+
+        // Keyboard arrows when the carousel is focused
+        viewportEl.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowRight") { scrollTarget = Math.round(scrollTarget) + 1; requestRender(); }
+            if (e.key === "ArrowLeft") { scrollTarget = Math.round(scrollTarget) - 1; requestRender(); }
+            if (e.key === "Escape") setFocused(false);
+        });
+
+        viewportEl.appendChild(canvas);
+        new ResizeObserver(() => { resize(); requestRender(); }).observe(viewportEl);
+        resize();
+
+        // Re-draw when the theme changes
+        new MutationObserver(requestRender).observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        // Load images only when the carousel gets near the screen
+        let loaded = false;
+        const loadTextures = async () => {
+            if (loaded) return; loaded = true;
+            const offscreen = document.createElement("canvas");
+            offscreen.width = 1024; offscreen.height = 1024;
+            const ctx = offscreen.getContext("2d");
+            gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+            for (let i = 0; i < slideCount; i++) {
+                await new Promise(resolve => {
+                    const img = new Image();
+                    img.crossOrigin = "anonymous";
+                    img.onload = () => {
+                        ctx.fillStyle = "#0F172A";
+                        ctx.fillRect(0, 0, 1024, 1024);
+                        const scale = Math.max(1024 / img.width, 1024 / img.height);
+                        const x = 512 - (img.width / 2) * scale;
+                        const y = 512 - (img.height / 2) * scale;
+                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+                        resolve();
+                    };
+                    img.onerror = () => { ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, 1024, 1024); resolve(); };
+                    img.src = slidesData[i].imgUrl;
+                });
+                gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
+                gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+                requestRender();
+            }
+        };
+        new IntersectionObserver((entries, obs) => {
+            if (entries[0].isIntersecting) { loadTextures(); obs.disconnect(); }
+        }, { rootMargin: '600px' }).observe(viewportEl);
+
+        return {
+            goTo(index) {
+                setFocused(false);
+                scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount;
+                requestRender();
+            }
+        };
     }
 
-    // 4. INITIALIZE CAROUSEL
     function createGlassCarousel(rootEl) {
-      const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
-      const viewportEl = rootEl.querySelector(".gc-viewport");
-      const counterEl = rootEl.querySelector(".gc-counter");
-      const dotsContainer = rootEl.querySelector(".gc-dots");
+        const panels = Array.from(rootEl.querySelectorAll(".gc-panel"));
+        const viewportEl = rootEl.querySelector(".gc-viewport");
+        const counterEl = rootEl.querySelector(".gc-counter");
+        const dotsContainer = rootEl.querySelector(".gc-dots");
 
-      const slideCount = panels.length;
-      const slidesData = panels.map(parsePanelData);
-      const totalFormatted = String(slideCount).padStart(2, "0");
-      const dotButtons = [];
-      let activeIndex = -1;
-      let renderer = null;
+        const slideCount = panels.length;
+        const slidesData = panels.map(parsePanelData);
+        const totalFormatted = String(slideCount).padStart(2, "0");
+        const dotButtons = [];
+        let activeIndex = -1;
+        let renderer = null;
 
-      const wrapIndex = (idx) => (idx % slideCount + slideCount) % slideCount;
+        const updateUI = (index) => {
+            if (index === activeIndex || index < 0 || index >= slideCount) return;
+            activeIndex = index;
+            panels.forEach((panel, i) => panel.classList.toggle("is-active", i === index));
+            if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
+            dotButtons.forEach((dot, i) => dot.classList.toggle("is-active", i === index));
+        };
 
-      const updateUI = (index) => {
-        if (index === activeIndex || index < 0 || index >= slideCount) return;
-        activeIndex = index;
-        
-        panels.forEach((panel, i) => {
-            panel.classList.toggle("is-active", i === index);
+        slidesData.forEach((slide, i) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "gc-dot";
+            btn.setAttribute("aria-label", `Go to post ${i + 1}`);
+            btn.addEventListener("click", () => renderer?.goTo(i));
+            dotsContainer?.appendChild(btn);
+            dotButtons.push(btn);
         });
 
-        if (counterEl) counterEl.textContent = `${slidesData[index].num} / ${totalFormatted}`;
-        dotButtons.forEach((dot, i) => {
-          dot.classList.toggle("is-active", i === index);
-        });
-      };
+        const canvas = document.createElement("canvas");
+        canvas.className = "gc-canvas";
+        const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
+        if (!gl) { rootEl.style.display = "none"; return; } // very old browsers: hide instead of showing a broken box
 
-      slidesData.forEach((slide, i) => {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "gc-dot";
-        btn.addEventListener("click", () => renderer?.goTo(wrapIndex(i)));
-        dotsContainer?.appendChild(btn);
-        dotButtons.push(btn);
-      });
-
-      const canvas = document.createElement("canvas");
-      canvas.className = "gc-canvas";
-      const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
-
-      renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, false, updateUI, () => Math.max(0, activeIndex));
-      updateUI(0);
-      renderer?.goTo(0);
+        renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, updateUI);
+        updateUI(0);
+        renderer?.goTo(0);
     }
 
     const carouselEl = document.querySelector("[data-glass-carousel]");
