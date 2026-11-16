@@ -85,9 +85,10 @@ html, body { overflow-x: clip !important; width: 100%; max-width: 100vw; }
 ========================================================= */
 .hero-section {
     display: flex; align-items: center; justify-content: space-between;
-    min-height: 85vh; position: relative; width: 100%;
-    padding: 4rem 6vw 4rem 12vw; overflow: visible; margin-bottom: 4rem; z-index: 2;
+    min-height: 78vh; position: relative; width: 100%;
+    padding: 1rem 6vw 3rem 6vw; overflow: visible; margin-bottom: 4rem; z-index: 2;
 }
+.hero-left .typewriter { align-self: flex-start; }
 .hero-left { flex: 1.2; display: flex; flex-direction: column; gap: 1.6rem; max-width: 760px; z-index: 3; }
 .hero-section h1.hero-name {
     font-size: clamp(2.1rem, 5.2vw, 3.8rem) !important; line-height: 1.1; margin: 0; letter-spacing: -0.03em;
@@ -97,7 +98,7 @@ html, body { overflow-x: clip !important; width: 100%; max-width: 100vw; }
 .contact-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
 .hero-right {
-    position: absolute; right: -2vw; bottom: -5%; height: 95vh; width: 50vw; z-index: 1; pointer-events: none;
+    position: absolute; right: -2vw; bottom: 6%; height: 90vh; width: 50vw; z-index: 1; pointer-events: none;
 }
 .hero-img-mask {
     position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end;
@@ -135,7 +136,7 @@ body:not(.dark-mode) .hero-badge {
 /* All badges sit below the face line, out on the sides */
 .hb-1 { top: 52%; left: 14%; --d: 1.5s; }
 .hb-2 { top: 44%; right: 1%; --d: 1.7s; animation-duration: 0.8s, 7s; }
-.hb-3 { bottom: 20%; left: 20%; --d: 1.9s; animation-duration: 0.8s, 6.5s; }
+.hb-3 { bottom: 11%; left: 20%; --d: 1.9s; animation-duration: 0.8s, 6.5s; }
 .hb-4 { bottom: 9%; right: 6%; --d: 2.1s; animation-duration: 0.8s, 7.5s; }
 @keyframes badgeIn { from { opacity: 0; transform: translateY(18px) scale(0.85); } to { opacity: 1; transform: none; } }
 @keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
@@ -480,6 +481,7 @@ body .contact-banner-wrapper img {
 ========================================================= */
 @media (max-width: 992px) {
     .hero-section { flex-direction: column; text-align: center; gap: 0; padding: 3rem 1.25rem 0; min-height: auto; }
+    .hero-left .typewriter { align-self: center; }
     .hero-left { align-items: center; padding: 0; width: 100%; max-width: 100%; order: 2; }
     .hero-intro { max-width: 100%; font-size: 1.02rem; }
     .hero-right {
@@ -493,7 +495,7 @@ body .contact-banner-wrapper img {
     .hb-emoji { font-size: 0.75rem; }
     .hb-1 { top: 56%; left: 0; }
     .hb-2 { top: 46%; right: 0; left: auto; }
-    .hb-3 { bottom: 16%; left: 2%; }
+    .hb-3 { bottom: 9%; left: 2%; }
     .hb-4 { bottom: 6%; right: 2%; }
     .contact-links, .status-row { justify-content: center !important; }
     .spec-block { width: 100%; }
@@ -626,8 +628,8 @@ body .contact-banner-wrapper img {
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=instantly.ai&sz=64" alt="" loading="lazy">Instantly</span>
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=meta.com&sz=64" alt="" loading="lazy">Meta Ads</span>
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=buffer.com&sz=64" alt="" loading="lazy">Buffer</span>
-                <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=photoshop.com&sz=64" alt="" loading="lazy">Photoshop</span>
-                <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=adobe.com&sz=64" alt="" loading="lazy">Illustrator</span>
+                <span class="spec-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Adobe_Photoshop_CC_icon.svg" alt="" loading="lazy" onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=adobe.com&sz=64'">Photoshop</span>
+                <span class="spec-chip"><img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Adobe_Illustrator_CC_icon.svg" alt="" loading="lazy" onerror="this.onerror=null; this.src='https://www.google.com/s2/favicons?domain=adobe.com&sz=64'">Illustrator</span>
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=figma.com&sz=64" alt="" loading="lazy">Figma</span>
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=canva.com&sz=64" alt="" loading="lazy">Canva</span>
                 <span class="spec-chip"><img src="https://www.google.com/s2/favicons?domain=office.com&sz=64" alt="" loading="lazy">MS Office</span>
@@ -642,8 +644,8 @@ body .contact-banner-wrapper img {
             <img id="mainHeroImg" src="/misc_img/me.png" alt="Fardin Rahman Khan Raafi - Marketing Executive" class="hero-img" fetchpriority="high" onerror="this.onerror=null; this.src='https://placehold.co/600x700/EEF2FF/2563EB?text=Fardin+Raafi'">
         </div>
         <!-- FLOATING METRIC BADGES -->
-        <div class="hero-badge hb-1"><span class="hb-num">340K+</span>organic views</div>
-        <div class="hero-badge hb-2"><span class="hb-emoji">🏆</span>BASIS Leader of the Year '24</div>
+        <div class="hero-badge hb-1"><span class="hb-emoji">🏆</span>BASIS Leader of the Year '24</div>
+        <div class="hero-badge hb-2"><span class="hb-num">340K+</span>organic views</div>
         <div class="hero-badge hb-3"><span class="hb-num">1200+</span>designs made</div>
         <div class="hero-badge hb-4"><span class="hb-emoji">📍</span>Dhaka</div>
     </div>
