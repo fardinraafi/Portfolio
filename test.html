@@ -240,6 +240,96 @@ body.dark-mode .lead-card:hover .lead-tags span { color: #93C5FD; }
     a { color: #111 !important; text-decoration: none; }
 }
 
+
+/* =========================================================
+   CURSOR GLOW (desktop only)
+========================================================= */
+.cursor-glow {
+    position: fixed; top: 0; left: 0; width: 420px; height: 420px; border-radius: 50%; pointer-events: none; z-index: 1;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(37, 99, 235, 0.08) 35%, transparent 70%);
+    transform: translate3d(-9999px, -9999px, 0); opacity: 0; transition: opacity 0.4s ease; will-change: transform;
+}
+body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(37, 99, 235, 0.06) 35%, transparent 70%); }
+.cursor-glow.on { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+
+/* =========================================================
+   TIMELINE: glowing light that fills as you scroll
+========================================================= */
+.epic-timeline::after {
+    content: ''; position: absolute; left: 50%; top: 0; width: 4px; height: 100%; border-radius: 4px; z-index: 1;
+    background: linear-gradient(to bottom, var(--c1), var(--c2), var(--c3));
+    box-shadow: 0 0 12px var(--c1), 0 0 28px rgba(124, 58, 237, 0.7);
+    transform: translateX(-50%) scaleY(var(--p, 0)); transform-origin: top;
+}
+.tl-head {
+    position: absolute; left: 50%; top: 0; width: 14px; height: 14px; border-radius: 50%; z-index: 3; pointer-events: none;
+    background: #fff; box-shadow: 0 0 10px #fff, 0 0 22px var(--c2), 0 0 44px var(--c1);
+    transform: translate(-50%, calc(var(--py, 0px) - 7px)); opacity: var(--ho, 0); transition: opacity 0.3s;
+}
+.et-item .et-dot { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.et-item.lit .et-dot { background: var(--c1); transform: scale(1.25); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.18), 0 0 22px var(--c1); }
+.et-item.lit:nth-child(even) .et-dot { background: var(--c2); box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.18), 0 0 22px var(--c2); }
+.et-item.lit .et-content { border-color: rgba(124, 58, 237, 0.35); }
+@media (max-width: 900px) {
+    .epic-timeline::after { left: 24px; }
+    .tl-head { left: 24px; }
+}
+
+/* =========================================================
+   EXTRA MOTION
+========================================================= */
+/* Section title line draws in */
+.resume-section-title::after { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.resume-section.title-in .resume-section-title::after { transform: scaleX(1); }
+/* Section title slides in */
+.resume-section-title { opacity: 0; transform: translateX(-24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.resume-section.title-in .resume-section-title { opacity: 1; transform: none; }
+
+/* Summary card: slowly rotating gradient border */
+.summary-card { position: relative; }
+.summary-card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: conic-gradient(from var(--ang, 0deg), var(--c1), var(--c2), var(--c3), transparent 60%, var(--c1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0.7; animation: spinBorder 6s linear infinite;
+}
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes spinBorder { to { --ang: 360deg; } }
+
+/* Stat boxes float gently */
+.s-stat { animation: statFloat 5s ease-in-out infinite; transition: transform 0.3s, border-color 0.3s; }
+.s-stat:nth-child(2) { animation-delay: -1.2s; } .s-stat:nth-child(3) { animation-delay: -2.4s; } .s-stat:nth-child(4) { animation-delay: -3.6s; }
+@keyframes statFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.s-stat:hover { border-color: var(--c2); }
+
+/* Tags pop in one by one */
+.lead-tags span { opacity: 0; transform: translateY(8px) scale(0.95); }
+.lead-card.animate-in .lead-tags span { animation: tagPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; animation-delay: calc(0.25s + var(--t, 0) * 0.08s); }
+@keyframes tagPop { to { opacity: 1; transform: none; } }
+
+/* Skill rows slide in */
+.skill-row { opacity: 0; transform: translateX(-12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.skill-group.animate-in .skill-row { opacity: 1; transform: none; }
+.skill-row:hover .skill-name { color: var(--c1); }
+
+/* Timeline card shine on hover */
+.et-content { overflow: hidden; }
+.et-content::after {
+    content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent); transform: skewX(-20deg);
+}
+.et-content:hover::after { left: 130%; transition: left 0.9s ease; }
+
+@media print {
+    .cursor-glow, .tl-head, .epic-timeline::after, .summary-card::before { display: none !important; }
+    .resume-section-title, .lead-tags span, .skill-row { opacity: 1 !important; transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .resume-section-title, .lead-tags span, .skill-row { opacity: 1; transform: none; animation: none; }
+    .s-stat, .summary-card::before { animation: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .et-item, .fade-in { opacity: 1; transform: none; transition: none; }
 }
@@ -249,6 +339,7 @@ body.dark-mode .lead-card:hover .lead-tags span { color: #93C5FD; }
 </head>
 <body class="dark-mode">
 
+<div class="cursor-glow" aria-hidden="true"></div>
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
 <!-- Nav content is injected by main.js -->
@@ -301,10 +392,10 @@ body.dark-mode .lead-card:hover .lead-tags span { color: #93C5FD; }
             <div class="summary-card">
                 Marketing graduate and Junior Executive at Augmex Technologies, working across B2B lead generation, content marketing and brand design. In 2026, I drove <strong>340K+ organic views</strong> across Augmex and its sneaker sub-brand FYGO, growing FYGO from 0 to <strong>17K+ followers</strong> and <strong>৳20 lakh+ in sales</strong>. Skilled in B2B outreach, market research, CRM management and creative design, with hands-on experience using Salesforce, LinkedIn Sales Navigator, Apollo.io, Buffer and AI tools. Strong background in leadership, project coordination, and cross-functional collaboration through internships, university clubs, and professional roles.
                 <div class="summary-stats">
-                    <div class="s-stat"><div class="s-num">340K+</div><div class="s-lbl">Organic views</div></div>
-                    <div class="s-stat"><div class="s-num">17K+</div><div class="s-lbl">FYGO followers</div></div>
-                    <div class="s-stat"><div class="s-num">৳20L+</div><div class="s-lbl">FYGO sales</div></div>
-                    <div class="s-stat"><div class="s-num">40K+</div><div class="s-lbl">CRM records</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="340" data-prefix="" data-suffix="K+">340K+</div><div class="s-lbl">Organic views</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="17" data-prefix="" data-suffix="K+">17K+</div><div class="s-lbl">FYGO followers</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="20" data-prefix="৳" data-suffix="L+">৳20L+</div><div class="s-lbl">FYGO sales</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="40" data-prefix="" data-suffix="K+">40K+</div><div class="s-lbl">CRM records</div></div>
                 </div>
             </div>
         </section>
@@ -321,16 +412,12 @@ body.dark-mode .lead-card:hover .lead-tags span { color: #93C5FD; }
                         <h3 class="et-title">Junior Executive, Marketing</h3>
                         <div class="et-company">Augmex Technologies Ltd.</div>
                         <ul class="et-desc">
-                            <li>Drove <strong>340K+ organic views</strong> across Augmex and its sub-brand FYGO through content marketing, with zero ad spend on Augmex.</li>
-                            <li>Conducted market research across 5+ targeted growth projects to identify new business opportunities and refine the Ideal Customer Profile (ICP).</li>
-                            <li>Designed and scheduled 60+ visual assets and social media content pieces per month in Buffer, ensuring consistent corporate brand identity.</li>
-                            <li>Collaborated with a core growth team to align marketing deliverables.</li>
+                            <li>Drove <strong>340K+ organic views</strong> through content marketing, with zero ad spend on Augmex.</li>
+                            <li>Researched 5+ growth projects to refine the ICP; designed and scheduled 60+ content pieces a month in Buffer.</li>
                         </ul>
-                        <div class="et-sub">FYGO <small>· Augmex's sneaker sub-brand · Jul 2026 – Present</small></div>
+                        <div class="et-sub">FYGO <small>· Augmex's sneaker sub-brand</small></div>
                         <ul class="et-desc">
-                            <li>Led content marketing for the brand's launch, growing its audience from <strong>0 to 17K+ followers</strong> in five months.</li>
-                            <li>Built a reel-first content plan around product drops, styling and customer content that generated <strong>৳20 lakh+ in sales</strong> from <strong>300+ customers</strong>.</li>
-                            <li>Handled end-to-end production: copywriting, design, motion graphics, video editing and scheduling.</li>
+                            <li>Grew the brand from <strong>0 to 17K+ followers</strong>, driving <strong>৳20 lakh+ in sales</strong> from 300+ customers.</li>
                         </ul>
                         <a href="/index.html#content-results" class="et-link no-print">See the full content results ➔</a>
                     </div>
@@ -589,6 +676,70 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
     }, { rootMargin: '-40% 0px -55% 0px' });
     sections.forEach(s => secObserver.observe(s));
+
+    /* 5. Cursor glow */
+    const glow = document.querySelector('.cursor-glow');
+    if (glow && window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+        let gx = -9999, gy = -9999, cx = gx, cy = gy, raf = 0;
+        const step = () => {
+            cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+            glow.style.transform = `translate3d(${cx - 210}px, ${cy - 210}px, 0)`;
+            raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(step) : 0;
+        };
+        window.addEventListener('mousemove', e => {
+            if (cx === -9999) { cx = e.clientX; cy = e.clientY; }
+            gx = e.clientX; gy = e.clientY; glow.classList.add('on');
+            if (!raf) raf = requestAnimationFrame(step);
+        }, { passive: true });
+        document.addEventListener('mouseleave', () => glow.classList.remove('on'));
+    }
+
+    /* 6. Timeline light fills as you scroll */
+    const timelines = Array.from(document.querySelectorAll('.epic-timeline'));
+    timelines.forEach(tl => { const head = document.createElement('div'); head.className = 'tl-head'; tl.appendChild(head); });
+    let tlTicking = false;
+    const updateTimelines = () => {
+        const target = window.innerHeight * 0.6;
+        timelines.forEach(tl => {
+            const rect = tl.getBoundingClientRect();
+            const p = Math.min(Math.max((target - rect.top) / rect.height, 0), 1);
+            tl.style.setProperty('--p', p.toFixed(4));
+            tl.style.setProperty('--py', (p * rect.height).toFixed(1) + 'px');
+            tl.style.setProperty('--ho', p > 0 && p < 1 ? 1 : 0);
+            tl.querySelectorAll('.et-item').forEach(item => {
+                const dot = item.querySelector('.et-dot');
+                if (dot) item.classList.toggle('lit', dot.getBoundingClientRect().top < target);
+            });
+        });
+        tlTicking = false;
+    };
+    window.addEventListener('scroll', () => { if (!tlTicking) { tlTicking = true; requestAnimationFrame(updateTimelines); } }, { passive: true });
+    window.addEventListener('resize', updateTimelines);
+    updateTimelines();
+
+    /* 7. Section titles draw in, tags get stagger order, stats count up */
+    document.querySelectorAll('.lead-tags').forEach(g => g.querySelectorAll('span').forEach((s, i) => s.style.setProperty('--t', i)));
+    document.querySelectorAll('.skill-group').forEach(g => g.querySelectorAll('.skill-row').forEach((row, i) => row.style.transitionDelay = (i * 0.07) + 's'));
+    const titleIO = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('title-in'); titleIO.unobserve(e.target); }
+    }), { threshold: 0.05 });
+    document.querySelectorAll('.resume-section').forEach(s => titleIO.observe(s));
+
+    const countUp = el => {
+        const end = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduceMotion) return;
+        const t0 = performance.now(), dur = 1500;
+        const tick = now => {
+            const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + Math.round(end * e) + suf;
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+    const statIO = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { countUp(e.target); statIO.unobserve(e.target); }
+    }), { threshold: 0.6 });
+    document.querySelectorAll('.s-num[data-count]').forEach(el => statIO.observe(el));
 });
 </script>
 </body>
