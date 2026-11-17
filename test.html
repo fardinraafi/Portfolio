@@ -98,7 +98,7 @@ html, body { overflow-x: clip !important; width: 100%; max-width: 100vw; }
 .contact-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
 
 .hero-right {
-    position: absolute; right: -2vw; bottom: 6%; height: 90vh; width: 50vw; z-index: 1; pointer-events: none;
+    position: absolute; right: -2vw; bottom: 13%; height: 90vh; width: 50vw; z-index: 1; pointer-events: none;
 }
 .hero-img-mask {
     position: absolute; inset: 0; display: flex; justify-content: flex-end; align-items: flex-end;
@@ -133,11 +133,14 @@ body:not(.dark-mode) .hero-badge {
     -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; padding-right: 0.05em;
 }
 .hb-emoji { font-size: 0.95rem; line-height: 1; }
+/* Stacked badge: number on top, label below (stops long badges getting cut off) */
+.hero-badge.hb-stack { flex-direction: column; align-items: flex-start; gap: 3px; padding: 8px 14px; }
+.hb-stack .hb-label { font-size: 0.68rem; font-weight: 600; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.06em; }
 /* All badges sit below the face line, out on the sides */
 .hb-1 { top: 52%; left: 14%; --d: 1.5s; }
 .hb-2 { top: 44%; right: 1%; --d: 1.7s; animation-duration: 0.8s, 7s; }
-.hb-3 { bottom: 11%; left: 20%; --d: 1.9s; animation-duration: 0.8s, 6.5s; }
-.hb-4 { bottom: 9%; right: 6%; --d: 2.1s; animation-duration: 0.8s, 7.5s; }
+.hb-3 { bottom: 5%; left: 20%; --d: 1.9s; animation-duration: 0.8s, 6.5s; }
+.hb-4 { bottom: 3%; right: 20%; --d: 2.1s; animation-duration: 0.8s, 7.5s; }
 @keyframes badgeIn { from { opacity: 0; transform: translateY(18px) scale(0.85); } to { opacity: 1; transform: none; } }
 @keyframes badgeFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
 
@@ -180,9 +183,8 @@ body.dark-mode .toolkit { background: rgba(15, 23, 42, 0.6); border-color: rgba(
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.tk-track { display: flex; gap: 0.8rem; width: max-content; animation: tkScroll 32s linear infinite; }
-.tk-row.reverse .tk-track { animation-direction: reverse; animation-duration: 36s; }
-.toolkit:hover .tk-track { animation-play-state: paused; }
+.tk-track { display: flex; gap: 0.8rem; width: max-content; animation: tkScroll 44s linear infinite; }
+.tk-row.reverse .tk-track { animation-direction: reverse; animation-duration: 50s; }
 @keyframes tkScroll { to { transform: translateX(-50%); } }
 .tk-chip {
     display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px 10px 10px; border-radius: 14px;
@@ -225,8 +227,11 @@ body.dark-mode .playbook-input { background: rgba(15, 23, 42, 0.8); color: #F1F5
 .blog-marquee-wrap::after { right: 0; background: linear-gradient(to left, rgba(255,255,255,0.8), transparent); }
 body.dark-mode .blog-marquee-wrap::before { background: linear-gradient(to right, rgba(15, 23, 42, 0.9), transparent); }
 body.dark-mode .blog-marquee-wrap::after { background: linear-gradient(to left, rgba(15, 23, 42, 0.9), transparent); }
-.blog-marquee-track { display: flex; gap: 1.5rem; width: max-content; animation: blogMarqueeScroll 45s linear infinite; }
-.blog-marquee-track:hover { animation-play-state: paused; }
+.blog-marquee-track { display: flex; gap: 1.5rem; width: max-content; will-change: transform; }
+.blog-marquee-wrap { cursor: grab; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.blog-marquee-wrap.dragging { cursor: grabbing; }
+.blog-marquee-wrap.dragging .marquee-blog-card { pointer-events: none; }
+.marquee-blog-card img { -webkit-user-drag: none; }
 @keyframes blogMarqueeScroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 .marquee-blog-card {
     width: 320px; flex-shrink: 0; display: flex; flex-direction: column;
@@ -461,17 +466,115 @@ body:not(.dark-mode) .gc-panels { border-top-color: rgba(15, 23, 42, 0.08); }
 
 /* Footer banner: padded, rounded, visible on every screen */
 body .contact-banner-wrapper {
-    display: block !important; width: 100%; max-width: 100%; margin: 0; padding: 1.5rem 2rem 2rem;
+    width: 100%; max-width: 100%; margin: 0; padding: 1.5rem 2rem 2rem;
     border: none; overflow: visible; position: relative; z-index: 2;
 }
 body .contact-banner-wrapper img {
     width: 100%; height: auto; display: block; border-radius: 32px;
     border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 40px rgba(124, 58, 237, 0.15);
 }
-@media (max-width: 900px) {
-    body .contact-banner-wrapper { padding: 1rem 1rem 6rem; }
-    body .contact-banner-wrapper img { border-radius: 16px; }
+@media (min-width: 901px) { body .contact-banner-wrapper { display: block !important; } }
+
+
+/* =========================================================
+   PLAYBOOK NEON PIPELINE
+========================================================= */
+.pp { display: flex; align-items: flex-start; justify-content: center; gap: 0; max-width: 460px; margin: 0 auto 1.8rem; }
+.pp-node { display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; width: 64px; }
+.pp-node span { font-family: 'Syne', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); transition: color 0.3s; animation: ppText 4s infinite; animation-delay: calc(var(--i) * 1s); }
+.pp-dot {
+    width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; color: var(--col);
+    background: rgba(15, 23, 42, 0.6); border: 2px solid var(--col);
+    box-shadow: 0 0 0 rgba(0,0,0,0); animation: ppGlow 4s infinite; animation-delay: calc(var(--i) * 1s);
 }
+body:not(.dark-mode) .pp-dot { background: rgba(255, 255, 255, 0.85); }
+.pp-dot svg { width: 22px; height: 22px; }
+.pp-line { flex: 1; height: 2px; margin-top: 25px; position: relative; background: linear-gradient(90deg, rgba(124,58,237,0.25), rgba(37,99,235,0.25)); border-radius: 2px; }
+.pp-line::after {
+    content: ''; position: absolute; top: -3px; left: 0; width: 8px; height: 8px; border-radius: 50%;
+    background: #fff; box-shadow: 0 0 8px #fff, 0 0 16px var(--c2), 0 0 24px var(--c1);
+    opacity: 0; animation: ppTravel 4s infinite; animation-delay: calc(var(--i) * 1s + 0.45s);
+}
+@keyframes ppGlow {
+    0%, 30%, 100% { box-shadow: 0 0 0 transparent; transform: scale(1); filter: brightness(0.75); }
+    8%, 22% { box-shadow: 0 0 14px var(--col), 0 0 30px var(--col), inset 0 0 12px var(--col); transform: scale(1.12); filter: brightness(1.25); }
+}
+@keyframes ppText { 0%, 30%, 100% { color: var(--text-muted); } 8%, 22% { color: var(--text-main); } }
+@keyframes ppTravel { 0% { left: 0; opacity: 0; } 3% { opacity: 1; } 20% { left: calc(100% - 8px); opacity: 1; } 23%, 100% { left: calc(100% - 8px); opacity: 0; } }
+@media (max-width: 480px) {
+    .pp-node { width: 54px; }
+    .pp-dot { width: 42px; height: 42px; }
+    .pp-dot svg { width: 18px; height: 18px; }
+    .pp-line { margin-top: 20px; }
+    .pp-node span { font-size: 0.6rem; }
+}
+
+/* =========================================================
+   CONTENT RESULTS: subtle light-wave shimmer
+========================================================= */
+.cr-chart { position: relative; overflow: hidden; }
+.cr-chart::after, .cr-fbar span::after, .cr-mixrow div span::after, .cr-qbar span::after {
+    content: ''; position: absolute; top: 0; bottom: 0; left: 0; width: 35%; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+    animation: crShine 3.8s ease-in-out infinite;
+}
+.cr-chart::after { width: 25%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent); animation-duration: 5s; }
+.cr-fbar span, .cr-mixrow div span, .cr-qbar span { position: relative; overflow: hidden; }
+.cr-fbar span { position: absolute; }
+.cr-fbar:nth-child(2) span::after { animation-delay: 0.3s; }
+.cr-fbar:nth-child(3) span::after { animation-delay: 0.6s; }
+.cr-fbar:nth-child(4) span::after { animation-delay: 0.9s; }
+.cr-fbar:nth-child(5) span::after { animation-delay: 1.2s; }
+@keyframes crShine { 0% { transform: translateX(-120%); } 60%, 100% { transform: translateX(320%); } }
+
+/* Calendar highlight from the pipeline */
+.cr-days .cr-post { transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2, 1.4, 0.4, 1), box-shadow 0.3s, filter 0.3s; }
+.cr-days.has-hl .cr-post.on:not(.hl) { opacity: 0.22; filter: grayscale(0.6); }
+.cr-post.on.hl { transform: scale(1.06); z-index: 2; box-shadow: 0 0 0 2px rgba(255,255,255,0.9), 0 0 18px var(--glowc, #fff); animation: crFlash 0.6s ease; }
+@keyframes crFlash { 0% { filter: brightness(1); } 40% { filter: brightness(1.6); } 100% { filter: brightness(1); } }
+.cr-stage { cursor: pointer; }
+.t-research { background: var(--c1); --glowc: var(--c1); }
+.t-write { background: #0EA5E9; --glowc: #0EA5E9; }
+.t-design { background: var(--c3); --glowc: var(--c3); }
+.t-schedule { background: var(--c2); --glowc: var(--c2); }
+.t-review { background: #10B981; --glowc: #10B981; }
+.cr-slot { height: 52px; }
+
+/* =========================================================
+   RECOMMENDATIONS UPGRADE
+========================================================= */
+.reco-mobile-head { display: none; text-align: center; padding: 0 1.25rem 1rem; position: relative; z-index: 2; }
+.reco-mobile-head .section-title { justify-content: center; margin-bottom: 0.6rem; }
+.reco-mobile-head h2 { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-size: 2.6rem; line-height: 1; color: var(--text-main); }
+.reco-glass-card { position: relative; overflow: hidden; }
+.reco-glass-card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: linear-gradient(135deg, rgba(37,99,235,0.6), rgba(124,58,237,0.2), rgba(219,39,119,0.6));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0.5; transition: opacity 0.4s;
+}
+.reco-glass-card:hover::before { opacity: 1; }
+.reco-glass-card::after {
+    content: ''; position: absolute; width: 220px; height: 220px; top: -90px; right: -90px; border-radius: 50%; pointer-events: none;
+    background: radial-gradient(circle, rgba(124,58,237,0.25), transparent 70%); transition: transform 0.6s ease;
+}
+.reco-glass-card:hover::after { transform: scale(1.4); }
+.reco-quote {
+    position: absolute; top: 0.6rem; right: 1.4rem; font-family: Georgia, serif; font-size: 5.5rem; line-height: 1;
+    background: linear-gradient(135deg, var(--c1), var(--c3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    opacity: 0.5; pointer-events: none;
+}
+.reco-avatar-img { box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.35), 0 0 18px rgba(37, 99, 235, 0.35); }
+.reco-body strong { color: var(--text-main); font-weight: 700; background: linear-gradient(transparent 62%, rgba(124, 58, 237, 0.35) 62%); }
+body.dark-mode .reco-body strong { color: #F8FAFC; }
+.reco-foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1.4rem; gap: 10px; }
+.reco-pill { font-size: 0.66rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 5px 10px; border-radius: 100px; color: #93C5FD; background: rgba(10, 102, 194, 0.15); border: 1px solid rgba(10, 102, 194, 0.35); }
+body:not(.dark-mode) .reco-pill { color: #0A66C2; }
+.reco-open { font-size: 0.8rem; font-weight: 700; color: var(--c1); opacity: 0.6; transform: translateX(-4px); transition: all 0.3s; }
+.reco-glass-card:hover .reco-open { opacity: 1; transform: none; }
+.reco-dots { display: none; justify-content: center; gap: 8px; position: relative; z-index: 2; }
+.reco-dots button { width: 8px; height: 8px; border-radius: 100px; border: none; padding: 0; background: var(--text-light); opacity: 0.5; transition: all 0.3s; cursor: pointer; }
+.reco-dots button.is-active { width: 24px; opacity: 1; background: linear-gradient(90deg, var(--c1), var(--c2)); }
 
 /* Spinner for FIFI loading bubble (moved here so it isn't re-added each message) */
 @keyframes spin { 100% { transform: rotate(360deg); } }
@@ -491,12 +594,14 @@ body .contact-banner-wrapper img {
     .hero-img-mask { justify-content: center; -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%); mask-image: linear-gradient(to bottom, black 70%, transparent 100%); }
     .hero-img { object-position: bottom center; width: 130%; max-width: 500px; transform: translateY(0); }
     .hero-badge { padding: 5px 9px; gap: 5px; font-size: 0.62rem; border-radius: 10px; }
+    .hero-badge.hb-stack { padding: 5px 9px; gap: 1px; }
+    .hb-stack .hb-label { font-size: 0.52rem; }
     .hb-num { font-size: 0.85rem; }
     .hb-emoji { font-size: 0.75rem; }
     .hb-1 { top: 56%; left: 0; }
     .hb-2 { top: 46%; right: 0; left: auto; }
     .hb-3 { bottom: 9%; left: 2%; }
-    .hb-4 { bottom: 6%; right: 2%; }
+    .hb-4 { bottom: 6%; right: 14%; }
     .contact-links, .status-row { justify-content: center !important; }
     .spec-block { width: 100%; }
     .spec-title { text-align: center; }
@@ -505,12 +610,19 @@ body .contact-banner-wrapper img {
     .spec-chip img { width: 22px; height: 22px; }
 
     .reco-bg-text { display: none !important; }
-    .reco-cards-container { display: flex !important; flex-direction: column !important; padding: 0 1.5rem 2rem 1.5rem !important; gap: 1.5rem !important; }
-    .reco-cards-container::before {
-        content: "Recommendations:"; font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700;
-        color: var(--text-main); margin-bottom: 0.2rem; margin-top: 1rem; display: block;
+    /* Recommendations become a swipeable card row on mobile */
+    .reco-showcase { flex-direction: column; padding: 3rem 0 2rem !important; }
+    .reco-mobile-head { display: block; }
+    .reco-cards-container {
+        display: flex !important; flex-direction: row !important; overflow-x: auto; scroll-snap-type: x mandatory;
+        padding: 0.5rem 1.25rem 1.5rem !important; gap: 1rem !important; scrollbar-width: none; -webkit-overflow-scrolling: touch;
     }
-    .reco-glass-card { width: 100% !important; margin: 0 !important; }
+    .reco-cards-container::-webkit-scrollbar { display: none; }
+    .reco-glass-card, .reco-glass-card.reveal {
+        flex: 0 0 86% !important; width: auto !important; margin: 0 !important; scroll-snap-align: center;
+        opacity: 1 !important; transform: none !important; padding: 2rem 1.4rem 1.4rem !important;
+    }
+    .reco-dots { display: flex; }
 }
 @media (max-width: 600px) {
     .marquee-blog-card { width: 260px; }
@@ -528,7 +640,7 @@ body .contact-banner-wrapper img {
 @media (prefers-reduced-motion: reduce) {
     .hero-badge { animation: none; opacity: 1; }
     .fx-reveal, .cr-card, .cr-step { opacity: 1 !important; transform: none !important; filter: none !important; }
-    .tk-track, .cr-ribbon-track, .blog-marquee-track, .section-title::after { animation: none !important; }
+    .tk-track, .cr-ribbon-track, .section-title::after, .pp *, .pp-line::after { animation: none !important; }
 }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
@@ -645,7 +757,7 @@ body .contact-banner-wrapper img {
         </div>
         <!-- FLOATING METRIC BADGES -->
         <div class="hero-badge hb-1"><span class="hb-emoji">🏆</span>BASIS Leader of the Year '24</div>
-        <div class="hero-badge hb-2"><span class="hb-num">340K+</span>organic views</div>
+        <div class="hero-badge hb-2 hb-stack"><span class="hb-num">340K+</span><span class="hb-label">organic views</span></div>
         <div class="hero-badge hb-3"><span class="hb-num">1200+</span>designs made</div>
         <div class="hero-badge hb-4"><span class="hb-emoji">📍</span>Dhaka</div>
     </div>
@@ -910,7 +1022,27 @@ body .contact-banner-wrapper img {
         </section>
 
         <section class="glass-card fx-reveal" style="background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(124, 58, 237, 0.08)); border: 1px solid var(--c2); text-align: center; padding: 3rem 2rem;">
-            <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚀</div>
+            <div class="pp" aria-hidden="true">
+                <div class="pp-node" style="--i:0; --col: var(--c1);">
+                    <div class="pp-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg></div>
+                    <span>Plan</span>
+                </div>
+                <div class="pp-line" style="--i:0;"></div>
+                <div class="pp-node" style="--i:1; --col: var(--c2);">
+                    <div class="pp-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                    <span>Execute</span>
+                </div>
+                <div class="pp-line" style="--i:1;"></div>
+                <div class="pp-node" style="--i:2; --col: var(--c3);">
+                    <div class="pp-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                    <span>Results</span>
+                </div>
+                <div class="pp-line" style="--i:2;"></div>
+                <div class="pp-node" style="--i:3; --col: #10B981;">
+                    <div class="pp-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="17" x2="8" y2="13"/><line x1="12" y1="17" x2="12" y2="11"/><line x1="16" y1="17" x2="16" y2="14"/></svg></div>
+                    <span>Report</span>
+                </div>
+            </div>
             <h2 style="font-family: 'Syne', sans-serif; font-size: clamp(1.4rem, 4vw, 1.8rem); margin-bottom: 0.5rem; color: var(--text-main);">Grab My Ultimate Marketing Playbook</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem; max-width: 500px; margin-left: auto; margin-right: auto;">
                 See my strategies in action. Enter your email to get my free step-by-step guide on driving traffic, generating leads, and scaling your campaigns.
@@ -1021,16 +1153,16 @@ body .contact-banner-wrapper img {
             <article class="cr-card cr-full cr-reveal">
                 <div class="cr-head">
                     <div class="cr-icon">🗓️</div>
-                    <div><h3 class="cr-title">How I planned it</h3><p class="cr-meta">A typical week in Buffer: batch-created, scheduled ahead, published on rhythm</p></div>
+                    <div><h3 class="cr-title">How I planned it</h3><p class="cr-meta">A typical Augmex week: research, create, schedule in Buffer, then review and report</p></div>
                     <span class="cr-tag">System</span>
                 </div>
                 <div class="cr-plan">
                     <div class="cr-cal">
                         <div class="cr-cal-top">
-                            <span>Week 32 · Content queue</span>
+                            <span>Augmex · Weekly workflow</span>
                             <div class="cr-legend">
-                                <span><i class="t-reel"></i>Reel</span><span><i class="t-car"></i>Carousel</span>
-                                <span><i class="t-post"></i>Post</span><span><i class="t-vid"></i>Video</span>
+                                <span><i class="t-research"></i>Research</span><span><i class="t-write"></i>Writing</span>
+                                <span><i class="t-design"></i>Design</span><span><i class="t-schedule"></i>Schedule</span><span><i class="t-review"></i>Review</span>
                             </div>
                         </div>
                         <div class="cr-cal-scroll"><div class="cr-days" id="cr-days"></div></div>
@@ -1040,11 +1172,11 @@ body .contact-banner-wrapper img {
                         <div class="cr-pipe">
                             <h4>Content pipeline</h4>
                             <div class="cr-stages">
-                                <div class="cr-stage"><b>💡</b>Idea &amp; pillar<small>Mon</small></div>
-                                <div class="cr-stage"><b>✍️</b>Copywriting<small>Mon</small></div>
-                                <div class="cr-stage"><b>🎨</b>Design &amp; edit<small>Tue–Wed</small></div>
-                                <div class="cr-stage"><b>🗓️</b>Schedule in Buffer<small>Thu</small></div>
-                                <div class="cr-stage"><b>📈</b>Publish &amp; review<small>Daily</small></div>
+                                <div class="cr-stage" data-cat="t-research"><b>🔍</b>Research &amp; trends<small>Mon</small></div>
+                                <div class="cr-stage" data-cat="t-write"><b>✍️</b>Content preparation<small>Mon–Tue</small></div>
+                                <div class="cr-stage" data-cat="t-design"><b>🎨</b>Design &amp; videos<small>Tue–Wed</small></div>
+                                <div class="cr-stage" data-cat="t-schedule"><b>🗓️</b>Schedule in Buffer<small>Thu</small></div>
+                                <div class="cr-stage" data-cat="t-review"><b>📈</b>Feedback &amp; reports<small>Fri–Sun</small></div>
                             </div>
                         </div>
                         <div class="cr-mix">
@@ -1064,6 +1196,10 @@ body .contact-banner-wrapper img {
 
 <!-- RECOMMENDATIONS -->
 <section class="reco-showcase">
+    <div class="reco-mobile-head">
+        <div class="section-title">Recommendations</div>
+        <h2>What they <span class="gradient-text">say?</span></h2>
+    </div>
     <div class="reco-bg-text blur-container">
         <span class="blur-word scroll-blur">What</span><br>
         <span class="blur-word scroll-blur">they</span>
@@ -1071,6 +1207,7 @@ body .contact-banner-wrapper img {
     </div>
     <div class="reco-cards-container">
         <a href="https://www.linkedin.com/in/towhidul-islam01/" target="_blank" rel="noopener" class="reco-glass-card reveal">
+            <div class="reco-quote">“</div>
             <div class="reco-header">
                 <img src="/misc_img/towhid.jpg" alt="Towhidul Islam" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Towhidul+Islam&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
@@ -1078,9 +1215,11 @@ body .contact-banner-wrapper img {
                     <p>Startup Founder Consultant | Augmex</p>
                 </div>
             </div>
-            <div class="reco-body">"Fardin is a fantastic growth mind to work with. He consistently brings fresh, high-potential ideas to the table. I see a very bright future ahead for him."</div>
+            <div class="reco-body">Fardin is a <strong>fantastic growth mind</strong> to work with. He consistently brings fresh, high-potential ideas to the table. I see a very bright future ahead for him.</div>
+            <div class="reco-foot"><span class="reco-pill">LinkedIn recommendation</span><span class="reco-open">View ↗</span></div>
         </a>
         <a href="https://www.linkedin.com/in/sanzida-sharmin/" target="_blank" rel="noopener" class="reco-glass-card reveal">
+            <div class="reco-quote">“</div>
             <div class="reco-header">
                 <img src="/misc_img/sanjida.jpg" alt="Sanzida Sharmin Rifa" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Sanzida+Rifa&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
@@ -1088,9 +1227,11 @@ body .contact-banner-wrapper img {
                     <p>Technical Recruiter | Augmex Technologies</p>
                 </div>
             </div>
-            <div class="reco-body">"I hired him as a Growth Intern, and he instantly stood out for his adaptability. He took full ownership of his responsibilities, delivering absolute quality across CRM, research, and outreach."</div>
+            <div class="reco-body">I hired him as a Growth Intern, and he <strong>instantly stood out for his adaptability</strong>. He took full ownership of his responsibilities, delivering absolute quality across CRM, research, and outreach.</div>
+            <div class="reco-foot"><span class="reco-pill">LinkedIn recommendation</span><span class="reco-open">View ↗</span></div>
         </a>
         <a href="https://www.linkedin.com/in/ikram-khan25/" target="_blank" rel="noopener" class="reco-glass-card reveal">
+            <div class="reco-quote">“</div>
             <div class="reco-header">
                 <img src="/misc_img/ikram.jpg" alt="Ikram Khan" class="reco-avatar-img" loading="lazy" onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name=Ikram+Khan&background=EEF2FF&color=2563EB&bold=true'">
                 <div class="reco-info">
@@ -1098,9 +1239,11 @@ body .contact-banner-wrapper img {
                     <p>BD Executive | Uttara Motors Ltd.</p>
                 </div>
             </div>
-            <div class="reco-body">"We cleaned and processed over 50,000 leads together. That kind of rigorous work tests your consistency, and Raafi never dropped the ball. Dedicated, reliable, and exactly who you want on your team."</div>
+            <div class="reco-body">We cleaned and processed over 50,000 leads together. That kind of rigorous work tests your consistency, and Raafi <strong>never dropped the ball</strong>. Dedicated, reliable, and exactly who you want on your team.</div>
+            <div class="reco-foot"><span class="reco-pill">LinkedIn recommendation</span><span class="reco-open">View ↗</span></div>
         </a>
     </div>
+    <div class="reco-dots" id="recoDots"></div>
 </section>
 
 <!-- 3D WEBGL GLASS CAROUSEL FOR LINKEDIN CONTENT -->
@@ -1303,6 +1446,79 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     }
 
+    /* ---------- 6. Toolkit: slow down on hover instead of stopping ---------- */
+    const toolkit = document.querySelector('.toolkit');
+    if (toolkit && toolkit.getAnimations) {
+        const setRate = (rate) => toolkit.querySelectorAll('.tk-track').forEach(t => t.getAnimations().forEach(a => a.playbackRate = rate));
+        toolkit.addEventListener('mouseenter', () => setRate(0.25));
+        toolkit.addEventListener('mouseleave', () => setRate(1));
+    }
+
+    /* ---------- 7. Featured blogs: auto-scroll + drag / swipe ---------- */
+    const blogWrap = document.querySelector('.blog-marquee-wrap');
+    const blogTrack = document.getElementById('blogTrack');
+    if (blogWrap && blogTrack) {
+        let x = 0, last = performance.now(), hovering = false, dragging = false, moved = 0, startX = 0, startOffset = 0, velocity = 0, lastPointerX = 0;
+        const speed = reduceMotion ? 0 : 40; // pixels per second
+        const half = () => blogTrack.scrollWidth / 2;
+        const wrap = () => { const w = half(); if (!w) return; while (x <= -w) x += w; while (x > 0) x -= w; };
+        const loop = (now) => {
+            const dt = Math.min((now - last) / 1000, 0.05); last = now;
+            if (!dragging) {
+                if (Math.abs(velocity) > 0.5) { x += velocity * dt; velocity *= 0.92; }   // fling after drag
+                else if (!hovering) x -= speed * dt;
+            }
+            wrap();
+            blogTrack.style.transform = `translate3d(${x}px, 0, 0)`;
+            requestAnimationFrame(loop);
+        };
+        requestAnimationFrame(loop);
+
+        blogWrap.addEventListener('mouseenter', () => hovering = true);
+        blogWrap.addEventListener('mouseleave', () => hovering = false);
+        blogWrap.addEventListener('dragstart', e => e.preventDefault());
+
+        blogWrap.addEventListener('pointerdown', (e) => {
+            if (e.button !== 0) return;
+            dragging = true; moved = 0; velocity = 0;
+            startX = lastPointerX = e.clientX; startOffset = x;
+        });
+        window.addEventListener('pointermove', (e) => {
+            if (!dragging) return;
+            const dx = e.clientX - startX;
+            moved = Math.max(moved, Math.abs(dx));
+            if (moved > 6) blogWrap.classList.add('dragging');
+            velocity = (e.clientX - lastPointerX) * 60; lastPointerX = e.clientX;
+            x = startOffset + dx; wrap();
+        });
+        const endDrag = () => { if (!dragging) return; dragging = false; setTimeout(() => blogWrap.classList.remove('dragging'), 0); };
+        window.addEventListener('pointerup', endDrag);
+        window.addEventListener('pointercancel', endDrag);
+        // Stop a drag from also opening the blog post
+        blogWrap.addEventListener('click', (e) => { if (moved > 6) { e.preventDefault(); e.stopPropagation(); } }, true);
+    }
+
+    /* ---------- 8. Recommendations: dots for the mobile swipe row ---------- */
+    const recoRow = document.querySelector('.reco-cards-container');
+    const recoDots = document.getElementById('recoDots');
+    if (recoRow && recoDots) {
+        const cards = Array.from(recoRow.querySelectorAll('.reco-glass-card'));
+        cards.forEach((card, i) => {
+            const b = document.createElement('button');
+            b.type = 'button'; b.setAttribute('aria-label', `Show recommendation ${i + 1}`);
+            b.addEventListener('click', () => recoRow.scrollTo({ left: card.offsetLeft - (recoRow.clientWidth - card.offsetWidth) / 2, behavior: 'smooth' }));
+            recoDots.appendChild(b);
+        });
+        const update = () => {
+            const mid = recoRow.scrollLeft + recoRow.clientWidth / 2;
+            let best = 0, bestD = Infinity;
+            cards.forEach((c, i) => { const d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid); if (d < bestD) { bestD = d; best = i; } });
+            recoDots.querySelectorAll('button').forEach((b, i) => b.classList.toggle('is-active', i === best));
+        };
+        recoRow.addEventListener('scroll', update, { passive: true });
+        update();
+    }
+
     /* ---------- 5. FIFI chatbot answers (typos fixed; replaces the version in main.js) ---------- */
     const chatGreeting = document.getElementById('chatGreeting');
     const chatOptions = document.getElementById('chatOptions');
@@ -1455,15 +1671,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const times = ['10 AM', '1 PM', '6 PM', '9 PM'];
     const posts = [
-        [0,0,'t-car','Industry tips','Augmex'], [0,2,'t-reel','Drop teaser','FYGO'],
-        [1,1,'t-post','Client win','Augmex'], [1,3,'t-reel','Styling reel','FYGO'],
-        [2,0,'t-vid','Team BTS','Augmex'], [2,2,'t-car','Size guide','FYGO'],
-        [3,1,'t-car','How-to','Augmex'], [3,3,'t-reel','Unboxing','FYGO'],
-        [4,0,'t-post','Hiring','Augmex'], [4,2,'t-reel','New drop','FYGO'],
-        [5,1,'t-post','Customer UGC','FYGO'], [5,3,'t-reel','Fit check','FYGO'],
-        [6,2,'t-vid','Weekly recap','Augmex']
+        [0,0,'t-research','Competitor analysis','Research'], [0,1,'t-research','Trend research','Research'], [0,2,'t-write','Content ideas','Planning'],
+        [1,0,'t-write','Content preparation','Copy'], [1,1,'t-design','Graphics','Design'], [1,2,'t-design','Carousel design','Design'],
+        [2,0,'t-design','Videos','Editing'], [2,1,'t-review','Client feedback','Review'], [2,2,'t-design','Revisions','Design'],
+        [3,0,'t-schedule','Buffer queue','Schedule'], [3,1,'t-schedule','Post scheduling','Schedule'],
+        [4,0,'t-review','Analytics graph','Insights'], [4,2,'t-research','Trend check','Research'],
+        [5,1,'t-review','Feedback review','Review'],
+        [6,0,'t-review','Report preparation','Report'], [6,1,'t-review','Weekly report','Report']
     ];
-    const typeName = { 't-reel': 'Reel', 't-car': 'Carousel', 't-post': 'Post', 't-vid': 'Video' };
+    const typeName = { 't-research': 'Research', 't-write': 'Writing', 't-design': 'Design', 't-schedule': 'Schedule', 't-review': 'Review' };
 
     const grid = root.querySelector('#cr-days');
     grid.innerHTML = '<div></div>' + days.map(d => `<div class="cr-dh">${d}</div>`).join('');
@@ -1474,7 +1690,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const postEls = posts.map(([d, t, cls, label, brand]) => {
         const el = document.createElement('div');
         el.className = `cr-post ${cls}`;
-        el.title = `${typeName[cls]} · ${brand}`;
+        el.dataset.cat = cls;
+        el.title = `${typeName[cls]} · ${label}`;
         el.innerHTML = `${label}<small>${brand}</small>`;
         grid.querySelector(`[data-k="${d}-${t}"]`).appendChild(el);
         return el;
@@ -1517,20 +1734,30 @@ document.addEventListener("DOMContentLoaded", () => {
     /* Calendar fill + pipeline loop (pauses when off-screen) */
     const qText = root.querySelector('#cr-qtext'), qBar = root.querySelector('#cr-qbar');
     const stages = [...root.querySelectorAll('.cr-stage')];
-    let calStarted = false, calVisible = true;
+    let calStarted = false, calVisible = true, hoverStage = -1;
+    const setStage = (k) => {
+        const cat = stages[k] ? stages[k].dataset.cat : null;
+        stages.forEach((s, j) => s.classList.toggle('active', j === k));
+        grid.classList.toggle('has-hl', !!cat);
+        postEls.forEach(p => p.classList.toggle('hl', !!cat && p.dataset.cat === cat));
+    };
+    stages.forEach((s, k) => {
+        s.addEventListener('mouseenter', () => { hoverStage = k; setStage(k); });
+        s.addEventListener('mouseleave', () => { hoverStage = -1; setStage(-1); });
+        s.addEventListener('click', () => { hoverStage = (hoverStage === k ? -1 : k); setStage(hoverStage); });
+    });
     const runCalendar = () => {
         if (calStarted) return; calStarted = true;
         const total = postEls.length;
         if (reduce) {
             postEls.forEach(p => p.classList.add('on'));
             qText.textContent = `${total} / ${total} scheduled`; qBar.style.width = '100%';
-            stages[3].classList.add('active');
             return;
         }
         let i = 0, si = 0;
         const tick = () => {
-            if (calVisible) {
-                stages.forEach((s, k) => s.classList.toggle('active', k === si % stages.length)); si++;
+            if (calVisible && hoverStage === -1) {
+                if (i >= total) { setStage(si % stages.length); si++; }
                 if (i < total) {
                     postEls[i].classList.add('on'); i++;
                     qText.textContent = `${i} / ${total} scheduled`;
