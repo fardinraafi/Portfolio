@@ -57,6 +57,7 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
 .eyebrow { color: #F59E0B; font-weight: 700; letter-spacing: 0.12em; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 0.6rem; display: inline-flex; align-items: center; gap: 10px; }
 .eyebrow::before { content: ''; width: 28px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, #F59E0B, transparent); }
 .contact-hero-left h1 { font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.05; letter-spacing: -0.03em; }
+.contact-hero-left { position: relative; }
 .contact-hero-left p.desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6; max-width: 520px; }
 
 
@@ -324,6 +325,145 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
     .c-txt .value { font-size: 0.95rem; }
     .book-arrow { display: none; }
 }
+
+/* =========================================================
+   ✨ EXTRA LAYER: motion, widgets & polish
+========================================================= */
+/* Hero backdrop: soft drifting orbs + fading grid */
+.epic-contact-wrapper::before {
+    content: ''; position: absolute; inset: -40px -10% auto -10%; height: 720px; z-index: -1; pointer-events: none;
+    background-image: linear-gradient(rgba(124, 58, 237, 0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(124, 58, 237, 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(ellipse 60% 55% at 30% 35%, #000 20%, transparent 75%);
+    mask-image: radial-gradient(ellipse 60% 55% at 30% 35%, #000 20%, transparent 75%);
+    animation: gridDrift 30s linear infinite;
+}
+@keyframes gridDrift { to { background-position: 48px 48px, 48px 48px; } }
+.hero-orb { position: absolute; border-radius: 50%; filter: blur(70px); pointer-events: none; z-index: -1; opacity: 0.45; }
+.hero-orb.o1 { width: 320px; height: 320px; background: rgba(37, 99, 235, 0.5); top: 40px; left: -60px; animation: orbA 18s ease-in-out infinite; }
+.hero-orb.o2 { width: 260px; height: 260px; background: rgba(219, 39, 119, 0.35); top: 280px; left: 260px; animation: orbB 22s ease-in-out infinite; }
+@keyframes orbA { 50% { transform: translate(80px, 60px) scale(1.15); } }
+@keyframes orbB { 50% { transform: translate(-70px, -50px) scale(0.9); } }
+
+/* Quick-fact chips */
+.quick-facts { display: flex; flex-wrap: wrap; gap: 8px; margin: -0.8rem 0 1.6rem; }
+.qf {
+    display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: 100px; font-size: 0.8rem; font-weight: 700;
+    color: var(--text-main); background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(124, 58, 237, 0.15);
+    backdrop-filter: blur(10px); opacity: 0; transform: translateY(10px); animation: qfIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+body.dark-mode .qf { background: rgba(30, 41, 59, 0.55); border-color: rgba(255, 255, 255, 0.08); }
+.qf:nth-child(1) { animation-delay: 1.9s; } .qf:nth-child(2) { animation-delay: 2.05s; } .qf:nth-child(3) { animation-delay: 2.2s; }
+@keyframes qfIn { to { opacity: 1; transform: none; } }
+
+/* Spotlight + 3D tilt on cards */
+.c-card::before, .tilt-spot::after {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; opacity: 0; transition: opacity 0.35s;
+    background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(124, 58, 237, 0.16), transparent 65%);
+}
+.c-card:hover::before, .tilt-spot:hover::after { opacity: 1; }
+.c-card > *, .soc > * { position: relative; z-index: 1; }
+
+/* Form progress */
+.form-progress { display: flex; align-items: center; gap: 12px; margin: -0.6rem 0 1.6rem; font-size: 0.75rem; font-weight: 700; color: var(--text-light); }
+.fp-track { flex: 1; height: 5px; border-radius: 5px; background: rgba(124, 58, 237, 0.12); overflow: hidden; }
+.fp-bar { height: 100%; width: 0; border-radius: 5px; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); box-shadow: 0 0 10px rgba(124, 58, 237, 0.6); transition: width 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; overflow: hidden; }
+.fp-bar::after { content: ''; position: absolute; inset: 0; width: 40%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent); animation: crShineX 2.2s ease-in-out infinite; }
+@keyframes crShineX { 0% { transform: translateX(-120%); } 100% { transform: translateX(320%); } }
+.fp-label b { color: var(--text-main); }
+.form-progress.done .fp-label { color: #10B981; }
+.floating-group.ok .floating-control { border-color: rgba(16, 185, 129, 0.55); }
+.floating-group .tick { position: absolute; right: 12px; top: 50%; transform: translateY(-50%) scale(0); color: #10B981; font-weight: 800; transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); pointer-events: none; }
+.floating-group.ok .tick { transform: translateY(-50%) scale(1); }
+textarea ~ .tick { top: 22px; }
+
+/* Topic sparkle burst */
+.spark { position: fixed; width: 6px; height: 6px; border-radius: 50%; pointer-events: none; z-index: 9999; animation: spark 0.7s ease-out forwards; }
+@keyframes spark { to { transform: translate(var(--sx), var(--sy)) scale(0); opacity: 0; } }
+
+/* Send button: paper plane */
+.btn-submit { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.btn-submit .plane { display: inline-block; transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.btn-submit:hover .plane { transform: translate(4px, -4px) rotate(-8deg); }
+.btn-submit.flying .plane { animation: planeFly 0.9s ease-in forwards; }
+@keyframes planeFly { 40% { transform: translate(-6px, 4px); } 100% { transform: translate(160px, -90px) rotate(-20deg); opacity: 0; } }
+
+/* What happens next */
+.next-steps { position: relative; padding: 1.6rem 1.6rem 1.4rem; border-radius: 22px; background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(124, 58, 237, 0.12); backdrop-filter: blur(14px); }
+body.dark-mode .next-steps { background: rgba(30, 41, 59, 0.45); border-color: rgba(255, 255, 255, 0.07); }
+.next-steps h4 { font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--text-main); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.ns-list { position: relative; display: grid; gap: 1.1rem; }
+.ns-list::before { content: ''; position: absolute; left: 17px; top: 18px; bottom: 18px; width: 2px; background: rgba(124, 58, 237, 0.15); }
+.ns-list::after { content: ''; position: absolute; left: 17px; top: 18px; width: 2px; height: calc(100% - 36px); background: linear-gradient(var(--c1), var(--c2), #10B981); transform: scaleY(0); transform-origin: top; transition: transform 1.6s ease 0.2s; box-shadow: 0 0 10px rgba(124, 58, 237, 0.6); }
+.next-steps.in .ns-list::after { transform: scaleY(1); }
+.ns { position: relative; display: flex; gap: 14px; align-items: flex-start; opacity: 0; transform: translateX(-10px); transition: opacity 0.5s, transform 0.5s; }
+.next-steps.in .ns { opacity: 1; transform: none; }
+.next-steps.in .ns:nth-child(2) { transition-delay: 0.5s; } .next-steps.in .ns:nth-child(3) { transition-delay: 1s; }
+.ns-dot { width: 36px; height: 36px; flex-shrink: 0; border-radius: 50%; display: grid; place-items: center; font-size: 0.95rem; z-index: 1; background: var(--bg-page); border: 2px solid var(--c2); box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12); }
+.ns b { display: block; font-size: 0.92rem; color: var(--text-main); }
+.ns span { font-size: 0.82rem; color: var(--text-muted); }
+
+/* "Let's talk about" marquee */
+.talk-band { position: relative; z-index: 2; padding: 2.5rem 0 1rem; overflow: hidden; }
+.talk-label { text-align: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--c2); margin-bottom: 1rem; }
+body.dark-mode .talk-label { color: #C4B5FD; }
+.talk-row { overflow: hidden; padding: 6px 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.talk-track { display: flex; gap: 12px; width: max-content; animation: talkScroll 40s linear infinite; }
+.talk-row.rev .talk-track { animation-direction: reverse; animation-duration: 46s; }
+.talk-band:hover .talk-track { animation-play-state: paused; }
+@keyframes talkScroll { to { transform: translateX(-50%); } }
+.talk-chip {
+    white-space: nowrap; padding: 12px 22px; border-radius: 100px; font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--text-main);
+    background: rgba(255, 255, 255, 0.55); border: 1px solid rgba(124, 58, 237, 0.14); transition: all 0.3s;
+}
+body.dark-mode .talk-chip { background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.07); }
+.talk-chip:hover { color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); border-color: transparent; box-shadow: 0 8px 22px rgba(124, 58, 237, 0.35); }
+.talk-chip.ghost { background: transparent; color: transparent; -webkit-text-stroke: 1px rgba(124, 58, 237, 0.55); }
+body.dark-mode .talk-chip.ghost { -webkit-text-stroke-color: rgba(196, 181, 253, 0.5); }
+
+/* Booking: animated mini calendar */
+.mini-cal {
+    position: relative; z-index: 5; width: 220px; margin: 0 auto 1.8rem; padding: 14px; border-radius: 18px; text-align: left;
+    background: rgba(15, 23, 42, 0.55); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); transform: rotate(-3deg); animation: calFloat 6s ease-in-out infinite;
+}
+body:not(.dark-mode) .mini-cal { background: rgba(255, 255, 255, 0.85); border-color: rgba(15, 23, 42, 0.08); box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12); }
+@keyframes calFloat { 50% { transform: rotate(-1deg) translateY(-8px); } }
+.mc-head { display: flex; justify-content: space-between; align-items: center; font-family: 'Syne', sans-serif; font-weight: 800; font-size: 0.85rem; color: var(--text-main); margin-bottom: 10px; }
+.mc-head span { font-size: 0.65rem; font-family: 'DM Sans', sans-serif; color: #10B981; display: flex; align-items: center; gap: 5px; }
+.mc-head span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #10B981; box-shadow: 0 0 6px #10B981; }
+.mc-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.mc-grid i { height: 20px; border-radius: 5px; background: rgba(148, 163, 184, 0.12); font-style: normal; font-size: 0.6rem; display: grid; place-items: center; color: var(--text-light); }
+.mc-grid i.wk { background: transparent; font-weight: 800; }
+.mc-grid i.pick { color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); animation: pickPulse 2.4s ease-in-out infinite; }
+@keyframes pickPulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.6); } 50% { box-shadow: 0 0 0 6px rgba(124, 58, 237, 0); } }
+.mc-cursor { position: absolute; width: 18px; height: 18px; pointer-events: none; animation: mcMove 6s ease-in-out infinite; }
+@keyframes mcMove { 0%, 100% { transform: translate(40px, 110px); } 40%, 60% { transform: translate(var(--px, 120px), var(--py, 70px)); } }
+
+/* Social section extras */
+.soc-count { display: inline-flex; align-items: center; gap: 8px; margin-top: 0.8rem; font-size: 0.82rem; font-weight: 700; color: var(--text-muted); }
+.soc-count i { width: 7px; height: 7px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; animation: pulse 2s infinite; }
+.soc { transform-style: preserve-3d; will-change: transform; }
+
+/* Toast */
+.toast {
+    position: fixed; left: 50%; bottom: 28px; z-index: 10001; transform: translate(-50%, 30px); opacity: 0; pointer-events: none;
+    display: flex; align-items: center; gap: 10px; padding: 12px 20px; border-radius: 100px; font-weight: 700; font-size: 0.9rem; color: #fff;
+    background: rgba(15, 23, 42, 0.92); border: 1px solid rgba(16, 185, 129, 0.5); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(16, 185, 129, 0.25);
+    transition: all 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.toast.show { transform: translate(-50%, 0); opacity: 1; }
+
+@media (max-width: 900px) {
+    .hero-orb { display: none; }
+    .quick-facts { margin-top: -0.4rem; }
+    .talk-chip { font-size: 0.9rem; padding: 10px 18px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .qf, .ns { opacity: 1 !important; transform: none !important; animation: none !important; }
+    .talk-track, .mini-cal, .mc-cursor, .epic-contact-wrapper::before, .hero-orb { animation: none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .fx, .soc { opacity: 1 !important; transform: none !important; filter: none !important; }
     .soc-ico, .form-glass::after, .globe-wrapper::before, .globe-pin, .aurora-glow { animation: none !important; }
@@ -353,6 +493,7 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
 <div class="epic-contact-wrapper">
     <!-- LEFT: intro, contact cards, FAQ -->
     <div class="contact-hero-left fx">
+        <span class="hero-orb o1" aria-hidden="true"></span><span class="hero-orb o2" aria-hidden="true"></span>
         <p class="eyebrow">Let's Build Together</p>
         <div class="tt-wrap" id="ttWrap">
             <h1 class="gradient-text tt-h1">Let's Connect</h1>
@@ -360,6 +501,12 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
             <div class="tech-text" id="techText" aria-hidden="true"><canvas></canvas></div>
         </div>
         <p class="desc">Whether you have a question, a project proposition, or just want to chat about marketing and brand growth, I'm ready.</p>
+
+        <div class="quick-facts">
+            <span class="qf">⚡ Replies in ~2 hours</span>
+            <span class="qf">🌏 Dhaka · GMT+6</span>
+            <span class="qf">💼 Full-time &amp; freelance</span>
+        </div>
 
         <div class="live-pill" id="livePill">
             <span class="dot"></span>
@@ -437,6 +584,11 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
                     <input type="hidden" name="redirect" value="https://fardinraafi.com/message-sent.html">
                     <input type="hidden" name="topic" id="topicField" value="">
 
+                    <div class="form-progress" id="formProgress">
+                        <div class="fp-track"><div class="fp-bar" id="fpBar"></div></div>
+                        <span class="fp-label" id="fpLabel"><b>0%</b> ready</span>
+                    </div>
+
                     <div class="topic-label">What's this about?</div>
                     <div class="topics" id="topics">
                         <button type="button" class="topic" data-topic="Job opportunity">💼 Job opportunity</button>
@@ -449,28 +601,48 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
                         <div class="floating-group">
                             <input type="text" name="name" id="f-name" class="floating-control" placeholder=" " required autocomplete="name">
                             <label class="floating-label" for="f-name">Your Name</label>
+                            <span class="tick">✓</span>
                         </div>
                         <div class="floating-group">
                             <input type="email" name="email" id="f-email" class="floating-control" placeholder=" " required autocomplete="email">
                             <label class="floating-label" for="f-email">Email here!</label>
+                            <span class="tick">✓</span>
                         </div>
                     </div>
                     <div class="floating-group">
                         <input type="text" name="subject" id="f-subject" class="floating-control" placeholder=" " required>
                         <label class="floating-label" for="f-subject">Subject</label>
+                            <span class="tick">✓</span>
                     </div>
                     <div class="floating-group">
                         <textarea name="message" id="f-message" class="floating-control" placeholder=" " required maxlength="2000"></textarea>
                         <label class="floating-label" for="f-message">Body text</label>
+                            <span class="tick">✓</span>
                         <span class="char-count" id="charCount">0 / 2000</span>
                     </div>
-                    <button type="submit" class="btn-submit">Send Me The Message ➔</button>
+                    <button type="submit" class="btn-submit"><span class="btn-label">Send Me The Message</span><span class="plane">✈</span></button>
                     <p class="form-note">🔒 Your details are only used to reply to you.</p>
                 </form>
             </div>
         </div>
+
+        <div class="next-steps" id="nextSteps">
+            <h4>🧭 What happens next</h4>
+            <div class="ns-list">
+                <div class="ns"><div class="ns-dot">📨</div><div><b>You send a message</b><span>Pick a topic so I know the context.</span></div></div>
+                <div class="ns"><div class="ns-dot">💬</div><div><b>I reply within ~2 hours</b><span>During the day, Dhaka time (GMT+6).</span></div></div>
+                <div class="ns"><div class="ns-dot">🤝</div><div><b>We hop on a call</b><span>If it's a fit, we plan next steps together.</span></div></div>
+            </div>
+        </div>
     </div>
 </div>
+
+<!-- LET'S TALK ABOUT -->
+<section class="talk-band" aria-label="Topics I love talking about">
+    <div class="talk-label">Let's talk about</div>
+    <div class="talk-row"><div class="talk-track" id="talkRow1"></div></div>
+    <div class="talk-row rev"><div class="talk-track" id="talkRow2"></div></div>
+</section>
 
 <!-- BOOK A CALL -->
 <section class="final-cta-section fx">
@@ -482,6 +654,11 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
         <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 550px; margin: 0 auto 1.6rem; position: relative; z-index: 5;">
             Bypass the back-and-forth emails. Click below to pull up my live calendar and lock in a 1-on-1 strategy call instantly.
         </p>
+        <div class="mini-cal" aria-hidden="true">
+            <div class="mc-head">Book a slot <span>Live</span></div>
+            <div class="mc-grid" id="mcGrid"></div>
+            <svg class="mc-cursor" viewBox="0 0 24 24" fill="#fff" stroke="#0F172A" stroke-width="1.5"><path d="M4 2l16 9-7 2-3 7z"/></svg>
+        </div>
         <div class="book-steps">
             <span class="book-step"><b>1</b>Pick a time</span><span class="book-arrow">→</span>
             <span class="book-step"><b>2</b>Get the invite</span><span class="book-arrow">→</span>
@@ -500,6 +677,7 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
     <div class="social-head fx">
         <div class="section-title">Socials</div>
         <h2>Find me <span class="gradient-text">everywhere</span></h2>
+        <div class="soc-count"><i></i>8 platforms · same person, same energy</div>
     </div>
     <div class="social-grid" id="socialGrid">
         <a class="soc s-linkedin" data-fx="bounce" style="--d: 0s;" href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener">
@@ -550,6 +728,7 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
 <div class="contact-banner-wrapper">
     <img src="/behance.jpg" alt="Fardin Rahman Khan Raafi - Where Growth Meets Marketing" loading="lazy" onerror="this.style.display='none'">
 </div>
+<div class="toast" id="toast" role="status" aria-live="polite">✓ <span id="toastText">Email copied</span></div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <script src="/main.js"></script>
@@ -597,6 +776,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (copyBtn) copyBtn.addEventListener('click', () => {
         navigator.clipboard.writeText('fardinraafi@gmail.com').then(() => {
             copyBtn.textContent = 'Copied ✓'; copyBtn.classList.add('done');
+            window.showToast && window.showToast('Email copied to clipboard');
             setTimeout(() => { copyBtn.textContent = 'Copy'; copyBtn.classList.remove('done'); }, 2200);
         });
     });
@@ -1009,6 +1189,123 @@ document.addEventListener('DOMContentLoaded', () => {
     resize();
 })();
 
+</script>
+
+
+<script>
+/* =========================================================
+   ✨ EXTRA LAYER SCRIPTS
+========================================================= */
+document.addEventListener('DOMContentLoaded', () => {
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const fine = window.matchMedia('(pointer: fine)').matches;
+
+    /* Toast */
+    const toast = document.getElementById('toast');
+    let toastT = 0;
+    window.showToast = (text) => {
+        document.getElementById('toastText').textContent = text;
+        toast.classList.add('show');
+        clearTimeout(toastT); toastT = setTimeout(() => toast.classList.remove('show'), 2400);
+    };
+
+    /* Spotlight + gentle 3D tilt on contact & social cards */
+    document.querySelectorAll('.c-card, .soc').forEach(card => {
+        if (card.classList.contains('soc')) card.classList.add('tilt-spot');
+        card.addEventListener('mousemove', e => {
+            const r = card.getBoundingClientRect();
+            const x = e.clientX - r.left, y = e.clientY - r.top;
+            card.style.setProperty('--mx', x + 'px'); card.style.setProperty('--my', y + 'px');
+            if (!fine || reduce || !card.classList.contains('soc')) return;
+            const rx = ((y / r.height) - 0.5) * -10, ry = ((x / r.width) - 0.5) * 10;
+            card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-5px)`;
+            card.style.transition = 'transform 0.08s linear, border-color 0.35s, box-shadow 0.35s';
+        });
+        card.addEventListener('mouseleave', () => { card.style.transform = ''; card.style.transition = ''; });
+    });
+
+    /* Form progress + ticks */
+    const form = document.getElementById('contact-form');
+    const fields = ['f-name', 'f-email', 'f-subject', 'f-message'].map(id => document.getElementById(id));
+    const bar = document.getElementById('fpBar'), label = document.getElementById('fpLabel'), prog = document.getElementById('formProgress');
+    const updateProgress = () => {
+        let done = 0;
+        fields.forEach(f => {
+            const ok = f.value.trim().length > (f.id === 'f-message' ? 9 : 1) && f.checkValidity();
+            f.closest('.floating-group').classList.toggle('ok', ok);
+            if (ok) done++;
+        });
+        if (document.getElementById('topicField').value) done++;
+        const pct = Math.round(done / 5 * 100);
+        bar.style.width = pct + '%';
+        prog.classList.toggle('done', pct === 100);
+        label.innerHTML = pct === 100 ? '<b>100%</b> ready to send 🚀' : `<b>${pct}%</b> ready`;
+    };
+    fields.forEach(f => f.addEventListener('input', updateProgress));
+    document.getElementById('topics').addEventListener('click', e => {
+        setTimeout(updateProgress, 0);
+        const btn = e.target.closest('.topic');
+        if (!btn || reduce || !btn.classList.contains('active')) return;
+        // sparkle burst
+        const r = btn.getBoundingClientRect(), cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+        const cols = ['#2563EB', '#7C3AED', '#DB2777', '#10B981', '#F59E0B'];
+        for (let i = 0; i < 14; i++) {
+            const s = document.createElement('span'); s.className = 'spark';
+            const a = (i / 14) * Math.PI * 2, d = 30 + Math.random() * 30;
+            s.style.left = cx + 'px'; s.style.top = cy + 'px'; s.style.background = cols[i % cols.length];
+            s.style.setProperty('--sx', Math.cos(a) * d + 'px'); s.style.setProperty('--sy', Math.sin(a) * d + 'px');
+            document.body.appendChild(s); setTimeout(() => s.remove(), 750);
+        }
+    });
+    updateProgress();
+    if (form) form.addEventListener('submit', () => {
+        if (!form.checkValidity()) return;
+        form.querySelector('.btn-submit').classList.add('flying');
+    });
+
+    /* Reveal "what happens next" */
+    const ns = document.getElementById('nextSteps');
+    if (ns) new IntersectionObserver((en, o) => { if (en[0].isIntersecting) { ns.classList.add('in'); o.disconnect(); } }, { threshold: 0.3 }).observe(ns);
+
+    /* Talk band chips */
+    const topics1 = ['B2B Growth', 'Content Marketing', 'Brand Strategy', 'Lead Generation', 'LinkedIn Growth', 'Social Media', 'Copywriting'];
+    const topics2 = ['CRM & Outreach', 'Motion Design', 'AI in Marketing', 'Campaign Ideas', 'Personal Branding', 'Product Launches', 'Career Chats'];
+    const fill = (id, list) => {
+        const el = document.getElementById(id); if (!el) return;
+        const half = [...list, ...list].map((t, i) => `<span class="talk-chip${i % 3 === 1 ? ' ghost' : ''}">${t}</span>`).join('');
+        el.innerHTML = half + half;
+    };
+    fill('talkRow1', topics1); fill('talkRow2', topics2);
+    // clicking a topic chip pre-fills the subject and jumps to the form
+    document.querySelectorAll('.talk-chip').forEach(c => c.addEventListener('click', () => {
+        const subj = document.getElementById('f-subject');
+        subj.value = `Let's talk about ${c.textContent}`;
+        subj.dispatchEvent(new Event('input'));
+        document.querySelector('.form-shell').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        window.showToast('Subject filled. Say hi! 👋');
+    }));
+    document.querySelectorAll('.talk-chip').forEach(c => c.style.cursor = 'pointer');
+
+    /* Mini calendar */
+    const mc = document.getElementById('mcGrid');
+    if (mc) {
+        const wk = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+        const today = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Dhaka', day: 'numeric' }).format(new Date()));
+        const pick = Math.min(28, today + 2);
+        let html = wk.map(d => `<i class="wk">${d}</i>`).join('');
+        for (let d = 1; d <= 28; d++) html += `<i${d === pick ? ' class="pick"' : ''}>${d}</i>`;
+        mc.innerHTML = html;
+        // point the little cursor at the picked day
+        requestAnimationFrame(() => {
+            const p = mc.querySelector('.pick'), cal = mc.closest('.mini-cal'), cur = cal.querySelector('.mc-cursor');
+            if (p && cur) {
+                const a = p.getBoundingClientRect(), b = cal.getBoundingClientRect();
+                cur.style.setProperty('--px', (a.left - b.left + a.width / 2) + 'px');
+                cur.style.setProperty('--py', (a.top - b.top + a.height / 2) + 'px');
+            }
+        });
+    }
+});
 </script>
 
 <!-- 3D GLOBE (unchanged behaviour) -->
