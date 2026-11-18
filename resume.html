@@ -3,263 +3,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- SEO Primary Tags -->
+    <!-- SEO Primary Tags -->
     <title>Interactive Resume | Fardin Rahman Khan Raafi | Marketing Executive</title>
-    <meta name="description" content="Interactive resume and professional experience of Fardin Rahman Khan Raafi. Marketing Executive and Growth Associate with 1 year of expertise in B2B sales and brand strategy.">
-    <meta name="keywords" content="Fardin Rahman Khan Raafi Resume, Fardin Raafi CV, Marketing Executive, Growth Associate, B2B Sales, Brand Strategy, Dhaka, BUBT">
+    <meta name="description" content="Interactive resume of Fardin Rahman Khan Raafi, Junior Executive, Marketing at Augmex Technologies. B2B lead generation, content marketing (340K+ organic views) and brand strategy in Dhaka.">
+    <meta name="keywords" content="Fardin Rahman Khan Raafi Resume, Fardin Raafi CV, Marketing Executive, Growth Associate, B2B Sales, Content Marketing, Brand Strategy, Dhaka, BUBT">
     <meta name="author" content="Fardin Rahman Khan Raafi">
+    <meta name="theme-color" content="#0F172A">
 
     <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:title" content="Interactive Resume | Fardin Rahman Khan Raafi">
-    <meta property="og:description" content="View the professional experience, core competencies, and leadership background of Fardin Raafi.">
+    <meta property="og:description" content="Professional experience, core competencies, and leadership background of Fardin Raafi.">
     <meta property="og:type" content="profile">
     <meta property="og:url" content="https://fardinraafi.com/resume.html">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
-    
+    <link rel="canonical" href="https://fardinraafi.com/resume.html">
+
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
+
     <link rel="stylesheet" href="/style.css">
-    
+
     <style>
-        /* EPIC RESUME STYLES */
-        .resume-layout { 
-            max-width: 1200px; margin: 0 auto; padding: 2rem; 
-            display: grid; grid-template-columns: 250px 1fr; gap: 4rem; position: relative; 
-            align-items: start; /* This is the magic rule that allows sticky to work! */
-        }
+/* =========================================================
+   RESUME PAGE STYLES (only affect resume.html)
+========================================================= */
+html, body { overflow-x: clip !important; }
+.gradient-text { padding-right: 0.06em; }
 
-        /* Sticky Left Nav for Recruiters */
-        .resume-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 1rem; }
-        .resume-nav-link { 
-            padding: 12px 20px; background: rgba(255,255,255,0.05); border-radius: 12px; 
-            color: var(--text-muted); font-weight: 700; text-decoration: none; border: 1px solid transparent; 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(10px);
-        }
-        body.dark-mode .resume-nav-link { color: #94A3B8; }
-        .resume-nav-link:hover, .resume-nav-link.active { 
-            background: rgba(37,99,235,0.1); color: var(--c1); border-color: var(--c1); transform: translateX(10px); 
-        }
+.resume-layout {
+    max-width: 1200px; margin: 0 auto; padding: 2rem;
+    display: grid; grid-template-columns: 250px 1fr; gap: 4rem; position: relative; z-index: 2;
+    align-items: start; /* lets the sidebar stay sticky */
+}
+.resume-layout main { min-width: 0; }
 
-        /* Hero Header */
-        .resume-header { margin-bottom: 4rem; text-align: left; }
-        .resume-header h1 { font-size: 3.5rem; line-height: 1.1; margin-bottom: 1rem; }
-        .resume-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; font-weight: 600; font-size: 0.95rem; color: var(--text-muted); }
-        .resume-meta a { color: inherit; text-decoration: none; transition: color 0.3s; display: inline-flex; align-items: center; gap: 6px; }
-        .resume-meta a:hover { color: var(--c2); }
+/* ---------- Sticky sidebar ---------- */
+.resume-sidebar { position: sticky; top: 100px; display: flex; flex-direction: column; gap: 0.8rem; }
+.resume-nav-link {
+    position: relative; padding: 12px 20px; background: rgba(255, 255, 255, 0.5); border-radius: 12px;
+    color: var(--text-muted); font-weight: 700; text-decoration: none; border: 1px solid transparent;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); backdrop-filter: blur(10px);
+}
+body.dark-mode .resume-nav-link { background: rgba(255, 255, 255, 0.04); color: #94A3B8; }
+.resume-nav-link:hover, .resume-nav-link.active {
+    background: rgba(37, 99, 235, 0.1); color: var(--c1); border-color: var(--c1); transform: translateX(10px);
+}
+body.dark-mode .resume-nav-link.active, body.dark-mode .resume-nav-link:hover { color: #93C5FD; }
+.side-updated { font-size: 0.75rem; color: var(--text-light); text-align: center; margin-top: 0.4rem; }
 
-        .resume-section { margin-bottom: 5rem; scroll-margin-top: 100px; }
-        .resume-section-title { 
-            font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-main); 
-            margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px; 
-        }
-        body.dark-mode .resume-section-title { color: #F1F5F9; }
-        .resume-section-title::after { 
-            content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--c1), transparent); border-radius: 2px; opacity: 0.5;
-        }
+/* ---------- Mobile section chips (sticky under the nav) ---------- */
+.resume-chips {
+    display: none; position: sticky; top: var(--chips-top, 120px); z-index: 900;
+    gap: 8px; overflow-x: auto; padding: 10px 1rem; margin: 0 -1rem 1.5rem;
+    background: rgba(248, 250, 252, 0.85); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(15, 23, 42, 0.06); scrollbar-width: none;
+}
+body.dark-mode .resume-chips { background: rgba(15, 23, 42, 0.85); border-bottom-color: rgba(255, 255, 255, 0.06); }
+.resume-chips::-webkit-scrollbar { display: none; }
+.resume-chip {
+    flex-shrink: 0; padding: 7px 14px; border-radius: 100px; font-size: 0.8rem; font-weight: 700; text-decoration: none;
+    color: var(--text-muted); border: 1px solid rgba(124, 58, 237, 0.2); transition: all 0.3s;
+}
+.resume-chip.active { color: #fff; border-color: transparent; background: linear-gradient(135deg, var(--c1), var(--c2)); }
 
-        /* 3D Glass Summary */
-        .summary-card { 
-            background: rgba(255,255,255,0.6); padding: 2.5rem; border-radius: 24px; border: 1px solid rgba(0,0,0,0.05);
-            font-size: 1.1rem; line-height: 1.8; color: var(--text-main); backdrop-filter: blur(20px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03), inset 0 2px 10px rgba(255,255,255,0.5); 
-        }
-        body.dark-mode .summary-card { background: rgba(30,41,59,0.5); color: #F1F5F9; border-color: rgba(255,255,255,0.05); box-shadow: 0 10px 30px rgba(0,0,0,0.2), inset 0 2px 10px rgba(255,255,255,0.05); }
+/* ---------- Header ---------- */
+.resume-header { margin-bottom: 4rem; text-align: left; }
+.resume-header h1 { font-size: clamp(2.2rem, 5vw, 3.5rem); line-height: 1.1; margin-bottom: 0.6rem; }
+.resume-role { font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700; color: var(--text-main); margin-bottom: 1.2rem; }
+.resume-role span { color: var(--c2); }
+.resume-meta { display: flex; gap: 0.8rem 1.5rem; flex-wrap: wrap; font-weight: 600; font-size: 0.95rem; color: var(--text-muted); align-items: center; }
+.resume-meta a { color: inherit; text-decoration: none; transition: color 0.3s; display: inline-flex; align-items: center; gap: 6px; }
+.resume-meta a:hover { color: var(--c2); }
+.updated-pill { font-size: 0.75rem; font-weight: 700; padding: 4px 10px; border-radius: 100px; background: rgba(16, 185, 129, 0.12); color: #10B981; border: 1px solid rgba(16, 185, 129, 0.3); }
 
-        /* The Epic Alternating Timeline */
-        .epic-timeline { position: relative; margin: 2rem 0; padding: 2rem 0; }
-        .epic-timeline::before { 
-            content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px; 
-            background: linear-gradient(to bottom, transparent, var(--c1), var(--c2), transparent); transform: translateX(-50%); border-radius: 4px;
-        }
-        .et-item { width: 50%; position: relative; margin-bottom: 3rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .et-item.animate-in { opacity: 1; transform: translateY(0); }
-        
-        .et-item:nth-child(odd) { left: 0; padding-right: 3rem; }
-        .et-item:nth-child(even) { left: 50%; padding-left: 3rem; }
-        
-        /* Glowing Nodes */
-        .et-dot { 
-            position: absolute; top: 1.5rem; width: 24px; height: 24px; background: var(--bg-page); 
-            border: 5px solid var(--c1); border-radius: 50%; z-index: 2; box-shadow: 0 0 15px rgba(37,99,235,0.5); 
-            transition: all 0.3s; 
-        }
-        .et-item:nth-child(odd) .et-dot { right: -12px; }
-        .et-item:nth-child(even) .et-dot { left: -12px; border-color: var(--c2); box-shadow: 0 0 15px rgba(124,58,237,0.5); }
-        
-        .et-content { 
-            background: rgba(255,255,255,0.7); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0,0,0,0.05); 
-            backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0,0,0,0.03); position: relative; transition: transform 0.3s;
-        }
-        body.dark-mode .et-content { background: rgba(30,41,59,0.6); border-color: rgba(255,255,255,0.05); }
-        .et-content:hover { transform: translateY(-5px); border-color: var(--c1); }
-        
-        .et-date { display: inline-block; padding: 4px 12px; background: rgba(37,99,235,0.1); color: var(--c1); border-radius: 100px; font-size: 0.8rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
-        .et-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.3rem; }
-        body.dark-mode .et-title { color: #F1F5F9; }
-        .et-company { font-size: 1rem; color: var(--text-muted); font-weight: 700; margin-bottom: 1.5rem; }
-        .et-desc { list-style: none; padding: 0; }
-        .et-desc li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
-        body.dark-mode .et-desc li { color: #94A3B8; }
-        .et-desc li::before { content: '▹'; position: absolute; left: 0; color: var(--c1); font-weight: bold; font-size: 1.2rem; top: -3px; }
+.resume-section { margin-bottom: 5rem; scroll-margin-top: 110px; }
+.resume-section-title {
+    font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--text-main);
+    margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px;
+}
+.resume-section-title::after { content: ""; flex: 1; height: 2px; background: linear-gradient(90deg, var(--c1), transparent); border-radius: 2px; opacity: 0.5; }
 
-        /* Animated Skill Bars */
-        .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-        .skill-group h3 { font-family: 'Syne', sans-serif; color: var(--c2); font-size: 1.2rem; margin-bottom: 1.5rem; text-transform: uppercase; letter-spacing: 0.1em; }
-        .skill-bar-wrap { margin-bottom: 1.5rem; }
-        .skill-info { display: flex; justify-content: space-between; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
-        body.dark-mode .skill-info { color: #F1F5F9; }
-        .skill-track { width: 100%; height: 10px; background: rgba(0,0,0,0.05); border-radius: 10px; overflow: hidden; position: relative; }
-        body.dark-mode .skill-track { background: rgba(255,255,255,0.05); }
-        .skill-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--c1), var(--c2)); border-radius: 10px; transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative; }
-        
-        /* Shimmer Effect on Bars */
-        .skill-fill::after { 
-            content: ''; position: absolute; top: 0; left: 0; bottom: 0; right: 0; 
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); 
-            animation: shimmer 2s infinite linear; 
-        }
-        @keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+/* ---------- Summary + highlight numbers ---------- */
+.summary-card {
+    background: rgba(255, 255, 255, 0.6); padding: 2.5rem; border-radius: 24px; border: 1px solid rgba(0, 0, 0, 0.05);
+    font-size: 1.1rem; line-height: 1.8; color: var(--text-main); backdrop-filter: blur(20px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03), inset 0 2px 10px rgba(255, 255, 255, 0.5);
+}
+body.dark-mode .summary-card { background: rgba(30, 41, 59, 0.5); color: #F1F5F9; border-color: rgba(255, 255, 255, 0.05); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), inset 0 2px 10px rgba(255, 255, 255, 0.05); }
+.summary-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.8rem; margin-top: 1.8rem; }
+.s-stat { text-align: center; padding: 1rem 0.5rem; border-radius: 16px; background: rgba(37, 99, 235, 0.06); border: 1px solid rgba(124, 58, 237, 0.15); }
+.s-num { font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(1.2rem, 3vw, 1.8rem); white-space: nowrap; line-height: 1.1; padding-right: 0.04em;
+    background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.s-lbl { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-top: 4px; }
 
-       /* =========================================
-           UPGRADED LEADERSHIP GRID
-        ========================================= */
-        .leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
-        
-        .lead-card { 
-            background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.05); 
-            padding: 2rem; border-radius: 20px; transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
-            backdrop-filter: blur(10px); position: relative; overflow: hidden;
-        }
-        body.dark-mode .lead-card { background: rgba(30,41,59,0.5); border-color: rgba(255,255,255,0.05); }
-        
-        .lead-card:hover { 
-            transform: translateY(-8px); border-color: var(--c1); 
-            box-shadow: 0 20px 40px rgba(124,58,237,0.15); 
-        }
+/* ---------- Timeline ---------- */
+.epic-timeline { position: relative; margin: 2rem 0; padding: 2rem 0; }
+.epic-timeline::before {
+    content: ''; position: absolute; left: 50%; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to bottom, transparent, var(--c1), var(--c2), transparent); transform: translateX(-50%); border-radius: 4px;
+}
+.et-item { width: 50%; position: relative; margin-bottom: 3rem; opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.et-item.animate-in { opacity: 1; transform: translateY(0); }
+.et-item:nth-child(odd) { left: 0; padding-right: 3rem; }
+.et-item:nth-child(even) { left: 50%; padding-left: 3rem; }
+.et-dot {
+    position: absolute; top: 1.5rem; width: 24px; height: 24px; background: var(--bg-page);
+    border: 5px solid var(--c1); border-radius: 50%; z-index: 2; box-shadow: 0 0 15px rgba(37, 99, 235, 0.5); transition: all 0.3s;
+}
+.et-item:nth-child(odd) .et-dot { right: -12px; }
+.et-item:nth-child(even) .et-dot { left: -12px; border-color: var(--c2); box-shadow: 0 0 15px rgba(124, 58, 237, 0.5); }
+.et-content {
+    background: rgba(255, 255, 255, 0.7); padding: 2rem; border-radius: 20px; border: 1px solid rgba(0, 0, 0, 0.05);
+    backdrop-filter: blur(12px); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03); position: relative; transition: transform 0.3s, border-color 0.3s;
+}
+body.dark-mode .et-content { background: rgba(30, 41, 59, 0.6); border-color: rgba(255, 255, 255, 0.05); }
+.et-content:hover { transform: translateY(-5px); border-color: var(--c1); }
+.et-date { display: inline-block; padding: 4px 12px; background: rgba(37, 99, 235, 0.1); color: var(--c1); border-radius: 100px; font-size: 0.8rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.05em; }
+body.dark-mode .et-date { color: #93C5FD; }
+.et-title { font-family: 'Syne', sans-serif; font-size: 1.4rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.3rem; }
+.et-company { font-size: 1rem; color: var(--text-muted); font-weight: 700; margin-bottom: 1.5rem; }
+.et-desc { list-style: none; padding: 0; }
+.et-desc li { position: relative; padding-left: 1.5rem; margin-bottom: 0.8rem; font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; }
+.et-desc li::before { content: '▹'; position: absolute; left: 0; color: var(--c1); font-weight: bold; font-size: 1.2rem; top: -3px; }
+.et-desc li strong { color: var(--text-main); }
+.et-sub {
+    margin: 1.2rem 0 0.8rem; padding-top: 1rem; border-top: 1px dashed rgba(124, 58, 237, 0.25);
+    font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; color: var(--c3);
+}
+body.dark-mode .et-sub { color: #F9A8D4; }
+.et-sub small { font-family: 'DM Sans', sans-serif; text-transform: none; letter-spacing: 0; font-weight: 600; color: var(--text-muted); margin-left: 4px; }
+.et-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--c1); text-decoration: none; }
+.et-link:hover { text-decoration: underline; }
 
-        /* Premium SVG Icon Wrapper */
-        .lead-icon-wrap {
-            width: 50px; height: 50px; border-radius: 14px;
-            background: rgba(37,99,235,0.1); color: var(--c1);
-            display: flex; align-items: center; justify-content: center;
-            margin-bottom: 1.5rem; transition: all 0.4s ease;
-        }
-        .lead-card:hover .lead-icon-wrap {
-            background: linear-gradient(135deg, var(--c1), var(--c2));
-            color: #fff; transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 10px 20px rgba(37,99,235,0.3);
-        }
+/* ---------- Skills: level instead of percentages ---------- */
+.skills-legend { display: flex; flex-wrap: wrap; gap: 1.2rem; margin: -1.2rem 0 2rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 600; }
+.skills-legend span { display: inline-flex; align-items: center; gap: 6px; }
+.skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.skill-group {
+    background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.05); border-radius: 20px; padding: 1.8rem;
+    backdrop-filter: blur(10px);
+}
+body.dark-mode .skill-group { background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.05); }
+.skill-group h3 { font-family: 'Syne', sans-serif; color: var(--c2); font-size: 1.05rem; margin-bottom: 1.2rem; text-transform: uppercase; letter-spacing: 0.1em; }
+body.dark-mode .skill-group h3 { color: #C4B5FD; }
+.skill-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 0; border-bottom: 1px solid rgba(124, 58, 237, 0.1); }
+.skill-row:last-child { border-bottom: none; }
+.skill-name { font-weight: 700; font-size: 0.95rem; color: var(--text-main); }
+.skill-level { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.skill-level em { font-style: normal; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); min-width: 84px; text-align: right; }
+.dots { display: inline-flex; gap: 4px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(124, 58, 237, 0.15); transition: background 0.4s, box-shadow 0.4s; }
+.dots i.on { background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 0 8px rgba(124, 58, 237, 0.5); }
 
-        .lead-card h4 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text-main); margin-bottom: 1rem; }
-        body.dark-mode .lead-card h4 { color: #F1F5F9; }
+/* ---------- Leadership grid ---------- */
+.leadership-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.lead-card {
+    background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(0, 0, 0, 0.05); padding: 2rem; border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); backdrop-filter: blur(10px); position: relative; overflow: hidden;
+    text-decoration: none; display: block;
+}
+body.dark-mode .lead-card { background: rgba(30, 41, 59, 0.5); border-color: rgba(255, 255, 255, 0.05); }
+.lead-card:hover { transform: translateY(-8px); border-color: var(--c1); box-shadow: 0 20px 40px rgba(124, 58, 237, 0.15); }
+.lead-icon-wrap {
+    width: 50px; height: 50px; border-radius: 14px; background: rgba(37, 99, 235, 0.1); color: var(--c1);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; transition: all 0.4s ease;
+}
+.lead-card:hover .lead-icon-wrap { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #fff; transform: scale(1.1) rotate(5deg); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3); }
+.lead-card h4 { font-family: 'Syne', sans-serif; font-size: 1.2rem; color: var(--text-main); margin-bottom: 1rem; }
+.lead-card p { color: var(--text-muted); font-size: 0.92rem; margin-bottom: 1rem; }
+.lead-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.lead-tags span {
+    font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px; background: rgba(0, 0, 0, 0.03);
+    color: var(--text-muted); border: 1px solid rgba(0, 0, 0, 0.05); transition: all 0.3s ease;
+}
+body.dark-mode .lead-tags span { background: rgba(255, 255, 255, 0.03); border-color: rgba(255, 255, 255, 0.05); color: #94A3B8; }
+.lead-card:hover .lead-tags span { border-color: rgba(124, 58, 237, 0.3); color: var(--c1); background: rgba(37, 99, 235, 0.05); }
+body.dark-mode .lead-card:hover .lead-tags span { color: #93C5FD; }
+.lead-card.link-card .go { font-weight: 800; color: var(--c1); font-size: 0.9rem; }
 
-        /* Modern Micro-Tags for easier reading */
-        .lead-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-        .lead-tags span {
-            font-size: 0.85rem; font-weight: 600; padding: 6px 12px; border-radius: 8px;
-            background: rgba(0,0,0,0.03); color: var(--text-muted);
-            border: 1px solid rgba(0,0,0,0.05); transition: all 0.3s ease;
-        }
-        body.dark-mode .lead-tags span { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.05); color: #94A3B8; }
-        
-        .lead-card:hover .lead-tags span { 
-            border-color: rgba(124, 58, 237, 0.3); color: var(--c1); background: rgba(37,99,235,0.05);
-        }
+/* Fade-in for cards and blocks */
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.fade-in.animate-in { opacity: 1; transform: none; }
 
-        @media (max-width: 900px) {
-            .resume-layout { grid-template-columns: 1fr; padding: 1rem; gap: 2rem; }
-            .resume-sidebar { display: none; /* Hide sticky nav on mobile */ }
-            .resume-header h1 { font-size: 2.5rem; }
-            
-            /* Collapse Timeline to Left */
-            .epic-timeline::before { left: 24px; }
-            .et-item { width: 100% !important; padding-left: 4rem !important; padding-right: 0 !important; left: 0 !important; }
-            .et-dot { left: 12px !important; right: auto !important; }
-            .skills-grid { grid-template-columns: 1fr; gap: 2rem; }
-        }
+/* =========================================================
+   MOBILE
+========================================================= */
+@media (max-width: 900px) {
+    .resume-layout { grid-template-columns: 1fr; padding: 1rem; gap: 0; }
+    .resume-sidebar { display: none; }
+    .resume-chips { display: flex; }
+    .resume-header { margin-bottom: 2.5rem; }
+    .resume-section { margin-bottom: 3.5rem; scroll-margin-top: 200px; }
+    .resume-section-title { font-size: 1.6rem; margin-bottom: 1.5rem; }
+    .summary-card { padding: 1.5rem; font-size: 1rem; }
+    .summary-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .epic-timeline::before { left: 24px; }
+    .et-item { width: 100% !important; padding-left: 4rem !important; padding-right: 0 !important; left: 0 !important; }
+    .et-dot { left: 12px !important; right: auto !important; }
+    .et-content { padding: 1.4rem; }
+    .skills-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+    .skill-group { padding: 1.3rem; }
+    .skill-level em { min-width: 0; }
+}
+@media (max-width: 420px) {
+    .skill-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+}
+
+/* =========================================================
+   PRINT: clean paper resume (Ctrl/Cmd + P)
+========================================================= */
+@media print {
+    @page { margin: 14mm; }
+    body, body.dark-mode { background: #fff !important; color: #111 !important; animation: none !important; opacity: 1 !important; }
+    body * { box-shadow: none !important; text-shadow: none !important; backdrop-filter: none !important; }
+    .top-nav, .site-footer, .resume-sidebar, .resume-chips, .bg-mesh, .scroll-to-top, .scroll-progress-container, #preloader, .et-logo, .edu-logo, .et-dot, .no-print { display: none !important; }
+    .resume-layout { display: block; padding: 0; max-width: none; }
+    .gradient-text, .s-num { -webkit-text-fill-color: #111 !important; background: none !important; color: #111 !important; }
+    .resume-header { margin-bottom: 1rem; }
+    .resume-header h1 { font-size: 26pt; }
+    .resume-section { margin-bottom: 1.2rem; }
+    .resume-section-title { font-size: 14pt; margin-bottom: 0.6rem; color: #111 !important; }
+    .resume-section-title::after { background: #999; }
+    .summary-card, .et-content, .skill-group, .lead-card, .s-stat { background: #fff !important; border: 1px solid #ddd !important; padding: 0.8rem !important; color: #111 !important; }
+    .epic-timeline { padding: 0; margin: 0; }
+    .epic-timeline::before { display: none; }
+    .et-item, .fade-in { width: 100% !important; left: 0 !important; padding: 0 !important; margin-bottom: 0.6rem; opacity: 1 !important; transform: none !important; }
+    .et-item, .lead-card, .skill-group { break-inside: avoid; }
+    .et-desc li, .lead-tags span, .skill-name, .skill-level em, .et-company, .resume-meta, .resume-role, .s-lbl, .lead-card p { color: #222 !important; }
+    .skills-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .leadership-grid { grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .lead-icon-wrap { display: none; }
+    a { color: #111 !important; text-decoration: none; }
+}
+
+
+/* =========================================================
+   CURSOR GLOW (desktop only)
+========================================================= */
+.cursor-glow {
+    position: fixed; top: 0; left: 0; width: 420px; height: 420px; border-radius: 50%; pointer-events: none; z-index: 1;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(37, 99, 235, 0.08) 35%, transparent 70%);
+    transform: translate3d(-9999px, -9999px, 0); opacity: 0; transition: opacity 0.4s ease; will-change: transform;
+}
+body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(37, 99, 235, 0.06) 35%, transparent 70%); }
+.cursor-glow.on { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+
+/* =========================================================
+   TIMELINE: glowing light that fills as you scroll
+========================================================= */
+.epic-timeline::after {
+    content: ''; position: absolute; left: 50%; top: 0; width: 4px; height: 100%; border-radius: 4px; z-index: 1;
+    background: linear-gradient(to bottom, var(--c1), var(--c2), var(--c3));
+    box-shadow: 0 0 12px var(--c1), 0 0 28px rgba(124, 58, 237, 0.7);
+    transform: translateX(-50%) scaleY(var(--p, 0)); transform-origin: top;
+}
+.tl-head {
+    position: absolute; left: 50%; top: 0; width: 14px; height: 14px; border-radius: 50%; z-index: 3; pointer-events: none;
+    background: #fff; box-shadow: 0 0 10px #fff, 0 0 22px var(--c2), 0 0 44px var(--c1);
+    transform: translate(-50%, calc(var(--py, 0px) - 7px)); opacity: var(--ho, 0); transition: opacity 0.3s;
+}
+.et-item .et-dot { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.et-item.lit .et-dot { background: var(--c1); transform: scale(1.25); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.18), 0 0 22px var(--c1); }
+.et-item.lit:nth-child(even) .et-dot { background: var(--c2); box-shadow: 0 0 0 6px rgba(124, 58, 237, 0.18), 0 0 22px var(--c2); }
+.et-item.lit .et-content { border-color: rgba(124, 58, 237, 0.35); }
+@media (max-width: 900px) {
+    .epic-timeline::after { left: 24px; }
+    .tl-head { left: 24px; }
+}
+
+/* =========================================================
+   EXTRA MOTION
+========================================================= */
+/* Section title line draws in */
+.resume-section-title::after { transform: scaleX(0); transform-origin: left; transition: transform 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); }
+.resume-section.title-in .resume-section-title::after { transform: scaleX(1); }
+/* Section title slides in */
+.resume-section-title { opacity: 0; transform: translateX(-24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.resume-section.title-in .resume-section-title { opacity: 1; transform: none; }
+
+/* Summary card: slowly rotating gradient border */
+.summary-card { position: relative; }
+.summary-card::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit; padding: 1px; pointer-events: none;
+    background: conic-gradient(from var(--ang, 0deg), var(--c1), var(--c2), var(--c3), transparent 60%, var(--c1));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity: 0.7; animation: spinBorder 6s linear infinite;
+}
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes spinBorder { to { --ang: 360deg; } }
+
+/* Stat boxes float gently */
+.s-stat { animation: statFloat 5s ease-in-out infinite; transition: transform 0.3s, border-color 0.3s; }
+.s-stat:nth-child(2) { animation-delay: -1.2s; } .s-stat:nth-child(3) { animation-delay: -2.4s; } .s-stat:nth-child(4) { animation-delay: -3.6s; }
+@keyframes statFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+.s-stat:hover { border-color: var(--c2); }
+
+/* Tags pop in one by one */
+.lead-tags span { opacity: 0; transform: translateY(8px) scale(0.95); }
+.lead-card.animate-in .lead-tags span { animation: tagPop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; animation-delay: calc(0.25s + var(--t, 0) * 0.08s); }
+@keyframes tagPop { to { opacity: 1; transform: none; } }
+
+/* Skill rows slide in */
+.skill-row { opacity: 0; transform: translateX(-12px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.skill-group.animate-in .skill-row { opacity: 1; transform: none; }
+.skill-row:hover .skill-name { color: var(--c1); }
+
+/* Timeline card shine on hover */
+.et-content { overflow: hidden; }
+.et-content::after {
+    content: ''; position: absolute; top: 0; left: -60%; width: 40%; height: 100%; pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent); transform: skewX(-20deg);
+}
+.et-content:hover::after { left: 130%; transition: left 0.9s ease; }
+
+@media print {
+    .cursor-glow, .tl-head, .epic-timeline::after, .summary-card::before { display: none !important; }
+    .resume-section-title, .lead-tags span, .skill-row { opacity: 1 !important; transform: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .resume-section-title, .lead-tags span, .skill-row { opacity: 1; transform: none; animation: none; }
+    .s-stat, .summary-card::before { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .et-item, .fade-in { opacity: 1; transform: none; transition: none; }
+}
     </style>
     <script defer src="/_vercel/speed-insights/script.js"></script>
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
 
+<div class="cursor-glow" aria-hidden="true"></div>
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 
-<nav class="top-nav">
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
-    <div class="nav-menu">
-        <a href="/index.html">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html">Leadership</a>
-        <a href="/contact.html">Contact</a>
-    </div>
-    <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
-        <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
-        </button>
-    </div>
-</nav>
+<!-- Nav content is injected by main.js -->
+<nav class="top-nav"></nav>
 
 <div class="resume-layout">
-    <!-- Sticky Navigation Sidebar -->
+    <!-- Sticky sidebar (desktop) -->
     <aside class="resume-sidebar">
         <a href="#summary" class="resume-nav-link active">Executive Summary</a>
         <a href="#experience" class="resume-nav-link">Professional Experience</a>
         <a href="#education" class="resume-nav-link">Education</a>
         <a href="#skills" class="resume-nav-link">Core Competencies</a>
-        <a href="#leadership" class="resume-nav-link">Leadership & Awards</a>
-        
-        <a href="Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn btn-primary" style="margin-top: 2rem; justify-content: center;">
+        <a href="#leadership" class="resume-nav-link">Leadership &amp; Awards</a>
+
+        <a href="/Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="btn btn-primary" style="margin-top: 1.5rem; justify-content: center;">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
             Download PDF
         </a>
+        <button type="button" class="btn btn-outline" onclick="window.print()" style="justify-content: center;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+            Print Resume
+        </button>
+        <div class="side-updated">Last updated: Nov 2026</div>
     </aside>
 
-    <!-- Main Resume Content -->
     <main>
-        <header class="resume-header scroll-anim">
+        <!-- Sticky section chips (mobile) -->
+        <nav class="resume-chips" aria-label="Resume sections">
+            <a href="#summary" class="resume-chip active">Summary</a>
+            <a href="#experience" class="resume-chip">Experience</a>
+            <a href="#education" class="resume-chip">Education</a>
+            <a href="#skills" class="resume-chip">Skills</a>
+            <a href="#leadership" class="resume-chip">Leadership</a>
+            <a href="/Fardin_Resume.pdf" download="Fardin_Rahman_Khan_Raafi_Resume.pdf" class="resume-chip">PDF ↓</a>
+        </nav>
+
+        <header class="resume-header fade-in">
             <h1 class="gradient-text">Fardin Rahman Khan Raafi</h1>
+            <div class="resume-role">Junior Executive, Marketing <span>·</span> Augmex Technologies Ltd.</div>
             <div class="resume-meta">
-                <span>📍 Mirpur 10, Dhaka 1216</span>
-                <a href="tel:+8801729114364">📞 +880 1729-114364</a>
+                <span>📍 Dhaka, Bangladesh</span>
                 <a href="mailto:fardinraafi@gmail.com">✉️ fardinraafi@gmail.com</a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">🔗 LinkedIn</a>
+                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener">🔗 LinkedIn</a>
+                <span class="updated-pill">Updated Nov 2026</span>
             </div>
         </header>
 
-        <section id="summary" class="resume-section scroll-anim">
+        <section id="summary" class="resume-section fade-in">
             <h2 class="resume-section-title">Summary</h2>
             <div class="summary-card">
-                Marketing graduate with experience in business development, lead generation, brand strategy, and digital marketing. Skilled in B2B outreach, market research, CRM management, and creative design, with hands-on experience using Salesforce, LinkedIn Sales Navigator, Apollo.io and AI tools. Strong background in leadership, project coordination, and cross-functional collaboration through internships, university clubs, and professional roles.
+                Marketing graduate and Junior Executive at Augmex Technologies, working across B2B lead generation, content marketing and brand design. In 2026, I drove <strong>340K+ organic views</strong> across Augmex and its sneaker sub-brand FYGO, growing FYGO from 0 to <strong>17K+ followers</strong> and <strong>৳20 lakh+ in sales</strong>. Skilled in B2B outreach, market research, CRM management and creative design, with hands-on experience using Salesforce, LinkedIn Sales Navigator, Apollo.io, Buffer and AI tools. Strong background in leadership, project coordination, and cross-functional collaboration through internships, university clubs, and professional roles.
+                <div class="summary-stats">
+                    <div class="s-stat"><div class="s-num" data-count="340" data-prefix="" data-suffix="K+">340K+</div><div class="s-lbl">Organic views</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="17" data-prefix="" data-suffix="K+">17K+</div><div class="s-lbl">FYGO followers</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="20" data-prefix="৳" data-suffix="L+">৳20L+</div><div class="s-lbl">FYGO sales</div></div>
+                    <div class="s-stat"><div class="s-num" data-count="40" data-prefix="" data-suffix="K+">40K+</div><div class="s-lbl">CRM records</div></div>
+                </div>
             </div>
         </section>
 
-    <section id="experience" class="resume-section">
+        <section id="experience" class="resume-section">
             <h2 class="resume-section-title">Professional Experience</h2>
             <div class="epic-timeline">
-                
+
                 <div class="et-item scroll-anim">
                     <div class="et-logo"><img src="/misc_img/augmex_logo_white.png" alt="Augmex"></div>
                     <div class="et-dot"></div>
                     <div class="et-content">
-                        <div class="et-date">May 2026 - Present</div>
+                        <div class="et-date">April 2026 - Present</div>
                         <h3 class="et-title">Junior Executive, Marketing</h3>
                         <div class="et-company">Augmex Technologies Ltd.</div>
                         <ul class="et-desc">
-                            <li>Conducted market research across 5+ targeted growth projects to identify new business opportunities and refine the Ideal Customer Profile (ICP).</li>
-                            <li>Designed and scheduled 60+ visual assets and social media content pieces per month, ensuring consistent corporate brand identity.</li>
-                            <li>Collaborated with a core growth team to align marketing deliverables.</li>
+                            <li>Drove <strong>340K+ organic views</strong> through content marketing, with zero ad spend on Augmex.</li>
+                            <li>Researched 5+ growth projects to refine the ICP; designed and scheduled 60+ content pieces a month in Buffer.</li>
                         </ul>
+                        <div class="et-sub">FYGO <small>· Augmex's sneaker sub-brand</small></div>
+                        <ul class="et-desc">
+                            <li>Grew the brand from <strong>0 to 17K+ followers</strong>, driving <strong>৳20 lakh+ in sales</strong> from 300+ customers.</li>
+                        </ul>
+                        <a href="/index.html#content-results" class="et-link no-print">See the full content results ➔</a>
                     </div>
                 </div>
 
@@ -267,14 +427,14 @@
                     <div class="et-logo"><img src="/misc_img/augmex_logo_white.png" alt="Augmex"></div>
                     <div class="et-dot"></div>
                     <div class="et-content">
-                        <div class="et-date">Jan 2026 - May 2026</div>
-                        <h3 class="et-title">Intern, Business Development</h3>
+                        <div class="et-date">Jan 2026 - April 2026</div>
+                        <h3 class="et-title">Intern, Marketing</h3>
                         <div class="et-company">Augmex Technologies Ltd.</div>
                         <ul class="et-desc">
                             <li>Identified and mapped KDMs aligned with ICP to support targeted B2B sales pipeline development.</li>
-                            <li>Generated over 67,000 organic impressions across Facebook & LinkedIn within one month through content marketing and social media engagement strategies.</li>
-                            <li>Enriched & maintained 40,000+ CRM records, improving data accuracy, lead quality, & sales pipeline management.</li>
-                            <li>Gained experience in Automation using tools like Instantly, Zapier and Apollo.</li>
+                            <li>Generated over 67,000 organic impressions across Facebook &amp; LinkedIn within one month through content marketing and social media engagement strategies.</li>
+                            <li>Enriched &amp; maintained 40,000+ CRM records, improving data accuracy, lead quality, &amp; sales pipeline management.</li>
+                            <li>Gained experience in automation using tools like Instantly, Zapier and Apollo.</li>
                         </ul>
                     </div>
                 </div>
@@ -292,14 +452,16 @@
                         </ul>
                     </div>
                 </div>
+
+            </div> <!-- ✅ this closing tag was missing before -->
         </section>
 
-      <section id="education" class="resume-section">
+        <section id="education" class="resume-section">
             <h2 class="resume-section-title">Education</h2>
             <div class="epic-timeline">
-                
+
                 <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/uni.png" alt="BUBT Logo"></div>
+                    <div class="edu-logo"><img src="/misc_img/uni.png" alt="BUBT Logo"></div>
                     <div class="et-dot"></div>
                     <div class="et-content">
                         <div class="et-date">2022 - 2025</div>
@@ -313,7 +475,7 @@
                 </div>
 
                 <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/hsc.png" alt="Dhaka Commerce College Logo"></div>
+                    <div class="edu-logo"><img src="/misc_img/hsc.png" alt="Dhaka Commerce College Logo"></div>
                     <div class="et-dot"></div>
                     <div class="et-content">
                         <div class="et-date">2019 - 2021</div>
@@ -327,7 +489,7 @@
                 </div>
 
                 <div class="et-item scroll-anim">
-                    <div class="edu-logo"><img src="misc_img/ssc.png" alt="Adarsha High School Logo"></div>
+                    <div class="edu-logo"><img src="/misc_img/ssc.png" alt="Adarsha High School Logo"></div>
                     <div class="et-dot"></div>
                     <div class="et-content">
                         <div class="et-date">2019</div>
@@ -345,70 +507,42 @@
 
         <section id="skills" class="resume-section">
             <h2 class="resume-section-title">Core Competencies</h2>
+            <div class="skills-legend">
+                <span><span class="dots"><i class="on"></i><i class="on"></i><i class="on"></i></span> Advanced</span>
+                <span><span class="dots"><i class="on"></i><i class="on"></i><i></i></span> Proficient</span>
+                <span><span class="dots"><i class="on"></i><i></i><i></i></span> Working knowledge</span>
+            </div>
             <div class="skills-grid">
-                
-                <div class="skill-group">
-                    <h3>Growth & Marketing</h3>
-                    
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Brand Strategy</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Market Research</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>B2B Lead Generation</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Cold Outreach & Automation</span><span>85%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Data Analytics</span><span>80%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="80%"></div></div>
-                    </div>
+                <div class="skill-group fade-in">
+                    <h3>Growth &amp; Marketing</h3>
+                    <div class="skill-row"><span class="skill-name">Brand Strategy</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Content Marketing &amp; Social Media</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Market Research</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">B2B Lead Generation</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Cold Outreach &amp; Automation</span><span class="skill-level" data-level="2"></span></div>
+                    <div class="skill-row"><span class="skill-name">Data Analytics</span><span class="skill-level" data-level="2"></span></div>
                 </div>
-
-                <div class="skill-group">
-                    <h3>Software & Tools</h3>
-                    
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Illustrator, Photoshop & Canva</span><span>100%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="100%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Apollo.io & Sales Navigator</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Claude, Perplexity & AI Tools</span><span>95%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="95%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Salesforce CRM</span><span>85%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="85%"></div></div>
-                    </div>
-                    <div class="skill-bar-wrap">
-                        <div class="skill-info"><span>Zapier & Instantly</span><span>80%</span></div>
-                        <div class="skill-track"><div class="skill-fill" data-width="80%"></div></div>
-                    </div>
+                <div class="skill-group fade-in">
+                    <h3>Software &amp; Tools</h3>
+                    <div class="skill-row"><span class="skill-name">Illustrator, Photoshop &amp; Canva</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Apollo.io &amp; Sales Navigator</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Claude, Perplexity &amp; AI Tools</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Buffer &amp; Meta Business Suite</span><span class="skill-level" data-level="3"></span></div>
+                    <div class="skill-row"><span class="skill-name">Salesforce CRM</span><span class="skill-level" data-level="2"></span></div>
+                    <div class="skill-row"><span class="skill-name">Zapier &amp; Instantly</span><span class="skill-level" data-level="2"></span></div>
                 </div>
-
             </div>
         </section>
 
-       <section id="leadership" class="resume-section">
-            <h2 class="resume-section-title">Leadership & Recognition</h2>
+        <section id="leadership" class="resume-section">
+            <h2 class="resume-section-title">Leadership &amp; Recognition</h2>
             <div class="leadership-grid">
-                
-                <div class="lead-card scroll-anim">
+
+                <div class="lead-card fade-in">
                     <div class="lead-icon-wrap">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
                     </div>
-                    <h4>Awards & Honors</h4>
+                    <h4>Awards &amp; Honors</h4>
                     <div class="lead-tags">
                         <span>BASIS Leader of the Year '24</span>
                         <span>Lead Luminary (LEAD Academy)</span>
@@ -417,33 +551,32 @@
                     </div>
                 </div>
 
-                <div class="lead-card scroll-anim">
+                <div class="lead-card fade-in">
                     <div class="lead-icon-wrap">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                     </div>
                     <h4>Key Leadership Roles</h4>
                     <div class="lead-tags">
-                        <span>Head of Corporate Affairs (BUBT)</span>
+                        <span>Head of Corporate &amp; Alumni Relations (BUBT Career Office)</span>
                         <span>Branding Lead (TEDxUttara)</span>
                         <span>Secretary (Rotaract Club)</span>
                         <span>Media Secretary (BUBT SWC)</span>
                     </div>
                 </div>
 
-                <div class="lead-card scroll-anim">
+                <div class="lead-card fade-in">
                     <div class="lead-icon-wrap">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
                     </div>
-                    <h4>Competitions & Scholarships</h4>
+                    <h4>Competitions &amp; Scholarships</h4>
                     <div class="lead-tags">
                         <span>3rd Place Ad-Making</span>
                         <span>70% Scholarship ISCEA '25</span>
-                        <span>Aspire Leaders Program '26</span>
-                        <span>Harvard Business School</span>
+                        <span>Aspire Leaders Program '26 (Aspire Institute, founded at Harvard Business School)</span>
                     </div>
                 </div>
 
-                <div class="lead-card scroll-anim">
+                <div class="lead-card fade-in">
                     <div class="lead-icon-wrap">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                     </div>
@@ -457,112 +590,157 @@
                     </div>
                 </div>
 
+                <a href="/certificates.html" class="lead-card link-card fade-in no-print">
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M7 9h10M7 13h6"></path><path d="M15 18l1 4 2-1.5L20 22l1-4"></path></svg>
+                    </div>
+                    <h4>58 Professional Certificates</h4>
+                    <p>Courses and certifications across marketing, sales, design and AI.</p>
+                    <span class="go">View all certificates ➔</span>
+                </a>
+
+                <a href="/volunteer.html" class="lead-card link-card fade-in no-print">
+                    <div class="lead-icon-wrap">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    </div>
+                    <h4>Leadership &amp; Volunteering</h4>
+                    <p>Rotaract, university clubs, TEDxUttara and community projects in detail.</p>
+                    <span class="go">See leadership page ➔</span>
+                </a>
+
             </div>
         </section>
-        <section class="resume-section scroll-anim">
+
+        <section class="resume-section fade-in">
             <div class="glass-card no-hover" style="text-align: center; padding: 2rem;">
-                <h4 style="color: var(--c1); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 0.5rem;">Professional Reference</h4>
-                <p style="font-size: 1.2rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.2rem;">Dr. Mohammad Raihanul Hasan</p>
-                <p style="color: var(--text-muted); margin-bottom: 0.5rem;">Director of Career Office, BUBT</p>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">📞 01711301177 &nbsp;|&nbsp; ✉️ raihanul@bubt.edu.bd</p>
+                <h4 style="color: var(--c1); text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.85rem; margin-bottom: 0.5rem;">References</h4>
+                <p style="font-size: 1.1rem; font-weight: 700; color: var(--text-main); margin: 0;">Available on request.</p>
             </div>
         </section>
     </main>
 </div>
 
-<footer class="site-footer">
-    <div class="footer-grid">
-        <div class="footer-col">
-            <h2 style="font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 1rem;">Fardin Rahman<br><span class="gradient-text">Khan Raafi</span></h2>
-            <p style="color: var(--text-muted); margin-bottom: 1rem; max-width: 350px;">Marketing professional passionate about brand communication, creative strategies, and growth leadership.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Quick Links</h4>
-            <div class="footer-col-links">
-                <a href="/index.html">Home</a>
-                <a href="/gallery.html">Gallery</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/certificates.html">Certificates</a>
-                <a href="/volunteer.html">Leadership</a>
-                <a href="/contact.html">Contact</a>
-            </div>
-        </div>
-        <div class="footer-col">
-            <h4>Contact Info</h4>
-            <div class="footer-col-links">
-                <a href="mailto:fardinraafi@gmail.com">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                    fardinraafi@gmail.com
-                </a>
-                <a href="https://www.linkedin.com/in/fardinraafi" target="_blank">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                    LinkedIn Profile
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="copyright">© <span id="current-year"></span> Fardin Rahman Khan Raafi. Built for Humans & AI.</div>
-</footer>
+<!-- Footer content is injected by main.js -->
+<footer class="site-footer"></footer>
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
 <script src="/main.js"></script>
 
-<!-- Embedded Logic for Smooth Resume Animations -->
 <script>
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Scroll-triggered animations for Timeline & Cards
-    const animElements = document.querySelectorAll('.scroll-anim');
-    if (animElements.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-in');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
-        animElements.forEach(el => observer.observe(el));
-    }
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // 2. Animated Skill Bars (Fills up when scrolled into view)
-    const skillFills = document.querySelectorAll('.skill-fill');
-    if (skillFills.length > 0) {
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const targetWidth = entry.target.getAttribute('data-width');
-                    entry.target.style.width = targetWidth;
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
-        skillFills.forEach(el => skillObserver.observe(el));
-    }
-
-    // 3. Highlight Active Sidebar Link based on Scroll Position
-    const sections = document.querySelectorAll('.resume-section');
-    const navLinks = document.querySelectorAll('.resume-nav-link');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (scrollY >= (sectionTop - 150)) {
-                current = section.getAttribute('id');
-            }
-        });
-
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(current) && current !== '') {
-                link.classList.add('active');
-            }
-        });
+    /* 1. Fill in the skill level dots */
+    const names = { 3: 'Advanced', 2: 'Proficient', 1: 'Working knowledge' };
+    document.querySelectorAll('.skill-level').forEach(el => {
+        const lvl = Number(el.dataset.level);
+        el.innerHTML = `<em>${names[lvl]}</em><span class="dots">${[1, 2, 3].map(() => '<i></i>').join('')}</span>`;
     });
+
+    /* 2. Scroll-in animations (timeline, cards, dots) */
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.classList.add('animate-in');
+            // light up the dots one by one
+            el.querySelectorAll('.skill-level').forEach((lv, r) => {
+                const dots = lv.querySelectorAll('.dots i');
+                for (let k = 0; k < Number(lv.dataset.level); k++) {
+                    setTimeout(() => dots[k].classList.add('on'), reduceMotion ? 0 : r * 90 + k * 140);
+                }
+            });
+            io.unobserve(el);
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    document.querySelectorAll('.scroll-anim, .fade-in').forEach(el => io.observe(el));
+
+    /* 3. Mobile chips sit right under the sticky nav */
+    const nav = document.querySelector('.top-nav');
+    const chips = document.querySelector('.resume-chips');
+    const placeChips = () => { if (nav && chips) chips.style.setProperty('--chips-top', (nav.offsetHeight + 20) + 'px'); };
+    placeChips();
+    window.addEventListener('resize', placeChips);
+    setTimeout(placeChips, 300); // after main.js injects the nav
+
+    /* 4. Highlight the current section in the sidebar and chips */
+    const links = document.querySelectorAll('.resume-nav-link, .resume-chip');
+    const sections = document.querySelectorAll('.resume-section[id]');
+    const setActive = (id) => {
+        links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+        const chip = document.querySelector(`.resume-chip[href="#${id}"]`);
+        if (chip && chips) chips.scrollTo({ left: chip.offsetLeft - chips.clientWidth / 2 + chip.offsetWidth / 2, behavior: 'smooth' });
+    };
+    const secObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => secObserver.observe(s));
+
+    /* 5. Cursor glow */
+    const glow = document.querySelector('.cursor-glow');
+    if (glow && window.matchMedia('(pointer: fine)').matches && !reduceMotion) {
+        let gx = -9999, gy = -9999, cx = gx, cy = gy, raf = 0;
+        const step = () => {
+            cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+            glow.style.transform = `translate3d(${cx - 210}px, ${cy - 210}px, 0)`;
+            raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(step) : 0;
+        };
+        window.addEventListener('mousemove', e => {
+            if (cx === -9999) { cx = e.clientX; cy = e.clientY; }
+            gx = e.clientX; gy = e.clientY; glow.classList.add('on');
+            if (!raf) raf = requestAnimationFrame(step);
+        }, { passive: true });
+        document.addEventListener('mouseleave', () => glow.classList.remove('on'));
+    }
+
+    /* 6. Timeline light fills as you scroll */
+    const timelines = Array.from(document.querySelectorAll('.epic-timeline'));
+    timelines.forEach(tl => { const head = document.createElement('div'); head.className = 'tl-head'; tl.appendChild(head); });
+    let tlTicking = false;
+    const updateTimelines = () => {
+        const target = window.innerHeight * 0.6;
+        timelines.forEach(tl => {
+            const rect = tl.getBoundingClientRect();
+            const p = Math.min(Math.max((target - rect.top) / rect.height, 0), 1);
+            tl.style.setProperty('--p', p.toFixed(4));
+            tl.style.setProperty('--py', (p * rect.height).toFixed(1) + 'px');
+            tl.style.setProperty('--ho', p > 0 && p < 1 ? 1 : 0);
+            tl.querySelectorAll('.et-item').forEach(item => {
+                const dot = item.querySelector('.et-dot');
+                if (dot) item.classList.toggle('lit', dot.getBoundingClientRect().top < target);
+            });
+        });
+        tlTicking = false;
+    };
+    window.addEventListener('scroll', () => { if (!tlTicking) { tlTicking = true; requestAnimationFrame(updateTimelines); } }, { passive: true });
+    window.addEventListener('resize', updateTimelines);
+    updateTimelines();
+
+    /* 7. Section titles draw in, tags get stagger order, stats count up */
+    document.querySelectorAll('.lead-tags').forEach(g => g.querySelectorAll('span').forEach((s, i) => s.style.setProperty('--t', i)));
+    document.querySelectorAll('.skill-group').forEach(g => g.querySelectorAll('.skill-row').forEach((row, i) => row.style.transitionDelay = (i * 0.07) + 's'));
+    const titleIO = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('title-in'); titleIO.unobserve(e.target); }
+    }), { threshold: 0.05 });
+    document.querySelectorAll('.resume-section').forEach(s => titleIO.observe(s));
+
+    const countUp = el => {
+        const end = parseFloat(el.dataset.count), pre = el.dataset.prefix || '', suf = el.dataset.suffix || '';
+        if (reduceMotion) return;
+        const t0 = performance.now(), dur = 1500;
+        const tick = now => {
+            const p = Math.min((now - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+            el.textContent = pre + Math.round(end * e) + suf;
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+    const statIO = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { countUp(e.target); statIO.unobserve(e.target); }
+    }), { threshold: 0.6 });
+    document.querySelectorAll('.s-num[data-count]').forEach(el => statIO.observe(el));
 });
 </script>
-
 </body>
 </html>
