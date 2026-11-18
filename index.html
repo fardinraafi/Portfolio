@@ -642,6 +642,15 @@ body:not(.dark-mode) .reco-pill { color: #0A66C2; }
     .fx-reveal, .cr-card, .cr-step { opacity: 1 !important; transform: none !important; filter: none !important; }
     .tk-track, .cr-ribbon-track, .section-title::after, .pp *, .pp-line::after { animation: none !important; }
 }
+        /* CURSOR GLOW (desktop only) */
+.cursor-glow {
+    position: fixed; top: 0; left: 0; width: 420px; height: 420px; border-radius: 50%; pointer-events: none; z-index: 1;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(37, 99, 235, 0.08) 35%, transparent 70%);
+    transform: translate3d(-9999px, -9999px, 0); opacity: 0; transition: opacity 0.4s ease; will-change: transform;
+}
+body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, rgba(37, 99, 235, 0.06) 35%, transparent 70%); }
+.cursor-glow.on { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
     </style>
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -677,6 +686,7 @@ body:not(.dark-mode) .reco-pill { color: #0A66C2; }
 
 <!-- The Interactive Physics Canvas Engine -->
 <canvas id="neural-canvas"></canvas>
+    <div class="cursor-glow" aria-hidden="true"></div>
 
 <div class="bg-mesh">
     <div class="blob blob-1"></div>
@@ -2192,6 +2202,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const carouselEl = document.querySelector("[data-glass-carousel]");
     if (carouselEl) createGlassCarousel(carouselEl);
+</script>
+    <script>
+(() => {
+    const glow = document.querySelector('.cursor-glow');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!glow || reduce || !window.matchMedia('(pointer: fine)').matches) return;
+    let gx = -9999, gy = -9999, cx = gx, cy = gy, raf = 0;
+    const step = () => {
+        cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18;
+        glow.style.transform = `translate3d(${cx - 210}px, ${cy - 210}px, 0)`;
+        raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(step) : 0;
+    };
+    window.addEventListener('mousemove', e => {
+        if (cx === -9999) { cx = e.clientX; cy = e.clientY; }
+        gx = e.clientX; gy = e.clientY; glow.classList.add('on');
+        if (!raf) raf = requestAnimationFrame(step);
+    }, { passive: true });
+    document.addEventListener('mouseleave', () => glow.classList.remove('on'));
+})();
 </script>
 </body>
 </html>
