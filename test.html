@@ -60,12 +60,16 @@ body.dark-mode .glass { background: rgba(15, 23, 42, 0.6); border-color: rgba(25
 .hero { display: grid; grid-template-columns: 1fr 1.05fr; gap: 2rem; align-items: center; min-height: 78vh; padding: 1rem 0 2rem; }
 .hero-copy .eyebrow { color: #F59E0B; font-weight: 700; letter-spacing: 0.14em; font-size: 0.82rem; text-transform: uppercase; display: inline-flex; align-items: center; gap: 10px; margin-bottom: 0.8rem; }
 .hero-copy .eyebrow::before { content: ''; width: 28px; height: 2px; background: linear-gradient(90deg, #F59E0B, transparent); }
-.hero-copy h1 {
-    font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -0.035em; margin-bottom: 1.1rem;
-    background-image: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)), linear-gradient(var(--text-main), var(--text-main));
-    background-repeat: no-repeat; background-size: 35% 100%, 100% 100%;
-    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+.tt-wrap { position: relative; margin-bottom: 1.1rem; }
+.tech-text { display: none; }
+.tt-wrap.tt-on .tt-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.tt-wrap:not(.tt-on) .tt-h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.02; letter-spacing: -0.035em; }
+.tt-wrap.tt-on .tech-text {
+    display: block; position: relative; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6vw, 4.6rem);
+    height: 1.55em; width: calc(100% + 48px); margin: -0.3em -24px -0.42em; touch-action: pan-y; user-select: none; -webkit-user-select: none;
 }
+.tt-wrap.tt-on .tech-text.tt-2 { margin-bottom: 0; }
+.tech-text canvas { display: block; width: 100%; height: 100%; }
 .hero-copy h1 em { font-style: normal; }
 .hero-copy p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.65; max-width: 520px; margin-bottom: 1.8rem; }
 .hero-ctas { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 2rem; }
@@ -100,7 +104,7 @@ body.dark-mode .glass { background: rgba(15, 23, 42, 0.6); border-color: rgba(25
 .c-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 10px; display: block; pointer-events: none; }
 .c-logo.on { box-shadow: 0 0 0 4px var(--og), 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 34px var(--oc); }
 .c-tip {
-    position: absolute; z-index: 60; pointer-events: none; min-width: 210px; max-width: 260px; padding: 12px 14px; border-radius: 14px; opacity: 0; transform: translateY(6px);
+    position: absolute; z-index: 400; pointer-events: none; min-width: 210px; max-width: 260px; padding: 12px 14px; border-radius: 14px; opacity: 0; transform: translateY(6px);
     background: rgba(15, 23, 42, 0.94); border: 1px solid rgba(255, 255, 255, 0.12); color: #F1F5F9; transition: opacity 0.25s, transform 0.25s; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.45);
 }
 .c-tip.show { opacity: 1; transform: none; }
@@ -295,6 +299,33 @@ body.dark-mode .org-role { color: #C4B5FD; }
 .btn-share { color: var(--text-muted); border: 1px solid transparent; background: none; }
 .btn-share:hover { color: #0A66C2; border-color: rgba(10, 102, 194, 0.35); }
 
+
+/* Two photos side by side */
+.duo { position: relative; display: flex; height: 250px; padding: 6px 4px; }
+.ph {
+    position: relative; flex: 1; min-width: 0; padding: 0; border: 3px solid rgba(255, 255, 255, 0.92); border-radius: 18px; overflow: hidden; cursor: zoom-in;
+    background: #1e293b; box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35); transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s, border-color 0.4s;
+}
+body:not(.dark-mode) .ph { border-color: #fff; box-shadow: 0 14px 30px rgba(15, 23, 42, 0.18); }
+.ph + .ph { margin-left: -16px; }
+.ph0 { z-index: 1; } .ph1 { z-index: 2; }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s ease, filter 0.4s; }
+.org:hover .ph0 { transform: rotate(-4deg) translateX(-8px); }
+.org:hover .ph1 { transform: rotate(4deg) translateX(8px); }
+.ph:hover { z-index: 3; border-color: var(--oc); box-shadow: 0 0 0 2px var(--oc), 0 18px 36px rgba(0, 0, 0, 0.4), 0 0 26px var(--og); }
+.org:hover .ph:hover { transform: rotate(0) translateY(-6px) scale(1.04); }
+.ph:hover img { transform: scale(1.06); }
+.ph .zoom { position: absolute; right: 8px; bottom: 8px; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: rgba(15, 23, 42, 0.8); color: #fff; font-size: 0.8rem; opacity: 0; transform: scale(0.6); transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.ph:hover .zoom { opacity: 1; transform: scale(1); }
+.org { grid-template-columns: 380px 1fr; }
+.orgs.grid .duo { height: 170px; }
+@media (max-width: 900px) {
+    .duo { height: 190px; }
+    .orgs.grid .duo { height: 110px; padding: 2px; }
+    .orgs.grid .ph { border-width: 2px; border-radius: 10px; }
+    .orgs.grid .ph + .ph { margin-left: -8px; }
+}
+
 /* Grid view */
 .orgs.grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .orgs.grid .org { grid-template-columns: 1fr; gap: 1rem; align-items: start; }
@@ -420,7 +451,11 @@ body.dark-mode .radar .lbl.on, body.dark-mode .radar .lbl:hover { fill: #C4B5FD;
     <section class="hero">
         <div class="hero-copy fx">
             <div class="eyebrow">13 organisations · 2023 → today</div>
-            <h1 id="heroTitle">Leadership &amp; Community</h1>
+            <div class="tt-wrap" id="ttWrap">
+                <h1 class="gradient-text tt-h1" id="heroTitle">Leadership &amp; Community</h1>
+                <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+                <div class="tech-text tt-2" id="tt2" aria-hidden="true"><canvas></canvas></div>
+            </div>
             <p>Building networks, guiding peers, and maintaining brand consistency across impactful student organizations and corporate initiatives.</p>
             <div class="hero-ctas">
                 <a href="#journey" class="btn btn-primary">See the journey ➔</a>
@@ -567,7 +602,7 @@ const ORGS = [
       summary: 'Served as Secretary (Jun 2025 – May 2026) after joining in September 2023.',
       bullets: ['Contributed to 30+ community and professional projects from September 2023 to 2026.', 'Grateful for all the experiences and knowledge gained on this journey.'],
       alts: ['Fardin Rahman Khan Raafi, Program Chairman and Secretary of Rotaract Club of Dhaka Dynamic', 'Fardin Rahman Khan Raafi hosting a general meeting at Rotaract Club of Dhaka Dynamic'] },
-    { id: 'swc', name: 'BUBT Social Welfare Club', role: 'Media & Publications Secretary', start: '2025-06', end: '2026-04', link: 'https://www.facebook.com/BUBTSWC',
+    { id: 'swc', name: 'BUBT Social Welfare Club', role: 'Media & Publications Secretary', start: '2024-01', end: '2026-04', link: 'https://www.facebook.com/BUBTSWC',
       logo: 'swc-logo', photos: ['swc-1', 'swc-2'], color: '#7C3AED', tags: ['leadership', 'design', 'community'], impact: ['🗳️ First-ever election', '100+ designs'],
       summary: 'Elected in the first election of the BUBT Social Welfare Club, managing branding identities and brand consistency across all promotional elements.',
       bullets: ['Managed and guided the media team across all departments, creating 100+ designs.', 'Oversaw content moderation, creatives, anchors, and brand partnerships.'],
@@ -592,7 +627,7 @@ const ORGS = [
       summary: "Served as a Lead Luminary and Campus Ambassador for LEAD Academy's 4.0 Cohort.",
       bullets: [],
       alts: ['Fardin Rahman Khan Raafi, Lead Luminary and Campus Ambassador at LEAD Academy', 'Fardin Rahman Khan Raafi at the LEAD Academy Town Hall Meeting in Savar'] },
-    { id: 'bbc', name: 'BUBT Business Club', role: 'Sub Executive Member', start: '2025-01', end: '2025-08', link: 'https://www.facebook.com/businessclub.bubt',
+    { id: 'bbc', name: 'BUBT Business Club', role: 'Sub Executive Member', start: '2023-08', end: '2025-08', link: 'https://www.facebook.com/businessclub.bubt',
       logo: 'bbc-logo', photos: ['bbc-1', 'bbc-2'], color: '#1D4ED8', tags: ['design', 'leadership'], impact: ['BizzMaster S1 logo', 'Hult Prize identity'],
       summary: 'Designed the visual identity behind the club\'s biggest events.',
       bullets: ['Created BizzMaster S1 materials and logo.', 'Created the Hult Prize 2024 identity.', 'Designed visuals for all events from 2023 to March 2025.'],
@@ -631,10 +666,11 @@ const SKILLS = [
     { name: 'Community', orgs: ['rotaract', 'swc', 'leo', 'lead'] }
 ];
 const HIGHLIGHTS = [
-    { img: '/leadership/tedx-1.jpg', tag: '🏆 TEDxUttara', title: 'Best Department at TEDxUttara', text: 'Our design and branding team was named the best department of the event.', org: 'tedx' },
-    { img: '/gallery/gallery_25.webp', tag: '🥇 BASIS · BUBT Chapter', title: 'BASIS Leader of the Year 2024', text: 'Recognised as Leader of the Year by the BASIS BUBT Chapter.', org: null },
-    { img: '/leadership/swc-1.jpg', tag: '🗳️ BUBT Social Welfare Club', title: "Elected in SWC's first-ever election", text: 'Voted in as Media & Publications Secretary in the club\'s very first election.', org: 'swc' },
-    { img: '/leadership/hult-1.jpg', tag: '🎨 Hult Prize', title: 'Hult Prize identity designer', text: 'Designed the full visual identity: ID cards, banners and digital assets.', org: 'hult' }
+    { img: '/leadership/bubt-vol-1.jpg', tag: '💼 BUBT Career Guidance Office', title: 'Head of Corporate & Alumni Relations', text: 'At the BUBT Job Fair 2025.', org: 'bubt-cgo' },
+    { img: '/gallery/gallery_13.webp', tag: '🎤 Department of Marketing, BUBT', title: 'Organizer, Ad Fiesta Season 1', text: 'Organizing Ad Fiesta Season 1 for the Department of Marketing, BUBT.', org: 'mkt' },
+    { img: '/gallery/gallery_28.webp', tag: '🏆 TEDxUttara 2025', title: 'Best Department, TEDxUttara 2025', text: 'Our design & branding team was named the best department of the event.', org: 'tedx' },
+    { img: '/gallery/gallery_29.webp', tag: '🎖️ TEDxUttara 2025', title: 'Receiving my organizing award', text: 'Recognised on stage for organizing TEDxUttara 2025.', org: 'tedx' },
+    { img: '/leadership/lead-1.jpg', tag: '🤝 LEAD Academy', title: 'LEAD Academy Town Hall Meeting', text: 'Took part in the Town Hall Meeting as a Lead Luminary of Cohort 4.0.', org: 'lead' }
 ];
 
 /* helpers */
@@ -657,10 +693,8 @@ ORGS.forEach(o => o.span = `${fmtM(o.start)} – ${o.end ? fmtM(o.end) : 'Presen
 const list = $('#orgList');
 list.innerHTML = ORGS.map(o => `
 <article class="org fx" id="org-${o.id}" data-tags="${o.tags.join(' ')}${isLive(o) ? ' current' : ''}" style="--oc:${o.color};--og:${rgba(o.color, 0.35)}">
-    <div class="stack" data-org="${o.id}" role="button" tabindex="0" aria-label="View ${o.name} photos">
-        <figure class="polaroid p1"><img src="${img(o.photos[0])}" alt="${o.alts[0]}" loading="lazy"><figcaption>${o.name.split(' ')[0]}</figcaption></figure>
-        <figure class="polaroid p2"><img src="${img(o.photos[1])}" alt="${o.alts[1]}" loading="lazy"><figcaption>${o.span.split(' – ')[0]}</figcaption></figure>
-        <span class="zoom">⤢</span>
+    <div class="duo" data-org="${o.id}">
+        ${o.photos.map((p, k) => `<button type="button" class="ph ph${k}" data-k="${k}" aria-label="Open photo ${k + 1} of ${o.name}"><img src="${img(p)}" alt="${o.alts[k]}" loading="lazy"><span class="zoom">⤢</span></button>`).join('')}
     </div>
     <div>
         <div class="org-top">
@@ -761,10 +795,9 @@ const showLb = i => {
 const openLb = (orgId, k = 0) => { showLb(PHOTOS.findIndex(p => p.org === orgId) + k); lbx.classList.add('open'); document.body.style.overflow = 'hidden'; };
 const closeLb = () => { lbx.classList.remove('open'); document.body.style.overflow = ''; };
 list.addEventListener('click', e => {
-    const s = e.target.closest('.stack'); if (!s) return;
-    const k = e.target.closest('.p1') ? 0 : 1; openLb(s.dataset.org, k);
+    const ph = e.target.closest('.ph'); if (!ph) return;
+    openLb(ph.closest('.duo').dataset.org, +ph.dataset.k);
 });
-list.addEventListener('keydown', e => { const s = e.target.closest('.stack'); if (s && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openLb(s.dataset.org); } });
 $('#lbxX').onclick = closeLb; $('#lbxPrev').onclick = e => { e.stopPropagation(); showLb(li - 1); }; $('#lbxNext').onclick = e => { e.stopPropagation(); showLb(li + 1); };
 lbx.addEventListener('click', e => { if (e.target === lbx) closeLb(); });
 document.addEventListener('keydown', e => {
@@ -811,7 +844,7 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
 ========================================================= */
 (() => {
     const jt = $('#jt'), years = $('#jtYears');
-    const T0 = 2023 + 8 / 12, T1 = 2027;                 // Sep 2023 → end of 2026
+    const T0 = 2023 + 7 / 12, T1 = 2027;                 // Aug 2023 → end of 2026
     const pos = ym => { const [y, m] = ym.split('-').map(Number); return ((y + (m - 1) / 12) - T0) / (T1 - T0) * 100; };
     for (let y = 2024; y <= 2026; y++) years.insertAdjacentHTML('beforeend', `<div style="left:${pos(y + '-01')}%"><span>${y}</span></div>`);
     years.insertAdjacentHTML('beforeend', `<div style="left:0;border:none"><span>2023</span></div>`);
@@ -919,9 +952,9 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
             x += it.mx; y += it.my;
             const s = 0.68 + depth * 0.45;
             it.el.style.transform = `translate(${x}px, ${y}px) scale(${active === it ? s * 1.25 : s})`;
-            it.el.style.zIndex = depth > 0.5 ? 55 + Math.round(depth * 10) : 20 + Math.round(depth * 10);
-            it.el.style.opacity = 0.45 + depth * 0.55;
-            it.el.style.filter = depth < 0.4 ? `blur(${(0.4 - depth) * 3}px)` : 'none';
+            it.el.style.zIndex = active === it ? 300 : depth > 0.5 ? 55 + Math.round(depth * 10) : 20 + Math.round(depth * 10);
+            it.el.style.opacity = active === it ? 1 : 0.45 + depth * 0.55;
+            it.el.style.filter = depth < 0.4 && active !== it ? `blur(${(0.4 - depth) * 3}px)` : 'none';
             if (active === it) {
                 line.setAttribute('x1', cx); line.setAttribute('y1', cy); line.setAttribute('x2', x); line.setAttribute('y2', y); line.style.display = '';
                 tip.style.left = Math.max(0, Math.min(W - 220, x - 105)) + 'px'; tip.style.top = (y + 40 > W - 90 ? y - 110 : y + 36) + 'px';
@@ -953,8 +986,6 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
     const onScroll = () => {
         ticking = false;
         // heading fills with the gradient as you start scrolling
-        const fill = Math.min(100, 35 + window.scrollY / 4);
-        h1.style.backgroundSize = `${fill}% 100%, 100% 100%`;
         // big year + side progress while reading the role cards (desktop story view)
         const r = orgSec.getBoundingClientRect(), inSec = r.top < window.innerHeight * 0.5 && r.bottom > window.innerHeight * 0.5;
         const story = !list.classList.contains('grid');
@@ -974,6 +1005,370 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
     };
     window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
     onScroll();
+})();
+
+/* =========================================================
+   TECH TEXT: vanilla JS port of the React "TechText" effect,
+   drawn in Syne with the site's animated brand gradient.
+========================================================= */
+function createTechText(wrap, container, TEXT, ALIGN, INTRO_DELAY) {
+    if (!wrap || !container) return;
+    const canvas = container.querySelector('canvas');
+    const ctx = canvas && canvas.getContext('2d');
+    const layer = document.createElement('canvas');      // letters are drawn here, then coloured with the gradient
+    const lctx = layer.getContext('2d');
+    const scratch = document.createElement('canvas');     // used for measuring text
+    const sctx = scratch.getContext('2d');
+    if (!ctx || !lctx || !sctx) return;                   // no canvas support: the normal <h1> stays visible
+    wrap.classList.add('tt-on');
+
+    const LABEL_FONT = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+    const SPRING = 320;
+    const S = {
+        text: TEXT, fontFamily: "'Syne', sans-serif", fontWeight: 800, letterSpacing: -0.03,
+        sideMargin: 24, dashLength: 4, dashGap: 2, strokeWidth: 1.5, specks: 15,
+        bounce: 0.4, speed: 1, introDuration: 1.6, gradientSeconds: 5
+    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const approach = (c, t, dt, sec) => c + (t - c) * (1 - Math.exp(-dt / sec));
+    const clamp01 = v => Math.min(1, Math.max(0, Number(v) || 0));
+    const smoothstep = (a, b, v) => { const t = clamp01((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+    const noise = (...vals) => {
+        let h = 2166136261;
+        for (const v of vals) { h = Math.imul(h ^ (v | 0), 16777619); h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; }
+        return (h >>> 0) / 4294967296;
+    };
+    const signed = v => (v > 0 ? `+${v}` : v < 0 ? `−${-v}` : '0');
+
+    let width = 1, height = 1, dpr = 1, raf = 0, last = performance.now(), visible = true, sizeDirty = true;
+    let layoutKey = '', word = null, glyphs = [], clock = 0, pulse = 0, placed = false, dragging = -1, cursor = '';
+    let introClock = 0, introducing = !reduced, fontsReady = !document.fonts, fontSize = 64, gradClock = 0;
+    const pointer = { x: 0, y: 0, inside: false }, grab = { x: 0, y: 0 }, lens = { x: 0, y: 0 };
+    const frame = { x1: 0, y1: 0, x2: 0, y2: 0, alpha: 0, index: -1 };
+
+    const fontFor = size => `${S.fontWeight} ${size}px ${S.fontFamily}`;
+    const setFont = (t, size) => {
+        t.font = fontFor(size);
+        if ('letterSpacing' in t) t.letterSpacing = `${S.letterSpacing * size}px`;
+        t.textAlign = 'left'; t.textBaseline = 'alphabetic';
+    };
+    const isDark = () => document.body.classList.contains('dark-mode');
+    const accent = () => (isDark() ? '#A78BFA' : '#7C3AED');
+
+    // One small pre-rendered image per letter: solid fill, or dashed outline
+    const sprite = (view, g, stroke) => {
+        const pad = Math.ceil(S.strokeWidth * 2 + 4);
+        const left = g.box.x1 - pad, top = g.box.y1 - pad;
+        const w = g.box.x2 - g.box.x1 + pad * 2, h = g.box.y2 - g.box.y1 + pad * 2;
+        const image = document.createElement('canvas');
+        image.width = Math.max(1, Math.ceil(w * dpr)); image.height = Math.max(1, Math.ceil(h * dpr));
+        const c = image.getContext('2d');
+        c.setTransform(dpr, 0, 0, dpr, -left * dpr, -top * dpr);
+        setFont(c, view.size);
+        if (stroke) {
+            c.lineJoin = 'round'; c.lineWidth = S.strokeWidth * 2; c.strokeStyle = '#fff';
+            c.setLineDash([S.dashLength, S.dashGap]);
+            c.strokeText(g.char, g.x, view.baseline);
+            c.setLineDash([]);
+            c.globalCompositeOperation = 'destination-out';
+            c.fillText(g.char, g.x, view.baseline);
+        } else {
+            c.fillStyle = '#fff';
+            c.fillText(g.char, g.x, view.baseline);
+        }
+        return { image, left, top };
+    };
+
+    const ensureLayout = () => {
+        const key = [fontSize, width, height, dpr, fontsReady, ALIGN()].join('|');
+        if (key === layoutKey && word) return word;
+        layoutKey = key;
+        setFont(sctx, fontSize);
+        let m = sctx.measureText(S.text);
+        const avail = width - S.sideMargin * 2;
+        const fit = Math.min(1, avail / Math.max(m.actualBoundingBoxLeft + m.actualBoundingBoxRight, 1),
+            (height * 0.66) / Math.max(m.actualBoundingBoxAscent + m.actualBoundingBoxDescent, 1));
+        const size = fontSize * fit;
+        setFont(sctx, size);
+        m = sctx.measureText(S.text);
+        const inkW = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
+        const x = (ALIGN() === 'center' ? (width - inkW) / 2 : S.sideMargin) + m.actualBoundingBoxLeft;
+        const inkH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+        const baseline = (height - inkH) / 2 + m.actualBoundingBoxAscent;
+        word = { size, baseline, left: x - m.actualBoundingBoxLeft, right: x + m.actualBoundingBoxRight,
+                 top: baseline - m.actualBoundingBoxAscent, bottom: baseline + m.actualBoundingBoxDescent };
+
+        const prev = glyphs; glyphs = [];
+        let prefix = '';
+        Array.from(S.text).forEach((char, i) => {
+            prefix += char;
+            const own = sctx.measureText(char);
+            const gx = x + sctx.measureText(prefix).width - own.width;
+            if (!char.trim()) return;
+            const base = { char, x: gx, box: { x1: gx - own.actualBoundingBoxLeft, y1: baseline - own.actualBoundingBoxAscent,
+                                               x2: gx + own.actualBoundingBoxRight, y2: baseline + own.actualBoundingBoxDescent } };
+            const kept = prev[glyphs.length];
+            const same = kept && kept.index === i;
+            glyphs.push({ ...base, index: i,
+                offset: same ? kept.offset : { x: 0, y: 0 }, velocity: same ? kept.velocity : { x: 0, y: 0 },
+                outline: same ? kept.outline : 0, shown: same ? kept.shown : (introducing ? 0 : 1),
+                fill: sprite(word, base, false), dashes: sprite(word, base, true) });
+        });
+        if (dragging >= glyphs.length) dragging = -1;
+        return word;
+    };
+
+    const glyphAt = (x, y) => {
+        if (!word || y < word.top - 24 || y > word.bottom + 24) return -1;
+        let best = -1, bestD = Infinity;
+        glyphs.forEach((g, i) => {
+            const x1 = g.box.x1 + g.offset.x, x2 = g.box.x2 + g.offset.x;
+            const d = x < x1 ? x1 - x : x > x2 ? x - x2 : 0;
+            if (d < bestD) { bestD = d; best = i; }
+        });
+        return bestD < 28 ? best : -1;
+    };
+
+    const blit = (t, art, dx, dy) => t.drawImage(art.image, Math.round((art.left + dx) * dpr), Math.round((art.top + dy) * dpr));
+    const crisp = v => (Math.round(v * dpr) + 0.5) / dpr;
+
+    const perimeterPoint = (dist, w, h) => {
+        const p = 2 * (w + h);
+        let d = ((dist % p) + p) % p;
+        if (d < w) return [frame.x1 + d, frame.y1, 0, -1]; d -= w;
+        if (d < h) return [frame.x2, frame.y1 + d, 1, 0]; d -= h;
+        if (d < w) return [frame.x2 - d, frame.y2, 0, 1]; d -= w;
+        return [frame.x1, frame.y2 - d, -1, 0];
+    };
+
+    const drawSpecks = (a, col) => {
+        const w = frame.x2 - frame.x1, h = frame.y2 - frame.y1;
+        if (w < 2 || h < 2) return;
+        const perim = 2 * (w + h), seed = frame.index + 1, grid = 3;
+        ctx.fillStyle = col; ctx.strokeStyle = col;
+        for (let k = 0; k < S.specks; k++) {
+            const period = 0.5 + noise(seed, k, 11) * 1.2;
+            const t = pulse / period + noise(seed, k, 17), cycle = Math.floor(t), life = t - cycle;
+            if (life > 0.7) continue;
+            const [px, py, nx, ny] = perimeterPoint(noise(seed, k, cycle) * perim, w, h);
+            const pick = noise(seed, k, cycle, 2);
+            const size = pick < 0.46 ? 2 : pick < 0.7 ? 3 : pick < 0.84 ? 5 : pick < 0.94 ? 8 : 11;
+            const large = size >= 8;
+            const out = (large ? 9 : 4) + Math.floor(noise(seed, k, cycle, 1) * 5) * grid;
+            const x = frame.x1 + Math.round((px + nx * out - frame.x1) / grid) * grid;
+            const y = frame.y1 + Math.round((py + ny * out - frame.y1) / grid) * grid;
+            const tone = noise(seed, k, cycle, 3);
+            const blink = life < 0.06 || (life > 0.32 && life < 0.36) ? 0.35 : 1;
+            ctx.globalAlpha = a * (large ? 0.3 + 0.4 * tone : 0.3 + 0.6 * tone) * blink;
+            const l = Math.round(x - size / 2), tp = Math.round(y - size / 2);
+            if (tone < 0.26 || (large && tone < 0.78)) {
+                ctx.strokeRect(l + 0.5, tp + 0.5, size, size);
+                if (large && tone > 0.5) ctx.fillRect(Math.round(x) - 1, Math.round(y) - 1, 2, 2);
+            } else ctx.fillRect(l, tp, size, size);
+        }
+        for (let j = 0; j < 2; j++) {
+            const head = (pulse * 0.42 * S.speed + j * 0.5) * perim;
+            for (let i = 0; i < 4; i++) {
+                const [x, y] = perimeterPoint(head - i * 6, w, h);
+                const size = i === 0 ? 3 : 2;
+                ctx.globalAlpha = a * [0.95, 0.55, 0.32, 0.16][i];
+                ctx.fillRect(Math.round(x - size / 2), Math.round(y - size / 2), size, size);
+            }
+        }
+        ctx.globalAlpha = 1;
+    };
+
+    const drawFrame = col => {
+        const g = glyphs[frame.index];
+        if (!g || frame.alpha < 0.01) return;
+        const a = frame.alpha;
+        const x1 = crisp(frame.x1), y1 = crisp(frame.y1), x2 = crisp(frame.x2), y2 = crisp(frame.y2);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineWidth = 1;
+        const moved = Math.hypot(g.offset.x, g.offset.y);
+        if (moved > 1) {   // dashed tether back to where the letter belongs
+            const hx = (g.box.x1 + g.box.x2) / 2, hy = (g.box.y1 + g.box.y2) / 2;
+            ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + g.offset.x, hy + g.offset.y);
+            ctx.setLineDash([3, 4]); ctx.globalAlpha = 0.45 * a; ctx.stroke(); ctx.setLineDash([]);
+            ctx.globalAlpha = 0.7 * a; ctx.fillRect(Math.round(hx) - 2, Math.round(hy) - 2, 4, 4);
+        }
+        ctx.beginPath(); ctx.rect(x1, y1, x2 - x1, y2 - y1); ctx.globalAlpha = 0.5 * a; ctx.stroke();
+        ctx.beginPath();
+        for (const [cx, cy] of [[x1, y1], [x2, y1], [x2, y2], [x1, y2]]) ctx.rect(Math.round(cx) - 2, Math.round(cy) - 2, 5, 5);
+        ctx.globalAlpha = 0.95 * a; ctx.fill();
+        drawSpecks(a, col);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = LABEL_FONT; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; ctx.fillStyle = col; ctx.globalAlpha = 0.7 * a;
+        const label = moved > 1
+            ? `${signed(Math.round(g.offset.x))}, ${signed(Math.round(-g.offset.y))}`
+            : `${g.char}  ${Math.round(g.box.x2 - g.box.x1)} × ${Math.round(g.box.y2 - g.box.y1)}`;
+        ctx.fillText(label, Math.round(frame.x1), Math.round(frame.y1) - 7);
+        ctx.globalAlpha = 1;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+    };
+
+    // The brand gradient, sliding back and forth like .gradient-text in style.css
+    const paintGradient = view => {
+        const W = Math.max(1, (view.right - view.left) * dpr);
+        const t = reduced ? 0 : (0.5 - 0.5 * Math.cos((gradClock / S.gradientSeconds) * Math.PI));
+        const x0 = view.left * dpr - W * t;
+        const g = lctx.createLinearGradient(x0, view.top * dpr, x0 + 2 * W, view.bottom * dpr);
+        g.addColorStop(0, '#2563EB'); g.addColorStop(0.5, '#7C3AED'); g.addColorStop(1, '#DB2777');
+        lctx.globalCompositeOperation = 'source-in';
+        lctx.globalAlpha = 1;
+        lctx.fillStyle = g;
+        lctx.fillRect(0, 0, layer.width, layer.height);
+        lctx.globalCompositeOperation = 'source-over';
+    };
+
+    const tick = now => {
+        raf = 0;
+        if (sizeDirty) {
+            sizeDirty = false;
+            width = Math.max(1, container.clientWidth); height = Math.max(1, container.clientHeight);
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            fontSize = parseFloat(getComputedStyle(container).fontSize) || 64;
+            const pw = Math.round(width * dpr), ph = Math.round(height * dpr);
+            if (canvas.width !== pw) { canvas.width = pw; layer.width = pw; }
+            if (canvas.height !== ph) { canvas.height = ph; layer.height = ph; }
+        }
+        const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
+        last = now;
+        const view = ensureLayout();
+        const damping = 2 * Math.sqrt(SPRING) * (1 - clamp01(S.bounce) * 0.96);
+
+        // Intro: letters type in one by one
+        if (introducing && fontsReady) introClock += dt;
+        const progress = introducing ? clamp01((introClock - INTRO_DELAY) / S.introDuration) : 1;
+        if (introducing && progress >= 1) introducing = false;
+
+        const sweeping = !introducing && !reduced && !pointer.inside && dragging < 0;
+        if (sweeping) clock += dt * S.speed;
+        pulse += dt; gradClock += dt;
+        let tx = pointer.x, ty = pointer.y;
+        if (sweeping) {   // the idle "scanner"
+            tx = view.left + (view.right - view.left) * (0.5 - 0.5 * Math.cos(clock * 0.45));
+            ty = view.top + (view.bottom - view.top) * (0.45 + 0.1 * Math.sin(clock * 0.8));
+        }
+        const active = !introducing && (pointer.inside || sweeping || dragging >= 0);
+        if (active && !placed) { lens.x = tx; lens.y = ty; }
+        if (active) { const lag = pointer.inside ? 0.05 : 0.22; lens.x = approach(lens.x, tx, dt, lag); lens.y = approach(lens.y, ty, dt, lag); }
+        placed = active;
+
+        // Spring physics for dragged letters
+        glyphs.forEach((g, i) => {
+            if (i === dragging) {
+                g.offset.x = approach(g.offset.x, pointer.x - grab.x, dt, 0.03);
+                g.offset.y = approach(g.offset.y, pointer.y - grab.y, dt, 0.03);
+                g.velocity.x = g.velocity.y = 0;
+                return;
+            }
+            const { offset: o, velocity: v } = g;
+            if (Math.abs(o.x) < 0.05 && Math.abs(o.y) < 0.05 && Math.hypot(v.x, v.y) < 0.5) { o.x = o.y = v.x = v.y = 0; return; }
+            v.x += (-SPRING * o.x - damping * v.x) * dt; v.y += (-SPRING * o.y - damping * v.y) * dt;
+            o.x += v.x * dt; o.y += v.y * dt;
+        });
+
+        let typing = -1;
+        if (introducing) {
+            const step = 0.86 / glyphs.length;
+            const at = Math.min(glyphs.length - 1, Math.floor(progress / step));
+            typing = progress < 0.93 ? at : -1;
+            glyphs.forEach((g, i) => { g.shown = i < at ? 1 : i === at ? smoothstep(0, step * 0.3, progress - i * step) : 0; });
+        } else glyphs.forEach(g => { g.shown = 1; });
+
+        const focus = introducing ? typing : dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : -1;
+        if (focus >= 0) {
+            const g = glyphs[focus];
+            const bx1 = g.box.x1 + g.offset.x - 6, by1 = g.box.y1 + g.offset.y - 6, bx2 = g.box.x2 + g.offset.x + 6, by2 = g.box.y2 + g.offset.y + 6;
+            if (frame.index < 0 || frame.alpha < 0.02) { frame.x1 = bx1; frame.y1 = by1; frame.x2 = bx2; frame.y2 = by2; }
+            const glide = focus === dragging ? 0.02 : 0.08;
+            frame.x1 = approach(frame.x1, bx1, dt, glide); frame.y1 = approach(frame.y1, by1, dt, glide);
+            frame.x2 = approach(frame.x2, bx2, dt, glide); frame.y2 = approach(frame.y2, by2, dt, glide);
+            frame.index = focus;
+        }
+        frame.alpha = approach(frame.alpha, focus >= 0 ? 1 : 0, dt, 0.1);
+
+        glyphs.forEach((g, i) => {
+            const target = introducing ? (i === typing || (typing >= 0 && i > typing) ? 1 : 0) : (i === focus && i !== dragging ? 1 : 0);
+            if (introducing && g.shown === 0) g.outline = target;
+            g.outline = approach(g.outline, target, dt, 0.09);
+            if (Math.abs(g.outline - target) < 0.002) g.outline = target;
+        });
+
+        const hovering = !introducing && focus >= 0 && pointer.inside;
+        const next = dragging >= 0 ? 'grabbing' : hovering ? 'grab' : '';
+        if (next !== cursor) { cursor = next; container.style.cursor = next; }
+
+        // 1) letters onto the layer (white), 2) colour them with the gradient, 3) copy to screen
+        lctx.setTransform(1, 0, 0, 1, 0, 0);
+        lctx.clearRect(0, 0, layer.width, layer.height);
+        for (const g of glyphs) {
+            const moved = Math.hypot(g.offset.x, g.offset.y);
+            if (moved > 1) { lctx.globalAlpha = Math.min(1, moved / 24) * 0.55; blit(lctx, g.dashes, 0, 0); }
+        }
+        for (const g of glyphs) {
+            if (g.shown < 0.001) continue;
+            if (g.outline < 0.999) { lctx.globalAlpha = (1 - g.outline) * g.shown; blit(lctx, g.fill, g.offset.x, g.offset.y); }
+            if (g.outline > 0.001) { lctx.globalAlpha = g.outline * g.shown; blit(lctx, g.dashes, g.offset.x, g.offset.y); }
+        }
+        lctx.globalAlpha = 1;
+        paintGradient(view);
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.globalAlpha = 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(layer, 0, 0);
+        drawFrame(accent());
+
+        if (visible) raf = requestAnimationFrame(tick);   // keeps running for the moving gradient
+    };
+
+    const wake = () => { if (raf || !visible) return; last = performance.now(); raf = requestAnimationFrame(tick); };
+    const resize = () => { sizeDirty = true; layoutKey = ''; wake(); };
+    const locate = e => { const r = container.getBoundingClientRect(); pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; };
+
+    container.addEventListener('pointermove', e => { locate(e); pointer.inside = true; wake(); }, { passive: true });
+    container.addEventListener('pointerenter', e => { locate(e); pointer.inside = true; wake(); }, { passive: true });
+    container.addEventListener('pointerleave', () => { if (dragging < 0) pointer.inside = false; }, { passive: true });
+    container.addEventListener('pointerdown', e => {
+        locate(e); pointer.inside = true;
+        if (introducing || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        const index = glyphAt(pointer.x, pointer.y);
+        if (index >= 0) {
+            dragging = index;
+            grab.x = pointer.x - glyphs[index].offset.x; grab.y = pointer.y - glyphs[index].offset.y;
+            container.setPointerCapture && container.setPointerCapture(e.pointerId);
+        }
+        wake();
+    });
+    const release = e => {
+        if (dragging < 0) return;
+        dragging = -1;
+        try { container.releasePointerCapture(e.pointerId); } catch (err) {}
+        const r = container.getBoundingClientRect();
+        pointer.inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (e.pointerType !== 'mouse') pointer.inside = false;
+    };
+    container.addEventListener('pointerup', release);
+    container.addEventListener('pointercancel', release);
+
+    new ResizeObserver(resize).observe(container);
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; wake(); }).observe(container);
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; wake(); });
+    if (document.fonts) {
+        document.fonts.load(fontFor(64), S.text).finally(() => document.fonts.ready.then(() => { fontsReady = true; resize(); }));
+    }
+    resize();
+}
+
+/* Two-line tech-text heading */
+(() => {
+    const wrap = document.getElementById('ttWrap');
+    const align = () => window.innerWidth <= 900 ? 'center' : 'left';
+    createTechText(wrap, document.getElementById('tt1'), 'Leadership &', align, 0.15);
+    createTechText(wrap, document.getElementById('tt2'), 'Community', align, 1.15);
 })();
 
 /* Talk-style slowdown on the logo marquee */
