@@ -194,7 +194,7 @@ body.dark-mode .glass { background: rgba(15, 23, 42, 0.6); border-color: rgba(25
 .hl-stage { position: relative; border-radius: 28px; overflow: hidden; aspect-ratio: 21 / 9; min-height: 320px; box-shadow: 0 30px 60px rgba(0, 0, 0, 0.35); }
 .hl-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 0.9s ease; }
 .hl-slide.on { opacity: 1; }
-.hl-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(var(--z, 1) * 1.08)); transition: transform 7s ease; transform-origin: center 40%; }
+.hl-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(calc(var(--z, 1) * 1.08)); transition: transform 7s ease; transform-origin: var(--zo, center 40%); }
 .hl-slide.on img { transform: scale(var(--z, 1)); }
 .hl-slide::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(2, 6, 23, 0.92) 0%, rgba(2, 6, 23, 0.55) 45%, transparent 75%); }
 .hl-copy { position: absolute; left: 6%; bottom: 14%; z-index: 2; max-width: 520px; color: #fff; }
@@ -676,7 +676,7 @@ const SKILLS = [
     { name: 'Community', orgs: ['rotaract', 'swc', 'leo', 'lead'] }
 ];
 const HIGHLIGHTS = [
-    { img: '/leadership/bubt-vol-1.jpg', tag: '💼 BUBT Career Guidance Office', right: true, zoom: 1.3, title: 'Head of Corporate & Alumni Relations', text: 'At the BUBT Job Fair 2025.', org: 'bubt-cgo' },
+    { img: '/leadership/bubt-vol-1.jpg', tag: '💼 BUBT Career Guidance Office', right: true, zoom: 1.6, zoomOrigin: 'center 78%', title: 'Head of Corporate & Alumni Relations', text: 'At the BUBT Job Fair 2025.', org: 'bubt-cgo' },
     { img: '/gallery/gallery_13.webp', tag: '🎤 Department of Marketing, BUBT', right: true, title: 'Organizer, Ad Fiesta Season 1', text: 'Organizing Ad Fiesta Season 1 for the Department of Marketing, BUBT.', org: 'mkt' },
     { img: '/gallery/gallery_28.webp', tag: '🏆 TEDxUttara 2025', right: true, title: 'Best Department, TEDxUttara 2025', text: 'Our design & branding team was named the best department of the event.', org: 'tedx' },
     { img: '/gallery/gallery_29.webp', tag: '🎖️ TEDxUttara 2025', right: true, title: 'Receiving my organizing award', text: 'Recognised on stage for organizing TEDxUttara 2025.', org: 'tedx' },
@@ -880,7 +880,7 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
 ========================================================= */
 (() => {
     const st = $('#hlStage');
-    st.innerHTML = HIGHLIGHTS.map((h, i) => `<div class="hl-slide${i === 0 ? ' on' : ''}${h.right ? ' right' : ''}">${h.right ? `<img class="hl-bg" src="${h.img}" alt="" aria-hidden="true" loading="lazy">` : ''}<img class="hl-main" src="${h.img}" alt="${h.title}" loading="lazy"${h.zoom ? ` style="--z:${h.zoom}"` : ''}><div class="hl-copy"><span class="tag">${h.tag}</span><h3>${h.title}</h3><p>${h.text}</p>${h.org ? `<button type="button" class="btn btn-outline" data-go="${h.org}" style="margin-top:1rem;color:#fff !important;border-color:rgba(255,255,255,.4) !important">See the role ➔</button>` : ''}</div></div>`).join('')
+    st.innerHTML = HIGHLIGHTS.map((h, i) => `<div class="hl-slide${i === 0 ? ' on' : ''}${h.right ? ' right' : ''}">${h.right ? `<img class="hl-bg" src="${h.img}" alt="" aria-hidden="true" loading="lazy">` : ''}<img class="hl-main" src="${h.img}" alt="${h.title}" loading="lazy"${h.zoom ? ` style="--z:${h.zoom};--zo:${h.zoomOrigin || 'center 40%'}"` : ''}><div class="hl-copy"><span class="tag">${h.tag}</span><h3>${h.title}</h3><p>${h.text}</p>${h.org ? `<button type="button" class="btn btn-outline" data-go="${h.org}" style="margin-top:1rem;color:#fff !important;border-color:rgba(255,255,255,.4) !important">See the role ➔</button>` : ''}</div></div>`).join('')
         + `<div class="hl-dots">${HIGHLIGHTS.map((_, i) => `<button type="button" aria-label="Highlight ${i + 1}" class="${i === 0 ? 'on' : ''}"></button>`).join('')}</div>
            <div class="hl-nav"><button type="button" data-d="-1" aria-label="Previous">❮</button><button type="button" data-d="1" aria-label="Next">❯</button></div>`;
     let i = 0, t = 0;
