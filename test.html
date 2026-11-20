@@ -209,6 +209,16 @@ body.dark-mode .glass { background: rgba(15, 23, 42, 0.6); border-color: rgba(25
 .hl-dots button { width: 8px; height: 8px; border-radius: 100px; border: none; padding: 0; background: rgba(255, 255, 255, 0.4); cursor: pointer; transition: all 0.4s; }
 .hl-dots button.on { width: 34px; background: linear-gradient(90deg, var(--c1), var(--c2)); }
 
+
+/* Desktop: push key photos to the right, blurred/darkened fill on the left */
+.hl-slide .hl-bg { display: none; }
+@media (min-width: 901px) {
+    .hl-slide.right .hl-bg { display: block; position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: blur(26px) brightness(0.35) saturate(1.2); transform: scale(1.2) !important; transition: none; }
+    .hl-slide.right .hl-main { position: absolute; top: 0; right: 0; width: 62%; height: 100%; object-fit: cover; object-position: center 30%;
+        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 28%); mask-image: linear-gradient(90deg, transparent 0%, #000 28%); }
+    .hl-slide.right::after { background: linear-gradient(90deg, rgba(2, 6, 23, 0.85) 0%, rgba(2, 6, 23, 0.45) 40%, transparent 60%); }
+}
+
 /* =========================================================
    4. FILTERS + VIEW SWITCH
 ========================================================= */
@@ -666,10 +676,10 @@ const SKILLS = [
     { name: 'Community', orgs: ['rotaract', 'swc', 'leo', 'lead'] }
 ];
 const HIGHLIGHTS = [
-    { img: '/leadership/bubt-vol-1.jpg', tag: '💼 BUBT Career Guidance Office', title: 'Head of Corporate & Alumni Relations', text: 'At the BUBT Job Fair 2025.', org: 'bubt-cgo' },
-    { img: '/gallery/gallery_13.webp', tag: '🎤 Department of Marketing, BUBT', title: 'Organizer, Ad Fiesta Season 1', text: 'Organizing Ad Fiesta Season 1 for the Department of Marketing, BUBT.', org: 'mkt' },
+    { img: '/leadership/bubt-vol-1.jpg', tag: '💼 BUBT Career Guidance Office', right: true, title: 'Head of Corporate & Alumni Relations', text: 'At the BUBT Job Fair 2025.', org: 'bubt-cgo' },
+    { img: '/gallery/gallery_13.webp', tag: '🎤 Department of Marketing, BUBT', right: true, title: 'Organizer, Ad Fiesta Season 1', text: 'Organizing Ad Fiesta Season 1 for the Department of Marketing, BUBT.', org: 'mkt' },
     { img: '/gallery/gallery_28.webp', tag: '🏆 TEDxUttara 2025', title: 'Best Department, TEDxUttara 2025', text: 'Our design & branding team was named the best department of the event.', org: 'tedx' },
-    { img: '/gallery/gallery_29.webp', tag: '🎖️ TEDxUttara 2025', title: 'Receiving my organizing award', text: 'Recognised on stage for organizing TEDxUttara 2025.', org: 'tedx' },
+    { img: '/gallery/gallery_29.webp', tag: '🎖️ TEDxUttara 2025', right: true, title: 'Receiving my organizing award', text: 'Recognised on stage for organizing TEDxUttara 2025.', org: 'tedx' },
     { img: '/leadership/lead-1.jpg', tag: '🤝 LEAD Academy', title: 'LEAD Academy Town Hall Meeting', text: 'Took part in the Town Hall Meeting as a Lead Luminary of Cohort 4.0.', org: 'lead' }
 ];
 
@@ -870,7 +880,7 @@ sv.addEventListener('touchend', e => { if (e.changedTouches[0].clientY - svy > 1
 ========================================================= */
 (() => {
     const st = $('#hlStage');
-    st.innerHTML = HIGHLIGHTS.map((h, i) => `<div class="hl-slide${i === 0 ? ' on' : ''}"><img src="${h.img}" alt="${h.title}" loading="lazy"><div class="hl-copy"><span class="tag">${h.tag}</span><h3>${h.title}</h3><p>${h.text}</p>${h.org ? `<button type="button" class="btn btn-outline" data-go="${h.org}" style="margin-top:1rem;color:#fff !important;border-color:rgba(255,255,255,.4) !important">See the role ➔</button>` : ''}</div></div>`).join('')
+    st.innerHTML = HIGHLIGHTS.map((h, i) => `<div class="hl-slide${i === 0 ? ' on' : ''}${h.right ? ' right' : ''}">${h.right ? `<img class="hl-bg" src="${h.img}" alt="" aria-hidden="true" loading="lazy">` : ''}<img class="hl-main" src="${h.img}" alt="${h.title}" loading="lazy"><div class="hl-copy"><span class="tag">${h.tag}</span><h3>${h.title}</h3><p>${h.text}</p>${h.org ? `<button type="button" class="btn btn-outline" data-go="${h.org}" style="margin-top:1rem;color:#fff !important;border-color:rgba(255,255,255,.4) !important">See the role ➔</button>` : ''}</div></div>`).join('')
         + `<div class="hl-dots">${HIGHLIGHTS.map((_, i) => `<button type="button" aria-label="Highlight ${i + 1}" class="${i === 0 ? 'on' : ''}"></button>`).join('')}</div>
            <div class="hl-nav"><button type="button" data-d="-1" aria-label="Previous">❮</button><button type="button" data-d="1" aria-label="Next">❯</button></div>`;
     let i = 0, t = 0;
