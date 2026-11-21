@@ -397,7 +397,16 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
     .final-cta-title { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
 }
 @media (max-width: 560px) {
-    .social-grid { grid-template-columns: 1fr; gap: 0.7rem; }
+    .social-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; }
+    .soc { display: grid !important; grid-template-columns: auto 1fr; grid-template-rows: auto auto; align-items: start; gap: 0.75rem 0.5rem; padding: 0.9rem !important; border-radius: 18px !important; min-height: 0 !important; }
+    .soc-ico { width: 42px !important; height: 42px !important; border-radius: 12px !important; }
+    .soc-ico svg { width: 20px; height: 20px; }
+    .soc-ico { grid-row: 1; grid-column: 1; }
+    .soc-go { grid-row: 1; grid-column: 2; justify-self: end; width: 30px !important; height: 30px !important; }
+    .soc-go svg { width: 13px; height: 13px; }
+    .soc-txt { grid-row: 2; grid-column: 1 / -1; }
+    .soc-name { font-size: 0.92rem; }
+    .soc-handle { font-size: 0.74rem; }
     .live-pill { font-size: 0.85rem; }
     .c-txt .value { font-size: 0.95rem; }
     .book-arrow { display: none; }
