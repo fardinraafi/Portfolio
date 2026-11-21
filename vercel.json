@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/blog/claude-3-5-sonnet-agentic-ai",
+      "destination": "/blog/claude-sonnet-5-agentic-ai",
+      "permanent": true
+    },
+    {
       "source": "/blogs/blog-1",
       "destination": "/blog/brainrot-marketing-case-study",
       "permanent": true
@@ -54,12 +59,12 @@
     },
     {
       "source": "/blogs/blog-6",
-      "destination": "/blog/claude-3-5-sonnet-agentic-ai",
+      "destination": "/blog/claude-sonnet-5-agentic-ai",
       "permanent": true
     },
     {
       "source": "/blogs/blog-6.html",
-      "destination": "/blog/claude-3-5-sonnet-agentic-ai",
+      "destination": "/blog/claude-sonnet-5-agentic-ai",
       "permanent": true
     },
     {

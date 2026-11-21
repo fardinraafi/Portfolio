@@ -1,7 +1,7 @@
 ---
 title: Fardin Rahman Khan Raafi - Resume
-description: Professional CV of Growth Associate, Marketing Executive, and Brand Expert
-last_updated: "2026-05"
+description: Resume of Fardin Rahman Khan Raafi, Marketing Executive at Augmex Technologies (Dhaka) - B2B lead generation, content marketing, brand strategy and design
+last_updated: "2026-11"
 ---
 
 # Fardin Rahman Khan Raafi
@@ -9,19 +9,27 @@ last_updated: "2026-05"
 - **Location:** Mirpur 10, Dhaka 1216, Bangladesh
 - **Email:** fardinraafi@gmail.com
 - **LinkedIn:** https://www.linkedin.com/in/fardinraafi
-- **Portfolio:** linko.page/fardin-rahman
+- **Portfolio:** https://fardinraafi.com
+- **Interactive resume:** https://fardinraafi.com/resume
 
 ## Professional Summary
-Marketing graduate (BUBT, CGPA 3.80) and Growth Associate specializing in B2B lead generation, Vested Growth strategies, and missionary engineering team deployment. I work at the intersection of branding and operations, bridging the gap between ambitious product roadmaps and real-world capacity. Recognized as the BASIS Leader of the Year 2024, I combine technical design expertise with a strong leadership background to build purpose-driven teams that scale sustainably.
+Marketing Executive at Augmex Technologies and marketing graduate (BBA, BUBT, CGPA 3.80) working across B2B lead generation, content marketing, brand strategy and creative design. In 2026 I drove 340K+ organic views across Augmex and its sneaker sub-brand FYGO, growing FYGO from 0 to 17K+ followers, ৳20 lakh+ in sales and 300+ customers. Recognised as BASIS Leader of the Year 2024, I combine hands-on design skills with B2B outreach, CRM and leadership experience.
 
 ## Core Professional Experience
 
-### Growth Associate — Augmex Technologies
-*Jan 2026 – May 2026 | Dhaka, Bangladesh*
-- **Targeted B2B Lead Generation:** Identified and mapped Key Decision Makers (KDMs) to Ideal Customer Profiles (ICPs), executing multi-channel cold outreach to drive qualified leads.
-- **CRM & Data Enrichment:** Cleaned, verified, and enriched 10,000+ Salesforce CRM records utilizing Apollo.io, LinkedIn Sales Navigator, and industry databases.
-- **Organic Growth:** Generated over 67,000 organic impressions across LinkedIn and Facebook within a single month through strategic content marketing.
-- **Rapid Team Deployment:** Facilitated the launch of dedicated missionary engineering teams within a 7-14 day window, accelerating client product deadlines while optimizing operational costs by 50% vs local hiring.
+### Marketing Executive — Augmex Technologies Ltd.
+*Apr 2026 – Present | Dhaka, Bangladesh*
+- **B2B Lead Generation:** Research and generate B2B leads for European and Australian markets; map Key Decision Makers (KDMs) to Ideal Customer Profiles (ICPs) and run multi-channel cold outreach.
+- **CRM & Data Enrichment:** Cleaned, verified and enriched 40,000+ CRM records using Salesforce, Apollo.io and LinkedIn Sales Navigator.
+- **Content Marketing:** Own posting, scheduling, writing, design, videos and carousels for Augmex — ~180K organic reach for brand awareness (Jan–Nov 2026).
+- **FYGO (sneaker sub-brand):** Grew from 0 to 17K+ followers, ৳20 lakh+ in sales and 300+ customers (Jul–Nov 2026).
+- **Design:** Graphic and motion design across multiple brand accounts; 1,200+ designs made.
+
+### Intern, Marketing — Augmex Technologies Ltd.
+*Jan 2026 – Apr 2026 | Dhaka, Bangladesh*
+- Identified and mapped KDMs to ICPs and executed cold outreach to drive qualified leads.
+- Generated 67,000+ organic impressions across LinkedIn and Facebook through content marketing.
+- Supported rapid deployment of dedicated engineering teams for clients within a 7–14 day window.
 
 ### Head of Corporate & Alumni Relations — BUBT Career Guidance Office
 *Jan 2026 – Present | Dhaka, Bangladesh*
@@ -45,9 +53,10 @@ Marketing graduate (BUBT, CGPA 3.80) and Growth Associate specializing in B2B le
 - **Secondary School Certificate (S.S.C), Business/Commerce** Adarsha High School | Jan 2019 – Dec 2019
 
 ## Top Skills & Tools
-- **Growth & Marketing:** B2B Lead Generation, Vested Growth Teaming, Market Research, Corporate Branding.
-- **Software & CRM:** Salesforce, Apollo.io, LinkedIn Sales Navigator.
-- **Design:** Adobe Illustrator, Photoshop, Canva, AI Image Generation.
+- **Growth & Marketing:** B2B Lead Generation, Cold Outreach, Content Marketing, Social Media Strategy, Market Research, Brand Strategy.
+- **Software & CRM:** Salesforce, Apollo.io, LinkedIn Sales Navigator, HubSpot, Meta Business Suite, Google Analytics, Buffer, Notion.
+- **Design:** Adobe Photoshop, Illustrator, Figma, Canva, CapCut.
+- **AI:** Claude, Gemini, NotebookLM, Perplexity.
 
 ## Key Awards & Honors
 - **BASIS Leader of the Year 2024**

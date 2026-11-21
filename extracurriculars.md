@@ -1,7 +1,7 @@
 ---
 title: Fardin Rahman Khan Raafi - Extracurriculars & Leadership
 description: Comprehensive history of club management, brand ambassadorships, and creative direction.
-last_updated: "2026-05"
+last_updated: "2026-11"
 ---
 
 # Leadership, Ambassadorships, & Creative Direction
