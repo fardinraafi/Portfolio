@@ -1744,3 +1744,6 @@ body.dark-mode .fifi-form input { background: rgba(255,255,255,0.05); border-col
     .fifi-nudge { right: 16px; bottom: 80px; }
     .fifi-form input { font-size: 16px; } /* stops iOS zoom */
 }
+/* Footer name: ignore page-level h2 styles (e.g. blog posts) */
+.site-footer .ft-name { border: 0 !important; padding: 0 !important; margin-top: 0 !important; display: block !important; font-size: 1.8rem; }
+@media (max-width: 900px) { .site-footer .ft-name { font-size: 1.5rem; } }

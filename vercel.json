@@ -1,5 +1,177 @@
 {
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/blogs/blog-1",
+      "destination": "/blog/brainrot-marketing-case-study",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-1.html",
+      "destination": "/blog/brainrot-marketing-case-study",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-2",
+      "destination": "/blog/ai-certifications-hype-vs-practical-skills",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-2.html",
+      "destination": "/blog/ai-certifications-hype-vs-practical-skills",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-3",
+      "destination": "/blog/why-brands-pay-to-get-roasted",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-3.html",
+      "destination": "/blog/why-brands-pay-to-get-roasted",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-4",
+      "destination": "/blog/selling-is-80-percent-psychology",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-4.html",
+      "destination": "/blog/selling-is-80-percent-psychology",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-5",
+      "destination": "/blog/linkedin-profile-optimization-personal-brand",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-5.html",
+      "destination": "/blog/linkedin-profile-optimization-personal-brand",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-6",
+      "destination": "/blog/claude-3-5-sonnet-agentic-ai",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-6.html",
+      "destination": "/blog/claude-3-5-sonnet-agentic-ai",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-7",
+      "destination": "/blog/ai-voice-dictation-keyboard-is-dying",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-7.html",
+      "destination": "/blog/ai-voice-dictation-keyboard-is-dying",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-8",
+      "destination": "/blog/chatgpt-ads-future-of-ai-marketing",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/blog-8.html",
+      "destination": "/blog/chatgpt-ads-future-of-ai-marketing",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/free-ai-developer-tools-for-students",
+      "destination": "/blog/free-ai-developer-tools-for-students",
+      "permanent": true
+    },
+    {
+      "source": "/blogs/free-ai-developer-tools-for-students.html",
+      "destination": "/blog/free-ai-developer-tools-for-students",
+      "permanent": true
+    },
+    {
+      "source": "/misc_files/self-training-guidebook-masterprompt-by-fardinraafi(.html)?",
+      "destination": "/self-training-guidebook-masterprompt-by-fardinraafi",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/leadership",
+      "destination": "/volunteer",
+      "permanent": false
+    },
+    {
+      "source": "/index2(.html)?",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/volunteer2(.html)?",
+      "destination": "/volunteer",
+      "permanent": true
+    },
+    {
+      "source": "/test2(.html)?",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "headers": [
-    { "source": "/test(.html)?", "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow" }] }
+    {
+      "source": "/test",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/(message-sent|playbook|404)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(jpg|jpeg|png|webp|svg|gif|ico|pdf)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, stale-while-revalidate=86400"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)\\.(css|js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
   ]
 }

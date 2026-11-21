@@ -15,20 +15,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const globalFooter = document.querySelector('.site-footer');
 
     const navHTML = `
-    <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
+    <a href="/" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
         <span class="nav-ind" aria-hidden="true"></span>
-        <a href="/index.html">Home</a>
-        <a href="/gallery.html">Gallery</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/resources.html">Resources</a>
-        <a href="/certificates.html">Certificates</a>
-        <a href="/volunteer.html">Leadership</a>
-        <a href="/resume.html">Resume</a>
-        <a href="/contact.html">Contact</a>
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/blog">Blog</a>
+        <a href="/resources">Resources</a>
+        <a href="/certificates">Certificates</a>
+        <a href="/volunteer">Leadership</a>
+        <a href="/resume">Resume</a>
+        <a href="/contact">Contact</a>
     </div>
     <div class="nav-actions">
-        <a href="/contact.html" class="btn btn-primary">Let's Talk</a>
+        <a href="/contact" class="btn btn-primary">Let's Talk</a>
       <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
             <span class="theme-text text-dark">Dark</span>
             <span class="theme-text text-light">Light</span>
@@ -44,16 +44,16 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="nav-drawer" id="navDrawer">
         <div class="nav-drawer-inner">
             <div class="nav-drawer-links">
-                <a href="/index.html"><small>01</small>Home</a>
-                <a href="/gallery.html"><small>02</small>Gallery</a>
-                <a href="/blog.html"><small>03</small>Blog</a>
-                <a href="/resources.html"><small>04</small>Resources</a>
-                <a href="/certificates.html"><small>05</small>Certificates</a>
-                <a href="/volunteer.html"><small>06</small>Leadership</a>
-                <a href="/resume.html"><small>07</small>Resume</a>
-                <a href="/contact.html"><small>08</small>Contact</a>
+                <a href="/"><small>01</small>Home</a>
+                <a href="/gallery"><small>02</small>Gallery</a>
+                <a href="/blog"><small>03</small>Blog</a>
+                <a href="/resources"><small>04</small>Resources</a>
+                <a href="/certificates"><small>05</small>Certificates</a>
+                <a href="/volunteer"><small>06</small>Leadership</a>
+                <a href="/resume"><small>07</small>Resume</a>
+                <a href="/contact"><small>08</small>Contact</a>
             </div>
-            <a href="/contact.html" class="nav-drawer-cta">Let's Talk <span>→</span></a>
+            <a href="/contact" class="nav-drawer-cta">Let's Talk <span>→</span></a>
         </div>
     </div>`;
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <strong>Have a project in mind?</strong>
                     <span>Let's build something people remember.</span>
                 </div>
-                <a href="/contact.html" class="ft-cta-btn">Let's talk <span>→</span></a>
+                <a href="/contact" class="ft-cta-btn">Let's talk <span>→</span></a>
             </div>
             <div class="ft-socials">
                 <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
@@ -89,14 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="footer-col ft-nav">
             <h4>Explore</h4>
             <div class="ft-links">
-                <a href="/index.html">Home</a>
-                <a href="/gallery.html">Gallery</a>
-                <a href="/blog.html">Blog</a>
-                <a href="/resources.html">Resources</a>
-                <a href="/certificates.html">Certificates</a>
-                <a href="/volunteer.html">Leadership</a>
-                <a href="/resume.html">Resume</a>
-                <a href="/contact.html">Contact</a>
+                <a href="/">Home</a>
+                <a href="/gallery">Gallery</a>
+                <a href="/blog">Blog</a>
+                <a href="/resources">Resources</a>
+                <a href="/certificates">Certificates</a>
+                <a href="/volunteer">Leadership</a>
+                <a href="/resume">Resume</a>
+                <a href="/contact">Contact</a>
             </div>
         </div>
         <div class="footer-col ft-contact">
@@ -119,13 +119,12 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
     if (globalNav) {
         globalNav.innerHTML = navHTML;
-        const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = globalNav.querySelectorAll('.nav-menu a, .nav-drawer-links a');
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === '/' + currentPath || link.getAttribute('href') === currentPath) {
-                link.classList.add('active');
-            }
+        // Normalise "/gallery.html", "/gallery/", "/index.html" → "/gallery", "/"; blog posts count as "Blog"
+        let current = window.location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/$/, '$1') || '/';
+        if (current.startsWith('/blog/')) current = '/blog';
+        if (current.startsWith('/human-content') || current.startsWith('/self-training')) current = '/resources';
+        globalNav.querySelectorAll('.nav-menu a, .nav-drawer-links a').forEach(link => {
+            link.classList.toggle('active', link.getAttribute('href') === current);
         });
     }
 
@@ -505,7 +504,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(Object.fromEntries(new FormData(contactForm)))
             })
             .then(async (response) => {
-                if (response.status === 200) window.location.href = '/message-sent.html';
+                if (response.status === 200) window.location.href = '/message-sent';
                 else { submitBtn.innerHTML = 'Error. Try Again.'; setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000); }
             }).catch(error => { console.log(error); submitBtn.innerHTML = 'Network Error.'; setTimeout(() => { submitBtn.innerHTML = originalText; }, 3000); });
         });

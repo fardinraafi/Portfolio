@@ -29,19 +29,19 @@
 
     const ACT = {
         resume:   { label: '📥 Download resume', href: '/Fardin_Resume.pdf', download: 'Fardin_Rahman_Khan_Raafi_Resume.pdf' },
-        resumePg: { label: '📄 Resume page', href: '/resume.html' },
+        resumePg: { label: '📄 Resume page', href: '/resume' },
         email:    { label: '📋 Copy email', copy: EMAIL },
-        contact:  { label: '✉️ Contact page', href: '/contact.html' },
+        contact:  { label: '✉️ Contact page', href: '/contact' },
         linkedin: { label: '💼 LinkedIn', href: 'https://www.linkedin.com/in/fardinraafi', ext: true },
         behance:  { label: '🎨 Behance', href: 'https://www.behance.net/fardinraafi', ext: true },
         insta:    { label: '📸 Instagram', href: 'https://www.instagram.com/fardin_raafi', ext: true },
         x:        { label: '𝕏 X / Twitter', href: 'https://x.com/fardin_raafi', ext: true },
         github:   { label: '🐙 GitHub', href: 'https://github.com/fardinraafi', ext: true },
-        blog:     { label: '✍️ Read the blog', href: '/blog.html' },
-        gallery:  { label: '🖼️ Gallery', href: '/gallery.html' },
-        lead:     { label: '🏆 Leadership page', href: '/volunteer.html' },
-        certs:    { label: '📜 Certificates', href: '/certificates.html' },
-        res:      { label: '🧰 Free resources', href: '/resources.html' },
+        blog:     { label: '✍️ Read the blog', href: '/blog' },
+        gallery:  { label: '🖼️ Gallery', href: '/gallery' },
+        lead:     { label: '🏆 Leadership page', href: '/volunteer' },
+        certs:    { label: '📜 Certificates', href: '/certificates' },
+        res:      { label: '🧰 Free resources', href: '/resources' },
     };
 
     /* ---------- the brain ----------
@@ -90,7 +90,7 @@
           chips: ['AI stuff', 'Design work'] },
 
         { id: 'ai', keys: ['ai', 'artificial intelligence', 'prompt', 'prompting', 'automation', 'llm', 'agents'],
-          a: `🤖 Fardin is deep in the AI rabbit hole — uses Claude, Gemini, NotebookLM and Perplexity daily for research, content and workflows. he even made free AI guides + a master prompt pack on the ${L('/resources.html', 'resources page')} 👀`,
+          a: `🤖 Fardin is deep in the AI rabbit hole — uses Claude, Gemini, NotebookLM and Perplexity daily for research, content and workflows. he even made free AI guides + a master prompt pack on the ${L('/resources', 'resources page')} 👀`,
           chips: ['Free resources', 'Read his blog'], act: ['res', 'blog'] },
 
         { id: 'design', keys: ['design', 'designer', 'graphic', 'graphics', 'motion', 'video', 'editing', 'portfolio', 'behance', 'creative', 'branding', 'logo', 'carousel'],

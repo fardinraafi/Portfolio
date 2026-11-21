@@ -1,46 +1,43 @@
-# Personal & Professional Context: Fardin Rahman Khan Raafi
+# Fardin Rahman Khan Raafi (Fardin Raafi)
 
-## About
-Fardin Rahman Khan Raafi is a Business Development Executive and Brand Strategist based in Dhaka, Bangladesh. He specializes in B2B growth operations, marketing psychology, and the intersection of branding and AI. He leverages data-driven outreach, brand consistency, and community building to drive measurable growth.
+> B2B marketing executive in Dhaka, Bangladesh. Junior Executive, Marketing at Augmex Technologies Ltd. (since April 2026; Marketing Intern Jan–Apr 2026). Works on B2B lead generation for European and Australian markets, CRM management, cold outreach, content marketing, brand strategy and graphic/motion design.
 
-## Core Competencies
-* **Marketing & Growth:** B2B Sales Psychology, Lead Generation, CRM Management (Salesforce), Outreach Strategy (Apollo.io, LinkedIn Sales Navigator).
-* **Brand Strategy & Design:** Professional Graphic Design, Brand Identity, Product Packaging Mockups (Footwear/Apparel), Creative Direction.
-* **Technology & AI:** AI Automation Workflows, Chatbot Configuration, Prompt Engineering.
-* **Leadership & Operations:** Event Management, Strategic Networking, Team Coordination.
+## Key facts
+- 340K+ organic views from content marketing in 2026 (Augmex and its sneaker sub-brand FYGO)
+- Grew FYGO from 0 to 17K+ followers, ৳20 lakh+ sales and 300+ customers (Jul–Nov 2026)
+- Enriched 40,000+ CRM records; 1,200+ designs made
+- BBA in Marketing, Bangladesh University of Business and Technology (BUBT), CGPA 3.80
+- BASIS Leader of the Year 2024; Aspire Leaders Program 2026 (Aspire Institute, founded at Harvard Business School); ISCEA Global Case Competition 2025 (70% scholarship)
+- Head of Corporate & Alumni Relations, BUBT Career Guidance Office; Secretary, Rotaract Club of Dhaka Dynamic; Lead Brand Designer, TEDxUttara
 
-## Professional Experience
-* **Business Development Executive (Growth)** | Augmex Technologies Ltd. (Nov 2025 - Present)
-* **Head of Corporate & Alumni Relations** | BUBT Career Guidance Office (Jan 2026 - Present)
-* **Marketing Intern (Branding)** | Adviza International (Apr 2025 - Jan 2026)
-* **Business Development Intern & Ambassador** | Youth School for Social Entrepreneurs (YSSE) (Oct 2024 - Jun 2025)
+## Pages
+- [Home](https://fardinraafi.com/)
+- [Resume](https://fardinraafi.com/resume) — also in [markdown](https://fardinraafi.com/resume.md)
+- [Leadership & volunteering](https://fardinraafi.com/volunteer) — also in [markdown](https://fardinraafi.com/extracurriculars.md)
+- [Certificates & awards](https://fardinraafi.com/certificates)
+- [Gallery](https://fardinraafi.com/gallery)
+- [Blog](https://fardinraafi.com/blog)
+- [Free resources](https://fardinraafi.com/resources)
+- [Contact](https://fardinraafi.com/contact)
 
-## Education
-* **Bachelor of Business Administration (BBA)** | Bangladesh University of Business and Technology (BUBT)
-  * Major: Marketing
-  * CGPA: 3.80
-  * Graduation Year: 2025
-* **Higher Secondary Certificate (HSC)** | Dhaka Commerce College (2021)
-* **Secondary School Certificate (SSC)** | Adarsha High School (2019)
+## Blog posts
+- [Brainrot Marketing Case Study](https://fardinraafi.com/blog/brainrot-marketing-case-study)
+- [AI Certifications: Hype vs. Practical Skillset](https://fardinraafi.com/blog/ai-certifications-hype-vs-practical-skills)
+- [Why Are Brands Paying to Get Roasted?](https://fardinraafi.com/blog/why-brands-pay-to-get-roasted)
+- [Selling Is 80% Psychology & 20% Product Knowledge](https://fardinraafi.com/blog/selling-is-80-percent-psychology)
+- [LinkedIn Profile Optimization](https://fardinraafi.com/blog/linkedin-profile-optimization-personal-brand)
+- [Claude 3.5 Sonnet & Agentic AI](https://fardinraafi.com/blog/claude-3-5-sonnet-agentic-ai)
+- [The Keyboard Is Dying: AI Voice Dictation](https://fardinraafi.com/blog/ai-voice-dictation-keyboard-is-dying)
+- [ChatGPT Ads & the Future of AI Marketing](https://fardinraafi.com/blog/chatgpt-ads-future-of-ai-marketing)
+- [Free AI & Developer Tools for Students](https://fardinraafi.com/blog/free-ai-developer-tools-for-students)
 
-## Leadership, Volunteering & Community Engagement
-* **Secretary** | Rotaract Club of Dhaka Dynamic (Jun 2025 - May 2026)
-* **Media & Publications Secretary** | BUBT Social Welfare Club (Jun 2025 - Apr 2026)
-* **Graphic Designer & Branding Expert** | TEDxUttara (Oct 2025 - Nov 2025)
-* **Lead Brand Designer** | Hult Prize OnCampus 2025 (Dec 2024 - Feb 2025)
-* **Media & Publications Coordinator** | Leo Club of Dhaka Platinum Unique (Jul 2025 - Dec 2025)
-* **Graphics Designer & Campus Ambassador** | Skill Catalyst Bangladesh (Mar 2025 - Nov 2025)
-* **Lead Luminary 4.0** | LEAD Academy (Jan 2025 - Jun 2025)
-* **Sub Executive Member (BizzMaster S1)** | BUBT Business Club (Jan 2025 - Aug 2025)
-* **Campus Ambassador** | Creative IT Institute (Jan 2024 - Jan 2025)
-* **Event Organizer** | Department of Marketing, BUBT (Jan 2024 - Jan 2025)
+## Free resources
+- [Human-Centric AI Content Framework](https://fardinraafi.com/human-content-framework-by-fardin-rahman-khan-raafi)
+- [Self-Training Guidebook Master Prompt](https://fardinraafi.com/self-training-guidebook-masterprompt-by-fardinraafi)
+- [Marketing Playbook (PDF)](https://fardinraafi.com/misc_files/Marketing_Playbook.pdf)
 
-## Additional Projects & Milestones
-* Active participant and Program Chairman for rotary events (e.g., Club Assemblies, World Polio Day rallies).
-* Creator of the workplace-themed comic strip series "Middle-Manager Max."
-* Shortlisted for high-tier corporate assessments including Bank Asia PLC (Management Trainee), Marico Bangladesh Limited (Impact 90), and SQUARE Food & Beverage Ltd. (Sales Officer).
-
-## Contact & Links
-* Email: fardinraafi@gmail.com
-* LinkedIn: linkedin.com/in/fardinraafi
-* Portfolio Website: fardinraafi.vercel.app
+## Contact
+- Email: fardinraafi@gmail.com
+- LinkedIn: https://www.linkedin.com/in/fardinraafi
+- Behance: https://www.behance.net/fardinraafi
+- GitHub: https://github.com/fardinraafi
