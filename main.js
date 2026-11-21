@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const navHTML = `
     <a href="/index.html" class="nav-brand">FR<span class="gradient-text">KR</span></a>
     <div class="nav-menu">
+        <span class="nav-ind" aria-hidden="true"></span>
         <a href="/index.html">Home</a>
         <a href="/gallery.html">Gallery</a>
         <a href="/blog.html">Blog</a>
@@ -36,6 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             </div>
         </button>
+        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+    <div class="nav-drawer" id="navDrawer">
+        <div class="nav-drawer-inner">
+            <div class="nav-drawer-links">
+                <a href="/index.html"><small>01</small>Home</a>
+                <a href="/gallery.html"><small>02</small>Gallery</a>
+                <a href="/blog.html"><small>03</small>Blog</a>
+                <a href="/resources.html"><small>04</small>Resources</a>
+                <a href="/certificates.html"><small>05</small>Certificates</a>
+                <a href="/volunteer.html"><small>06</small>Leadership</a>
+                <a href="/resume.html"><small>07</small>Resume</a>
+                <a href="/contact.html"><small>08</small>Contact</a>
+            </div>
+            <a href="/contact.html" class="nav-drawer-cta">Let's Talk <span>→</span></a>
+        </div>
     </div>`;
 
     const footerHTML = `
@@ -101,13 +120,52 @@ document.addEventListener('DOMContentLoaded', () => {
     if (globalNav) {
         globalNav.innerHTML = navHTML;
         const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-        const navLinks = globalNav.querySelectorAll('.nav-menu a');
+        const navLinks = globalNav.querySelectorAll('.nav-menu a, .nav-drawer-links a');
         navLinks.forEach(link => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '/' + currentPath || link.getAttribute('href') === currentPath) {
                 link.classList.add('active');
             }
         });
+    }
+
+    if (globalNav) {
+        // Sliding pill indicator (desktop)
+        const menu = globalNav.querySelector('.nav-menu');
+        const ind = globalNav.querySelector('.nav-ind');
+        const moveInd = (el) => {
+            if (!el) { ind.style.opacity = '0'; return; }
+            ind.style.opacity = '1';
+            ind.style.width = el.offsetWidth + 'px';
+            ind.style.transform = `translateX(${el.offsetLeft}px)`;
+        };
+        const activeLink = () => menu.querySelector('a.active');
+        requestAnimationFrame(() => { ind.classList.add('no-anim'); moveInd(activeLink()); requestAnimationFrame(() => ind.classList.remove('no-anim')); });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('mouseenter', () => moveInd(a)));
+        menu.addEventListener('mouseleave', () => moveInd(activeLink()));
+        window.addEventListener('resize', () => moveInd(activeLink()));
+        if (document.fonts) document.fonts.ready.then(() => moveInd(activeLink()));
+
+        // Mobile drawer
+        const burger = document.getElementById('navBurger');
+        const setMenu = (open) => {
+            globalNav.classList.toggle('menu-open', open);
+            burger.setAttribute('aria-expanded', open);
+            burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        };
+        burger.addEventListener('click', (e) => { e.stopPropagation(); setMenu(!globalNav.classList.contains('menu-open')); });
+        document.addEventListener('click', (e) => { if (globalNav.classList.contains('menu-open') && !globalNav.contains(e.target)) setMenu(false); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
+        globalNav.querySelectorAll('.nav-drawer a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+
+        // Scrolled state + hide on scroll down
+        let lastY = window.scrollY;
+        window.addEventListener('scroll', () => {
+            const y = window.scrollY;
+            globalNav.classList.toggle('scrolled', y > 20);
+            if (!globalNav.classList.contains('menu-open')) globalNav.classList.toggle('nav-hidden', y > lastY && y > 300);
+            lastY = y;
+        }, { passive: true });
     }
 
     if (globalFooter) globalFooter.innerHTML = footerHTML;
@@ -146,9 +204,30 @@ document.addEventListener('DOMContentLoaded', () => {
     else { document.body.classList.add('dark-mode'); localStorage.setItem('theme', 'dark'); }
     
     if (themeBtn) {
-        themeBtn.addEventListener('click', () => {
+        const applyTheme = () => {
             document.body.classList.toggle('dark-mode');
             localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+        };
+        themeBtn.addEventListener('click', () => {
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (!document.startViewTransition || reduce) {
+                document.documentElement.classList.add('theme-switching');
+                applyTheme();
+                setTimeout(() => document.documentElement.classList.remove('theme-switching'), 50);
+                return;
+            }
+            const r = themeBtn.getBoundingClientRect();
+            const x = r.left + r.width / 2, y = r.top + r.height / 2;
+            const radius = Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y));
+            document.documentElement.classList.add('theme-switching');
+            const t = document.startViewTransition(applyTheme);
+            t.ready.then(() => {
+                document.documentElement.animate(
+                    { clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${radius}px at ${x}px ${y}px)`] },
+                    { duration: 650, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', pseudoElement: '::view-transition-new(root)' }
+                );
+            }).catch(() => {});
+            t.finished.finally(() => document.documentElement.classList.remove('theme-switching'));
         });
     }
 
