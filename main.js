@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="nav-menu">
         <span class="nav-ind" aria-hidden="true"></span>
         <a href="/">Home</a>
-        <a href="/work">Work</a>
+        <a href="/work">Projects</a>
         <a href="/gallery">Gallery</a>
         <a href="/blog">Blog</a>
         <a href="/resources">Resources</a>
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="nav-drawer-inner">
             <div class="nav-drawer-links">
 <a href="/"><small>01</small>Home</a>
-                <a href="/work"><small>02</small>Work</a>
+                <a href="/work"><small>02</small>Projects</a>
                 <a href="/gallery"><small>03</small>Gallery</a>
                 <a href="/blog"><small>04</small>Blog</a>
                 <a href="/resources"><small>05</small>Resources</a>
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4>Explore</h4>
             <div class="ft-links">
                 <a href="/">Home</a>
-                <a href="/work">Work</a>
+                <a href="/work">Projects</a>
                 <a href="/gallery">Gallery</a>
                 <a href="/blog">Blog</a>
                 <a href="/resources">Resources</a>

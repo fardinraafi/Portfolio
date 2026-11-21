@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/projects",
+      "destination": "/work",
+      "permanent": false
+    },
+    {
       "source": "/blog/claude-3-5-sonnet-agentic-ai",
       "destination": "/blog/claude-sonnet-5-agentic-ai",
       "permanent": true
