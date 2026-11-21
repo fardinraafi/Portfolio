@@ -3,337 +3,772 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <!-- SEO Primary Tags -->
     <title>Blog & Insights | Fardin Rahman Khan Raafi | Marketing Executive</title>
     <meta name="description" content="Read insights on B2B growth operations, marketing strategies, brand psychology, and AI by Fardin Rahman Khan Raafi, a Marketing Executive in Dhaka.">
     <meta name="keywords" content="Fardin Rahman Khan Raafi, Fardin Raafi, Marketing Blog, B2B Sales Strategy, Brand Psychology, AI in Marketing, Dhaka">
     <meta name="author" content="Fardin Rahman Khan Raafi">
-
-    <!-- Open Graph / Social Media Meta Tags -->
+    <meta name="theme-color" content="#0F172A">
     <meta property="og:title" content="Blog & Insights | Fardin Rahman Khan Raafi">
     <meta property="og:description" content="Thoughts on B2B growth, marketing strategies, and the intersection of branding and AI.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://fardinraafi.com/blog.html">
+    <meta property="og:image" content="https://fardinraafi.com/blogs/blog-1-thumb.webp">
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
-    
+    <link rel="canonical" href="https://fardinraafi.com/blog.html">
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Link to the central CSS file -->
     <link rel="stylesheet" href="/style.css">
-    
-    <!-- Vercel Analytics Script -->
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
     <style>
-        /* 2-Column Blog Grid Override */
-        .blog-grid {
-            display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
-            gap: 2rem;
-        }
-        
-        /* Stacks into 1 column on mobile phones so it stays readable */
-        @media (max-width: 800px) {
-            .blog-grid {
-                grid-template-columns: 1fr !important;
-            }
-        }
+/* =========================================================
+   BLOG PAGE (only affects this page)
+========================================================= */
+html, body { overflow-x: clip !important; }
+.gradient-text { padding-right: 0.06em; }
+#neural-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
+.page { position: relative; z-index: 2; max-width: 1240px; margin: 0 auto; padding: 0 2rem 3rem; }
 
-        /* 🚀 Z-INDEX ARCHITECTURE FIX FOR INTERACTIVE CANVAS */
-        .layout-wrapper {
-            position: relative;
-            z-index: 2; /* Forces all content above the canvas */
-        }
-        #neural-canvas {
-            position: fixed; 
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: 0; /* Stays safely in the background */
-            pointer-events: none; 
-        }
+.cursor-glow {
+    position: fixed; top: 0; left: 0; width: 420px; height: 420px; border-radius: 50%; pointer-events: none; z-index: 1;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.16) 0%, rgba(37, 99, 235, 0.08) 35%, transparent 70%);
+    transform: translate3d(-9999px, -9999px, 0); opacity: 0; transition: opacity 0.4s; will-change: transform;
+}
+.cursor-glow.on { opacity: 1; }
+@media (hover: none), (pointer: coarse) { .cursor-glow { display: none; } }
+
+.fx { opacity: 0; transform: translateY(32px); filter: blur(6px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.8s; }
+.fx.in { opacity: 1; transform: none; filter: none; }
+
+/* =========================================================
+   HERO: tech-text title
+========================================================= */
+.hero { text-align: center; padding: 2rem 0 3rem; }
+.tt-wrap { position: relative; max-width: 900px; margin: 0 auto 0.6rem; }
+.tech-text { display: none; }
+.tt-wrap.tt-on .tt-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.tt-wrap:not(.tt-on) .tt-h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); line-height: 1.05; }
+.tt-wrap.tt-on .tech-text {
+    display: block; position: relative; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 5rem);
+    height: 1.55em; width: calc(100% + 48px); margin: -0.3em -24px -0.42em; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.tt-wrap.tt-on .tech-text.tt-2 { margin-bottom: 0; }
+.tech-text canvas { display: block; width: 100%; height: 100%; }
+.hero-sub { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto; }
+
+/* =========================================================
+   FEATURED
+========================================================= */
+.featured {
+    position: relative; display: grid; grid-template-columns: 1.25fr 1fr; gap: 0; border-radius: 28px; overflow: hidden; text-decoration: none; color: var(--text-main); margin-bottom: 3rem;
+    background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(124, 58, 237, 0.14); backdrop-filter: blur(16px);
+    transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.45s, border-color 0.45s;
+}
+body.dark-mode .featured { background: rgba(15, 23, 42, 0.62); border-color: rgba(255, 255, 255, 0.08); }
+.featured:hover { transform: translateY(-6px); border-color: var(--c2); box-shadow: 0 0 0 1px var(--c2), 0 30px 60px rgba(0, 0, 0, 0.3), 0 0 50px rgba(124, 58, 237, 0.25); }
+.f-img { position: relative; overflow: hidden; min-height: 340px; }
+.f-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.8s ease; }
+.featured:hover .f-img img { transform: scale(1.06); }
+.f-badge { position: absolute; top: 18px; left: 18px; z-index: 2; display: inline-flex; gap: 6px; align-items: center; padding: 7px 14px; border-radius: 100px; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #fff;
+    background: linear-gradient(135deg, var(--c1), var(--c2), var(--c3)); box-shadow: 0 8px 20px rgba(124, 58, 237, 0.45); }
+.f-body { padding: 2.4rem; display: flex; flex-direction: column; justify-content: center; }
+.f-body h2 { font-family: 'Syne', sans-serif; font-size: clamp(1.6rem, 2.8vw, 2.3rem); font-weight: 800; line-height: 1.12; margin: 0.8rem 0 1rem; letter-spacing: -0.02em; }
+.f-body p { color: var(--text-muted); line-height: 1.65; margin-bottom: 1.4rem; }
+.f-cta { display: inline-flex; align-items: center; gap: 8px; font-weight: 800; color: var(--c1); }
+body.dark-mode .f-cta { color: #93C5FD; }
+.f-cta .ar { transition: transform 0.35s; }
+.featured:hover .f-cta .ar { transform: translateX(6px); }
+
+.meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 0.76rem; font-weight: 700; color: var(--text-muted); }
+.cat { padding: 4px 10px; border-radius: 100px; color: var(--c2); background: rgba(124, 58, 237, 0.1); border: 1px solid rgba(124, 58, 237, 0.22); text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.68rem; }
+body.dark-mode .cat { color: #C4B5FD; }
+.dot::before { content: '•'; opacity: 0.5; margin-right: 8px; }
+
+/* =========================================================
+   TOOLBAR: chips + search
+========================================================= */
+.toolbar { position: sticky; top: 92px; z-index: 50; display: flex; align-items: center; gap: 1rem; padding: 10px; margin-bottom: 1.8rem; border-radius: 100px;
+    background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(124, 58, 237, 0.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12); }
+body.dark-mode .toolbar { background: rgba(15, 23, 42, 0.75); border-color: rgba(255, 255, 255, 0.07); }
+.chips { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; flex: 1; }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex-shrink: 0; display: inline-flex; align-items: center; gap: 7px; padding: 8px 15px; border-radius: 100px; border: 1px solid transparent; background: none; cursor: pointer; font-family: 'DM Sans', sans-serif; font-size: 0.84rem; font-weight: 700; color: var(--text-muted); transition: all 0.3s; }
+.chip small { font-size: 0.68rem; padding: 1px 7px; border-radius: 100px; background: rgba(124, 58, 237, 0.14); color: var(--c2); }
+body.dark-mode .chip small { color: #C4B5FD; }
+.chip:hover { color: var(--text-main); border-color: rgba(124, 58, 237, 0.3); }
+.chip.on { color: #fff; background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 6px 18px rgba(124, 58, 237, 0.35); }
+.chip.on small { background: rgba(255, 255, 255, 0.22); color: #fff; }
+.search { position: relative; flex: 0 0 260px; }
+.search input { width: 100%; padding: 10px 38px 10px 40px; border-radius: 100px; border: 1px solid rgba(124, 58, 237, 0.2); background: rgba(255, 255, 255, 0.7); color: var(--text-main); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; transition: border-color 0.3s, box-shadow 0.3s; }
+body.dark-mode .search input { background: rgba(30, 41, 59, 0.7); border-color: rgba(255, 255, 255, 0.1); }
+.search input:focus { border-color: var(--c2); box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18); }
+.search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--text-light); pointer-events: none; }
+.search kbd { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 0.66rem; font-family: 'DM Sans', sans-serif; font-weight: 700; color: var(--text-light); border: 1px solid rgba(148, 163, 184, 0.35); border-radius: 6px; padding: 1px 6px; }
+.search-count { font-size: 0.82rem; color: var(--text-muted); margin: -1rem 0 1.2rem; min-height: 1.2em; }
+mark { background: linear-gradient(transparent 55%, rgba(219, 39, 119, 0.45) 55%); color: inherit; padding: 0 1px; }
+
+/* =========================================================
+   CARDS
+========================================================= */
+.grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.6rem; }
+.card {
+    position: relative; display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; text-decoration: none; color: var(--text-main);
+    background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(124, 58, 237, 0.12); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.45s, border-color 0.45s, opacity 0.5s, filter 0.5s;
+}
+body.dark-mode .card { background: rgba(15, 23, 42, 0.6); border-color: rgba(255, 255, 255, 0.07); }
+.card::before { content: ''; position: absolute; inset: 0; z-index: 2; pointer-events: none; border-radius: inherit; opacity: 0; transition: opacity 0.35s;
+    background: radial-gradient(300px circle at var(--mx, 50%) var(--my, 50%), rgba(124, 58, 237, 0.18), transparent 60%); }
+.card:hover::before { opacity: 1; }
+.card:hover { transform: translateY(-8px); border-color: var(--c2); box-shadow: 0 0 0 1px rgba(124, 58, 237, 0.4), 0 24px 50px rgba(0, 0, 0, 0.3), 0 0 36px rgba(124, 58, 237, 0.22); }
+.card.hide { display: none; }
+.c-img { position: relative; aspect-ratio: 1200 / 627; overflow: hidden; }
+.c-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease, filter 0.5s; }
+.card:hover .c-img img { transform: scale(1.07); }
+.c-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(2, 6, 23, 0.55)); }
+.c-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; flex: 1; }
+.c-body h3 { font-family: 'Syne', sans-serif; font-size: 1.13rem; font-weight: 800; line-height: 1.28; margin: 0.8rem 0 0.6rem; transition: color 0.3s; }
+.card:hover .c-body h3 { color: var(--c1); }
+body.dark-mode .card:hover .c-body h3 { color: #93C5FD; }
+.c-body p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.c-foot { margin-top: auto; padding-top: 1rem; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; font-weight: 800; color: var(--c1); }
+body.dark-mode .c-foot { color: #93C5FD; }
+.c-foot .ar { display: inline-block; transition: transform 0.35s; }
+.card:hover .c-foot .ar { transform: translateX(5px); }
+
+/* Read ring */
+.ring { position: absolute; top: 12px; right: 12px; z-index: 3; width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center;
+    background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; font-size: 0.6rem; font-weight: 800; text-align: center; line-height: 1.05; }
+.ring svg { position: absolute; inset: -1px; width: calc(100% + 2px); height: calc(100% + 2px); transform: rotate(-90deg); }
+.ring circle { fill: none; stroke-width: 3; }
+.ring .bg { stroke: rgba(255, 255, 255, 0.15); }
+.ring .fg { stroke: #34D399; stroke-linecap: round; stroke-dasharray: 126; stroke-dashoffset: 126; transition: stroke-dashoffset 1.2s cubic-bezier(0.25, 0.8, 0.25, 1); filter: drop-shadow(0 0 4px #34D399); }
+.read .ring .fg { stroke-dashoffset: 0; }
+.ring .lbl-read { display: none; color: #34D399; font-size: 0.62rem; }
+.read .ring .lbl-min { display: none; }
+.read .ring .lbl-read { display: block; }
+.card.read .c-img img { filter: saturate(0.7); }
+.empty { display: none; text-align: center; padding: 3rem 1rem; color: var(--text-muted); }
+.empty b { display: block; font-family: 'Syne', sans-serif; font-size: 1.4rem; color: var(--text-main); }
+
+/* Bottom section badge (was undefined before) */
+.cta-badge { position: relative; z-index: 5; display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px; border-radius: 100px; font-size: 0.78rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    color: #C4B5FD; background: rgba(124, 58, 237, 0.12); border: 1px solid rgba(124, 58, 237, 0.35); margin-bottom: 1.2rem; }
+body:not(.dark-mode) .cta-badge { color: var(--c2); }
+
+/* =========================================================
+   MOBILE
+========================================================= */
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) {
+    .page { padding: 0 1rem 2rem; }
+    .featured { grid-template-columns: 1fr; }
+    .f-img { min-height: 210px; }
+    .f-body { padding: 1.5rem; }
+    .toolbar { position: relative; top: 0; flex-direction: column; align-items: stretch; border-radius: 20px; }
+    .search { flex: auto; }
+    .search kbd { display: none; }
+    .grid { grid-template-columns: 1fr; gap: 1.2rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .fx { opacity: 1 !important; transform: none !important; filter: none !important; }
+}
     </style>
 </head>
 <body class="dark-mode">
-    <script>
-        // Instantly checks the saved theme and applies it before the page renders, stopping the flash
-        if (localStorage.getItem('theme') === 'light') {
-            document.body.classList.remove('dark-mode');
-        }
-    </script>
+<script>
+    // Apply the saved theme before the page paints (stops the flash)
+    if (localStorage.getItem('theme') === 'light') document.body.classList.remove('dark-mode');
+</script>
 
-<!-- The Interactive Physics Canvas Engine -->
+<div class="cursor-glow" aria-hidden="true"></div>
 <canvas id="neural-canvas"></canvas>
-
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
 <div class="glass-parallax-container">
-    <img src="frkr-glass.png" class="floating-glass fg-1" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-2" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-3" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-4" alt="">
-    <img src="frkr-glass.png" class="floating-glass fg-5" alt="">
+    <img src="/frkr-glass.png" class="floating-glass fg-1" alt="">
+    <img src="/frkr-glass.png" class="floating-glass fg-2" alt="">
+    <img src="/frkr-glass.png" class="floating-glass fg-3" alt="">
+    <img src="/frkr-glass.png" class="floating-glass fg-4" alt="">
+    <img src="/frkr-glass.png" class="floating-glass fg-5" alt="">
 </div>
 
-<!-- NAVIGATION: Handled entirely by main.js -->
 <nav class="top-nav"></nav>
 
-<div class="layout-wrapper single-column">
-    <header style="text-align: center; margin-bottom: 2rem;">
-        <h1 class="gradient-text">Thoughts & Insights</h1>
-        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
-            Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.
-        </p>
-    </header>
+<main class="page">
+    <!-- HERO -->
+    <section class="hero fx">
+        <div class="tt-wrap" id="ttWrap">
+            <h1 class="gradient-text tt-h1">Thoughts &amp; Insights</h1>
+            <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+            <div class="tech-text tt-2" id="tt2" aria-hidden="true"><canvas></canvas></div>
+        </div>
+        <p class="hero-sub">Writing about B2B growth operations, marketing strategies, and the intersection of branding and AI.</p>
+    </section>
 
-   <div class="blog-grid">
-        
-        <!-- Blog 1 -->
-        <a href="/blogs/blog-1.html" class="blog-card">
-            <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing Case Study by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Brainrot+Marketing'">
-            <div class="blog-card-content">
-                <div class="blog-date">Latest Case Study</div>
-                <h2 class="blog-title">Brainrot Marketing - The Multi-Million Dollar Growth Playbook</h2>
-                <p class="blog-excerpt">How global brands are using absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
-            </div>
-        </a>
+    <!-- FEATURED -->
+    <a href="/blogs/blog-1.html" class="featured fx" data-slug="blog-1" id="featured">
+        <div class="f-img">
+            <img src="/blogs/blog-1-thumb.webp" alt="Brainrot Marketing case study by Fardin Rahman Khan Raafi" onerror="this.onerror=null;this.src='https://placehold.co/1200x627/0F172A/94A3B8?text=Brainrot+Marketing'">
+            <span class="f-badge">★ Featured</span>
+            <span class="ring" title="Reading time"><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><span class="lbl-min">4<br>min</span><span class="lbl-read">✓<br>Read</span></span>
+        </div>
+        <div class="f-body">
+            <div class="meta"><span class="cat">Case Study</span><span>Apr 12, 2026</span><span class="dot">4 min read</span></div>
+            <h2>Brainrot Marketing: The Multi-Million Dollar Growth Playbook</h2>
+            <p>How global brands are using absurdist internet culture and niche memes to grab top-of-funnel audience attention.</p>
+            <span class="f-cta">Read the case study <span class="ar">➔</span></span>
+        </div>
+    </a>
 
-        <!-- Blog 2 -->
-        <a href="/blogs/blog-2.html" class="blog-card">
-            <img src="/blogs/blog-2-thumb.webp" alt="AI Certification vs Skillset - Career Advice by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Certification'">
-            <div class="blog-card-content">
-                <div class="blog-date">Career Advice</div>
-                <h2 class="blog-title">The Real Game of AI Certifications: Hype vs. Practical Skillset</h2>
-                <p class="blog-excerpt">Why just calling yourself an "AI Enthusiast" isn't enough anymore, and the top 7 free certification courses that will boost your market demand.</p>
-            </div>
-        </a>
-
-        <!-- Blog 3 -->
-        <a href="/blogs/blog-3.html" class="blog-card">
-            <img src="/blogs/blog-3.jpg" alt="Modern Brand Strategy insights by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Modern+Marketing'">
-            <div class="blog-card-content">
-                <div class="blog-date">Marketing Strategy</div>
-                <h2 class="blog-title">Modern Marketing: Why Are Brands Paying to Get Roasted?</h2>
-                <p class="blog-excerpt">Think about it. We barely have the patience to watch a 5-second ad on YouTube. Yet, we happily sit down to watch a 2-hour roast show...</p>
-            </div>
-        </a>
-
-        <!-- Blog 4 -->
-        <a href="/blogs/blog-4.html" class="blog-card">
-            <img src="/blogs/blog-4.jpg" alt="B2B Sales Psychology guide by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=B2B+Sales+Psychology'">
-            <div class="blog-card-content">
-                <div class="blog-date">B2B Sales & Growth</div>
-                <h2 class="blog-title">Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?</h2>
-                <p class="blog-excerpt">The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".</p>
-            </div>
-        </a>
-
-        <!-- Blog 5 -->
-        <a href="/blogs/blog-5.html" class="blog-card">
-            <img src="/blogs/blog-5.jpg" alt="LinkedIn Personal Branding guide by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=LinkedIn+Personal+Branding'">
-            <div class="blog-card-content">
-                <div class="blog-date">Personal Branding</div>
-                <h2 class="blog-title">Master Your LinkedIn Profile: Your Personal Brand</h2>
-                <p class="blog-excerpt">Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand—working for you even while you sleep.</p>
-            </div>
-        </a>
-
-        <!-- Blog 6 -->
-        <a href="/blogs/blog-6.html" class="blog-card">
-            <img src="/blogs/blog-6.jpg" alt="Agentic AI and Claude Sonnet 5 analysis by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Agentic+AI'">
-            <div class="blog-card-content">
-                <div class="blog-date">AI & B2B Growth</div>
-                <h2 class="blog-title">Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You</h2>
-                <p class="blog-excerpt">Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously.</p>
-            </div>
-        </a>
-
-        <!-- Blog 7 -->
-        <a href="/blogs/blog-7.html" class="blog-card">
-            <img src="/blogs/blog-7.jpg" alt="AI Voice Dictation and Productivity by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=AI+Voice+Dictation'">
-            <div class="blog-card-content">
-                <div class="blog-date">Future of Work</div>
-                <h2 class="blog-title">The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation</h2>
-                <p class="blog-excerpt">Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation in modern B2B workflows.</p>
-            </div>
-        </a>
-
-        <!-- Blog 8 (Newest) -->
-        <a href="/blogs/blog-8.html" class="blog-card">
-            <img src="/blogs/blog-8.jpg" alt="ChatGPT Ads and the Future of AI Marketing by Marketing Executive Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=ChatGPT+Ads'">
-            <div class="blog-card-content">
-                <div class="blog-date">AI & Marketing Strategy</div>
-                <h2 class="blog-title">ChatGPT Ads Just Crossed $1 Billion: The End of Keywords</h2>
-                <p class="blog-excerpt">The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.</p>
-            </div>
-        </a>
-
-        <!-- Edu Mail Blog -->
-        <a href="/blogs/free-ai-developer-tools-for-students.html" class="blog-card">
-            <img src="/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png" alt="The $200k Hidden in Your Student Email by Fardin Rahman Khan Raafi" class="blog-card-img" onerror="this.src='https://placehold.co/1200x627/F8FAFC/64748B?text=Edu+Mail+Goldmine'">
-            <div class="blog-card-content">
-                <div class="blog-date">Resource Guide</div>
-                <h2 class="blog-title">The $200k Hidden in Your Student Email</h2>
-                <p class="blog-excerpt">The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email. Maximize your academic tech stack today.</p>
-            </div>
-        </a>
-
+    <!-- TOOLBAR -->
+    <div class="toolbar fx">
+        <div class="chips" id="chips"></div>
+        <label class="search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.6" y2="16.6"/></svg>
+            <input type="search" id="search" placeholder="Search articles…" aria-label="Search articles">
+            <kbd>/</kbd>
+        </label>
     </div>
-</div> 
+    <p class="search-count" id="searchCount"></p>
 
-<!-- THE BLOG SIGN-OFF SECTION (GRID STYLE) -->
+    <div class="grid" id="grid"></div>
+    <div class="empty" id="empty"><b>Nothing here yet…</b>Try a different word or category.</div>
+</main>
+
+<!-- BOTTOM SECTION (kept) -->
 <section class="final-cta-section">
     <div class="watermark-bg">FRKR</div>
-    
-    <div class="glowing-line-container top-line">
-        <div class="glowing-orb orb-right-left">
-            <div class="orb-head"></div>
-        </div>
-    </div>
-    
+    <div class="glowing-line-container top-line"><div class="glowing-orb orb-right-left"><div class="orb-head"></div></div></div>
     <div class="final-cta-content reveal" style="display: flex; flex-direction: column; align-items: center; text-align: center;">
-        <div class="cta-badge">■ Strategy & Psychology</div>
+        <div class="cta-badge">■ Strategy &amp; Psychology</div>
         <h2 class="final-cta-title" style="margin-bottom: 0.5rem;">Master the art of <br><span class="gradient-text">Comprehension</span></h2>
-        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 650px; line-height: 1.6; margin-top: 1rem;">
+        <p style="color: var(--text-muted); font-size: 1.1rem; max-width: 650px; line-height: 1.6; margin-top: 1rem; position: relative; z-index: 5;">
             Discover the psychology behind successful marketing, find the stories about AI, and build a brand the market cannot ignore.
         </p>
     </div>
-    
-    <div class="glowing-line-container bottom-line">
-        <div class="glowing-orb orb-left-right">
-            <div class="orb-head"></div>
-        </div>
-    </div>
+    <div class="glowing-line-container bottom-line"><div class="glowing-orb orb-left-right"><div class="orb-head"></div></div></div>
 </section>
 
-<!-- FOOTER: Handled entirely by main.js -->
 <footer class="site-footer reveal"></footer>
-
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<!-- Link to the central JavaScript file -->
+<script>
+/* =========================================================
+   POSTS (newest first). Add new posts to the top of this list.
+========================================================= */
+const POSTS = [
+    { slug: 'free-ai-developer-tools-for-students', url: '/blogs/free-ai-developer-tools-for-students.html', img: '/blogs/' + encodeURIComponent('Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png'),
+      cat: 'Resources', label: 'Resource Guide', date: '2026-10-06', mins: 5,
+      title: 'The $200k Hidden in Your Student Email',
+      excerpt: 'The ultimate guide to unlocking free AI, developer tools, and enterprise software using your student .edu email. Maximize your academic tech stack today.' },
+    { slug: 'blog-8', url: '/blogs/blog-8.html', img: '/blogs/blog-8.jpg', cat: 'AI', label: 'AI & Marketing Strategy', date: '2026-09-14', mins: 5,
+      title: 'ChatGPT Ads Just Crossed $1 Billion: The End of Keywords',
+      excerpt: 'The digital marketing landscape is experiencing a tectonic shift. Discover why this signals the dawn of context-based conversational advertising.' },
+    { slug: 'blog-7', url: '/blogs/blog-7.html', img: '/blogs/blog-7.jpg', cat: 'AI', label: 'Future of Work', date: '2026-08-18', mins: 4,
+      title: 'The Keyboard is Dying: How AI Voice Dictation is Reshaping Creation',
+      excerpt: 'Typing is no longer the only gateway from thought to execution. Voice is fast becoming the primary interface for creation in modern B2B workflows.' },
+    { slug: 'blog-6', url: '/blogs/blog-6.html', img: '/blogs/blog-6.jpg', cat: 'AI', label: 'AI & B2B Growth', date: '2026-07-21', mins: 3,
+      title: "Claude 3.5 Sonnet: The Era of 'Agentic' AI and What It Means for You",
+      excerpt: "Agentic AI means this model doesn't just sit there waiting for prompts. It plans and executes entire workflows autonomously." },
+    { slug: 'blog-5', url: '/blogs/blog-5.html', img: '/blogs/blog-5.jpg', cat: 'Personal Branding', label: 'Personal Branding', date: '2026-06-30', mins: 3,
+      title: 'Master Your LinkedIn Profile: Your Personal Brand',
+      excerpt: 'Your LinkedIn profile is not just an online CV. It is your 24/7 personal brand, working for you even while you sleep.' },
+    { slug: 'blog-4', url: '/blogs/blog-4.html', img: '/blogs/blog-4.jpg', cat: 'B2B Sales', label: 'B2B Sales & Growth', date: '2026-06-09', mins: 3,
+      title: 'Selling is 80% Psychology & 20% Product Knowledge: Where is Your Focus?',
+      excerpt: 'The biggest invisible habit destroying your close rate in the B2B sales cycle is "Feature Dumping".' },
+    { slug: 'blog-3', url: '/blogs/blog-3.html', img: '/blogs/blog-3.jpg', cat: 'Marketing', label: 'Marketing Strategy', date: '2026-05-19', mins: 3,
+      title: 'Modern Marketing: Why Are Brands Paying to Get Roasted?',
+      excerpt: 'Think about it. We barely have the patience to watch a 5-second ad on YouTube. Yet, we happily sit down to watch a 2-hour roast show...' },
+    { slug: 'blog-2', url: '/blogs/blog-2.html', img: '/blogs/blog-2-thumb.webp', cat: 'Career', label: 'Career Advice', date: '2026-04-28', mins: 4,
+      title: 'The Real Game of AI Certifications: Hype vs. Practical Skillset',
+      excerpt: 'Why just calling yourself an "AI Enthusiast" isn\'t enough anymore, and the top 7 free certification courses that will boost your market demand.' },
+    { slug: 'blog-1', url: '/blogs/blog-1.html', img: '/blogs/blog-1-thumb.webp', cat: 'Marketing', label: 'Case Study', date: '2026-04-12', mins: 4,
+      title: 'Brainrot Marketing: The Multi-Million Dollar Growth Playbook',
+      excerpt: 'How global brands are using absurdist internet culture and niche memes to grab top-of-funnel audience attention.' }
+];
+const CATS = ['All', 'Marketing', 'AI', 'B2B Sales', 'Personal Branding', 'Career', 'Resources'];
+
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fine = window.matchMedia('(pointer: fine)').matches;
+const $ = s => document.querySelector(s);
+const fmtDate = d => new Date(d + 'T00:00:00').toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+/* ---------- Read tracking (remembered in this browser) ---------- */
+const READ_KEY = 'frkr-read-posts';
+const getRead = () => { try { return JSON.parse(localStorage.getItem(READ_KEY)) || []; } catch (e) { return []; } };
+const markRead = slug => { try { const r = getRead(); if (!r.includes(slug)) { r.push(slug); localStorage.setItem(READ_KEY, JSON.stringify(r)); } } catch (e) {} };
+
+/* ---------- Render cards ---------- */
+const grid = $('#grid');
+const ring = mins => `<span class="ring" title="Reading time"><svg viewBox="0 0 44 44"><circle class="bg" cx="22" cy="22" r="20"/><circle class="fg" cx="22" cy="22" r="20"/></svg><span class="lbl-min">${mins}<br>min</span><span class="lbl-read">✓<br>Read</span></span>`;
+grid.innerHTML = POSTS.filter(p => p.slug !== 'blog-1').map(p => `
+<a href="${p.url}" class="card fx" data-slug="${p.slug}" data-cat="${p.cat}">
+    <div class="c-img"><img src="${p.img}" alt="${esc(p.title)}, by Fardin Rahman Khan Raafi" loading="lazy" onerror="this.onerror=null;this.src='https://placehold.co/1200x627/0F172A/94A3B8?text=Article'">${ring(p.mins)}</div>
+    <div class="c-body">
+        <div class="meta"><span class="cat">${p.label}</span><span>${fmtDate(p.date)}</span></div>
+        <h3>${esc(p.title)}</h3>
+        <p>${esc(p.excerpt)}</p>
+        <div class="c-foot"><span>Read article <span class="ar">➔</span></span><span style="color:var(--text-light);font-weight:700">${p.mins} min read</span></div>
+    </div>
+</a>`).join('');
+
+const applyRead = () => {
+    const r = getRead();
+    document.querySelectorAll('[data-slug]').forEach(el => el.classList.toggle('read', r.includes(el.dataset.slug)));
+};
+applyRead();
+document.addEventListener('click', e => { const a = e.target.closest('[data-slug]'); if (a) markRead(a.dataset.slug); }, true);
+window.addEventListener('pageshow', applyRead);
+
+/* ---------- Filters + search ---------- */
+const countOf = c => c === 'All' ? POSTS.length : POSTS.filter(p => p.cat === c).length;
+$('#chips').innerHTML = CATS.map((c, i) => `<button type="button" class="chip${i === 0 ? ' on' : ''}" data-cat="${c}">${c}<small>${countOf(c)}</small></button>`).join('');
+let cat = 'All', query = '';
+const highlight = (text, q) => !q ? esc(text) : esc(text).replace(new RegExp('(' + esc(q).replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'ig'), '<mark>$1</mark>');
+const apply = () => {
+    const q = query.trim().toLowerCase();
+    let shown = 0;
+    document.querySelectorAll('.card').forEach(card => {
+        const p = POSTS.find(x => x.slug === card.dataset.slug);
+        const ok = (cat === 'All' || p.cat === cat) && (!q || (p.title + ' ' + p.excerpt + ' ' + p.label).toLowerCase().includes(q));
+        card.classList.toggle('hide', !ok);
+        if (ok) {
+            shown++;
+            card.querySelector('h3').innerHTML = highlight(p.title, q);
+            card.querySelector('p').innerHTML = highlight(p.excerpt, q);
+            card.classList.remove('in'); setTimeout(() => card.classList.add('in'), 30 + shown * 45);
+        }
+    });
+    // the featured post follows the filters too
+    const f = POSTS.find(x => x.slug === 'blog-1');
+    const fOk = (cat === 'All' || f.cat === cat) && (!q || (f.title + ' ' + f.excerpt + ' ' + f.label).toLowerCase().includes(q));
+    $('#featured').style.display = fOk ? '' : 'none';
+    $('#empty').style.display = shown || fOk ? 'none' : 'block';
+    const total = shown + (fOk ? 1 : 0);
+    $('#searchCount').textContent = q ? `${total} result${total === 1 ? '' : 's'} for “${query.trim()}”` : '';
+};
+$('#chips').addEventListener('click', e => {
+    const b = e.target.closest('.chip'); if (!b) return;
+    document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === b));
+    cat = b.dataset.cat; apply();
+});
+$('#search').addEventListener('input', e => { query = e.target.value; apply(); });
+document.addEventListener('keydown', e => {
+    if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) { e.preventDefault(); $('#search').focus(); }
+    if (e.key === 'Escape' && document.activeElement === $('#search')) { $('#search').value = ''; query = ''; apply(); $('#search').blur(); }
+});
+
+/* ---------- Spotlight on cards ---------- */
+grid.addEventListener('mousemove', e => {
+    const c = e.target.closest('.card'); if (!c) return;
+    const r = c.getBoundingClientRect(); c.style.setProperty('--mx', (e.clientX - r.left) + 'px'); c.style.setProperty('--my', (e.clientY - r.top) + 'px');
+});
+
+/* ---------- Reveal ---------- */
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.1 });
+document.querySelectorAll('.fx').forEach(el => reduce ? el.classList.add('in') : io.observe(el));
+
+function createTechText(wrap, container, TEXT, ALIGN, INTRO_DELAY) {
+    if (!wrap || !container) return;
+    const canvas = container.querySelector('canvas');
+    const ctx = canvas && canvas.getContext('2d');
+    const layer = document.createElement('canvas');      // letters are drawn here, then coloured with the gradient
+    const lctx = layer.getContext('2d');
+    const scratch = document.createElement('canvas');     // used for measuring text
+    const sctx = scratch.getContext('2d');
+    if (!ctx || !lctx || !sctx) return;                   // no canvas support: the normal <h1> stays visible
+    wrap.classList.add('tt-on');
+
+    const LABEL_FONT = '10px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+    const SPRING = 320;
+    const S = {
+        text: TEXT, fontFamily: "'Syne', sans-serif", fontWeight: 800, letterSpacing: -0.03,
+        sideMargin: 24, dashLength: 4, dashGap: 2, strokeWidth: 1.5, specks: 15,
+        bounce: 0.4, speed: 1, introDuration: 1.6, gradientSeconds: 5
+    };
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const approach = (c, t, dt, sec) => c + (t - c) * (1 - Math.exp(-dt / sec));
+    const clamp01 = v => Math.min(1, Math.max(0, Number(v) || 0));
+    const smoothstep = (a, b, v) => { const t = clamp01((v - a) / (b - a)); return t * t * (3 - 2 * t); };
+    const noise = (...vals) => {
+        let h = 2166136261;
+        for (const v of vals) { h = Math.imul(h ^ (v | 0), 16777619); h ^= h >>> 13; h = Math.imul(h, 0x5bd1e995); h ^= h >>> 15; }
+        return (h >>> 0) / 4294967296;
+    };
+    const signed = v => (v > 0 ? `+${v}` : v < 0 ? `−${-v}` : '0');
+
+    let width = 1, height = 1, dpr = 1, raf = 0, last = performance.now(), visible = true, sizeDirty = true;
+    let layoutKey = '', word = null, glyphs = [], clock = 0, pulse = 0, placed = false, dragging = -1, cursor = '';
+    let introClock = 0, introducing = !reduced, fontsReady = !document.fonts, fontSize = 64, gradClock = 0;
+    const pointer = { x: 0, y: 0, inside: false }, grab = { x: 0, y: 0 }, lens = { x: 0, y: 0 };
+    const frame = { x1: 0, y1: 0, x2: 0, y2: 0, alpha: 0, index: -1 };
+
+    const fontFor = size => `${S.fontWeight} ${size}px ${S.fontFamily}`;
+    const setFont = (t, size) => {
+        t.font = fontFor(size);
+        if ('letterSpacing' in t) t.letterSpacing = `${S.letterSpacing * size}px`;
+        t.textAlign = 'left'; t.textBaseline = 'alphabetic';
+    };
+    const isDark = () => document.body.classList.contains('dark-mode');
+    const accent = () => (isDark() ? '#A78BFA' : '#7C3AED');
+
+    // One small pre-rendered image per letter: solid fill, or dashed outline
+    const sprite = (view, g, stroke) => {
+        const pad = Math.ceil(S.strokeWidth * 2 + 4);
+        const left = g.box.x1 - pad, top = g.box.y1 - pad;
+        const w = g.box.x2 - g.box.x1 + pad * 2, h = g.box.y2 - g.box.y1 + pad * 2;
+        const image = document.createElement('canvas');
+        image.width = Math.max(1, Math.ceil(w * dpr)); image.height = Math.max(1, Math.ceil(h * dpr));
+        const c = image.getContext('2d');
+        c.setTransform(dpr, 0, 0, dpr, -left * dpr, -top * dpr);
+        setFont(c, view.size);
+        if (stroke) {
+            c.lineJoin = 'round'; c.lineWidth = S.strokeWidth * 2; c.strokeStyle = '#fff';
+            c.setLineDash([S.dashLength, S.dashGap]);
+            c.strokeText(g.char, g.x, view.baseline);
+            c.setLineDash([]);
+            c.globalCompositeOperation = 'destination-out';
+            c.fillText(g.char, g.x, view.baseline);
+        } else {
+            c.fillStyle = '#fff';
+            c.fillText(g.char, g.x, view.baseline);
+        }
+        return { image, left, top };
+    };
+
+    const ensureLayout = () => {
+        const key = [fontSize, width, height, dpr, fontsReady, ALIGN()].join('|');
+        if (key === layoutKey && word) return word;
+        layoutKey = key;
+        setFont(sctx, fontSize);
+        let m = sctx.measureText(S.text);
+        const avail = width - S.sideMargin * 2;
+        const fit = Math.min(1, avail / Math.max(m.actualBoundingBoxLeft + m.actualBoundingBoxRight, 1),
+            (height * 0.66) / Math.max(m.actualBoundingBoxAscent + m.actualBoundingBoxDescent, 1));
+        const size = fontSize * fit;
+        setFont(sctx, size);
+        m = sctx.measureText(S.text);
+        const inkW = m.actualBoundingBoxLeft + m.actualBoundingBoxRight;
+        const x = (ALIGN() === 'center' ? (width - inkW) / 2 : S.sideMargin) + m.actualBoundingBoxLeft;
+        const inkH = m.actualBoundingBoxAscent + m.actualBoundingBoxDescent;
+        const baseline = (height - inkH) / 2 + m.actualBoundingBoxAscent;
+        word = { size, baseline, left: x - m.actualBoundingBoxLeft, right: x + m.actualBoundingBoxRight,
+                 top: baseline - m.actualBoundingBoxAscent, bottom: baseline + m.actualBoundingBoxDescent };
+
+        const prev = glyphs; glyphs = [];
+        let prefix = '';
+        Array.from(S.text).forEach((char, i) => {
+            prefix += char;
+            const own = sctx.measureText(char);
+            const gx = x + sctx.measureText(prefix).width - own.width;
+            if (!char.trim()) return;
+            const base = { char, x: gx, box: { x1: gx - own.actualBoundingBoxLeft, y1: baseline - own.actualBoundingBoxAscent,
+                                               x2: gx + own.actualBoundingBoxRight, y2: baseline + own.actualBoundingBoxDescent } };
+            const kept = prev[glyphs.length];
+            const same = kept && kept.index === i;
+            glyphs.push({ ...base, index: i,
+                offset: same ? kept.offset : { x: 0, y: 0 }, velocity: same ? kept.velocity : { x: 0, y: 0 },
+                outline: same ? kept.outline : 0, shown: same ? kept.shown : (introducing ? 0 : 1),
+                fill: sprite(word, base, false), dashes: sprite(word, base, true) });
+        });
+        if (dragging >= glyphs.length) dragging = -1;
+        return word;
+    };
+
+    const glyphAt = (x, y) => {
+        if (!word || y < word.top - 24 || y > word.bottom + 24) return -1;
+        let best = -1, bestD = Infinity;
+        glyphs.forEach((g, i) => {
+            const x1 = g.box.x1 + g.offset.x, x2 = g.box.x2 + g.offset.x;
+            const d = x < x1 ? x1 - x : x > x2 ? x - x2 : 0;
+            if (d < bestD) { bestD = d; best = i; }
+        });
+        return bestD < 28 ? best : -1;
+    };
+
+    const blit = (t, art, dx, dy) => t.drawImage(art.image, Math.round((art.left + dx) * dpr), Math.round((art.top + dy) * dpr));
+    const crisp = v => (Math.round(v * dpr) + 0.5) / dpr;
+
+    const perimeterPoint = (dist, w, h) => {
+        const p = 2 * (w + h);
+        let d = ((dist % p) + p) % p;
+        if (d < w) return [frame.x1 + d, frame.y1, 0, -1]; d -= w;
+        if (d < h) return [frame.x2, frame.y1 + d, 1, 0]; d -= h;
+        if (d < w) return [frame.x2 - d, frame.y2, 0, 1]; d -= w;
+        return [frame.x1, frame.y2 - d, -1, 0];
+    };
+
+    const drawSpecks = (a, col) => {
+        const w = frame.x2 - frame.x1, h = frame.y2 - frame.y1;
+        if (w < 2 || h < 2) return;
+        const perim = 2 * (w + h), seed = frame.index + 1, grid = 3;
+        ctx.fillStyle = col; ctx.strokeStyle = col;
+        for (let k = 0; k < S.specks; k++) {
+            const period = 0.5 + noise(seed, k, 11) * 1.2;
+            const t = pulse / period + noise(seed, k, 17), cycle = Math.floor(t), life = t - cycle;
+            if (life > 0.7) continue;
+            const [px, py, nx, ny] = perimeterPoint(noise(seed, k, cycle) * perim, w, h);
+            const pick = noise(seed, k, cycle, 2);
+            const size = pick < 0.46 ? 2 : pick < 0.7 ? 3 : pick < 0.84 ? 5 : pick < 0.94 ? 8 : 11;
+            const large = size >= 8;
+            const out = (large ? 9 : 4) + Math.floor(noise(seed, k, cycle, 1) * 5) * grid;
+            const x = frame.x1 + Math.round((px + nx * out - frame.x1) / grid) * grid;
+            const y = frame.y1 + Math.round((py + ny * out - frame.y1) / grid) * grid;
+            const tone = noise(seed, k, cycle, 3);
+            const blink = life < 0.06 || (life > 0.32 && life < 0.36) ? 0.35 : 1;
+            ctx.globalAlpha = a * (large ? 0.3 + 0.4 * tone : 0.3 + 0.6 * tone) * blink;
+            const l = Math.round(x - size / 2), tp = Math.round(y - size / 2);
+            if (tone < 0.26 || (large && tone < 0.78)) {
+                ctx.strokeRect(l + 0.5, tp + 0.5, size, size);
+                if (large && tone > 0.5) ctx.fillRect(Math.round(x) - 1, Math.round(y) - 1, 2, 2);
+            } else ctx.fillRect(l, tp, size, size);
+        }
+        for (let j = 0; j < 2; j++) {
+            const head = (pulse * 0.42 * S.speed + j * 0.5) * perim;
+            for (let i = 0; i < 4; i++) {
+                const [x, y] = perimeterPoint(head - i * 6, w, h);
+                const size = i === 0 ? 3 : 2;
+                ctx.globalAlpha = a * [0.95, 0.55, 0.32, 0.16][i];
+                ctx.fillRect(Math.round(x - size / 2), Math.round(y - size / 2), size, size);
+            }
+        }
+        ctx.globalAlpha = 1;
+    };
+
+    const drawFrame = col => {
+        const g = glyphs[frame.index];
+        if (!g || frame.alpha < 0.01) return;
+        const a = frame.alpha;
+        const x1 = crisp(frame.x1), y1 = crisp(frame.y1), x2 = crisp(frame.x2), y2 = crisp(frame.y2);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.fillStyle = col; ctx.strokeStyle = col; ctx.lineWidth = 1;
+        const moved = Math.hypot(g.offset.x, g.offset.y);
+        if (moved > 1) {   // dashed tether back to where the letter belongs
+            const hx = (g.box.x1 + g.box.x2) / 2, hy = (g.box.y1 + g.box.y2) / 2;
+            ctx.beginPath(); ctx.moveTo(hx, hy); ctx.lineTo(hx + g.offset.x, hy + g.offset.y);
+            ctx.setLineDash([3, 4]); ctx.globalAlpha = 0.45 * a; ctx.stroke(); ctx.setLineDash([]);
+            ctx.globalAlpha = 0.7 * a; ctx.fillRect(Math.round(hx) - 2, Math.round(hy) - 2, 4, 4);
+        }
+        ctx.beginPath(); ctx.rect(x1, y1, x2 - x1, y2 - y1); ctx.globalAlpha = 0.5 * a; ctx.stroke();
+        ctx.beginPath();
+        for (const [cx, cy] of [[x1, y1], [x2, y1], [x2, y2], [x1, y2]]) ctx.rect(Math.round(cx) - 2, Math.round(cy) - 2, 5, 5);
+        ctx.globalAlpha = 0.95 * a; ctx.fill();
+        drawSpecks(a, col);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.font = LABEL_FONT; ctx.textAlign = 'left'; ctx.textBaseline = 'bottom'; ctx.fillStyle = col; ctx.globalAlpha = 0.7 * a;
+        const label = moved > 1
+            ? `${signed(Math.round(g.offset.x))}, ${signed(Math.round(-g.offset.y))}`
+            : `${g.char}  ${Math.round(g.box.x2 - g.box.x1)} × ${Math.round(g.box.y2 - g.box.y1)}`;
+        ctx.fillText(label, Math.round(frame.x1), Math.round(frame.y1) - 7);
+        ctx.globalAlpha = 1;
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+    };
+
+    // The brand gradient, sliding back and forth like .gradient-text in style.css
+    const paintGradient = view => {
+        const W = Math.max(1, (view.right - view.left) * dpr);
+        const t = reduced ? 0 : (0.5 - 0.5 * Math.cos((gradClock / S.gradientSeconds) * Math.PI));
+        const x0 = view.left * dpr - W * t;
+        const g = lctx.createLinearGradient(x0, view.top * dpr, x0 + 2 * W, view.bottom * dpr);
+        g.addColorStop(0, '#2563EB'); g.addColorStop(0.5, '#7C3AED'); g.addColorStop(1, '#DB2777');
+        lctx.globalCompositeOperation = 'source-in';
+        lctx.globalAlpha = 1;
+        lctx.fillStyle = g;
+        lctx.fillRect(0, 0, layer.width, layer.height);
+        lctx.globalCompositeOperation = 'source-over';
+    };
+
+    const tick = now => {
+        raf = 0;
+        if (sizeDirty) {
+            sizeDirty = false;
+            width = Math.max(1, container.clientWidth); height = Math.max(1, container.clientHeight);
+            dpr = Math.min(window.devicePixelRatio || 1, 2);
+            fontSize = parseFloat(getComputedStyle(container).fontSize) || 64;
+            const pw = Math.round(width * dpr), ph = Math.round(height * dpr);
+            if (canvas.width !== pw) { canvas.width = pw; layer.width = pw; }
+            if (canvas.height !== ph) { canvas.height = ph; layer.height = ph; }
+        }
+        const dt = Math.min(0.05, Math.max(0.001, (now - last) / 1000));
+        last = now;
+        const view = ensureLayout();
+        const damping = 2 * Math.sqrt(SPRING) * (1 - clamp01(S.bounce) * 0.96);
+
+        // Intro: letters type in one by one
+        if (introducing && fontsReady) introClock += dt;
+        const progress = introducing ? clamp01((introClock - INTRO_DELAY) / S.introDuration) : 1;
+        if (introducing && progress >= 1) introducing = false;
+
+        const sweeping = !introducing && !reduced && !pointer.inside && dragging < 0;
+        if (sweeping) clock += dt * S.speed;
+        pulse += dt; gradClock += dt;
+        let tx = pointer.x, ty = pointer.y;
+        if (sweeping) {   // the idle "scanner"
+            tx = view.left + (view.right - view.left) * (0.5 - 0.5 * Math.cos(clock * 0.45));
+            ty = view.top + (view.bottom - view.top) * (0.45 + 0.1 * Math.sin(clock * 0.8));
+        }
+        const active = !introducing && (pointer.inside || sweeping || dragging >= 0);
+        if (active && !placed) { lens.x = tx; lens.y = ty; }
+        if (active) { const lag = pointer.inside ? 0.05 : 0.22; lens.x = approach(lens.x, tx, dt, lag); lens.y = approach(lens.y, ty, dt, lag); }
+        placed = active;
+
+        // Spring physics for dragged letters
+        glyphs.forEach((g, i) => {
+            if (i === dragging) {
+                g.offset.x = approach(g.offset.x, pointer.x - grab.x, dt, 0.03);
+                g.offset.y = approach(g.offset.y, pointer.y - grab.y, dt, 0.03);
+                g.velocity.x = g.velocity.y = 0;
+                return;
+            }
+            const { offset: o, velocity: v } = g;
+            if (Math.abs(o.x) < 0.05 && Math.abs(o.y) < 0.05 && Math.hypot(v.x, v.y) < 0.5) { o.x = o.y = v.x = v.y = 0; return; }
+            v.x += (-SPRING * o.x - damping * v.x) * dt; v.y += (-SPRING * o.y - damping * v.y) * dt;
+            o.x += v.x * dt; o.y += v.y * dt;
+        });
+
+        let typing = -1;
+        if (introducing) {
+            const step = 0.86 / glyphs.length;
+            const at = Math.min(glyphs.length - 1, Math.floor(progress / step));
+            typing = progress < 0.93 ? at : -1;
+            glyphs.forEach((g, i) => { g.shown = i < at ? 1 : i === at ? smoothstep(0, step * 0.3, progress - i * step) : 0; });
+        } else glyphs.forEach(g => { g.shown = 1; });
+
+        const focus = introducing ? typing : dragging >= 0 ? dragging : active ? glyphAt(lens.x, lens.y) : -1;
+        if (focus >= 0) {
+            const g = glyphs[focus];
+            const bx1 = g.box.x1 + g.offset.x - 6, by1 = g.box.y1 + g.offset.y - 6, bx2 = g.box.x2 + g.offset.x + 6, by2 = g.box.y2 + g.offset.y + 6;
+            if (frame.index < 0 || frame.alpha < 0.02) { frame.x1 = bx1; frame.y1 = by1; frame.x2 = bx2; frame.y2 = by2; }
+            const glide = focus === dragging ? 0.02 : 0.08;
+            frame.x1 = approach(frame.x1, bx1, dt, glide); frame.y1 = approach(frame.y1, by1, dt, glide);
+            frame.x2 = approach(frame.x2, bx2, dt, glide); frame.y2 = approach(frame.y2, by2, dt, glide);
+            frame.index = focus;
+        }
+        frame.alpha = approach(frame.alpha, focus >= 0 ? 1 : 0, dt, 0.1);
+
+        glyphs.forEach((g, i) => {
+            const target = introducing ? (i === typing || (typing >= 0 && i > typing) ? 1 : 0) : (i === focus && i !== dragging ? 1 : 0);
+            if (introducing && g.shown === 0) g.outline = target;
+            g.outline = approach(g.outline, target, dt, 0.09);
+            if (Math.abs(g.outline - target) < 0.002) g.outline = target;
+        });
+
+        const hovering = !introducing && focus >= 0 && pointer.inside;
+        const next = dragging >= 0 ? 'grabbing' : hovering ? 'grab' : '';
+        if (next !== cursor) { cursor = next; container.style.cursor = next; }
+
+        // 1) letters onto the layer (white), 2) colour them with the gradient, 3) copy to screen
+        lctx.setTransform(1, 0, 0, 1, 0, 0);
+        lctx.clearRect(0, 0, layer.width, layer.height);
+        for (const g of glyphs) {
+            const moved = Math.hypot(g.offset.x, g.offset.y);
+            if (moved > 1) { lctx.globalAlpha = Math.min(1, moved / 24) * 0.55; blit(lctx, g.dashes, 0, 0); }
+        }
+        for (const g of glyphs) {
+            if (g.shown < 0.001) continue;
+            if (g.outline < 0.999) { lctx.globalAlpha = (1 - g.outline) * g.shown; blit(lctx, g.fill, g.offset.x, g.offset.y); }
+            if (g.outline > 0.001) { lctx.globalAlpha = g.outline * g.shown; blit(lctx, g.dashes, g.offset.x, g.offset.y); }
+        }
+        lctx.globalAlpha = 1;
+        paintGradient(view);
+
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.globalAlpha = 1;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(layer, 0, 0);
+        drawFrame(accent());
+
+        if (visible) raf = requestAnimationFrame(tick);   // keeps running for the moving gradient
+    };
+
+    const wake = () => { if (raf || !visible) return; last = performance.now(); raf = requestAnimationFrame(tick); };
+    const resize = () => { sizeDirty = true; layoutKey = ''; wake(); };
+    const locate = e => { const r = container.getBoundingClientRect(); pointer.x = e.clientX - r.left; pointer.y = e.clientY - r.top; };
+
+    container.addEventListener('pointermove', e => { locate(e); pointer.inside = true; wake(); }, { passive: true });
+    container.addEventListener('pointerenter', e => { locate(e); pointer.inside = true; wake(); }, { passive: true });
+    container.addEventListener('pointerleave', () => { if (dragging < 0) pointer.inside = false; }, { passive: true });
+    container.addEventListener('pointerdown', e => {
+        locate(e); pointer.inside = true;
+        if (introducing || (e.pointerType === 'mouse' && e.button !== 0)) return;
+        const index = glyphAt(pointer.x, pointer.y);
+        if (index >= 0) {
+            dragging = index;
+            grab.x = pointer.x - glyphs[index].offset.x; grab.y = pointer.y - glyphs[index].offset.y;
+            container.setPointerCapture && container.setPointerCapture(e.pointerId);
+        }
+        wake();
+    });
+    const release = e => {
+        if (dragging < 0) return;
+        dragging = -1;
+        try { container.releasePointerCapture(e.pointerId); } catch (err) {}
+        const r = container.getBoundingClientRect();
+        pointer.inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+        if (e.pointerType !== 'mouse') pointer.inside = false;
+    };
+    container.addEventListener('pointerup', release);
+    container.addEventListener('pointercancel', release);
+
+    new ResizeObserver(resize).observe(container);
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; wake(); }).observe(container);
+    document.addEventListener('visibilitychange', () => { visible = !document.hidden; wake(); });
+    if (document.fonts) {
+        document.fonts.load(fontFor(64), S.text).finally(() => document.fonts.ready.then(() => { fontsReady = true; resize(); }));
+    }
+    resize();
+}
+
+/* Two-line tech-text heading (centred) */
+(() => {
+    const wrap = document.getElementById('ttWrap');
+    const center = () => 'center';
+    createTechText(wrap, document.getElementById('tt1'), 'Thoughts &', center, 0.15);
+    createTechText(wrap, document.getElementById('tt2'), 'Insights', center, 0.95);
+})();
+
+/* ---------- Cursor glow ---------- */
+(() => {
+    const glow = document.querySelector('.cursor-glow');
+    if (!glow || reduce || !fine) return;
+    let gx = -9999, gy = -9999, cx = gx, cy = gy, raf = 0;
+    const step = () => { cx += (gx - cx) * 0.18; cy += (gy - cy) * 0.18; glow.style.transform = `translate3d(${cx - 210}px, ${cy - 210}px, 0)`; raf = (Math.abs(gx - cx) + Math.abs(gy - cy) > 0.5) ? requestAnimationFrame(step) : 0; };
+    window.addEventListener('mousemove', e => { if (cx === -9999) { cx = e.clientX; cy = e.clientY; } gx = e.clientX; gy = e.clientY; glow.classList.add('on'); if (!raf) raf = requestAnimationFrame(step); }, { passive: true });
+    document.addEventListener('mouseleave', () => glow.classList.remove('on'));
+})();
+</script>
+
 <script src="/main.js"></script>
 
-<!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
+<!-- Background neural network (same look as before; pauses when the tab is hidden) -->
 <script>
-    const canvas = document.getElementById('neural-canvas');
-    if(canvas) {
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        let particles = [];
-        
-        let mouse = { x: null, y: null, radius: 150 };
-
-        window.addEventListener('mousemove', (event) => {
-            mouse.x = event.clientX;
-            mouse.y = event.clientY;
-        });
-
-        window.addEventListener('mouseout', () => {
-            mouse.x = null;
-            mouse.y = null;
-        });
-
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor(x, y, dx, dy, size, color) {
-                this.x = x; this.y = y;
-                this.dx = dx; this.dy = dy;
-                this.size = size; this.color = color;
-                this.baseX = this.x; this.baseY = this.y;
-                this.density = (Math.random() * 30) + 1;
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
-                ctx.fillStyle = this.color;
-                ctx.fill();
-            }
-            update() {
-                if (mouse.x != null && mouse.y != null) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    let forceDirectionX = dx / distance;
-                    let forceDirectionY = dy / distance;
-                    let maxDistance = mouse.radius;
-                    let force = (maxDistance - distance) / maxDistance;
-                    let directionX = forceDirectionX * force * this.density;
-                    let directionY = forceDirectionY * force * this.density;
-
-                    if (distance < mouse.radius) {
-                        this.x -= directionX;
-                        this.y -= directionY;
-                    } else {
-                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-                    }
-                } else {
-                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
-                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
-                }
-                this.baseX += this.dx;
-                this.baseY += this.dy;
-                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
-                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
-                this.draw();
-            }
-        }
-
-        function init() {
-            particles = [];
-            let numberOfParticles = (width * height) / 9000; 
-            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
-
-            for (let i = 0; i < numberOfParticles; i++) {
-                let size = (Math.random() * 2) + 1;
-                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
-                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
-                let dx = (Math.random() - 0.5) * 1; 
-                let dy = (Math.random() - 0.5) * 1; 
-                let color = colors[Math.floor(Math.random() * colors.length)];
-                particles.push(new Particle(x, y, dx, dy, size, color));
-            }
-        }
-
-        function connect() {
-            let opacityValue = 1;
-            for (let a = 0; a < particles.length; a++) {
-                for (let b = a; b < particles.length; b++) {
-                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
-                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
-                    if (distance < (width / 7) * (height / 7)) {
-                        opacityValue = 1 - (distance / 20000);
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
-                        ctx.lineWidth = 1;
-                        ctx.beginPath();
-                        ctx.moveTo(particles[a].x, particles[a].y);
-                        ctx.lineTo(particles[b].x, particles[b].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            ctx.clearRect(0, 0, width, height);
-            for (let i = 0; i < particles.length; i++) particles[i].update();
-            connect();
-        }
-
-        init();
-        animate();
-    }
+(() => {
+    const canvas = document.getElementById('neural-canvas'); if (!canvas) return;
+    const ctx = canvas.getContext('2d'); let width, height, particles = []; const mouse = { x: null, y: null, radius: 150 };
+    window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
+    window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+    const resize = () => { width = canvas.width = innerWidth; height = canvas.height = innerHeight; }; addEventListener('resize', resize); resize();
+    class P { constructor(x, y, dx, dy, s, c) { Object.assign(this, { x, y, dx, dy, size: s, color: c, baseX: x, baseY: y, density: Math.random() * 30 + 1 }); }
+        update() {
+            if (mouse.x != null) { const dx = mouse.x - this.x, dy = mouse.y - this.y, d = Math.hypot(dx, dy), f = (mouse.radius - d) / mouse.radius;
+                if (d < mouse.radius) { this.x -= dx / d * f * this.density; this.y -= dy / d * f * this.density; } else { this.x -= (this.x - this.baseX) / 10; this.y -= (this.y - this.baseY) / 10; } }
+            else { this.x -= (this.x - this.baseX) / 10; this.y -= (this.y - this.baseY) / 10; }
+            this.baseX += this.dx; this.baseY += this.dy; if (this.baseX < 0 || this.baseX > width) this.dx *= -1; if (this.baseY < 0 || this.baseY > height) this.dy *= -1;
+            ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); } }
+    const cols = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+    for (let i = 0; i < width * height / 9000; i++) { const s = Math.random() * 2 + 1; particles.push(new P(Math.random() * (innerWidth - s * 4) + s * 2, Math.random() * (innerHeight - s * 4) + s * 2, Math.random() - 0.5, Math.random() - 0.5, s, cols[i % 3])); }
+    const loop = () => {
+        requestAnimationFrame(loop); if (document.hidden) return; ctx.clearRect(0, 0, width, height); particles.forEach(p => p.update());
+        for (let a = 0; a < particles.length; a++) for (let b = a; b < particles.length; b++) { const d = (particles[a].x - particles[b].x) ** 2 + (particles[a].y - particles[b].y) ** 2;
+            if (d < (width / 7) * (height / 7)) { ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - d / 20000) * 0.4})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke(); } }
+    };
+    loop();
+})();
 </script>
 </body>
 </html>
