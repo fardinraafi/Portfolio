@@ -18,39 +18,39 @@ Marketing Executive at Augmex Technologies and marketing graduate (BBA, BUBT, CG
 ## Core Professional Experience
 
 ### Marketing Executive - Augmex Technologies Ltd.
-*Apr 2026 – Present | Dhaka, Bangladesh*
+*Apr 2026 - Present | Dhaka, Bangladesh*
 - **B2B Lead Generation:** Research and generate B2B leads for European and Australian markets; map Key Decision Makers (KDMs) to Ideal Customer Profiles (ICPs) and run multi-channel cold outreach.
 - **CRM & Data Enrichment:** Cleaned, verified and enriched 40,000+ CRM records using Salesforce, Apollo.io and LinkedIn Sales Navigator.
-- **Content Marketing:** Own posting, scheduling, writing, design, videos and carousels for Augmex, ~180K organic reach for brand awareness (Jan–Nov 2026).
-- **FYGO (sneaker sub-brand):** Grew from 0 to 17K+ followers, ৳20 lakh+ in sales and 300+ customers (Jul–Nov 2026).
+- **Content Marketing:** Own posting, scheduling, writing, design, videos and carousels for Augmex, ~180K organic reach for brand awareness (Jan-Nov 2026).
+- **FYGO (sneaker sub-brand):** Grew from 0 to 17K+ followers, ৳20 lakh+ in sales and 300+ customers (Jul-Nov 2026).
 - **Design:** Graphic and motion design across multiple brand accounts; 1,200+ designs made.
 
 ### Intern, Marketing - Augmex Technologies Ltd.
-*Jan 2026 – Apr 2026 | Dhaka, Bangladesh*
+*Jan 2026 - Apr 2026 | Dhaka, Bangladesh*
 - Identified and mapped KDMs to ICPs and executed cold outreach to drive qualified leads.
 - Generated 67,000+ organic impressions across LinkedIn and Facebook through content marketing.
-- Supported rapid deployment of dedicated engineering teams for clients within a 7–14 day window.
+- Supported rapid deployment of dedicated engineering teams for clients within a 7-14 day window.
 
 ### Head of Corporate & Alumni Relations - BUBT Career Guidance Office
-*Jan 2026 – Present | Dhaka, Bangladesh*
+*Jan 2026 - Present | Dhaka, Bangladesh*
 - **Network Development:** Spearheaded initiatives to connect current BUBT students with university alumni and corporate partners for professional growth.
 - **Corporate Engagement:** Managed corporate relations to facilitate career-focused events, workshops, and recruitment opportunities.
 - **Career Support:** Mentored peers in exploring career paths and preparing for future professional endeavors.
 
 ### Marketing Intern (Branding) - Adviza International
-*Apr 2025 – Jan 2026 | Dhaka, Bangladesh*
+*Apr 2025 - Jan 2026 | Dhaka, Bangladesh*
 - Managed branding materials and designed successful visual campaigns across multiple social media platforms.
 - Maintained brand consistency for local and international clients, driving audience engagement.
 
 ### Business Development Intern - Youth School for Social Entrepreneurs (YSSE)
-*Jan 2025 – Jun 2025 | Dhaka, Bangladesh*
+*Jan 2025 - Jun 2025 | Dhaka, Bangladesh*
 - Conducted strategic market research to identify growth opportunities.
 - Developed community engagement strategies, significantly increasing organizational outreach.
 
 ## Education
-- **Bachelor of Business Administration (BBA), Marketing** Bangladesh University of Business and Technology (BUBT) | CGPA: 3.80 | Aug 2022 – Dec 2025
-- **Higher Secondary Certificate (H.S.C), Business/Commerce** Dhaka Commerce College | Jan 2019 – Dec 2021
-- **Secondary School Certificate (S.S.C), Business/Commerce** Adarsha High School | Jan 2019 – Dec 2019
+- **Bachelor of Business Administration (BBA), Marketing** Bangladesh University of Business and Technology (BUBT) | CGPA: 3.80 | Aug 2022 - Dec 2025
+- **Higher Secondary Certificate (H.S.C), Business/Commerce** Dhaka Commerce College | Jan 2019 - Dec 2021
+- **Secondary School Certificate (S.S.C), Business/Commerce** Adarsha High School | Jan 2019 - Dec 2019
 
 ## Top Skills & Tools
 - **Growth & Marketing:** B2B Lead Generation, Cold Outreach, Content Marketing, Social Media Strategy, Market Research, Brand Strategy.

@@ -66,11 +66,11 @@
 
         { id: 'work', keys: ['work', 'job', 'experience', 'career', 'augmex', 'company', 'role', 'position', 'currently', 'what does he do', 'employed', 'working', 'intern', 'internship', 'office'],
           a: `💼 ${B('Augmex Technologies Ltd.')}, the main quest:<br><br>• ${B('Junior Executive, Marketing')} (Apr 2026 → now)<br>• ${B('Intern, Marketing')} (Jan → Apr 2026)<br><br>he runs B2B lead generation, CRM, cold outreach, social content and design across multiple brands. did ALL the posting, writing, carousels and videos for Augmex → ~${B('180K organic reach')} 📈<br><br>before that: marketing intern at ${B('Adviza International')} (2025).`,
-          more: `side quest: ${B('FYGO')}, Augmex\'s sneaker sub-brand 👟, he grew it from 0 to ${B('17K+ followers')}, ${B('৳20 lakh+ sales')} and ${B('300+ customers')} (Jul–Nov 2026). sneakerhead marketing arc fr.`,
+          more: `side quest: ${B('FYGO')}, Augmex\'s sneaker sub-brand 👟, he grew it from 0 to ${B('17K+ followers')}, ${B('৳20 lakh+ sales')} and ${B('300+ customers')} (Jul-Nov 2026). sneakerhead marketing arc fr.`,
           chips: ['Tell me about FYGO', 'B2B stuff', 'Skills'], act: ['resumePg'] },
 
         { id: 'fygo', keys: ['fygo', 'sneaker', 'sneakers', 'shoes', 'brand growth', 'ecommerce', 'sales', 'followers'],
-          a: `👟 ${B('FYGO')} = Augmex\'s sneaker brand and Fardin\'s glow-up project:<br><br>• ${B('0 → 17K+')} followers<br>• ${B('৳20 lakh+')} in sales<br>• ${B('300+')} customers<br>• all in about 5 months (Jul–Nov 2026)<br><br>content, design, captions, the whole thing. absolute W 🔥`,
+          a: `👟 ${B('FYGO')} = Augmex\'s sneaker brand and Fardin\'s glow-up project:<br><br>• ${B('0 → 17K+')} followers<br>• ${B('৳20 lakh+')} in sales<br>• ${B('300+')} customers<br>• all in about 5 months (Jul-Nov 2026)<br><br>content, design, captions, the whole thing. absolute W 🔥`,
           chips: ['Content results', 'What tools does he use?'] },
 
         { id: 'b2b', keys: ['b2b', 'lead', 'leads', 'lead generation', 'crm', 'outreach', 'cold email', 'sales navigator', 'salesforce', 'apollo', 'prospecting', 'europe', 'australia', 'revops', 'pipeline'],
@@ -78,7 +78,7 @@
           chips: ['Content results', 'All his tools', 'Contact him'] },
 
         { id: 'content', keys: ['content', 'views', 'reach', 'social media', 'organic', 'linkedin posts', 'posting', 'viral', 'results', 'numbers', 'stats', '340k', 'impressions', 'engagement'],
-          a: `📊 the numbers go crazy:<br><br>• ${B('340K+ organic views')} in 2026<br>• ~${B('180K')} of that for Augmex (brand awareness, Jan–Nov)<br>• the rest from FYGO 👟<br>• ${B('1,200+ designs')} made<br><br>all organic. no ads. just cooking content that people actually stop scrolling for 🛑📱`,
+          a: `📊 the numbers go crazy:<br><br>• ${B('340K+ organic views')} in 2026<br>• ~${B('180K')} of that for Augmex (brand awareness, Jan-Nov)<br>• the rest from FYGO 👟<br>• ${B('1,200+ designs')} made<br><br>all organic. no ads. just cooking content that people actually stop scrolling for 🛑📱`,
           chips: ['Tell me about FYGO', 'Read his blog', 'Design work'], act: ['linkedin'] },
 
         { id: 'skills', keys: ['skill', 'skills', 'good at', 'strengths', 'expertise', 'specialize', 'specialized', 'competencies', 'capabilities', 'what can he do', 'talent'],
