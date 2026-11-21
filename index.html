@@ -2531,18 +2531,26 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isAnimating) { isAnimating = true; requestAnimationFrame(tick); }
         };
 
-        // Autoplay: one step every 1.5s while visible; pauses on hover/touch and while the lightbox is open
-        let pausedUntil = 0, onScreen = false, hovering = false;
+        // Autoplay: one step every 2s while visible (same gap for every post, including the first);
+        // pauses on hover/touch and while the lightbox is open
+        const AUTO_MS = 2000;
+        let nextStepAt = Infinity, onScreen = false, hovering = false;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const pause = (ms = 6000) => { pausedUntil = performance.now() + ms; };
+        const pause = (ms = 4000) => { nextStepAt = performance.now() + Math.max(ms, AUTO_MS); };
         viewportEl.addEventListener("mouseenter", () => { hovering = true; });
-        viewportEl.addEventListener("mouseleave", () => { hovering = false; pause(1500); });
-        new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; }, { threshold: 0.35 }).observe(viewportEl);
+        viewportEl.addEventListener("mouseleave", () => { hovering = false; nextStepAt = performance.now() + AUTO_MS; });
+        new IntersectionObserver(([en]) => {
+            const was = onScreen; onScreen = en.isIntersecting;
+            if (onScreen && !was) nextStepAt = performance.now() + AUTO_MS; // start the clock when it comes into view
+        }, { threshold: 0.35 }).observe(viewportEl);
         if (!reduceMotion) setInterval(() => {
-            if (!onScreen || hovering || isDragging || document.hidden || performance.now() < pausedUntil || document.body.classList.contains("gc-lb-open")) return;
+            if (!onScreen || hovering || isDragging || document.hidden || document.body.classList.contains("gc-lb-open")) return;
+            const now = performance.now();
+            if (now < nextStepAt) return;
+            nextStepAt = now + AUTO_MS;
             scrollTarget = Math.round(scrollTarget) + 1;
             requestRender();
-        }, 1500);
+        }, 100);
 
         canvas.addEventListener("pointerdown", (e) => {
             if (e.button !== 0) return;
@@ -2674,9 +2682,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
             pause,
-            goTo(index) {
+            goTo(index, fromUser = true) {
                 setFocused(false);
-                pause();
+                if (fromUser) pause();
                 scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount;
                 requestRender();
             }
@@ -2721,7 +2729,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, updateUI);
         updateUI(0);
-        renderer?.goTo(0);
+        renderer?.goTo(0, false);
 
         // Per-post "View on LinkedIn" buttons
         panels.forEach(p => {
