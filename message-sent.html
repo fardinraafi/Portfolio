@@ -73,31 +73,118 @@
     <!-- ===== /SEO ===== -->
     
     <!-- This magic line auto-redirects back to home after 3 seconds -->
- <meta http-equiv="refresh" content="3;url=/" />
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/style.css">
+    <style>
+        .ms-wrap { position: relative; z-index: 2; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6.5rem 1.25rem 3rem; box-sizing: border-box; }
+        .ms-card { width: 100%; max-width: 720px; text-align: center; padding: 3rem 2rem 2.4rem !important; }
+        .ms-check { width: 92px; height: 92px; margin: 0 auto 1.2rem; }
+        .ms-check circle { fill: none; stroke: url(#msGrad); stroke-width: 5; stroke-dasharray: 290; stroke-dashoffset: 290; animation: msDraw .8s .1s cubic-bezier(.65,0,.35,1) forwards; }
+        .ms-check path { fill: none; stroke: #10B981; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 60; stroke-dashoffset: 60; animation: msDraw .45s .75s ease-out forwards; }
+        @keyframes msDraw { to { stroke-dashoffset: 0; } }
+        .ms-card h1 { font-family: 'Syne', sans-serif; font-size: clamp(2rem, 5vw, 2.8rem); margin: 0 0 .6rem; }
+        .ms-lead { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; max-width: 520px; margin: 0 auto 1.4rem; }
+        .ms-reply { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 100px; font-weight: 700; font-size: .9rem; color: var(--text-main);
+            background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); margin-bottom: 1.6rem; }
+        .ms-reply i { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: ftPulse 2s infinite; }
+        .ms-fifi { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto 2rem; }
+        .ms-fifi img { width: 40px; height: 40px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(124,58,237,.45); }
+        .ms-fifi span { padding: 8px 14px; border-radius: 16px 16px 16px 4px; background: rgba(124,58,237,.12); color: var(--text-main); font-weight: 600; font-size: .9rem; text-align: left; }
+        .ms-sub { font: 700 .78rem 'DM Sans', sans-serif; letter-spacing: .2em; text-transform: uppercase; color: var(--c2); margin: 0 0 1rem; }
+        .ms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .9rem; text-align: left; margin-bottom: 1.8rem; }
+        .ms-item { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; text-decoration: none !important; background: rgba(124,58,237,.06); border: 1px solid rgba(124,58,237,.15); transition: transform .3s, border-color .3s; }
+        .ms-item:hover { transform: translateY(-4px); border-color: var(--c2); }
+        .ms-item img { width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block; }
+        .ms-item span { padding: .7rem .8rem .9rem; font-size: .9rem; font-weight: 600; color: var(--text-main); line-height: 1.35; }
+        .ms-item small { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--c2); margin-bottom: 3px; }
+        .ms-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .7rem; }
+        .ms-btn { padding: 11px 22px; border-radius: 100px; font-weight: 700; text-decoration: none; transition: transform .25s; }
+        .ms-btn:hover { transform: translateY(-2px); }
+        .ms-btn.primary { color: #fff !important; background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 8px 22px rgba(124,58,237,.35); }
+        .ms-btn.ghost { color: var(--text-main) !important; border: 1px solid rgba(124,58,237,.4); }
+        .ms-confetti { position: fixed; inset: 0; pointer-events: none; z-index: 50; }
+        @keyframes ftPulse { 0% { box-shadow: 0 0 0 0 rgba(16,185,129,.6); } 70% { box-shadow: 0 0 0 8px rgba(16,185,129,0); } 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0); } }
+        @media (max-width: 680px) {
+            .ms-card { padding: 2.2rem 1.1rem 1.8rem !important; }
+            .ms-grid { grid-template-columns: 1fr; }
+            .ms-item { flex-direction: row; align-items: center; }
+            .ms-item img { width: 96px; aspect-ratio: 1; flex-shrink: 0; }
+        }
+    </style>
 </head>
-<body>
+<body class="dark-mode">
 <script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
-
 <div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+<nav class="top-nav"></nav>
+<canvas class="ms-confetti" id="msConfetti"></canvas>
 
-<div class="layout-wrapper single-column" style="min-height: 100vh; display: flex; align-items: center; justify-content: center;">
-    <div class="glass-card reveal" style="text-align: center; padding: 4rem 2rem; max-width: 600px; margin: 0 auto;">
-        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
-        <h1 class="gradient-text" style="font-size: 2.2rem; margin-bottom: 1rem;">Message Sent!</h1>
-        <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 2rem;">
-            Thanks for reaching out. I will get back to you within 24 hours. Redirecting you to the homepage...
-        </p>
-        
-        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <!-- Manual return button just in case -->
-            <a href="/" class="btn btn-primary">Return to Homepage ➔</a>
+<main class="ms-wrap">
+    <div class="glass-card no-hover ms-card">
+        <svg class="ms-check" viewBox="0 0 100 100" aria-hidden="true">
+            <defs><linearGradient id="msGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2563EB"/><stop offset=".5" stop-color="#7C3AED"/><stop offset="1" stop-color="#DB2777"/></linearGradient></defs>
+            <circle cx="50" cy="50" r="45"/>
+            <path d="M30 52 L45 66 L71 37"/>
+        </svg>
+        <h1 class="gradient-text">Message sent!</h1>
+        <p class="ms-lead">Thanks for reaching out. Your message landed safely in my inbox and I'll read it personally.</p>
+        <div class="ms-reply"><i></i> I usually reply within 24 hours</div>
+
+        <div class="ms-fifi">
+            <img src="/misc_img/avatar.jpg" alt="Fifi" width="40" height="40">
+            <span>message delivered 📬 Fardin's on it. while you wait, peep these 👇</span>
+        </div>
+
+        <p class="ms-sub">While you wait</p>
+        <div class="ms-grid">
+            <a class="ms-item" href="/blog/chatgpt-ads-future-of-ai-marketing">
+                <img src="/blogs/blog-8.jpg" alt="" loading="lazy" decoding="async">
+                <span><small>Latest article</small>ChatGPT Ads &amp; the Future of AI Marketing</span>
+            </a>
+            <a class="ms-item" href="/resources">
+                <img src="/blogs/blog-2-thumb.webp" alt="" loading="lazy" decoding="async">
+                <span><small>Free</small>Marketing playbook &amp; AI prompts</span>
+            </a>
+            <a class="ms-item" href="/work">
+                <img src="/misc_img/work/fifi-run-404.webp" alt="" loading="lazy" decoding="async">
+                <span><small>Projects</small>See what I've built</span>
+            </a>
+        </div>
+
+        <div class="ms-actions">
+            <a href="/" class="ms-btn primary">Back to home</a>
+            <a href="/blog" class="ms-btn ghost">Read the blog</a>
+            <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener" class="ms-btn ghost">Follow on LinkedIn ↗</a>
         </div>
     </div>
-</div>
+</main>
 
+<footer class="site-footer reveal"></footer>
 <script src="/main.js"></script>
+<script>
+(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cv = document.getElementById('msConfetti'), g = cv.getContext('2d');
+    const resize = () => { cv.width = innerWidth; cv.height = innerHeight; };
+    resize(); addEventListener('resize', resize);
+    const colors = ['#2563EB', '#7C3AED', '#DB2777', '#10B981', '#F59E0B'];
+    const ps = Array.from({ length: 140 }, () => ({
+        x: innerWidth / 2 + (Math.random() - .5) * 120, y: innerHeight * .32,
+        vx: (Math.random() - .5) * 16, vy: -Math.random() * 14 - 4, r: Math.random() * 6 + 3,
+        rot: Math.random() * 6, vr: (Math.random() - .5) * .3, c: colors[Math.floor(Math.random() * colors.length)], life: 1
+    }));
+    let t0 = performance.now();
+    const step = (now) => {
+        g.clearRect(0, 0, cv.width, cv.height);
+        ps.forEach(p => {
+            p.vy += .38; p.vx *= .99; p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= .006;
+            g.save(); g.globalAlpha = Math.max(0, p.life); g.translate(p.x, p.y); g.rotate(p.rot);
+            g.fillStyle = p.c; g.fillRect(-p.r / 2, -p.r / 4, p.r, p.r / 2); g.restore();
+        });
+        if (now - t0 < 3500) requestAnimationFrame(step); else g.clearRect(0, 0, cv.width, cv.height);
+    };
+    setTimeout(() => requestAnimationFrame(step), 700);
+})();
+</script>
 </body>
 </html>

@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="nav-menu">
         <span class="nav-ind" aria-hidden="true"></span>
         <a href="/">Home</a>
+        <a href="/work">Work</a>
         <a href="/gallery">Gallery</a>
         <a href="/blog">Blog</a>
         <a href="/resources">Resources</a>
@@ -44,14 +45,15 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="nav-drawer" id="navDrawer">
         <div class="nav-drawer-inner">
             <div class="nav-drawer-links">
-                <a href="/"><small>01</small>Home</a>
-                <a href="/gallery"><small>02</small>Gallery</a>
-                <a href="/blog"><small>03</small>Blog</a>
-                <a href="/resources"><small>04</small>Resources</a>
-                <a href="/certificates"><small>05</small>Certificates</a>
-                <a href="/volunteer"><small>06</small>Leadership</a>
-                <a href="/resume"><small>07</small>Resume</a>
-                <a href="/contact"><small>08</small>Contact</a>
+<a href="/"><small>01</small>Home</a>
+                <a href="/work"><small>02</small>Work</a>
+                <a href="/gallery"><small>03</small>Gallery</a>
+                <a href="/blog"><small>04</small>Blog</a>
+                <a href="/resources"><small>05</small>Resources</a>
+                <a href="/certificates"><small>06</small>Certificates</a>
+                <a href="/volunteer"><small>07</small>Leadership</a>
+                <a href="/resume"><small>08</small>Resume</a>
+                <a href="/contact"><small>09</small>Contact</a>
             </div>
             <a href="/contact" class="nav-drawer-cta">Let's Talk <span>→</span></a>
         </div>
@@ -90,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4>Explore</h4>
             <div class="ft-links">
                 <a href="/">Home</a>
+                <a href="/work">Work</a>
                 <a href="/gallery">Gallery</a>
                 <a href="/blog">Blog</a>
                 <a href="/resources">Resources</a>
@@ -281,13 +284,14 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     const certGrid = document.getElementById('cert-grid');
     if (certGrid) {
-        // Updated to 58 certificates
+        // 58 certificates: small WebP thumbnails in the grid (lazy-loaded), full-size WebP opens in the lightbox
+        const CERT_DIMS = [[640,465],[640,456],[450,640],[451,640],[454,640],[640,400],[640,451],[640,469],[640,489],[640,459],[455,640],[640,452],[640,453],[640,494],[640,362],[640,448],[435,640],[640,453],[640,452],[640,452],[640,452],[640,452],[512,512],[640,525],[640,452],[640,452],[640,453],[640,453],[640,452],[640,452],[640,406],[640,481],[640,455],[640,454],[640,452],[640,444],[640,452],[640,457],[640,457],[640,470],[640,455],[640,494],[640,452],[640,452],[640,451],[640,361],[640,360],[640,502],[640,453],[640,360],[640,361],[640,452],[640,453],[640,453],[640,361],[640,361],[640,453],[640,361]]; // thumbnail width/height, keeps the layout from jumping while images load
         let certNumbers = Array.from({length: 58}, (_, i) => i + 1);
-        certNumbers.sort(() => Math.random() - 0.5); 
+        certNumbers.sort(() => Math.random() - 0.5);
         let certsHTML = '';
-        certNumbers.forEach(c => {
-            // Updated to pull from the new 'certs/' folder with SEO Alt tags
-            certsHTML += `<img src="certs/cert-${c}.jpg" class="cert-img" loading="lazy" style="cursor: zoom-in;" onerror="this.onerror=null; this.src='https://placehold.co/800x600/F8FAFC/64748B?text=Certificate+${c}'" alt="Fardin Rahman Khan Raafi, Marketing Executive - Professional Certificate ${c}">`;
+        certNumbers.forEach((c, i) => {
+            const [w, h] = CERT_DIMS[c - 1];
+            certsHTML += `<img src="/certs/thumb/cert-${c}.webp" data-full="/certs/cert-${c}.webp" width="${w}" height="${h}" class="cert-img" loading="${i < 6 ? 'eager' : 'lazy'}" decoding="async" style="cursor: zoom-in;" alt="Fardin Rahman Khan Raafi, Marketing Executive - Professional Certificate ${c}">`;
         });
         certGrid.innerHTML = certsHTML;
     }
@@ -308,7 +312,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Target certificates and volunteer images specifically
             const images = document.querySelectorAll('.cert-img, .vol-card .grid-img');
             if (images.length > 0) {
-                imageArray = Array.from(images).map(img => img.src);
+                imageArray = Array.from(images).map(img => img.dataset.full || img.currentSrc || img.src);
                 images.forEach((img, index) => {
                     img.style.cursor = 'zoom-in';
                     img.onclick = null; // Clear any old handlers

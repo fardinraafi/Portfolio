@@ -565,7 +565,7 @@ body:not(.dark-mode) .clock-widget {
 .collage-item:hover .grid-img { filter: brightness(0.7); transform: scale(1.05); }
 
 .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 2rem; }
-.cert-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 16px; border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: all 0.3s ease; cursor: pointer; }
+.cert-img { width: 100%; height: auto; aspect-ratio: 4/3; background: rgba(148,163,184,0.15); object-fit: cover; border-radius: 16px; border: 2px solid rgba(255,255,255,0.9); box-shadow: 0 10px 25px rgba(0,0,0,0.05); transition: all 0.3s ease; cursor: pointer; }
 .cert-img:hover { transform: translateY(-5px); border-color: var(--c1); box-shadow: 0 15px 35px rgba(37,99,235,0.2); }
 
 /* =========================================
@@ -1747,3 +1747,9 @@ body.dark-mode .fifi-form input { background: rgba(255,255,255,0.05); border-col
 /* Footer name: ignore page-level h2 styles (e.g. blog posts) */
 .site-footer .ft-name { border: 0 !important; padding: 0 !important; margin-top: 0 !important; display: block !important; font-size: 1.8rem; }
 @media (max-width: 900px) { .site-footer .ft-name { font-size: 1.5rem; } }
+
+/* Nav: keep 9 links on one line on small laptops/tablets */
+@media (min-width: 901px) and (max-width: 1200px) {
+    .top-nav .nav-menu a { padding: 6px 8px !important; font-size: 0.86rem !important; }
+    .top-nav .nav-actions .btn-primary { display: none; }
+}
