@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
     <div class="nav-menu">
         <span class="nav-ind" aria-hidden="true"></span>
         <a href="/">Home</a>
-        <a href="/work">Projects</a>
         <a href="/gallery">Gallery</a>
         <a href="/blog">Blog</a>
         <a href="/resources">Resources</a>
         <a href="/certificates">Certificates</a>
         <a href="/volunteer">Leadership</a>
         <a href="/resume">Resume</a>
+        <a href="/work">Projects</a>
         <a href="/contact">Contact</a>
     </div>
     <div class="nav-actions">
@@ -46,13 +46,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="nav-drawer-inner">
             <div class="nav-drawer-links">
 <a href="/"><small>01</small>Home</a>
-                <a href="/work"><small>02</small>Projects</a>
-                <a href="/gallery"><small>03</small>Gallery</a>
-                <a href="/blog"><small>04</small>Blog</a>
-                <a href="/resources"><small>05</small>Resources</a>
-                <a href="/certificates"><small>06</small>Certificates</a>
-                <a href="/volunteer"><small>07</small>Leadership</a>
-                <a href="/resume"><small>08</small>Resume</a>
+                <a href="/gallery"><small>02</small>Gallery</a>
+                <a href="/blog"><small>03</small>Blog</a>
+                <a href="/resources"><small>04</small>Resources</a>
+                <a href="/certificates"><small>05</small>Certificates</a>
+                <a href="/volunteer"><small>06</small>Leadership</a>
+                <a href="/resume"><small>07</small>Resume</a>
+                <a href="/work"><small>08</small>Projects</a>
                 <a href="/contact"><small>09</small>Contact</a>
             </div>
             <a href="/contact" class="nav-drawer-cta">Let's Talk <span>→</span></a>
@@ -92,13 +92,13 @@ document.addEventListener('DOMContentLoaded', () => {
             <h4>Explore</h4>
             <div class="ft-links">
                 <a href="/">Home</a>
-                <a href="/work">Projects</a>
                 <a href="/gallery">Gallery</a>
                 <a href="/blog">Blog</a>
                 <a href="/resources">Resources</a>
                 <a href="/certificates">Certificates</a>
                 <a href="/volunteer">Leadership</a>
                 <a href="/resume">Resume</a>
+                <a href="/work">Projects</a>
                 <a href="/contact">Contact</a>
             </div>
         </div>
