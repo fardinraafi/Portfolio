@@ -2623,28 +2623,50 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loaded) return; loaded = true;
             const offscreen = document.createElement("canvas");
             offscreen.width = 1024; offscreen.height = 1024;
-            const ctx = offscreen.getContext("2d");
+            const ctx = offscreen.getContext("2d", { willReadFrequently: true });
             gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-            for (let i = 0; i < slideCount; i++) {
-                await new Promise(resolve => {
-                    const img = new Image();
-                    img.crossOrigin = "anonymous";
-                    img.onload = () => {
-                        ctx.fillStyle = "#0F172A";
-                        ctx.fillRect(0, 0, 1024, 1024);
-                        const scale = Math.max(1024 / img.width, 1024 / img.height);
-                        const x = 512 - (img.width / 2) * scale;
-                        const y = 512 - (img.height / 2) * scale;
-                        ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
-                        resolve();
-                    };
-                    img.onerror = () => { ctx.fillStyle = "#1e293b"; ctx.fillRect(0, 0, 1024, 1024); resolve(); };
-                    img.src = slidesData[i].imgUrl;
-                });
+
+            // Load + fully decode an image (retries twice; mobile browsers can fire onload before decoding is done)
+            const getImage = (url, tries = 3) => new Promise(resolve => {
+                const img = new Image();
+                img.decoding = "async";
+                img.onload = async () => {
+                    try { if (img.decode) await img.decode(); } catch (e) {}
+                    resolve(img);
+                };
+                img.onerror = () => {
+                    if (tries > 1) setTimeout(() => getImage(url + (url.includes("?") ? "&" : "?") + "r=" + tries, tries - 1).then(resolve), 600);
+                    else resolve(null);
+                };
+                img.src = url;
+            });
+
+            // Draw into the 2D canvas and upload the raw pixels (CPU copy: avoids blank uploads on some phone GPUs)
+            const upload = (i, img) => {
+                ctx.fillStyle = "#0F172A";
+                ctx.fillRect(0, 0, 1024, 1024);
+                if (img) {
+                    const scale = Math.max(1024 / img.width, 1024 / img.height);
+                    ctx.drawImage(img, 512 - (img.width / 2) * scale, 512 - (img.height / 2) * scale, img.width * scale, img.height * scale);
+                }
+                const pixels = ctx.getImageData(0, 0, 1024, 1024);
                 gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
-                gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, offscreen);
+                gl.texSubImage3D(gl.TEXTURE_2D_ARRAY, 0, 0, 0, i, 1024, 1024, 1, gl.RGBA, gl.UNSIGNED_BYTE, pixels);
                 requestRender();
-            }
+                // true if the drawn image actually has content (not just the background fill)
+                const d = pixels.data; let varied = 0;
+                for (let k = 0; k < d.length; k += 4 * 9973) if (Math.abs(d[k] - 15) + Math.abs(d[k + 1] - 23) + Math.abs(d[k + 2] - 42) > 30) varied++;
+                return varied > 3;
+            };
+
+            // Load all images in parallel, upload each as soon as it is ready
+            await Promise.all(slidesData.map(async (slide, i) => {
+                const img = await getImage(slide.imgUrl);
+                if (!upload(i, img) && img) {
+                    await new Promise(r => setTimeout(r, 400));
+                    upload(i, img); // one more try if the first draw came out blank
+                }
+            }));
         };
         new IntersectionObserver((entries, obs) => {
             if (entries[0].isIntersecting) { loadTextures(); obs.disconnect(); }
