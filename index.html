@@ -193,6 +193,16 @@ html, body { overflow-x: clip !important; width: 100%; max-width: 100vw; }
 }
 .hero-left .typewriter { align-self: flex-start; }
 .hero-left { flex: 1.2; display: flex; flex-direction: column; gap: 1.6rem; max-width: 760px; z-index: 3; }
+/* Faded logos behind experience/education items */
+.timeline-item.has-logo { position: relative; overflow: hidden; }
+.tl-logo {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%); width: 92px; height: 92px; object-fit: contain;
+    opacity: 0.09; pointer-events: none; user-select: none; z-index: 0; filter: grayscale(1);
+    border: 0 !important; box-shadow: none !important; background: none !important; padding: 0 !important; border-radius: 0 !important; margin: 0 !important;
+}
+body:not(.dark-mode) .tl-logo-white { filter: invert(1); opacity: 0.08; }
+.timeline-item.has-logo > :not(.tl-logo) { position: relative; z-index: 1; }
+@media (max-width: 900px) { .tl-logo { width: 72px; height: 72px; right: 6px; opacity: 0.08; } }
 /* Tech-text name */
 .tt-wrap { position: relative; width: 100%; }
 .tech-text { display: none; }
@@ -943,38 +953,29 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
 
         <section class="glass-card fx-reveal">
             <div class="section-title">Recent Experience</div>
-            <div class="timeline-item">
+            <div class="timeline-item has-logo">
+                <img class="tl-logo tl-logo-white" src="/misc_img/augmex_logo_white_sm.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <h3>Executive - Marketing</h3>
                 <div class="meta">Augmex Technologies Ltd. • April 2026 - Present</div>
                 <ul>
-                    <li>Enriched and maintained 40,000+ CRM records.</li>
-                    <li>Spearheaded targeted B2B lead generation campaigns using LinkedIn Marketing.</li>
-                    <li>Drove 340K+ organic views across Augmex and FYGO through content marketing, with zero ad spend on Augmex.</li>
-                    <li>Produced 50+ digital content and visual assets to support cross-channel brand awareness.</li>
+                    <li>340K+ organic views across Augmex and FYGO, zero ad spend.</li>
+                    <li>B2B lead generation and 40,000+ CRM records managed.</li>
                 </ul>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item has-logo">
+                <img class="tl-logo tl-logo-white" src="/misc_img/augmex_logo_white_sm.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <h3>Intern - Marketing</h3>
                 <div class="meta">Augmex Technologies • Jan 2026 - April 2026</div>
                 <ul>
-                    <li>Executed multi-channel cold outreach and content marketing strategies.</li>
-                    <li>Identified and mapped 6,000+ Key Decision Makers against Ideal Customer Profiles.</li>
-                    <li>Built the content and social media system behind Augmex's organic growth.</li>
-                </ul>
-            </div>
-            <div class="timeline-item">
-                <h3>Social Media Manager</h3>
-                <div class="meta">Adviza International • Sep 2025 - Nov 2025</div>
-                <ul>
-                    <li>Designed 30+ custom social media assets for local and international clients.</li>
-                    <li>Managed end-to-end client communications and project workflows.</li>
+                    <li>Mapped 6,000+ decision makers and ran multi-channel outreach.</li>
                 </ul>
             </div>
         </section>
 
         <section class="glass-card fx-reveal">
             <div class="section-title">Education</div>
-            <div class="timeline-item">
+            <div class="timeline-item has-logo">
+                <img class="tl-logo" src="/misc_img/uni_sm.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <h3>Bachelor of Business Administration (BBA)</h3>
                 <div class="meta">Bangladesh University of Business &amp; Technology (BUBT) • 2022 - 2025</div>
                 <ul>
@@ -982,7 +983,8 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
                     <li><strong>CGPA:</strong> 3.80</li>
                 </ul>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item has-logo">
+                <img class="tl-logo" src="/misc_img/hsc_sm.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <h3>Higher Secondary Certificate (HSC)</h3>
                 <div class="meta">Dhaka Commerce College • 2019 - 2021</div>
                 <ul>
@@ -990,7 +992,8 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
                     <li><strong>GPA:</strong> 5.00</li>
                 </ul>
             </div>
-            <div class="timeline-item">
+            <div class="timeline-item has-logo">
+                <img class="tl-logo" src="/misc_img/ssc_sm.png" alt="" aria-hidden="true" loading="lazy" decoding="async">
                 <h3>Secondary School Certificate (SSC)</h3>
                 <div class="meta">Adarsha High School • 2019</div>
                 <ul>
