@@ -119,6 +119,7 @@
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
+<script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
     
 <!-- The Interactive Physics Canvas Engine -->
 <canvas id="neural-canvas"></canvas>

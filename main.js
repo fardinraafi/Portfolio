@@ -83,11 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="margin-right:8px; vertical-align: middle;"><path d="M22 7h-7v2h7V7zm1.72 5.38c-.18-1.54-1.5-3.38-4.22-3.38-3.08 0-4.5 2.5-4.5 5.25 0 2.94 1.7 5.75 5 5.75 3.26 0 4.38-2.3 4.54-3.62h-2.12c-.12.82-.76 1.75-2.32 1.75-1.58 0-2.34-1.12-2.48-2.62h6.98c.04-.46.16-2.18.12-3.13zM17.48 11.5c.08-1.02.76-1.88 2.02-1.88 1.14 0 1.94.76 2.06 1.88h-4.08zM10.12 11c1.24-.46 2.22-1.42 2.22-3.3 0-2.42-1.92-3.7-4.66-3.7H0v16h8.04c2.8 0 4.96-1.34 4.96-4.06 0-2.3-1.68-3.72-2.88-4.94zM2.84 6.22h4.52c1.46 0 2.34.6 2.34 1.88 0 1.34-.84 2.02-2.38 2.02H2.84V6.22zm4.84 9.56H2.84v-4.14h4.74c1.64 0 2.68.74 2.68 2.14 0 1.48-1.12 2-2.58 2z"/></svg>
                     Behance
                 </a>
-                <a href="https://www.pinterest.com/fardinrahmankhanraafi/" target="_blank">
+                <a href="https://www.pinterest.com/fardin_raafi/" target="_blank">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.63 7.85 6.35 9.31-.09-.79-.16-2.01.03-2.87.18-.8.18-.8 1.18-4.52 0 0-.31-.62-.31-1.53 0-1.43.83-2.5 1.86-2.5.86 0 1.27.65 1.27 1.43 0 .86-.55 2.15-.83 3.35-.24 1.01.5 1.83 1.49 1.83 1.79 0 3.17-1.89 3.17-4.6 0-2.4-1.73-4.08-4.22-4.08-3 0-4.76 2.25-4.76 4.58 0 .86.33 1.78.74 2.28.08.1.09.19.06.29-.09.36-.28 1.15-.32 1.32-.05.21-.18.25-.4.15-1.49-.69-2.42-2.88-2.42-4.63 0-3.75 2.73-7.2 7.91-7.2 4.16 0 7.39 2.97 7.39 6.94 0 4.14-2.61 7.48-6.24 7.48-1.22 0-2.37-.63-2.76-1.38l-.75 2.87c-.27 1.04-1.01 2.34-1.5 3.13 1.11.34 2.29.53 3.52.53 5.52 0 10-4.48 10-10S17.52 2 12 2z"></path></svg>
                     Pinterest
                 </a>
-                 </a>
                 <a href="https://www.threads.com/@fardin_raafi" target="_blank">
                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right:8px; vertical-align: middle;"><path d="M17.5 8.5C16.6 5.9 14.6 4.5 12 4.5c-4 0-6.5 3-6.5 7.5s2.5 7.5 6.5 7.5c3.3 0 5.5-1.8 5.5-4.4 0-2.4-2-3.9-5-3.9-2 0-3.5 1-3.5 2.5 0 1.3 1.1 2.2 2.6 2.2 2.4 0 3.6-1.8 3.6-5"/></svg>
                     Threads
@@ -116,12 +115,14 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =========================================
        CUSTOM DYNAMIC FAVICON
     ========================================= */
+    if (!document.querySelector('link[rel~="icon"]')) {
     const favicon = document.createElement('link');
     favicon.rel = 'icon';
     favicon.type = 'image/svg+xml';
     const svgIcon = `<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='#7C3AED'/><text x='50' y='72' font-family='sans-serif' font-size='55' font-weight='900' text-anchor='middle' fill='white'>FR</text></svg>`;
     favicon.href = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svgIcon);
     document.head.appendChild(favicon);
+    }
 
     /* =========================================
        1. THEME TOGGLE LOGIC
@@ -179,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     if (scrollTopBtn) {
-        window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('show', window.scrollY > 400); });
+        window.addEventListener('scroll', () => { scrollTopBtn.classList.toggle('show', window.scrollY > 400); }, { passive: true });
         scrollTopBtn.addEventListener('click', () => { window.scrollTo({ top: 0, behavior: 'smooth' }); });
     }
 
@@ -206,7 +207,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const lightboxImg = document.getElementById('lightbox-img');
 
     // Only run this if we are NOT on the gallery page (gallery has its own custom script)
-    if (lightbox && lightboxImg && !window.location.pathname.includes('gallery.html')) {
+    const isGalleryPage = /\/gallery(\.html)?\/?$/.test(window.location.pathname);
+    if (lightbox && lightboxImg && !isGalleryPage) {
         let currentImageIndex = 0;
         let imageArray = [];
 
@@ -236,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Global functions called by your HTML buttons (X, <, >)
         window.closeLightbox = function() {
             lightbox.classList.remove('show');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         };
 
         window.changeImage = function(step, event) {
@@ -276,7 +278,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ========================================= */
     document.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', function(e) {
-         if (this.hostname === window.location.hostname && this.target !== '_blank' && !this.hasAttribute('download') && this.getAttribute('href') !== '#' && !this.getAttribute('href').startsWith('#')) {
+            const href = this.getAttribute('href');
+            if (!href || href.startsWith('#') || e.defaultPrevented) return;
+            if (e.button !== 0 || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+            if (this.hostname === window.location.hostname && this.target !== '_blank' && !this.hasAttribute('download')) {
                 e.preventDefault(); 
                 document.body.classList.add('fade-out');
                 setTimeout(() => { window.location.href = this.href; }, 300);
@@ -301,17 +306,13 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxcwqAKQ8S_LzdlYhTRQUw73dQGU8o_T0KfSHKPKYN6lY-V9n_jdxxGFoCLkHWfWRE0VA/exec'; 
             
-            if (GOOGLE_SCRIPT_URL !== 'INSERT_YOUR_GOOGLE_SCRIPT_URL_HERE') {
                 const formData = new FormData();
-                formData.append('email', emailInput);
-                formData.append('date', new Date().toLocaleString());
+            formData.append('email', emailInput);
+            formData.append('date', new Date().toLocaleString());
 
-                fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
-                .then(() => { submitBtn.innerHTML = 'Success!'; setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000); })
-                .catch(error => { console.error(error); submitBtn.innerHTML = 'Success!'; setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000); });
-            } else {
-                setTimeout(() => { submitBtn.innerHTML = 'Enjoy!'; setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000); }, 800);
-            }
+            fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => { submitBtn.innerHTML = 'Success!'; setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000); })
+            .catch(error => { console.error(error); submitBtn.innerHTML = 'Success!'; setTimeout(() => { submitBtn.innerHTML = originalText; playbookForm.reset(); }, 3000); });
         });
     }
 
@@ -327,8 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        progressBar.style.width = (winScroll / height) * 100 + '%';
-    });
+        progressBar.style.width = (height > 0 ? (winScroll / height) * 100 : 0) + '%';
+    }, { passive: true });
 
     document.querySelectorAll('.glass-card:not(.no-hover), .blog-card, .collage-item, .cert-img, .info-card, .stat-box, .highlight-card').forEach(card => {
         card.addEventListener('mousemove', (e) => {
@@ -347,7 +348,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const siteFooter = document.querySelector('.site-footer');
     if (siteFooter) {
         // Listen to the whole window, not just the footer frame!
+        let footerVisible = false;
+        new IntersectionObserver(([en]) => { footerVisible = en.isIntersecting; }, { rootMargin: '300px' }).observe(siteFooter);
         window.addEventListener('mousemove', (e) => {
+            if (!footerVisible) return;
             const rect = siteFooter.getBoundingClientRect();
             siteFooter.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
             siteFooter.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
@@ -474,10 +478,13 @@ document.addEventListener('DOMContentLoaded', () => {
             ${randomLoadingText}
         </span>`;
         
-        // Add a quick spin animation for the loading SVG just for this bubble
-        const style = document.createElement('style');
-        style.innerHTML = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
-        document.head.appendChild(style);
+        // Add the spin animation once
+        if (!document.getElementById('fifi-spin')) {
+            const style = document.createElement('style');
+            style.id = 'fifi-spin';
+            style.textContent = `@keyframes spin { 100% { transform: rotate(360deg); } }`;
+            document.head.appendChild(style);
+        }
 
         if(chatLog) chatLog.appendChild(aiLoadingMsg);
         if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
@@ -490,7 +497,7 @@ document.addEventListener('DOMContentLoaded', () => {
             aiMsg.className = 'chat-bubble ai-bubble';
             
             if (query.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>Brand Strategy</strong>, CRM management (Salesforce, Apollo.io), and B2B Lead Generation.';
-            else if (query.includes('B2B')) aiMsg.innerHTML = 'He has <strong>one years of professional experience specifically focused on B2B sales and Marketinf at Augmex</strong>. Currently, he works as a Marketing Executive at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
+            else if (query.includes('B2B')) aiMsg.innerHTML = 'He has <strong>hands-on experience in B2B sales and marketing at Augmex</strong>. He currently works as a Junior Executive, Marketing at Augmex Technologies, enriching 40,000+ CRM records and executing multi-channel outreach strategies.';
             else if (query.includes('contact')) aiMsg.innerHTML = 'You can reach him directly through his <a href="/contact.html" style="color: var(--c1); font-weight: bold;">Contact Page</a>.';
             else if (query.includes('Resume')) aiMsg.innerHTML = 'You can view and download his full resume on his <a href="/resume.html" style="color: var(--c1); font-weight: bold;">Resume Page</a>.';
             else if (query.includes('academics')) aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with an excellent CGPA of 3.80.';
@@ -512,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
             resetChatBtn.style.display = 'none';
         });
     }
-}); // <--- THIS WAS THE MISSING BRACKET!
+});
 
 /* =========================================
    16. GOOGLE ANALYTICS 4
@@ -524,15 +531,9 @@ document.addEventListener('DOMContentLoaded', () => {
 })();
 
 /* =========================================
-   17. ANTI-INSPECT & ANTI-COPY LOGIC
-========================================= */
-document.addEventListener('contextmenu', event => event.preventDefault());
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) || ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u'))) e.preventDefault();
-});
-/* =========================================
    4. DIGITAL CLOCK WIDGET
 ========================================= */
+document.addEventListener('DOMContentLoaded', function () {
 const hourMinEl = document.getElementById('digital-hour-min');
 const ampmEl = document.getElementById('digital-ampm');
 const dateEl = document.getElementById('digital-date');
@@ -567,3 +568,4 @@ if (hourMinEl && ampmEl && dateEl) {
     setInterval(updateClock, 1000);
     updateClock(); // Run immediately on load
 }
+});

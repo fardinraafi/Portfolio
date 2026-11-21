@@ -557,6 +557,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
     <script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body class="dark-mode">
+<script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
 
 <div class="cursor-glow" aria-hidden="true"></div>
 <div class="bg-mesh">
