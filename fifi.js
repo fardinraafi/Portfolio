@@ -1,5 +1,5 @@
 /* =========================================================
-   FIFI — Fardin's (fake-but-smart) AI sidekick
+   FIFI - Fardin's (fake-but-smart) AI sidekick
    No API. A keyword + fuzzy-match brain with personality.
    Only loaded on the home page.
 ========================================================= */
@@ -51,7 +51,7 @@
     const BRAIN = [
         { id: 'hello', keys: ['hi', 'hello', 'hey', 'yo', 'sup', 'wassup', 'hola', 'salam', 'assalamualaikum', 'good morning', 'good evening', 'hii', 'heyy'],
           a: ['yooo 👋 Fifi here, Fardin\'s lil AI sidekick. ask me literally anything about him, i got the lore 📚',
-              'heyyy bestie 😎 what do you wanna know about Fardin? work, skills, awards, the tea ☕ — all of it'],
+              'heyyy bestie 😎 what do you wanna know about Fardin? work, skills, awards, the tea ☕, all of it'],
           chips: ['Who is Fardin?', 'What does he do?', 'Biggest wins?'] },
 
         { id: 'who', keys: ['who is fardin', 'who are you', 'about him', 'about fardin', 'tell me about', 'introduce', 'who is he', 'fardin', 'raafi', 'summary', 'bio', 'background'],
@@ -60,13 +60,13 @@
           chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'], act: ['resumePg', 'linkedin'] },
 
         { id: 'me', keys: ['what are you', 'are you ai', 'are you real', 'chatgpt', 'are you a bot', 'your name', 'who made you', 'fifi'],
-          a: ['i\'m Fifi 🤖 — not ChatGPT, not Gemini, just a hand-coded brain Fardin built that knows everything about him. zero API, 100% homemade rizz ✨',
+          a: ['i\'m Fifi 🤖, not ChatGPT, not Gemini, just a hand-coded brain Fardin built that knows everything about him. zero API, 100% homemade rizz ✨',
               'real? emotionally yes 💅 technically i\'m a bunch of JavaScript that knows Fardin\'s whole résumé by heart'],
           chips: ['Who is Fardin?', 'Tell me a fun fact'] },
 
         { id: 'work', keys: ['work', 'job', 'experience', 'career', 'augmex', 'company', 'role', 'position', 'currently', 'what does he do', 'employed', 'working', 'intern', 'internship', 'office'],
-          a: `💼 ${B('Augmex Technologies Ltd.')} — the main quest:<br><br>• ${B('Junior Executive, Marketing')} (Apr 2026 → now)<br>• ${B('Intern, Marketing')} (Jan → Apr 2026)<br><br>he runs B2B lead generation, CRM, cold outreach, social content and design across multiple brands. did ALL the posting, writing, carousels and videos for Augmex → ~${B('180K organic reach')} 📈<br><br>before that: marketing intern at ${B('Adviza International')} (2025).`,
-          more: `side quest: ${B('FYGO')}, Augmex\'s sneaker sub-brand 👟 — he grew it from 0 to ${B('17K+ followers')}, ${B('৳20 lakh+ sales')} and ${B('300+ customers')} (Jul–Nov 2026). sneakerhead marketing arc fr.`,
+          a: `💼 ${B('Augmex Technologies Ltd.')}, the main quest:<br><br>• ${B('Junior Executive, Marketing')} (Apr 2026 → now)<br>• ${B('Intern, Marketing')} (Jan → Apr 2026)<br><br>he runs B2B lead generation, CRM, cold outreach, social content and design across multiple brands. did ALL the posting, writing, carousels and videos for Augmex → ~${B('180K organic reach')} 📈<br><br>before that: marketing intern at ${B('Adviza International')} (2025).`,
+          more: `side quest: ${B('FYGO')}, Augmex\'s sneaker sub-brand 👟, he grew it from 0 to ${B('17K+ followers')}, ${B('৳20 lakh+ sales')} and ${B('300+ customers')} (Jul–Nov 2026). sneakerhead marketing arc fr.`,
           chips: ['Tell me about FYGO', 'B2B stuff', 'Skills'], act: ['resumePg'] },
 
         { id: 'fygo', keys: ['fygo', 'sneaker', 'sneakers', 'shoes', 'brand growth', 'ecommerce', 'sales', 'followers'],
@@ -90,7 +90,7 @@
           chips: ['AI stuff', 'Design work'] },
 
         { id: 'ai', keys: ['ai', 'artificial intelligence', 'prompt', 'prompting', 'automation', 'llm', 'agents'],
-          a: `🤖 Fardin is deep in the AI rabbit hole — uses Claude, Gemini, NotebookLM and Perplexity daily for research, content and workflows. he even made free AI guides + a master prompt pack on the ${L('/resources', 'resources page')} 👀`,
+          a: `🤖 Fardin is deep in the AI rabbit hole, uses Claude, Gemini, NotebookLM and Perplexity daily for research, content and workflows. he even made free AI guides + a master prompt pack on the ${L('/resources', 'resources page')} 👀`,
           chips: ['Free resources', 'Read his blog'], act: ['res', 'blog'] },
 
         { id: 'design', keys: ['design', 'designer', 'graphic', 'graphics', 'motion', 'video', 'editing', 'portfolio', 'behance', 'creative', 'branding', 'logo', 'carousel'],
@@ -103,11 +103,11 @@
           chips: ['Awards', 'Leadership roles'], act: ['certs'] },
 
         { id: 'awards', keys: ['award', 'awards', 'achievement', 'achievements', 'won', 'win', 'wins', 'honor', 'honors', 'basis', 'harvard', 'aspire', 'iscea', 'scholarship', 'competition', 'prize', 'hult', 'biggest'],
-          a: `🏆 trophy cabinet:<br><br>• ${B('BASIS Leader of the Year 2024')}<br>• ${B('Aspire Leaders Program \'26')} (founded at Harvard Business School)<br>• ${B('ISCEA Global Case Competition 2025')} — 70% scholarship<br>• Lead Luminary 4.0 (LEAD Academy)<br>• 3rd place, Ad-Making competition<br>• Executive recognition, Hult Prize BUBT<br><br>main character behaviour fr 👑`,
+          a: `🏆 trophy cabinet:<br><br>• ${B('BASIS Leader of the Year 2024')}<br>• ${B('Aspire Leaders Program \'26')} (founded at Harvard Business School)<br>• ${B('ISCEA Global Case Competition 2025')}, 70% scholarship<br>• Lead Luminary 4.0 (LEAD Academy)<br>• 3rd place, Ad-Making competition<br>• Executive recognition, Hult Prize BUBT<br><br>main character behaviour fr 👑`,
           chips: ['Leadership roles', 'Certificates'], act: ['certs', 'lead'] },
 
         { id: 'lead', keys: ['leadership', 'volunteer', 'volunteering', 'club', 'clubs', 'extracurricular', 'extracurriculars', 'rotaract', 'tedx', 'tedxuttara', 'swc', 'social welfare', 'career guidance', 'community', 'leo', 'secretary'],
-          a: `🌱 leadership arc:<br><br>• ${B('Head of Corporate & Alumni Relations')} — BUBT Career Guidance Office (2026 → now)<br>• ${B('Secretary')} — Rotaract Club of Dhaka Dynamic<br>• ${B('Media & Publications Secretary')} — BUBT Social Welfare Club<br>• ${B('Lead Brand Designer')} — TEDxUttara<br>• Sub Executive — BUBT Business Club<br><br>he said sleep is optional 😭`,
+          a: `🌱 leadership arc:<br><br>• ${B('Head of Corporate & Alumni Relations')} - BUBT Career Guidance Office (2026 → now)<br>• ${B('Secretary')} - Rotaract Club of Dhaka Dynamic<br>• ${B('Media & Publications Secretary')} - BUBT Social Welfare Club<br>• ${B('Lead Brand Designer')} - TEDxUttara<br>• Sub Executive - BUBT Business Club<br><br>he said sleep is optional 😭`,
           chips: ['Awards', 'See the gallery'], act: ['lead', 'gallery'] },
 
         { id: 'podcast', keys: ['podcast', 'host', 'hosting', 'show', 'interview', 'speaking', 'public speaking'],
@@ -127,7 +127,7 @@
           chips: ['Work experience', 'Contact him'], act: ['resume', 'resumePg'] },
 
         { id: 'contact', keys: ['contact', 'reach', 'email', 'mail', 'hire', 'hiring', 'connect', 'talk', 'message', 'dm', 'call', 'collab', 'collaborate', 'work together', 'project', 'freelance', 'meet', 'book'],
-          a: `📬 slide into his inbox: ${B(EMAIL)}<br><br>or use the contact form — he actually replies (rare W) ⚡`,
+          a: `📬 slide into his inbox: ${B(EMAIL)}<br><br>or use the contact form, he actually replies (rare W) ⚡`,
           chips: ['Socials', 'Download resume'], act: ['email', 'contact', 'linkedin'] },
 
         { id: 'social', keys: ['social', 'socials', 'linkedin', 'instagram', 'insta', 'twitter', 'x', 'facebook', 'threads', 'github', 'pinterest', 'discord', 'follow'],
@@ -146,11 +146,11 @@
           chips: ['Another fun fact', 'Who is Fardin?'] },
 
         { id: 'why', keys: ['why hire', 'why should', 'why him', 'convince', 'pitch', 'stand out', 'unique', 'different', 'worth'],
-          a: `🗣️ the pitch: he does strategy ${B('AND')} execution. most people pick one. Fardin finds the leads, writes the content, designs the posts, edits the video and checks the numbers — with receipts (340K views, 17K followers, ৳20L sales). that\'s the rizz 📈`,
+          a: `🗣️ the pitch: he does strategy ${B('AND')} execution. most people pick one. Fardin finds the leads, writes the content, designs the posts, edits the video and checks the numbers, with receipts (340K views, 17K followers, ৳20L sales). that\'s the rizz 📈`,
           chips: ['Contact him', 'Download resume'], act: ['contact', 'resume'] },
 
         { id: 'money', keys: ['salary', 'pay', 'paid', 'rate', 'rates', 'price', 'pricing', 'charge', 'cost', 'budget', 'expected salary', 'how much', 'available', 'availability', 'open to work', 'notice period', 'start date', 'free to join'],
-          a: `💸 ooh the classified stuff — that\'s a convo for Fardin himself, not his chatbot 🤐 shoot him a message and he\'ll talk details directly.`,
+          a: `💸 ooh the classified stuff, that\'s a convo for Fardin himself, not his chatbot 🤐 shoot him a message and he\'ll talk details directly.`,
           act: ['contact', 'email'] },
 
         { id: 'thanks', keys: ['thanks', 'thank you', 'thx', 'ty', 'appreciate', 'cool', 'nice', 'great', 'awesome', 'love it', 'goat', 'fire', 'lit', 'based'],
@@ -304,7 +304,7 @@
         }
         // recruiter / hiring manager vibe
         if (/\b(recruiter|hr|hiring manager|talent)\b/.test(q)) {
-            return { html: `ooh a recruiter 👀 *fixes hair* — quick TL;DR: B2B lead gen + content + design, 340K+ organic views, 17K followers grown from zero, BBA Marketing (3.80). résumé's right here 👇`, act: ['resume', 'email', 'linkedin'], chips: ['Why hire him?', 'Work experience'] };
+            return { html: `ooh a recruiter 👀 *fixes hair*, quick TL;DR: B2B lead gen + content + design, 340K+ organic views, 17K followers grown from zero, BBA Marketing (3.80). résumé's right here 👇`, act: ['resume', 'email', 'linkedin'], chips: ['Why hire him?', 'Work experience'] };
         }
         // follow-ups
         if (/^(more|tell me more|go on|and|continue|elaborate|explain more|what else|more info|details|another one|again)$/.test(q) || /^another (fun fact|joke)$/.test(q)) {
@@ -324,7 +324,7 @@
 
         if (!intent) {
             return { html: pick([
-                `hmm my brain.exe didn't catch that 🫠 i only know Fardin stuff — try one of these:`,
+                `hmm my brain.exe didn't catch that 🫠 i only know Fardin stuff, try one of these:`,
                 `that one went over my head ngl 😭 i'm a Fardin specialist. ask me about:`,
                 `skill issue on my side 💀 try asking about his work, skills, awards or fun facts:`
             ]), chips: ['Who is Fardin?', 'Work experience', 'Skills', 'Awards', 'Contact him'] };
