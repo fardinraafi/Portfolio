@@ -585,6 +585,45 @@ body:not(.dark-mode) .gc-panels { border-top-color: rgba(15, 23, 42, 0.08); }
 .gc-panel.is-active { opacity: 1; visibility: visible; transform: none; pointer-events: auto; }
 .gc-panel h3 { font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 700; color: var(--text-main); margin-bottom: 0.5rem; }
 .gc-panel p { color: var(--text-muted); }
+.gc-view {
+    display: inline-flex; align-items: center; gap: 6px; margin-top: 0.9rem; padding: 9px 18px; border-radius: 100px;
+    font-weight: 700; font-size: 0.9rem; text-decoration: none; color: #fff !important;
+    background: linear-gradient(135deg, var(--c1), var(--c2)); box-shadow: 0 6px 18px rgba(37,99,235,0.3); transition: transform .25s, box-shadow .25s;
+}
+.gc-view:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(124,58,237,0.4); }
+.gc-follow { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-top: 2rem; text-align: center; padding: 0 1.25rem; }
+.gc-follow-btn {
+    display: inline-flex; align-items: center; gap: 10px; padding: 12px 24px; border-radius: 100px; font-weight: 700; text-decoration: none;
+    color: #0A66C2 !important; background: rgba(10,102,194,0.08); border: 1.5px solid rgba(10,102,194,0.45); transition: background .25s, color .25s, transform .25s;
+}
+body.dark-mode .gc-follow-btn { color: #7FB8F0 !important; background: rgba(10,102,194,0.15); }
+.gc-follow-btn:hover { background: #0A66C2; color: #fff !important; transform: translateY(-2px); }
+.gc-follow-note { font-size: 0.82rem; color: var(--text-muted); }
+
+.gc-lightbox {
+    position: fixed; inset: 0; z-index: 100000; display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 1.5rem;
+    background: rgba(2,6,23,0.88); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); opacity: 0; transition: opacity .25s;
+}
+.gc-lightbox[hidden] { display: none; }
+.gc-lightbox.in { opacity: 1; }
+body.gc-lb-open { overflow: hidden; }
+.gc-lb-fig { margin: 0; display: flex; flex-direction: column; align-items: center; max-width: min(680px, 100%); transform: scale(.96); transition: transform .3s cubic-bezier(.34,1.4,.64,1); }
+.gc-lightbox.in .gc-lb-fig { transform: none; }
+.gc-lb-img { width: 100%; max-height: 70vh; object-fit: contain; border-radius: 16px; box-shadow: 0 25px 60px rgba(0,0,0,.5); background: #0F172A; }
+.gc-lb-fig figcaption { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 1rem; text-align: center; color: #CBD5E1; }
+.gc-lb-count { font-family: 'Syne', sans-serif; font-size: .8rem; color: #94A3B8; }
+.gc-lb-title { font-family: 'Syne', sans-serif; font-size: 1.3rem; color: #fff; }
+.gc-lb-text { font-size: .92rem; max-width: 520px; }
+.gc-lb-link { margin-top: .6rem; padding: 9px 18px; border-radius: 100px; font-weight: 700; font-size: .9rem; text-decoration: none; color: #fff !important; background: linear-gradient(135deg, var(--c1), var(--c2)); }
+.gc-lb-close { position: absolute; top: 16px; right: 16px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-size: 1.6rem; cursor: pointer; }
+.gc-lb-nav { flex-shrink: 0; width: 48px; height: 48px; border-radius: 50%; border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-size: 1.8rem; line-height: 1; cursor: pointer; transition: background .2s; }
+.gc-lb-nav:hover, .gc-lb-close:hover { background: rgba(255,255,255,.2); }
+@media (max-width: 700px) {
+    .gc-lightbox { padding: 1rem; }
+    .gc-lb-nav { position: absolute; bottom: 22px; width: 44px; height: 44px; }
+    .gc-lb-prev { left: calc(50% - 60px); } .gc-lb-next { right: calc(50% - 60px); }
+    .gc-lb-fig { padding-bottom: 60px; }
+}
 
 /* Footer banner: padded, rounded, visible on every screen */
 body .contact-banner-wrapper {
@@ -750,6 +789,11 @@ body:not(.dark-mode) .reco-pill { color: #0A66C2; }
     .tk-chip { font-size: 0.82rem; padding: 8px 14px 8px 8px; }
     .tk-chip img { width: 22px; height: 22px; }
     .gc-panel h3 { font-size: 1.35rem; }
+    .gc-viewport { height: min(100vw, 460px) !important; }
+    .gc-meta { margin-top: 0.4rem; gap: 6px; }
+    .gc-dots { flex-wrap: wrap; justify-content: center; max-width: 320px; }
+    .gc-dot { width: 22px; height: 30px; }
+    .gc-dot::after { left: 8px; top: 12px; }
     .final-cta-title { font-size: clamp(2rem, 10vw, 2.5rem) !important; }
 }
 @media (max-width: 380px) {
@@ -1355,25 +1399,47 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     <div class="gc-meta">
         <p class="gc-counter" aria-hidden="true">01 / 14</p>
         <div class="gc-dots" role="tablist"></div>
-        <p class="gc-hint">Scroll or drag to explore</p>
+        <p class="gc-hint">Drag, swipe or tap a post to open it</p>
     </div>
     <div class="gc-panels" aria-live="polite">
-        <article class="gc-panel is-active" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.jpg" data-link="https://lnkd.in/p/g6KCZ75j"><h3>AI Productivity</h3><p>A funny quote by me..</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.jpg" data-link="https://lnkd.in/p/g6pSu58S"><h3>Guerrilla Marketing Tactics</h3><p>How Polo turned everyday snow into a giant ad.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.jpg" data-link="https://lnkd.in/p/gs-kQ9n4"><h3>The Winning Mindset</h3><p>A look at why a good attitude is the best skill a person can have.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.jpg" data-link="https://lnkd.in/p/g3sCqm8w"><h3>Self-Training Made Easy</h3><p>How to use AI prompts to create a daily practice guide.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.jpg" data-link="https://lnkd.in/p/gqq-i2nB"><h3>Smart Ad Design</h3><p>Seeing how AI tools are catching up to human creativity this year.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.jpg" data-link="https://lnkd.in/p/geMbduQF"><h3>LinkedIn Personal Brand</h3><p>Tips on how to build your personal brand on LinkedIn 24/7.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="07" data-img="/misc_img/linkedin-7.jpg" data-link="https://lnkd.in/p/g23wby4Q"><h3>Global Purchasing Power</h3><p>A look at how currency value changes and where your money goes the furthest.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="08" data-img="/misc_img/linkedin-8.jpg" data-link="https://lnkd.in/p/gyZZf7pA"><h3>Claude 5 Release</h3><p>A quick look at how the newest AI models can help you get more done.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="09" data-img="/misc_img/linkedin-9.jpg" data-link="https://lnkd.in/p/g8WYqqaF"><h3>Marketing 101: Decoy Effect</h3><p>How the medium option helps sell more large items by changing how people see value.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="10" data-img="/misc_img/linkedin-10.jpg" data-link="https://lnkd.in/p/gdR_GFnF"><h3>Professional Networking</h3><p>How conversations with industry leaders and peers open up new opportunities.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="11" data-img="/misc_img/linkedin-11.jpg" data-link="https://lnkd.in/p/gRiKwv4F"><h3>Stop Wasting AI Tokens</h3><p>Simple tips to use your AI tokens more efficiently and get better results.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.jpg" data-link="https://lnkd.in/p/gp9yEGMR"><h3>Top 5 NotebookLM Workflows</h3><p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="13" data-img="/misc_img/linkedin-13.jpg" data-link="https://lnkd.in/p/gQimNA-2"><h3>What is OOH Marketing</h3><p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p></article>
-        <article class="gc-panel" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.jpg" data-link="https://lnkd.in/p/g56SxBFD"><h3>The Rise of AI Agents</h3><p>Why 2026 is all about smart AI tools that actually do the work for us.</p></article>
+        <article class="gc-panel is-active" role="tabpanel" data-num="01" data-img="/misc_img/linkedin-1.webp" data-link="https://lnkd.in/p/g6KCZ75j"><h3>AI Productivity</h3><p>A funny quote by me..</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="02" data-img="/misc_img/linkedin-2.webp" data-link="https://lnkd.in/p/g6pSu58S"><h3>Guerrilla Marketing Tactics</h3><p>How Polo turned everyday snow into a giant ad.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="03" data-img="/misc_img/linkedin-3.webp" data-link="https://lnkd.in/p/gs-kQ9n4"><h3>The Winning Mindset</h3><p>A look at why a good attitude is the best skill a person can have.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="04" data-img="/misc_img/linkedin-4.webp" data-link="https://lnkd.in/p/g3sCqm8w"><h3>Self-Training Made Easy</h3><p>How to use AI prompts to create a daily practice guide.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="05" data-img="/misc_img/linkedin-5.webp" data-link="https://lnkd.in/p/gqq-i2nB"><h3>Smart Ad Design</h3><p>Seeing how AI tools are catching up to human creativity this year.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="06" data-img="/misc_img/linkedin-6.webp" data-link="https://lnkd.in/p/geMbduQF"><h3>LinkedIn Personal Brand</h3><p>Tips on how to build your personal brand on LinkedIn 24/7.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="07" data-img="/misc_img/linkedin-7.webp" data-link="https://lnkd.in/p/g23wby4Q"><h3>Global Purchasing Power</h3><p>A look at how currency value changes and where your money goes the furthest.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="08" data-img="/misc_img/linkedin-8.webp" data-link="https://lnkd.in/p/gyZZf7pA"><h3>Claude 5 Release</h3><p>A quick look at how the newest AI models can help you get more done.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="09" data-img="/misc_img/linkedin-9.webp" data-link="https://lnkd.in/p/g8WYqqaF"><h3>Marketing 101: Decoy Effect</h3><p>How the medium option helps sell more large items by changing how people see value.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="10" data-img="/misc_img/linkedin-10.webp" data-link="https://lnkd.in/p/gdR_GFnF"><h3>Professional Networking</h3><p>How conversations with industry leaders and peers open up new opportunities.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="11" data-img="/misc_img/linkedin-11.webp" data-link="https://lnkd.in/p/gRiKwv4F"><h3>Stop Wasting AI Tokens</h3><p>Simple tips to use your AI tokens more efficiently and get better results.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="12" data-img="/misc_img/linkedin-12.webp" data-link="https://lnkd.in/p/gp9yEGMR"><h3>Top 5 NotebookLM Workflows</h3><p>Five easy ways to use NotebookLM to organize your notes and get more work done.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="13" data-img="/misc_img/linkedin-13.webp" data-link="https://lnkd.in/p/gQimNA-2"><h3>What is OOH Marketing</h3><p>A simple breakdown of OOH marketing and why physical billboards still matter for big brands.</p></article>
+        <article class="gc-panel" role="tabpanel" data-num="14" data-img="/misc_img/linkedin-14.webp" data-link="https://lnkd.in/p/g56SxBFD"><h3>The Rise of AI Agents</h3><p>Why 2026 is all about smart AI tools that actually do the work for us.</p></article>
+    </div>
+    <div class="gc-follow">
+        <a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener" class="gc-follow-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+            Follow me on LinkedIn
+        </a>
+        <span class="gc-follow-note">New posts on marketing, AI &amp; growth every week</span>
     </div>
 </section>
+
+<div class="gc-lightbox" id="gcLightbox" hidden role="dialog" aria-modal="true" aria-label="LinkedIn post">
+    <button type="button" class="gc-lb-close" aria-label="Close">&times;</button>
+    <button type="button" class="gc-lb-nav gc-lb-prev" aria-label="Previous post">‹</button>
+    <figure class="gc-lb-fig">
+        <img class="gc-lb-img" src="" alt="">
+        <figcaption>
+            <span class="gc-lb-count"></span>
+            <strong class="gc-lb-title"></strong>
+            <span class="gc-lb-text"></span>
+            <a class="gc-lb-link" href="#" target="_blank" rel="noopener">View on LinkedIn ↗</a>
+        </figcaption>
+    </figure>
+    <button type="button" class="gc-lb-nav gc-lb-next" aria-label="Next post">›</button>
+</div>
 
 <!-- FIFI - hand-coded assistant (logic in /fifi.js) -->
 <button class="chat-bot-btn" id="openChatBtn" aria-label="Chat with Fifi" aria-expanded="false" aria-controls="chatModal">
@@ -2239,7 +2305,7 @@ document.addEventListener("DOMContentLoaded", () => {
     uniform vec3 uPaper;
     uniform sampler2DArray uTex;
 
-    vec3 strip(vec2 uv){
+    vec4 strip(vec2 uv){
       float x = (uv.x - .5) * uAspect;
       float slot = floor(x / uStep + uScroll + .5);
       float zoom = 1. + .85 * uFocus;
@@ -2250,11 +2316,17 @@ document.addEventListener("DOMContentLoaded", () => {
       float y = uv.y - .5;
       if(selected){ localX /= zoom; y /= zoom; }
       else { y += uFocus * (1.1 + .12 * abs(slot - uSelected)); }
-      if(abs(localX) > uHalfW || abs(y) > uHalfH) return uPaper;
+      if(abs(localX) > uHalfW || abs(y) > uHalfH) return vec4(0.);
+      float r = uHalfW * .09;
+      vec2 q = abs(vec2(localX, y)) - vec2(uHalfW - r, uHalfH - r);
+      float cd = length(max(q, 0.)) - r;
+      float px = 1.5 / 900.;
+      float ca = 1. - smoothstep(-px, px, cd);
+      if(ca <= 0.) return vec4(0.);
       int islot = int(slot);
       int index = islot % uCount;
       if (index < 0) index += uCount;
-      return texture(uTex, vec3(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5, float(index))).rgb;
+      return vec4(texture(uTex, vec3(localX / (2. * uHalfW) + .5, y / (2. * uHalfH) + .5, float(index))).rgb, ca);
     }
 
     void main(){
@@ -2266,8 +2338,8 @@ document.addEventListener("DOMContentLoaded", () => {
       p = mat2(c, -s, s, c) * p;
       float scale = max(.55, lensAspect / 1.85);
       float radius = length(p / (vec2(.565, 1.) * scale));
-      vec3 base = strip(vUv);
-      if(radius > 1.) { frag = vec4(base, 1.); return; }
+      vec4 base = strip(vUv);
+      if(radius > 1.) { frag = vec4(base.rgb * base.a, base.a); return; }
 
       float angle = atan(p.y, p.x);
       float edgeWeight = uAspect < 1.5 ? smoothstep(.18, .44, abs(offset.x)) : 1.;
@@ -2278,17 +2350,20 @@ document.addEventListener("DOMContentLoaded", () => {
       vec2 bent = vUv + tangent * wave * rim * .4695 * scale * (1. - uFocus);
       vec2 dispersion = offset * .044 * smoothstep(.55, 1., radius) * edgeWeight * (1. - uFocus);
 
-      vec3 color = vec3(
-        strip(bent - dispersion * .5).r,
-        strip(bent).g,
-        strip(bent + dispersion * .5).b
-      );
+      vec4 cr = strip(bent - dispersion * .5);
+      vec4 cg = strip(bent);
+      vec4 cb = strip(bent + dispersion * .5);
+      vec3 color = vec3(cr.r * cr.a, cg.g * cg.a, cb.b * cb.a);
+      float a = max(cg.a, max(cr.a, cb.a));
 
       float ring = exp(-pow((radius * .5 - .49) / .014, 2.));
       float line = exp(-pow((radius * .5 - .488) / .003, 2.));
-      float surface = uAspect < 1.5 ? smoothstep(.02, .2, length(color - uPaper)) * edgeWeight : 1.;
-      color += (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
-      frag = vec4(mix(base, color, 1. - smoothstep(.93, 1., radius)), 1.);
+      float surface = uAspect < 1.5 ? a * edgeWeight : 1.;
+      vec3 glow = (vec3(0., .62, 1.) * ring * 1.2 + line * .75) * surface * (1. - uFocus);
+      color += glow;
+      a = clamp(max(a, max(glow.r, max(glow.g, glow.b))), 0., 1.);
+      float k = 1. - smoothstep(.93, 1., radius);
+      frag = vec4(mix(base.rgb * base.a, color, k), mix(base.a, a, k));
     }`;
 
     function compileShader(gl, type, source) {
@@ -2408,7 +2483,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const getLayoutMetrics = () => {
             const aspect = viewWidth / viewHeight;
-            const halfH = aspect < 1 ? Math.min(0.24, aspect * 0.34) : 0.24;
+            const halfH = aspect < 1.3 ? Math.min(0.31, aspect * 0.36) : 0.24;
             const halfW = halfH;
             const step = halfW * 2 + 0.012;
             return { halfW, halfH, step, aspect };
@@ -2429,6 +2504,8 @@ document.addEventListener("DOMContentLoaded", () => {
             gl.uniform1f(uniforms.time, timeSec);
             gl.uniform1i(uniforms.countU, slideCount);
             gl.uniform3f(uniforms.paper, paper[0], paper[1], paper[2]);
+            gl.clearColor(0, 0, 0, 0);
+            gl.clear(gl.COLOR_BUFFER_BIT);
             gl.activeTexture(gl.TEXTURE0);
             gl.bindTexture(gl.TEXTURE_2D_ARRAY, texArray);
             gl.uniform1i(uniforms.tex, 0);
@@ -2454,8 +2531,22 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isAnimating) { isAnimating = true; requestAnimationFrame(tick); }
         };
 
+        // Autoplay: one step every 3.5s while visible; pauses on hover/touch and while the lightbox is open
+        let pausedUntil = 0, onScreen = false, hovering = false;
+        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const pause = (ms = 6000) => { pausedUntil = performance.now() + ms; };
+        viewportEl.addEventListener("mouseenter", () => { hovering = true; });
+        viewportEl.addEventListener("mouseleave", () => { hovering = false; pause(1500); });
+        new IntersectionObserver(([en]) => { onScreen = en.isIntersecting; }, { threshold: 0.35 }).observe(viewportEl);
+        if (!reduceMotion) setInterval(() => {
+            if (!onScreen || hovering || isDragging || document.hidden || performance.now() < pausedUntil || document.body.classList.contains("gc-lb-open")) return;
+            scrollTarget = Math.round(scrollTarget) + 1;
+            requestRender();
+        }, 3500);
+
         canvas.addEventListener("pointerdown", (e) => {
             if (e.button !== 0) return;
+            pause();
             activePointerId = e.pointerId;
             isDragging = true;
             requestRender();
@@ -2485,15 +2576,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const clickX = (e.clientX - rect.left - viewWidth / 2) / viewHeight;
                 const clickY = (e.clientY - rect.top - viewHeight / 2) / viewHeight;
 
-                if (focusTarget) {
-                    if (Math.abs(clickX) > halfW * 2.5 || Math.abs(clickY) > halfH * 2.5) setFocused(false);
-                } else {
-                    const clickedSlot = Math.round(clickX / step + scrollCurrent);
-                    if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
-                        selectedSlot = scrollTarget = clickedSlot;
-                        onActiveChange((clickedSlot % slideCount + slideCount) % slideCount);
-                        setFocused(true);
-                    }
+                const clickedSlot = Math.round(clickX / step + scrollCurrent);
+                if (Math.abs(clickY) < halfH && Math.abs(clickX - (clickedSlot - scrollCurrent) * step) < halfW) {
+                    const idx = (clickedSlot % slideCount + slideCount) % slideCount;
+                    if (clickedSlot === Math.round(scrollCurrent)) { window.gcOpenLightbox && window.gcOpenLightbox(idx); }
+                    else { scrollTarget = clickedSlot; }
                 }
             }
             requestRender();
@@ -2503,6 +2590,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         canvas.addEventListener("wheel", (e) => {
             if (focusTarget || e.ctrlKey) return;
+            pause();
             const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
             if (!delta) return;
             e.preventDefault();
@@ -2563,8 +2651,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { rootMargin: '600px' }).observe(viewportEl);
 
         return {
+            pause,
             goTo(index) {
                 setFocused(false);
+                pause();
                 scrollTarget = index + Math.round((scrollCurrent - index) / slideCount) * slideCount;
                 requestRender();
             }
@@ -2604,12 +2694,59 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const canvas = document.createElement("canvas");
         canvas.className = "gc-canvas";
-        const gl = canvas.getContext("webgl2", { alpha: false, antialias: true, premultipliedAlpha: false });
+        const gl = canvas.getContext("webgl2", { alpha: true, antialias: true, premultipliedAlpha: true });
         if (!gl) { rootEl.style.display = "none"; return; } // very old browsers: hide instead of showing a broken box
 
         renderer = initWebGLRenderer(gl, canvas, viewportEl, slidesData, updateUI);
         updateUI(0);
         renderer?.goTo(0);
+
+        // Per-post "View on LinkedIn" buttons
+        panels.forEach(p => {
+            if (!p.dataset.link || p.querySelector(".gc-view")) return;
+            const a = document.createElement("a");
+            a.className = "gc-view"; a.href = p.dataset.link; a.target = "_blank"; a.rel = "noopener";
+            a.innerHTML = 'View on LinkedIn <span aria-hidden="true">↗</span>';
+            p.appendChild(a);
+        });
+
+        // Fullscreen lightbox
+        const lb = document.getElementById("gcLightbox");
+        if (lb) {
+            const lbImg = lb.querySelector(".gc-lb-img"), lbTitle = lb.querySelector(".gc-lb-title"), lbText = lb.querySelector(".gc-lb-text"),
+                  lbLink = lb.querySelector(".gc-lb-link"), lbCount = lb.querySelector(".gc-lb-count");
+            let cur = 0;
+            const show = (i) => {
+                cur = (i + slideCount) % slideCount;
+                const p = panels[cur];
+                lbImg.src = slidesData[cur].imgUrl;
+                lbImg.alt = p.querySelector("h3")?.textContent || "LinkedIn post";
+                lbTitle.textContent = p.querySelector("h3")?.textContent || "";
+                lbText.textContent = p.querySelector("p")?.textContent || "";
+                lbLink.href = p.dataset.link || "https://www.linkedin.com/in/fardinraafi";
+                lbCount.textContent = `${String(cur + 1).padStart(2, "0")} / ${totalFormatted}`;
+            };
+            const open = (i) => { show(i); lb.hidden = false; document.body.classList.add("gc-lb-open"); requestAnimationFrame(() => lb.classList.add("in")); lb.querySelector(".gc-lb-close").focus({ preventScroll: true }); };
+            const close = () => { lb.classList.remove("in"); document.body.classList.remove("gc-lb-open"); renderer?.pause(4000); setTimeout(() => { lb.hidden = true; }, 250); renderer?.goTo(cur); };
+            window.gcOpenLightbox = open;
+            lb.querySelector(".gc-lb-close").addEventListener("click", close);
+            lb.querySelector(".gc-lb-prev").addEventListener("click", () => show(cur - 1));
+            lb.querySelector(".gc-lb-next").addEventListener("click", () => show(cur + 1));
+            lb.addEventListener("click", (e) => { if (e.target === lb) close(); });
+            document.addEventListener("keydown", (e) => {
+                if (lb.hidden) return;
+                if (e.key === "Escape") close();
+                if (e.key === "ArrowRight") show(cur + 1);
+                if (e.key === "ArrowLeft") show(cur - 1);
+            });
+            let sx = null;
+            lb.addEventListener("touchstart", (e) => { sx = e.touches[0].clientX; }, { passive: true });
+            lb.addEventListener("touchend", (e) => {
+                if (sx === null) return;
+                const dx = e.changedTouches[0].clientX - sx; sx = null;
+                if (Math.abs(dx) > 50) show(cur + (dx < 0 ? 1 : -1));
+            });
+        }
     }
 
     const carouselEl = document.querySelector("[data-glass-carousel]");
