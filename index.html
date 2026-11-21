@@ -2531,7 +2531,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isAnimating) { isAnimating = true; requestAnimationFrame(tick); }
         };
 
-        // Autoplay: one step every 3.5s while visible; pauses on hover/touch and while the lightbox is open
+        // Autoplay: one step every 1.5s while visible; pauses on hover/touch and while the lightbox is open
         let pausedUntil = 0, onScreen = false, hovering = false;
         const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
         const pause = (ms = 6000) => { pausedUntil = performance.now() + ms; };
@@ -2542,7 +2542,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!onScreen || hovering || isDragging || document.hidden || performance.now() < pausedUntil || document.body.classList.contains("gc-lb-open")) return;
             scrollTarget = Math.round(scrollTarget) + 1;
             requestRender();
-        }, 3500);
+        }, 1500);
 
         canvas.addEventListener("pointerdown", (e) => {
             if (e.button !== 0) return;
