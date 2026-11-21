@@ -1284,45 +1284,46 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     </div>
 </section>
 
-<!-- AUTOMATED AI CHAT WIDGET (FIFI) -->
-<button class="chat-bot-btn" id="openChatBtn" aria-label="Open AI Assistant" style="width: auto; height: auto; padding: 6px 20px 6px 6px; border-radius: 100px; gap: 12px; display: flex; align-items: center;">
-    <div style="position: relative;">
-        <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 42px; height: 42px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255,255,255,0.4); display: block;">
-        <div style="position: absolute; bottom: 0; right: 0; width: 12px; height: 12px; background: #10B981; border: 2px solid #2563EB; border-radius: 50%; box-shadow: 0 0 8px rgba(16,185,129,0.8);"></div>
-    </div>
-    <span style="font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1rem; letter-spacing: 0.05em; padding-right: 4px;">FIFI</span>
+<!-- FIFI — hand-coded assistant (logic in /fifi.js) -->
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Chat with Fifi" aria-expanded="false" aria-controls="chatModal">
+    <span class="fifi-av"><img src="/misc_img/avatar.jpg" alt="" width="42" height="42"><i></i></span>
+    <span class="fifi-label">FIFI</span>
 </button>
 
-<div class="glass-card chat-bot-modal no-hover" id="chatModal">
+<div class="glass-card chat-bot-modal no-hover" id="chatModal" role="dialog" aria-label="Chat with Fifi">
     <div class="chat-header">
-        <div class="chat-header-title" style="gap: 12px;">
-            <div style="position: relative;">
-                <img src="/misc_img/avatar.jpg" alt="FIFI" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover; border: 2px solid var(--c1); box-shadow: 0 0 10px rgba(37,99,235,0.4);">
-                <div class="live-dot" style="position: absolute; bottom: 0; right: -2px; width: 10px; height: 10px; border: 2px solid #0F172A;"></div>
-            </div>
+        <div class="chat-header-title">
+            <span class="fifi-av sm"><img src="/misc_img/avatar.jpg" alt="" width="36" height="36"><i></i></span>
             <div>
-                <h4 style="margin: 0; line-height: 1;">FIFI</h4>
-                <div class="bot-subtitle" style="margin-top: 2px;">AI Assistant</div>
+                <h4>FIFI</h4>
+                <div class="bot-subtitle">Fardin's AI sidekick · online</div>
             </div>
         </div>
-        <button class="close-chat" id="closeChatBtn" aria-label="Close chat">&times;</button>
+        <div class="chat-head-actions">
+            <button class="chat-icon-btn" id="resetChatBtn" aria-label="Restart chat" title="Restart chat">↻</button>
+            <button class="close-chat" id="closeChatBtn" aria-label="Close chat">&times;</button>
+        </div>
     </div>
     <div class="chat-scroll-area" id="chatArea">
         <div class="chat-greeting" id="chatGreeting">
-            <h2 style="margin-top: 0.5rem;">Hi, I'm Fifi! 👋</h2>
-            <p>I'm Fardin's AI Assistant. What would you like to know about him?</p>
+            <div class="fifi-wave">👋</div>
+            <h2>yo, i'm Fifi!</h2>
+            <p>Fardin's AI sidekick. ask me anything about him — work, skills, awards, fun facts. i know the lore 📚</p>
         </div>
         <div class="chat-options-grid" id="chatOptions">
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardin\'s core skills?')"><span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's core skills?</span></button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardin\'s B2B experience')"><span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's B2B experience</span></button>
-            <button class="chat-opt-btn" onclick="sendQuery('Tell me about Fardin\'s academics')"><span style="color: var(--c1); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>Tell me about Fardin's academics</span></button>
-            <button class="chat-opt-btn" onclick="sendQuery('What are Fardin\'s extracurriculars?')"><span style="color: var(--c2); font-size: 1.1rem; vertical-align: middle; margin-right: 4px;">✦</span> <span>What are Fardin's extracurriculars?</span></button>
-            <button class="chat-opt-btn" onclick="sendQuery('Download Resume')"><span style="color: var(--c1); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">📥</span> <span>Download Resume</span></button>
-            <button class="chat-opt-btn" onclick="sendQuery('How do I contact Fardin?')"><span style="color: var(--c2); font-size: 1.2rem; vertical-align: middle; margin-right: 4px;">✉</span> <span>How do I contact Fardin?</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Who is Fardin?')"><span class="opt-ic">✦</span><span>Who is Fardin?</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Work experience')"><span class="opt-ic">💼</span><span>Work experience</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Skills')"><span class="opt-ic">🧠</span><span>Skills</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Biggest wins?')"><span class="opt-ic">🏆</span><span>Biggest wins?</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Download resume')"><span class="opt-ic">📥</span><span>Download resume</span></button>
+            <button type="button" class="chat-opt-btn" onclick="sendQuery('Contact him')"><span class="opt-ic">✉️</span><span>Contact him</span></button>
         </div>
-        <div class="chat-log" id="chatLog"></div>
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
     </div>
-    <button class="reset-chat-btn" id="resetChatBtn">Restart Conversation</button>
+    <form class="fifi-form" id="fifiForm" autocomplete="off">
+        <input id="fifiInput" type="text" maxlength="200" placeholder="Ask Fifi anything about Fardin…" aria-label="Message Fifi">
+        <button type="submit" aria-label="Send">➤</button>
+    </form>
 </div>
 
 <!-- Footer injected by main.js -->
@@ -1375,6 +1376,7 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
 </script>
 
 <script src="/main.js"></script>
+<script src="/fifi.js" defer></script>
 
 <!-- =========================================
      HOME PAGE SCRIPTS
@@ -1530,50 +1532,6 @@ document.addEventListener("DOMContentLoaded", () => {
         update();
     }
 
-    /* ---------- 5. FIFI chatbot answers (typos fixed; replaces the version in main.js) ---------- */
-    const chatGreeting = document.getElementById('chatGreeting');
-    const chatOptions = document.getElementById('chatOptions');
-    const chatLog = document.getElementById('chatLog');
-    const resetChatBtn = document.getElementById('resetChatBtn');
-    const chatArea = document.getElementById('chatArea');
-    const link = (href, text) => `<a href="${href}" style="color: var(--c1); font-weight: bold;">${text}</a>`;
-
-    window.sendQuery = function (query) {
-        if (chatGreeting) chatGreeting.style.display = 'none';
-        if (chatOptions) chatOptions.style.display = 'none';
-        if (resetChatBtn) resetChatBtn.style.display = 'block';
-        if (!chatLog) return;
-
-        const userMsg = document.createElement('div');
-        userMsg.className = 'chat-bubble user-bubble';
-        userMsg.textContent = query;
-        chatLog.appendChild(userMsg);
-
-        const phrases = ["Let me check on that...", "Hold on a second...", "Fetching the details...", "Just a moment...", "Pulling that up for you..."];
-        const loading = document.createElement('div');
-        loading.className = 'chat-bubble ai-bubble';
-        loading.innerHTML = `<span style="opacity: 0.6; font-style: italic; display: flex; align-items: center; gap: 8px;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" style="animation: spin 2s linear infinite;"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg>
-            ${phrases[Math.floor(Math.random() * phrases.length)]}</span>`;
-        chatLog.appendChild(loading);
-        if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
-
-        setTimeout(() => {
-            loading.remove();
-            const aiMsg = document.createElement('div');
-            aiMsg.className = 'chat-bubble ai-bubble';
-            const q = query.toLowerCase();
-            if (q.includes('skills')) aiMsg.innerHTML = 'Fardin specializes in <strong>brand strategy</strong>, content marketing, CRM management (Salesforce, Apollo.io) and B2B lead generation. On the creative side he works in Photoshop, Illustrator, Figma and Canva.';
-            else if (q.includes('b2b')) aiMsg.innerHTML = 'He has <strong>one year of professional experience focused on B2B sales and marketing at Augmex</strong>. He currently works as a Marketing Executive at Augmex Technologies, where he has enriched 40,000+ CRM records, run multi-channel outreach and driven 340K+ organic views through content.';
-            else if (q.includes('contact')) aiMsg.innerHTML = `You can reach him directly through his ${link('/contact.html', 'Contact Page')}.`;
-            else if (q.includes('resume')) aiMsg.innerHTML = `You can view and download his full resume on his ${link('/resume.html', 'Resume Page')}.`;
-            else if (q.includes('academics')) aiMsg.innerHTML = 'Fardin holds a Bachelor of Business Administration (BBA) in Marketing from BUBT, graduating with a CGPA of 3.80.';
-            else if (q.includes('extracurriculars')) aiMsg.innerHTML = `He has extensive leadership experience, including BASIS Leader of the Year 2024 and the Harvard Aspire Leaders Program '26. Check out his ${link('/volunteer.html', 'Leadership & Extracurriculars page')} to learn more.`;
-            else aiMsg.textContent = 'Thanks for asking! Please explore the rest of the portfolio for more details.';
-            chatLog.appendChild(aiMsg);
-            if (chatArea) chatArea.scrollTop = chatArea.scrollHeight;
-        }, 1200);
-    };
 });
 </script>
 
