@@ -97,7 +97,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261122c">
+    <link rel="stylesheet" href="/style.css?v=20261122d">
     
     <style>
         /* STATS BAR */
@@ -227,8 +227,14 @@
 </nav>
 
 <div class="layout-wrapper single-column">
-    <h1 class="center-h1">Professional <span class="gradient-text">Certifications</span></h1>
-    <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; margin-top: -2rem;">A curated record of awards, recognitions, and verified certifications.</p>
+    <header class="page-head">
+    <div class="tt-wrap" id="ttWrap">
+        <h1 class="gradient-text tt-h1">Professional Certifications</h1>
+        <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+        <div class="tech-text tt-2" id="tt2" aria-hidden="true"><canvas></canvas></div>
+    </div>
+        <p class="page-sub">A curated record of awards, recognitions, and verified certifications.</p>
+    </header>
 
     <div class="stats-wrapper">
         <div class="stat-box">
@@ -363,7 +369,17 @@
     </div>
 </footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
-<script src="/main.js?v=20261122c"></script>
+<script src="/main.js?v=20261122d"></script>
+<script src="/techtext.js?v=20261122d"></script>
+<script>
+(() => {
+    const wrap = document.getElementById('ttWrap');
+    const center = () => 'center';
+    createTechText(wrap, document.getElementById('tt1'), 'Professional', center, 0.15);
+    createTechText(wrap, document.getElementById('tt2'), 'Certifications', center, 0.95);
+})();
+</script>
+
 
 <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>

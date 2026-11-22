@@ -75,7 +75,7 @@
     <!-- This magic line auto-redirects back to home after 3 seconds -->
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=20261122c">
+    <link rel="stylesheet" href="/style.css?v=20261122d">
     <style>
         .ms-wrap { position: relative; z-index: 2; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 6.5rem 1.25rem 3rem; box-sizing: border-box; }
         .ms-card { width: 100%; max-width: 720px; text-align: center; padding: 3rem 2rem 2.4rem !important; }
@@ -88,6 +88,8 @@
         .ms-reply { display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 100px; font-weight: 700; font-size: .9rem; color: var(--text-main);
             background: rgba(16,185,129,.12); border: 1px solid rgba(16,185,129,.35); margin-bottom: 1.6rem; }
         .ms-reply i { width: 8px; height: 8px; border-radius: 50%; background: #10B981; animation: ftPulse 2s infinite; }
+        .ms-sooner { margin: -0.6rem 0 1.6rem; color: var(--text-muted); font-size: .95rem; }
+        .ms-sooner a { font-weight: 700; color: var(--c2); text-decoration: none; border-bottom: 1.5px solid rgba(124,58,237,.4); padding: 6px 0; }
         .ms-fifi { display: flex; align-items: center; justify-content: center; gap: 10px; margin: 0 auto 2rem; }
         .ms-fifi img { width: 40px; height: 40px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 2px rgba(124,58,237,.45); }
         .ms-fifi span { padding: 8px 14px; border-radius: 16px 16px 16px 4px; background: rgba(124,58,237,.12); color: var(--text-main); font-weight: 600; font-size: .9rem; text-align: left; }
@@ -128,7 +130,8 @@
         </svg>
         <h1 class="gradient-text">Message sent!</h1>
         <p class="ms-lead">Thanks for reaching out. Your message landed safely in my inbox and I'll read it personally.</p>
-        <div class="ms-reply"><i></i> I usually reply within 24 hours</div>
+        <div class="ms-reply"><i></i> I usually reply within ~2 hours (Dhaka daytime)</div>
+        <p class="ms-sooner">Want to talk sooner? <a href="https://calendly.com/fardinraafi/30min" data-calendly="https://calendly.com/fardinraafi/30min">Book a 30-min call 🗓️</a></p>
 
         <div class="ms-fifi">
             <img src="/misc_img/avatar.jpg" alt="Fifi" width="40" height="40">
@@ -160,7 +163,7 @@
 </main>
 
 <footer class="site-footer reveal"></footer>
-<script src="/main.js?v=20261122c"></script>
+<script src="/main.js?v=20261122d"></script>
 <script>
 (() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;

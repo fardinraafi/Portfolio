@@ -97,7 +97,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261122c">
+    <link rel="stylesheet" href="/style.css?v=20261122d">
 
     <style>
         /* =========================================
@@ -105,7 +105,7 @@
         ========================================= */
         .resources-header {
             text-align: center;
-            padding: 8rem 2rem 4rem 2rem;
+            padding: 0 2rem 2.5rem 2rem;
             position: relative;
             z-index: 5;
         }
@@ -294,10 +294,11 @@
     
     <!-- HEADER SECTION -->
     <div class="resources-header reveal">
-        <h1 class="resources-title blur-container">
-            <span class="blur-word scroll-blur" style="color: var(--text-main);">Curated</span>
-            <span class="blur-word scroll-blur gradient-text">Resources</span>
-        </h1>
+        <div class="tt-wrap" id="ttWrap">
+        <h1 class="gradient-text tt-h1">Curated Resources</h1>
+        <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+        <div class="tech-text tt-2" id="tt2" aria-hidden="true"><canvas></canvas></div>
+    </div>
         <p class="resources-subtitle reveal" style="transition-delay: 0.2s;">
             A collection of prompts, guides, and strategic frameworks designed to accelerate your workflow.
         </p>
@@ -367,7 +368,17 @@
 <footer class="site-footer"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/main.js?v=20261122c"></script>
+<script src="/main.js?v=20261122d"></script>
+<script src="/techtext.js?v=20261122d"></script>
+<script>
+(() => {
+    const wrap = document.getElementById('ttWrap');
+    const center = () => 'center';
+    createTechText(wrap, document.getElementById('tt1'), 'Curated', center, 0.15);
+    createTechText(wrap, document.getElementById('tt2'), 'Resources', center, 0.95);
+})();
+</script>
+
 
 <!-- BLUR TEXT SCRIPT AUTOMATOR -->
 <script>

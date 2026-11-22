@@ -1753,3 +1753,39 @@ body.dark-mode .fifi-form input { background: rgba(255,255,255,0.05); border-col
     .top-nav .nav-menu a { padding: 6px 8px !important; font-size: 0.86rem !important; }
     .top-nav .nav-actions .btn-primary { display: none; }
 }
+
+/* =========================================
+   SHARED PAGE HEADER (tech-text title + subtitle)
+========================================= */
+.page-head { text-align: center; margin: 0 auto 2.2rem; }
+.page-sub { color: var(--text-muted); font-size: 1.1rem; line-height: 1.6; max-width: 600px; margin: 0 auto; }
+.tt-wrap { position: relative; max-width: 900px; margin: 0 auto 0.8rem; }
+.tech-text { display: none; }
+.tt-wrap.tt-on .tt-h1 { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: 0; }
+.tt-wrap.tt-on .tech-text {
+    display: block; position: relative; font-family: 'Syne', sans-serif; font-weight: 800; font-size: clamp(2.6rem, 6.4vw, 5rem);
+    height: 1.55em; width: calc(100% + 48px); margin: -0.3em -24px -0.42em; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.tt-wrap.tt-on .tech-text.tt-2 { margin-bottom: 0; }
+.tech-text canvas { display: block; width: 100%; height: 100%; }
+@media (max-width: 600px) { .page-sub { font-size: 1rem; } .page-head { margin-bottom: 1.6rem; } }
+
+/* =========================================
+   TAP SIZES (phones): every control at least ~44px tall/wide to tap
+========================================= */
+@media (max-width: 900px) {
+    .nav-brand { display: inline-flex; align-items: center; min-height: 44px; }
+    .close-chat, .chat-icon-btn { width: 40px !important; height: 40px !important; }
+    /* tiny dots: keep the look, grow the tap area */
+    .reco-dots button, .hl-dots button {
+        box-sizing: content-box !important; padding: 16px 6px !important; background-clip: content-box !important; margin: -12px 0 !important;
+    }
+    .gc-dot { width: 32px !important; height: 44px !important; }
+    .gc-dot::after { left: 13px !important; top: 19px !important; }
+    .chip, .views button, .btn-more, .copy-btn { min-height: 40px !important; }
+    .org-name { display: inline-flex; align-items: center; min-height: 40px; }
+    .resume-meta a, .et-link { display: inline-flex; align-items: center; min-height: 40px; }
+    .post-crumbs a { display: inline-block; padding: 10px 2px; }
+    .btn { min-height: 44px; }
+    .meta-info a { display: inline-block; padding: 12px 0; margin: -12px 0; }
+}

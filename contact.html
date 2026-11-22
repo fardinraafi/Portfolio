@@ -97,8 +97,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/style.css?v=20261122c">
-    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=20261122d">
 
     <style>
 /* =========================================================
@@ -506,6 +505,15 @@ body.dark-mode .talk-chip { background: rgba(30, 41, 59, 0.5); border-color: rgb
 .talk-chip.ghost { background: transparent; color: transparent; -webkit-text-stroke: 1px rgba(124, 58, 237, 0.55); }
 body.dark-mode .talk-chip.ghost { -webkit-text-stroke-color: rgba(196, 181, 253, 0.5); }
 
+/* "or book a call" under the form */
+.or-book { display: flex; flex-direction: column; align-items: center; gap: .55rem; margin-top: 1.2rem; padding-top: 1.1rem; border-top: 1px dashed rgba(124,58,237,.3); }
+.or-book span { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--text-muted); }
+.btn-book {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 48px; border-radius: 14px; font-weight: 700;
+    text-decoration: none; color: var(--text-main) !important; border: 1.5px solid rgba(124,58,237,.5); background: rgba(124,58,237,.08); transition: background .25s, transform .25s, color .25s;
+}
+.btn-book:hover { background: linear-gradient(135deg, var(--c1), var(--c2)); color: #fff !important; border-color: transparent; transform: translateY(-2px); }
+
 /* Booking: animated mini calendar */
 .mini-cal {
     position: relative; z-index: 5; width: 220px; margin: 0 auto 1.8rem; padding: 14px; border-radius: 18px; text-align: left;
@@ -809,6 +817,10 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
                     </div>
                     <button type="submit" class="btn-submit"><span class="btn-label">Send Me The Message</span><span class="plane">✈</span></button>
                     <p class="form-note">🔒 Your details are only used to reply to you.</p>
+                    <div class="or-book">
+                        <span>or skip the inbox</span>
+                        <a href="https://calendly.com/fardinraafi/30min" data-calendly="https://calendly.com/fardinraafi/30min" class="btn-book">🗓️ Book a 30-min call</a>
+                    </div>
                 </form>
             </div>
         </div>
@@ -851,7 +863,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
             <span class="book-step"><b>2</b>Get the invite</span><span class="book-arrow">→</span>
             <span class="book-step"><b>3</b>Let's talk growth</span>
         </div>
-        <button type="button" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/fardinraafi'})" class="final-cta-btn" style="border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; position: relative; z-index: 5;">
+        <button type="button" data-calendly="https://calendly.com/fardinraafi/30min" class="final-cta-btn" style="border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; position: relative; z-index: 5;">
             🗓️ Schedule Strategy Call
         </button>
     </div>
@@ -928,8 +940,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
 <div class="toast" id="toast" role="status" aria-live="polite">✓ <span id="toastText">Email copied</span></div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/main.js?v=20261122c"></script>
-<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<script src="/main.js?v=20261122d"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

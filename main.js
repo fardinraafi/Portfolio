@@ -575,3 +575,29 @@ if (hourMinEl && ampmEl && dateEl) {
     updateClock(); // Run immediately on load
 }
 });
+
+/* =========================================
+   CALENDLY POPUP: any element with data-calendly opens the booking popup
+   (script loads only on first click; falls back to a new tab)
+========================================= */
+(function () {
+    const URL_ = 'https://calendly.com/fardinraafi/30min';
+    let loading = null;
+    const load = () => loading || (loading = new Promise((resolve, reject) => {
+        const css = document.createElement('link');
+        css.rel = 'stylesheet'; css.href = 'https://assets.calendly.com/assets/external/widget.css';
+        document.head.appendChild(css);
+        const js = document.createElement('script');
+        js.src = 'https://assets.calendly.com/assets/external/widget.js'; js.async = true;
+        js.onload = () => resolve(); js.onerror = reject;
+        document.head.appendChild(js);
+        setTimeout(() => reject(new Error('timeout')), 6000);
+    }));
+    document.addEventListener('click', (e) => {
+        const el = e.target.closest('[data-calendly]');
+        if (!el) return;
+        e.preventDefault(); e.stopPropagation();
+        const url = (el.getAttribute('data-calendly') || URL_) + (/(\?)/.test(el.getAttribute('data-calendly') || '') ? '&' : '?') + 'hide_gdpr_banner=1&primary_color=7c3aed';
+        load().then(() => window.Calendly.initPopupWidget({ url })).catch(() => window.open(URL_, '_blank', 'noopener'));
+    }, true);
+})();

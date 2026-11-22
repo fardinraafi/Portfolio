@@ -1,10 +1,64 @@
 /* =========================================================
    FIFI - Fardin's (fake-but-smart) AI sidekick
    No API. A keyword + fuzzy-match brain with personality.
-   Only loaded on the home page.
+   Loaded on the home page, the resume page and the 404 page.
+   If the page doesn't already have Fifi's markup, it is injected here.
 ========================================================= */
 (function () {
     'use strict';
+
+    const path = location.pathname.replace(/\.html$/, '');
+    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : 'home';
+    const MODES = {
+        home:   { hello: "yo, i'm Fifi!", sub: "Fardin's AI sidekick. ask me anything about him: work, skills, awards, fun facts. i know the lore 📚",
+                  starters: [['Who is Fardin?', '✦'], ['Work experience', '💼'], ['Skills', '🧠'], ['Biggest wins?', '🏆'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
+        resume: { hello: "need the TL;DR? 📄", sub: "i'm Fifi, Fardin's sidekick. ask me about his experience, skills or tools, or grab the CV.",
+                  starters: [['Work experience', '💼'], ['Skills', '🧠'], ['What tools does he use?', '🧰'], ['Education', '🎓'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
+        '404':  { hello: "lost? i got you 🧭", sub: "this page doesn't exist, but i do. ask me anything about Fardin or let me take you somewhere real.",
+                  starters: [['Where am I?', '🗺️'], ['Take me home', '🏠'], ['Who is Fardin?', '✦'], ['Book a call', '🗓️']] }
+    };
+
+    if (!document.getElementById('openChatBtn')) {
+        const m = MODES[MODE];
+        const wrap = document.createElement('div');
+        wrap.innerHTML = `
+<button class="chat-bot-btn" id="openChatBtn" aria-label="Chat with Fifi" aria-expanded="false" aria-controls="chatModal">
+    <span class="fifi-av"><img src="/misc_img/avatar.jpg" alt="" width="42" height="42"><i></i></span>
+    <span class="fifi-label">FIFI</span>
+</button>
+<div class="glass-card chat-bot-modal no-hover" id="chatModal" role="dialog" aria-label="Chat with Fifi">
+    <div class="chat-header">
+        <div class="chat-header-title">
+            <span class="fifi-av sm"><img src="/misc_img/avatar.jpg" alt="" width="36" height="36"><i></i></span>
+            <div><h4>FIFI</h4><div class="bot-subtitle">Fardin's AI sidekick · online</div></div>
+        </div>
+        <div class="chat-head-actions">
+            <button class="chat-icon-btn" id="resetChatBtn" aria-label="Restart chat" title="Restart chat">↻</button>
+            <button class="close-chat" id="closeChatBtn" aria-label="Close chat">&times;</button>
+        </div>
+    </div>
+    <div class="chat-scroll-area" id="chatArea">
+        <div class="chat-greeting" id="chatGreeting">
+            <div class="fifi-wave">👋</div>
+            <h2>${m.hello}</h2>
+            <p>${m.sub}</p>
+        </div>
+        <div class="chat-options-grid" id="chatOptions"></div>
+        <div class="chat-log" id="chatLog" aria-live="polite"></div>
+    </div>
+    <form class="fifi-form" id="fifiForm" autocomplete="off">
+        <input id="fifiInput" type="text" maxlength="200" placeholder="Ask Fifi anything about Fardin…" aria-label="Message Fifi">
+        <button type="submit" aria-label="Send">➤</button>
+    </form>
+</div>`;
+        while (wrap.firstElementChild) document.body.appendChild(wrap.firstElementChild);
+    }
+    // Starter buttons for this page
+    const opts = document.getElementById('chatOptions');
+    if (opts && MODE !== 'home') {
+        opts.innerHTML = MODES[MODE].starters.map(([t, ic]) => `<button type="button" class="chat-opt-btn" data-q="${t}"><span class="opt-ic">${ic}</span><span>${t}</span></button>`).join('');
+    }
+    if (opts) opts.addEventListener('click', (e) => { const b = e.target.closest('[data-q]'); if (b && window.sendQuery) window.sendQuery(b.dataset.q); });
 
     const btn = document.getElementById('openChatBtn');
     const modal = document.getElementById('chatModal');
@@ -42,6 +96,9 @@
         lead:     { label: '🏆 Leadership page', href: '/volunteer' },
         certs:    { label: '📜 Certificates', href: '/certificates' },
         res:      { label: '🧰 Free resources', href: '/resources' },
+        book:     { label: '🗓️ Book a 30-min call', href: 'https://calendly.com/fardinraafi/30min', calendly: true },
+        home:     { label: '🏠 Home', href: '/' },
+        projects: { label: '🛠️ Projects', href: '/work' },
     };
 
     /* ---------- the brain ----------
@@ -126,9 +183,9 @@
           a: `📄 say less. grab the PDF or peep the interactive version 👇`,
           chips: ['Work experience', 'Contact him'], act: ['resume', 'resumePg'] },
 
-        { id: 'contact', keys: ['contact', 'reach', 'email', 'mail', 'hire', 'hiring', 'connect', 'talk', 'message', 'dm', 'call', 'collab', 'collaborate', 'work together', 'project', 'freelance', 'meet', 'book'],
+        { id: 'contact', keys: ['contact', 'reach', 'email', 'mail', 'hire', 'hiring', 'connect', 'talk', 'message', 'dm', 'call', 'collab', 'collaborate', 'work together', 'freelance', 'meet', 'book'],
           a: `📬 slide into his inbox: ${B(EMAIL)}<br><br>or use the contact form, he actually replies (rare W) ⚡`,
-          chips: ['Socials', 'Download resume'], act: ['email', 'contact', 'linkedin'] },
+          chips: ['Socials', 'Book a call'], act: ['book', 'email', 'contact', 'linkedin'] },
 
         { id: 'social', keys: ['social', 'socials', 'linkedin', 'instagram', 'insta', 'twitter', 'x', 'facebook', 'threads', 'github', 'pinterest', 'discord', 'follow'],
           a: `📱 find him everywhere:<br><br>• LinkedIn → fardinraafi (his main stage)<br>• Instagram / X / Threads / Pinterest → @fardin_raafi<br>• Behance & GitHub → fardinraafi<br>• Discord → equinox.90<br><br>LinkedIn is where the daily posts live 👀`,
@@ -147,11 +204,27 @@
 
         { id: 'why', keys: ['why hire', 'why should', 'why him', 'convince', 'pitch', 'stand out', 'unique', 'different', 'worth'],
           a: `🗣️ the pitch: he does strategy ${B('AND')} execution. most people pick one. Fardin finds the leads, writes the content, designs the posts, edits the video and checks the numbers, with receipts (340K views, 17K followers, ৳20L sales). that\'s the rizz 📈`,
-          chips: ['Contact him', 'Download resume'], act: ['contact', 'resume'] },
+          chips: ['Contact him', 'Download resume'], act: ['book', 'contact', 'resume'] },
 
         { id: 'money', keys: ['salary', 'pay', 'paid', 'rate', 'rates', 'price', 'pricing', 'charge', 'cost', 'budget', 'expected salary', 'how much', 'available', 'availability', 'open to work', 'notice period', 'start date', 'free to join'],
           a: `💸 ooh the classified stuff, that\'s a convo for Fardin himself, not his chatbot 🤐 shoot him a message and he\'ll talk details directly.`,
-          act: ['contact', 'email'] },
+          act: ['book', 'contact', 'email'] },
+
+        { id: 'call', keys: ['book a call', 'book', 'call', 'meeting', 'schedule', 'calendly', 'appointment', 'zoom', 'google meet', 'meet him', 'talk to him', 'slot'],
+          a: `🗓️ say less. grab a ${B('30-min call')} with Fardin, pick any open slot and the invite lands in your inbox. no back-and-forth emails 🙌`,
+          chips: ['Why hire him?', 'Work experience'], act: ['book', 'email'] },
+
+        { id: 'lost', keys: ['where am i', 'lost', '404', 'broken', 'not found', 'wrong page', 'missing', 'dead link'],
+          a: `🗺️ you hit a page that doesn't exist (the link was probably old or mistyped). no stress, here are the real spots 👇`,
+          chips: ['Who is Fardin?', 'Take me home'], act: ['home', 'blog', 'projects', 'contact'] },
+
+        { id: 'gohome', keys: ['take me home', 'home', 'homepage', 'main page', 'go back', 'back'],
+          a: `🏠 one-way ticket home, coming right up. tap below 👇`,
+          act: ['home', 'projects', 'blog'] },
+
+        { id: 'projects', keys: ['projects', 'project', 'built', 'portfolio work', 'side project', 'game', 'linkedin clone', 'work page'],
+          a: `🛠️ he builds stuff too: a ${B('LinkedIn profile UI clone')} and ${B('Fifi Run')}, the 404 mini game starring yours truly 😎`,
+          act: ['projects'] },
 
         { id: 'thanks', keys: ['thanks', 'thank you', 'thx', 'ty', 'appreciate', 'cool', 'nice', 'great', 'awesome', 'love it', 'goat', 'fire', 'lit', 'based'],
           a: ['anytime bestie 🫶', 'W user, W question 😌 anything else?', 'glad i could serve 🫡 need anything else?'],
@@ -231,6 +304,7 @@
                 el.className = 'fifi-act'; el.href = a.href; el.textContent = a.label;
                 if (a.download) el.setAttribute('download', a.download);
                 if (a.ext) { el.target = '_blank'; el.rel = 'noopener'; }
+                if (a.calendly) el.setAttribute('data-calendly', a.href);
                 wrap.appendChild(el);
             }
         });
@@ -319,7 +393,7 @@
             return { html: `more of what bestie? 😅 try one of these 👇`, chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'] };
         }
         // chip aliases
-        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards' };
+        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu' };
         let intent = alias[q] ? byId[alias[q]] : classify(text);
 
         if (!intent) {
@@ -408,7 +482,7 @@
 
     // little "psst" nudge once per session, after 12s on the page
     try {
-        if (!sessionStorage.getItem('fifi-nudged') && !history.length) {
+        if (MODE !== '404' && !sessionStorage.getItem('fifi-nudged') && !history.length) {
             setTimeout(() => {
                 if (modal.classList.contains('show')) return;
                 const tip = document.createElement('div');
