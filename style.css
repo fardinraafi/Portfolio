@@ -850,7 +850,10 @@ body.fade-out {
     transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
 }
 #preloader.hide { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-.preloader-text { font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800; color: #F8FAFC; letter-spacing: 4px; }
+.preloader-text { display: none; } /* the animated build-up (main.js) replaces it; no static logo flash */
+/* safety net: if JavaScript never runs, the loader still clears itself */
+#preloader { animation: plAutoHide 0.6s ease 4s forwards; }
+@keyframes plAutoHide { to { opacity: 0; visibility: hidden; pointer-events: none; } }
 #preloader { background: radial-gradient(ellipse at 50% 45%, #1E1B4B 0%, #0F172A 55%, #020617 100%); }
 #preloader::before {
     content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35;
