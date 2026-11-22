@@ -27,7 +27,11 @@ document.addEventListener('DOMContentLoaded', () => {
             // sample the word into particles
             const off = document.createElement('canvas'); off.width = W; off.height = H;
             const o = off.getContext('2d');
-            const fs = H * 0.78;
+            // fit the word inside the canvas (Syne is wide, so shrink on narrow phones)
+            let fs = H * 0.78;
+            o.font = `800 ${fs}px Syne, "DM Sans", Arial, sans-serif`;
+            const fit = (W * 0.9) / o.measureText('FRKR').width;
+            if (fit < 1) fs *= fit;
             o.font = `800 ${fs}px Syne, "DM Sans", Arial, sans-serif`; o.textAlign = 'center'; o.textBaseline = 'middle';
             o.fillText('FRKR', W / 2, H / 2 + fs * 0.04);
             const tw = o.measureText('FRKR').width, left = W / 2 - tw / 2;
