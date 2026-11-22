@@ -204,18 +204,23 @@ body.dark-mode .faq-item.active { background: rgba(15, 23, 42, 0.9); box-shadow:
 ========================================================= */
 .right-col { display: flex; flex-direction: column; gap: 2rem; align-self: start; }
 
-.globe-wrapper { position: relative; width: 100%; max-width: 440px; aspect-ratio: 1 / 1; margin: -10px auto -50px; z-index: 1; --globe-opacity: 0.75; }
+.globe-wrapper { position: relative; width: 100%; max-width: 440px; aspect-ratio: 1 / 1; margin: 1.5rem auto 5.5rem; z-index: 1; --globe-opacity: 1; }
 body:not(.dark-mode) .globe-wrapper { --globe-opacity: 0.85; }
 .globe-wrapper::before {
     content: ''; position: absolute; inset: 14%; border-radius: 50%; z-index: -1; pointer-events: none;
     background: radial-gradient(circle, rgba(124, 58, 237, 0.35), rgba(37, 99, 235, 0.15) 50%, transparent 70%); filter: blur(30px);
     animation: globeBreath 6s ease-in-out infinite;
 }
+/* Dark mode: stronger halo so the globe pops off the navy background */
+body.dark-mode .globe-wrapper::before {
+    inset: 8%; background: radial-gradient(circle, rgba(139, 92, 246, 0.55), rgba(59, 130, 246, 0.28) 48%, transparent 70%); filter: blur(34px);
+}
+body.dark-mode .globe-container::after { content: none; }
 @keyframes globeBreath { 0%, 100% { opacity: 0.6; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
 .globe-container { width: 100%; height: 100%; -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 50%, transparent 65%); mask-image: radial-gradient(circle at 50% 50%, #000 50%, transparent 65%); }
 #cobe { width: 100%; height: 100%; cursor: grab; opacity: var(--globe-opacity); transition: opacity 0.3s ease; touch-action: pan-y; }
 #cobe:active { cursor: grabbing; }
-.globe-time-block { position: absolute; bottom: 20px; left: 0; pointer-events: none; z-index: 10; font-family: 'Bricolage Grotesque', 'DM Sans', Arial, sans-serif; }
+.globe-time-block { position: absolute; bottom: -62px; left: 0; pointer-events: none; z-index: 10; font-family: 'Bricolage Grotesque', 'DM Sans', Arial, sans-serif; }
 .globe-time-label { font-size: 12px; color: #757a82; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; margin-bottom: 2px; display: flex; align-items: center; gap: 6px; }
 .globe-time-label i { width: 6px; height: 6px; border-radius: 50%; background: #10B981; box-shadow: 0 0 8px #10B981; }
 .globe-time-value { font-size: 54px; font-weight: 800; display: flex; align-items: baseline; gap: 8px; letter-spacing: -0.02em; line-height: 1; color: var(--text-main); }
@@ -390,8 +395,10 @@ body.dark-mode .s-threads, body.dark-mode .s-x { --brand-rgb: 226, 232, 240; }
 @media (max-width: 900px) {
     .epic-contact-wrapper { grid-template-columns: 1fr; gap: 2rem; padding: 1rem; }
     .form-glass { padding: 1.8rem !important; }
-    .globe-wrapper { max-width: 340px; margin-bottom: -30px; }
-    .globe-time-value { font-size: 42px; }
+    .globe-wrapper { max-width: 340px; margin: 1.5rem auto 3.5rem; }
+    .globe-time-block { display: none; }  /* the Dhaka sky card above already shows the time on phones */
+    .globe-everywhere { bottom: -14px; right: 4px; }
+    .globe-pin { top: -8px; }
     .social-section { padding: 3.5rem 1rem 3rem; }
     .final-cta-title { font-size: clamp(2.2rem, 10vw, 3rem) !important; }
 }
@@ -623,14 +630,13 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
 .g-ripple::after { animation-delay: 1.2s; }
 @keyframes gRipple { 0% { transform: scale(0.6); opacity: 1; } 100% { transform: scale(4.2); opacity: 0; } }
 .globe-everywhere {
-    position: absolute; right: 4%; bottom: 14%; z-index: 7; pointer-events: none; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
+    position: absolute; right: 0; bottom: -44px; text-align: right; z-index: 7; pointer-events: none; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.04em;
     color: var(--text-muted); font-family: 'Syne', sans-serif;
 }
 .globe-everywhere span { display: block; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.64rem; opacity: 0.7; letter-spacing: 0; }
 @media (max-width: 900px) {
     .sky-card { position: relative; top: 0; }
     .contact-hero-left { align-self: start; }
-    .globe-everywhere { bottom: 18%; }
 }
 @media (prefers-reduced-motion: reduce) {
     .sky-stars i, .sky-cloud, .sky-windows i, .shooting-star, .g-ripple::before, .g-ripple::after { animation: none !important; }
@@ -1655,8 +1661,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function themeOptions() {
         const isDark = document.body.classList.contains('dark-mode');
         return isDark
-            ? { dark: 1, baseColor: [0.094, 0.059, 0.235], markerColor: [1, 1, 1], glowColor: [0.12, 0.08, 0.3], arcColor: [0.66, 0.55, 0.98] }
-            : { dark: 0, baseColor: [1, 1, 1], markerColor: [0.15, 0.39, 0.92], glowColor: [1, 1, 1], arcColor: [0.49, 0.23, 0.93] };
+            ? { dark: 1, baseColor: [0.26, 0.2, 0.62], markerColor: [1, 1, 1], glowColor: [0.42, 0.3, 0.9], arcColor: [0.78, 0.68, 1], mapBrightness: 14, diffuse: 2.2 }
+            : { dark: 0, baseColor: [1, 1, 1], markerColor: [0.15, 0.39, 0.92], glowColor: [1, 1, 1], arcColor: [0.49, 0.23, 0.93], mapBrightness: 9, diffuse: 1.2 };
     }
 
     const markers = [
@@ -1665,7 +1671,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
     const globe = createGlobe(canvas, {
         devicePixelRatio: 2, width: 1000, height: 1000, phi, theta,
-        diffuse: 1.2, mapSamples: 16000, mapBrightness: 9,
+        mapSamples: 16000,
         ...themeOptions(),
         markers, arcs: [], arcWidth: 0.6, arcHeight: 0.28, markerElevation: 0.01
     });
