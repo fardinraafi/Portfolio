@@ -850,15 +850,24 @@ body.fade-out {
     transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease;
 }
 #preloader.hide { transform: translateY(-100%); opacity: 0; pointer-events: none; }
-.preloader-text {
-    font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800;
-    color: #F8FAFC; letter-spacing: 4px;
-    animation: pulseText 1.5s infinite;
+.preloader-text { font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800; color: #F8FAFC; letter-spacing: 4px; }
+#preloader { background: radial-gradient(ellipse at 50% 45%, #1E1B4B 0%, #0F172A 55%, #020617 100%); }
+#preloader::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .35;
+    background-image: linear-gradient(rgba(148,163,184,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,.08) 1px, transparent 1px);
+    background-size: 36px 36px; -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 20%, transparent 70%); mask-image: radial-gradient(circle at 50% 50%, #000 20%, transparent 70%);
 }
-@keyframes pulseText { 
-    0%, 100% { opacity: 1; transform: scale(1); } 
-    50% { opacity: 0.6; transform: scale(0.98); } 
-}
+.pl-stage { position: relative; display: flex; flex-direction: column; align-items: center; }
+.pl-canvas { display: block; filter: drop-shadow(0 0 18px rgba(139,92,246,.45)); }
+.pl-text { position: absolute; top: 0; left: 0; right: 0; display: none; }
+.pl-static .pl-canvas { display: none; }
+.pl-static .pl-text { position: static; display: block; font-family: 'Syne', sans-serif; font-size: 4rem; font-weight: 800; color: #F8FAFC; letter-spacing: 4px; margin-bottom: 1rem; }
+#preloader.pl-done .pl-canvas { animation: plGlow 1s ease-in-out infinite alternate; }
+@keyframes plGlow { to { filter: drop-shadow(0 0 30px rgba(244,114,182,.55)); } }
+.pl-meta { display: flex; justify-content: space-between; width: min(260px, 70vw); margin-top: .4rem; font: 600 .72rem 'DM Sans', monospace; letter-spacing: .14em; text-transform: uppercase; color: #94A3B8; }
+.pl-pct { color: #E2E8F0; font-variant-numeric: tabular-nums; }
+.pl-bar { width: min(260px, 70vw); height: 3px; margin-top: .5rem; border-radius: 3px; background: rgba(148,163,184,.18); overflow: hidden; }
+.pl-bar i { display: block; height: 100%; width: 0; border-radius: inherit; background: linear-gradient(90deg, #2563EB, #7C3AED, #DB2777); box-shadow: 0 0 12px rgba(124,58,237,.8); }
 
 /* 3. Interactive Spotlight Effect for Cards */
 .glass-card, .stat-box, .highlight-card {

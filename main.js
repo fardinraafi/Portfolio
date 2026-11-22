@@ -1,11 +1,95 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // PRELOADER LOGIC (With Fail-Safe)
+    // PRELOADER: "FRKR" assembles from pixels with a scanner box, % counter + bar (~1.5s)
     const preloader = document.getElementById('preloader');
     if (preloader) {
-        window.addEventListener('load', () => {
-            setTimeout(() => { preloader.classList.add('hide'); }, 600);
-        });
-        setTimeout(() => { preloader.classList.add('hide'); }, 1500);
+        const MIN_MS = 1500, MAX_MS = 3500, t0 = performance.now();
+        let pageLoaded = document.readyState === 'complete', hidden = false;
+        const hide = () => { if (hidden) return; hidden = true; preloader.classList.add('hide'); setTimeout(() => preloader.remove(), 900); };
+        const tryHide = () => { if (pageLoaded && performance.now() - t0 >= MIN_MS) hide(); };
+        window.addEventListener('load', () => { pageLoaded = true; tryHide(); });
+        setTimeout(hide, MAX_MS);
+
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        preloader.innerHTML = `
+            <div class="pl-stage">
+                <canvas class="pl-canvas" aria-hidden="true"></canvas>
+                <div class="pl-text">FR<span class="gradient-text">KR</span></div>
+                <div class="pl-meta"><span class="pl-label">Loading portfolio</span><span class="pl-pct">0%</span></div>
+                <div class="pl-bar"><i></i></div>
+            </div>`;
+        const cv = preloader.querySelector('.pl-canvas'), g = cv.getContext('2d');
+        const pctEl = preloader.querySelector('.pl-pct'), barEl = preloader.querySelector('.pl-bar i');
+        const W = Math.round(Math.min(window.innerWidth * 0.86, 520)), H = Math.round(W * 0.42), dpr = Math.min(window.devicePixelRatio || 1, 2);
+        cv.width = W * dpr; cv.height = H * dpr; cv.style.width = W + 'px'; cv.style.height = H + 'px';
+        g.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        const start = () => {
+            // sample the word into particles
+            const off = document.createElement('canvas'); off.width = W; off.height = H;
+            const o = off.getContext('2d');
+            const fs = H * 0.78;
+            o.font = `800 ${fs}px Syne, "DM Sans", Arial, sans-serif`; o.textAlign = 'center'; o.textBaseline = 'middle';
+            o.fillText('FRKR', W / 2, H / 2 + fs * 0.04);
+            const tw = o.measureText('FRKR').width, left = W / 2 - tw / 2;
+            const data = o.getImageData(0, 0, W, H).data, step = Math.max(3, Math.round(W / 140));
+            const P = [];
+            for (let y = 0; y < H; y += step) for (let x = 0; x < W; x += step) {
+                if (data[(y * W + x) * 4 + 3] > 128) {
+                    const a = Math.random() * Math.PI * 2, r = W * (0.35 + Math.random() * 0.5);
+                    P.push({ tx: x, ty: y, sx: W / 2 + Math.cos(a) * r, sy: H / 2 + Math.sin(a) * r * 0.6, d: ((x - left) / tw) * 0.45 + Math.random() * 0.12 });
+                }
+            }
+            const grad = g.createLinearGradient(left, 0, left + tw, 0);
+            grad.addColorStop(0, '#60A5FA'); grad.addColorStop(0.5, '#A78BFA'); grad.addColorStop(1, '#F472B6');
+            const ease = (k) => 1 - Math.pow(1 - k, 3);
+            const DUR = 1.25;
+            const frame = (now) => {
+                if (hidden) return;
+                const t = (now - t0) / 1000;
+                g.clearRect(0, 0, W, H);
+                // particles
+                g.fillStyle = grad;
+                let settled = 0;
+                for (const p of P) {
+                    const k = Math.min(1, Math.max(0, (t - p.d) / 0.55));
+                    const e = ease(k);
+                    if (k >= 1) settled++;
+                    const x = p.sx + (p.tx - p.sx) * e, y = p.sy + (p.ty - p.sy) * e;
+                    const s = step * (0.45 + 0.5 * e);
+                    g.globalAlpha = 0.25 + 0.75 * e;
+                    g.fillRect(x - s / 2, y - s / 2, s, s);
+                }
+                g.globalAlpha = 1;
+                // scanner box sweeping across the letters
+                const sk = Math.min(1, t / DUR);
+                if (sk < 1) {
+                    const bx = left - 10 + (tw + 20) * ease(sk), bw = Math.max(26, tw * 0.16), bh = fs * 0.92, by = H / 2 - bh / 2;
+                    g.strokeStyle = 'rgba(167,139,250,.9)'; g.lineWidth = 1.2; g.setLineDash([4, 4]);
+                    g.strokeRect(bx - bw / 2, by, bw, bh); g.setLineDash([]);
+                    g.fillStyle = '#C4B5FD';
+                    [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sy]) => g.fillRect(bx + sx * bw / 2 - 3, H / 2 + sy * bh / 2 - 3, 6, 6));
+                    g.font = '600 10px "DM Sans", monospace'; g.textAlign = 'left';
+                    g.fillText(`${Math.round(bx)} × ${Math.round(by)}`, bx - bw / 2, by - 8);
+                    g.fillStyle = 'rgba(96,165,250,.18)'; g.fillRect(bx - bw / 2, by, bw, bh);
+                }
+                // percent: time-based, waits at 96% until the page has loaded
+                const raw = Math.min(1, (now - t0) / MIN_MS);
+                const pct = Math.round(pageLoaded ? raw * 100 : Math.min(96, raw * 100));
+                pctEl.textContent = pct + '%'; barEl.style.width = pct + '%';
+                if (settled === P.length && t > DUR) preloader.classList.add('pl-done');
+                if (pct >= 100) tryHide();
+                requestAnimationFrame(frame);
+            };
+            requestAnimationFrame(frame);
+        };
+        if (reduce) {
+            preloader.classList.add('pl-static');
+            const tick = () => { const p = Math.min(100, Math.round((performance.now() - t0) / MIN_MS * 100)); pctEl.textContent = p + '%'; barEl.style.width = p + '%'; if (p >= 100) tryHide(); else if (!hidden) requestAnimationFrame(tick); };
+            requestAnimationFrame(tick);
+        } else {
+            const fontReady = document.fonts && document.fonts.load ? document.fonts.load('800 80px Syne') : Promise.resolve();
+            Promise.race([fontReady, new Promise(r => setTimeout(r, 250))]).then(start, start);
+        }
     }
 
     /* =========================================
