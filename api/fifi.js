@@ -1,5 +1,5 @@
 // Fifi AI brain: Vercel serverless proxy to Groq. The key lives in the GROQ_API_KEY env var, never in the browser.
-const MODEL = 'llama-3.3-70b-versatile';
+const MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b']; // fallback order
 const ACTS = ['book', 'contact', 'resume', 'resumePg', 'linkedin', 'behance', 'blog', 'gallery', 'certs', 'lead', 'res', 'projects', 'home', 'email'];
 
 const FACTS = `
@@ -60,15 +60,18 @@ module.exports = async (req, res) => {
     const page = String((body && body.page) || '').slice(0, 40);
 
     try {
-        const r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.GROQ_API_KEY },
-            body: JSON.stringify({
-                model: MODEL, temperature: 0.7, max_tokens: 220,
-                messages: [{ role: 'system', content: SYSTEM + (page ? `\nThe visitor is on the page: ${page}` : '') }, ...clean]
-            })
-        });
-        if (!r.ok) { const t = await r.text(); return res.status(502).json({ error: 'upstream ' + r.status, detail: t.slice(0, 200) }); }
+        const sys = { role: 'system', content: SYSTEM + (page ? `\nThe visitor is on the page: ${page}` : '') };
+        let r, lastErr = '';
+        for (const model of MODELS) {
+            r = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + process.env.GROQ_API_KEY },
+                body: JSON.stringify({ model, temperature: 0.7, max_tokens: 700, reasoning_effort: 'low', include_reasoning: false, messages: [sys, ...clean] })
+            });
+            if (r.ok) break;
+            lastErr = (await r.text()).slice(0, 200);
+        }
+        if (!r.ok) return res.status(502).json({ error: 'upstream ' + r.status, detail: lastErr });
         const data = await r.json();
         let text = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content || '').trim();
         let act = [];
