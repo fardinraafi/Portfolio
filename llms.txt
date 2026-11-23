@@ -33,6 +33,7 @@
 - [Free AI & Developer Tools for Students](https://fardinraafi.com/blog/free-ai-developer-tools-for-students)
 
 ## Free resources
+- [Hook Lab: free hook analyzer](https://fardinraafi.com/projects/hook-lab)
 - [Human-Centric AI Content Framework](https://fardinraafi.com/human-content-framework-by-fardin-rahman-khan-raafi)
 - [Self-Training Guidebook Master Prompt](https://fardinraafi.com/self-training-guidebook-masterprompt-by-fardinraafi)
 - [Marketing Playbook (PDF)](https://fardinraafi.com/misc_files/Marketing_Playbook.pdf)

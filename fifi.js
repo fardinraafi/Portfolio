@@ -8,12 +8,14 @@
     'use strict';
 
     const path = location.pathname.replace(/\.html$/, '');
-    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : 'home';
+    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : path.startsWith('/projects/hook-lab') ? 'hooklab' : 'home';
     const MODES = {
         home:   { hello: "yo, i'm Fifi!", sub: "Fardin's AI sidekick. ask me anything about him: work, skills, awards, fun facts. i know the lore 📚",
                   starters: [['Who is Fardin?', '✦'], ['Work experience', '💼'], ['Skills', '🧠'], ['Biggest wins?', '🏆'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
         resume: { hello: "need the TL;DR? 📄", sub: "i'm Fifi, Fardin's sidekick. ask me about his experience, skills or tools, or grab the CV.",
                   starters: [['Work experience', '💼'], ['Skills', '🧠'], ['What tools does he use?', '🧰'], ['Education', '🎓'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
+        hooklab: { hello: "hook doctor is in 🩺", sub: "ask me what makes a hook slap, how the score works, or who built this lab.",
+                  starters: [['What makes a good hook?', '🪝'], ['How does the score work?', '📊'], ['Who built this?', '🛠️'], ['Book a call', '🗓️']] },
         '404':  { hello: "lost? i got you 🧭", sub: "this page doesn't exist, but i do. ask me anything about Fardin or let me take you somewhere real.",
                   starters: [['Where am I?', '🗺️'], ['Take me home', '🏠'], ['Who is Fardin?', '✦'], ['Book a call', '🗓️']] }
     };
@@ -223,8 +225,20 @@
           act: ['home', 'projects', 'blog'] },
 
         { id: 'projects', keys: ['projects', 'project', 'built', 'portfolio work', 'side project', 'game', 'linkedin clone', 'work page'],
-          a: `🛠️ he builds stuff too: a ${B('LinkedIn profile UI clone')} and ${B('Fifi Run')}, the 404 mini game starring yours truly 😎`,
+          a: `🛠️ he builds stuff too: ${B('Hook Lab')} (a free hook analyzer), a ${B('LinkedIn profile UI clone')} and ${B('Fifi Run')}, the 404 mini game starring yours truly 😎`,
           act: ['projects'] },
+
+        { id: 'hooks', keys: ['hook', 'hooks', 'good hook', 'first line', 'opening line', 'scroll', 'caption', 'copywriting', 'headline', 'subject line', 'see more', 'makes a good hook'],
+          a: `🪝 a hook that slaps usually has: ${B('a number')} (7 lessons, 30 days), ${B('a curiosity gap')} (the mistake nobody talks about), ${B('a twist')} ("but", "instead"), and it's about ${B('YOU')}, not "I'm excited to announce". keep it before the "see more" cut-off ✂️`,
+          chips: ['How does the score work?', 'Who built this?'] },
+
+        { id: 'score', keys: ['score', 'how does the score work', 'scoring', 'gauge', 'algorithm', 'formula', 'is this ai', 'accurate'],
+          a: `📊 zero AI, all formula: curiosity 22%, clarity & length 20%, specificity 17%, emotion 15%, pattern interrupt 14%, reader focus 12%. it's the checklist Fardin uses on every post, turned into code. nothing you type leaves your browser 🔒`,
+          chips: ['What makes a good hook?', 'Who built this?'] },
+
+        { id: 'builder', keys: ['who built this', 'who made this', 'who built', 'creator', 'made by', 'hook lab'],
+          a: `🛠️ Fardin built Hook Lab from scratch: hand-written scoring engine, gauge, previews, all of it. he writes content that pulled ${B('340K+ organic views')} in 2026, so he knows a hook when he sees one 😎`,
+          chips: ['Work experience', 'Book a call'], act: ['projects', 'book'] },
 
         { id: 'thanks', keys: ['thanks', 'thank you', 'thx', 'ty', 'appreciate', 'cool', 'nice', 'great', 'awesome', 'love it', 'goat', 'fire', 'lit', 'based'],
           a: ['anytime bestie 🫶', 'W user, W question 😌 anything else?', 'glad i could serve 🫡 need anything else?'],
@@ -393,7 +407,7 @@
             return { html: `more of what bestie? 😅 try one of these 👇`, chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'] };
         }
         // chip aliases
-        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu' };
+        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'how does the score work': 'score', 'who built this': 'builder', 'what makes a good hook': 'hooks', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu' };
         let intent = alias[q] ? byId[alias[q]] : classify(text);
 
         if (!intent) {
@@ -482,7 +496,7 @@
 
     // little "psst" nudge once per session, after 12s on the page
     try {
-        if (MODE !== '404' && !sessionStorage.getItem('fifi-nudged') && !history.length) {
+        if ((MODE === 'home' || MODE === 'resume') && !sessionStorage.getItem('fifi-nudged') && !history.length) {
             setTimeout(() => {
                 if (modal.classList.contains('show')) return;
                 const tip = document.createElement('div');

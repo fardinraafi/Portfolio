@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== SEO ===== -->
+    <title>Hook Lab: Free Hook Analyzer & Scroll-Stop Score | Fardin Raafi</title>
+    <meta name="description" content="Free hook analyzer for LinkedIn, Instagram, X and email subject lines. Get a live scroll-stop score, see what is weak, and get 3 stronger rewrites instantly.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://fardinraafi.com/projects/hook-lab">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
+    <meta property="og:url" content="https://fardinraafi.com/projects/hook-lab">
+    <meta property="og:title" content="Hook Lab: will your first line stop the scroll?">
+    <meta property="og:description" content="Free hook analyzer for LinkedIn, Instagram, X and email subject lines. Get a live scroll-stop score, see what is weak, and get 3 stronger rewrites instantly.">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/work/hook-lab.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@fardin_raafi">
+    <meta name="twitter:title" content="Hook Lab: will your first line stop the scroll?">
+    <meta name="twitter:description" content="Free hook analyzer for LinkedIn, Instagram, X and email subject lines. Get a live scroll-stop score, see what is weak, and get 3 stronger rewrites instantly.">
+    <meta name="twitter:image" content="https://fardinraafi.com/misc_img/work/hook-lab.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@id": "https://fardinraafi.com/#website",
+   "@type": "WebSite",
+   "url": "https://fardinraafi.com/",
+   "name": "Fardin Rahman Khan Raafi"
+  },
+  {
+   "@id": "https://fardinraafi.com/#person",
+   "@type": "Person",
+   "name": "Fardin Rahman Khan Raafi",
+   "url": "https://fardinraafi.com/"
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://fardinraafi.com/projects/hook-lab#app",
+   "name": "Hook Lab",
+   "url": "https://fardinraafi.com/projects/hook-lab",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Free hook analyzer for LinkedIn, Instagram, X and email subject lines. Get a live scroll-stop score, see what is weak, and get 3 stronger rewrites instantly.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "creator": {
+    "@id": "https://fardinraafi.com/#person"
+   }
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://fardinraafi.com/projects/hook-lab#webpage",
+   "url": "https://fardinraafi.com/projects/hook-lab",
+   "name": "Hook Lab: Free Hook Analyzer & Scroll-Stop Score | Fardin Raafi",
+   "description": "Free hook analyzer for LinkedIn, Instagram, X and email subject lines. Get a live scroll-stop score, see what is weak, and get 3 stronger rewrites instantly.",
+   "isPartOf": {
+    "@id": "https://fardinraafi.com/#website"
+   },
+   "breadcrumb": {
+    "@id": "https://fardinraafi.com/projects/hook-lab#breadcrumb"
+   },
+   "inLanguage": "en"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://fardinraafi.com/projects/hook-lab#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://fardinraafi.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Projects",
+     "item": "https://fardinraafi.com/work"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Hook Lab",
+     "item": "https://fardinraafi.com/projects/hook-lab"
+    }
+   ]
+  }
+ ]
+}
+    </script>
+    <!-- ===== /SEO ===== -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=20261123b">
+    <link rel="stylesheet" href="/projects/hook-lab.css?v=20261123b">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="dark-mode">
+<script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
+<canvas id="neural-canvas"></canvas>
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+<nav class="top-nav"></nav>
+<canvas id="hlConfetti" class="hl-confetti" aria-hidden="true"></canvas>
+<div id="hlToast" class="hl-toast" role="status" aria-live="polite"></div>
+
+<main class="hl-main">
+    <nav class="hl-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/work">Projects</a><span>/</span><span aria-current="page">Hook Lab</span></nav>
+
+    <header class="page-head hl-head">
+        <div class="hl-badge"><span class="hl-live"></span> Free tool · no sign-up · runs in your browser</div>
+        <div class="tt-wrap" id="ttWrap">
+            <h1 class="gradient-text tt-h1">Hook Lab: free hook analyzer</h1>
+            <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+        </div>
+        <p class="page-sub">Will your first line stop the scroll? Paste your hook and get a live <b>scroll-stop score</b>, see exactly what's weak, and steal 3 stronger rewrites.</p>
+    </header>
+
+    <!-- ===== THE LAB ===== -->
+    <section class="hl-lab" id="hlLab" aria-label="Hook analyzer">
+        <div class="hl-toolbar">
+            <div class="hl-plats" role="tablist" aria-label="Platform">
+                <button type="button" class="hl-plat" data-p="linkedin" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45z"/></svg><span>LinkedIn</span></button>
+                <button type="button" class="hl-plat" data-p="instagram" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg><span>Instagram</span></button>
+                <button type="button" class="hl-plat" data-p="x" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg><span>X / Threads</span></button>
+                <button type="button" class="hl-plat" data-p="email" role="tab" aria-selected="false"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg><span>Email subject</span></button>
+            </div>
+            <div class="hl-mode" role="group" aria-label="Mode">
+                <button type="button" data-m="single" class="on">Single</button>
+                <button type="button" data-m="ab">A/B compare</button>
+            </div>
+        </div>
+
+        <div class="hl-grid">
+            <div class="hl-col">
+                <div class="glass-card no-hover hl-card hl-input">
+                    <label for="hlInputA" class="hl-label"><span class="ab-tag">A</span> Your hook <small>the first line people see</small></label>
+                    <textarea id="hlInputA" rows="4" maxlength="400" placeholder="e.g. I got rejected from 47 jobs. Then one cold email changed everything:"></textarea>
+                    <div class="hl-cut" id="cutA"><i></i></div>
+                    <div class="hl-row">
+                        <span class="hl-count" id="countA">0 chars</span>
+                        <div class="hl-row-btns">
+                            <button type="button" class="hl-btn ghost sm" id="hlExample">🎲 Try an example</button>
+                            <button type="button" class="hl-btn ghost sm" id="hlClear">Clear</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-card no-hover hl-card hl-input hl-only-ab">
+                    <label for="hlInputB" class="hl-label"><span class="ab-tag b">B</span> Hook B <small>the challenger</small></label>
+                    <textarea id="hlInputB" rows="4" maxlength="400" placeholder="Write a second version to compare…"></textarea>
+                    <div class="hl-row"><span class="hl-count" id="countB">0 chars</span></div>
+                </div>
+
+                <div class="glass-card no-hover hl-card hl-only-single">
+                    <div class="hl-card-h"><h2>🔬 X-ray</h2></div>
+                    <div class="hl-legend"><span class="mk-cur">curiosity</span><span class="mk-num">numbers</span><span class="mk-pow">power</span><span class="mk-you">you</span><span class="mk-warn">hedge</span><span class="mk-bad">cliché / buzz</span></div>
+                    <p class="hl-highlight" id="hlHighlight"></p>
+                    <div class="hl-signals" id="signals"></div>
+                </div>
+            </div>
+
+            <div class="hl-col">
+                <div class="glass-card no-hover hl-card hl-score">
+                    <div class="hl-gauges">
+                        <div class="hl-gauge" id="gaugeA">
+                        <svg viewBox="0 0 240 140" aria-hidden="true">
+                            <defs><linearGradient id="ggA" x1="0" x2="1"><stop offset="0" stop-color="#EF4444"/><stop offset=".45" stop-color="#F59E0B"/><stop offset=".7" stop-color="#8B5CF6"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs>
+                            <path class="g-track" d="M20 120 A100 100 0 0 1 220 120"/>
+                            <path class="g-val" d="M20 120 A100 100 0 0 1 220 120" stroke="url(#ggA)"/>
+                            <g class="g-ticks"><line x1="32.0" y1="120.0" x2="40.0" y2="120.0"/><line x1="36.3" y1="92.8" x2="43.9" y2="95.3"/><line x1="48.8" y1="68.3" x2="55.3" y2="73.0"/><line x1="68.3" y1="48.8" x2="73.0" y2="55.3"/><line x1="92.8" y1="36.3" x2="95.3" y2="43.9"/><line x1="120.0" y1="32.0" x2="120.0" y2="40.0"/><line x1="147.2" y1="36.3" x2="144.7" y2="43.9"/><line x1="171.7" y1="48.8" x2="167.0" y2="55.3"/><line x1="191.2" y1="68.3" x2="184.7" y2="73.0"/><line x1="203.7" y1="92.8" x2="196.1" y2="95.3"/><line x1="208.0" y1="120.0" x2="200.0" y2="120.0"/></g>
+                            <g class="g-needle" transform="rotate(-90 120 120)"><line x1="120" y1="112" x2="120" y2="40"/><circle cx="120" cy="120" r="7"/></g>
+                        </svg>
+                        <div class="g-read"><span class="g-num">0</span><small>/100</small></div>
+                        <div class="g-grade" id="gradeA"></div>
+                    </div>
+                        <div class="hl-only-ab hl-vs">VS</div>
+                        <div class="hl-only-ab hl-gb"><div class="hl-gauge" id="gaugeB">
+                        <svg viewBox="0 0 240 140" aria-hidden="true">
+                            <defs><linearGradient id="ggB" x1="0" x2="1"><stop offset="0" stop-color="#EF4444"/><stop offset=".45" stop-color="#F59E0B"/><stop offset=".7" stop-color="#8B5CF6"/><stop offset="1" stop-color="#10B981"/></linearGradient></defs>
+                            <path class="g-track" d="M20 120 A100 100 0 0 1 220 120"/>
+                            <path class="g-val" d="M20 120 A100 100 0 0 1 220 120" stroke="url(#ggB)"/>
+                            <g class="g-ticks"><line x1="32.0" y1="120.0" x2="40.0" y2="120.0"/><line x1="36.3" y1="92.8" x2="43.9" y2="95.3"/><line x1="48.8" y1="68.3" x2="55.3" y2="73.0"/><line x1="68.3" y1="48.8" x2="73.0" y2="55.3"/><line x1="92.8" y1="36.3" x2="95.3" y2="43.9"/><line x1="120.0" y1="32.0" x2="120.0" y2="40.0"/><line x1="147.2" y1="36.3" x2="144.7" y2="43.9"/><line x1="171.7" y1="48.8" x2="167.0" y2="55.3"/><line x1="191.2" y1="68.3" x2="184.7" y2="73.0"/><line x1="203.7" y1="92.8" x2="196.1" y2="95.3"/><line x1="208.0" y1="120.0" x2="200.0" y2="120.0"/></g>
+                            <g class="g-needle" transform="rotate(-90 120 120)"><line x1="120" y1="112" x2="120" y2="40"/><circle cx="120" cy="120" r="7"/></g>
+                        </svg>
+                        <div class="g-read"><span class="g-num">0</span><small>/100</small></div>
+                        <div class="g-grade" id="gradeB"></div>
+                    </div></div>
+                    </div>
+                    <div class="hl-coach">
+                        <button type="button" class="hl-coach-av" id="hlCoachAv" aria-label="Poke Fifi"><img src="/misc_img/avatar.jpg" alt="Fifi" width="46" height="46"></button>
+                        <div class="hl-coach-bubble"><small>Fifi says</small><span id="hlCoachText"></span></div>
+                    </div>
+                    <div class="hl-metrics hl-only-single" id="metricsA"></div>
+                    <div class="hl-compare hl-only-ab" id="hlCompare"></div>
+                    <div class="hl-share-row">
+                        <button type="button" class="hl-btn" id="hlShare">📸 Download score card</button>
+                        <button type="button" class="hl-btn ghost" id="hlLink">🔗 Copy link</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hl-grid hl-grid-2">
+            <div class="glass-card no-hover hl-card">
+                <div class="hl-card-h"><h2>✨ Stronger rewrites</h2><button type="button" class="hl-btn ghost sm" id="hlShuffle">↻ Shuffle</button></div>
+                <p class="hl-muted">Built from proven hook formulas around your topic. Each one is scored by the same engine.</p>
+                <div class="hl-rewrites" id="hlRewrites"></div>
+            </div>
+            <div class="glass-card no-hover hl-card">
+                <div class="hl-card-h"><h2>📱 Feed preview</h2></div>
+                <p class="hl-muted" id="hlCutNote"></p>
+                <div class="hl-phone"><div class="hl-notch"></div><div class="hl-screen" id="hlPhone"></div></div>
+            </div>
+        </div>
+
+        <div class="glass-card no-hover hl-card">
+            <div class="hl-card-h"><h2>🕘 Your recent hooks</h2><small class="hl-muted">saved on this device only</small></div>
+            <div class="hl-history" id="hlHistory"></div>
+        </div>
+    </section>
+
+    <section class="hl-lib" id="formulas" aria-label="Hook formula library">
+        <div class="hl-sec-head">
+            <h2>Hook formula library</h2>
+            <p>38 fill-in-the-blank formulas. Tap one, fill the <em>[brackets]</em>, and watch your score climb.</p>
+        </div>
+        <div class="hl-lib-tools">
+            <input type="search" id="hlLibSearch" placeholder="Search formulas… (story, numbers, email)" aria-label="Search formulas">
+            <div class="hl-chips" id="hlLibCats"></div>
+        </div>
+        <div class="hl-lib-grid" id="hlLibGrid"></div>
+    </section>
+
+    <section class="hl-how" aria-label="How the score works">
+        <div class="hl-sec-head">
+            <h2>How the score works</h2>
+            <p>No AI, no API, nothing leaves your browser. Just the copywriting rules I use every day, turned into a formula.</p>
+        </div>
+        <div class="hl-how-grid">
+            <div class="glass-card hl-how-card"><span>🧩</span><h3>Curiosity · 22%</h3><p>Open loops, questions, twists and cliffhanger endings that make people click "see more".</p></div>
+            <div class="glass-card hl-how-card"><span>✂️</span><h3>Clarity &amp; length · 20%</h3><p>Fits before the platform cuts it off, with no buzzwords, hedging or long words.</p></div>
+            <div class="glass-card hl-how-card"><span>🎯</span><h3>Specificity · 17%</h3><p>Numbers, money, timeframes and names. Specific beats vague every time.</p></div>
+            <div class="glass-card hl-how-card"><span>🔥</span><h3>Emotion · 15%</h3><p>Power words, stakes and honest stories. One or two emojis, not ten.</p></div>
+            <div class="glass-card hl-how-card"><span>⚡</span><h3>Pattern interrupt · 14%</h3><p>Avoids "excited to announce" energy. Short, bold first sentences win.</p></div>
+            <div class="glass-card hl-how-card"><span>👀</span><h3>Reader focus · 12%</h3><p>Talks to "you", opens with a command, and makes the reader the main character.</p></div>
+        </div>
+    </section>
+
+    <section class="glass-card no-hover hl-cta">
+        <div>
+            <h2>Want hooks like this for your brand?</h2>
+            <p>I write content that pulled 340K+ organic views in 2026. Let's talk about yours.</p>
+        </div>
+        <div class="hl-cta-btns">
+            <a href="https://calendly.com/fardinraafi/30min" data-calendly="https://calendly.com/fardinraafi/30min" class="hl-btn">🗓️ Book a 30-min call</a>
+            <a href="/work" class="hl-btn ghost">More projects</a>
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer reveal"></footer>
+<button class="scroll-to-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+<script src="/main.js?v=20261123b"></script>
+<script src="/techtext.js?v=20261123b"></script>
+<script>
+(() => { createTechText(document.getElementById('ttWrap'), document.getElementById('tt1'), 'Hook Lab', () => 'center', 0.15); })();
+</script>
+<script src="/projects/hook-lab.js?v=20261123b"></script>
+<script src="/fifi.js?v=20261123b" defer></script>
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / 9000; 
+            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+
+</body>
+</html>
