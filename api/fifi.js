@@ -42,6 +42,7 @@ function limited(ip) {
 
 module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
+    if (req.method === 'GET') return res.status(200).json({ fifi: 'online', keySet: !!process.env.GROQ_API_KEY, node: process.version });
     if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
     const origin = req.headers.origin || '';
     if (origin && !/^https:\/\/(www\.)?fardinraafi\.com$|\.vercel\.app$|^http:\/\/localhost/.test(origin)) return res.status(403).json({ error: 'forbidden' });
@@ -67,7 +68,7 @@ module.exports = async (req, res) => {
                 messages: [{ role: 'system', content: SYSTEM + (page ? `\nThe visitor is on the page: ${page}` : '') }, ...clean]
             })
         });
-        if (!r.ok) return res.status(502).json({ error: 'upstream ' + r.status });
+        if (!r.ok) { const t = await r.text(); return res.status(502).json({ error: 'upstream ' + r.status, detail: t.slice(0, 200) }); }
         const data = await r.json();
         let text = (data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content || '').trim();
         let act = [];
@@ -77,6 +78,6 @@ module.exports = async (req, res) => {
         if (!text) return res.status(502).json({ error: 'empty' });
         return res.status(200).json({ reply: text, act });
     } catch (e) {
-        return res.status(502).json({ error: 'fetch failed' });
+        return res.status(502).json({ error: 'fetch failed', detail: String(e).slice(0, 200) });
     }
 };

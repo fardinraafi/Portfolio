@@ -444,13 +444,13 @@
         const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 9000);
         try {
             const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages, page: path || '/' }), signal: ctl.signal });
-            if (!r.ok) return null;
-            const d = await r.json();
+            const d = await r.json().catch(() => ({}));
+            if (!r.ok) { console.warn('[Fifi AI]', r.status, d); return null; }
             if (!d.reply) return null;
             const intent = classify(text);
             const chips = (intent && intent.chips) || ['Work experience', 'Fun facts', 'Book a call'];
             return { html: toHtml(d.reply), act: d.act && d.act.length ? d.act : null, chips };
-        } catch (e) { return null; } finally { clearTimeout(to); }
+        } catch (e) { console.warn('[Fifi AI]', e); return null; } finally { clearTimeout(to); }
     }
 
     let busy = false;
