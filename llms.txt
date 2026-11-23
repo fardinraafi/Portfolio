@@ -15,7 +15,7 @@
 - [Resume](https://fardinraafi.com/resume), also in [markdown](https://fardinraafi.com/resume.md)
 - [Leadership & volunteering](https://fardinraafi.com/volunteer), also in [markdown](https://fardinraafi.com/extracurriculars.md)
 - [Certificates & awards](https://fardinraafi.com/certificates)
-- [Projects](https://fardinraafi.com/work)
+- [Projects](https://fardinraafi.com/projects)
 - [Gallery](https://fardinraafi.com/gallery)
 - [Blog](https://fardinraafi.com/blog)
 - [Free resources](https://fardinraafi.com/resources)

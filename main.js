@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a href="/certificates">Certificates</a>
         <a href="/volunteer">Leadership</a>
         <a href="/resume">Resume</a>
-        <a href="/work">Projects</a>
+        <a href="/projects">Projects</a>
         <a href="/contact">Contact</a>
     </div>
     <div class="nav-actions">
@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="/certificates"><small>05</small>Certificates</a>
                 <a href="/volunteer"><small>06</small>Leadership</a>
                 <a href="/resume"><small>07</small>Resume</a>
-                <a href="/work"><small>08</small>Projects</a>
+                <a href="/projects"><small>08</small>Projects</a>
                 <a href="/contact"><small>09</small>Contact</a>
             </div>
             <a href="/contact" class="nav-drawer-cta">Let's Talk <span>→</span></a>
@@ -186,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="/certificates">Certificates</a>
                 <a href="/volunteer">Leadership</a>
                 <a href="/resume">Resume</a>
-                <a href="/work">Projects</a>
+                <a href="/projects">Projects</a>
                 <a href="/contact">Contact</a>
             </div>
         </div>
@@ -213,6 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Normalise "/gallery.html", "/gallery/", "/index.html" → "/gallery", "/"; blog posts count as "Blog"
         let current = window.location.pathname.replace(/\.html$/, '').replace(/\/index$/, '/').replace(/(.)\/$/, '$1') || '/';
         if (current.startsWith('/blog/')) current = '/blog';
+        if (current.startsWith('/projects')) current = '/projects';
         if (current.startsWith('/human-content') || current.startsWith('/self-training')) current = '/resources';
         globalNav.querySelectorAll('.nav-menu a, .nav-drawer-links a').forEach(link => {
             link.classList.toggle('active', link.getAttribute('href') === current);

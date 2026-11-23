@@ -100,7 +100,7 @@
         res:      { label: '🧰 Free resources', href: '/resources' },
         book:     { label: '🗓️ Book a 30-min call', href: 'https://calendly.com/fardinraafi/30min', calendly: true },
         home:     { label: '🏠 Home', href: '/' },
-        projects: { label: '🛠️ Projects', href: '/work' },
+        projects: { label: '🛠️ Projects', href: '/projects' },
     };
 
     /* ---------- the brain ----------
