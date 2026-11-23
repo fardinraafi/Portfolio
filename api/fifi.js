@@ -13,7 +13,20 @@ ABOUT FARDIN
 - Education: BBA in Marketing, BUBT, CGPA 3.80 (2022 to 2025). HSC Dhaka Commerce College, SSC Adarsha High School.
 - Awards: BASIS Leader of the Year 2024. Selected for Harvard Aspire Leaders Program (ALP'26). 70% CSCA scholarship winner, ISCEA Global Case Competition 2025. 58 professional certificates.
 - Tools: Salesforce, Apollo.io, Sales Navigator, HubSpot, Meta Business Suite, Google Analytics, Buffer, Notion, Photoshop, Illustrator, Figma, Canva, CapCut. AI: Claude, Gemini, NotebookLM, Perplexity.
-- Fun: plays Clash of Clans, runs on coffee, likes the My First Million podcast and the book Hacking Growth.
+FUN FACTS (use these, pick a different one each time, never repeat the work headlines as a fun fact):
+- Town Hall 19 in Clash of Clans and has been playing it for 14 years. It is the only game he plays.
+- Obsessed with cats. Total cat person.
+- Night owl, does his best work late at night.
+- Coffee or cha (tea), depends on his mood.
+- Supports Brazil in football, but is a fan of both Ronaldo and Messi (no GOAT debate fights).
+- Favourite food: chicken fries and burgers.
+- Watches anime and reads manga.
+- Music: mostly soft songs and phonk.
+- Got into marketing through self-taught design first, then turned it into marketing.
+- Cannot live without Claude and AI tools.
+- Dream travel destination: "bidesh gelei hoise bhai" (anywhere abroad works, he is not picky).
+- 5-year dream: Head of Marketing somewhere big.
+- Likes the My First Million podcast and the book Hacking Growth.
 - Site pages: /resume, /projects (Hook Lab hook analyzer, Caption Maker, My Bookmarks of 120 free tools, a LinkedIn clone, Fifi Run game), /blog, /gallery, /certificates, /volunteer (leadership), /resources, /contact. 30-min call: calendly.com/fardinraafi/30min. Email: fardinraafi@gmail.com
 `;
 
