@@ -159,11 +159,10 @@
     $('cmStyles').innerHTML = Object.entries(STYLES).map(([k, n]) => `<button type="button" class="hl-chip${k === style ? ' on' : ''}" data-s="${k}">${n}</button>`).join('');
     $('cmEx').innerHTML = EX.map(e => `<button type="button">${e}</button>`).join('');
 
-    $('cmPlat').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (!b) return; plat = b.dataset.p; $('cmPlat').querySelectorAll('.hl-plat').forEach(x => x.classList.toggle('on', x === b)); if (!out.classList.contains('empty')) make(); });
-    $('cmStyles').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (!b) return; style = b.dataset.s; $('cmStyles').querySelectorAll('.hl-chip').forEach(x => x.classList.toggle('on', x === b)); if (inp.value.trim()) make(); });
-    $('cmEx').addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { inp.value = e.target.textContent; make(); } });
-    ['cmEmoji', 'cmTags'].forEach(id => $(id).addEventListener('change', () => { if (!out.classList.contains('empty')) make(); }));
-    $('cmGo').addEventListener('click', make);
+    $('cmPlat').addEventListener('click', e => { const b = e.target.closest('[data-p]'); if (!b) return; plat = b.dataset.p; $('cmPlat').querySelectorAll('.hl-plat').forEach(x => x.classList.toggle('on', x === b)); });
+    $('cmStyles').addEventListener('click', e => { const b = e.target.closest('[data-s]'); if (!b) return; style = b.dataset.s; $('cmStyles').querySelectorAll('.hl-chip').forEach(x => x.classList.toggle('on', x === b)); });
+    $('cmEx').addEventListener('click', e => { if (e.target.tagName === 'BUTTON') { inp.value = e.target.textContent; inp.focus(); } });
+        $('cmGo').addEventListener('click', make);
     $('cmRe').addEventListener('click', make);
     inp.addEventListener('keydown', e => { if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) make(); });
     $('cmCopy').addEventListener('click', () => {
