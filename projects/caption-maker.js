@@ -4,7 +4,7 @@
     const inp = $('cmIn'), out = $('cmOut'), cnt = $('cmCount');
     const pick = a => a[Math.floor(Math.random() * a.length)];
 
-    const PLATS = { instagram: ['📸', 'Instagram', 8], linkedin: ['💼', 'LinkedIn', 4], x: ['𝕏', 'X', 2], facebook: ['👥', 'Facebook', 3] };
+    const PLATS = { instagram: ['📸', 'Instagram', 8], linkedin: ['💼', 'LinkedIn', 4], x: ['', '𝕏 / X', 2], facebook: ['👥', 'Facebook', 3] };
     const STYLES = {
         professional: '💼 Professional', witty: '😏 Witty', story: '📖 Storytelling', genz: '🔥 Gen-Z',
         inspire: '🌱 Inspirational', short: '⚡ Short & punchy', sales: '🛒 Salesy'
@@ -58,7 +58,7 @@
         }
     };
 
-    const STOP = new Set('a an the and or but of to in on at for with from by is are was were be been am i we you my our your me us it its this that these those just so very really new got get have has had will can about into over up out off then than as do did done im our ours some more most first one two three five this weekend today tomorrow friday saturday sunday monday tuesday wednesday thursday'.split(' '));
+    const STOP = new Set('a an the and or but of to in on at for with from by is are was were be been am i we you my our your me us it its this that these those just so very really new got get have has had will can about into over up out off then than as do did done im our ours some more most first one two three five after before when while since because even still only also every going went made make makes this weekend today tomorrow friday saturday sunday monday tuesday wednesday thursday'.split(' '));
     const THEME = [
         [/sneaker|shoe|kicks|drop/, ['sneakers', 'sneakerhead', 'kicks', 'newdrop']],
         [/market|brand|content|seo|ads?\b|social/, ['marketing', 'digitalmarketing', 'contentmarketing', 'branding']],
@@ -89,15 +89,15 @@
     }
     const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
 
-    function make() {
-        const raw = clean(inp.value);
-        if (!raw) { inp.focus(); toast('Type what your post is about first ✍️'); return; }
-        const B = BANK[style], emo = $('cmEmoji').checked;
+    function makeTemplate(raw) {
+        let B = BANK[style];
+        // don't push sales lines on posts that aren't selling anything
+        if (style === 'sales' && !/\b(sale|sell|buy|shop|order|price|offer|discount|drop|launch|product|stock|deal|available)\b/i.test(raw)) B = BANK.witty;
+        const emo = $('cmEmoji').checked;
         let tries = 0, txt;
         do {
             let hook = pick(B.hook).replace('{T}', raw);
-            if (style !== 'genz') hook = cap(hook);
-            if (style === 'genz') hook = hook.toLowerCase();
+            if (style !== 'genz') hook = cap(hook); else hook = hook.toLowerCase();
             const e = emo && !/\p{Extended_Pictographic}/u.test(hook) ? ' ' + pick(B.e) : '';
             const body = pick(B.body), cta = pick(B.cta);
             const parts = [hook + e];
@@ -107,7 +107,10 @@
             if (!emo) txt = txt.replace(/\p{Extended_Pictographic}️?/gu, '').replace(/ +\n/g, '\n').trim();
         } while (txt === last && ++tries < 8);
         last = txt;
-        const tags = $('cmTags').checked ? hashtags(raw, PLATS[plat][2]) : [];
+        return txt;
+    }
+
+    function show(txt, tags) {
         out.classList.remove('empty', 'pop'); void out.offsetWidth; out.classList.add('pop');
         out.textContent = txt;
         if (tags.length) {
@@ -120,9 +123,39 @@
         $('cmRe').disabled = $('cmCopy').disabled = false;
     }
 
+    let busy = false, prevAI = '';
+    async function make() {
+        const raw = clean(inp.value);
+        if (!raw) { inp.focus(); toast('Type what your post is about first ✍️'); return; }
+        if (busy) return; busy = true;
+        const go = $('cmGo'), re = $('cmRe');
+        go.disabled = re.disabled = true; go.textContent = '✨ Writing…';
+        out.classList.remove('empty'); out.style.opacity = '.45';
+        let txt = null;
+        try {
+            const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 15000);
+            const r = await fetch('/api/caption', { method: 'POST', headers: { 'Content-Type': 'application/json' }, signal: ctl.signal,
+                body: JSON.stringify({ idea: raw, style, plat, emoji: $('cmEmoji').checked, tags: $('cmTags').checked, prev: prevAI }) });
+            clearTimeout(to);
+            if (r.ok) { const d = await r.json(); txt = d.caption || null; }
+            else console.warn('[Caption AI]', r.status, await r.text().catch(() => ''));
+        } catch (e) { console.warn('[Caption AI]', e); }
+        out.style.opacity = '';
+        if (txt) {
+            prevAI = txt;
+            const lines = txt.split('\n');
+            const tagLine = /^\s*(#\S+\s*)+$/.test(lines[lines.length - 1] || '') ? lines.pop().trim() : '';
+            show(lines.join('\n').trim(), tagLine ? tagLine.split(/\s+/) : []);
+        } else {
+            show(makeTemplate(raw), $('cmTags').checked ? hashtags(raw, PLATS[plat][2]) : []);
+        }
+        go.disabled = false; go.textContent = '✨ Generate caption';
+        busy = false;
+    }
+
     function toast(m) { const t = $('hlToast'); t.textContent = m; t.classList.add('in'); clearTimeout(toast.t); toast.t = setTimeout(() => t.classList.remove('in'), 1800); }
 
-    $('cmPlat').innerHTML = Object.entries(PLATS).map(([k, [ic, n]]) => `<button type="button" class="hl-plat${k === plat ? ' on' : ''}" data-p="${k}">${ic} ${n}</button>`).join('');
+    $('cmPlat').innerHTML = Object.entries(PLATS).map(([k, [ic, n]]) => `<button type="button" class="hl-plat${k === plat ? ' on' : ''}" data-p="${k}">${ic ? ic + ' ' : ''}${n}</button>`).join('');
     $('cmStyles').innerHTML = Object.entries(STYLES).map(([k, n]) => `<button type="button" class="hl-chip${k === style ? ' on' : ''}" data-s="${k}">${n}</button>`).join('');
     $('cmEx').innerHTML = EX.map(e => `<button type="button">${e}</button>`).join('');
 
