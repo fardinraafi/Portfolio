@@ -2,8 +2,8 @@
    HOOK LAB styles (uses brand vars from /style.css)
 ========================================================= */
 #neural-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; }
-.hl-main { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 7.2rem 1.25rem 4rem; }
-.hl-crumbs { font-size: .85rem; color: var(--text-muted); margin-bottom: 1.2rem; display: flex; gap: .5rem; flex-wrap: wrap; }
+.hl-main { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 1rem 1.25rem 4rem; }
+.hl-crumbs { font-size: .85rem; color: var(--text-muted); margin-bottom: .4rem; display: flex; gap: .5rem; flex-wrap: wrap; }
 .hl-crumbs a { color: var(--text-muted); font-weight: 600; text-decoration: none; padding: 8px 0; }
 .hl-crumbs a:hover { color: var(--c1); }
 .hl-crumbs [aria-current] { color: var(--text-main); padding: 8px 0; }
@@ -247,7 +247,7 @@ body:not(.dark-mode) .hl-mode button.on { background: #fff; }
     .hl-how-grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
-    .hl-main { padding-top: 6rem; }
+    .hl-main { padding-top: .5rem; }
     .hl-toolbar { flex-direction: column; align-items: stretch; }
     .hl-plats { display: grid; grid-template-columns: 1fr 1fr; }
     .hl-plat { justify-content: center; padding: 0 10px; font-size: .84rem; }
