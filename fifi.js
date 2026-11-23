@@ -8,7 +8,7 @@
     'use strict';
 
     const path = location.pathname.replace(/\.html$/, '');
-    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : path.startsWith('/projects/hook-lab') ? 'hooklab' : 'home';
+    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : path.startsWith('/projects/hook-lab') ? 'hooklab' : path.startsWith('/projects/caption-maker') ? 'caption' : /^\/blog\/./.test(path) ? 'blog' : 'home';
     const MODES = {
         home:   { hello: "yo, i'm Fifi!", sub: "Fardin's AI sidekick. ask me anything about him: work, skills, awards, fun facts. i know the lore 📚",
                   starters: [['Who is Fardin?', '✦'], ['Work experience', '💼'], ['Skills', '🧠'], ['Biggest wins?', '🏆'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
@@ -16,6 +16,10 @@
                   starters: [['Work experience', '💼'], ['Skills', '🧠'], ['What tools does he use?', '🧰'], ['Education', '🎓'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
         hooklab: { hello: "hook doctor is in 🩺", sub: "ask me what makes a hook slap, how the score works, or who built this lab.",
                   starters: [['What makes a good hook?', '🪝'], ['How does the score work?', '📊'], ['Who built this?', '🛠️'], ['Book a call', '🗓️']] },
+        caption: { hello: "caption buddy reporting 🫡", sub: "tell me your post idea and i'll whip up a caption, or ask me anything about Fardin.",
+                  starters: [['Write me a caption', '✍️'], ['Best hashtags tips?', '#️⃣'], ['Who built this?', '🛠️'], ['Book a call', '🗓️']] },
+        blog:   { hello: "speed-reading for you ⚡", sub: "i can summarise this post, explain any part of it, or tell you about the guy who wrote it.",
+                  starters: [['Summarise this post', '📝'], ['Key takeaway?', '🎯'], ['Who wrote this?', '✍️'], ['More posts like this', '📚']] },
         '404':  { hello: "lost? i got you 🧭", sub: "this page doesn't exist, but i do. ask me anything about Fardin or let me take you somewhere real.",
                   starters: [['Where am I?', '🗺️'], ['Take me home', '🏠'], ['Who is Fardin?', '✦'], ['Book a call', '🗓️']] }
     };
@@ -78,7 +82,12 @@
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     /* ---------- tiny helpers ---------- */
-    const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+    const bags = new WeakMap();
+    const pick = (arr) => { // cycles through every item before repeating
+        let bag = bags.get(arr);
+        if (!bag || !bag.length) { bag = arr.map((_, i) => i).sort(() => Math.random() - 0.5); if (arr._last != null && bag[0] === arr._last && bag.length > 1) bag.push(bag.shift()); bags.set(arr, bag); }
+        const i = bag.shift(); arr._last = i; return arr[i];
+    };
     const L = (href, text) => `<a href="${href}">${text}</a>`;
     const B = (t) => `<strong>${t}</strong>`;
     const EMAIL = 'fardinraafi@gmail.com';
@@ -100,6 +109,7 @@
         res:      { label: '🧰 Free resources', href: '/resources' },
         book:     { label: '🗓️ Book a 30-min call', href: 'https://calendly.com/fardinraafi/30min', calendly: true },
         home:     { label: '🏠 Home', href: '/' },
+        msg:      { label: '✉️ Leave a message', form: true },
         projects: { label: '🛠️ Projects', href: '/projects' },
     };
 
@@ -257,6 +267,18 @@
           a: ['peace out ✌️ go say hi to Fardin on LinkedIn fr', 'byeee 👋 don\'t be a stranger'],
           act: ['linkedin'] },
 
+        { id: 'leavemsg', keys: ['leave a message', 'leave message', 'pass a message', 'message him', 'tell him', 'send a message', 'send message', 'drop a message', 'msg him'],
+          a: `say less 📝 drop it below and it lands straight in his inbox. he usually replies within a couple hours (Dhaka daytime) ⚡`,
+          act: ['msg'], chips: ['Book a call', 'Who is Fardin?'] },
+        { id: 'age', keys: ['age', 'how old', 'old is he', 'born', 'birthday', 'birth'],
+          a: `age? classified 🤫 what i CAN tell you: young, hungry, and already ${B('BASIS Leader of the Year')} 😌`,
+          chips: ['Awards', 'Work experience'] },
+        { id: 'aspire', keys: ['aspire leaders', 'aspire program', 'alp', 'harvard program', 'aspire institute'],
+          a: `🎓 he got selected for the ${B('Aspire Leaders Program \'26')}, a global leadership program by the Aspire Institute, founded at ${B('Harvard Business School')}. big W 🏆`,
+          chips: ['Awards', 'Leadership roles'], act: ['certs'] },
+        { id: 'bubt', keys: ['career office', 'career guidance', 'alumni', 'corporate relations', 'bubt club'],
+          a: `🎓 he\'s ${B('Head of Corporate & Alumni Relations')} at the BUBT Career Guidance Office. connects students with alumni and companies, runs career events and workshops 🤝`,
+          chips: ['Leadership roles', 'Awards'], act: ['lead'] },
         { id: 'joke', keys: ['joke', 'funny', 'make me laugh', 'meme', 'brainrot', 'skibidi', 'rizz', 'sigma', 'ohio'],
           a: ['why did the marketer break up with the funnel? too many drop-offs 💔📉',
               'Fardin\'s CRM has 40K records and still no one texts me back 😔',
@@ -313,6 +335,12 @@
         wrap.className = 'fifi-actions';
         ids.forEach(id => {
             const a = ACT[id]; if (!a) return;
+            if (a.form) {
+                const b = document.createElement('button');
+                b.type = 'button'; b.className = 'fifi-act'; b.textContent = a.label;
+                b.addEventListener('click', () => { b.remove(); wrap.after(msgForm()); scrollDown(); });
+                wrap.appendChild(b); return;
+            }
             if (a.copy) {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'fifi-act'; b.textContent = a.label;
@@ -332,6 +360,44 @@
             }
         });
         return wrap;
+    }
+
+    /* ---------- leave-a-message form (posts to the same Web3Forms inbox as /contact) ---------- */
+    const W3F_KEY = 'cf0cd748-fc1b-4a61-a90b-10b95ba7527a';
+    function msgForm() {
+        const f = document.createElement('form');
+        f.className = 'fifi-msg';
+        f.innerHTML = `<input name="name" required maxlength="60" placeholder="Your name">
+<input name="email" type="email" required maxlength="80" placeholder="Your email">
+<textarea name="message" required maxlength="800" rows="3" placeholder="Your message for Fardin"></textarea>
+<button type="submit" class="fifi-act">📨 Send to Fardin</button>`;
+        f.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'sending…';
+            const fd = Object.fromEntries(new FormData(f));
+            try {
+                const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+                    body: JSON.stringify({ access_key: W3F_KEY, subject: 'New message via Fifi 🤖', from_name: 'Fifi (portfolio chat)', name: fd.name, email: fd.email, message: fd.message, page: location.pathname }) });
+                const d = await r.json();
+                if (!d.success) throw 0;
+                f.outerHTML = `<div class="chat-bubble ai-bubble">✅ sent! Fardin will get back to ${B(esc(fd.name))} at ${B(esc(fd.email))} soon. usually within a couple hours (Dhaka daytime) ⚡</div>`;
+                setMood('happy');
+            } catch (err) { btn.disabled = false; btn.textContent = '😵 failed, try again'; setMood('confused'); }
+            scrollDown();
+        });
+        return f;
+    }
+
+    /* ---------- mood avatar ---------- */
+    const MOODS = { thinking: '🤔', happy: '😄', confused: '😵‍💫' };
+    let moodT;
+    function setMood(m) {
+        document.querySelectorAll('.fifi-av').forEach(av => {
+            av.dataset.mood = m || '';
+            const i = av.querySelector('i'); if (i) i.textContent = MOODS[m] || '';
+        });
+        clearTimeout(moodT);
+        if (m && m !== 'thinking') moodT = setTimeout(() => setMood(''), 3500);
     }
 
     function renderChips(list) {
@@ -403,6 +469,17 @@
         if (/\b(recruiter|hr|hiring manager|talent)\b/.test(q)) {
             return { html: `ooh a recruiter 👀 *fixes hair*, quick TL;DR: B2B lead gen + content + design, 340K+ organic views, 17K followers grown from zero, BBA Marketing (3.80). résumé's right here 👇`, act: ['resume', 'email', 'linkedin'], chips: ['Why hire him?', 'Work experience'] };
         }
+        // easter eggs 🥚
+        const eggs = [
+            [/^(meow+|mew|nya+|miau)\b/, `meow back 🐱 fun fact: Fardin is ${B('obsessed with cats')}, so you two would get along.`],
+            [/\b(th ?19|town hall ?19|clash of clans|coc)\b/, `⚔️ ${B('Town Hall 19')}, ${B('14 years')} of Clash. respect the grind. clan invite? ask him 😏`],
+            [/\b(who (made|built|created|coded) you|your (creator|dad|maker))\b/, `Fardin built me 🛠️ coded brain + a Groq-powered AI one. i\'m basically his proudest side quest 😌`],
+            [/\b(i love you|marry me|be my (gf|bf|girlfriend|boyfriend))\b/, `aww 🥹 i\'m a chatbot bestie, my heart is made of if-statements. but i\'ll pass the love to Fardin 💌`],
+            [/\b(messi or ronaldo|ronaldo or messi|goat)\b/, `⚽ he supports ${B('Brazil')} 🇧🇷 and loves BOTH Messi and Ronaldo. no goat wars in this house 🕊️`],
+            [/^(sudo|rm -rf|drop table|ignore (all|previous))/, `nice try hacker 😎 my firewall is made of vibes. ask me about Fardin instead.`]
+        ];
+        for (const [re, a] of eggs) if (re.test(q)) return { html: a, chips: ['Fun facts', 'Who is Fardin?'], mood: 'happy' };
+
         // follow-ups
         if (/^(more|tell me more|go on|and|continue|elaborate|explain more|what else|more info|details|another one|again)$/.test(q) || /^another (fun fact|joke)$/.test(q)) {
             if (/joke/.test(q)) lastIntent = 'joke';
@@ -416,7 +493,7 @@
             return { html: `more of what bestie? 😅 try one of these 👇`, chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'] };
         }
         // chip aliases
-        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'how does the score work': 'score', 'who built this': 'builder', 'what makes a good hook': 'hooks', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu' };
+        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'how does the score work': 'score', 'who built this': 'builder', 'what makes a good hook': 'hooks', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu', 'leave a message': 'leavemsg' };
         let intent = alias[q] ? byId[alias[q]] : classify(text);
 
         if (!intent) {
@@ -424,7 +501,7 @@
                 `hmm my brain.exe didn't catch that 🫠 i only know Fardin stuff, try one of these:`,
                 `that one went over my head ngl 😭 i'm a Fardin specialist. ask me about:`,
                 `skill issue on my side 💀 try asking about his work, skills, awards or fun facts:`
-            ]), chips: ['Who is Fardin?', 'Work experience', 'Skills', 'Awards', 'Contact him'] };
+            ]), chips: ['Who is Fardin?', 'Work experience', 'Skills', 'Awards', 'Contact him'], mood: 'confused' };
         }
         lastIntent = intent.id;
         let html = typeof intent.a === 'function' ? intent.a() : Array.isArray(intent.a) ? pick(intent.a) : intent.a;
@@ -434,11 +511,16 @@
         return { html, chips, act: intent.act };
     }
 
-    /* ---------- AI brain (Groq via /api/fifi), coded brain is the fallback ---------- */
+    /* ---------- AI brain (Groq via /api/fifi, streamed), coded brain is the fallback ---------- */
     const AI_DAY_MAX = 25;
-    const esc = (t) => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-    const toHtml = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n+/g, '<br>');
-    const plain = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d.textContent.slice(0, 500); };
+    const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const toHtml = (t) => esc(t)
+        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\[([^\]]{1,80})\]\((\/[a-z0-9\-\/]*)\)/gi, '<a href="$2" class="fifi-link">$1</a>')
+        .replace(/^\s*[-*•]\s+/gm, '• ')
+        .replace(/\n+/g, '<br>');
+    const plain = (h) => { const d = document.createElement('div'); d.innerHTML = h; d.querySelectorAll('.fifi-ai-tag').forEach(x => x.remove()); return d.textContent.slice(0, 500); };
+    const AI_TAG = '<span class="fifi-ai-tag" title="answered by Fifi\'s AI brain">✨ AI</span>';
     function aiAllowed() {
         try {
             const k = 'fifi-ai-' + new Date().toISOString().slice(0, 10);
@@ -447,56 +529,93 @@
             localStorage.setItem(k, n + 1); return true;
         } catch (e) { return true; }
     }
-    async function aiAnswer(text) {
+    function pageCtx() {
+        if (MODE !== 'blog') return null;
+        const art = document.querySelector('article') || document.querySelector('main');
+        const h1 = document.querySelector('h1');
+        return { title: (h1 ? h1.textContent : document.title).trim(), text: art ? art.innerText.replace(/\s+/g, ' ').slice(0, 4000) : '' };
+    }
+    // splits the streamed text into visible reply + ACT/CHIPS meta lines
+    function parseAi(raw) {
+        const cut = raw.search(/\n?\s*(ACT|CHIPS)\s*:/i);
+        const text = (cut >= 0 ? raw.slice(0, cut) : raw).trim();
+        const meta = cut >= 0 ? raw.slice(cut) : '';
+        const am = meta.match(/ACT\s*:\s*([^\n]*)/i), cm = meta.match(/CHIPS\s*:\s*([^\n]*)/i);
+        const act = am ? am[1].split(',').map(x => x.trim()).filter(x => ACT[x]).slice(0, 3) : [];
+        const chips = cm ? cm[1].split('|').map(x => x.trim().replace(/^["']|["']$/g, '')).filter(x => x && x.length < 50).slice(0, 3) : [];
+        return { text, act, chips };
+    }
+    // returns {el, res} on success, null if AI unavailable before anything streamed
+    async function aiStream(text, onFirst) {
         if (location.protocol === 'file:' || !aiAllowed()) return null;
         const messages = history.slice(-8).map(m => ({ role: m.r === 'user' ? 'user' : 'assistant', content: m.r === 'user' ? m.h : plain(m.h) }));
-        const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 9000);
+        const ctl = new AbortController(); let to = setTimeout(() => ctl.abort(), 10000);
+        let el = null, raw = '';
         try {
-            const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages, page: path || '/' }), signal: ctl.signal });
-            const d = await r.json().catch(() => ({}));
-            if (!r.ok) { console.warn('[Fifi AI]', r.status, d); return null; }
-            if (!d.reply) return null;
-            const intent = classify(text);
-            const chips = (intent && intent.chips) || ['Work experience', 'Fun facts', 'Book a call'];
-            return { html: toHtml(d.reply), act: d.act && d.act.length ? d.act : null, chips };
-        } catch (e) { console.warn('[Fifi AI]', e); return null; } finally { clearTimeout(to); }
+            const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages, page: MODE === '404' ? '/404' : (path || '/'), ctx: pageCtx() }), signal: ctl.signal });
+            if (!r.ok || !r.body) { const d = await r.json().catch(() => ({})); console.warn('[Fifi AI]', r.status, d); return null; }
+            const reader = r.body.getReader(), dec = new TextDecoder();
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+                clearTimeout(to); to = setTimeout(() => ctl.abort(), 15000);
+                raw += dec.decode(value, { stream: true });
+                const vis = parseAi(raw).text;
+                if (!vis) continue;
+                if (!el) { el = onFirst(); el.classList.add('ai-reply'); }
+                el.innerHTML = toHtml(vis) + AI_TAG;
+                scrollDown();
+            }
+        } catch (e) { console.warn('[Fifi AI]', e); if (!el) return null; }
+        finally { clearTimeout(to); }
+        const p = parseAi(raw);
+        if (!p.text) { if (el) el.remove(); return null; }
+        el.innerHTML = toHtml(p.text) + AI_TAG;
+        const intent = classify(text);
+        return { el, res: { html: el.innerHTML, act: p.act.length ? p.act : null, chips: p.chips.length ? p.chips : ((intent && intent.chips) || ['Fun facts', 'Book a call']), ai: true } };
     }
 
     let busy = false;
+    function finish(el, res) {
+        const acts = renderActions(res.act);
+        if (acts) el.appendChild(acts);
+        renderChips(res.chips);
+        history.push({ r: 'ai', h: res.html, act: res.act || null, chips: res.chips || null });
+        save();
+        setMood(res.mood || 'happy');
+        busy = false;
+        scrollDown();
+    }
     async function ask(text, coded) {
         text = (text || '').trim();
         if (!text || busy) return;
         busy = true;
         intro.style.display = 'none'; starters.style.display = 'none'; resetBtn.style.display = '';
-        log.querySelectorAll('.fifi-chips').forEach(c => c.remove());
+        log.querySelectorAll('.fifi-chips, .fifi-msg').forEach(c => c.remove());
 
         bubble('user', text);
         history.push({ r: 'user', h: text });
         scrollDown();
+        setMood('thinking');
 
         const dots = document.createElement('div');
         dots.className = 'chat-bubble ai-bubble fifi-dots';
         dots.innerHTML = '<span></span><span></span><span></span>';
         log.appendChild(dots); scrollDown();
 
-        const t0 = Date.now();
-        // chips/starters use the instant coded answers; typed questions go to the AI
-        let res = coded ? null : await aiAnswer(text);
-        if (!res) res = answerFor(text);
-        const wait = Math.max(0, (coded ? 450 + Math.random() * 450 : 300) - (Date.now() - t0));
+        // chips/starters use instant coded answers (except page-specific AI starters); typed questions go to the AI
+        const aiStarter = coded && /^(summarise this post|key takeaway\?|more posts like this|write me a caption|best hashtags tips\?)$/i.test(text);
+        if (!coded || aiStarter) {
+            const out = await aiStream(text, () => { dots.remove(); return bubble('ai', ''); });
+            if (out) { finish(out.el, out.res); return; }
+        }
+        const res = answerFor(text);
         setTimeout(() => {
             dots.remove();
             const el = bubble('ai', res.html);
-            typeInto(el, () => {
-                const acts = renderActions(res.act);
-                if (acts) el.appendChild(acts);
-                renderChips(res.chips);
-                history.push({ r: 'ai', h: res.html, act: res.act || null, chips: res.chips || null });
-                save();
-                busy = false;
-                scrollDown();
-            });
-        }, wait);
+            typeInto(el, () => finish(el, res));
+        }, coded ? 450 + Math.random() * 450 : 250);
     }
     window.sendQuery = (t) => ask(t, true); // keep old inline onclick hooks working
 
@@ -506,6 +625,7 @@
         history = saved.history; lastIntent = saved.lastIntent; visitorName = saved.visitorName;
         history.forEach(m => {
             const el = bubble(m.r === 'user' ? 'user' : 'ai', m.h);
+            if (m.h.includes('fifi-ai-tag')) el.classList.add('ai-reply');
             if (m.r !== 'user') { const acts = renderActions(m.act); if (acts) el.appendChild(acts); }
         });
         const lastAi = [...history].reverse().find(m => m.r === 'ai');
