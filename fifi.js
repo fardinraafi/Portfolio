@@ -333,7 +333,7 @@
         list.forEach(t => {
             const c = document.createElement('button');
             c.type = 'button'; c.className = 'fifi-chip'; c.textContent = t;
-            c.addEventListener('click', () => ask(t));
+            c.addEventListener('click', () => ask(t, true));
             wrap.appendChild(c);
         });
         log.appendChild(wrap);
@@ -425,8 +425,36 @@
         return { html, chips, act: intent.act };
     }
 
+    /* ---------- AI brain (Groq via /api/fifi), coded brain is the fallback ---------- */
+    const AI_DAY_MAX = 25;
+    const esc = (t) => t.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const toHtml = (t) => esc(t).replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\n+/g, '<br>');
+    const plain = (h) => { const d = document.createElement('div'); d.innerHTML = h; return d.textContent.slice(0, 500); };
+    function aiAllowed() {
+        try {
+            const k = 'fifi-ai-' + new Date().toISOString().slice(0, 10);
+            const n = +(localStorage.getItem(k) || 0);
+            if (n >= AI_DAY_MAX) return false;
+            localStorage.setItem(k, n + 1); return true;
+        } catch (e) { return true; }
+    }
+    async function aiAnswer(text) {
+        if (location.protocol === 'file:' || !aiAllowed()) return null;
+        const messages = history.slice(-8).map(m => ({ role: m.r === 'user' ? 'user' : 'assistant', content: m.r === 'user' ? m.h : plain(m.h) }));
+        const ctl = new AbortController(); const to = setTimeout(() => ctl.abort(), 9000);
+        try {
+            const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages, page: path || '/' }), signal: ctl.signal });
+            if (!r.ok) return null;
+            const d = await r.json();
+            if (!d.reply) return null;
+            const intent = classify(text);
+            const chips = (intent && intent.chips) || ['Work experience', 'Fun facts', 'Book a call'];
+            return { html: toHtml(d.reply), act: d.act && d.act.length ? d.act : null, chips };
+        } catch (e) { return null; } finally { clearTimeout(to); }
+    }
+
     let busy = false;
-    function ask(text) {
+    async function ask(text, coded) {
         text = (text || '').trim();
         if (!text || busy) return;
         busy = true;
@@ -442,7 +470,11 @@
         dots.innerHTML = '<span></span><span></span><span></span>';
         log.appendChild(dots); scrollDown();
 
-        const res = answerFor(text);
+        const t0 = Date.now();
+        // chips/starters use the instant coded answers; typed questions go to the AI
+        let res = coded ? null : await aiAnswer(text);
+        if (!res) res = answerFor(text);
+        const wait = Math.max(0, (coded ? 450 + Math.random() * 450 : 300) - (Date.now() - t0));
         setTimeout(() => {
             dots.remove();
             const el = bubble('ai', res.html);
@@ -455,9 +487,9 @@
                 busy = false;
                 scrollDown();
             });
-        }, 450 + Math.random() * 450);
+        }, wait);
     }
-    window.sendQuery = ask; // keep old inline onclick hooks working
+    window.sendQuery = (t) => ask(t, true); // keep old inline onclick hooks working
 
     /* ---------- restore saved chat ---------- */
     const saved = load();
