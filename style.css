@@ -1620,7 +1620,7 @@ body.dark-mode .nav-ind { background: rgba(255,255,255,0.08); }
 html.theme-switching body *:not(.theme-liquid-bubble):not(.theme-liquid-bubble *):not(.theme-text) { transition: none !important; }
 html.theme-switching body { transition: none !important; }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
     .top-nav { margin: 0.75rem !important; padding: 0.55rem 0.6rem 0.55rem 1.1rem !important; border-radius: 22px !important; top: 0.75rem; }
     .top-nav .nav-menu { display: none !important; }
     .nav-actions { gap: 0.5rem; }
@@ -1761,7 +1761,7 @@ body.dark-mode .fifi-form input { background: rgba(255,255,255,0.05); border-col
 @media (max-width: 900px) { .site-footer .ft-name { font-size: 1.5rem; } }
 
 /* Nav: keep 9 links on one line on small laptops/tablets */
-@media (min-width: 901px) and (max-width: 1200px) {
+@media (min-width: 1101px) and (max-width: 1240px) {
     .top-nav .nav-menu a { padding: 6px 8px !important; font-size: 0.86rem !important; }
     .top-nav .nav-actions .btn-primary { display: none; }
 }
@@ -1801,3 +1801,6 @@ body.dark-mode .fifi-form input { background: rgba(255,255,255,0.05); border-col
     .btn { min-height: 44px; }
     .meta-info a { display: inline-block; padding: 12px 0; margin: -12px 0; }
 }
+
+/* Desktop nav never wraps (the burger menu takes over at 1100px and below) */
+@media (min-width: 1101px) { .top-nav { flex-wrap: nowrap; } }
