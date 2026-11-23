@@ -34,6 +34,7 @@
 
 ## Free resources
 - [Hook Lab: free hook analyzer](https://fardinraafi.com/projects/hook-lab)
+- [Caption Maker](https://fardinraafi.com/projects/caption-maker): free caption and hashtag generator with 7 styles
 - [Human-Centric AI Content Framework](https://fardinraafi.com/human-content-framework-by-fardin-rahman-khan-raafi)
 - [Self-Training Guidebook Master Prompt](https://fardinraafi.com/self-training-guidebook-masterprompt-by-fardinraafi)
 - [Marketing Playbook (PDF)](https://fardinraafi.com/misc_files/Marketing_Playbook.pdf)
