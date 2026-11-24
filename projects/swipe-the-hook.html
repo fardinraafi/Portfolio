@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== SEO ===== -->
+    <title>Swipe the Hook: Can You Spot a Good Hook? | Fardin Raafi</title>
+    <meta name="description" content="Swipe the Hook: a free Tinder-style game. Swipe right on scroll-stopping hooks, left on boring ones, and see how good your marketing instincts really are.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://fardinraafi.com/projects/swipe-the-hook">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
+    <meta property="og:url" content="https://fardinraafi.com/projects/swipe-the-hook">
+    <meta property="og:title" content="Swipe the Hook: can you spot a scroll-stopper?">
+    <meta property="og:description" content="Swipe the Hook: a free Tinder-style game. Swipe right on scroll-stopping hooks, left on boring ones, and see how good your marketing instincts really are.">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/work/swipe-the-hook.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@fardin_raafi">
+    <meta name="twitter:title" content="Swipe the Hook: can you spot a scroll-stopper?">
+    <meta name="twitter:description" content="Swipe the Hook: a free Tinder-style game. Swipe right on scroll-stopping hooks, left on boring ones, and see how good your marketing instincts really are.">
+    <meta name="twitter:image" content="https://fardinraafi.com/misc_img/work/swipe-the-hook.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@id": "https://fardinraafi.com/#website",
+   "@type": "WebSite",
+   "url": "https://fardinraafi.com/",
+   "name": "Fardin Rahman Khan Raafi"
+  },
+  {
+   "@id": "https://fardinraafi.com/#person",
+   "@type": "Person",
+   "name": "Fardin Rahman Khan Raafi",
+   "url": "https://fardinraafi.com/"
+  },
+  {
+   "@type": "WebApplication",
+   "@id": "https://fardinraafi.com/projects/swipe-the-hook#app",
+   "name": "Swipe the Hook",
+   "url": "https://fardinraafi.com/projects/swipe-the-hook",
+   "applicationCategory": "BusinessApplication",
+   "operatingSystem": "Any",
+   "description": "Swipe the Hook: a free Tinder-style game. Swipe right on scroll-stopping hooks, left on boring ones, and see how good your marketing instincts really are.",
+   "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+   },
+   "creator": {
+    "@id": "https://fardinraafi.com/#person"
+   }
+  },
+  {
+   "@type": "WebPage",
+   "@id": "https://fardinraafi.com/projects/swipe-the-hook#webpage",
+   "url": "https://fardinraafi.com/projects/swipe-the-hook",
+   "name": "Swipe the Hook: Can You Spot a Good Hook? | Fardin Raafi",
+   "description": "Swipe the Hook: a free Tinder-style game. Swipe right on scroll-stopping hooks, left on boring ones, and see how good your marketing instincts really are.",
+   "isPartOf": {
+    "@id": "https://fardinraafi.com/#website"
+   },
+   "breadcrumb": {
+    "@id": "https://fardinraafi.com/projects/swipe-the-hook#breadcrumb"
+   },
+   "inLanguage": "en"
+  },
+  {
+   "@type": "BreadcrumbList",
+   "@id": "https://fardinraafi.com/projects/swipe-the-hook#breadcrumb",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://fardinraafi.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Projects",
+     "item": "https://fardinraafi.com/projects"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "Swipe the Hook",
+     "item": "https://fardinraafi.com/projects/swipe-the-hook"
+    }
+   ]
+  }
+ ]
+}
+    </script>
+    <!-- ===== /SEO ===== -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=20261124a">
+    <link rel="stylesheet" href="/projects/hook-lab.css?v=20261124a">
+    <script defer src="/_vercel/insights/script.js"></script>
+</head>
+<body class="dark-mode">
+<script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
+<canvas id="neural-canvas"></canvas>
+<div class="bg-mesh"><div class="blob blob-1"></div><div class="blob blob-2"></div></div>
+<nav class="top-nav"></nav>
+
+<style>
+.sh-wrap { max-width: 560px; margin: 0 auto; }
+.sh-screen { display: none; }
+.sh-screen.on { display: block; animation: fadeInUp .35s ease both; }
+.sh-start { text-align: center; padding: 2rem 1.5rem; }
+.sh-start h2 { font: 800 1.5rem 'Syne', sans-serif; margin: .6rem 0 .4rem; color: var(--text-main); }
+.sh-rules { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; margin: 1.2rem 0 1.4rem; text-align: left; }
+.sh-rules div { padding: .9rem; border-radius: 14px; background: rgba(148,163,184,.08); font: 600 .9rem/1.45 'DM Sans', sans-serif; color: var(--text-muted); }
+.sh-rules b { display: block; font-size: 1.4rem; margin-bottom: 4px; }
+.sh-stats { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1.2rem; font: 600 .85rem 'DM Sans', sans-serif; color: var(--text-muted); }
+.sh-stats b { color: var(--text-main); font-family: 'Syne', sans-serif; font-size: 1.1rem; display: block; }
+.sh-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: .8rem; font: 700 .9rem 'DM Sans', sans-serif; color: var(--text-muted); }
+.sh-prog { height: 6px; border-radius: 6px; background: rgba(148,163,184,.18); overflow: hidden; margin-bottom: 1rem; }
+.sh-prog i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); transition: width .3s; }
+.sh-deck { position: relative; height: 360px; touch-action: none; user-select: none; -webkit-user-select: none; }
+.sh-card { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; padding: 2rem 1.6rem; border-radius: 26px;
+    background: linear-gradient(160deg, rgba(37,99,235,.18), rgba(124,58,237,.16) 55%, rgba(219,39,119,.14)), var(--bg-page);
+    border: 1px solid rgba(148,163,184,.25); box-shadow: 0 18px 50px rgba(2,6,23,.35); cursor: grab; will-change: transform; transition: transform .3s ease, opacity .3s ease; }
+.sh-card:active { cursor: grabbing; }
+.sh-card.back { transform: scale(.94) translateY(16px); opacity: .55; pointer-events: none; }
+.sh-card .q { font: 600 .75rem 'DM Sans', sans-serif; letter-spacing: .08em; text-transform: uppercase; color: var(--c2); margin-bottom: .9rem; }
+.sh-card p { font: 700 clamp(1.2rem, 4.6vw, 1.55rem)/1.4 'DM Sans', sans-serif; color: var(--text-main); margin: 0; }
+.sh-stamp { position: absolute; top: 22px; padding: 6px 14px; border-radius: 10px; font: 800 1.1rem 'Syne', sans-serif; letter-spacing: .06em; border: 3px solid; opacity: 0; }
+.sh-stamp.yes { left: 20px; color: #10B981; transform: rotate(-12deg); }
+.sh-stamp.no { right: 20px; color: #EF4444; transform: rotate(12deg); }
+.sh-btns { display: flex; justify-content: center; gap: 1.6rem; margin-top: 1.4rem; }
+.sh-btn { width: 68px; height: 68px; border-radius: 50%; font-size: 1.7rem; cursor: pointer; border: 2px solid; background: var(--bg-page); transition: transform .15s, box-shadow .2s; }
+.sh-btn:hover { transform: scale(1.08); }
+.sh-btn:active { transform: scale(.92); }
+.sh-btn.no { color: #EF4444; border-color: rgba(239,68,68,.5); box-shadow: 0 8px 24px rgba(239,68,68,.18); }
+.sh-btn.yes { color: #10B981; border-color: rgba(16,185,129,.5); box-shadow: 0 8px 24px rgba(16,185,129,.18); }
+.sh-hint { text-align: center; margin-top: .9rem; font: 500 .82rem 'DM Sans', sans-serif; color: var(--text-muted); }
+.sh-load { text-align: center; padding: 4rem 1rem; font: 600 1rem 'DM Sans', sans-serif; color: var(--text-muted); }
+.sh-load .sp { width: 42px; height: 42px; margin: 0 auto 1rem; border-radius: 50%; border: 4px solid rgba(124,58,237,.2); border-top-color: var(--c2); animation: shSpin .8s linear infinite; }
+@keyframes shSpin { to { transform: rotate(360deg); } }
+.sh-res-top { text-align: center; padding: 1.8rem 1.2rem 1.2rem; }
+.sh-big { font: 800 4rem/1 'Syne', sans-serif; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.sh-rank { font: 800 1.25rem 'Syne', sans-serif; color: var(--text-main); margin: .4rem 0; }
+.sh-fifi { display: flex; gap: .7rem; align-items: flex-start; text-align: left; margin: 1rem auto 0; max-width: 440px; }
+.sh-fifi img { width: 42px; height: 42px; border-radius: 50%; flex: none; }
+.sh-fifi div { padding: .75rem 1rem; border-radius: 4px 16px 16px 16px; background: rgba(124,58,237,.1); border: 1px solid rgba(124,58,237,.25); font: 600 .95rem/1.5 'DM Sans', sans-serif; color: var(--text-main); }
+.sh-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: .6rem; margin: 1.2rem 0 .4rem; }
+.sh-list { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+.sh-item { display: flex; gap: .75rem; padding: .85rem 1rem; border-radius: 14px; background: rgba(148,163,184,.07); border: 1px solid rgba(148,163,184,.15); }
+.sh-item .ic { font-size: 1.1rem; flex: none; }
+.sh-item p { margin: 0 0 4px; font: 600 .95rem/1.45 'DM Sans', sans-serif; color: var(--text-main); }
+.sh-item small { font: 500 .85rem/1.45 'DM Sans', sans-serif; color: var(--text-muted); display: block; }
+.sh-item small b { color: var(--text-main); }
+.sh-item.wrong { border-color: rgba(239,68,68,.35); background: rgba(239,68,68,.06); }
+.sh-h3 { font: 800 1.1rem 'Syne', sans-serif; color: var(--text-main); margin: 1.6rem 0 .2rem; }
+@media (max-width: 600px) { .sh-deck { height: 330px; } .sh-rules { grid-template-columns: 1fr; } }
+</style>
+<main class="hl-main">
+    <nav class="hl-crumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/projects">Projects</a><span>/</span><span aria-current="page">Swipe the Hook</span></nav>
+    <header class="page-head hl-head">
+        <div class="hl-badge"><span class="hl-live"></span> Free game · fresh AI hooks every round</div>
+        <div class="tt-wrap" id="ttWrap">
+            <h1 class="gradient-text tt-h1">Swipe the Hook: can you spot a scroll-stopper?</h1>
+            <div class="tech-text" id="tt1" aria-hidden="true"><canvas></canvas></div>
+        </div>
+        <p class="page-sub">Swipe <b>right</b> on hooks that stop the scroll, <b>left</b> on the boring ones. 15 cards, then see how sharp your marketing instincts are.</p>
+    </header>
+
+    <div class="sh-wrap">
+        <section class="sh-screen on glass-card no-hover hl-card sh-start" id="shStart">
+            <div style="font-size:3rem">🃏</div>
+            <h2>Ready to test your gut?</h2>
+            <div class="sh-rules">
+                <div><b>👉 ❤️</b>Swipe right if it would make you stop scrolling</div>
+                <div><b>👈 ✕</b>Swipe left if you'd scroll right past it</div>
+                <div><b>🧠</b>Every round is brand new, written by AI</div>
+                <div><b>🏆</b>Score, streak and a breakdown at the end</div>
+            </div>
+            <button type="button" class="hl-btn" id="shGo" style="width:100%">Start swiping 🔥</button>
+            <div class="sh-stats"><span><b id="stBest">-</b>best score</span><span><b id="stDays">0</b>day streak</span><span><b id="stGames">0</b>rounds</span></div>
+        </section>
+
+        <section class="sh-screen" id="shLoad"><div class="sh-load"><div class="sp"></div><span id="shLoadTxt">Fifi is writing your hooks…</span></div></section>
+
+        <section class="sh-screen" id="shPlay">
+            <div class="sh-top"><span id="shCount">1 / 15</span><span id="shCombo">🔥 0</span></div>
+            <div class="sh-prog"><i id="shBar"></i></div>
+            <div class="sh-deck" id="shDeck"></div>
+            <div class="sh-btns">
+                <button type="button" class="sh-btn no" id="shNo" aria-label="Bad hook">✕</button>
+                <button type="button" class="sh-btn yes" id="shYes" aria-label="Good hook">❤</button>
+            </div>
+            <p class="sh-hint">Drag the card, tap the buttons, or use ← → keys</p>
+        </section>
+
+        <section class="sh-screen" id="shRes">
+            <div class="glass-card no-hover hl-card sh-res-top">
+                <div class="sh-big" id="rScore">0/15</div>
+                <div class="sh-rank" id="rRank"></div>
+                <div class="hl-muted" id="rMeta"></div>
+                <div class="sh-fifi"><img src="/misc_img/avatar.jpg" alt="Fifi" width="42" height="42"><div id="rFifi"></div></div>
+                <div class="sh-actions">
+                    <button type="button" class="hl-btn" id="rAgain">🔄 Play again</button>
+                    <button type="button" class="hl-btn ghost" id="rShare">📸 Share result</button>
+                </div>
+            </div>
+            <h3 class="sh-h3">Your swipes</h3>
+            <p class="hl-muted">Here's what made each hook good or bad.</p>
+            <div class="sh-list" id="rList"></div>
+            <p class="hl-muted" style="margin-top:1.4rem;text-align:center">Want to test your own hook? Try <a href="/projects/hook-lab">Hook Lab</a>.</p>
+        </section>
+    </div>
+</main>
+<div id="hlToast" class="hl-toast" role="status" aria-live="polite"></div>
+
+<footer class="site-footer reveal"></footer>
+<button class="scroll-to-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+<script src="/main.js?v=20261124a"></script>
+<script src="/techtext.js?v=20261124a"></script>
+<script>
+(() => { createTechText(document.getElementById('ttWrap'), document.getElementById('tt1'), 'Swipe the Hook', () => 'center', 0.15); })();
+</script>
+<script src="/projects/swipe-the-hook.js?v=20261124a"></script>
+<script src="/fifi.js?v=20261124a" defer></script>
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / (innerWidth < 768 ? 18000 : 9000); 
+            let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 7) * (height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.4})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+
+</body>
+</html>
