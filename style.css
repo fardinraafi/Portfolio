@@ -1828,3 +1828,18 @@ body .glass-card.chat-bot-modal { background: rgba(255,255,255,.97); }
 body.dark-mode .glass-card.chat-bot-modal { background: rgba(15,23,42,.97); }
 @media (max-width: 900px) { body .glass-card.chat-bot-modal { width: auto; max-width: none; } }
 body .glass-card.chat-bot-modal { padding: 0 !important; }
+
+/* ===== Mobile readability: no tiny text, comfortable spacing ===== */
+@media (max-width: 768px) {
+    body main p, body .layout-wrapper p { line-height: 1.65; }
+    body .hero-badge, body .reco-pill, body .stats .stat span, body .story-btn small { font-size: 11.5px !important; }
+    body .award-details p, body .reco-info p, body .gc-hint, body .cr-note, body main.content-feed > section > p,
+    body .jt-name span, body .c-hint, body .skill-note, body .c-note, body .form-note, body .qf, body .et-date,
+    body .ft-cta span, body .tk-sub, body .marquee-blog-date, body .gl-v, body .bm-meta span { font-size: 13.5px !important; line-height: 1.55; }
+    body .gallery-overlay p { font-size: 13px !important; line-height: 1.4 !important; }
+    body .bm-txt small { font-size: 13.5px !important; line-height: 1.4 !important; }
+    body .org-tags .t, body .hl-copy .tag, body .skill-tags .tag, body .soc-handle, body .et-sub small, body .jt-legend span { font-size: 12.5px !important; }
+    body .bot-subtitle { font-size: 12px !important; }
+    body .site-footer .copyright span { font-size: 13px !important; }
+    body .cr-chart-top span, body .cr-cal-top span { font-size: 13px !important; }
+}

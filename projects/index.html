@@ -106,7 +106,7 @@
     <!-- ===== /SEO ===== -->
 
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=20261123m">
+    <link rel="stylesheet" href="/style.css?v=20261124a">
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
     <style>
@@ -252,8 +252,8 @@
 
 <footer class="site-footer reveal"></footer>
 <button class="scroll-to-top" id="scrollTopBtn" aria-label="Scroll to top">↑</button>
-<script src="/main.js?v=20261123m"></script>
-<script src="/techtext.js?v=20261123m"></script>
+<script src="/main.js?v=20261124a"></script>
+<script src="/techtext.js?v=20261124a"></script>
 <script>
 (() => {
     const wrap = document.getElementById('ttWrap');
@@ -336,7 +336,7 @@
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / 9000; 
+            let numberOfParticles = (width * height) / (innerWidth < 768 ? 18000 : 9000); 
             let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
@@ -370,7 +370,7 @@
         }
 
         function animate() {
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) particles[i].update();
             connect();

@@ -396,6 +396,20 @@
 
     /* ---------------- MAIN UPDATE ---------------- */
     let lastRA = null;
+    // floating mini score on phones: shows when the gauge is off-screen, tap to jump to it
+    const mini = document.createElement('button');
+    mini.type = 'button'; mini.className = 'hl-mini'; mini.setAttribute('aria-label', 'Jump to score');
+    document.body.appendChild(mini);
+    let miniVis = false, gaugeOn = true;
+    mini.addEventListener('click', () => $('#gaugeA').scrollIntoView({ behavior: 'smooth', block: 'center' }));
+    const syncMini = () => mini.classList.toggle('in', miniVis && !gaugeOn);
+    new IntersectionObserver(([e]) => { gaugeOn = e.isIntersecting; syncMini(); }).observe($('#gaugeA'));
+    function miniScore(r, g) {
+        miniVis = !r.empty;
+        if (miniVis) { mini.innerHTML = `<b>${r.score}</b>${g[2]} ${g[1]} ↓`; mini.style.setProperty('--mc', g[3]); }
+        syncMini();
+    }
+
     function update(fromTyping = false) {
         const P = PLATFORMS[S.platform];
         S.a = inA.value; S.b = inB.value;
@@ -405,6 +419,7 @@
         const gA = gradeOf(rA.score);
         $('#gradeA').innerHTML = rA.empty ? '<span>Waiting for your hook…</span>' : `<span style="color:${gA[3]}">${gA[2]} ${gA[1]}</span>`;
         $('#gaugeA').style.setProperty('--gc', rA.empty ? '#64748B' : gA[3]);
+        miniScore(rA, gA);
         renderMetrics($('#metricsA'), rA);
         renderSignals($('#signals'), rA);
         $('#hlHighlight').innerHTML = highlight(S.a.trim());

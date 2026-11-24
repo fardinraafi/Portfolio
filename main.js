@@ -1,3 +1,74 @@
+
+/* ===== Haptic tap feedback (Android; iOS browsers ignore vibrate) ===== */
+(() => {
+    if (!('vibrate' in navigator) || !matchMedia('(pointer: coarse)').matches) return;
+    let last = 0;
+    window.FRHaptic = (ms = 8) => { const n = Date.now(); if (n - last < 60) return; last = n; try { navigator.vibrate(ms); } catch (e) {} };
+    document.addEventListener('pointerdown', (e) => {
+        if (e.pointerType !== 'touch') return;
+        if (e.target.closest('button, a, [role="button"], .chip, .hl-chip, .hl-plat, .fifi-chip, .tab, label, summary, input[type="checkbox"], input[type="radio"]')) window.FRHaptic(8);
+    }, { passive: true, capture: true });
+})();
+
+/* ===== Swipe helper for lightboxes: drag left/right to change, drag down to close ===== */
+window.FRSwipe = function (area, img, h) {
+    if (!area || area._frSwipe) return; area._frSwipe = true;
+    let x0 = 0, y0 = 0, dx = 0, dy = 0, on = false, axis = '';
+    const set = (t, o, anim) => { if (!img) return; img.style.transition = anim ? 'transform .25s ease, opacity .25s ease' : 'none'; img.style.transform = t; img.style.opacity = o; };
+    area.addEventListener('touchstart', (e) => { if (e.touches.length > 1) return; on = true; axis = ''; dx = dy = 0; x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    area.addEventListener('touchmove', (e) => {
+        if (!on) return;
+        dx = e.touches[0].clientX - x0; dy = e.touches[0].clientY - y0;
+        if (!axis && Math.hypot(dx, dy) > 8) axis = Math.abs(dx) > Math.abs(dy) ? 'x' : 'y';
+        if (axis === 'x') set(`translateX(${dx}px) rotate(${dx / 40}deg)`, 1 - Math.min(Math.abs(dx) / 600, .35));
+        else if (axis === 'y' && dy > 0) set(`translateY(${dy}px) scale(${1 - Math.min(dy / 1200, .15)})`, 1 - Math.min(dy / 400, .6));
+    }, { passive: true });
+    area.addEventListener('touchend', () => {
+        if (!on) return; on = false;
+        const W = innerWidth * 0.18;
+        if (axis === 'x' && Math.abs(dx) > Math.min(W, 70)) {
+            const dir = dx < 0 ? 1 : -1;
+            set(`translateX(${-dir * innerWidth}px)`, 0, true);
+            window.FRHaptic && window.FRHaptic(10);
+            setTimeout(() => { dir > 0 ? h.next() : h.prev(); set(`translateX(${dir * 60}px)`, 0, false); requestAnimationFrame(() => requestAnimationFrame(() => set('', '', true))); }, 180);
+        } else if (axis === 'y' && dy > 110 && h.close) {
+            window.FRHaptic && window.FRHaptic(10);
+            set(`translateY(${innerHeight}px)`, 0, true);
+            setTimeout(() => { h.close(); set('', '', false); }, 200);
+        } else set('', '', true);
+    }, { passive: true });
+};
+
+/* ===== Blog image viewer: tap an article image to open, swipe between them ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    if (!/^\/blog\/./.test(location.pathname)) return;
+    const imgs = [...document.querySelectorAll('main img, article img, .layout-wrapper img')]
+        .filter(i => !i.closest('a, .keep-reading, .site-footer, nav, #chatModal, .chat-bot-btn') && i.naturalWidth !== 1);
+    if (!imgs.length) return;
+    const st = document.createElement('style');
+    st.textContent = `.frv{position:fixed;inset:0;z-index:10050;background:rgba(2,6,23,.94);display:flex;align-items:center;justify-content:center;opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s;touch-action:none}
+.frv.on{opacity:1;visibility:visible}.frv img{max-width:94vw;max-height:84vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5);user-select:none;-webkit-user-drag:none}
+.frv button{position:absolute;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);color:#fff;border-radius:50%;width:46px;height:46px;font-size:1.3rem;cursor:pointer}
+.frv .x{top:16px;right:16px}.frv .pv{left:16px;top:50%;transform:translateY(-50%)}.frv .nx{right:16px;top:50%;transform:translateY(-50%)}
+.frv .ct{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);color:#cbd5e1;font:600 13px 'DM Sans',sans-serif;background:rgba(255,255,255,.08);padding:6px 14px;border-radius:100px}
+.frv-zoom{cursor:zoom-in}@media(max-width:768px){.frv .pv,.frv .nx{display:none}}`;
+    document.head.appendChild(st);
+    const v = document.createElement('div'); v.className = 'frv'; v.setAttribute('role', 'dialog'); v.setAttribute('aria-label', 'Image viewer');
+    v.innerHTML = '<img alt=""><button class="x" aria-label="Close">✕</button><button class="pv" aria-label="Previous">‹</button><button class="nx" aria-label="Next">›</button><div class="ct"></div>';
+    document.body.appendChild(v);
+    const vi = v.querySelector('img'), ct = v.querySelector('.ct'); let idx = 0;
+    const show = (i) => { idx = (i + imgs.length) % imgs.length; vi.src = imgs[idx].currentSrc || imgs[idx].src; vi.alt = imgs[idx].alt || ''; ct.textContent = imgs.length > 1 ? `${idx + 1} / ${imgs.length}` : 'Swipe down to close'; };
+    const open = (i) => { show(i); v.classList.add('on'); document.body.style.overflow = 'hidden'; };
+    const close = () => { v.classList.remove('on'); document.body.style.overflow = ''; };
+    imgs.forEach((im, i) => { im.classList.add('frv-zoom'); im.addEventListener('click', () => open(i)); });
+    if (imgs.length < 2) v.querySelectorAll('.pv,.nx').forEach(b => b.remove());
+    v.querySelector('.x').onclick = close;
+    v.querySelector('.pv') && (v.querySelector('.pv').onclick = (e) => { e.stopPropagation(); show(idx - 1); });
+    v.querySelector('.nx') && (v.querySelector('.nx').onclick = (e) => { e.stopPropagation(); show(idx + 1); });
+    v.addEventListener('click', (e) => { if (e.target === v) close(); });
+    document.addEventListener('keydown', (e) => { if (!v.classList.contains('on')) return; if (e.key === 'Escape') close(); if (e.key === 'ArrowRight') show(idx + 1); if (e.key === 'ArrowLeft') show(idx - 1); });
+    window.FRSwipe(v, vi, { next: () => show(idx + 1), prev: () => show(idx - 1), close });
+});
 document.addEventListener('DOMContentLoaded', () => {
     // PRELOADER: "FRKR" assembles from pixels with a scanner box, % counter + bar (~1.5s)
     const preloader = document.getElementById('preloader');
@@ -441,14 +512,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Touch Swipe support
-        let touchStartX = 0; let touchEndX = 0;
-        lightbox.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-        lightbox.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) window.changeImage(1);
-            if (touchEndX - touchStartX > 50) window.changeImage(-1);
-        }, {passive: true});
+        // Touch swipe: image follows the finger, swipe down to close
+        window.FRSwipe && window.FRSwipe(lightbox, lightboxImg, { next: () => window.changeImage(1), prev: () => window.changeImage(-1), close: () => window.closeLightbox() });
 
         // Keyboard arrow support
         document.addEventListener('keydown', (e) => {

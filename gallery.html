@@ -97,7 +97,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261123m">
+    <link rel="stylesheet" href="/style.css?v=20261124a">
     
     <style>
         /* Tech-text title */
@@ -528,24 +528,17 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowRight') changeImage(1);
         });
 
-        let touchStartX = 0, touchEndX = 0;
-        const lightboxContent = document.getElementById('lightbox-content');
-        
-        lightboxContent.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, {passive: true});
-        lightboxContent.addEventListener('touchend', e => {
-            touchEndX = e.changedTouches[0].screenX;
-            if (touchStartX - touchEndX > 50) changeImage(1);
-            if (touchEndX - touchStartX > 50) changeImage(-1);
-        }, {passive: true});
+        // swipe: image follows the finger, swipe down to close (helper in main.js)
+        window.FRSwipe(document.getElementById('lightbox-content'), document.getElementById('lightbox-img') || document.querySelector('.lightbox-img'), { next: () => changeImage(1), prev: () => changeImage(-1), close: () => closeLightbox() });
     }
 });
 </script>
 
 <!-- Link to Central Nav/Theme Logic -->
-<script src="/main.js?v=20261123m"></script>
+<script src="/main.js?v=20261124a"></script>
 
 <!-- Tech-text title -->
-<script src="/techtext.js?v=20261123m"></script>
+<script src="/techtext.js?v=20261124a"></script>
 <script>
 /* createTechText lives in /techtext.js */
 
@@ -631,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / 9000; 
+            let numberOfParticles = (width * height) / (innerWidth < 768 ? 18000 : 9000); 
             let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
@@ -665,7 +658,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function animate() {
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
             if (document.hidden) return;
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) particles[i].update();

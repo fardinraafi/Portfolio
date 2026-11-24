@@ -145,7 +145,7 @@
     <link rel="preload" as="image" href="/misc_img/me.png">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/style.css?v=20261123m">
+    <link rel="stylesheet" href="/style.css?v=20261124a">
 
     <style>
 /* =========================================================
@@ -1653,10 +1653,10 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     })();
 </script>
 
-<script src="/main.js?v=20261123m"></script>
+<script src="/main.js?v=20261124a"></script>
 
 <!-- Tech-text title -->
-<script src="/techtext.js?v=20261123m"></script>
+<script src="/techtext.js?v=20261124a"></script>
 <script>
 /* createTechText lives in /techtext.js */
 
@@ -1667,7 +1667,7 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     createTechText(wrap, document.getElementById('tt2'), 'Khan Raafi', align, 1.15);
 })();
 </script>
-<script src="/fifi.js?v=20261123m" defer></script>
+<script src="/fifi.js?v=20261124a" defer></script>
 
 <!-- =========================================
      HOME PAGE SCRIPTS
@@ -1880,7 +1880,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / 12000;
+            let numberOfParticles = (width * height) / (innerWidth < 768 ? 24000 : 12000);
             let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
             for (let i = 0; i < numberOfParticles; i++) {
                 let size = (Math.random() * 2) + 1;
@@ -1909,7 +1909,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function animate() {
-            requestAnimationFrame(animate);
+            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
             if (document.hidden) return;
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) particles[i].update();
