@@ -2,6 +2,8 @@
 
 > B2B marketing executive in Dhaka, Bangladesh. Marketing Executive at Augmex Technologies Ltd. (since April 2026; Marketing Intern Jan-Apr 2026). Works on B2B lead generation for European and Australian markets, CRM management, cold outreach, content marketing, brand strategy and graphic/motion design.
 
+> Fardin Rahman Khan Raafi (Fardin Raafi) is a B2B Marketing Executive at Augmex Technologies in Dhaka, Bangladesh, specialising in lead generation, content marketing and design. In 2026 he drove 340K+ organic views and grew the sneaker brand FYGO from 0 to 17K+ followers.
+
 ## Key facts
 - 340K+ organic views from content marketing in 2026 (Augmex and its sneaker sub-brand FYGO)
 - Grew FYGO from 0 to 17K+ followers, ৳20 lakh+ sales and 300+ customers (Jul-Nov 2026)
@@ -11,6 +13,7 @@
 - Head of Corporate & Alumni Relations, BUBT Career Guidance Office; Secretary, Rotaract Club of Dhaka Dynamic; Lead Brand Designer, TEDxUttara
 
 ## Pages
+- [Full content for LLMs](https://fardinraafi.com/llms-full.txt): resume, projects and every blog post in one file
 - [Home](https://fardinraafi.com/)
 - [Resume](https://fardinraafi.com/resume), also in [markdown](https://fardinraafi.com/resume.md)
 - [Leadership & volunteering](https://fardinraafi.com/volunteer), also in [markdown](https://fardinraafi.com/extracurriculars.md)
