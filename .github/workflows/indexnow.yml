@@ -17,4 +17,4 @@ jobs:
           echo "$URLS" | jq length
           curl -s -o /dev/null -w "IndexNow status: %{http_code}\n" -X POST https://api.indexnow.org/indexnow \
             -H 'Content-Type: application/json; charset=utf-8' \
-            -d "{\"host\":\"fardinraafi.com\",\"key\":\"7a0756fd03d4d7c7cc6086db4eff5f32\",\"keyLocation\":\"https://fardinraafi.com/7a0756fd03d4d7c7cc6086db4eff5f32.txt\",\"urlList\":$URLS}"
+            -d "{\"host\":\"fardinraafi.com\",\"key\":\"1d1a8336bfb44f9a81c0a6b3b530d4f1\",\"keyLocation\":\"https://fardinraafi.com/1d1a8336bfb44f9a81c0a6b3b530d4f1.txt\",\"urlList\":$URLS}"
