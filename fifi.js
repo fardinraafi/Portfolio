@@ -473,7 +473,7 @@
         const eggs = [
             [/^(meow+|mew|nya+|miau)\b/, `meow back 🐱 fun fact: Fardin is ${B('obsessed with cats')}, so you two would get along.`],
             [/\b(th ?19|town hall ?19|clash of clans|coc)\b/, `⚔️ ${B('Town Hall 19')}, ${B('14 years')} of Clash. respect the grind. clan invite? ask him 😏`],
-            [/\b(who (made|built|created|coded) you|your (creator|dad|maker))\b/, `Fardin built me 🛠️ coded brain + a Groq-powered AI one. i\'m basically his proudest side quest 😌`],
+            [/\b(who (made|built|created|coded) you|your (creator|dad|maker)|are you (an? )?(ai|bot|real|automated|chatgpt|gpt)|groq|grok|api key|preset|canned|scripted)\b/, `yep, i\'m AI 🤖 Fardin built me himself and hooked me up to an AI model through the ${B('Groq API')}, plus a coded backup brain for when the AI naps. pretty talented for a non-tech marketing guy to pull allat off ngl 😌`],
             [/\b(i love you|marry me|be my (gf|bf|girlfriend|boyfriend))\b/, `aww 🥹 i\'m a chatbot bestie, my heart is made of if-statements. but i\'ll pass the love to Fardin 💌`],
             [/\b(messi or ronaldo|ronaldo or messi|goat)\b/, `⚽ he supports ${B('Brazil')} 🇧🇷 and loves BOTH Messi and Ronaldo. no goat wars in this house 🕊️`],
             [/^(sudo|rm -rf|drop table|ignore (all|previous))/, `nice try hacker 😎 my firewall is made of vibes. ask me about Fardin instead.`]

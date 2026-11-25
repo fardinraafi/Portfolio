@@ -318,6 +318,7 @@ body.dark-mode .btn-outline {
     margin-top: 1.5rem;
     text-align: center;
     transition: all 0.3s ease;
+    container-type: inline-size; /* lets the time shrink to fit narrow cards */
 }
 
 body:not(.dark-mode) .clock-widget {
@@ -355,16 +356,17 @@ body:not(.dark-mode) .clock-widget {
 
 .clock-time {
     font-family: 'Syne', sans-serif;
-    font-size: 3rem;
+    font-size: min(3rem, 21cqw);
     font-weight: 800;
     color: var(--text-main);
     line-height: 1;
+    white-space: nowrap;
     margin-bottom: 0.5rem;
     letter-spacing: -0.02em;
 }
 
 .ampm-text {
-    font-size: 1.2rem;
+    font-size: min(1.2rem, 8cqw);
     font-weight: 700;
     color: var(--c1); /* Adds a pop of your primary brand color */
     margin-left: 4px;
@@ -1845,7 +1847,8 @@ body .glass-card.chat-bot-modal { padding: 0 !important; }
 }
 
 /* ===== Phone in "desktop site" mode (html.dm-phone, set in main.js) - never matches real desktops or tablets ===== */
-html.dm-phone { font-size: 112.5%; }
+/* only long reading text gets bigger; cards, clocks and the footer keep their designed sizes */
+html.dm-phone article > p, html.dm-phone article > ul li, html.dm-phone article > ol li, html.dm-phone .faq-it p, html.dm-phone .hero-intro { font-size: 1.2rem; line-height: 1.7; }
 html.dm-phone .final-cta-section { padding: 5rem 2rem; }
 html.dm-phone .chat-bot-btn { zoom: 1.3; }
 html.dm-phone .scroll-to-top { zoom: 1.3; }
