@@ -1852,3 +1852,10 @@ html.dm-phone article > p, html.dm-phone article > ul li, html.dm-phone article 
 html.dm-phone .final-cta-section { padding: 5rem 2rem; }
 html.dm-phone .chat-bot-btn { zoom: 1.3; }
 html.dm-phone .scroll-to-top { zoom: 1.3; }
+
+/* desktop-site mode on phones: show the page links in the nav bar instead of the burger */
+html.dm-phone .top-nav .nav-menu { display: flex !important; gap: 0; }
+html.dm-phone .top-nav .nav-menu a { font-size: .78rem; padding: .45rem .55rem; }
+html.dm-phone .nav-burger { display: none !important; }
+html.dm-phone .nav-actions .btn-primary { display: none !important; }
+.ft-socials { display: grid; grid-template-columns: repeat(5, max-content); }
