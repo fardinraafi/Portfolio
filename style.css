@@ -1871,3 +1871,12 @@ html.dm-phone .nav-actions .btn-primary { display: none !important; }
     .ft-links a::after { display: none; }
     .ft-links a:hover { transform: translateY(-2px); border-color: var(--c2); color: var(--text-main); }
 }
+/* Phones only: centre socials, Explore and Get in touch in the footer */
+@media (max-width: 900px) {
+    .ft-socials { justify-content: center; }
+    .ft-nav h4 { text-align: center; }
+    .ft-links a:last-child:nth-child(4n+1) { grid-column: 2 / span 2; justify-self: center; width: calc((100% - 0.35rem) / 2); }
+    .ft-status { justify-content: center; }
+    .ft-contact { justify-content: center; text-align: center; }
+    .ft-contact h4, .ft-loc { text-align: center; }
+}
