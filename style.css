@@ -1880,3 +1880,6 @@ html.dm-phone .nav-actions .btn-primary { display: none !important; }
     .ft-contact { justify-content: center; text-align: center; }
     .ft-contact h4, .ft-loc { text-align: center; }
 }
+/* keep the copyright line clear of the fixed Fifi + scroll-up buttons */
+@media (max-width: 900px) { .site-footer { padding-bottom: 6.5rem !important; } }
+html.dm-phone .site-footer { padding-bottom: 7rem !important; }
