@@ -74,7 +74,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261124b">
+    <link rel="stylesheet" href="/style.css?v=20261125a">
     
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -156,6 +156,8 @@
             .ql { padding: 10px 16px; font-size: .86rem; }
         }
     </style>
+<script>try{if(screen.width<=600&&innerWidth>768)document.documentElement.classList.add('dm-phone')}catch(e){}</script>
+<style>html.dm-phone .error-content { justify-content: flex-start !important; padding-top: 220px !important; }</style>
 </head>
 <body class="error-page dark-mode">
     <canvas id="neural-canvas"></canvas>
@@ -575,7 +577,7 @@
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / (innerWidth < 768 ? 18000 : 9000); 
+            let numberOfParticles = (width * height) / ((innerWidth < 768 || screen.width <= 600) ? 18000 : 9000); 
             
             let colors = ['rgba(59, 130, 246, 0.8)', 'rgba(139, 92, 246, 0.8)', 'rgba(219, 39, 119, 0.8)'];
 
@@ -612,7 +614,7 @@
         }
 
         function animate() {
-            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
+            requestAnimationFrame(animate); if ((innerWidth < 768 || screen.width <= 600) && (window.__nnSkip = !window.__nnSkip)) return;
             ctx.clearRect(0, 0, width, height);
             
             for (let i = 0; i < particles.length; i++) {
@@ -625,6 +627,6 @@
         animate();
     </script>
 
-<script src="/fifi.js?v=20261124b" defer></script>
+<script src="/fifi.js?v=20261125a" defer></script>
 </body>
 </html>

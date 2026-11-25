@@ -1843,3 +1843,9 @@ body .glass-card.chat-bot-modal { padding: 0 !important; }
     body .site-footer .copyright span { font-size: 13px !important; }
     body .cr-chart-top span, body .cr-cal-top span { font-size: 13px !important; }
 }
+
+/* ===== Phone in "desktop site" mode (html.dm-phone, set in main.js) - never matches real desktops or tablets ===== */
+html.dm-phone { font-size: 112.5%; }
+html.dm-phone .final-cta-section { padding: 5rem 2rem; }
+html.dm-phone .chat-bot-btn { zoom: 1.3; }
+html.dm-phone .scroll-to-top { zoom: 1.3; }

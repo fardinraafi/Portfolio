@@ -94,7 +94,7 @@
     <!-- ===== /SEO ===== -->
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=20261124b">
+    <link rel="stylesheet" href="/style.css?v=20261125a">
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
@@ -331,7 +331,7 @@ body:not(.dark-mode) .cta-badge { color: var(--c2); }
 <footer class="site-footer reveal"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/techtext.js?v=20261124b"></script>
+<script src="/techtext.js?v=20261125a"></script>
 <script>
 /* =========================================================
    POSTS (newest first). Add new posts to the top of this list.
@@ -470,7 +470,7 @@ document.querySelectorAll('.fx').forEach(el => reduce ? el.classList.add('in') :
 })();
 </script>
 
-<script src="/main.js?v=20261124b"></script>
+<script src="/main.js?v=20261125a"></script>
 
 <!-- Background neural network (same look as before; pauses when the tab is hidden) -->
 <script>
@@ -488,9 +488,9 @@ document.querySelectorAll('.fx').forEach(el => reduce ? el.classList.add('in') :
             this.baseX += this.dx; this.baseY += this.dy; if (this.baseX < 0 || this.baseX > width) this.dx *= -1; if (this.baseY < 0 || this.baseY > height) this.dy *= -1;
             ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fillStyle = this.color; ctx.fill(); } }
     const cols = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
-    for (let i = 0; i < width * height / (innerWidth < 768 ? 18000 : 9000); i++) { const s = Math.random() * 2 + 1; particles.push(new P(Math.random() * (innerWidth - s * 4) + s * 2, Math.random() * (innerHeight - s * 4) + s * 2, Math.random() - 0.5, Math.random() - 0.5, s, cols[i % 3])); }
+    for (let i = 0; i < width * height / ((innerWidth < 768 || screen.width <= 600) ? 18000 : 9000); i++) { const s = Math.random() * 2 + 1; particles.push(new P(Math.random() * (innerWidth - s * 4) + s * 2, Math.random() * (innerHeight - s * 4) + s * 2, Math.random() - 0.5, Math.random() - 0.5, s, cols[i % 3])); }
     const loop = () => {
-        requestAnimationFrame(loop); if (document.hidden || (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip))) return; ctx.clearRect(0, 0, width, height); particles.forEach(p => p.update());
+        requestAnimationFrame(loop); if (document.hidden || ((innerWidth < 768 || screen.width <= 600) && (window.__nnSkip = !window.__nnSkip))) return; ctx.clearRect(0, 0, width, height); particles.forEach(p => p.update());
         for (let a = 0; a < particles.length; a++) for (let b = a; b < particles.length; b++) { const d = (particles[a].x - particles[b].x) ** 2 + (particles[a].y - particles[b].y) ** 2;
             if (d < (width / 7) * (height / 7)) { ctx.strokeStyle = `rgba(139, 92, 246, ${(1 - d / 20000) * 0.4})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(particles[a].x, particles[a].y); ctx.lineTo(particles[b].x, particles[b].y); ctx.stroke(); } }
     };

@@ -1,3 +1,6 @@
+/* Phone in 'desktop site' mode: physical screen is phone-sized but the page is laid out wide. Real desktops and tablets never match. */
+(() => { try { if (screen.width <= 600 && innerWidth > 768) document.documentElement.classList.add('dm-phone'); } catch (e) {} })();
+
 
 /* ===== Haptic tap feedback (Android; iOS browsers ignore vibrate) ===== */
 (() => {

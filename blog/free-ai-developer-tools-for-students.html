@@ -131,7 +131,7 @@
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=20261124b">
+    <link rel="stylesheet" href="/style.css?v=20261125a">
     
     <style>
         /* UNIQUE BLOG STYLING */
@@ -371,7 +371,7 @@
 
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/main.js?v=20261124b"></script>
+<script src="/main.js?v=20261125a"></script>
 
 <!-- PAGE SPECIFIC BACKGROUND PHYSICS ENGINE -->
 <script>
@@ -447,7 +447,7 @@
 
         function init() {
             particles = [];
-            let numberOfParticles = (width * height) / (innerWidth < 768 ? 18000 : 9000); 
+            let numberOfParticles = (width * height) / ((innerWidth < 768 || screen.width <= 600) ? 18000 : 9000); 
             let colors = ['rgba(59, 130, 246, 0.6)', 'rgba(139, 92, 246, 0.6)', 'rgba(219, 39, 119, 0.6)'];
 
             for (let i = 0; i < numberOfParticles; i++) {
@@ -481,7 +481,7 @@
         }
 
         function animate() {
-            requestAnimationFrame(animate); if (innerWidth < 768 && (window.__nnSkip = !window.__nnSkip)) return;
+            requestAnimationFrame(animate); if ((innerWidth < 768 || screen.width <= 600) && (window.__nnSkip = !window.__nnSkip)) return;
             ctx.clearRect(0, 0, width, height);
             for (let i = 0; i < particles.length; i++) particles[i].update();
             connect();
@@ -491,6 +491,6 @@
         animate();
     }
 </script>
-<script src="/fifi.js?v=20261124b" defer></script>
+<script src="/fifi.js?v=20261125a" defer></script>
 </body>
 </html>
