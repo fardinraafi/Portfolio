@@ -192,13 +192,17 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <div class="nav-actions">
         <a href="/contact" class="btn btn-primary">Let's Talk</a>
-      <button id="themeToggle" class="theme-toggle-track" aria-label="Toggle Dark Mode">
-            <span class="theme-text text-dark">Dark</span>
-            <span class="theme-text text-light">Light</span>
-            <div class="theme-liquid-bubble">
-                <svg class="icon-moon" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-                <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            </div>
+        <button id="themeToggle" class="theme-btn" type="button" aria-label="Switch between light and dark mode" title="Switch theme">
+            <svg class="ti" viewBox="0 0 24 24" aria-hidden="true">
+                <defs>
+                    <linearGradient id="tiGrad" gradientUnits="userSpaceOnUse" x1="3" y1="3" x2="21" y2="21"><stop class="ti-s1" offset="0"/><stop class="ti-s2" offset="1"/></linearGradient>
+                    <mask id="tiMask"><rect width="24" height="24" fill="#fff"/><circle class="ti-eclipse" cx="16.6" cy="7.4" r="6.2" fill="#000"/></mask>
+                </defs>
+                <g class="ti-rays" stroke="url(#tiGrad)" stroke-width="1.9" stroke-linecap="round"><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(0 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(45 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(90 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(135 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(180 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(225 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(270 12 12)"/><line x1="12" y1="1.6" x2="12" y2="3.6" transform="rotate(315 12 12)"/></g>
+                <circle class="ti-core" cx="12" cy="12" r="5.2" fill="url(#tiGrad)" mask="url(#tiMask)"/>
+                <path class="ti-star ti-star1" fill="url(#tiGrad)" d="M19 13.2l.55 1.25 1.25.55-1.25.55L19 16.8l-.55-1.25-1.25-.55 1.25-.55z"/>
+                <path class="ti-star ti-star2" fill="url(#tiGrad)" d="M15.6 2.2l.4.9.9.4-.9.4-.4.9-.4-.9-.9-.4.9-.4z"/>
+            </svg>
         </button>
         <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navDrawer">
             <span></span><span></span><span></span>
