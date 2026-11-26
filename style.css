@@ -1883,3 +1883,14 @@ html.dm-phone .nav-actions .btn-primary { display: none !important; }
 /* keep the copyright line clear of the fixed Fifi + scroll-up buttons */
 @media (max-width: 900px) { .site-footer { padding-bottom: 6.5rem !important; } }
 html.dm-phone .site-footer { padding-bottom: 7rem !important; }
+
+/* Footer banner: padded, rounded, shared by every page that has it (home, contact) */
+body .contact-banner-wrapper {
+    width: 100%; max-width: 100%; margin: 0; padding: 1.5rem 2rem 2rem;
+    border: none; overflow: visible; position: relative; z-index: 2;
+}
+body .contact-banner-wrapper img {
+    width: 100%; height: auto; display: block; border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 40px rgba(124, 58, 237, 0.15);
+}
+@media (min-width: 901px) { body .contact-banner-wrapper { display: block !important; } }
