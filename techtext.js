@@ -216,6 +216,11 @@ function createTechText(wrap, container, TEXT, ALIGN, INTRO_DELAY) {
     };
 
     const tick = now => {
+        // idle (just the slow scanner/gradient): 30fps is plenty and halves CPU; paused when the tab is hidden
+        if (document.hidden) { raf = 0; return; }
+        if (!introducing && !pointer.inside && dragging < 0 && now - (tick.lastDraw || 0) < 32) { raf = requestAnimationFrame(tick); return; }
+        tick.lastDraw = now;
+
         raf = 0;
         if (sizeDirty) {
             sizeDirty = false;
@@ -349,6 +354,7 @@ function createTechText(wrap, container, TEXT, ALIGN, INTRO_DELAY) {
 
     new ResizeObserver(resize).observe(container);
     new IntersectionObserver(([en]) => { visible = en.isIntersecting; wake(); }).observe(container);
+    document.addEventListener('visibilitychange', () => { if (!document.hidden) wake(); });
     document.addEventListener('visibilitychange', () => { visible = !document.hidden; wake(); });
     if (document.fonts) {
         document.fonts.load(fontFor(64), S.text).finally(() => document.fonts.ready.then(() => { fontsReady = true; resize(); }));

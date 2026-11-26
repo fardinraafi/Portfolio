@@ -20,14 +20,16 @@
     <meta property="og:url" content="https://fardinraafi.com/gallery">
     <meta property="og:title" content="Gallery - Events &amp; Leadership | Fardin Rahman Khan Raafi">
     <meta property="og:description" content="Photo gallery of Fardin Rahman Khan Raafi: marketing events, leadership roles, awards, volunteering and community projects in Dhaka, Bangladesh.">
-    <meta property="og:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/og/gallery.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Gallery - Events &amp; Leadership | Fardin Rahman Khan Raafi">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@fardin_raafi">
     <meta name="twitter:creator" content="@fardin_raafi">
     <meta name="twitter:title" content="Gallery - Events &amp; Leadership | Fardin Rahman Khan Raafi">
     <meta name="twitter:description" content="Photo gallery of Fardin Rahman Khan Raafi: marketing events, leadership roles, awards, volunteering and community projects in Dhaka, Bangladesh.">
-    <meta name="twitter:image" content="https://fardinraafi.com/misc_img/og-preview.jpg">
+    <meta name="twitter:image" content="https://fardinraafi.com/misc_img/og/gallery.jpg">
     <!-- Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +99,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261126c">
+    <link rel="stylesheet" href="/style.css?v=20261126d">
     
     <style>
         /* Tech-text title */
@@ -450,7 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         galleryHTML += `
             <div class="collage-item ${spanClass}" data-tilt data-tilt-max="5" data-tilt-speed="400">
-                <img src="/gallery/gallery_${item.id}.webp" class="grid-img" loading="lazy" alt="Fardin Rahman Khan Raafi - Marketing Executive &amp; Growth Associate Portfolio: ${item.text.replace(/"/g, '&quot;')}" data-caption="${item.text.replace(/"/g, '&quot;')}" onerror="this.parentElement.style.display='none'">
+                <img src="/gallery/thumb/gallery_${item.id}.webp" data-full="/gallery/gallery_${item.id}.webp" class="grid-img" decoding="async" loading="lazy" alt="Fardin Rahman Khan Raafi - Marketing Executive &amp; Growth Associate Portfolio: ${item.text.replace(/"/g, '&quot;')}" data-caption="${item.text.replace(/"/g, '&quot;')}" onerror="this.parentElement.style.display='none'">
                 <div class="gallery-overlay">
                     <p>${item.text}</p>
                 </div>
@@ -483,10 +485,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!item || item.classList.contains('cta-card')) return;
             
             const currentImages = Array.from(document.querySelectorAll('.grid-img')).filter(img => img.parentElement.style.display !== 'none');
-            imageList = currentImages.map(img => ({ src: img.src, alt: img.alt, caption: img.dataset.caption || img.alt }));
+            imageList = currentImages.map(img => ({ src: img.dataset.full || img.src, thumb: img.src, alt: img.alt, caption: img.dataset.caption || img.alt }));
             
             const clickedImg = item.querySelector('.grid-img');
-            currentIndex = imageList.findIndex(img => img.src === clickedImg.src);
+            currentIndex = imageList.findIndex(img => img.thumb === clickedImg.src);
             
             updateLightbox();
             lightbox.classList.add('active');
@@ -535,10 +537,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <!-- Link to Central Nav/Theme Logic -->
-<script src="/main.js?v=20261126c"></script>
+<script src="/main.js?v=20261126d"></script>
 
 <!-- Tech-text title -->
-<script src="/techtext.js?v=20261126c"></script>
+<script src="/techtext.js?v=20261126d"></script>
 <script>
 /* createTechText lives in /techtext.js */
 

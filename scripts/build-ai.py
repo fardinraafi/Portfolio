@@ -91,7 +91,7 @@ def posts():
 
 TLDR = '<div class="ai-tldr"><b>TL;DR</b> {d}</div>'
 AUTHOR = ('<div class="ai-author">'
-          '<img src="/misc_img/profile.jpg" alt="Fardin Rahman Khan Raafi" width="64" height="64" loading="lazy">'
+          '<img src="/misc_img/avatar-320.webp" alt="Fardin Rahman Khan Raafi" width="64" height="64" loading="lazy">'
           '<div><span class="ai-a-k">Written by</span><a class="ai-a-n" href="/" rel="author">Fardin Rahman Khan Raafi</a>'
           '<p>{defn}</p>'
           '<div class="ai-a-l"><a href="/resume">Resume</a><a href="https://www.linkedin.com/in/fardinraafi" target="_blank" rel="noopener">LinkedIn</a>'
