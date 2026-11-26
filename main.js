@@ -493,6 +493,7 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Initialize immediately, and again after a short delay (to catch the dynamic certs)
+        window.FRInitLightbox = initializeLightbox; // certificates page re-calls this after filtering
         initializeLightbox();
         setTimeout(initializeLightbox, 300);
 
