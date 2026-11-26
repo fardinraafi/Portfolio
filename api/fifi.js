@@ -135,13 +135,16 @@ module.exports = async (req, res) => {
                 } catch (e) {}
             }
         }
-        res.end();
-        // log questions Fifi couldn't answer, so the insights page can show what facts to add
-        const gap = (full.match(/GAP:\s*([^\n]{2,80})/i) || [])[1];
-        if (gap && R.enabled) {
+        // log questions Fifi couldn't answer BEFORE ending the response (Vercel may stop the function right after res.end)
+        let gap = (full.match(/GAP:\s*([^\n]{2,80})/i) || [])[1];
+        const reply = full.split(/\n\s*(?:ACT|CHIPS|GAP)\s*:/i)[0];
+        const dodged = /\b(salary|pay|availab|notice period|address|phone)\b/i.test(clean[clean.length - 1].content);
+        if (!gap && !dodged && /(don'?t|do not|doesn'?t) (know|have)|not sure|no (info|idea|details)|haven'?t (got|been told)|isn'?t (in|on) my|can'?t find|not something i know|ask him|leave (him|fardin) a message|send (him|fardin) a message/i.test(reply)) gap = 'unknown: ' + clean[clean.length - 1].content.slice(0, 60);
+        if (gap && !dodged && R.enabled) {
             const q = clean[clean.length - 1].content.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').replace(/\+?\d[\d\s-]{7,}\d/g, '[number]').slice(0, 300);
             await R.pipeline([['LPUSH', 'fifi:gaps', JSON.stringify({ t: Date.now(), q, gap: gap.trim() })], ['LTRIM', 'fifi:gaps', '0', '999']]);
         }
+        res.end();
     } catch (e) {
         if (!res.headersSent) return res.status(502).json({ error: 'fetch failed', detail: String(e).slice(0, 200) });
         res.end();
