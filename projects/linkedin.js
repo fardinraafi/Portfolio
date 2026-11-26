@@ -190,7 +190,13 @@
         // scroll-spy for tabs
         const spy = () => {
             let cur = ''; document.querySelectorAll('.li-sec[id^="s-"]').forEach(s => { if (s.getBoundingClientRect().top < 220) cur = s.id.slice(2); });
-            document.querySelectorAll('.li-tab').forEach(t => { const on = t.dataset.s === cur; if (on && !t.classList.contains('on')) t.scrollIntoView({ block: 'nearest', inline: 'center' }); t.classList.toggle('on', on); });
+            const strip = $('#liTabs');
+            document.querySelectorAll('.li-tab').forEach(t => {
+                const on = t.dataset.s === cur;
+                // only scroll the tab strip sideways; never move the page
+                if (on && !t.classList.contains('on')) strip.scrollTo({ left: t.offsetLeft - strip.clientWidth / 2 + t.offsetWidth / 2, behavior: 'smooth' });
+                t.classList.toggle('on', on);
+            });
         };
         addEventListener('scroll', () => requestAnimationFrame(spy), { passive: true });
         window.FRSwipe && window.FRSwipe($('#liLb'), $('#liLbImg'), { next: () => {}, prev: () => {}, close: () => $('#liLb').classList.remove('on') });
