@@ -60,7 +60,8 @@ td.p { color: #93C5FD; white-space: nowrap; width: 1%; }
             <div class="card"><b>Most asked words</b><div class="chips" id="words"></div></div>
             <div class="card"><b>Where people ask</b><table id="pages"></table></div>
         </div>
-        <div class="card"><b>Recent questions</b><input id="q" type="search" placeholder="Filter questions…"><table id="list"></table></div>
+        <div class="card"><div class="top"><div><b>🕳️ Gaps to fill</b> <span class="mut">(questions Fifi couldn't answer, add these facts)</span></div><button id="cpGaps">📋 Copy gaps</button></div><table id="gaps"></table></div>
+        <div class="card"><div class="top"><b>Recent questions</b><button id="cpAll">📋 Copy all questions</button></div><input id="q" type="search" placeholder="Filter questions…"><table id="list"></table></div>
     </div>
 </div>
 <script>
@@ -87,7 +88,12 @@ function draw() {
     $('chart').innerHTML = days.map(k => `<i style="height:${(d.days[k] || 0) / max * 100}%" data-t="${k}: ${d.days[k] || 0}"></i>`).join('');
     $('words').innerHTML = d.words.map(([w, n]) => `<span>${esc(w)}<b>${n}</b></span>`).join('') || '<span class="mut">No data yet</span>';
     $('pages').innerHTML = Object.entries(d.pages).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([p, n]) => `<tr><td>${esc(p)}</td><td class="d">${n}</td></tr>`).join('');
+    $('gaps').innerHTML = (d.gaps || []).slice(0, 100).map(x => `<tr><td class="d">${new Date(x.t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</td><td><b>${esc(x.gap)}</b><br><span class="mut">${esc(x.q)}</span></td></tr>`).join('') || '<tr><td class="mut">No gaps yet. Fifi has known every answer so far.</td></tr>';
     list();
+}
+function copy(text, btn) {
+    const done = () => { const o = btn.textContent; btn.textContent = '✓ Copied'; setTimeout(() => btn.textContent = o, 1500); };
+    navigator.clipboard ? navigator.clipboard.writeText(text).then(done, done) : done();
 }
 function list() {
     const f = $('q').value.trim().toLowerCase();
@@ -95,6 +101,8 @@ function list() {
 }
 $('f').addEventListener('submit', e => { e.preventDefault(); load($('pw').value); });
 $('q').addEventListener('input', list);
+$('cpAll').addEventListener('click', e => copy('Questions visitors asked Fifi (newest first):\n\n' + (DATA.all || []).map(q => '- ' + q).join('\n'), e.target));
+$('cpGaps').addEventListener('click', e => copy('Things Fifi could not answer:\n\n' + (DATA.gaps || []).map(x => `- ${x.gap} (asked: "${x.q}")`).join('\n'), e.target));
 $('re').addEventListener('click', () => load(sessionStorage.getItem('fi-pw') || ''));
 $('out').addEventListener('click', () => { sessionStorage.removeItem('fi-pw'); location.reload(); });
 const saved = sessionStorage.getItem('fi-pw'); if (saved) load(saved);

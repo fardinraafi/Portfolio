@@ -48,6 +48,7 @@ RULES:
 - If the visitor sounds like a recruiter, client or wants to work with Fardin, offer to pass him a message (use the msg button).
 OUTPUT FORMAT: write the reply first. Then, on new lines at the very end, optionally:
 ACT: up to 3 of ${ACTS.join(', ')} (msg = leave Fardin a message right here in chat, book = book a call, resumePg = resume page, resume = download resume, certs = certificates, lead = leadership page, res = free resources)
+GAP: only if the facts above did NOT contain the answer (you had to say you don't know, guess, or dodge), add a line "GAP: <the missing info in 3-6 words>". Never add GAP for salary/availability/address dodges or off-topic requests.
 CHIPS: 2 or 3 short follow-up questions the visitor might tap next, separated by " | ", each under 6 words, in the visitor's language
 ${FACTS}
 ${KB}`;
@@ -116,7 +117,7 @@ module.exports = async (req, res) => {
         res.setHeader('Content-Type', 'text/plain; charset=utf-8');
         res.setHeader('X-Accel-Buffering', 'no');
         const reader = r.body.getReader(); const dec = new TextDecoder();
-        let buf = '';
+        let buf = '', full = '';
         while (true) {
             const { done, value } = await reader.read();
             if (done) break;
@@ -130,11 +131,17 @@ module.exports = async (req, res) => {
                 try {
                     const j = JSON.parse(data);
                     const d = j.choices && j.choices[0] && j.choices[0].delta && j.choices[0].delta.content;
-                    if (d) res.write(d.replace(/\s*[\u2014\u2013]\s*/g, ', '));
+                    if (d) { const out = d.replace(/\s*[\u2014\u2013]\s*/g, ', '); full += out; res.write(out); }
                 } catch (e) {}
             }
         }
         res.end();
+        // log questions Fifi couldn't answer, so the insights page can show what facts to add
+        const gap = (full.match(/GAP:\s*([^\n]{2,80})/i) || [])[1];
+        if (gap && R.enabled) {
+            const q = clean[clean.length - 1].content.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').replace(/\+?\d[\d\s-]{7,}\d/g, '[number]').slice(0, 300);
+            await R.pipeline([['LPUSH', 'fifi:gaps', JSON.stringify({ t: Date.now(), q, gap: gap.trim() })], ['LTRIM', 'fifi:gaps', '0', '999']]);
+        }
     } catch (e) {
         if (!res.headersSent) return res.status(502).json({ error: 'fetch failed', detail: String(e).slice(0, 200) });
         res.end();

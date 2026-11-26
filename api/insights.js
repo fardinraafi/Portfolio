@@ -15,12 +15,13 @@ module.exports = async (req, res) => {
     if (!crypto.timingSafeEqual(a, b)) return res.status(401).json({ error: 'Wrong password.' });
     if (!R.enabled) return res.status(503).json({ error: 'Upstash is not connected yet.' });
 
-    const out = await R.pipeline([['LRANGE', 'fifi:q', '0', '2999'], ['HGETALL', 'fifi:days'], ['HGETALL', 'fifi:pages']]);
+    const out = await R.pipeline([['LRANGE', 'fifi:q', '0', '2999'], ['HGETALL', 'fifi:days'], ['HGETALL', 'fifi:pages'], ['LRANGE', 'fifi:gaps', '0', '999']]);
     if (!out) return res.status(502).json({ error: 'Could not reach Upstash.' });
     const qs = (out[0] || []).map(x => { try { return JSON.parse(x); } catch (e) { return null; } }).filter(Boolean);
     const pairs = arr => { const o = {}; for (let i = 0; i < (arr || []).length; i += 2) o[arr[i]] = +arr[i + 1]; return o; };
     const words = {};
     qs.forEach(x => new Set(x.q.toLowerCase().match(/[a-zঀ-৿']{3,}/g) || []).forEach(w => { if (!STOP.has(w)) words[w] = (words[w] || 0) + 1; }));
     const top = Object.entries(words).sort((a, b) => b[1] - a[1]).slice(0, 30);
-    return res.status(200).json({ total: qs.length, days: pairs(out[1]), pages: pairs(out[2]), words: top, recent: qs.slice(0, 300) });
+    const gaps = (out[3] || []).map(x => { try { return JSON.parse(x); } catch (e) { return null; } }).filter(Boolean);
+    return res.status(200).json({ gaps, all: qs.map(x => x.q), total: qs.length, days: pairs(out[1]), pages: pairs(out[2]), words: top, recent: qs.slice(0, 300) });
 };

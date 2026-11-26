@@ -537,7 +537,7 @@
     }
     // splits the streamed text into visible reply + ACT/CHIPS meta lines
     function parseAi(raw) {
-        const cut = raw.search(/\n?\s*(ACT|CHIPS)\s*:/i);
+        const cut = raw.search(/\n?\s*(ACT|CHIPS|GAP)\s*:/i);
         const text = (cut >= 0 ? raw.slice(0, cut) : raw).trim();
         const meta = cut >= 0 ? raw.slice(cut) : '';
         const am = meta.match(/ACT\s*:\s*([^\n]*)/i), cm = meta.match(/CHIPS\s*:\s*([^\n]*)/i);
