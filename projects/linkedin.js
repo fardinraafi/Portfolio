@@ -11,7 +11,7 @@
         return [y ? y + ' yr' + (y > 1 ? 's' : '') : '', m ? m + ' mo' + (m > 1 ? 's' : '') : ''].filter(Boolean).join(' ');
     };
     const range = (a, b) => a ? `${a} - ${b || 'Present'}` : (b || '');
-    const PAL = ['#2563EB', '#7C3AED', '#DB2777', '#0891B2', '#059669', '#D97706', '#4F46E5', '#BE185D'];
+    const PAL = ['#2563EB', '#7C3AED', '#BE185D', '#0E7490', '#047857', '#B45309', '#4F46E5', '#9D174D'];
     const col = s => PAL[[...s].reduce((a, c) => a + c.charCodeAt(0), 0) % PAL.length];
     const ini = s => s.replace(/[^A-Za-z ]/g, ' ').split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join('').toUpperCase() || '•';
     const CAUSE = { environment: '🌱', health: '🩺', socialServices: '🤝', children: '🧒', education: '📚' };
@@ -76,7 +76,7 @@
         const chips = `<div class="li-filters"><button class="li-chip${certFilter ? '' : ' on'}" data-cf="">All ${D.certifications.length}</button>${top.map(([n, k]) => `<button class="li-chip${certFilter === n ? ' on' : ''}" data-cf="${esc(n)}">${esc(n.length > 26 ? n.slice(0, 24) + '…' : n)} ${k}</button>`).join('')}</div>`;
         const body = L.map(c => `<article class="li-cert">
             <button class="li-cert-img" ${c.img ? `style="background-image:url(/certs/thumb/cert-${c.img}.webp)" data-full="/certs/cert-${c.img}.webp" data-cap="${esc(c.name)}" aria-label="View certificate: ${esc(c.name)}"` : 'disabled aria-hidden="true"'}>${c.img ? '' : '🎓'}</button>
-            <div class="li-cert-b"><h4>${hl(c.name)}</h4><div class="li-sub">${hl(c.issuer)}</div><div class="li-sub">Issued ${esc(c.issued || '-')}${c.expires ? ' · Expires ' + esc(c.expires) : ''}</div>
+            <div class="li-cert-b"><h3>${hl(c.name)}</h3><div class="li-sub">${hl(c.issuer)}</div><div class="li-sub">Issued ${esc(c.issued || '-')}${c.expires ? ' · Expires ' + esc(c.expires) : ''}</div>
             ${c.url ? `<a href="${esc(c.url)}" target="_blank" rel="noopener">Show credential ↗</a>` : ''}</div></article>`).join('');
         return sec('certifications', 'Certifications', D.certifications.length, (L.length || certFilter ? chips : '') + (L.length ? `<div class="li-certs">${body}</div>` : (certFilter ? '<p class="li-empty">No matches.</p>' : '')));
     }
@@ -112,7 +112,7 @@
     let lastPosts = [];
     function articles() {
         const L = D.articles.filter(a => has(a.title, a.excerpt)).sort((a, b) => b.date.localeCompare(a.date));
-        return sec('articles', 'Articles', D.articles.length, L.length ? `<div class="li-arts">${L.map(a => `<article class="li-art"><span class="li-sub">${esc(a.date)}</span><h4>${hl(a.title)}</h4><p>${hl(a.excerpt)}</p>
+        return sec('articles', 'Articles', D.articles.length, L.length ? `<div class="li-arts">${L.map(a => `<article class="li-art"><span class="li-sub">${esc(a.date)}</span><h3>${hl(a.title)}</h3><p>${hl(a.excerpt)}</p>
             <div class="li-post-a">${a.blog ? `<a href="${a.blog}">Read on my site</a>` : ''}<a href="${esc(a.linkedin)}" target="_blank" rel="noopener">LinkedIn ↗</a></div></article>`).join('')}</div>` : '');
     }
 

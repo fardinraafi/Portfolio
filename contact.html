@@ -99,7 +99,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&family=Bricolage+Grotesque:wght@800&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/style.css?v=20261126d">
+    <link rel="stylesheet" href="/style.css?v=20261126e">
 
     <style>
 /* =========================================================
@@ -185,7 +185,7 @@ body.dark-mode .copy-btn { color: #93C5FD; }
 .copy-btn.done { background: #10B981; border-color: #10B981; color: #fff; }
 
 /* FAQ */
-.faq-section h3 { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.2rem; }
+.faq-section h3, .faq-section .faq-h { font-family: 'Syne', sans-serif; font-size: 1.5rem; color: var(--text-main); margin-bottom: 1.2rem; }
 .faq-item { background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 14px; margin-bottom: 0.8rem; overflow: hidden; transition: all 0.3s ease; }
 body.dark-mode .faq-item { background: rgba(30, 41, 59, 0.4); border-color: rgba(255, 255, 255, 0.08); }
 .faq-item.active { background: rgba(255, 255, 255, 0.9); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.08); border-color: var(--c1); }
@@ -485,7 +485,7 @@ textarea ~ .tick { top: 22px; }
 /* What happens next */
 .next-steps { position: relative; padding: 1.6rem 1.6rem 1.4rem; border-radius: 22px; background: rgba(255, 255, 255, 0.5); border: 1px solid rgba(124, 58, 237, 0.12); backdrop-filter: blur(14px); }
 body.dark-mode .next-steps { background: rgba(30, 41, 59, 0.45); border-color: rgba(255, 255, 255, 0.07); }
-.next-steps h4 { font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--text-main); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
+.next-steps h4, .next-steps .ns-h { font-family: 'Syne', sans-serif; font-size: 1rem; color: var(--text-main); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 8px; }
 .ns-list { position: relative; display: grid; gap: 1.1rem; }
 .ns-list::before { content: ''; position: absolute; left: 17px; top: 18px; bottom: 18px; width: 2px; background: rgba(124, 58, 237, 0.15); }
 .ns-list::after { content: ''; position: absolute; left: 17px; top: 18px; width: 2px; height: calc(100% - 36px); background: linear-gradient(var(--c1), var(--c2), #10B981); transform: scaleY(0); transform-origin: top; transition: transform 1.6s ease 0.2s; box-shadow: 0 0 10px rgba(124, 58, 237, 0.6); }
@@ -723,7 +723,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
         </div>
 
         <div class="faq-section">
-            <h3>Frequently Asked Questions</h3>
+            <h2 class="faq-h">Frequently Asked Questions</h2>
             <div class="faq-item">
                 <button type="button" class="faq-question" aria-expanded="false">What is your typical response time? <span class="faq-icon">+</span></button>
                 <div class="faq-answer"><div>I typically review and respond to all inquiries within 2 hours during the day (Dhaka time, GMT+6). Messages sent at night get a reply the next morning.</div></div>
@@ -834,7 +834,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
         </div>
 
         <div class="next-steps" id="nextSteps">
-            <h4>🧭 What happens next</h4>
+            <h3 class="ns-h">🧭 What happens next</h3>
             <div class="ns-list">
                 <div class="ns"><div class="ns-dot">📨</div><div><b>You send a message</b><span>Pick a topic so I know the context.</span></div></div>
                 <div class="ns"><div class="ns-dot">💬</div><div><b>I reply within ~2 hours</b><span>During the day, Dhaka time (GMT+6).</span></div></div>
@@ -948,7 +948,7 @@ body.dark-mode .sky-time small { color: #C4B5FD; }
 <div class="toast" id="toast" role="status" aria-live="polite">✓ <span id="toastText">Email copied</span></div>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/main.js?v=20261126d"></script>
+<script src="/main.js?v=20261126e"></script>
 
 <script>
 document.addEventListener('DOMContentLoaded', () => {

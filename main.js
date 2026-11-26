@@ -253,7 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         <div class="footer-col ft-nav">
-            <h4>Explore</h4>
+            <h2 class="ft-h">Explore</h2>
             <div class="ft-links">
                 <a href="/">Home</a>
                 <a href="/gallery">Gallery</a>
@@ -267,7 +267,7 @@ document.addEventListener('DOMContentLoaded', () => {
             </div>
         </div>
         <div class="footer-col ft-contact">
-            <h4>Get in touch</h4>
+            <h2 class="ft-h">Get in touch</h2>
             <button type="button" class="ft-mail" id="ftMail" aria-label="Copy email address">
                 <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 <span class="ft-mail-text">fardinraafi@gmail.com</span>

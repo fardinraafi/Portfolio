@@ -291,3 +291,7 @@ body:not(.dark-mode) .hl-mode button.on { background: #fff; }
 .hl-mini b { display: grid; place-items: center; min-width: 34px; height: 34px; border-radius: 50%; font: 800 .95rem 'Syne', sans-serif; background: var(--mc, #64748B); }
 .hl-mini.in { opacity: 1; transform: none; }
 @media (max-width: 960px) { .hl-mini { display: inline-flex; } body:has(.hl-mini.in) .scroll-to-top { opacity: 0 !important; pointer-events: none; } }
+
+/* a11y contrast */
+body.dark-mode .hl-formula small { color: #C4B5FD; }
+.hl-sec-head p em { color: var(--text-main); }
