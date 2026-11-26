@@ -8,7 +8,7 @@
     'use strict';
 
     const path = location.pathname.replace(/\.html$/, '');
-    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : path.startsWith('/projects/hook-lab') ? 'hooklab' : path.startsWith('/projects/caption-maker') ? 'caption' : /^\/blog\/./.test(path) ? 'blog' : 'home';
+    const MODE = document.body.classList.contains('error-page') ? '404' : path.startsWith('/resume') ? 'resume' : path.startsWith('/projects/hook-lab') ? 'hooklab' : path.startsWith('/projects/caption-maker') ? 'caption' : /^\/blog\/./.test(path) ? 'blog' : path.startsWith('/certificates') ? 'certs' : path.startsWith('/contact') ? 'contact' : path.startsWith('/gallery') ? 'gallery' : path.startsWith('/resources') ? 'resources' : path.startsWith('/volunteer') ? 'leadership' : path.startsWith('/projects/bookmarks') ? 'bookmarks' : /^\/projects\/?$|^\/projects\/index/.test(path) ? 'projects' : /^\/blog\/?$/.test(path) ? 'bloglist' : /guidebook|framework/.test(path) ? 'guide' : 'home';
     const MODES = {
         home:   { hello: "yo, i'm Fifi!", sub: "Fardin's AI sidekick. ask me anything about him: work, skills, awards, fun facts. i know the lore 📚",
                   starters: [['Who is Fardin?', '✦'], ['Work experience', '💼'], ['Skills', '🧠'], ['Biggest wins?', '🏆'], ['Download resume', '📥'], ['Book a call', '🗓️']] },
@@ -20,6 +20,24 @@
                   starters: [['Write me a caption', '✍️'], ['Best hashtags tips?', '#️⃣'], ['Who built this?', '🛠️'], ['Book a call', '🗓️']] },
         blog:   { hello: "speed-reading for you ⚡", sub: "i can summarise this post, explain any part of it, or tell you about the guy who wrote it.",
                   starters: [['Summarise this post', '📝'], ['Key takeaway?', '🎯'], ['Who wrote this?', '✍️'], ['More posts like this', '📚']] },
+        certs:  { hello: "59 certs and counting 🎓", sub: "ask me which ones matter most, what he learned, or how he finds time for all this.",
+                  starters: [['Which cert is his best?', '🏅'], ['Any AI certifications?', '🤖'], ['Marketing certs?', '📈'], ['Book a call', '🗓️']] },
+        contact: { hello: "wanna reach Fardin? 📬", sub: "i can tell you how fast he replies, what he's open to, or pass him a message right here.",
+                  starters: [['How fast does he reply?', '⚡'], ['Is he open to work?', '💼'], ['Leave a message', '✉️'], ['Book a call', '🗓️']] },
+        gallery: { hello: "the art department 🎨", sub: "ask me about his design work, the tools he uses, or the brands behind these.",
+                  starters: [['What tools does he design with?', '🧰'], ['Which brands are these for?', '🏷️'], ['How many designs has he made?', '🖌️'], ['Book a call', '🗓️']] },
+        resources: { hello: "free stuff aisle 🛒", sub: "ask me which guide to start with, or anything about Fardin.",
+                  starters: [['Which guide should I start with?', '📘'], ['Best free tools?', '🧰'], ['Who made these?', '✍️'], ['Book a call', '🗓️']] },
+        leadership: { hello: "leader mode on 🫡", sub: "ask me about his clubs, roles, and what he actually did in each.",
+                  starters: [['Biggest leadership role?', '👑'], ['What does he do at Rotaract?', '🤝'], ['BASIS Leader award?', '🏆'], ['Book a call', '🗓️']] },
+        projects: { hello: "the lab 🧪", sub: "ask me what each project does, which one to try first, or how he built them.",
+                  starters: [['Which project should I try?', '🎯'], ['How did he build these?', '🛠️'], ['Is the AI real?', '🤖'], ['Book a call', '🗓️']] },
+        bookmarks: { hello: "tool hunter 🔎", sub: "tell me what you need and i'll point you to the right free tool from his list.",
+                  starters: [['Best free AI tool here?', '🤖'], ['Tool to remove backgrounds?', '🖼️'], ['Free stock photos?', '📷'], ['His favourite tools?', '⭐']] },
+        bloglist: { hello: "bookworm mode 📚", sub: "ask me which post to read first, or what he writes about.",
+                  starters: [['Which post should I read?', '📖'], ['What does he write about?', '✍️'], ['Latest post?', '🆕'], ['Book a call', '🗓️']] },
+        guide:  { hello: "study buddy here 📘", sub: "ask me to explain any part of this guide, or how to use it.",
+                  starters: [['Summarise this guide', '📝'], ['How do I use this?', '🧭'], ['Who wrote this?', '✍️'], ['Book a call', '🗓️']] },
         '404':  { hello: "lost? i got you 🧭", sub: "this page doesn't exist, but i do. ask me anything about Fardin or let me take you somewhere real.",
                   starters: [['Where am I?', '🗺️'], ['Take me home', '🏠'], ['Who is Fardin?', '✦'], ['Book a call', '🗓️']] }
     };
@@ -530,7 +548,7 @@
         } catch (e) { return true; }
     }
     function pageCtx() {
-        if (MODE !== 'blog') return null;
+        if (MODE !== 'blog' && MODE !== 'guide') return null;
         const art = document.querySelector('article') || document.querySelector('main');
         const h1 = document.querySelector('h1');
         return { title: (h1 ? h1.textContent : document.title).trim(), text: art ? art.innerText.replace(/\s+/g, ' ').slice(0, 4000) : '' };
@@ -576,6 +594,9 @@
         return { el, res: { html: el.innerHTML, act: p.act.length ? p.act : null, chips: p.chips.length ? p.chips : ((intent && intent.chips) || ['Fun facts', 'Book a call']), ai: true } };
     }
 
+    // starters that only make sense with page context: send them to the AI brain
+    const AI_STARTERS = new Set(['certs', 'gallery', 'resources', 'leadership', 'projects', 'bookmarks', 'bloglist', 'guide', 'contact'].flatMap(k => MODES[k].starters.map(([t]) => t.toLowerCase()))
+        .filter(t => !['book a call', 'leave a message', 'who wrote this?'].includes(t)));
     let busy = false;
     function finish(el, res) {
         const acts = renderActions(res.act);
@@ -605,7 +626,7 @@
         log.appendChild(dots); scrollDown();
 
         // chips/starters use instant coded answers (except page-specific AI starters); typed questions go to the AI
-        const aiStarter = coded && /^(summarise this post|key takeaway\?|more posts like this|write me a caption|best hashtags tips\?)$/i.test(text);
+        const aiStarter = coded && (AI_STARTERS.has(text.toLowerCase()) || /^(summarise this post|key takeaway\?|more posts like this|write me a caption|best hashtags tips\?)$/i.test(text));
         if (!coded || aiStarter) {
             const out = await aiStream(text, () => { dots.remove(); return bubble('ai', ''); });
             if (out) { finish(out.el, out.res); return; }
@@ -657,7 +678,7 @@
 
     // little "psst" nudge once per session, after 12s on the page
     try {
-        if ((MODE === 'home' || MODE === 'resume') && !sessionStorage.getItem('fifi-nudged') && !history.length) {
+        if (['home', 'resume', 'contact', 'projects'].includes(MODE) && !sessionStorage.getItem('fifi-nudged') && !history.length) {
             setTimeout(() => {
                 if (modal.classList.contains('show')) return;
                 const tip = document.createElement('div');

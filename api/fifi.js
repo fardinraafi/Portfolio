@@ -51,14 +51,23 @@ ACT: up to 3 of ${ACTS.join(', ')} (msg = leave Fardin a message right here in c
 GAP: only if the facts above did NOT contain the answer (you had to say you don't know, guess, or dodge), add a line "GAP: <the missing info in 3-6 words>". Never add GAP for salary/availability/address dodges or off-topic requests.
 CHIPS: 2 or 3 short follow-up questions the visitor might tap next, separated by " | ", each under 6 words, in the visitor's language
 ${FACTS}
-${KB}`;
+${KB.base}`;
 
 const PAGE_HINTS = {
     hooklab: 'The visitor is using Hook Lab, Fardin\'s hook analyzer. Act as a hook coach: if they share a hook, give a quick verdict and one stronger rewrite.',
     caption: 'The visitor is using Caption Maker. Act as a caption helper: if they share an idea, write one short caption with 3 hashtags.',
     blog: 'The visitor is reading one of Fardin\'s blog posts (content below). If they ask, summarise it in 3 short points or answer questions about it.',
     resume: 'The visitor is on Fardin\'s resume page, likely a recruiter. Be crisp and professional-ish.',
-    '404': 'The visitor hit a 404 page. Help them find the right page.'
+    '404': 'The visitor hit a 404 page. Help them find the right page.',
+    certs: 'The visitor is on the Certificates page. Answer about his certificates using the CERTIFICATES list; recommend standouts (HubSpot RevOps, OpenAI Academy, Google digital marketing, Aspire Leaders, Claude Code).',
+    contact: 'The visitor is on the Contact page, likely wanting to reach him. Be helpful about reply time and ways to reach him, and offer the msg button.',
+    gallery: 'The visitor is browsing his design gallery. Talk about his design work and tools.',
+    resources: 'The visitor is on the free Resources page. Recommend a guide and explain what each offers.',
+    leadership: 'The visitor is on the Leadership page. Answer about his clubs and leadership roles using ALL ROLES.',
+    projects: 'The visitor is on the Projects page. Explain the projects and recommend one to try (Swipe the Hook is the most fun, Hook Lab the most useful).',
+    bookmarks: 'The visitor is on My Bookmarks (120 free tools). Recommend specific tools from BOOKMARKS for what they need, naming the tool.',
+    bloglist: 'The visitor is on the Blog list. Recommend posts from BLOG POSTS with links.',
+    guide: 'The visitor is reading one of his free guidebooks (content below). Summarise or explain it when asked.'
 };
 
 
@@ -83,9 +92,9 @@ module.exports = async (req, res) => {
     const page = String((body && body.page) || '').slice(0, 60);
     const ctx = body && body.ctx && typeof body.ctx === 'object' ? body.ctx : {};
     let extra = page ? `\nThe visitor is on the page: ${page}` : '';
-    const kind = /hook-lab/.test(page) ? 'hooklab' : /caption-maker/.test(page) ? 'caption' : /^\/blog\/./.test(page) ? 'blog' : /resume/.test(page) ? 'resume' : /404/.test(page) ? '404' : '';
+    const kind = /hook-lab/.test(page) ? 'hooklab' : /caption-maker/.test(page) ? 'caption' : /^\/blog\/./.test(page) ? 'blog' : /resume/.test(page) ? 'resume' : /404/.test(page) ? '404' : /certificates/.test(page) ? 'certs' : /contact/.test(page) ? 'contact' : /gallery/.test(page) ? 'gallery' : /resources/.test(page) ? 'resources' : /volunteer/.test(page) ? 'leadership' : /bookmarks/.test(page) ? 'bookmarks' : /^\/projects\/?(index)?$/.test(page) ? 'projects' : /^\/blog\/?$/.test(page) ? 'bloglist' : /guidebook|framework/.test(page) ? 'guide' : '';
     if (kind) extra += '\n' + PAGE_HINTS[kind];
-    if (kind === 'blog' && ctx.title) extra += `\nBLOG POST: ${String(ctx.title).slice(0, 150)}\n${String(ctx.text || '').slice(0, 4000)}`;
+    if ((kind === 'blog' || kind === 'guide') && ctx.title) extra += `\nBLOG POST: ${String(ctx.title).slice(0, 150)}\n${String(ctx.text || '').slice(0, 4000)}`;
     // anonymous insights: question text only (emails/phones scrubbed), page and day. No IP, no names.
     if (R.enabled) {
         const qtext = clean[clean.length - 1].content.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').replace(/\+?\d[\d\s-]{7,}\d/g, '[number]').slice(0, 300);
@@ -97,6 +106,11 @@ module.exports = async (req, res) => {
             ['HINCRBY', 'fifi:pages', page || '/', '1']
         ]);
     }
+    // extra knowledge only when relevant, to stay inside Groq's free tokens-per-minute limit
+    const lastQ = clean[clean.length - 1].content.toLowerCase();
+    if (kind === 'certs' || /certif|course|credential|hubspot|google|openai|coursera|skillshop/.test(lastQ)) extra += '\n' + KB.certs;
+    if (kind === 'leadership' || kind === 'resume' || /role|club|rotar|lead|volunteer|president|secretary|position|job|work(ed)? (at|for)|experience|intern/.test(lastQ)) extra += '\n' + KB.roles;
+    if (kind === 'bookmarks' || /tool|app|website|site for|free .*(for|to)|bookmark|recommend/.test(lastQ)) extra += '\n' + KB.bookmarks;
     const sys = { role: 'system', content: SYSTEM + extra };
 
     try {
