@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/chatgpt-ads-future-of-ai-marketing
 
 **TL;DR:** ChatGPT Ads and conversational advertising: why context-based AI ads could replace keyword marketing, and what marketers should do now.
 
-![ChatGPT Ads and the future of AI marketing - article cover](https://fardinraafi.com/blogs/blog-8.jpg)
+![ChatGPT Ads and the future of AI marketing - article cover](https://fardinraafi.com/blogs/opt/blog-8-1200.webp)
 
 The digital marketing landscape is experiencing a tectonic shift. ChatGPT Ads just crossed the $1 billion revenue mark in less than 200 days after launch. This number is staggering, but the revenue itself is not the most interesting part of the story.
 
@@ -27,7 +27,7 @@ My recommendation for growth teams and business development leaders is clear. Tr
 
 ## 🔹 The Biggest Mindset Shift: From Keywords to Moments
 
-Despite the current current technical limitations, the long-term potential is revolutionary because of one singular factor: **search-like intent.**
+Despite the current technical limitations, the long-term potential is revolutionary because of one singular factor: **search-like intent.**
 
 This is not the passive, interruption-based intent of social media scrolling. People are literally typing their highly specific business and personal problems into the chat interface in real time.
 
@@ -48,7 +48,7 @@ OpenAI proving that conversational advertising is not only viable but highly luc
 
 Here is what we can expect to happen across the landscape:
 
-- **The Rush to Monetize Free Tiers:** Competitors like Claude and Gemini will face immense pressure to follow suit. While Perplexity has already stepped into the AI search advertising space, traditional conversational models will need to find ways to monetize their massive free user bases. Ad-supported free tiers will likely become the absolute industry standard within the next twelve months.
+- **The Rush to Monetize Free Tiers:** Competitors like [Claude](https://fardinraafi.com/blog/claude-sonnet-5-agentic-ai) and Gemini will face immense pressure to follow suit. While Perplexity has already stepped into the AI search advertising space, traditional conversational models will need to find ways to monetize their massive free user bases. Ad-supported free tiers will likely become the absolute industry standard within the next twelve months.
 - **The Evolution of Native AI Formats:** Right now, we are thinking about ads in traditional terms. But AI models will soon pioneer entirely new formats. Imagine dynamic product feeds generated directly inside the chat window based on the user's specific problem. We will see interactive widgets, real-time CRM integrations, and direct booking systems embedded seamlessly into the AI's natural response.
 - **A Direct Threat to Traditional Search Hegemony:** Google has held a monopoly on intent-based advertising for decades. But context-based AI advertising is far more natural and highly personalized. If users can get a perfectly tailored product recommendation complete with an embedded purchasing option through a simple conversation, the traditional process of scrolling through ten blue links will feel instantly outdated.
 

@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/linkedin-profile-optimization-personal-br
 
 **TL;DR:** A practical LinkedIn profile optimization guide: headline, banner, about section and content that attract recruiters and inbound opportunities.
 
-![LinkedIn profile optimization and personal branding guide cover](https://fardinraafi.com/blogs/blog-5.jpg)
+![LinkedIn profile optimization and personal branding guide cover](https://fardinraafi.com/blogs/opt/blog-5-1200.webp)
 
 Think practically for a moment. You apply for a job, and what is the very first thing HR does after looking at your CV? In 99% of cases, they will search your name on LinkedIn.
 
@@ -50,7 +50,7 @@ This is where the Featured section comes in. Use it to visually pin your best pr
 
 If you set everything up perfectly but remain completely inactive on LinkedIn, it won't help you.
 
-Try to post about an industry-related topic at least once a week. Leave valuable comments on posts made by your target audience or Key Decision Makers (KDMs). Over time, this consistency will build your visibility and establish trust.
+Try to post about an industry-related topic at least once a week. Leave valuable comments on posts made by your target audience or Key Decision Makers (KDMs). When those conversations turn into calls, the tips in [Selling is 80% Psychology](https://fardinraafi.com/blog/selling-is-80-percent-psychology) take over. Over time, this consistency will build your visibility and establish trust.
 
 Do you know what the result will be? You won't have to chase every single opportunity yourself; recruiters and collaborators will start sending inbound messages to you!
 

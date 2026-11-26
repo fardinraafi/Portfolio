@@ -70,11 +70,11 @@ If you are a student of marketing or business development, missing out on this c
 
  **Key Skills:** AI Content Strategy, Lead Generation.
  **Cost:** Free.
- [View Course ➔](https://www.linkedin.com/learning/topics/professional-certificates)
+ [View Course ➔](https://academy.hubspot.com/courses)
 
 ## My Personal Advice for Career Growth
 
-Do not just collect certificates for the sake of it. Your main objective should be building a tangible skillset. When you finish a course, actively try to apply that knowledge to a personal project or a volunteer organization. That drive to execute is what will set you apart from everyone else. Remember: AI will not take your job, but a professional who knows how to use AI effectively absolutely will.
+Do not just collect certificates for the sake of it. Your main objective should be building a tangible skillset. When you finish a course, actively try to apply that knowledge to a personal project or a volunteer organization. That drive to execute is what will set you apart from everyone else. Remember: AI will not take your job, but a professional who knows how to use AI effectively absolutely will. Still a student? Pair these courses with the free tools in my [.edu mail goldmine guide](https://fardinraafi.com/blog/free-ai-developer-tools-for-students).
 
 What do you think? Are these free certifications making a bigger impact on career growth than traditional institutional education? Let me know your thoughts!
 

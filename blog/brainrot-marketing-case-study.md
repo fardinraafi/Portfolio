@@ -9,7 +9,7 @@ Original: https://fardinraafi.com/blog/brainrot-marketing-case-study
 
 Think about it for a second. When was the last time you watched a proper, high-budget brand advertisement all the way through?
 
-> Grabbing top-of-funnel attention nowadays is an absolute nightmare. Gen Z's brain filters content so fast that they can identify an ad versus real content in under 1.5 seconds.
+> Grabbing top-of-funnel attention nowadays is an absolute nightmare. Gen Z's brain filters content so fast that they lose active attention on an ad after just [1.3 seconds](https://www.emarketer.com/content/gen-z-has-1-second-attention-span-work-marketers-advantage).
 
 This is exactly where "Brainrot" marketing has changed the game. It sounds absurd, but this chaotic internet culture is now a multi-million dollar industry. Let's break down the strategies behind it.
 

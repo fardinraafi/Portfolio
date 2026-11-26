@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/ai-voice-dictation-keyboard-is-dying
 
 **TL;DR:** How AI voice dictation tools are reshaping writing, content creation and productivity, and what it means for the future of B2B workflows.
 
-![AI voice dictation replacing the keyboard - article cover](https://fardinraafi.com/blogs/blog-7.jpg)
+![AI voice dictation replacing the keyboard - article cover](https://fardinraafi.com/blogs/opt/blog-7-1200.webp)
 
 ## 🔹 The Unsilent Revolution in Modern Workspaces
 
@@ -55,13 +55,13 @@ Conversely, proponents argue that voice is the most natural human communication 
 
 **Precision vs. Brainstorming:** It is essential to recognize where voice excels and where manual input remains superior.
 
-![Speed vs Depth in AI Voice Dictation](https://fardinraafi.com/blogs/blog-7-img.png)
+![Speed vs Depth in AI Voice Dictation](https://fardinraafi.com/blogs/opt/blog-7-img-1200.webp)
 
 ## 🔹 Practical Implementation in Daily Workflows
 
 Integrating voice-to-text into daily routines does not require expensive enterprise software overhauls. Most modern operating systems feature robust, built-in speech-to-text engines that can instantly accelerate daily task completion.
 
-> **💡 AI Tip of the Week:** Save time and give your hands a break! Press **Windows + H** anywhere you can type to launch Voice Typing. Simply start speaking, and Windows will convert your words into text in real time. It’s a great way to capture ideas faster, draft emails, or power through documentation with less typing. Give it a try- you might be surprised how quickly it becomes part of your daily workflow!
+> **💡 AI Tip of the Week:** Save time and give your hands a break! Press **Windows + H** anywhere you can type to launch Voice Typing. Simply start speaking, and Windows will convert your words into text in real time. It’s a great way to capture ideas faster, draft emails, or power through documentation with less typing. Give it a try, you might be surprised how quickly it becomes part of your daily workflow!
 
 ## 🔹 Conclusion: Adapting to the Voice-First Future
 

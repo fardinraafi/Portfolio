@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/selling-is-80-percent-psychology
 
 **TL;DR:** Why B2B sales is mostly psychology: stop feature-dumping, diagnose the real problem and close more deals. Practical B2B sales lessons by Fardin Raafi.
 
-![Selling is 80% psychology - B2B sales article cover](https://fardinraafi.com/blogs/blog-4.jpg)
+![Selling is 80% psychology - B2B sales article cover](https://fardinraafi.com/blogs/opt/blog-4-1200.webp)
 
 Early in my career, while working on B2B outreach and lead generation, I made a very common mistake. I genuinely believed that if I could just perfectly explain every single feature of our product or service to the client, the deal would automatically close.
 
@@ -29,7 +29,7 @@ The biggest invisible habit destroying your close rate in the B2B sales cycle is
 
 Feature-focused reps only pitch what their product can do. Problem-focused reps, however, focus entirely on the pain the client is experiencing by *not* having the solution.
 
-Statistics show that 67% of buyers are lost simply because the salesperson failed to listen carefully to their actual needs. Silence from a prospect indicates an unmet pain point, and talking over them continuously only results in a missed diagnosis.
+Statistics show that [67% of lost sales](https://www.zippia.com/advice/sales-statistics/) happen because the salesperson never properly qualified the buyer or understood their actual needs. Silence from a prospect indicates an unmet pain point, and talking over them continuously only results in a missed diagnosis.
 
 ## How I Close the Gap (Practical Moves)
 
@@ -51,7 +51,7 @@ Send a "What I heard" or summary email immediately after the meeting. This works
 
 You might use tools like **Salesforce** or **Apollo.io** to identify the perfect Ideal Customer Profile (ICP) or Key Decision Maker (KDM), but at the end of the day, conversion relies entirely on your follow-up execution and your mindset.
 
-> You might be surprised to learn that 79% of marketing leads never convert simply due to poor follow-up and a lack of rapport building!
+> You might be surprised to learn that [79% of marketing leads never convert](https://blog.hubspot.com/blog/tabid/6307/bid/30901/30-thought-provoking-lead-nurturing-stats-you-can-t-ignore.aspx), mostly due to poor follow-up and a lack of lead nurturing!
 
 Change your mindset starting today:
 

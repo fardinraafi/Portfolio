@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/free-ai-developer-tools-for-students
 
 **TL;DR:** Unlock free AI tools, developer software and enterprise apps with your student .edu email. The complete list of student perks worth $200k+.
 
-![Free AI and developer tools for students with a .edu email - guide cover](https://fardinraafi.com/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png)
+![Free AI and developer tools for students with a .edu email - guide cover](https://fardinraafi.com/blogs/opt/fardin-rahman-khan-raafi-edu-mail-goldmine-article-cover-1200.webp)
 
 ## 🔹 The Hidden Value of Your .edu Email
 
@@ -92,7 +92,7 @@ To claim these benefits efficiently without falling into common auto-renewal tra
 
 ## 🔹 Conclusion: Build Your Advantage Before Graduation
 
-Leveraging these 20 tools is not merely about saving money; it is about establishing technical fluency with the exact tools used by top-tier global companies. Whether you are building B2B pipelines, writing code, conducting market research, or managing complex projects, activating this stack shifts your workflow from manual effort to AI-assisted execution.
+Leveraging these 20 tools is not merely about saving money; it is about establishing technical fluency with the exact tools used by top-tier global companies. Whether you are building B2B pipelines, writing code, conducting market research, or managing complex projects, activating this stack shifts your workflow from manual effort to AI-assisted execution. Once your tools are ready, back them up with the free certifications in my [AI certifications breakdown](https://fardinraafi.com/blog/ai-certifications-hype-vs-practical-skills).
 
 > Take 30 minutes today to claim your student benefits before your academic credentials expire.
 

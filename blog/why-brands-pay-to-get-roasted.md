@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/why-brands-pay-to-get-roasted
 
 **TL;DR:** Why modern brands pay creators to roast them, and how culture-led, self-aware marketing wins Gen Z attention. Brand strategy insights by Fardin Raafi.
 
-![Brands paying to get roasted - culture-led marketing article cover](https://fardinraafi.com/blogs/blog-3.jpg)
+![Brands paying to get roasted - culture-led marketing article cover](https://fardinraafi.com/blogs/opt/blog-3-1200.webp)
 
 Think about it. We don't have the patience to watch a 5-second ad on YouTube. We literally sit with our fingers hovering over the mouse, eagerly waiting for the "Skip" button to appear.
 
@@ -29,7 +29,7 @@ Why is this show so incredibly popular? Because it is raw, unpredictable, and pe
 
 ## Influencer Marketing vs. Culture-Led Marketing
 
-Many marketers might brush this off as just another influencer marketing strategy. It is not. This is **culture-led marketing**! When you successfully integrate your product into an active trend or culture, people start viewing your brand as an extension of their own identity.
+If this sounds familiar, it is the same psychology I broke down in [Brainrot Marketing](https://fardinraafi.com/blog/brainrot-marketing-case-study). Many marketers might brush this off as just another influencer marketing strategy. It is not. This is **culture-led marketing**! When you successfully integrate your product into an active trend or culture, people start viewing your brand as an extension of their own identity.
 
 > You can no longer earn attention just by shouting "We are the best." Attention is earned when you naturally become part of an interesting conversation.
 

@@ -11,6 +11,8 @@ Website: https://fardinraafi.com · Short version: https://fardinraafi.com/llms.
 
 > B2B marketing executive in Dhaka, Bangladesh. Marketing Executive at Augmex Technologies Ltd. (since April 2026; Marketing Intern Jan-Apr 2026). Works on B2B lead generation for European and Australian markets, CRM management, cold outreach, content marketing, brand strategy and graphic/motion design.
 
+> Fardin Rahman Khan Raafi (Fardin Raafi) is a B2B Marketing Executive at Augmex Technologies in Dhaka, Bangladesh, specialising in lead generation, content marketing and design. In 2026 he drove 340K+ organic views and grew the sneaker brand FYGO from 0 to 17K+ followers.
+
 ## Key facts
 - 340K+ organic views from content marketing in 2026 (Augmex and its sneaker sub-brand FYGO)
 - Grew FYGO from 0 to 17K+ followers, ৳20 lakh+ sales and 300+ customers (Jul-Nov 2026)
@@ -20,6 +22,7 @@ Website: https://fardinraafi.com · Short version: https://fardinraafi.com/llms.
 - Head of Corporate & Alumni Relations, BUBT Career Guidance Office; Secretary, Rotaract Club of Dhaka Dynamic; Lead Brand Designer, TEDxUttara
 
 ## Pages
+- [Full content for LLMs](https://fardinraafi.com/llms-full.txt): resume, projects and every blog post in one file
 - [Home](https://fardinraafi.com/)
 - [Resume](https://fardinraafi.com/resume), also in [markdown](https://fardinraafi.com/resume.md)
 - [Leadership & volunteering](https://fardinraafi.com/volunteer), also in [markdown](https://fardinraafi.com/extracurriculars.md)
@@ -197,11 +200,11 @@ If you are a student of marketing or business development, missing out on this c
 
  **Key Skills:** AI Content Strategy, Lead Generation.
  **Cost:** Free.
- [View Course ➔](https://www.linkedin.com/learning/topics/professional-certificates)
+ [View Course ➔](https://academy.hubspot.com/courses)
 
 ## My Personal Advice for Career Growth
 
-Do not just collect certificates for the sake of it. Your main objective should be building a tangible skillset. When you finish a course, actively try to apply that knowledge to a personal project or a volunteer organization. That drive to execute is what will set you apart from everyone else. Remember: AI will not take your job, but a professional who knows how to use AI effectively absolutely will.
+Do not just collect certificates for the sake of it. Your main objective should be building a tangible skillset. When you finish a course, actively try to apply that knowledge to a personal project or a volunteer organization. That drive to execute is what will set you apart from everyone else. Remember: AI will not take your job, but a professional who knows how to use AI effectively absolutely will. Still a student? Pair these courses with the free tools in my [.edu mail goldmine guide](https://fardinraafi.com/blog/free-ai-developer-tools-for-students).
 
 What do you think? Are these free certifications making a bigger impact on career growth than traditional institutional education? Let me know your thoughts!
 
@@ -213,7 +216,7 @@ URL: https://fardinraafi.com/blog/ai-voice-dictation-keyboard-is-dying · Publis
 
 **TL;DR:** How AI voice dictation tools are reshaping writing, content creation and productivity, and what it means for the future of B2B workflows.
 
-![AI voice dictation replacing the keyboard - article cover](https://fardinraafi.com/blogs/blog-7.jpg)
+![AI voice dictation replacing the keyboard - article cover](https://fardinraafi.com/blogs/opt/blog-7-1200.webp)
 
 ## 🔹 The Unsilent Revolution in Modern Workspaces
 
@@ -263,13 +266,13 @@ Conversely, proponents argue that voice is the most natural human communication 
 
 **Precision vs. Brainstorming:** It is essential to recognize where voice excels and where manual input remains superior.
 
-![Speed vs Depth in AI Voice Dictation](https://fardinraafi.com/blogs/blog-7-img.png)
+![Speed vs Depth in AI Voice Dictation](https://fardinraafi.com/blogs/opt/blog-7-img-1200.webp)
 
 ## 🔹 Practical Implementation in Daily Workflows
 
 Integrating voice-to-text into daily routines does not require expensive enterprise software overhauls. Most modern operating systems feature robust, built-in speech-to-text engines that can instantly accelerate daily task completion.
 
-> **💡 AI Tip of the Week:** Save time and give your hands a break! Press **Windows + H** anywhere you can type to launch Voice Typing. Simply start speaking, and Windows will convert your words into text in real time. It’s a great way to capture ideas faster, draft emails, or power through documentation with less typing. Give it a try- you might be surprised how quickly it becomes part of your daily workflow!
+> **💡 AI Tip of the Week:** Save time and give your hands a break! Press **Windows + H** anywhere you can type to launch Voice Typing. Simply start speaking, and Windows will convert your words into text in real time. It’s a great way to capture ideas faster, draft emails, or power through documentation with less typing. Give it a try, you might be surprised how quickly it becomes part of your daily workflow!
 
 ## 🔹 Conclusion: Adapting to the Voice-First Future
 
@@ -291,7 +294,7 @@ URL: https://fardinraafi.com/blog/brainrot-marketing-case-study · Published 202
 
 Think about it for a second. When was the last time you watched a proper, high-budget brand advertisement all the way through?
 
-> Grabbing top-of-funnel attention nowadays is an absolute nightmare. Gen Z's brain filters content so fast that they can identify an ad versus real content in under 1.5 seconds.
+> Grabbing top-of-funnel attention nowadays is an absolute nightmare. Gen Z's brain filters content so fast that they lose active attention on an ad after just [1.3 seconds](https://www.emarketer.com/content/gen-z-has-1-second-attention-span-work-marketers-advantage).
 
 This is exactly where "Brainrot" marketing has changed the game. It sounds absurd, but this chaotic internet culture is now a multi-million dollar industry. Let's break down the strategies behind it.
 
@@ -357,7 +360,7 @@ URL: https://fardinraafi.com/blog/chatgpt-ads-future-of-ai-marketing · Publishe
 
 **TL;DR:** ChatGPT Ads and conversational advertising: why context-based AI ads could replace keyword marketing, and what marketers should do now.
 
-![ChatGPT Ads and the future of AI marketing - article cover](https://fardinraafi.com/blogs/blog-8.jpg)
+![ChatGPT Ads and the future of AI marketing - article cover](https://fardinraafi.com/blogs/opt/blog-8-1200.webp)
 
 The digital marketing landscape is experiencing a tectonic shift. ChatGPT Ads just crossed the $1 billion revenue mark in less than 200 days after launch. This number is staggering, but the revenue itself is not the most interesting part of the story.
 
@@ -379,7 +382,7 @@ My recommendation for growth teams and business development leaders is clear. Tr
 
 ## 🔹 The Biggest Mindset Shift: From Keywords to Moments
 
-Despite the current current technical limitations, the long-term potential is revolutionary because of one singular factor: **search-like intent.**
+Despite the current technical limitations, the long-term potential is revolutionary because of one singular factor: **search-like intent.**
 
 This is not the passive, interruption-based intent of social media scrolling. People are literally typing their highly specific business and personal problems into the chat interface in real time.
 
@@ -400,7 +403,7 @@ OpenAI proving that conversational advertising is not only viable but highly luc
 
 Here is what we can expect to happen across the landscape:
 
-- **The Rush to Monetize Free Tiers:** Competitors like Claude and Gemini will face immense pressure to follow suit. While Perplexity has already stepped into the AI search advertising space, traditional conversational models will need to find ways to monetize their massive free user bases. Ad-supported free tiers will likely become the absolute industry standard within the next twelve months.
+- **The Rush to Monetize Free Tiers:** Competitors like [Claude](https://fardinraafi.com/blog/claude-sonnet-5-agentic-ai) and Gemini will face immense pressure to follow suit. While Perplexity has already stepped into the AI search advertising space, traditional conversational models will need to find ways to monetize their massive free user bases. Ad-supported free tiers will likely become the absolute industry standard within the next twelve months.
 - **The Evolution of Native AI Formats:** Right now, we are thinking about ads in traditional terms. But AI models will soon pioneer entirely new formats. Imagine dynamic product feeds generated directly inside the chat window based on the user's specific problem. We will see interactive widgets, real-time CRM integrations, and direct booking systems embedded seamlessly into the AI's natural response.
 - **A Direct Threat to Traditional Search Hegemony:** Google has held a monopoly on intent-based advertising for decades. But context-based AI advertising is far more natural and highly personalized. If users can get a perfectly tailored product recommendation complete with an embedded purchasing option through a simple conversation, the traditional process of scrolling through ten blue links will feel instantly outdated.
 
@@ -422,7 +425,7 @@ URL: https://fardinraafi.com/blog/claude-sonnet-5-agentic-ai · Published 2026-0
 
 **TL;DR:** What does "agentic AI" mean? How Claude Sonnet 5 and AI agents change B2B growth, marketing automation and everyday work, explained simply.
 
-![Claude Sonnet 5 and agentic AI - article cover](https://fardinraafi.com/blogs/blog-6.jpg)
+![Claude Sonnet 5 and agentic AI - article cover](https://fardinraafi.com/blogs/opt/blog-6-1200.webp)
 
 It feels like a new AI model is released every single week. We try it out, write a few prompts, and then go right back to our old workflows.
 
@@ -456,7 +459,7 @@ The days of manual competitor analysis are almost over. Give the AI a specific f
 
 ### 4. Managing the B2B Supply Chain of Leads
 
-I always say that B2B outreach is like a supply chain, and reducing bottlenecks is crucial. With Agentic AI, you can drastically reduce your sales cycle latency. It can handle multiple steps entirely on its own, from initial prospect research to deep email personalization.
+I always say (more on this in [Selling is 80% Psychology](https://fardinraafi.com/blog/selling-is-80-percent-psychology)) that B2B outreach is like a supply chain, and reducing bottlenecks is crucial. With Agentic AI, you can drastically reduce your sales cycle latency. It can handle multiple steps entirely on its own, from initial prospect research to deep email personalization.
 
 ## The Paradigm Shift
 
@@ -474,7 +477,7 @@ URL: https://fardinraafi.com/blog/free-ai-developer-tools-for-students · Publis
 
 **TL;DR:** Unlock free AI tools, developer software and enterprise apps with your student .edu email. The complete list of student perks worth $200k+.
 
-![Free AI and developer tools for students with a .edu email - guide cover](https://fardinraafi.com/blogs/Fardin Rahman Khan Raafi Edu Mail Goldmine Article Cover.png)
+![Free AI and developer tools for students with a .edu email - guide cover](https://fardinraafi.com/blogs/opt/fardin-rahman-khan-raafi-edu-mail-goldmine-article-cover-1200.webp)
 
 ## 🔹 The Hidden Value of Your .edu Email
 
@@ -561,7 +564,7 @@ To claim these benefits efficiently without falling into common auto-renewal tra
 
 ## 🔹 Conclusion: Build Your Advantage Before Graduation
 
-Leveraging these 20 tools is not merely about saving money; it is about establishing technical fluency with the exact tools used by top-tier global companies. Whether you are building B2B pipelines, writing code, conducting market research, or managing complex projects, activating this stack shifts your workflow from manual effort to AI-assisted execution.
+Leveraging these 20 tools is not merely about saving money; it is about establishing technical fluency with the exact tools used by top-tier global companies. Whether you are building B2B pipelines, writing code, conducting market research, or managing complex projects, activating this stack shifts your workflow from manual effort to AI-assisted execution. Once your tools are ready, back them up with the free certifications in my [AI certifications breakdown](https://fardinraafi.com/blog/ai-certifications-hype-vs-practical-skills).
 
 > Take 30 minutes today to claim your student benefits before your academic credentials expire.
 
@@ -573,7 +576,7 @@ URL: https://fardinraafi.com/blog/linkedin-profile-optimization-personal-brand �
 
 **TL;DR:** A practical LinkedIn profile optimization guide: headline, banner, about section and content that attract recruiters and inbound opportunities.
 
-![LinkedIn profile optimization and personal branding guide cover](https://fardinraafi.com/blogs/blog-5.jpg)
+![LinkedIn profile optimization and personal branding guide cover](https://fardinraafi.com/blogs/opt/blog-5-1200.webp)
 
 Think practically for a moment. You apply for a job, and what is the very first thing HR does after looking at your CV? In 99% of cases, they will search your name on LinkedIn.
 
@@ -618,7 +621,7 @@ This is where the Featured section comes in. Use it to visually pin your best pr
 
 If you set everything up perfectly but remain completely inactive on LinkedIn, it won't help you.
 
-Try to post about an industry-related topic at least once a week. Leave valuable comments on posts made by your target audience or Key Decision Makers (KDMs). Over time, this consistency will build your visibility and establish trust.
+Try to post about an industry-related topic at least once a week. Leave valuable comments on posts made by your target audience or Key Decision Makers (KDMs). When those conversations turn into calls, the tips in [Selling is 80% Psychology](https://fardinraafi.com/blog/selling-is-80-percent-psychology) take over. Over time, this consistency will build your visibility and establish trust.
 
 Do you know what the result will be? You won't have to chase every single opportunity yourself; recruiters and collaborators will start sending inbound messages to you!
 
@@ -633,7 +636,7 @@ URL: https://fardinraafi.com/blog/selling-is-80-percent-psychology · Published 
 
 **TL;DR:** Why B2B sales is mostly psychology: stop feature-dumping, diagnose the real problem and close more deals. Practical B2B sales lessons by Fardin Raafi.
 
-![Selling is 80% psychology - B2B sales article cover](https://fardinraafi.com/blogs/blog-4.jpg)
+![Selling is 80% psychology - B2B sales article cover](https://fardinraafi.com/blogs/opt/blog-4-1200.webp)
 
 Early in my career, while working on B2B outreach and lead generation, I made a very common mistake. I genuinely believed that if I could just perfectly explain every single feature of our product or service to the client, the deal would automatically close.
 
@@ -657,7 +660,7 @@ The biggest invisible habit destroying your close rate in the B2B sales cycle is
 
 Feature-focused reps only pitch what their product can do. Problem-focused reps, however, focus entirely on the pain the client is experiencing by *not* having the solution.
 
-Statistics show that 67% of buyers are lost simply because the salesperson failed to listen carefully to their actual needs. Silence from a prospect indicates an unmet pain point, and talking over them continuously only results in a missed diagnosis.
+Statistics show that [67% of lost sales](https://www.zippia.com/advice/sales-statistics/) happen because the salesperson never properly qualified the buyer or understood their actual needs. Silence from a prospect indicates an unmet pain point, and talking over them continuously only results in a missed diagnosis.
 
 ## How I Close the Gap (Practical Moves)
 
@@ -679,7 +682,7 @@ Send a "What I heard" or summary email immediately after the meeting. This works
 
 You might use tools like **Salesforce** or **Apollo.io** to identify the perfect Ideal Customer Profile (ICP) or Key Decision Maker (KDM), but at the end of the day, conversion relies entirely on your follow-up execution and your mindset.
 
-> You might be surprised to learn that 79% of marketing leads never convert simply due to poor follow-up and a lack of rapport building!
+> You might be surprised to learn that [79% of marketing leads never convert](https://blog.hubspot.com/blog/tabid/6307/bid/30901/30-thought-provoking-lead-nurturing-stats-you-can-t-ignore.aspx), mostly due to poor follow-up and a lack of lead nurturing!
 
 Change your mindset starting today:
 
@@ -697,7 +700,7 @@ URL: https://fardinraafi.com/blog/why-brands-pay-to-get-roasted · Published 202
 
 **TL;DR:** Why modern brands pay creators to roast them, and how culture-led, self-aware marketing wins Gen Z attention. Brand strategy insights by Fardin Raafi.
 
-![Brands paying to get roasted - culture-led marketing article cover](https://fardinraafi.com/blogs/blog-3.jpg)
+![Brands paying to get roasted - culture-led marketing article cover](https://fardinraafi.com/blogs/opt/blog-3-1200.webp)
 
 Think about it. We don't have the patience to watch a 5-second ad on YouTube. We literally sit with our fingers hovering over the mouse, eagerly waiting for the "Skip" button to appear.
 
@@ -721,7 +724,7 @@ Why is this show so incredibly popular? Because it is raw, unpredictable, and pe
 
 ## Influencer Marketing vs. Culture-Led Marketing
 
-Many marketers might brush this off as just another influencer marketing strategy. It is not. This is **culture-led marketing**! When you successfully integrate your product into an active trend or culture, people start viewing your brand as an extension of their own identity.
+If this sounds familiar, it is the same psychology I broke down in [Brainrot Marketing](https://fardinraafi.com/blog/brainrot-marketing-case-study). Many marketers might brush this off as just another influencer marketing strategy. It is not. This is **culture-led marketing**! When you successfully integrate your product into an active trend or culture, people start viewing your brand as an extension of their own identity.
 
 > You can no longer earn attention just by shouting "We are the best." Attention is earned when you naturally become part of an interesting conversation.
 

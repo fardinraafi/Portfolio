@@ -5,7 +5,7 @@ Original: https://fardinraafi.com/blog/claude-sonnet-5-agentic-ai
 
 **TL;DR:** What does "agentic AI" mean? How Claude Sonnet 5 and AI agents change B2B growth, marketing automation and everyday work, explained simply.
 
-![Claude Sonnet 5 and agentic AI - article cover](https://fardinraafi.com/blogs/blog-6.jpg)
+![Claude Sonnet 5 and agentic AI - article cover](https://fardinraafi.com/blogs/opt/blog-6-1200.webp)
 
 It feels like a new AI model is released every single week. We try it out, write a few prompts, and then go right back to our old workflows.
 
@@ -39,7 +39,7 @@ The days of manual competitor analysis are almost over. Give the AI a specific f
 
 ### 4. Managing the B2B Supply Chain of Leads
 
-I always say that B2B outreach is like a supply chain, and reducing bottlenecks is crucial. With Agentic AI, you can drastically reduce your sales cycle latency. It can handle multiple steps entirely on its own, from initial prospect research to deep email personalization.
+I always say (more on this in [Selling is 80% Psychology](https://fardinraafi.com/blog/selling-is-80-percent-psychology)) that B2B outreach is like a supply chain, and reducing bottlenecks is crucial. With Agentic AI, you can drastically reduce your sales cycle latency. It can handle multiple steps entirely on its own, from initial prospect research to deep email personalization.
 
 ## The Paradigm Shift
 
