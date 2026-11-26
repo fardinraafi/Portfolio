@@ -1859,17 +1859,17 @@ html.dm-phone .top-nav .nav-menu a { font-size: .78rem; padding: .45rem .55rem; 
 html.dm-phone .nav-burger { display: none !important; }
 html.dm-phone .nav-actions .btn-primary { display: none !important; }
 .ft-socials { display: grid; grid-template-columns: repeat(5, max-content); }
-/* Explore links as button tiles on desktop too (same look as phones) */
+/* Explore links as button tiles in desktop-site mode on phones only (real computers keep plain links) */
 @media (min-width: 901px) {
-    .ft-links { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
-    .ft-links a {
+    html.dm-phone .ft-links { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    html.dm-phone .ft-links a {
         display: block; width: 100%; box-sizing: border-box; justify-self: stretch; text-align: center; font-size: 0.88rem; padding: 9px 12px; border-radius: 12px;
         background: rgba(255,255,255,0.6); border: 1px solid rgba(0,0,0,0.06);
         transition: border-color .2s, color .2s, background .2s, transform .2s;
     }
-    body.dark-mode .ft-links a { background: rgba(30,41,59,0.6); border-color: rgba(255,255,255,0.08); }
-    .ft-links a::after { display: none; }
-    .ft-links a:hover { transform: translateY(-2px); border-color: var(--c2); color: var(--text-main); }
+    html.dm-phone body.dark-mode .ft-links a { background: rgba(30,41,59,0.6); border-color: rgba(255,255,255,0.08); }
+    html.dm-phone .ft-links a::after { display: none; }
+    html.dm-phone .ft-links a:hover { transform: translateY(-2px); border-color: var(--c2); color: var(--text-main); }
 }
 /* Phones only: centre socials, Explore and Get in touch in the footer */
 @media (max-width: 900px) {
