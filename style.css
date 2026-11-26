@@ -1894,3 +1894,10 @@ body .contact-banner-wrapper img {
     border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), 0 0 40px rgba(124, 58, 237, 0.15);
 }
 @media (min-width: 901px) { body .contact-banner-wrapper { display: block !important; } }
+
+/* Phones: show the square-ish mobile banner (picture source) under the footer */
+@media (max-width: 900px) {
+    body .contact-banner-wrapper { display: block !important; padding: 0.75rem 1rem 6.5rem; }
+    body .contact-banner-wrapper img { border-radius: 20px; }
+    .site-footer:has(+ .contact-banner-wrapper) { padding-bottom: 1.5rem !important; }
+}
