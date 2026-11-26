@@ -1,12 +1,7 @@
 // Swipe the Hook: generates a fresh round of good/bad hooks with Groq (key in GROQ_API_KEY env var).
+const R = require('./_redis.js');
 const MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b'];
 const TOPICS = ['marketing', 'careers', 'startups', 'personal finance', 'fitness', 'AI tools', 'design', 'sales', 'freelancing', 'productivity', 'food business', 'e-commerce', 'student life', 'content creation', 'leadership', 'sneakers', 'remote work', 'job hunting', 'branding', 'side hustles'];
-const hits = new Map();
-function limited(ip) {
-    const now = Date.now(), arr = (hits.get(ip) || []).filter(t => now - t < 3600e3);
-    arr.push(now); hits.set(ip, arr); if (hits.size > 5000) hits.clear();
-    return arr.length > 20;
-}
 const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
 
 module.exports = async (req, res) => {
@@ -15,8 +10,9 @@ module.exports = async (req, res) => {
     const origin = req.headers.origin || '';
     if (origin && !/^https:\/\/(www\.)?fardinraafi\.com$|\.vercel\.app$|^http:\/\/localhost/.test(origin)) return res.status(403).json({ error: 'forbidden' });
     if (!process.env.GROQ_API_KEY) return res.status(503).json({ error: 'no key' });
-    const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
-    if (limited(ip)) return res.status(429).json({ error: 'slow down' });
+    const ip = R.ipOf(req);
+    if (await R.limited('hooks:' + ip, 20, 3600)) return res.status(429).json({ error: 'slow down' });
+    if (await R.limited('groq-day', 1200, 86400)) return res.status(429).json({ error: 'daily cap' }); // protects the free Groq quota
 
     const topics = shuffle(TOPICS.slice()).slice(0, 6).join(', ');
     const good = 6 + Math.floor(Math.random() * 4); // 6 to 9 good hooks, so players can't guess the ratio

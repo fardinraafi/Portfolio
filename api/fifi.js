@@ -1,4 +1,5 @@
 // Fifi AI brain: Vercel serverless proxy to Groq. The key lives in the GROQ_API_KEY env var, never in the browser.
+const R = require('./_redis.js');
 const MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b']; // fallback order
 const ACTS = ['msg', 'book', 'contact', 'resume', 'resumePg', 'linkedin', 'behance', 'blog', 'gallery', 'certs', 'lead', 'res', 'projects', 'home', 'email'];
 
@@ -59,14 +60,6 @@ const PAGE_HINTS = {
     '404': 'The visitor hit a 404 page. Help them find the right page.'
 };
 
-const hits = new Map(); // best-effort per-instance rate limit
-function limited(ip) {
-    const now = Date.now(), win = 60 * 60 * 1000, max = 30;
-    const arr = (hits.get(ip) || []).filter(t => now - t < win);
-    arr.push(now); hits.set(ip, arr);
-    if (hits.size > 5000) hits.clear();
-    return arr.length > max;
-}
 
 module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
@@ -75,8 +68,9 @@ module.exports = async (req, res) => {
     const origin = req.headers.origin || '';
     if (origin && !/^https:\/\/(www\.)?fardinraafi\.com$|\.vercel\.app$|^http:\/\/localhost/.test(origin)) return res.status(403).json({ error: 'forbidden' });
     if (!process.env.GROQ_API_KEY) return res.status(503).json({ error: 'no key' });
-    const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
-    if (limited(ip)) return res.status(429).json({ error: 'slow down' });
+    const ip = R.ipOf(req);
+    if (await R.limited('fifi:' + ip, 30, 3600)) return res.status(429).json({ error: 'slow down' });
+    if (await R.limited('groq-day', 1200, 86400)) return res.status(429).json({ error: 'daily cap' }); // protects the free Groq quota
 
     let body = req.body;
     if (typeof body === 'string') { try { body = JSON.parse(body); } catch (e) { body = {}; } }
@@ -91,6 +85,17 @@ module.exports = async (req, res) => {
     const kind = /hook-lab/.test(page) ? 'hooklab' : /caption-maker/.test(page) ? 'caption' : /^\/blog\/./.test(page) ? 'blog' : /resume/.test(page) ? 'resume' : /404/.test(page) ? '404' : '';
     if (kind) extra += '\n' + PAGE_HINTS[kind];
     if (kind === 'blog' && ctx.title) extra += `\nBLOG POST: ${String(ctx.title).slice(0, 150)}\n${String(ctx.text || '').slice(0, 4000)}`;
+    // anonymous insights: question text only (emails/phones scrubbed), page and day. No IP, no names.
+    if (R.enabled) {
+        const qtext = clean[clean.length - 1].content.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').replace(/\+?\d[\d\s-]{7,}\d/g, '[number]').slice(0, 300);
+        const day = new Date().toISOString().slice(0, 10);
+        await R.pipeline([
+            ['LPUSH', 'fifi:q', JSON.stringify({ t: Date.now(), q: qtext, p: page || '/', n: clean.filter(m => m.role === 'user').length })],
+            ['LTRIM', 'fifi:q', '0', '2999'],
+            ['HINCRBY', 'fifi:days', day, '1'],
+            ['HINCRBY', 'fifi:pages', page || '/', '1']
+        ]);
+    }
     const sys = { role: 'system', content: SYSTEM + extra };
 
     try {

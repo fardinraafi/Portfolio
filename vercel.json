@@ -149,7 +149,7 @@
       ]
     },
     {
-      "source": "/(message-sent|playbook|404)",
+      "source": "/(message-sent|playbook|404|fifi-insights)",
       "headers": [
         {
           "key": "X-Robots-Tag",

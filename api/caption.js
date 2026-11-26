@@ -1,4 +1,5 @@
 // Caption Maker AI: Vercel serverless proxy to Groq (key in GROQ_API_KEY env var).
+const R = require('./_redis.js');
 const MODELS = ['openai/gpt-oss-120b', 'openai/gpt-oss-20b'];
 const STYLES = {
     professional: 'professional and polished, confident, no slang',
@@ -15,20 +16,15 @@ const PLATS = {
     x: 'X (Twitter): under 260 characters total INCLUDING hashtags, 1 or 2 hashtags',
     facebook: 'Facebook: friendly, 2 to 3 short lines, 2 or 3 hashtags'
 };
-const hits = new Map();
-function limited(ip) {
-    const now = Date.now(), arr = (hits.get(ip) || []).filter(t => now - t < 3600e3);
-    arr.push(now); hits.set(ip, arr); if (hits.size > 5000) hits.clear();
-    return arr.length > 40;
-}
 module.exports = async (req, res) => {
     res.setHeader('Cache-Control', 'no-store');
     if (req.method !== 'POST') return res.status(405).json({ error: 'POST only' });
     const origin = req.headers.origin || '';
     if (origin && !/^https:\/\/(www\.)?fardinraafi\.com$|\.vercel\.app$|^http:\/\/localhost/.test(origin)) return res.status(403).json({ error: 'forbidden' });
     if (!process.env.GROQ_API_KEY) return res.status(503).json({ error: 'no key' });
-    const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'x';
-    if (limited(ip)) return res.status(429).json({ error: 'slow down' });
+    const ip = R.ipOf(req);
+    if (await R.limited('cap:' + ip, 40, 3600)) return res.status(429).json({ error: 'slow down' });
+    if (await R.limited('groq-day', 1200, 86400)) return res.status(429).json({ error: 'daily cap' }); // protects the free Groq quota
     let b = req.body; if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
     const idea = String((b && b.idea) || '').trim().slice(0, 400);
     const style = STYLES[b && b.style] ? b.style : 'professional';

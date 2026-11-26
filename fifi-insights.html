@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Fifi Insights (private)</title>
+<link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+<style>
+:root { --c1: #2563EB; --c2: #7C3AED; --c3: #DB2777; --bg: #020617; --card: #0F172A; --line: rgba(255,255,255,.08); --mut: #94A3B8; --txt: #E2E8F0; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--txt); font: 15px/1.55 'DM Sans', system-ui, sans-serif; }
+.wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem 4rem; }
+h1 { font: 800 1.7rem system-ui, sans-serif; margin: 0 0 .3rem; background: linear-gradient(90deg, var(--c1), var(--c2), var(--c3)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mut { color: var(--mut); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 1.2rem 1.3rem; margin-top: 1rem; }
+.login { max-width: 380px; margin: 18vh auto 0; text-align: center; }
+input { width: 100%; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: #020617; color: var(--txt); font-size: 1rem; outline: none; }
+input:focus { border-color: var(--c2); }
+button { margin-top: .7rem; width: 100%; padding: 12px; border: none; border-radius: 12px; color: #fff; font-weight: 700; font-size: 1rem; cursor: pointer; background: linear-gradient(135deg, var(--c1), var(--c2)); }
+.err { color: #F87171; margin-top: .6rem; min-height: 1.2em; }
+.kpis { display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; }
+.kpi b { display: block; font: 800 1.8rem system-ui; }
+.kpi span { color: var(--mut); font-size: .8rem; text-transform: uppercase; letter-spacing: .05em; }
+.chart { display: flex; align-items: flex-end; gap: 3px; height: 120px; margin-top: .8rem; }
+.chart i { flex: 1; background: linear-gradient(180deg, var(--c2), var(--c1)); border-radius: 4px 4px 1px 1px; min-height: 2px; position: relative; }
+.chart i:hover::after { content: attr(data-t); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: .7rem; background: #1E293B; padding: 2px 6px; border-radius: 6px; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+.chips span { padding: 5px 11px; border-radius: 100px; background: rgba(124,58,237,.14); font-size: .85rem; }
+.chips b { color: #C4B5FD; margin-left: 4px; }
+table { width: 100%; border-collapse: collapse; margin-top: .5rem; font-size: .9rem; }
+td { padding: .55rem .4rem; border-top: 1px solid var(--line); vertical-align: top; }
+td.d { color: var(--mut); white-space: nowrap; width: 1%; }
+td.p { color: #93C5FD; white-space: nowrap; width: 1%; }
+.top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.top button { width: auto; margin: 0; padding: 8px 14px; font-size: .85rem; background: transparent; border: 1px solid var(--line); }
+#q { margin-top: .8rem; }
+@media (max-width: 700px) { .kpis { grid-template-columns: 1fr 1fr; } .cols { grid-template-columns: 1fr; } td.p { display: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+    <div id="login" class="login">
+        <h1>Fifi Insights 🔒</h1>
+        <p class="mut">Private. What visitors ask Fifi, with no names, emails or IPs.</p>
+        <form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" required><button>Unlock</button></form>
+        <div class="err" id="err"></div>
+    </div>
+    <div id="app" hidden>
+        <div class="top"><div><h1>Fifi Insights</h1><div class="mut">Questions people typed to Fifi's AI brain. Newest first.</div></div><div style="display:flex;gap:.5rem"><button id="re">↻ Refresh</button><button id="out">Lock</button></div></div>
+        <div class="kpis" style="margin-top:1rem">
+            <div class="card kpi" style="margin:0"><b id="kT">0</b><span>Questions stored</span></div>
+            <div class="card kpi" style="margin:0"><b id="k7">0</b><span>Last 7 days</span></div>
+            <div class="card kpi" style="margin:0"><b id="kToday">0</b><span>Today</span></div>
+            <div class="card kpi" style="margin:0"><b id="kConv">0</b><span>Avg msgs / chat</span></div>
+        </div>
+        <div class="card"><b>Questions per day</b> <span class="mut">(last 30 days)</span><div class="chart" id="chart"></div></div>
+        <div class="cols">
+            <div class="card"><b>Most asked words</b><div class="chips" id="words"></div></div>
+            <div class="card"><b>Where people ask</b><table id="pages"></table></div>
+        </div>
+        <div class="card"><b>Recent questions</b><input id="q" type="search" placeholder="Filter questions…"><table id="list"></table></div>
+    </div>
+</div>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let DATA = null;
+async function load(pw) {
+    $('err').textContent = '';
+    try {
+        const r = await fetch('/api/insights', { headers: { 'x-pass': pw } });
+        const d = await r.json();
+        if (!r.ok) { $('err').textContent = d.error || 'Error'; return false; }
+        DATA = d; sessionStorage.setItem('fi-pw', pw); draw(); $('login').hidden = true; $('app').hidden = false; return true;
+    } catch (e) { $('err').textContent = 'Network error.'; return false; }
+}
+function draw() {
+    const d = DATA, today = new Date().toISOString().slice(0, 10);
+    const days = [...Array(30)].map((_, i) => new Date(Date.now() - (29 - i) * 864e5).toISOString().slice(0, 10));
+    const max = Math.max(1, ...days.map(k => d.days[k] || 0));
+    $('kT').textContent = d.total;
+    $('k7').textContent = days.slice(-7).reduce((a, k) => a + (d.days[k] || 0), 0);
+    $('kToday').textContent = d.days[today] || 0;
+    const firsts = d.recent.filter(x => x.n === 1).length; $('kConv').textContent = firsts ? (d.recent.length / firsts).toFixed(1) : '-';
+    $('chart').innerHTML = days.map(k => `<i style="height:${(d.days[k] || 0) / max * 100}%" data-t="${k}: ${d.days[k] || 0}"></i>`).join('');
+    $('words').innerHTML = d.words.map(([w, n]) => `<span>${esc(w)}<b>${n}</b></span>`).join('') || '<span class="mut">No data yet</span>';
+    $('pages').innerHTML = Object.entries(d.pages).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([p, n]) => `<tr><td>${esc(p)}</td><td class="d">${n}</td></tr>`).join('');
+    list();
+}
+function list() {
+    const f = $('q').value.trim().toLowerCase();
+    $('list').innerHTML = DATA.recent.filter(x => !f || x.q.toLowerCase().includes(f)).map(x => `<tr><td class="d">${new Date(x.t).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</td><td>${esc(x.q)}</td><td class="p">${esc(x.p)}</td></tr>`).join('') || '<tr><td class="mut">No questions yet.</td></tr>';
+}
+$('f').addEventListener('submit', e => { e.preventDefault(); load($('pw').value); });
+$('q').addEventListener('input', list);
+$('re').addEventListener('click', () => load(sessionStorage.getItem('fi-pw') || ''));
+$('out').addEventListener('click', () => { sessionStorage.removeItem('fi-pw'); location.reload(); });
+const saved = sessionStorage.getItem('fi-pw'); if (saved) load(saved);
+</script>
+</body>
+</html>
