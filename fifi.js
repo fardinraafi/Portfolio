@@ -138,13 +138,16 @@
         fifipage: { label: '🤖 Meet Fifi', href: '/fifi' },
     };
     /* ---------- Fifi info: version, changelog, live stats (one cached fetch per tab) ---------- */
+    // FIFI_BUILD must match the newest version in api/_fifi_meta.js (bump both on every Fifi upgrade)
+    const FIFI_BUILD = '4.5';
     let INFO = null;
-    const infoReady = (async () => {
-        try { INFO = JSON.parse(sessionStorage.getItem('fifi-info') || 'null'); } catch (e) {}
-        if (INFO || location.protocol === 'file:') return INFO;
-        try { const r = await fetch('/api/fifi?info'); if (r.ok) { INFO = await r.json(); sessionStorage.setItem('fifi-info', JSON.stringify(INFO)); } } catch (e) {}
+    const getInfo = async () => {
+        if (location.protocol === 'file:') return null;
+        try { const r = await fetch('/api/fifi?info', { cache: 'no-store' }); if (r.ok) INFO = await r.json(); } catch (e) {}
         return INFO;
-    })();
+    };
+    const infoReady = getInfo();
+    const newer = (a, b) => { const x = String(a).split('.').map(Number), y = String(b).split('.').map(Number); for (let i = 0; i < 3; i++) { if ((x[i] || 0) !== (y[i] || 0)) return (x[i] || 0) > (y[i] || 0); } return false; };
     window.FRFifiInfo = infoReady;
     const changelogHtml = () => {
         if (!INFO) return `i get upgraded all the time 🛠️ Fardin keeps teaching me new tricks. the full story is on my page 👇`;
@@ -700,7 +703,22 @@
     showIntroIfEmpty();
 
     /* ---------- open / close / reset ---------- */
+    /* ---------- self-update: if a newer Fifi is live, reload quietly and reopen the chat (history is kept) ---------- */
+    let reloading = false, lastCheck = 0;
+    const checkUpdate = async (reopen) => {
+        if (reloading || busy || Date.now() - lastCheck < 60000) return false;
+        lastCheck = Date.now();
+        const i = await getInfo();
+        if (!i || !newer(i.version, FIFI_BUILD)) return false;
+        try { if (+sessionStorage.getItem('fifi-upd-try') >= 1) return false; /* one try per tab: never loop */ sessionStorage.setItem('fifi-upd-try', (+sessionStorage.getItem('fifi-upd-try') || 0) + 1); if (reopen) sessionStorage.setItem('fifi-reopen', '1'); } catch (e) {}
+        reloading = true; location.reload(); return true;
+    };
+    // only while the chat is open and idle, never in the middle of someone reading the page or typing
+    setInterval(() => { if (!document.hidden && modal.classList.contains('show') && !input.value) checkUpdate(true); }, 5 * 60000);
+    infoReady.then(i => { try { if (i && !newer(i.version, FIFI_BUILD)) sessionStorage.removeItem('fifi-upd-try'); } catch (e) {} });
+
     const open = (v) => {
+        if (v && !reloading) checkUpdate(true);
         modal.classList.toggle('show', v);
         btn.setAttribute('aria-expanded', v);
         document.body.classList.toggle('fifi-open', v);
@@ -723,6 +741,7 @@
 
     // other parts of the site can open Fifi or ask him something
     window.FRFifi = { open: () => open(true), ask: (t) => { open(true); setTimeout(() => ask(t), 200); } };
+    try { if (sessionStorage.getItem('fifi-reopen')) { sessionStorage.removeItem('fifi-reopen'); lastCheck = Date.now(); setTimeout(() => open(true), 300); } } catch (e) {}
 
     /* ---------- version badge in the header: tap for the changelog ---------- */
     const sub = modal.querySelector('.bot-subtitle');

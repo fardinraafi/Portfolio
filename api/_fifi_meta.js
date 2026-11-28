@@ -1,6 +1,7 @@
 // Fifi's story + changelog. One source for the bot's answers, the version badge and the /fifi page.
 // Add a new entry at the TOP of CHANGELOG with every Fifi upgrade.
 const CHANGELOG = [
+    { v: '4.5', d: '2026-11-28', t: 'Updates himself: if a newer Fifi goes live while your tab is open, he quietly refreshes so you always chat with the latest version' },
     { v: '4.4', d: '2026-11-28', t: 'Private questions (dating, crushes and the like) get a playful dodge, teases the question never the person, suggestion buttons no longer leak into replies' },
     { v: '4.3', d: '2026-11-28', t: 'Never says "i can\'t help with that" anymore: rude or offensive questions get a funny Gen Z comeback, cleaner replies' },
     { v: '4.2', d: '2026-11-28', t: 'Banter mode: plays along with random, teasing and inside-joke questions in full Gen Z hype-man style instead of saying i don\'t know' },

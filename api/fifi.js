@@ -129,7 +129,7 @@ module.exports = async (req, res) => {
         const q = req.query || {};
         // public info for the version badge, homepage pill and /fifi page
         if (q.info != null) {
-            res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
+            res.setHeader('Cache-Control', 'public, s-maxage=30, stale-while-revalidate=60');
             const st = await stats();
             return res.status(200).json({ version: META.VERSION, changelog: META.CHANGELOG, questions: st.questions, learned: st.learned });
         }
