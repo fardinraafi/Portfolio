@@ -74,7 +74,7 @@
     
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="/style.css?v=20261128a">
+    <link rel="stylesheet" href="/style.css?v=20261128b">
     
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
@@ -176,6 +176,12 @@
             <div id="game-prompt"><span class="pulse">Tap or press SPACE to play</span><small>Tap twice for a double jump 🦘</small></div>
             <canvas id="game-canvas" aria-label="Fifi Run mini game"></canvas>
         </div>
+
+        <section class="run-board" aria-label="Fifi Run leaderboard">
+            <h3>🏆 Fifi Run leaderboard</h3>
+            <form id="boardForm" hidden><span id="boardMsg"></span><input id="boardName" maxlength="14" placeholder="Your name" required><button>Save score</button></form>
+            <ol id="boardList"><li class="mut">loading…</li></ol>
+        </section>
 
         <nav class="quick-links" aria-label="Helpful links">
             <a href="/" class="ql primary">← Back home</a>
@@ -280,6 +286,7 @@
             else if (s < 40) msg = "not bad, not great. run it back? 🔁";
             else msg = "ok that was clean ngl 🔥";
             say(msg);
+            if (window.FRBoard) window.FRBoard.offer(s);
             prompt.innerHTML = `<span>Bug got you! Score ${s}</span><small class="pulse">Tap or press SPACE to try again</small>`;
             prompt.style.display = 'flex';
             const t0 = performance.now();
@@ -627,6 +634,41 @@
         animate();
     </script>
 
-<script src="/fifi.js?v=20261128a" defer></script>
+<style>
+.run-board { width: min(560px, 92vw); margin: 1.2rem auto 0; padding: 1rem 1.2rem; border-radius: 18px; background: rgba(15,23,42,.6); border: 1px solid rgba(124,58,237,.3); text-align: left; position: relative; z-index: 2; }
+.run-board h3 { margin: 0 0 .5rem; font: 800 1.05rem Syne, sans-serif; color: #fff; }
+.run-board ol { margin: 0; padding-left: 1.4rem; color: #CBD5E1; font-size: .92rem; columns: 2; column-gap: 2rem; }
+.run-board li { padding: 2px 0; } .run-board li b { color: #C4B5FD; float: right; } .run-board .mut { color: #94A3B8; list-style: none; }
+.run-board form { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; margin-bottom: .7rem; color: #E2E8F0; font-size: .9rem; }
+.run-board form span { flex-basis: 100%; }
+.run-board input { flex: 1; min-width: 120px; padding: 8px 12px; border-radius: 10px; border: 1px solid rgba(148,163,184,.35); background: #020617; color: #fff; font: inherit; }
+.run-board button { padding: 8px 14px; border-radius: 10px; border: none; color: #fff; font-weight: 700; cursor: pointer; background: linear-gradient(135deg, #2563EB, #7C3AED); }
+@media (max-width: 500px) { .run-board ol { columns: 1; } }
+</style>
+<script>
+(() => {
+    const list = document.getElementById('boardList'), form = document.getElementById('boardForm'), nm = document.getElementById('boardName');
+    const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const draw = b => { list.innerHTML = (b && b.length) ? b.map(x => `<li>${esc(x.name)} <b>${x.s}</b></li>`).join('') : '<li class="mut">no scores yet. be the first legend 👑</li>'; };
+    fetch('/api/fifi?board').then(r => r.json()).then(d => draw(d.board)).catch(() => draw([]));
+    let pending = 0;
+    try { nm.value = localStorage.getItem('frkr_runname') || ''; } catch (e) {}
+    window.FRBoard = { offer(s) {
+        if (s < 5) return;
+        pending = s; form.hidden = false;
+        document.getElementById('boardMsg').textContent = `Score ${s}! Put your name on the board:`;
+    } };
+    form.addEventListener('submit', async e => {
+        e.preventDefault(); e.stopPropagation(); if (!pending) return;
+        const name = nm.value.trim(); try { localStorage.setItem('frkr_runname', name); } catch (e2) {}
+        const btn = form.querySelector('button'); btn.textContent = '…';
+        try { const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ score: { name, s: pending } }) }); const d = await r.json(); if (d.board) draw(d.board); } catch (e3) {}
+        pending = 0; form.hidden = true; btn.textContent = 'Save score';
+    });
+    // typing your name must not trigger the game's SPACE / tap controls
+    ['keydown', 'pointerdown', 'touchstart', 'click'].forEach(ev => form.addEventListener(ev, e => e.stopPropagation()));
+})();
+</script>
+<script src="/fifi.js?v=20261128b" defer></script>
 </body>
 </html>

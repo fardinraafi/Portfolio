@@ -145,7 +145,7 @@
     <link rel="preload" as="image" href="/misc_img/me.webp" type="image/webp">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="/style.css?v=20261128a">
+    <link rel="stylesheet" href="/style.css?v=20261128b">
 
     <style>
 /* =========================================================
@@ -944,7 +944,16 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
                 </div>
                 <div class="status-tooltip">Click to copy email</div>
             </div>
+            <button type="button" class="fifi-live" id="fifiLive" aria-label="Chat with Fifi, Fardin's AI assistant"><img src="/misc_img/avatar.jpg" alt="" width="26" height="26"><span class="dot"></span><span id="fifiLiveTxt">Fifi is online · ask me anything</span></button>
         </div>
+        <script>
+        (() => {
+            const b = document.getElementById('fifiLive');
+            b.addEventListener('click', () => window.FRFifi && window.FRFifi.open());
+            const go = () => window.FRFifiInfo && window.FRFifiInfo.then(i => { if (i && i.questions > 20) document.getElementById('fifiLiveTxt').innerHTML = `Fifi is online · <b>${i.questions.toLocaleString()}</b> questions answered`; });
+            window.FRFifiInfo ? go() : addEventListener('load', go);
+        })();
+        </script>
 
         <!-- SPECIALIZED IN -->
         <div class="spec-block">
@@ -1678,10 +1687,10 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     })();
 </script>
 
-<script src="/main.js?v=20261128a"></script>
+<script src="/main.js?v=20261128b"></script>
 
 <!-- Tech-text title -->
-<script src="/techtext.js?v=20261128a"></script>
+<script src="/techtext.js?v=20261128b"></script>
 <script>
 /* createTechText lives in /techtext.js */
 
@@ -1692,7 +1701,7 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     createTechText(wrap, document.getElementById('tt2'), 'Khan Raafi', align, 1.15);
 })();
 </script>
-<script src="/fifi.js?v=20261128a" defer></script>
+<script src="/fifi.js?v=20261128b" defer></script>
 
 <!-- =========================================
      HOME PAGE SCRIPTS

@@ -135,6 +135,21 @@
         swipe:    { label: '🔥 Swipe the Hook', href: '/projects/swipe-the-hook' },
         archive:  { label: '💼 LinkedIn Archive', href: '/projects/linkedin-clone' },
         bookmarks:{ label: '🔖 120 free tools', href: '/projects/bookmarks' },
+        fifipage: { label: '🤖 Meet Fifi', href: '/fifi' },
+    };
+    /* ---------- Fifi info: version, changelog, live stats (one cached fetch per tab) ---------- */
+    let INFO = null;
+    const infoReady = (async () => {
+        try { INFO = JSON.parse(sessionStorage.getItem('fifi-info') || 'null'); } catch (e) {}
+        if (INFO || location.protocol === 'file:') return INFO;
+        try { const r = await fetch('/api/fifi?info'); if (r.ok) { INFO = await r.json(); sessionStorage.setItem('fifi-info', JSON.stringify(INFO)); } } catch (e) {}
+        return INFO;
+    })();
+    window.FRFifiInfo = infoReady;
+    const changelogHtml = () => {
+        if (!INFO) return `i get upgraded all the time 🛠️ Fardin keeps teaching me new tricks. the full story is on my page 👇`;
+        const rows = INFO.changelog.slice(0, 5).map(c => `• ${B('v' + c.v)}${c.d ? ' <small>(' + new Date(c.d).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }) + ')</small>' : ''}: ${c.t}`).join('<br>');
+        return `🆕 i'm ${B('Fifi v' + INFO.version)} and Fardin keeps upgrading me. latest drops:<br><br>${rows}${INFO.questions ? `<br><br>so far i've answered ${B(INFO.questions.toLocaleString())} questions${INFO.learned ? ` and learned ${B(INFO.learned)} new answers from visitors` : ''} 😎` : ''}`;
     };
     // anonymous click counts for the insights page
     const track = (id) => { try { navigator.sendBeacon && navigator.sendBeacon('/api/fifi', JSON.stringify({ event: 'click', id })); } catch (e) {} };
@@ -156,9 +171,11 @@
           chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'], act: ['resumePg', 'linkedin'] },
 
         { id: 'me', keys: ['what are you', 'are you ai', 'are you real', 'chatgpt', 'are you a bot', 'your name', 'who made you', 'fifi'],
-          a: ['i\'m Fifi 🤖, not ChatGPT, not Gemini, just a hand-coded brain Fardin built that knows everything about him. zero API, 100% homemade rizz ✨',
-              'real? emotionally yes 💅 technically i\'m a bunch of JavaScript that knows Fardin\'s whole résumé by heart'],
-          chips: ['Who is Fardin?', 'Tell me a fun fact'] },
+          a: [`i'm Fifi 🤖 fun fact: ${B('Fifi')} was a nickname people used to call Fardin, so when he made a chatbot, that's what he named me. v1 could only answer 4 questions 😭 now i run on an AI brain through the ${B('Groq API')}, and he keeps upgrading me. not bad for a marketing guy ngl 😌`,
+              `Fardin built me right after building this website. started as a tiny 4-question bot, now i've got an AI brain (${B('Groq API')}), site search, voice input and i learn from questions i can't answer. he keeps shipping updates 🛠️`],
+          chips: ["What's new?", 'Who is Fardin?'], act: ['fifipage'] },
+        { id: 'whatsnew', keys: ['whats new', 'what is new', 'changelog', 'update', 'updates', 'updated', 'version', 'new features', 'upgrade', 'upgrades'],
+          a: () => changelogHtml(), chips: ['Who made you?', 'Who is Fardin?'], act: ['fifipage'] },
 
         { id: 'work', keys: ['work', 'job', 'experience', 'career', 'augmex', 'company', 'role', 'position', 'currently', 'what does he do', 'employed', 'working', 'intern', 'internship', 'office'],
           a: `💼 ${B('Augmex Technologies Ltd.')}, the main quest:<br><br>• ${B('Junior Executive, Marketing')} (Apr 2026 → now)<br>• ${B('Intern, Marketing')} (Jan → Apr 2026)<br><br>he runs B2B lead generation, CRM, cold outreach, social content and design across multiple brands. did ALL the posting, writing, carousels and videos for Augmex → ~${B('180K organic reach')} 📈<br><br>before that: marketing intern at ${B('Adviza International')} (2025).`,
@@ -412,7 +429,7 @@
                     body: JSON.stringify({ access_key: W3F_KEY, subject: 'New message via Fifi 🤖', from_name: 'Fifi (portfolio chat)', name: fd.name, email: fd.email, company: fd.company || '-', message: fd.message, page: location.pathname }) });
                 const d = await r.json();
                 if (!d.success) throw 0;
-                f.outerHTML = `<div class="chat-bubble ai-bubble">✅ sent! Fardin will get back to ${B(esc(fd.name))} at ${B(esc(fd.email))} soon. usually within a couple hours (Dhaka daytime) ⚡</div>`;
+                f.outerHTML = `<div class="chat-bubble ai-bubble">✅ sent! Fardin will get back to ${B(esc(fd.name))} at ${B(esc(fd.email))} soon. usually within a couple hours (Dhaka daytime) ⚡<br><small>Fifi 🤖, built by Fardin</small></div>`;
                 setMood('happy');
             } catch (err) { btn.disabled = false; btn.textContent = '😵 failed, try again'; setMood('confused'); }
             scrollDown();
@@ -505,7 +522,7 @@
         const eggs = [
             [/^(meow+|mew|nya+|miau)\b/, `meow back 🐱 fun fact: Fardin is ${B('obsessed with cats')}, so you two would get along.`],
             [/\b(th ?19|town hall ?19|clash of clans|coc)\b/, `⚔️ ${B('Town Hall 19')}, ${B('14 years')} of Clash. respect the grind. clan invite? ask him 😏`],
-            [/\b(who (made|built|created|coded) you|your (creator|dad|maker)|are you (an? )?(ai|bot|real|automated|chatgpt|gpt)|groq|grok|api key|preset|canned|scripted)\b/, `yep, i\'m AI 🤖 Fardin built me himself and hooked me up to an AI model through the ${B('Groq API')}, plus a coded backup brain for when the AI naps. pretty talented for a non-tech marketing guy to pull allat off ngl 😌`],
+            [/\b(who (made|built|created|coded) you|your (creator|dad|maker)|are you (an? )?(ai|bot|real|automated|chatgpt|gpt)|groq|grok|api key|preset|canned|scripted)\b/, `yep, i\'m AI 🤖 Fardin built me himself (Fifi was his nickname, that's where my name comes from). started as a 4-question bot, now i run on an AI model through the ${B('Groq API')}, plus a coded backup brain for when the AI naps. pretty talented for a non-tech marketing guy to pull allat off ngl 😌`],
             [/\b(i love you|marry me|be my (gf|bf|girlfriend|boyfriend))\b/, `aww 🥹 i\'m a chatbot bestie, my heart is made of if-statements. but i\'ll pass the love to Fardin 💌`],
             [/\b(messi or ronaldo|ronaldo or messi|goat)\b/, `⚽ he supports ${B('Brazil')} 🇧🇷 and loves BOTH Messi and Ronaldo. no goat wars in this house 🕊️`],
             [/\b(ps+ps+|kitty|kitten|cat pic)\b/, `🐱 *perks up* did someone say cat? Fardin would drop everything for a cat, no joke.`],
@@ -529,7 +546,7 @@
             return { html: `more of what bestie? 😅 try one of these 👇`, chips: ['Work experience', 'Skills', 'Awards', 'Fun facts'] };
         }
         // chip aliases
-        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'how does the score work': 'score', 'who built this': 'builder', 'what makes a good hook': 'hooks', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu', 'leave a message': 'leavemsg' };
+        const alias = { 'see the gallery': 'design', 'read his blog': 'blog', 'free resources': 'resources', 'download resume': 'resume', 'contact him': 'contact', 'all his tools': 'tools', 'what tools does he use': 'tools', 'biggest wins': 'awards', 'what does he do': 'work', 'tell me a fun fact': 'fun', 'leadership roles': 'lead', 'content results': 'content', 'b2b stuff': 'b2b', 'ai stuff': 'ai', 'design work': 'design', 'why hire him': 'why', 'certificates': 'awards', 'how does the score work': 'score', 'who built this': 'builder', 'what makes a good hook': 'hooks', 'book a call': 'call', 'where am i': 'lost', 'take me home': 'gohome', 'education': 'edu', 'leave a message': 'leavemsg', 'whats new': 'whatsnew', 'who made you': 'me' };
         let intent = alias[q] ? byId[alias[q]] : classify(text);
 
         if (!intent) {
@@ -699,6 +716,24 @@
 
     form.addEventListener('submit', (e) => { e.preventDefault(); const t = input.value; input.value = ''; ask(t); });
 
+    // other parts of the site can open Fifi or ask him something
+    window.FRFifi = { open: () => open(true), ask: (t) => { open(true); setTimeout(() => ask(t), 200); } };
+
+    /* ---------- version badge in the header: tap for the changelog ---------- */
+    const sub = modal.querySelector('.bot-subtitle');
+    if (sub) {
+        const vb = document.createElement('button');
+        vb.type = 'button'; vb.className = 'fifi-ver'; vb.title = "What's new with Fifi"; vb.textContent = 'v…';
+        sub.append(' · '); sub.appendChild(vb);
+        infoReady.then(i => { vb.textContent = 'v' + (i ? i.version : '4'); });
+        vb.addEventListener('click', (e) => {
+            e.stopPropagation(); if (busy) return;
+            intro.style.display = 'none'; starters.style.display = 'none'; resetBtn.style.display = '';
+            const res = { html: changelogHtml(), act: ['fifipage'], chips: ['Who made you?', 'Who is Fardin?'] };
+            const el = bubble('ai', res.html); busy = true; finish(el, res);
+        });
+    }
+
     /* ---------- voice input (browsers with speech recognition: Chrome, Edge, Safari) ---------- */
     const mic = document.getElementById('fifiMic');
     const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -719,18 +754,29 @@
 
     // little "psst" nudge once per session, after 12s on the page
     try {
-        if (['home', 'resume', 'contact', 'projects'].includes(MODE) && !sessionStorage.getItem('fifi-nudged') && !history.length) {
+        // page-aware nudges: [message, question to ask on tap, delay]
+        const NUDGE = {
+            home: ['psst… ask me anything about Fardin 👀', null, 12000],
+            resume: ['need the 30-second version? 📄', 'Who is Fardin?', 12000],
+            contact: ['want me to pass him a message? 📬', 'Leave a message', 10000],
+            projects: ['not sure which one to try? i can pick 🎯', 'Which project should I try?', 12000],
+            blog: ['been reading a while, want the TL;DR? 📝', 'Summarise this post', 45000],
+            gallery: ['want the story behind these designs? 🎨', 'Which brands are these for?', 15000],
+            certs: ['which cert actually matters? i know 🎓', 'Which cert is his best?', 15000],
+            bookmarks: ['tell me what you need, i\'ll find the tool 🔎', null, 15000]
+        }[MODE];
+        if (NUDGE && !sessionStorage.getItem('fifi-nudged-' + MODE) && !history.length) {
             setTimeout(() => {
-                if (modal.classList.contains('show')) return;
+                if (modal.classList.contains('show') || document.hidden) return;
                 const tip = document.createElement('div');
                 tip.className = 'fifi-nudge';
-                tip.textContent = 'psst… ask me anything about Fardin 👀';
+                tip.textContent = NUDGE[0];
                 document.body.appendChild(tip);
                 requestAnimationFrame(() => tip.classList.add('in'));
-                tip.addEventListener('click', () => { tip.remove(); open(true); });
+                tip.addEventListener('click', () => { tip.remove(); if (NUDGE[1]) window.FRFifi.ask(NUDGE[1]); else open(true); });
                 setTimeout(() => { tip.classList.remove('in'); setTimeout(() => tip.remove(), 400); }, 6000);
-                sessionStorage.setItem('fifi-nudged', '1');
-            }, 12000);
+                sessionStorage.setItem('fifi-nudged-' + MODE, '1');
+            }, NUDGE[2]);
         }
     } catch (e) {}
 })();

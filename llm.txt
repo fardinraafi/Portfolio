@@ -23,6 +23,7 @@
 - [Blog](https://fardinraafi.com/blog)
 - [Free resources](https://fardinraafi.com/resources)
 - [Contact](https://fardinraafi.com/contact)
+- [Meet Fifi, the AI assistant he built](https://fardinraafi.com/fifi)
 
 ## Blog posts
 - [Warid to Cirkle Rebrand Case Study](https://fardinraafi.com/blog/warid-to-cirkle-rebrand-case-study)

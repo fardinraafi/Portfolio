@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ===== SEO ===== -->
+    <title>Meet Fifi: The AI Assistant Fardin Built - Fardin Raafi</title>
+    <meta name="description" content="Meet Fifi, the AI assistant on fardinraafi.com. Named after Fardin's nickname, built by a marketer with no coding background and upgraded every week.">
+    <meta name="author" content="Fardin Rahman Khan Raafi">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://fardinraafi.com/fifi">
+    <meta name="theme-color" content="#0F172A">
+    <link rel="icon" type="image/png" href="/misc_img/site_favicon.png">
+    <link rel="apple-touch-icon" href="/misc_img/site_favicon.png">
+    <!-- Social previews -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Fardin Rahman Khan Raafi">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://fardinraafi.com/fifi">
+    <meta property="og:title" content="Meet Fifi: The AI Assistant Fardin Built - Fardin Raafi">
+    <meta property="og:description" content="Meet Fifi, the AI assistant on fardinraafi.com. Named after Fardin's nickname, built by a marketer with no coding background and upgraded every week.">
+    <meta property="og:image" content="https://fardinraafi.com/misc_img/avatar.jpg">
+    <meta property="og:image:width" content="400">
+    <meta property="og:image:height" content="400">
+    <meta property="og:image:alt" content="Meet Fifi: The AI Assistant Fardin Built - Fardin Raafi">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@fardin_raafi">
+    <meta name="twitter:creator" content="@fardin_raafi">
+    <meta name="twitter:title" content="Meet Fifi: The AI Assistant Fardin Built - Fardin Raafi">
+    <meta name="twitter:description" content="Meet Fifi, the AI assistant on fardinraafi.com. Named after Fardin's nickname, built by a marketer with no coding background and upgraded every week.">
+    <meta name="twitter:image" content="https://fardinraafi.com/misc_img/avatar.jpg">
+    <!-- Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Structured data -->
+    <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@id": "https://fardinraafi.com/#website",
+   "@type": "WebSite",
+   "url": "https://fardinraafi.com/",
+   "name": "Fardin Rahman Khan Raafi"
+  },
+  {
+   "@id": "https://fardinraafi.com/#person",
+   "@type": "Person",
+   "name": "Fardin Rahman Khan Raafi",
+   "url": "https://fardinraafi.com/",
+   "sameAs": [
+    "https://www.linkedin.com/in/fardinraafi",
+    "https://www.behance.net/fardinraafi",
+    "https://github.com/fardinraafi"
+   ]
+  },
+  {
+   "@type": "AboutPage",
+   "@id": "https://fardinraafi.com/fifi#webpage",
+   "url": "https://fardinraafi.com/fifi",
+   "name": "Meet Fifi: The AI Assistant Fardin Built - Fardin Raafi",
+   "description": "Meet Fifi, the AI assistant on fardinraafi.com. Named after Fardin's nickname, built by a marketer with no coding background and upgraded every week.",
+   "isPartOf": {
+    "@id": "https://fardinraafi.com/#website"
+   },
+   "about": {
+    "@id": "https://fardinraafi.com/#person"
+   },
+   "inLanguage": "en",
+   "breadcrumb": {
+    "@id": "https://fardinraafi.com/fifi#breadcrumb"
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Home",
+     "item": "https://fardinraafi.com/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Meet Fifi",
+     "item": "https://fardinraafi.com/fifi"
+    }
+   ],
+   "@id": "https://fardinraafi.com/fifi#breadcrumb"
+  }
+ ]
+}
+    </script>
+    <!-- ===== /SEO ===== -->
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css?v=20261128b">
+    <style>
+        #neural-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; opacity: 0.7; }
+        .ff { position: relative; z-index: 2; max-width: 860px; margin: 0 auto; padding: 0 1.2rem 4rem; }
+        .ff-hero { text-align: center; padding: 1rem 0 2rem; }
+        .ff-av { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 3px solid var(--c2); box-shadow: 0 0 0 8px rgba(124,58,237,.15), 0 20px 50px rgba(124,58,237,.35); animation: ffFloat 4s ease-in-out infinite; }
+        @keyframes ffFloat { 50% { transform: translateY(-8px); } }
+        .ff-hero h1 { font: 800 clamp(2.4rem, 6vw, 3.6rem) Syne, sans-serif; margin: 1rem 0 .4rem; }
+        .ff-hero p { color: var(--text-muted); font-size: 1.1rem; max-width: 560px; margin: 0 auto; line-height: 1.6; }
+        .ff-cta { display: flex; gap: .7rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
+        .ff-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin: 1.5rem 0 0; }
+        .ff-stats .glass-card { text-align: center; padding: 1.1rem .6rem; }
+        .ff-stats b { display: block; font: 800 1.9rem Syne, sans-serif; }
+        .ff-stats span { color: var(--text-muted); font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+        .ff h2 { font: 800 1.6rem Syne, sans-serif; margin: 2.6rem 0 1rem; }
+        .ff-story p { font-size: 1.08rem; line-height: 1.75; color: var(--text-main); margin: 0 0 1rem; }
+        .ff-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: .8rem; }
+        .ff-grid .glass-card { padding: 1.1rem 1.2rem; }
+        .ff-grid h3 { margin: .3rem 0 .3rem; font: 700 1.02rem Syne, sans-serif; }
+        .ff-grid p { margin: 0; color: var(--text-muted); font-size: .92rem; line-height: 1.55; }
+        .ff-grid .ic { font-size: 1.5rem; }
+        .ff-tl { list-style: none; padding: 0; margin: 0; border-left: 2px solid rgba(124,58,237,.35); }
+        .ff-tl li { display: flex; gap: 1rem; padding: 0 0 1.3rem 1.2rem; position: relative; }
+        .ff-tl li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: linear-gradient(135deg, var(--c1), var(--c3)); }
+        .ff-tl .tl-v { flex: none; min-width: 48px; font: 800 1rem Syne, sans-serif; color: var(--c2); }
+        .ff-tl time { font-size: .78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+        .ff-tl p { margin: .15rem 0 0; line-height: 1.55; }
+        @media (max-width: 600px) { .ff-stats b { font-size: 1.5rem; } }
+    </style>
+</head>
+<body class="dark-mode">
+<script>try{if(localStorage.getItem("theme")==="light")document.body.classList.remove("dark-mode");else document.body.classList.add("dark-mode")}catch(e){}</script>
+
+<div id="preloader">
+    <div class="preloader-text">FR<span class="gradient-text">KR</span></div>
+</div>
+
+<!-- The Interactive Physics Canvas Engine -->
+<canvas id="neural-canvas"></canvas>
+
+<div class="bg-mesh">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+</div>
+
+<!-- Nav injected by main.js -->
+<nav class="top-nav"></nav>
+
+<main class="ff">
+    <section class="ff-hero">
+        <img class="ff-av" src="/misc_img/avatar.jpg" alt="Fifi, Fardin's AI assistant" width="110" height="110">
+        <h1>Meet <span class="gradient-text">Fifi</span></h1>
+        <p>The AI sidekick living on this website. Named after a nickname, built by a marketer, and upgraded almost every week.</p>
+        <div class="ff-cta">
+            <button type="button" class="btn btn-primary" id="ffChat">💬 Chat with Fifi</button>
+            <button type="button" class="btn btn-outline" id="ffNew">🆕 Ask what's new</button>
+        </div>
+        <div class="ff-stats">
+            <div class="glass-card no-hover"><b id="sV">v4.1</b><span>Current version</span></div>
+            <div class="glass-card no-hover"><b id="sQ">-</b><span>Questions answered</span></div>
+            <div class="glass-card no-hover"><b id="sL">-</b><span>Answers learned</span></div>
+        </div>
+    </section>
+
+    <section class="ff-story">
+        <h2>The story</h2>
+        <p><strong>Fifi</strong> was a nickname a lot of people used to call me. So when I started thinking about a chatbot for my portfolio, the name was obvious.</p>
+        <p>I built the first Fifi right after building this website. It was simple: it could answer only 4 questions about me. Who I am, what I do, my resume and my volunteer leadership.</p>
+        <p>But I kept wanting to make it better. Fifi got a hand-coded brain, then a real AI brain through the Groq API, plus custom features I built with Claude. I'm a marketer, not a developer, and Fifi is proof of what you can build when you keep shipping small upgrades.</p>
+    </section>
+
+    <section>
+        <h2>What Fifi can do</h2>
+        <div class="ff-grid">
+            <div class="glass-card no-hover"><span class="ic">🧠</span><h3>Knows the lore</h3><p>Work, results, skills, awards and fun facts about me, from an AI brain with a coded backup.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🔎</span><h3>Searches the blog</h3><p>Finds the exact paragraph in any post and links you to it.</p></div>
+            <div class="glass-card no-hover"><span class="ic">📈</span><h3>Learns every week</h3><p>Questions he can't answer go to my private dashboard. I teach him, and he knows it from the next chat.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🤝</span><h3>Recruiter mode</h3><p>Hiring? He gives a 30-second pitch and passes your message straight to me.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🇧🇩</span><h3>Speaks your language</h3><p>English, Bangla or Banglish. He replies the way you write.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🎙️</span><h3>Voice input</h3><p>Tap the mic and just ask.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🧭</span><h3>Page-aware</h3><p>Summarises the post you're reading, picks a project for you, finds the right free tool.</p></div>
+            <div class="glass-card no-hover"><span class="ic">🎮</span><h3>Has a game</h3><p>Star of <a href="/404">Fifi Run</a> on the 404 page, with a live leaderboard.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Changelog</h2>
+        <ol class="ff-tl" id="ffTl">
+            <li><div class="tl-v">v4.1</div><div><time>28 Nov 2026</time><p>Meet Fifi page, version badge, live stats, Fifi Run leaderboard, ask Fifi from blog search, page-aware nudges</p></div></li>
+            <li><div class="tl-v">v4.0</div><div><time>28 Nov 2026</time><p>Learns answers Fardin teaches him, searches every blog post, recruiter mode, lead capture, voice input</p></div></li>
+            <li><div class="tl-v">v3.2</div><div><time>27 Nov 2026</time><p>Moved onto every main page with page-aware starter questions</p></div></li>
+            <li><div class="tl-v">v3.1</div><div><time>26 Nov 2026</time><p>Private insights dashboard, logs questions he could not answer so Fardin can fill the gaps</p></div></li>
+            <li><div class="tl-v">v3.0</div><div><time>23 Nov 2026</time><p>Got a real AI brain through the Groq API: streaming replies, page modes, Bangla and Banglish, message form, moods, Easter eggs</p></div></li>
+            <li><div class="tl-v">v2.1</div><div><time>22 Nov 2026</time><p>Moved onto the resume and 404 pages, book-a-call popup</p></div></li>
+            <li><div class="tl-v">v2.0</div><div><time>21 Nov 2026</time><p>Hand-coded brain with typing, suggestion chips, action buttons and chat memory</p></div></li>
+            <li><div class="tl-v">v1.0</div><div><time>The beginning</time><p>A simple bot built right after the portfolio launched. Answered 4 questions: who Fardin is, what he does, his resume and his volunteer leadership</p></div></li>
+        </ol>
+    </section>
+</main>
+
+<footer class="site-footer"></footer>
+<button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
+
+<script src="/main.js?v=20261128b"></script>
+
+
+<!-- BLUR TEXT SCRIPT AUTOMATOR -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const blurContainers = document.querySelectorAll('.blur-container');
+        const blurObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const words = entry.target.querySelectorAll('.scroll-blur');
+                    words.forEach((word, index) => {
+                        word.style.animationDelay = `${index * 0.15}s`;
+                        word.classList.add('is-animated');
+                    });
+                    blurObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        blurContainers.forEach(container => blurObserver.observe(container));
+    });
+</script>
+
+<!-- BACKGROUND PHYSICS ENGINE -->
+<script>
+    const canvas = document.getElementById('neural-canvas');
+    if(canvas) {
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let particles = [];
+        let mouse = { x: null, y: null, radius: 100 }; 
+
+        window.addEventListener('mousemove', (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        window.addEventListener('mouseout', () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        function resize() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor(x, y, dx, dy, size, color) {
+                this.x = x; this.y = y;
+                this.dx = dx; this.dy = dy;
+                this.size = size; this.color = color;
+                this.baseX = this.x; this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (mouse.x != null && mouse.y != null) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    let forceDirectionX = dx / distance;
+                    let forceDirectionY = dy / distance;
+                    let maxDistance = mouse.radius;
+                    let force = (maxDistance - distance) / maxDistance;
+                    let directionX = forceDirectionX * force * this.density;
+                    let directionY = forceDirectionY * force * this.density;
+
+                    if (distance < mouse.radius) {
+                        this.x -= directionX;
+                        this.y -= directionY;
+                    } else {
+                        if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                        if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                    }
+                } else {
+                    if (this.x !== this.baseX) this.x -= (this.x - this.baseX) / 10;
+                    if (this.y !== this.baseY) this.y -= (this.y - this.baseY) / 10;
+                }
+                this.baseX += this.dx;
+                this.baseY += this.dy;
+                if (this.baseX < 0 || this.baseX > width) this.dx = -this.dx;
+                if (this.baseY < 0 || this.baseY > height) this.dy = -this.dy;
+                this.draw();
+            }
+        }
+
+        function init() {
+            particles = [];
+            let numberOfParticles = (width * height) / ((innerWidth < 768 || screen.width <= 600) ? 24000 : 12000); 
+            let colors = ['rgba(59, 130, 246, 0.4)', 'rgba(139, 92, 246, 0.4)', 'rgba(219, 39, 119, 0.4)'];
+
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = Math.random() * (innerWidth - size * 2 - size * 2) + size * 2;
+                let y = Math.random() * (innerHeight - size * 2 - size * 2) + size * 2;
+                let dx = (Math.random() - 0.5) * 1; 
+                let dy = (Math.random() - 0.5) * 1; 
+                let color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, dx, dy, size, color));
+            }
+        }
+
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    let distance = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) 
+                                 + ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                    if (distance < (width / 5.5) * (height / 5.5)) {
+                        opacityValue = 1 - (distance / 25000);
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacityValue * 0.35})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate); if ((innerWidth < 768 || screen.width <= 600) && (window.__nnSkip = !window.__nnSkip)) return;
+            ctx.clearRect(0, 0, width, height);
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            connect();
+        }
+
+        init();
+        animate();
+    }
+</script>
+<script>
+(() => {
+    document.getElementById('ffChat').onclick = () => window.FRFifi && window.FRFifi.open();
+    document.getElementById('ffNew').onclick = () => window.FRFifi && window.FRFifi.ask("What's new?");
+    const go = () => window.FRFifiInfo && window.FRFifiInfo.then(i => { if (!i) return;
+        document.getElementById('sV').textContent = 'v' + i.version;
+        document.getElementById('sQ').textContent = (i.questions || 0).toLocaleString();
+        document.getElementById('sL').textContent = (i.learned || 0).toLocaleString(); });
+    addEventListener('load', go);
+})();
+</script>
+<script src="/fifi.js?v=20261128b" defer></script>
+</body>
+</html>

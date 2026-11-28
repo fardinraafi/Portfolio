@@ -96,7 +96,7 @@
     <!-- ===== /SEO ===== -->
     <meta name="p:domain_verify" content="a8bdde9ae8654b4b558ad6ea9b73afbd"/>
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/style.css?v=20261128a">
+    <link rel="stylesheet" href="/style.css?v=20261128b">
     <script defer src="/_vercel/insights/script.js"></script>
     <script defer src="/_vercel/speed-insights/script.js"></script>
 
@@ -333,7 +333,7 @@ body:not(.dark-mode) .cta-badge { color: var(--c2); }
 <footer class="site-footer reveal"></footer>
 <button id="scrollTopBtn" class="scroll-to-top" aria-label="Scroll to top">↑</button>
 
-<script src="/techtext.js?v=20261128a"></script>
+<script src="/techtext.js?v=20261128b"></script>
 <script>
 /* =========================================================
    POSTS (newest first). Add new posts to the top of this list.
@@ -438,7 +438,38 @@ $('#chips').addEventListener('click', e => {
     document.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === b));
     cat = b.dataset.cat; apply();
 });
-$('#search').addEventListener('input', e => { query = e.target.value; apply(); });
+$('#search').addEventListener('input', e => { query = e.target.value; apply(); askBtn(); });
+
+/* ---------- Ask Fifi from search: Fifi answers above the results ---------- */
+const askWrap = document.createElement('div');
+$('#searchCount').after(askWrap);
+function askBtn() {
+    const q = query.trim();
+    if (q.split(/\s+/).length < 3 && !q.endsWith('?')) { if (!askWrap.querySelector('.fifi-askbox')) askWrap.innerHTML = ''; return; }
+    if (askWrap.querySelector('.fifi-askbox')) return;
+    askWrap.innerHTML = `<button type="button" class="fifi-askbtn">✨ Ask Fifi: “${q.replace(/[<>&"]/g, '')}” <small>(Enter)</small></button>`;
+    askWrap.querySelector('button').onclick = () => askFifi(q);
+}
+async function askFifi(q) {
+    q = q.trim(); if (!q) return;
+    askWrap.innerHTML = `<div class="fifi-askbox" aria-live="polite"><div class="hd"><img src="/misc_img/avatar.jpg" alt="">Fifi says</div><div class="txt">thinking… 🤔</div></div>`;
+    const txt = askWrap.querySelector('.txt');
+    const show = (raw) => {
+        const vis = raw.split(/\n\s*(?:ACT|CHIPS|GAP)\s*:/i)[0].trim();
+        txt.innerHTML = vis.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]))
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>').replace(/\[([^\]]{1,80})\]\((\/[a-z0-9\-\/]*)\)/gi, '<a href="$2">$1</a>').replace(/\n+/g, '<br>');
+    };
+    try {
+        const r = await fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: [{ role: 'user', content: 'Search on the blog page: ' + q.slice(0, 300) }], page: '/blog' }) });
+        if (!r.ok || !r.body) throw 0;
+        const rd = r.body.getReader(), dec = new TextDecoder(); let raw = '';
+        while (true) { const { done, value } = await rd.read(); if (done) break; raw += dec.decode(value, { stream: true }); show(raw); }
+        const more = document.createElement('button'); more.className = 'more'; more.textContent = '💬 Continue with Fifi';
+        more.onclick = () => window.FRFifi && window.FRFifi.ask(q);
+        askWrap.querySelector('.fifi-askbox').appendChild(more);
+    } catch (e) { txt.innerHTML = 'my AI brain is napping 😴 try the chat button instead.'; }
+}
+$('#search').addEventListener('keydown', e => { if (e.key === 'Enter' && query.trim().split(/\s+/).length >= 2) { e.preventDefault(); askFifi(query); } });
 document.addEventListener('keydown', e => {
     if (e.key === '/' && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) { e.preventDefault(); $('#search').focus(); }
     if (e.key === 'Escape' && document.activeElement === $('#search')) { $('#search').value = ''; query = ''; apply(); $('#search').blur(); }
@@ -475,7 +506,7 @@ document.querySelectorAll('.fx').forEach(el => reduce ? el.classList.add('in') :
 })();
 </script>
 
-<script src="/main.js?v=20261128a"></script>
+<script src="/main.js?v=20261128b"></script>
 
 <!-- Background neural network (same look as before; pauses when the tab is hidden) -->
 <script>
@@ -502,6 +533,6 @@ document.querySelectorAll('.fx').forEach(el => reduce ? el.classList.add('in') :
     loop();
 })();
 </script>
-<script src="/fifi.js?v=20261128a" defer></script>
+<script src="/fifi.js?v=20261128b" defer></script>
 </body>
 </html>
