@@ -484,12 +484,12 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
     content: ''; position: absolute; left: 50%; top: 0; width: 4px; height: 100%; border-radius: 4px; z-index: 1;
     background: linear-gradient(to bottom, var(--c1), var(--c2), var(--c3));
     box-shadow: 0 0 12px var(--c1), 0 0 28px rgba(124, 58, 237, 0.7);
-    transform: translateX(-50%) scaleY(var(--p, 0)); transform-origin: top;
+    transform: translateX(-50%) scaleY(var(--p, 0)); transform-origin: top; will-change: transform;
 }
 .tl-head {
     position: absolute; left: 50%; top: 0; width: 14px; height: 14px; border-radius: 50%; z-index: 3; pointer-events: none;
     background: #fff; box-shadow: 0 0 10px #fff, 0 0 22px var(--c2), 0 0 44px var(--c1);
-    transform: translate(-50%, calc(var(--py, 0px) - 7px)); opacity: var(--ho, 0); transition: opacity 0.3s;
+    transform: translate3d(-50%, calc(var(--py, 0px) - 7px), 0); opacity: var(--ho, 0); transition: opacity 0.3s; will-change: transform;
 }
 .et-item .et-dot { transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .et-item.lit .et-dot { background: var(--c1); transform: scale(1.25); box-shadow: 0 0 0 6px rgba(37, 99, 235, 0.18), 0 0 22px var(--c1); }
@@ -920,28 +920,45 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('mouseleave', () => glow.classList.remove('on'));
     }
 
-    /* 6. Timeline light fills as you scroll */
+    /* 6. Timeline light fills as you scroll (smoothed; stable on phones where the URL bar resizes the viewport) */
     const timelines = Array.from(document.querySelectorAll('.epic-timeline'));
     timelines.forEach(tl => { const head = document.createElement('div'); head.className = 'tl-head'; tl.appendChild(head); });
-    let tlTicking = false;
-    const updateTimelines = () => {
-        const target = window.innerHeight * 0.6;
-        timelines.forEach(tl => {
-            const rect = tl.getBoundingClientRect();
-            const p = Math.min(Math.max((target - rect.top) / rect.height, 0), 1);
-            tl.style.setProperty('--p', p.toFixed(4));
-            tl.style.setProperty('--py', (p * rect.height).toFixed(1) + 'px');
-            tl.style.setProperty('--ho', p > 0 && p < 1 ? 1 : 0);
-            tl.querySelectorAll('.et-item').forEach(item => {
-                const dot = item.querySelector('.et-dot');
-                if (dot) item.classList.toggle('lit', dot.getBoundingClientRect().top < target);
-            });
+    let vh = window.innerHeight, vw = window.innerWidth, raf = 0;
+    const state = timelines.map(tl => ({ tl, cur: 0, dots: [] }));
+    // cache each dot's position inside its timeline, so scrolling doesn't re-measure every item
+    const measure = () => state.forEach(st => {
+        const top = st.tl.getBoundingClientRect().top;
+        st.dots = Array.from(st.tl.querySelectorAll('.et-item')).map(item => {
+            const dot = item.querySelector('.et-dot');
+            return [item, dot ? dot.getBoundingClientRect().top - top : 0];
         });
-        tlTicking = false;
+    });
+    const frame = () => {
+        raf = 0;
+        const target = vh * 0.6;
+        let moving = false;
+        state.forEach(st => {
+            const rect = st.tl.getBoundingClientRect();
+            const goal = Math.min(Math.max((target - rect.top) / rect.height, 0), 1);
+            st.cur += (goal - st.cur) * 0.22;            // ease toward the goal
+            if (Math.abs(goal - st.cur) < 0.0008) st.cur = goal; else moving = true;
+            const py = st.cur * rect.height;
+            st.tl.style.setProperty('--p', st.cur.toFixed(4));
+            st.tl.style.setProperty('--py', py.toFixed(1) + 'px');
+            st.tl.style.setProperty('--ho', st.cur > 0.001 && st.cur < 0.999 ? 1 : 0);
+            st.dots.forEach(([item, y]) => item.classList.toggle('lit', y <= py + 2));
+        });
+        if (moving) raf = requestAnimationFrame(frame);
     };
-    window.addEventListener('scroll', () => { if (!tlTicking) { tlTicking = true; requestAnimationFrame(updateTimelines); } }, { passive: true });
-    window.addEventListener('resize', updateTimelines);
-    updateTimelines();
+    const kick = () => { if (!raf) raf = requestAnimationFrame(frame); };
+    window.addEventListener('scroll', kick, { passive: true });
+    window.addEventListener('resize', () => {
+        // phones fire resize when the URL bar shows/hides: ignore height-only changes
+        if (window.innerWidth !== vw) { vw = window.innerWidth; vh = window.innerHeight; }
+        measure(); kick();
+    });
+    window.addEventListener('load', () => { measure(); kick(); });
+    measure(); kick();
 
     /* 7. Section titles draw in, tags get stagger order, stats count up */
     document.querySelectorAll('.lead-tags').forEach(g => g.querySelectorAll('span').forEach((s, i) => s.style.setProperty('--t', i)));
