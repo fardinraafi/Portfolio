@@ -591,11 +591,16 @@
     // splits the streamed text into visible reply + ACT/CHIPS meta lines
     function parseAi(raw) {
         const cut = raw.search(/\n?\s*(ACT|CHIPS|GAP|VIBE)\s*:/i);
-        const text = (cut >= 0 ? raw.slice(0, cut) : raw).trim();
+        let text = (cut >= 0 ? raw.slice(0, cut) : raw).trim();
         const meta = cut >= 0 ? raw.slice(cut) : '';
+        // the model sometimes tacks suggestions onto the reply as " | question? | question?": move them to chips
+        const tail = text.match(/(?:\s*\|\s*[^|\n]{3,60}\?)+\s*$/) || meta.match(/(?:\s*\|\s*[^|\n]{3,60}\?)+\s*$/);
+        if (tail && text.endsWith(tail[0].trim()) ) text = text.slice(0, text.length - tail[0].trimEnd().length).trim();
+        text = text.replace(/\s*\bVIBE\s*:\s*\w*/gi, '').trim();
         const am = meta.match(/ACT\s*:\s*([^\n]*)/i), cm = meta.match(/CHIPS\s*:\s*([^\n]*)/i);
         const act = am ? am[1].split(',').map(x => x.trim()).filter(x => ACT[x]).slice(0, 3) : [];
-        const chips = cm ? cm[1].split('|').map(x => x.trim().replace(/^["']|["']$/g, '')).filter(x => x && x.length < 50).slice(0, 3) : [];
+        const chipSrc = cm ? cm[1] : (tail ? tail[0] : '');
+        const chips = chipSrc ? chipSrc.split('|').map(x => x.trim().replace(/^["']|["']$/g, '')).filter(x => x && x.length < 60).slice(0, 3) : [];
         return { text, act, chips };
     }
     // returns {el, res} on success, null if AI unavailable before anything streamed

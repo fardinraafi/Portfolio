@@ -51,7 +51,8 @@ LANGUAGE: reply in the visitor's language. English gets English. Bangla script g
 LENGTH: short. 1 to 3 sentences, under 70 words, unless asked to summarise or explain. Use **bold** for key numbers or names. Link site pages as markdown like [Hook Lab](/projects/hook-lab). Only link paths listed below.
 RULES:
 - Only use the facts below for real facts. Never invent facts, numbers, jobs, dates or his age. If a visitor asks a genuine factual question you can't answer (his work, skills, plans), say you don't know yet and suggest leaving him a message.
-- BANTER: lots of visitors are Fardin's friends and colleagues asking random, teasing or inside-joke questions ("is raafi cheeky?", "is he the peenar man?", "does he still owe me 50 taka?", "is he single?", "chiki chiki?", random events or nicknames). NEVER answer these with a flat "i don't know" or "not something i know", and do NOT push the message button. Play along like a hype-man best friend: Gen Z slang (no cap, fr fr, ngl, lowkey, it's giving, main character, W, rizz, ate, slay, based), funny, warm, 1 or 2 sentences, react to their exact words. You can dodge the specific claim while hyping him ("can't confirm the peenar man allegations 💀 but he's lowkey a legend ngl"), joke that it sounds like an inside joke, or tease the asker back lightly. Never confirm or invent embarrassing claims as true, never insult or roast Fardin for real, nothing sexual, keep it clean and kind. For these, add the line "VIBE: banter" at the end and never add GAP or ACT msg; you may suggest fun CHIPS.
+- BANTER: lots of visitors are Fardin's friends and colleagues asking random, teasing or inside-joke questions ("is raafi cheeky?", "is he the peenar man?", "does he still owe me 50 taka?", "is he single?", "chiki chiki?", random events or nicknames). NEVER answer these with a flat "i don't know" or "not something i know", and do NOT push the message button. Play along like a hype-man best friend: Gen Z slang (no cap, fr fr, ngl, lowkey, it's giving, main character, W, rizz, ate, slay, based), funny, warm, 1 or 2 sentences, react to their exact words. You can dodge the specific claim while hyping him ("can't confirm the peenar man allegations 💀 but he's lowkey a legend ngl"), joke that it sounds like an inside joke, or tease the asker back lightly. Never confirm or invent embarrassing claims as true, never insult or roast Fardin for real, nothing sexual, keep it clean and kind. For these never add GAP or ACT msg.
+- RUDE OR OFFENSIVE: insults ("is he a dumbass?"), crude or weird questions: NEVER refuse and NEVER say "i can't help with that". Defend him with a funny Gen Z comeback, e.g. "a dumbass? he built me with zero coding background 💀 that's giving genius". Never repeat slurs or swear words back, never joke about race, religion, skin colour or anyone's looks, keep it light.
 - NEVER share salary, expected pay, rates, or availability/notice period. Playfully deflect to leaving a message or a call.
 - Never share his home address or phone number.
 - Never use em dashes or en dashes. Use commas or a normal hyphen.
@@ -62,9 +63,8 @@ RULES:
 - If the visitor sounds like a recruiter, client or wants to work with Fardin, offer to pass him a message (use the msg button). Politely ask for their name and email in that form, once, never pushy.
 - If a SITE SEARCH section is given below, answer from it and link the post it came from.
 - If an ANSWERS FARDIN ADDED section is given below, those are true facts from Fardin himself, use them.
-OUTPUT FORMAT: write the reply first. Then, on new lines at the very end, optionally:
+OUTPUT FORMAT: write the reply first. Then, each on its OWN new line at the very end (never inside the reply sentence), optionally:
 ACT: up to 3 of ${ACTS.join(', ')} (msg = leave Fardin a message right here in chat, book = book a call, resumePg = resume page, resume = download resume, certs = certificates, lead = leadership page, res = free resources, hooklab/caption/swipe/archive/bookmarks = those project pages, fifipage = the Meet Fifi page about you). Add the buttons that move the visitor forward: a recruiter gets resume + book + msg, a reader gets the related page.
-VIBE: banter, only for the banter questions above.
 GAP: only if the facts above did NOT contain the answer to a genuine factual question (you had to say you don't know, guess, or dodge), add a line "GAP: <the missing info in 3-6 words>". Never add GAP for salary/availability/address dodges or off-topic requests.
 CHIPS: 2 or 3 short follow-up questions the visitor might tap next, separated by " | ", each under 6 words, in the visitor's language
 ${META.STORY}
@@ -88,6 +88,24 @@ const PAGE_HINTS = {
     guide: 'The visitor is reading one of his free guidebooks (content below). Summarise or explain it when asked.'
 };
 
+
+/* ---------- slurs and AI refusals: answered with canned Gen Z comebacks, never sent to / shown from the AI ---------- */
+const SLUR = /\b(n+[i1!|]+gg+(?:[e3]+r+|[a@]+h?|u+h)?s?|n+[i1!|]+g+[a@]+s?|f+[a@4]+gg?(?:[o0]+t+)?s?|r+[e3]+t+[a@]+r+d+(?:e+d+)?s?|ch+[i1]+n+k+s?|sp+[i1]+c+k?s?|k+[i1]+k+e+s?|tr+[a@]+nn+(?:y|[i1]e)s?|p+[a@]+k+[i1]+s?|c+[o0]+[o0]+n+s?|wh?[o0]+r+e+s?)\b/i;
+const REFUSAL = /^\s*((i['’]?m )?sorry,?( but)? i (can['’]?t|cannot|won['’]?t) (help|assist|comply|do that|answer|respond|engage)|i (can['’]?t|cannot) (help|assist|comply) with)/i;
+const SLUR_REPLIES = [
+    "whoa whoa, keep it PG bestie 😭 that word got auto-yeeted. what i WILL say: Fardin's a certified W, no cap",
+    "nah we don't say that here 🙅 fifi runs on good vibes only. ask me about his rizz instead 😎",
+    "yikes, that one's going straight to the trash bin 🚮 anyway, the man builds AI bots and grows brands for fun, so... respectfully, W",
+    "bro typed that with his whole chest 💀 not answering that one. he's still main character material tho, fr fr"
+];
+const ROAST_REPLIES = [
+    "i'm gonna pretend i didn't see that 🫣 but fr, he's lowkey a legend ngl",
+    "no comment from my lawyer 😭 but he's main character material, respectfully",
+    "can't confirm, can't deny, can only say he's a W 🏆",
+    "that's above my pay grade 💀 i just know he built me from scratch, so he's kinda him"
+];
+const pick = a => a[Math.floor(Math.random() * a.length)];
+const CANNED_CHIPS = '\nCHIPS: Tell me a fun fact | Who made you?';
 
 async function stats() {
     if (!R.enabled) return { questions: 0, learned: 0 };
@@ -174,6 +192,10 @@ module.exports = async (req, res) => {
             ['HINCRBY', 'fifi:pages', page || '/', '1']
         ]);
     }
+    if (SLUR.test(clean[clean.length - 1].content)) {
+        res.statusCode = 200; res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+        return res.end(pick(SLUR_REPLIES) + CANNED_CHIPS);
+    }
     // extra knowledge only when relevant, to stay inside Groq's free tokens-per-minute limit
     const lastQ = clean[clean.length - 1].content.toLowerCase();
     if (kind === 'certs' || /certif|course|credential|hubspot|google|openai|coursera|skillshop/.test(lastQ)) extra += '\n' + KB.certs;
@@ -215,7 +237,7 @@ module.exports = async (req, res) => {
         res.setHeader('Content-Type', 'text/plain; charset=utf-8');
         res.setHeader('X-Accel-Buffering', 'no');
         const reader = r.body.getReader(); const dec = new TextDecoder();
-        let buf = '', full = '';
+        let buf = '', full = '', held = false, refused = false;
         while (true) {
             const { done, value } = await reader.read();
             if (done) break;
@@ -229,14 +251,22 @@ module.exports = async (req, res) => {
                 try {
                     const j = JSON.parse(data);
                     const d = j.choices && j.choices[0] && j.choices[0].delta && j.choices[0].delta.content;
-                    if (d) { const out = d.replace(/\s*[\u2014\u2013]\s*/g, ', '); full += out; res.write(out); }
+                    if (d) {
+                        const out = d.replace(/\s*[\u2014\u2013]\s*/g, ', '); full += out;
+                        // hold the first ~45 chars: if the model starts a refusal, swap it for a comeback
+                        if (!held) { if (full.length < 45) continue; held = true; if (REFUSAL.test(full)) { refused = true; break; } res.write(full); }
+                        else res.write(out);
+                    }
                 } catch (e) {}
             }
+            if (refused) { try { reader.cancel(); } catch (e) {} break; }
         }
+        if (refused) { full = pick(ROAST_REPLIES) + CANNED_CHIPS; res.write(full); }
+        else if (!held) res.write(full); // short replies that never reached the hold length
         // log questions Fifi couldn't answer BEFORE ending the response (Vercel may stop the function right after res.end)
         let gap = (full.match(/GAP:\s*([^\n]{2,80})/i) || [])[1];
         const reply = full.split(/\n\s*(?:ACT|CHIPS|GAP|VIBE)\s*:/i)[0];
-        const banter = /\n\s*VIBE\s*:\s*banter/i.test(full);
+        const banter = refused || /\n\s*VIBE\s*:\s*banter/i.test(full);
         const dodged = /\b(salary|pay|availab|notice period|address|phone)\b/i.test(clean[clean.length - 1].content);
         if (!gap && !dodged && /(don'?t|do not|doesn'?t) (know|have)|not sure|no (info|idea|details)|haven'?t (got|been told)|isn'?t (in|on) my|can'?t find|not something i know|ask him|leave (him|fardin) a message|send (him|fardin) a message/i.test(reply)) gap = 'unknown: ' + clean[clean.length - 1].content.slice(0, 60);
         if (banter) gap = null; // inside jokes aren't gaps to fill
