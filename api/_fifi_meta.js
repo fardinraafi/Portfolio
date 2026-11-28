@@ -1,7 +1,7 @@
 // Fifi's story + changelog. One source for the bot's answers, the version badge and the /fifi page.
 // Add a new entry at the TOP of CHANGELOG with every Fifi upgrade.
 const CHANGELOG = [
-    { v: '4.3', d: '2026-11-28', t: 'Never says "i can\'t help with that" anymore: rude or offensive questions get a funny Gen Z comeback, cleaner replies' },
+    { v: '4.3', d: '2026-11-28', t: 'Never says "i can\'t help with that" anymore: rude or offensive questions get a funny Gen Z comeback, private questions get a playful dodge, cleaner replies' },
     { v: '4.2', d: '2026-11-28', t: 'Banter mode: plays along with random, teasing and inside-joke questions in full Gen Z hype-man style instead of saying i don\'t know' },
     { v: '4.1', d: '2026-11-28', t: 'Meet Fifi page, version badge, live stats, Fifi Run leaderboard, ask Fifi from blog search, page-aware nudges' },
     { v: '4.0', d: '2026-11-28', t: 'Learns answers Fardin teaches him, searches every blog post, recruiter mode, lead capture, voice input' },

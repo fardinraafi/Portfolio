@@ -594,7 +594,7 @@
         let text = (cut >= 0 ? raw.slice(0, cut) : raw).trim();
         const meta = cut >= 0 ? raw.slice(cut) : '';
         // the model sometimes tacks suggestions onto the reply as " | question? | question?": move them to chips
-        const tail = text.match(/(?:\s*\|\s*[^|\n]{3,60}\?)+\s*$/) || meta.match(/(?:\s*\|\s*[^|\n]{3,60}\?)+\s*$/);
+        const tail = text.match(/(?:\s*\|\s*[^|\n]{2,60})+\s*$/) || meta.match(/(?:\s*\|\s*[^|\n]{2,60})+\s*$/);
         if (tail && text.endsWith(tail[0].trim()) ) text = text.slice(0, text.length - tail[0].trimEnd().length).trim();
         text = text.replace(/\s*\bVIBE\s*:\s*\w*/gi, '').trim();
         const am = meta.match(/ACT\s*:\s*([^\n]*)/i), cm = meta.match(/CHIPS\s*:\s*([^\n]*)/i);
