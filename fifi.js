@@ -565,7 +565,7 @@
     }
 
     /* ---------- AI brain (Groq via /api/fifi, streamed), coded brain is the fallback ---------- */
-    const AI_DAY_MAX = 25;
+    const AI_DAY_MAX = 50;
     const esc = (t) => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
     const toHtml = (t) => esc(t)
         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')

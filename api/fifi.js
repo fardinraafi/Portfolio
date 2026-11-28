@@ -147,7 +147,7 @@ module.exports = async (req, res) => {
         return res.status(200).json({ ok: true });
     }
     if (!process.env.GROQ_API_KEY) return res.status(503).json({ error: 'no key' });
-    if (await R.limited('fifi:' + ip, 30, 3600)) return res.status(429).json({ error: 'slow down' });
+    if (await R.limited('fifi:' + ip, 40, 3600)) return res.status(429).json({ error: 'slow down' });
     if (await R.limited('groq-day', 1200, 86400)) return res.status(429).json({ error: 'daily cap' }); // protects the free Groq quota
 
     const msgs = Array.isArray(body && body.messages) ? body.messages.slice(-8) : [];
