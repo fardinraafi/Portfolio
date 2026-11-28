@@ -67,6 +67,8 @@ Their Eid tagline was literally designed to function as a meme template. Every E
 
 > Brainrot marketing is not just about making stupid content. It is a highly calculated psychological framework that dictates when, where, and how to hack the audience's attention and convert it into measurable growth.
 
+**Next in the series:** [Case Study Series - 2: Warid to Cirkle](https://fardinraafi.com/blog/warid-to-cirkle-rebrand-case-study)
+
 ---
 
 *About the author:* Fardin Rahman Khan Raafi (Fardin Raafi) is a B2B Marketing Executive at Augmex Technologies in Dhaka, Bangladesh, specialising in lead generation, content marketing and design. In 2026 he drove 340K+ organic views and grew the sneaker brand FYGO from 0 to 17K+ followers.
