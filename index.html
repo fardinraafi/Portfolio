@@ -944,11 +944,12 @@ body:not(.dark-mode) .cursor-glow { background: radial-gradient(circle, rgba(124
                 </div>
                 <div class="status-tooltip">Click to copy email</div>
             </div>
-            <a href="/fifi" class="fifi-live" id="fifiLive" aria-label="Meet Fifi, Fardin's AI assistant"><img src="/misc_img/avatar.jpg" alt="" width="26" height="26"><span class="dot"></span><span id="fifiLiveTxt">Fifi is online · ask me anything</span></a>
+            <button type="button" class="fifi-live" id="fifiLive" aria-label="Chat with Fifi, Fardin's AI assistant"><img src="/misc_img/avatar.jpg" alt="" width="26" height="26"><span class="dot"></span><span id="fifiLiveTxt">Fifi is online · ask me anything</span></button>
         </div>
         <script>
         (() => {
             const b = document.getElementById('fifiLive');
+            b.addEventListener('click', () => window.FRFifi && window.FRFifi.open());
             const go = () => window.FRFifiInfo && window.FRFifiInfo.then(i => { if (i && i.questions > 20) document.getElementById('fifiLiveTxt').innerHTML = `Fifi is online · <b>${i.questions.toLocaleString()}</b> questions answered`; });
             window.FRFifiInfo ? go() : addEventListener('load', go);
         })();
