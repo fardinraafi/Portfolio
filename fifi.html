@@ -342,8 +342,8 @@
 </script>
 <script>
 (() => {
-    document.getElementById('ffChat').onclick = () => window.FRFifi && window.FRFifi.open();
-    document.getElementById('ffNew').onclick = () => window.FRFifi && window.FRFifi.ask("What's new?");
+    document.getElementById('ffChat').onclick = (e) => { e.stopPropagation(); window.FRFifi && window.FRFifi.open(); };
+    document.getElementById('ffNew').onclick = (e) => { e.stopPropagation(); window.FRFifi && window.FRFifi.ask("What's new?"); };
     const go = () => window.FRFifiInfo && window.FRFifiInfo.then(i => { if (!i) return;
         document.getElementById('sV').textContent = 'v' + i.version;
         document.getElementById('sQ').textContent = (i.questions || 0).toLocaleString();

@@ -773,7 +773,7 @@
                 tip.textContent = NUDGE[0];
                 document.body.appendChild(tip);
                 requestAnimationFrame(() => tip.classList.add('in'));
-                tip.addEventListener('click', () => { tip.remove(); if (NUDGE[1]) window.FRFifi.ask(NUDGE[1]); else open(true); });
+                tip.addEventListener('click', (e) => { e.stopPropagation(); tip.remove(); if (NUDGE[1]) window.FRFifi.ask(NUDGE[1]); else open(true); });
                 setTimeout(() => { tip.classList.remove('in'); setTimeout(() => tip.remove(), 400); }, 6000);
                 sessionStorage.setItem('fifi-nudged-' + MODE, '1');
             }, NUDGE[2]);

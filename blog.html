@@ -465,7 +465,7 @@ async function askFifi(q) {
         const rd = r.body.getReader(), dec = new TextDecoder(); let raw = '';
         while (true) { const { done, value } = await rd.read(); if (done) break; raw += dec.decode(value, { stream: true }); show(raw); }
         const more = document.createElement('button'); more.className = 'more'; more.textContent = '💬 Continue with Fifi';
-        more.onclick = () => window.FRFifi && window.FRFifi.ask(q);
+        more.onclick = (e) => { e.stopPropagation(); window.FRFifi && window.FRFifi.ask(q); };
         askWrap.querySelector('.fifi-askbox').appendChild(more);
     } catch (e) { txt.innerHTML = 'my AI brain is napping 😴 try the chat button instead.'; }
 }
