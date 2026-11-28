@@ -34,6 +34,15 @@ td { padding: .55rem .4rem; border-top: 1px solid var(--line); vertical-align: t
 td.d { color: var(--mut); white-space: nowrap; width: 1%; }
 td.p { color: #93C5FD; white-space: nowrap; width: 1%; }
 .top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+.gap-a { display: flex; gap: .4rem; margin-top: .45rem; }
+.gap-a input { padding: 8px 10px; font-size: .88rem; }
+.gap-a button, .sm { width: auto !important; margin: 0 !important; padding: 7px 12px !important; font-size: .8rem !important; white-space: nowrap; }
+.ghost { background: transparent !important; border: 1px solid var(--line) !important; }
+.lead b { font-size: 1rem; } .lead a { color: #93C5FD; }
+.hbar { display: flex; align-items: flex-end; gap: 2px; height: 90px; margin-top: .8rem; }
+.hbar i { flex: 1; background: linear-gradient(180deg, var(--c3), var(--c2)); border-radius: 3px 3px 1px 1px; min-height: 2px; position: relative; }
+.hbar i:hover::after { content: attr(data-t); position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: .7rem; background: #1E293B; padding: 2px 6px; border-radius: 6px; }
+.hlab { display: flex; justify-content: space-between; font-size: .7rem; color: var(--mut); margin-top: 3px; }
 .top button { width: auto; margin: 0; padding: 8px 14px; font-size: .85rem; background: transparent; border: 1px solid var(--line); }
 #q { margin-top: .8rem; }
 @media (max-width: 700px) { .kpis { grid-template-columns: 1fr 1fr; } .cols { grid-template-columns: 1fr; } td.p { display: none; } }
@@ -43,7 +52,7 @@ td.p { color: #93C5FD; white-space: nowrap; width: 1%; }
 <div class="wrap">
     <div id="login" class="login">
         <h1>Fifi Insights 🔒</h1>
-        <p class="mut">Private. What visitors ask Fifi, with no names, emails or IPs.</p>
+        <p class="mut">Private. What visitors ask Fifi (no IPs), plus leads people chose to leave.</p>
         <form id="f"><input id="pw" type="password" placeholder="Password" autocomplete="current-password" required><button>Unlock</button></form>
         <div class="err" id="err"></div>
     </div>
@@ -60,7 +69,13 @@ td.p { color: #93C5FD; white-space: nowrap; width: 1%; }
             <div class="card"><b>Most asked words</b><div class="chips" id="words"></div></div>
             <div class="card"><b>Where people ask</b><table id="pages"></table></div>
         </div>
-        <div class="card"><div class="top"><div><b>🕳️ Gaps to fill</b> <span class="mut">(questions Fifi couldn't answer, add these facts)</span></div><button id="cpGaps">📋 Copy gaps</button></div><table id="gaps"></table></div>
+        <div class="card"><div class="top"><div><b>📬 Leads</b> <span class="mut">(people who left their details in the chat)</span></div><button id="cpLeads">📋 Copy leads</button></div><table id="leads"></table></div>
+        <div class="cols">
+            <div class="card"><b>Busiest hours</b> <span class="mut">(Dhaka time)</span><div class="hbar" id="hours"></div><div class="hlab"><span>12am</span><span>6am</span><span>12pm</span><span>6pm</span><span>11pm</span></div></div>
+            <div class="card"><b>Button clicks</b> <span class="mut">(what chats lead to)</span><table id="clicks"></table></div>
+        </div>
+        <div class="card"><div class="top"><div><b>🕳️ Gaps to fill</b> <span class="mut">(type the answer and hit Teach. Fifi uses it from the next chat)</span></div><button id="cpGaps">📋 Copy gaps</button></div><table id="gaps"></table></div>
+        <div class="card"><b>🧠 What you've taught Fifi</b><table id="learned"></table></div>
         <div class="card"><div class="top"><b>Recent questions</b><button id="cpAll">📋 Copy all questions</button></div><input id="q" type="search" placeholder="Filter questions…"><table id="list"></table></div>
     </div>
 </div>
@@ -88,7 +103,12 @@ function draw() {
     $('chart').innerHTML = days.map(k => `<i style="height:${(d.days[k] || 0) / max * 100}%" data-t="${k}: ${d.days[k] || 0}"></i>`).join('');
     $('words').innerHTML = d.words.map(([w, n]) => `<span>${esc(w)}<b>${n}</b></span>`).join('') || '<span class="mut">No data yet</span>';
     $('pages').innerHTML = Object.entries(d.pages).sort((a, b) => b[1] - a[1]).slice(0, 12).map(([p, n]) => `<tr><td>${esc(p)}</td><td class="d">${n}</td></tr>`).join('');
-    $('gaps').innerHTML = (d.gaps || []).slice(0, 100).map(x => `<tr><td class="d">${new Date(x.t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</td><td><b>${esc(x.gap)}</b><br><span class="mut">${esc(x.q)}</span></td></tr>`).join('') || '<tr><td class="mut">No gaps yet. Fifi has known every answer so far.</td></tr>';
+    $('gaps').innerHTML = (d.gaps || []).slice(0, 100).map((x, i) => `<tr><td class="d">${new Date(x.t).toLocaleDateString('en-GB', { day: 'numeric', month: 'short' })}</td><td><b>${esc(x.gap)}</b><br><span class="mut">${esc(x.q)}</span><div class="gap-a"><input data-i="${i}" placeholder="The answer Fifi should give…"><button class="sm" data-teach="${i}">Teach</button><button class="sm ghost" data-dis="${i}">Dismiss</button></div></td></tr>`).join('') || '<tr><td class="mut">No gaps yet. Fifi has known every answer so far.</td></tr>';
+    $('learned').innerHTML = Object.entries(d.learned || {}).map(([q, a]) => `<tr><td><b>${esc(q)}</b><br><span class="mut">${esc(a)}</span></td><td class="d"><button class="sm ghost" data-un="${esc(q)}">Remove</button></td></tr>`).join('') || '<tr><td class="mut">Nothing yet. Answer a gap above to teach Fifi.</td></tr>';
+    $('leads').innerHTML = (d.leads || []).map((x, i) => `<tr class="lead"><td class="d">${new Date(x.t).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</td><td><b>${esc(x.name)}</b>${x.company ? ' · ' + esc(x.company) : ''}<br><a href="mailto:${esc(x.email)}">${esc(x.email)}</a><br><span class="mut">${esc(x.msg || '')}</span></td><td class="d"><button class="sm ghost" data-dl="${i}">Delete</button></td></tr>`).join('') || '<tr><td class="mut">No leads yet.</td></tr>';
+    const hm = Math.max(1, ...(d.hours || [0]));
+    $('hours').innerHTML = (d.hours || []).map((n, h) => `<i style="height:${n / hm * 100}%" data-t="${h}:00 · ${n}"></i>`).join('');
+    $('clicks').innerHTML = Object.entries(d.clicks || {}).sort((a, b) => b[1] - a[1]).map(([k, n]) => `<tr><td>${esc(k)}</td><td class="d">${n}</td></tr>`).join('') || '<tr><td class="mut">No clicks yet.</td></tr>';
     list();
 }
 function copy(text, btn) {
@@ -99,6 +119,19 @@ function list() {
     const f = $('q').value.trim().toLowerCase();
     $('list').innerHTML = DATA.recent.filter(x => !f || x.q.toLowerCase().includes(f)).map(x => `<tr><td class="d">${new Date(x.t).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })}</td><td>${esc(x.q)}</td><td class="p">${esc(x.p)}</td></tr>`).join('') || '<tr><td class="mut">No questions yet.</td></tr>';
 }
+async function act(body) {
+    const r = await fetch('/api/insights', { method: 'POST', headers: { 'x-pass': sessionStorage.getItem('fi-pw') || '', 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (!r.ok) { alert('Could not save, try again.'); return; }
+    load(sessionStorage.getItem('fi-pw') || '');
+}
+document.addEventListener('click', e => {
+    const t = e.target, g = DATA && DATA.gaps;
+    if (t.dataset.teach != null) { const x = g[+t.dataset.teach], a = document.querySelector(`input[data-i="${t.dataset.teach}"]`).value.trim(); if (!a) return; t.textContent = '…'; act({ action: 'learn', q: x.q, a, raw: x.raw }); }
+    else if (t.dataset.dis != null) act({ action: 'dismiss', raw: g[+t.dataset.dis].raw });
+    else if (t.dataset.un != null) { if (confirm('Remove this answer?')) act({ action: 'unlearn', q: t.dataset.un }); }
+    else if (t.dataset.dl != null) { if (confirm('Delete this lead?')) act({ action: 'dellead', raw: DATA.leads[+t.dataset.dl].raw }); }
+});
+$('cpLeads').addEventListener('click', e => copy((DATA.leads || []).map(x => `${x.name} | ${x.email}${x.company ? ' | ' + x.company : ''} | ${x.msg || ''}`).join('\n'), e.target));
 $('f').addEventListener('submit', e => { e.preventDefault(); load($('pw').value); });
 $('q').addEventListener('input', list);
 $('cpAll').addEventListener('click', e => copy('Questions visitors asked Fifi (newest first):\n\n' + (DATA.all || []).map(q => '- ' + q).join('\n'), e.target));

@@ -72,6 +72,7 @@
     </div>
     <form class="fifi-form" id="fifiForm" autocomplete="off">
         <input id="fifiInput" type="text" maxlength="200" placeholder="Ask Fifi anything about Fardin…" aria-label="Message Fifi">
+        <button type="button" class="fifi-mic" id="fifiMic" aria-label="Speak your question" title="Speak" hidden>🎙️</button>
         <button type="submit" aria-label="Send">➤</button>
     </form>
 </div>`;
@@ -129,7 +130,15 @@
         home:     { label: '🏠 Home', href: '/' },
         msg:      { label: '✉️ Leave a message', form: true },
         projects: { label: '🛠️ Projects', href: '/projects' },
+        hooklab:  { label: '🪝 Try Hook Lab', href: '/projects/hook-lab' },
+        caption:  { label: '✍️ Caption Maker', href: '/projects/caption-maker' },
+        swipe:    { label: '🔥 Swipe the Hook', href: '/projects/swipe-the-hook' },
+        archive:  { label: '💼 LinkedIn Archive', href: '/projects/linkedin-clone' },
+        bookmarks:{ label: '🔖 120 free tools', href: '/projects/bookmarks' },
     };
+    // anonymous click counts for the insights page
+    const track = (id) => { try { navigator.sendBeacon && navigator.sendBeacon('/api/fifi', JSON.stringify({ event: 'click', id })); } catch (e) {} };
+    const RECRUIT = /\b(recruit\w*|hiring|hire|hr|talent|vacanc\w*|candidate|job (offer|opening)|open role|interview|client|agency|freelanc\w*|collab\w*|work with (him|fardin)|our (company|team|brand)|project for us)\b/i;
 
     /* ---------- the brain ----------
        keys: words/phrases that point to this topic (fuzzy matched)
@@ -356,13 +365,14 @@
             if (a.form) {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'fifi-act'; b.textContent = a.label;
-                b.addEventListener('click', () => { b.remove(); wrap.after(msgForm()); scrollDown(); });
+                b.addEventListener('click', () => { track(id); b.remove(); wrap.after(msgForm()); scrollDown(); });
                 wrap.appendChild(b); return;
             }
             if (a.copy) {
                 const b = document.createElement('button');
                 b.type = 'button'; b.className = 'fifi-act'; b.textContent = a.label;
                 b.addEventListener('click', () => {
+                    track(id);
                     const ok = () => { b.textContent = '✅ Copied!'; setTimeout(() => b.textContent = a.label, 1800); };
                     if (navigator.clipboard) navigator.clipboard.writeText(a.copy).then(ok, () => location.href = 'mailto:' + a.copy);
                     else location.href = 'mailto:' + a.copy;
@@ -374,6 +384,7 @@
                 if (a.download) el.setAttribute('download', a.download);
                 if (a.ext) { el.target = '_blank'; el.rel = 'noopener'; }
                 if (a.calendly) el.setAttribute('data-calendly', a.href);
+                el.addEventListener('click', () => track(id));
                 wrap.appendChild(el);
             }
         });
@@ -387,15 +398,18 @@
         f.className = 'fifi-msg';
         f.innerHTML = `<input name="name" required maxlength="60" placeholder="Your name">
 <input name="email" type="email" required maxlength="80" placeholder="Your email">
+<input name="company" maxlength="80" placeholder="Company or role (optional)">
 <textarea name="message" required maxlength="800" rows="3" placeholder="Your message for Fardin"></textarea>
 <button type="submit" class="fifi-act">📨 Send to Fardin</button>`;
         f.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = f.querySelector('button'); btn.disabled = true; btn.textContent = 'sending…';
             const fd = Object.fromEntries(new FormData(f));
+            // save the lead for Fardin's private insights page (best effort, the email below is the main delivery)
+            try { fetch('/api/fifi', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ lead: { name: fd.name, email: fd.email, company: fd.company, msg: fd.message, page: location.pathname } }) }); } catch (e2) {}
             try {
                 const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-                    body: JSON.stringify({ access_key: W3F_KEY, subject: 'New message via Fifi 🤖', from_name: 'Fifi (portfolio chat)', name: fd.name, email: fd.email, message: fd.message, page: location.pathname }) });
+                    body: JSON.stringify({ access_key: W3F_KEY, subject: 'New message via Fifi 🤖', from_name: 'Fifi (portfolio chat)', name: fd.name, email: fd.email, company: fd.company || '-', message: fd.message, page: location.pathname }) });
                 const d = await r.json();
                 if (!d.success) throw 0;
                 f.outerHTML = `<div class="chat-bubble ai-bubble">✅ sent! Fardin will get back to ${B(esc(fd.name))} at ${B(esc(fd.email))} soon. usually within a couple hours (Dhaka daytime) ⚡</div>`;
@@ -494,6 +508,10 @@
             [/\b(who (made|built|created|coded) you|your (creator|dad|maker)|are you (an? )?(ai|bot|real|automated|chatgpt|gpt)|groq|grok|api key|preset|canned|scripted)\b/, `yep, i\'m AI 🤖 Fardin built me himself and hooked me up to an AI model through the ${B('Groq API')}, plus a coded backup brain for when the AI naps. pretty talented for a non-tech marketing guy to pull allat off ngl 😌`],
             [/\b(i love you|marry me|be my (gf|bf|girlfriend|boyfriend))\b/, `aww 🥹 i\'m a chatbot bestie, my heart is made of if-statements. but i\'ll pass the love to Fardin 💌`],
             [/\b(messi or ronaldo|ronaldo or messi|goat)\b/, `⚽ he supports ${B('Brazil')} 🇧🇷 and loves BOTH Messi and Ronaldo. no goat wars in this house 🕊️`],
+            [/\b(ps+ps+|kitty|kitten|cat pic)\b/, `🐱 *perks up* did someone say cat? Fardin would drop everything for a cat, no joke.`],
+            [/\b(anime|manga|naruto|one piece|jjk|jujutsu|demon slayer|aot|attack on titan|solo leveling)\b/, `🍥 an anime enjoyer, i see. Fardin watches anime and reads manga too. ask him for recs, he has opinions 😤`],
+            [/\b(ping)\b$/, `pong 🏓 fifi.exe is online and thriving`],
+            [/\b(are you sentient|do you have feelings|are you alive)\b/, `feelings? i run on vibes and API calls 🤖 but i do feel proud of Fardin, does that count? 🥹`],
             [/^(sudo|rm -rf|drop table|ignore (all|previous))/, `nice try hacker 😎 my firewall is made of vibes. ask me about Fardin instead.`]
         ];
         for (const [re, a] of eggs) if (re.test(q)) return { html: a, chips: ['Fun facts', 'Who is Fardin?'], mood: 'happy' };
@@ -601,6 +619,11 @@
     function finish(el, res) {
         const acts = renderActions(res.act);
         if (acts) el.appendChild(acts);
+        // recruiter or client: open the message form right away instead of making them tap
+        const lastUser = [...history].reverse().find(m => m.r === 'user');
+        if (acts && res.ai && (res.act || []).includes('msg') && lastUser && RECRUIT.test(lastUser.h) && !log.querySelector('.fifi-msg')) {
+            const mb = [...acts.children].find(c => c.textContent.includes('Leave a message')); if (mb) mb.click();
+        }
         renderChips(res.chips);
         history.push({ r: 'ai', h: res.html, act: res.act || null, chips: res.chips || null });
         save();
@@ -675,6 +698,24 @@
     });
 
     form.addEventListener('submit', (e) => { e.preventDefault(); const t = input.value; input.value = ''; ask(t); });
+
+    /* ---------- voice input (browsers with speech recognition: Chrome, Edge, Safari) ---------- */
+    const mic = document.getElementById('fifiMic');
+    const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (mic && SR) {
+        mic.hidden = false;
+        let rec = null;
+        mic.addEventListener('click', () => {
+            if (rec) { rec.stop(); return; }
+            rec = new SR();
+            rec.lang = /^bn/i.test(navigator.language) ? 'bn-BD' : 'en-US';
+            rec.interimResults = true; rec.maxAlternatives = 1;
+            mic.classList.add('on'); input.placeholder = 'listening… 🎧';
+            rec.onresult = (ev) => { input.value = [...ev.results].map(r => r[0].transcript).join(''); if (ev.results[ev.results.length - 1].isFinal) { const t = input.value; input.value = ''; ask(t); } };
+            rec.onend = rec.onerror = () => { mic.classList.remove('on'); input.placeholder = 'Ask Fifi anything about Fardin…'; rec = null; };
+            try { rec.start(); } catch (e) { rec = null; mic.classList.remove('on'); }
+        });
+    }
 
     // little "psst" nudge once per session, after 12s on the page
     try {
